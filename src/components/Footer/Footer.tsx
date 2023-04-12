@@ -8,13 +8,13 @@ const Footer: FC = () => {
     <footer className={styles.footer}>
       <div className={styles.footer__btns}>
         <CustomButton clickCallback={() => {}}>Написать в чате</CustomButton>
-        <CustomButton theme="icon" clickCallback={() => {}}>
+        <CustomButton type="icon" clickCallback={() => {}}>
           <BsTelephone size={16} />
         </CustomButton>
-        <CustomButton theme="purple" clickCallback={() => {}}>
+        <CustomButton type="purple" clickCallback={() => {}}>
           Оплатить подписку
         </CustomButton>
-        <CustomButton width="200px" theme="red" clickCallback={() => {console.log('click')}}>
+        <CustomButton width="200px" type="red" clickCallback={() => {console.log('click')}}>
           Показать подборку
         </CustomButton>
       </div>

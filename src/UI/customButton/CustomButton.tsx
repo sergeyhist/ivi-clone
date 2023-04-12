@@ -6,21 +6,23 @@ interface CustomButtonProps {
   text?: string;
   icon?: ReactNode;
   clickCallback: () => void;
-  theme?: "purple" | "red" | "icon";
+  type?: "purple" | "red" | "icon";
   padding?: string;
   width?: string;
   height?: string;
   fontSize?: string;
+  lineHeight?: string;
 }
 
 const CustomButton: FC<CustomButtonProps> = ({
   clickCallback,
-  theme,
+  type,
   children,
   padding,
   width,
   height,
   fontSize,
+  lineHeight,
 }) => {
   return (
     <button
@@ -30,8 +32,9 @@ const CustomButton: FC<CustomButtonProps> = ({
         height: height ? height : '',
         padding: padding ? padding : '',
         fontSize: fontSize ? fontSize : '',
+        lineHeight: lineHeight ? lineHeight : '',
       }}
-      className={theme ? styles.btn + " " + styles[`btn_${theme}`] : styles.btn}
+      className={type ? styles.btn + " " + styles[`btn_${type}`] : styles.btn}
     >
       <div className={styles.btn__content}>{children}</div>
     </button>
