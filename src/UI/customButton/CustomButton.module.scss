@@ -1,0 +1,29 @@
+@use 'src/assets/variables' as vars;
+
+.btn {
+  width: fit content;
+  cursor: pointer;
+  background: vars.$btnBg;
+  border: 1px solid vars.$btnBg;
+  border-radius: 8px;
+  color: white;
+  padding: 9px 15px;
+
+  &_purple {
+    background: vars.$primaryGradient;
+    border: transparent;
+    padding: 7px 11px;
+  }
+
+  &_red {
+    background: vars.$red;
+    border: vars.$red;
+    
+    &:hover {
+      background: #ff0f4d;
+      border-color: #ff0f4d;
+    }
+  }
+
+
+}
