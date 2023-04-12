@@ -1,0 +1,27 @@
+@import vars
+	
+@import 'node_modules/bootstrap/scss/bootstrap-reboot.scss' // Bootstrap Reboot collection
+@import 'node_modules/bootstrap/scss/mixins/_breakpoints.scss' // Bootstrap Breakpoints mixin
+@import 'node_modules/bootstrap/scss/bootstrap-grid.scss' // Optional Bootstrap Grid
+
+
+// FONTS LOAD SECTION
+@mixin font($fname, $fstyle, $fweight, $furl)
+	@font-face
+		font-family: $fname
+		font-style: $fstyle
+		font-weight: $fweight
+		src: url($furl) format('woff2')
+
+@include font('iviSans', normal, 400, '../assets/fonts/iviSans-Regular.woff2')
+@include font('iviSans', normal, 500, '../assets/fonts/iviSans-Medium.woff2')
+@include font('iviSans', normal, 700, '../assets/fonts/iviSans-Bold.woff2')
+
+
+// GENERAL CSS SETTINGS
+::placeholder
+	color: #666
+
+::selection
+	background-color: $accent
+	color: #fff
