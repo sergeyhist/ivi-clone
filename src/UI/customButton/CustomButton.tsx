@@ -6,7 +6,7 @@ interface CustomButtonProps {
   text?: string;
   icon?: ReactNode;
   clickCallback: () => void;
-  theme?: "deafult" | "purple" | "red" | "icon";
+  theme?: "purple" | "red" | "icon";
   padding?: string;
   width?: string;
   height?: string;
@@ -28,7 +28,8 @@ const CustomButton: FC<CustomButtonProps> = ({
       style={{
         width: width ? width : '',
         height: height ? height : '',
-        padding: padding ? padding : ''
+        padding: padding ? padding : '',
+        fontSize: fontSize ? fontSize : '',
       }}
       className={theme ? styles.btn + " " + styles[`btn_${theme}`] : styles.btn}
     >
