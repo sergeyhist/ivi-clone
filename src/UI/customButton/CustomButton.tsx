@@ -1,28 +1,40 @@
-import { ReactNode } from "react";
-import css from "./CustomButton.module.scss";
+import { FC, ReactNode } from "react";
+import styles from "./CustomButton.module.sass";
 
-export const CustomButton = ({
-  text,
-  icon,
-  clickCallback,
-  theme,
-  padding,
-}: {
+interface CustomButtonProps {
+  children: ReactNode;
   text?: string;
   icon?: ReactNode;
   clickCallback: () => void;
-  theme?: "deafult" | "purple" | "red";
+  theme?: "deafult" | "purple" | "red" | "icon";
   padding?: string;
   width?: string;
   height?: string;
+  fontSize?: string;
+}
+
+const CustomButton: FC<CustomButtonProps> = ({
+  clickCallback,
+  theme,
+  children,
+  padding,
+  width,
+  height,
+  fontSize,
 }) => {
   return (
     <button
       onClick={clickCallback}
-      className={theme ? css.btn + " " + css.btn_red : css.btn}
+      style={{
+        width: width ? width : '',
+        height: height ? height : '',
+        padding: padding ? padding : ''
+      }}
+      className={theme ? styles.btn + " " + styles[`btn_${theme}`] : styles.btn}
     >
-      {text && <span>{text}</span>}
-      {icon && <span>{icon}</span>}
+      <div className={styles.btn__content}>{children}</div>
     </button>
   );
 };
+
+export default CustomButton;

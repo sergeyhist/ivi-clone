@@ -1,4 +1,27 @@
 @use 'sass:math'
 @use 'sass:color'
-
+@use 'vars'
 @import config
+
+body
+  font-family: vars.$userfont
+  font-size: vars.$fontsize
+  line-height: vars.$lineheight
+  color: vars.$textcolor
+  min-width: 320px
+  position: relative
+  overflow-x: hidden
+  background-color: #100e19
+
+ul
+  list-style: none
+
+*
+  margin: 0
+  padding: 0
+  border: 0
+  box-sizing: border-box
+
+main
+  max-width: 1240px
+  margin: 0 auto
