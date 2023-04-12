@@ -3,14 +3,15 @@ import {AiOutlineBell} from 'react-icons/ai';
 import {BsSearch} from 'react-icons/bs';
 import {BiUser} from 'react-icons/bi';
 import styles from './Actions.module.sass';
+import CustomButton from "/src/UI/customButton/CustomButton";
 
 const Actions:FC = ()=>{
     return(
         <div className={styles.actions__container}>
-            <button className={styles.actions__button}>Оплатить подписку</button>
+            <CustomButton clickCallback={()=>{}} children='Оплатить подписку' type='purple'/>
             <div className={styles.actions__search}>
                 <div className={styles.search__icon}><BsSearch/></div>
-                <div className={styles.search__text}>Поиск</div>
+                <div>Поиск</div>
             </div>
             <div className={styles.actions__notifications}>
                 <AiOutlineBell/>
