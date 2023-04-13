@@ -1,0 +1,36 @@
+@use '/src/styles/vars'
+
+.list
+  position: absolute
+  bottom: 0
+  padding-block: 8px
+  background: #1f1b2e
+  transform: translate(0, 100%)
+  transition: all .15s linear
+  opacity: 0
+  visibility: hidden
+  border-radius: 8px
+  width: 196px
+
+  & a
+    color: vars.$textcolor 
+    text-decoration: none
+
+  &_active
+    visibility: visible
+    opacity: 1
+
+  &__phone
+    cursor: pointer
+    display: grid
+    padding: 8px 16px
+    font-size: 15px
+    line-height: 20px
+
+    &:hover
+      background: #27223a
+      transition-duration: 80ms
+
+  &__number
+    color: white
+    font-weight: 500

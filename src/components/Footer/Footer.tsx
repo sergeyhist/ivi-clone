@@ -1,23 +1,15 @@
 import { FC } from "react";
-import CustomButton from "/src/UI/customButton/CustomButton";
+import FooterTop from "./FooterTop/FooterTop";
 import styles from "./Footer.module.sass";
-import { BsTelephone } from "react-icons/bs";
+import FooterBottom from "./FooterBottom/FooterBottom";
+import FooterCopyright from "./FooterCopyright/FooterCopyright";
 
 const Footer: FC = () => {
   return (
-    <footer className={styles.footer}>
-      <div className={styles.footer__btns}>
-        <CustomButton clickCallback={() => {}}>Написать в чате</CustomButton>
-        <CustomButton type="icon" clickCallback={() => {}}>
-          <BsTelephone size={16} />
-        </CustomButton>
-        <CustomButton type="purple" clickCallback={() => {}}>
-          Оплатить подписку
-        </CustomButton>
-        <CustomButton width="200px" type="red" clickCallback={() => {console.log('click')}}>
-          Показать подборку
-        </CustomButton>
-      </div>
+    <footer className={styles.footer + ' container'}>
+      <FooterTop />
+      <FooterBottom />
+      <FooterCopyright />
     </footer>
   );
 };
