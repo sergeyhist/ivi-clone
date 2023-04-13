@@ -1,8 +1,9 @@
-@import vars
+@use 'vars'
 	
-@import 'node_modules/bootstrap/scss/mixins/_breakpoints.scss' // Bootstrap Breakpoints mixin
-@import 'node_modules/bootstrap/scss/bootstrap-grid.scss' // Optional Bootstrap Grid
-
+@use 'node_modules/bootstrap/scss/mixins/_breakpoints.scss' // Bootstrap Breakpoints mixin
+@use 'node_modules/bootstrap/scss/bootstrap-grid.scss' // Optional Bootstrap Grid
+@use 'swiper/css'
+@use 'swiper/css/navigation'
 
 // FONTS LOAD SECTION
 @mixin font($fname, $fstyle, $fweight, $furl)
@@ -22,5 +23,5 @@
 	color: #666
 
 ::selection
-	background-color: $accent
+	background-color: vars.$accent
 	color: #fff

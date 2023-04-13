@@ -1,7 +1,7 @@
 @use 'sass:math'
 @use 'sass:color'
 @use 'vars'
-@import config
+@use 'config'
 
 body
   font-family: vars.$userfont
@@ -22,6 +22,28 @@ ul
   border: 0
   box-sizing: border-box
 
-main
+.container
+  padding: 0 32px
   max-width: 1240px
   margin: 0 auto
+
+.banner-slider
+  .swiper, .swiper-container, .swiper-wrapper 
+    overflow: visible
+        
+
+  .swiper-button-next
+    right: -75px
+
+  .swiper-button-prev
+    left: -75px
+
+
+  .swiper-button-prev, .swiper-button-next
+    color: #fff
+    opacity: .72
+    transition: .3s
+    &:hover
+      opacity: 1
+    &::after
+      font-size: 30px

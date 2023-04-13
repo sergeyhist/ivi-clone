@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import Banner from '../components/Banner/Banner'
+import Banner from '../components/Banner/BannerSlider'
 import Footer from '../components/Footer/Footer';
 import Header from '/src/components/Header/Header';
 
