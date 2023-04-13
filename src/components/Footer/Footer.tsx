@@ -1,5 +1,5 @@
 import { FC } from "react";
-import CustomButton from "/src/UI/CustomButton/CustomButton";
+import CustomButton from "/src/UI/customButton/CustomButton";
 import styles from "./Footer.module.sass";
 import { BsTelephone } from "react-icons/bs";
 
