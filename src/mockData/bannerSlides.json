@@ -1,0 +1,34 @@
+[
+    {
+        "id": 1,
+        "bannerUrl": "/images/slide1.jpeg",
+        "mobileBannerUrl": "/images/mobileslide1.jpeg",
+        "logoUrl": "/images/slidelogo1.png",
+        "description": "Журналистка под прикрытием втирается в доверие к террористам. Лучший десктоп-триллер в истории кино",
+        "buttonText": "Смотреть"
+    },
+    {
+        "id": 2,
+        "bannerUrl": "/images/slide2.jpeg",
+        "mobileBannerUrl": "/images/mobileslide2.jpeg",
+        "title": "Космос нас ждёт",
+        "description": "Лучшие фильмы и сериалы ко Дню космонавтики",
+        "buttonText": "Смотреть"
+    },
+    {
+        "id": 3,
+        "bannerUrl": "/images/slide1.jpeg",
+        "mobileBannerUrl": "/images/mobileslide1.jpeg",
+        "logoUrl": "/images/slidelogo1.png",
+        "description": "Журналистка под прикрытием втирается в доверие к террористам. Лучший десктоп-триллер в истории кино",
+        "buttonText": "Смотреть"
+    },
+    {
+        "id": 4,
+        "bannerUrl": "/images/slide2.jpeg",
+        "mobileBannerUrl": "/images/mobileslide2.jpeg",
+        "title": "Космос нас ждёт",
+        "description": "Лучшие фильмы и сериалы ко Дню космонавтики",
+        "buttonText": "Смотреть"
+    }
+]
