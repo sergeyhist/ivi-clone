@@ -1,18 +1,21 @@
 import {FC} from "react";
 import {Genres} from "/src/types/genreType";
 import {getGenreTabs} from "/src/components/Header/DropDown/Tabs/Tabs.utils";
+import styles from './Tabs.module.sass';
 
-interface TabsProps{
+interface TabsProps {
     selectedGenre: Genres
 }
 
-const Tabs: FC<TabsProps> = ({selectedGenre})=>{
-    return(
-        <div>
+const Tabs: FC<TabsProps> = ({selectedGenre}) => {
+    return (
+        <div className={styles.tabs__container}>
             {
-                getGenreTabs(selectedGenre).map((tab,i)=>{
+                getGenreTabs(selectedGenre).map((tab, i) => {
                     return (
-                        <div key={i}>{tab}</div>
+                        <div key={i} className={styles.tabs__item}>
+                            {tab}
+                        </div>
                     )
                 })
             }

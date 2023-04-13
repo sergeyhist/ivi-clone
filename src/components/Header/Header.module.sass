@@ -2,6 +2,8 @@
 
 .header
   position: relative
+  .active
+    background: #1F1B2E
   &__content
     display: flex
     padding: 0 12px
@@ -15,7 +17,16 @@
     line-height: 20px
     font-weight: 500
     font-style: normal
+    transition: .4s ALL
+  &__logo
+    cursor: pointer
   &__navigation
     display: flex
     align-items: center
-  &__logo
+  &__dropdown
+    position: relative
+    z-index: 999
+    opacity: 0
+    transition: opacity .4s ease-in-out
+  &__dropdown_active
+    opacity: 1

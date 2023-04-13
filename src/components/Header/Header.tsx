@@ -8,26 +8,28 @@ import DropDown from "/src/components/Header/DropDown/DropDown";
 const Header: FC = () => {
     const [selectedGenre, setSelectedGenre] = useState<Genres>("");
     const [showDropDown, setShowDropDown] = useState(false);
+    const [isNotificationSelected, setIsNotificationSelected] = useState(false);
 
     return (
         <>
             <header className={styles.header}>
-                <div className={styles.header__content}>
+                <div className={`${styles.header__content} ${showDropDown ? styles.active : ''}`}>
                     <div className={styles.header__navigation}>
                         <div className={styles.header__logo}>
                             <img src='/assets/images/iviLogo.svg' alt="ivi logo"/>
                         </div>
                         <Navigation setShowDropDown={setShowDropDown} selectedGenre={selectedGenre} setSelectedGenre={setSelectedGenre}/>
                     </div>
-                    <Actions/>
+                    <Actions setShowDropDown={setShowDropDown} setIsNotificationSelected={setIsNotificationSelected}/>
                 </div>
-                {
-                    showDropDown && (
-                        <div onMouseEnter={()=>setShowDropDown(true)} onMouseLeave={()=>setShowDropDown(false)}>
-                            <DropDown selectedGenre={selectedGenre}/>
-                        </div>
-                    )
-                }
+                <div className={`${styles.header__dropdown} ${showDropDown ? styles.header__dropdown_active : ''}`}
+                     onMouseEnter={()=>setShowDropDown(true)}
+                     onMouseLeave={()=>{setShowDropDown(false); setIsNotificationSelected(false)}}
+                >
+                    {
+                      showDropDown && <DropDown selectedGenre={selectedGenre} isNotificationSelected={isNotificationSelected}/>
+                    }
+                </div>
             </header>
         </>
     )
