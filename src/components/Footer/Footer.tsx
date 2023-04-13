@@ -1,12 +1,12 @@
 import { FC } from "react";
-import CustomButton from "/src/UI/customButton/CustomButton";
+import CustomButton from "../../UI/CustomButton/CustomButton";
 import styles from "./Footer.module.sass";
 import { BsTelephone } from "react-icons/bs";
 
 const Footer: FC = () => {
   return (
     <footer className={styles.footer}>
-      <div className={styles.footer__btns}>
+      <div className={styles.footer__btns + ' container'}>
         <CustomButton clickCallback={() => {}}>Написать в чате</CustomButton>
         <CustomButton type="icon" clickCallback={() => {}}>
           <BsTelephone size={16} />
