@@ -2,12 +2,9 @@ import { FC } from 'react'
 import Slider from '/src/UI/Slider/Slider'
 import { SwiperSlide } from 'swiper/react';
 import BannerSlide from './BannerSlide/BannerSlide';
-import ISlide from '/src/types/ISlide';
-import jsonSlides from '../../mockData/bannerSlides.json'
+import { slides } from './BannerSlider.utils'
 
 const BannerSlider:FC = () => {
-
-  const slides = (jsonSlides as ISlide[])
   
   return (
     <section className='banner-slider'>
