@@ -42,3 +42,4 @@ package-lock.json
 **/Session.vim*
 
 .DS_Store
+**/.DS_Store
