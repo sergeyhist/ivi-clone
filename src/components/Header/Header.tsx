@@ -12,21 +12,23 @@ const Header: FC = () => {
     return (
         <>
             <header className={styles.header}>
-                <div className={styles.header__navigation}>
-                    <div className={styles.header__logo}>
-                        <img src='/assets/images/iviLogo.svg' alt="ivi logo"/>
+                <div className={styles.header__content}>
+                    <div className={styles.header__navigation}>
+                        <div className={styles.header__logo}>
+                            <img src='/assets/images/iviLogo.svg' alt="ivi logo"/>
+                        </div>
+                        <Navigation setShowDropDown={setShowDropDown} selectedGenre={selectedGenre} setSelectedGenre={setSelectedGenre}/>
                     </div>
-                    <Navigation setShowDropDown={setShowDropDown} selectedGenre={selectedGenre} setSelectedGenre={setSelectedGenre}/>
+                    <Actions/>
                 </div>
-                <Actions/>
+                {
+                    showDropDown && (
+                        <div onMouseEnter={()=>setShowDropDown(true)} onMouseLeave={()=>setShowDropDown(false)}>
+                            <DropDown selectedGenre={selectedGenre}/>
+                        </div>
+                    )
+                }
             </header>
-            {
-                showDropDown && (
-                    <div onMouseEnter={()=>setShowDropDown(true)} onMouseLeave={()=>setShowDropDown(false)}>
-                        <DropDown selectedGenre={selectedGenre}/>
-                    </div>
-                )
-            }
         </>
     )
 }
