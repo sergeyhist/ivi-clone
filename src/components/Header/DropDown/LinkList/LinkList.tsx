@@ -1,7 +1,7 @@
 import {FC} from "react";
 import Links from "/src/components/Header/DropDown/Links/Links";
-import {getGenreLinks} from "/src/utils/headerUtils";
-import {GenreLinks, Genres} from "/src/types/genreType";
+import {getLinksSectionTitles} from "/src/utils/headerUtils";
+import {Genres} from "/src/types/genreType";
 
 interface LinkListProps{
     selectedGenre: Genres
@@ -9,13 +9,14 @@ interface LinkListProps{
 
 const LinkList: FC<LinkListProps> = ({selectedGenre}) => {
 
-    const getLinksSectionTitles = (title:string):GenreLinks=>{
-        const links = getGenreLinks(selectedGenre);
-        return {title, links}
-    }
-
     return(
-        <Links linksSection={getLinksSectionTitles('Жанры')}/>
+        <>
+            <Links linksSection={getLinksSectionTitles('Жанры',selectedGenre)} rowDirection={true}/>
+            <div>
+                <Links linksSection={getLinksSectionTitles('Страны',selectedGenre)}/>
+                <Links linksSection={getLinksSectionTitles('Годы',selectedGenre)}/>
+            </div>
+        </>
     )
 }
 

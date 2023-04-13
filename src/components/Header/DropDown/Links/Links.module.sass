@@ -1,12 +1,25 @@
 .list
   &__container
-    display: flex
+    width: 500px
+
   &__title
     color: #fff
     font-size: 15px
     font-weight: 700
-  .links__container
-    .list__item
-      font-size: 15px
-      line-height: 20px
-      font-weight: 400
+
+.links__container
+  display: flex
+  flex-direction: column
+  flex-wrap: wrap
+
+  .list__item
+    display: flex
+    font-size: 15px
+    flex-basis: 50%
+    line-height: 20px
+    font-weight: 400
+
+.links__container__row
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
