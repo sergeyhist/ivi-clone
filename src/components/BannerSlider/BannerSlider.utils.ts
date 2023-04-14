@@ -1,6 +1,6 @@
-import ISlide from '../../types/IBannerSlide'
+import IBannerSlide from '../../types/IBannerSlide'
 
-export const slides:ISlide[] = [
+export const slides:IBannerSlide[] = [
     {
         id: 1,
         bannerUrl: "/images/banner3.jpeg",

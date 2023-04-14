@@ -1,4 +1,4 @@
-export default interface ISlide {
+export default interface IBannerSlide {
     id: number
     bannerUrl: string
     mobileBannerUrl: string

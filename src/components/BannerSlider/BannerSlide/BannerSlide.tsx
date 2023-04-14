@@ -1,12 +1,12 @@
 import {FC} from "react";
-import styles from "./BannerSlide.module.sass";
-import Link from "next/link";
-import ISlide from "../../../types/IBannerSlide";
 import {useSwiperSlide} from "swiper/react";
+import Link from "next/link";
+import IBannerSlide from "../../../types/IBannerSlide";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
+import styles from "./BannerSlide.module.sass";
 
 interface BannerSlideProps {
-  slide: ISlide;
+  slide: IBannerSlide;
 }
 
 const BannerSlide: FC<BannerSlideProps> = ({slide}) => {

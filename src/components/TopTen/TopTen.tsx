@@ -1,12 +1,10 @@
-import {FC, useRef, useState} from "react";
-import Link from "next/link";
-import styles from "./TopTen.module.sass";
-import Slider from "/src/UI/Slider/Slider";
+import {FC, useState} from "react";
 import {SwiperSlide} from "swiper/react";
-import TopTenSlide from "./TopTenSlide/TopTenSlide";
-import SliderButtons from "../../UI/SliderButtons/SliderButtons";
 import {Swiper} from "swiper/react";
 import {slides} from "./TopTen.utils";
+import TopTenSlide from "./TopTenSlide/TopTenSlide";
+import SliderButtons from "../../UI/SliderButtons/SliderButtons";
+import styles from "./TopTen.module.sass";
 
 const TopTen: FC = () => {
   const [show, setShow] = useState({prev: false, next: true});

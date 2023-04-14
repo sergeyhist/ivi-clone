@@ -1,11 +1,10 @@
 import {FC} from "react";
-import Slider from "/src/UI/Slider/Slider";
-import {SwiperSlide} from "swiper/react";
-import BannerSlide from "./BannerSlide/BannerSlide";
-import {slides, slidesPerView} from "./BannerSlider.utils";
-import styles from "./BannerSlider.module.sass";
-import SliderButtons from "../../UI/SliderButtons/SliderButtons";
 import {Swiper} from "swiper/react";
+import {SwiperSlide} from "swiper/react";
+import {slides, slidesPerView} from "./BannerSlider.utils";
+import BannerSlide from "./BannerSlide/BannerSlide";
+import SliderButtons from "../../UI/SliderButtons/SliderButtons";
+import styles from "./BannerSlider.module.sass";
 
 const BannerSlider: FC = () => {
   return (
