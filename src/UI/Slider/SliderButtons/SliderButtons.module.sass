@@ -1,0 +1,31 @@
+
+.button
+    background: none
+    cursor: pointer
+    opacity: 0.72
+    transition: .3s
+    z-index: 3
+    position: absolute
+
+    &:active
+        transform: scale(.6)
+
+    &:hover
+        opacity: 1
+
+    &_prev, &_next
+        &__icon::after
+            font-family: ivi-icons
+            font-style: normal
+            font-size: 30px
+            color: #fff
+
+    &_prev
+        left: -20px
+        &__icon::after
+            content: '\E009'
+
+    &_next
+        right: -20px
+        &__icon::after
+            content: "\e00b"

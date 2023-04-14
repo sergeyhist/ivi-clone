@@ -1,0 +1,53 @@
+
+.section
+    padding-top: 24px
+
+.row
+    display: flex
+    justify-content: space-between
+    
+.link
+    border-radius: 8px
+    background-color: #1f1b2e
+    color: #fff
+    text-decoration: none
+    text-align: center
+    display: flex
+    align-items: center
+    justify-content: center
+    height: 48px
+    width: calc( 50% - 12px )
+    transition: .3s
+
+    &:hover
+        background-color: #231f34
+
+    &_subscribe
+        background-image: url('/images/promoButtonPattern.svg')
+
+    &__icon
+        margin-right: 8px
+
+
+.arrow_right
+    font-family: ivi-icons
+    font-style: normal
+    &::after
+        content: '\E00B'
+        font-family: ivi-icons
+        font-style: normal
+        
+
+@media (max-width: 880px)
+    .row
+        flex-direction: column
+
+    .link
+        width: 100%
+        margin-bottom: 16px
+        &:last-child
+            margin-bottom: 0
+
+@media (max-width: 342px)
+    .link__icon_present
+        display: none

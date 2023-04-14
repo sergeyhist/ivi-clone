@@ -1,15 +1,27 @@
 @use '../../../styles/vars'
-    
+
+.link
+    display: block
+
 .slide
     border-radius: 24px
     position: relative
     overflow: hidden
     transition: .3s
+    &::after
+        content: ''
+        display: block
+        z-index: 3
+        height: 100%
+        width: 100%
+        position: absolute
+        top: 0
 
     &__img
         height: auto
         width: 100%
         display: block
+        position: relative
 
     &__img_mobile
         display: none
@@ -18,9 +30,6 @@
 
     &_hidden
         opacity: 0.5
-
-    &__link
-        display: block
 
     .promo
         position: absolute
@@ -51,7 +60,6 @@
             color: #fff
             cursor: pointer
 
-
 @media (max-width: 1199.98px)
     .slide .promo__title
         font-size: 40px
@@ -77,13 +85,12 @@
 
         .promo__button
             display: none
-        
 
-@media (max-width: 575.98px) 
-    .slide 
+@media (max-width: 575.98px)
+    .slide
         &__img
             display: none
-    
+
         &__img_mobile
             display: block
 

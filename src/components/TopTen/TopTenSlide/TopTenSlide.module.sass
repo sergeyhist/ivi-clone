@@ -1,0 +1,50 @@
+
+.link
+    border-radius: 8px
+    position: relative
+    display: block
+    transition: .1s
+    &:hover
+        transform: scale(1.04) translateY(0)
+        border-radius: 8px
+
+.slide
+    border-radius: 8px
+    position: relative
+    height: 100%
+    width: 100%
+    overflow: hidden
+    padding-bottom: 35px
+    display: flex
+    justify-content: center
+    &__wrapper
+        position: relative
+        &::before
+            content: ''
+            background-image: linear-gradient(0deg,#100e19,rgba(16,14,25,0))
+            display: block
+            height: 270px
+            width: 100%
+            position: absolute
+            bottom: 0px
+            z-index: 2
+
+    &__img
+        display: block
+        width: 100%
+        height: auto
+        border-radius: 8px
+
+    &__logo
+        position: absolute
+        bottom: 100px
+        max-width: 80%
+        height: auto
+        z-index: 3
+
+    &__number
+        position: absolute
+        height: 66px
+        width: auto
+        bottom: 0
+        z-index: 4

@@ -1,30 +1,41 @@
-import { FC, ReactNode } from 'react'
-import { Navigation } from 'swiper';
-import { Swiper } from 'swiper/react';
+import {FC, ReactNode} from "react";
+import {Swiper} from "swiper/react";
+import styles from "./Slider.module.sass";
+import SliderButtons from "./SliderButtons/SliderButtons";
 
 interface SliderProps {
-    children: ReactNode
-    slidesPerView: number
-    loop: boolean
+  children: ReactNode;
+  slidesPerView: number;
+  loop: boolean;
+  centeredSlides: boolean;
+  className?: string;
+  spaceBetween: number;
+  prevClassName?: string;
+  nextClassName?: string;
 }
 
-const Slider:FC<SliderProps> = ({
+const Slider: FC<SliderProps> = ({
   children,
   slidesPerView,
-  loop
+  loop,
+  centeredSlides,
+  className,
+  spaceBetween,
+  prevClassName,
+  nextClassName,
 }) => {
   return (
     <Swiper
-      modules={[Navigation]}
-      spaceBetween={15}
+      className={`${styles.swiper} ${className}`}
+      spaceBetween={spaceBetween}
       slidesPerView={slidesPerView}
-      navigation={true}
       loop={loop}
-      centeredSlides={true}
+      centeredSlides={centeredSlides}
     >
       {children}
+      <SliderButtons prevClassName={prevClassName} nextClassName={nextClassName} />
     </Swiper>
-  )
-}
+  );
+};
 
-export default Slider
+export default Slider;
