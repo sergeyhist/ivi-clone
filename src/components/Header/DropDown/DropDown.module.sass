@@ -1,4 +1,6 @@
-.genres
+@use 'src/styles/vars'
+
+.dropdown
   &__container
     display: flex
     position: absolute
@@ -10,3 +12,17 @@
     padding: 20px
     height: 392px
     max-height: 392px
+  &__notification
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
+    margin: 0 auto
+    gap: 20px
+    &_icon
+      width: 56px
+      height: 56px
+      color: vars.$primaryColor
+    &_text
+      font-size: 15px
+      color: vars.$primaryColor
