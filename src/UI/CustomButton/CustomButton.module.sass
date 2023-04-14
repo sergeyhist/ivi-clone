@@ -7,16 +7,13 @@
 
 .btn
   @include flexDef
-  height: 40px
   cursor: pointer
   background: #1f1b2e
   border: 1px solid #1f1b2e
-  border-radius: 8px
   color: white
-  padding: 9px 15px
   font-size: vars.$fontsize
-  line-height: 20px
   font-weight: 500
+  transition: .4s
 
   &:focus-visible
     outline: 0
@@ -29,15 +26,9 @@
     @include flexDef
     width: 100%
 
-  &_icon
-    width: 40px
-    padding: 0
-
   &_purple
-    height: 32px
     background: linear-gradient(270deg,#ea003d 0,#c447ff 100%)
     border: transparent
-    padding: 7px 11px
 
     &:hover, &:focus-visible
       background: linear-gradient(270deg,#ea003d 0,#c447ff 100%)
