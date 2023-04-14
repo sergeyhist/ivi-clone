@@ -2,8 +2,9 @@ import styles from "./FooterWidget.module.sass";
 import { CiBullhorn } from "react-icons/ci";
 import { BsSlashLg } from "react-icons/bs";
 import Link from "next/link";
+import {FC} from "react";
 
-const FooterWidget = () => {
+const FooterWidget: FC = () => {
   return (
     <Link
       href="https://www.ivi.ru/subscribe?redirect_url=%2F"

@@ -1,15 +1,11 @@
 import Link from "next/link";
 import { FC } from "react";
 import styles from "./FooterLink.module.sass";
+import ILink from "/src/types/ILink";
 
-export interface FooterLinkProps {
-  text: string;
-  link: string;
-}
-
-const FooterLink: FC<FooterLinkProps> = ({ text, link }) => {
+const FooterLink: FC<ILink> = ({ text, url, target }) => {
   return (
-    <Link className={styles.link} href={link}>
+    <Link target={target} className={styles.link} href={url}>
       {text}
     </Link>
   );

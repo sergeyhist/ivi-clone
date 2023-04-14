@@ -1,7 +1,8 @@
 import Link from "next/link";
+import {FC} from "react";
 import styles from "./FooterAsk.module.sass";
 
-const FooterAsk = () => {
+const FooterAsk: FC = () => {
   return (
     <div className={styles.ask}>
       <Link
