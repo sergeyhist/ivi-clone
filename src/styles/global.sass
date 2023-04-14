@@ -16,6 +16,13 @@ body
 ul
   list-style: none
 
+a
+  text-decoration: none
+  color: inherit
+  
+  &:visited, &:active
+    color: inherit
+
 *
   margin: 0
   padding: 0
@@ -27,23 +34,10 @@ ul
   max-width: 1240px
   margin: 0 auto
 
-.banner-slider
-  .swiper, .swiper-container, .swiper-wrapper 
-    overflow: visible
-        
-
-  .swiper-button-next
-    right: -75px
-
-  .swiper-button-prev
-    left: -75px
-
-
-  .swiper-button-prev, .swiper-button-next
-    color: #fff
-    opacity: .72
-    transition: .3s
-    &:hover
-      opacity: 1
-    &::after
-      font-size: 30px
+.unselectable
+  -webkit-touch-callout: none
+    -webkit-user-select: none
+     -khtml-user-select: none
+       -moz-user-select: none
+        -ms-user-select: none
+            user-select: none
