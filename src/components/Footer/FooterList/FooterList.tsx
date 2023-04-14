@@ -1,9 +1,10 @@
 import { FC } from "react";
-import FooterLink, {FooterLinkProps} from "../FooterLink/FooterLink";
+import FooterLink from "../FooterLink/FooterLink";
 import styles from "./FooterList.module.sass";
+import ILink from "/src/types/ILink";
 
 interface FooterListProps {
-  items: Array<FooterLinkProps>;
+  items: Array<ILink>;
 }
 
 const FooterList: FC<FooterListProps> = ({ items }) => {
