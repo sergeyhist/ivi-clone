@@ -4,7 +4,7 @@ import {SwiperSlide} from "swiper/react";
 import BannerSlide from "./BannerSlide/BannerSlide";
 import {slides, slidesPerView} from "./BannerSlider.utils";
 import styles from "./BannerSlider.module.sass";
-import SliderButtons from "/src/UI/Slider/SliderButtons/SliderButtons";
+import SliderButtons from "../../UI/SliderButtons/SliderButtons";
 import {Swiper} from "swiper/react";
 
 const BannerSlider: FC = () => {

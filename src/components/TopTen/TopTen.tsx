@@ -1,14 +1,16 @@
-import {FC} from "react";
+import {FC, useRef, useState} from "react";
 import Link from "next/link";
 import styles from "./TopTen.module.sass";
 import Slider from "/src/UI/Slider/Slider";
 import {SwiperSlide} from "swiper/react";
 import TopTenSlide from "./TopTenSlide/TopTenSlide";
-import SliderButtons from "/src/UI/Slider/SliderButtons/SliderButtons";
+import SliderButtons from "../../UI/SliderButtons/SliderButtons";
 import {Swiper} from "swiper/react";
 import {slides} from "./TopTen.utils";
 
 const TopTen: FC = () => {
+  const [show, setShow] = useState({prev: false, next: true});
+
   return (
     <section className={styles.section}>
       <h2 className={styles.section__title}>
@@ -17,6 +19,12 @@ const TopTen: FC = () => {
 
       <div className={styles.row}>
         <Swiper
+          onSlideChange={(e) => {
+            setShow({
+              prev: !e.isBeginning,
+              next: !e.isEnd,
+            });
+          }}
           breakpoints={{
             0: {
               slidesPerView: 2,
@@ -53,7 +61,7 @@ const TopTen: FC = () => {
             </SwiperSlide>
           ))}
 
-          <SliderButtons />
+          <SliderButtons state={show} />
         </Swiper>
       </div>
     </section>

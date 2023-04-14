@@ -1,4 +1,4 @@
-import ISlide from '../../types/ISlide'
+import ISlide from '../../types/IBannerSlide'
 
 export const slides:ISlide[] = [
     {
@@ -6,7 +6,7 @@ export const slides:ISlide[] = [
         bannerUrl: "/images/banner3.jpeg",
         mobileBannerUrl: "/images/mobilebanner3.jpeg",
         title: undefined,
-        logoUrl: "/images/slidelogo1.png",
+        logoUrl: "/images/logobanner3.png",
         description: "Успешный юрист пытается спасти сына у опасной черты. Хью Джекман в мощной драме от режиссёра «Отца»",
         buttonText: "Смотреть"
     },
@@ -24,7 +24,7 @@ export const slides:ISlide[] = [
         bannerUrl: "/images/slide1.jpeg",
         mobileBannerUrl: "/images/mobileslide1.jpeg",
         title: undefined,
-        logoUrl: "/images/logobanner3.png",
+        logoUrl: "/images/logobanner1.png",
         description: "Журналистка под прикрытием втирается в доверие к террористам. Лучший десктоп-триллер в истории кино",
         buttonText: "Смотреть"
     },

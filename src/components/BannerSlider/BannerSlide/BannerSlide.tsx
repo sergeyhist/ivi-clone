@@ -1,7 +1,7 @@
 import {FC} from "react";
 import styles from "./BannerSlide.module.sass";
 import Link from "next/link";
-import ISlide from "../../../types/ISlide";
+import ISlide from "../../../types/IBannerSlide";
 import {useSwiperSlide} from "swiper/react";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 

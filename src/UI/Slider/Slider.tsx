@@ -1,7 +1,7 @@
 import {FC, ReactNode} from "react";
 import {Swiper} from "swiper/react";
 import styles from "./Slider.module.sass";
-import SliderButtons from "./SliderButtons/SliderButtons";
+import SliderButtons from "../SliderButtons/SliderButtons";
 
 interface SliderProps {
   children: ReactNode;
