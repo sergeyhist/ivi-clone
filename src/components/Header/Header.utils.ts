@@ -24,6 +24,6 @@ export const getTranslatedFilter = (filter: string): string => {
 }
 
 export const getLinksSectionTitles = (title: string, selectedGenre: Genres): GenreLinks => {
-    const links = getGenreLinks(selectedGenre)[`${getTranslatedFilter(title)}`];
+    const links = getGenreLinks(selectedGenre)[`${getTranslatedFilter(title)}`] as GenreFilters;
     return {title, links} as GenreLinks;
 }

@@ -4,16 +4,19 @@ import {Genres} from "/src/types/genreType";
 
 interface NavigationProps{
     setSelectedGenre: Dispatch<SetStateAction<Genres>>,
-    setShowDropDown: Dispatch<SetStateAction<boolean>>
+    setShowDropDown: Dispatch<SetStateAction<boolean>>,
+    setIsProfileSelected: Dispatch<SetStateAction<boolean>>,
+    setIsTVSelected: Dispatch<SetStateAction<boolean>>
 }
 
-const Navigation:FC<NavigationProps> = ({setSelectedGenre,setShowDropDown})=>{
+const Navigation:FC<NavigationProps> = ({setSelectedGenre,setShowDropDown,setIsProfileSelected,setIsTVSelected})=>{
 
     const handleGenreHover = (genre:Genres):void =>{
         setSelectedGenre(genre);
     }
 
     const handleMouseEnter = ():void =>{
+        setIsProfileSelected(false);
         setShowDropDown(true);
     }
 
@@ -25,7 +28,7 @@ const Navigation:FC<NavigationProps> = ({setSelectedGenre,setShowDropDown})=>{
                 <li className={styles.nav__item} onMouseEnter={()=>{handleGenreHover("movie"); handleMouseEnter()}}>Фильмы</li>
                 <li className={styles.nav__item} onMouseEnter={()=>{handleGenreHover("series"); handleMouseEnter()}} >Сериалы</li>
                 <li className={styles.nav__item} onMouseEnter={()=>{handleGenreHover("cartoons"); handleMouseEnter()}}>Мультфильмы</li>
-                <li className={styles.nav__item}>TV+</li>
+                <li className={styles.nav__item} onMouseEnter={()=>setIsTVSelected(true)} >TV+</li>
             </ul>
         </nav>
     )

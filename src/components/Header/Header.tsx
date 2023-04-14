@@ -10,30 +10,31 @@ const Header: FC = () => {
     const [showDropDown, setShowDropDown] = useState(false);
     const [isNotificationSelected, setIsNotificationSelected] = useState(false);
     const [isProfileSelected,setIsProfileSelected] = useState(false);
+    const [isTVSelected,setIsTVSelected] = useState(false);
 
     return (
         <>
-            <header className={styles.header}>
+            <header className={`${styles.header} container`}>
                 <div className={`${styles.header__content} ${showDropDown ? styles.active : ''}`}>
                     <div className={styles.header__navigation}>
                         <div className={styles.header__logo}>
                             <img src='/assets/images/iviLogo.svg' alt="ivi logo"/>
                         </div>
-                        <Navigation setShowDropDown={setShowDropDown} selectedGenre={selectedGenre}
+                        <Navigation setIsTVSelected={setIsTVSelected} setIsProfileSelected={setIsProfileSelected} setShowDropDown={setShowDropDown} selectedGenre={selectedGenre}
                                     setSelectedGenre={setSelectedGenre}/>
                     </div>
                     <Actions setIsProfileSelected={setIsProfileSelected} setSelectedGenres={setSelectedGenre} setShowDropDown={setShowDropDown} setIsNotificationSelected={setIsNotificationSelected}/>
                 </div>
                 <div className={`${styles.header__dropdown} ${showDropDown ? styles.header__dropdown_active : ''}`}
                      onMouseEnter={() => {
-                         if (showDropDown) setShowDropDown(true)
+                         showDropDown && setShowDropDown(true)
                      }}
                      onMouseLeave={() => {
                          setShowDropDown(false);
                          setIsNotificationSelected(false)
                      }}
                 >
-                    <DropDown selectedGenre={selectedGenre} isNotificationSelected={isNotificationSelected} isProfileSelected={isProfileSelected}/>
+                    <DropDown isTVSelected={isTVSelected} selectedGenre={selectedGenre} isNotificationSelected={isNotificationSelected} isProfileSelected={isProfileSelected}/>
                 </div>
             </header>
         </>
