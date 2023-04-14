@@ -1,0 +1,29 @@
+.top
+  display: grid
+  grid-template-columns: 1fr 1fr 1fr 1fr
+  padding-block: 48px
+  border-block: 1px solid rgba(255,255,255,.16)
+
+  &__title
+    display: block
+    color: white
+    margin-bottom: 8px
+    font-weight: 700
+    font-size: 15px
+    line-height: 20px
+
+  &__wrapper
+    display: grid
+    gap: 20px
+
+  &__cert
+    background-clip: text
+    background-image: linear-gradient(-45deg,#c447ff,#ea003d)
+    -webkit-text-fill-color: transparent
+    margin-top: 8px
+
+    & > a
+      color: transparent
+      font-size: 15px
+      line-height: 20px
+      font-weight: 500

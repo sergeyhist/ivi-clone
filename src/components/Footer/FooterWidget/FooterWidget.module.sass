@@ -1,0 +1,32 @@
+$start: #A869F0
+$end: #834CC2
+
+.widget
+  display: flex
+  flex-direction: column
+  align-items: center
+  text-decoration: none
+
+  &__icon
+    display: flex
+    align-items: center
+    justify-content: center
+    width: 104px
+    height: 104px
+    border-radius: 20px
+    background: linear-gradient(180deg, $start 0%, $end 100%)
+    box-shadow: 0 0 104px $end
+
+  &__svg
+    display: flex
+    color: white
+    position: relative
+
+  &__text
+    margin-top: 24px
+    font-size: 15px
+    line-height: 20px
+    font-weight: 400
+    font-style: normal
+    color: #a5a1b2
+    text-align: center
