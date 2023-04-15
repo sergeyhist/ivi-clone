@@ -1,82 +1,102 @@
 [
   {
     "id": 1,
-    "imageUrl": "/images/channels/1tv.jpg"
+    "imageUrl": "/images/channels/1tv.jpg",
+    "link" : "https://www.ivi.ru/tvchannels/watch/1tv"
   },
   {
     "id": 2,
-    "imageUrl": "/images/channels/russia1.jpg"
+    "imageUrl": "/images/channels/russia1.jpg",
+    "link" : "https://www.ivi.ru/tvchannels/watch/russia1"
   },
   {
     "id": 3,
-    "imageUrl": "/images/channels/match-tv.jpg"
+    "imageUrl": "/images/channels/match-tv.jpg",
+    "link" : "https://www.ivi.ru/tvchannels/watch/match-tv"
   },
   {
     "id": 4,
-    "imageUrl": "/images/channels/ntv.jpg"
+    "imageUrl": "/images/channels/ntv.jpg",
+    "link" : "https://www.ivi.ru/tvchannels/watch/ntv"
   },
   {
     "id": 5,
-    "imageUrl": "/images/channels/5tv.jpg"
+    "imageUrl": "/images/channels/5tv.jpg",
+    "link" : "https://www.ivi.ru/tvchannels/watch/5tv"
   },
   {
     "id": 6,
-    "imageUrl": "/images/channels/russia-k.jpg"
+    "imageUrl": "/images/channels/russia-k.jpg",
+    "link" : "https://www.ivi.ru/tvchannels/watch/russia-k"
   },
   {
     "id": 7,
-    "imageUrl": "/images/channels/russia24.jpg"
+    "imageUrl": "/images/channels/russia24.jpg",
+    "link" : "https://www.ivi.ru/tvchannels/watch/russia24"
   },
   {
     "id": 8,
-    "imageUrl": "/images/channels/karusel.jpg"
+    "imageUrl": "/images/channels/karusel.jpg",
+    "link" : "https://www.ivi.ru/tvchannels/watch/karusel"
   },
   {
     "id": 9,
-    "imageUrl": "/images/channels/otr.jpg"
+    "imageUrl": "/images/channels/otr.jpg",
+    "link" : "https://www.ivi.ru/tvchannels/watch/otr"
   },
   {
     "id": 10,
-    "imageUrl": "/images/channels/tvc.png"
+    "imageUrl": "/images/channels/tvc.png",
+    "link" : "https://www.ivi.ru/tvchannels/watch/tvc"
   },
   {
     "id": 11,
-    "imageUrl": "/images/channels/ren-tv.jpg"
+    "imageUrl": "/images/channels/ren-tv.jpg",
+    "link" : "https://www.ivi.ru/tvchannels/watch/ren-tv"
   },
   {
     "id": 12,
-    "imageUrl": "/images/channels/spas.jpg"
+    "imageUrl": "/images/channels/spas.jpg",
+    "link" : "https://www.ivi.ru/tvchannels/watch/spas"
   },
   {
     "id": 13,
-    "imageUrl": "/images/channels/sts.jpg"
+    "imageUrl": "/images/channels/sts.jpg",
+    "link" : "https://www.ivi.ru/tvchannels/watch/sts"
   },
   {
     "id": 14,
-    "imageUrl": "/images/channels/domashniy.jpg"
+    "imageUrl": "/images/channels/domashniy.jpg",
+    "link" : "https://www.ivi.ru/tvchannels/watch/domashniy"
   },
   {
     "id": 15,
-    "imageUrl": "/images/channels/tv3.jpg"
+    "imageUrl": "/images/channels/tv3.jpg",
+    "link" : "https://www.ivi.ru/tvchannels/watch/tv3"
   },
   {
     "id": 16,
-    "imageUrl": "/images/channels/friday.jpg"
+    "imageUrl": "/images/channels/friday.jpg",
+    "link" : "https://www.ivi.ru/tvchannels/watch/friday"
   },
   {
     "id": 17,
-    "imageUrl": "/images/channels/zvezda.jpg"
+    "imageUrl": "/images/channels/zvezda.jpg",
+    "link" : "https://www.ivi.ru/tvchannels/watch/zvezda"
   },
   {
     "id": 18,
-    "imageUrl": "/images/channels/mir.jpg"
+    "imageUrl": "/images/channels/mir.jpg",
+    "link" : "https://www.ivi.ru/tvchannels/watch/mir"
   },
   {
     "id": 19,
-    "imageUrl": "/images/channels/tnt.jpg"
+    "imageUrl": "/images/channels/tnt.jpg",
+    "link" : "https://www.ivi.ru/tvchannels/watch/tnt"
   },
   {
     "id": 20,
-    "imageUrl": "/images/channels/muztv.jpg"
+    "imageUrl": "/images/channels/muztv.jpg",
+    "link" : "https://www.ivi.ru/tvchannels/watch/muz-tv"
   }
 ]

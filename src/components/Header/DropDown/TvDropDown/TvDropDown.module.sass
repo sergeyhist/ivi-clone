@@ -1,46 +1,32 @@
-@use 'src/styles/vars'
-
 .tv
   &__left_content
+    display: flex
+    width: 220px
+    flex-direction: column
+    justify-content: space-between
+    border-right: 1px solid rgba(255,255,255,.16)
     .tv
       &__links
         &__title
           font-size: 15px
           font-weight: 700
           color: #fff
-        &__list
-          font-size: 15px
-          color: vars.$primaryColor
         &_button
           background: #312B45
 
 .channels
   &__container
     position: relative
+    padding-left: 30px
     max-width: 680px
-    width: 100%
-  &__item
-    width: 100px
-    height: 50px
-    background: #834CC2
+    width: 50%
   &__slider
-    display: flex
-    align-items: center
-    overflow: visible
-    &_shadow
-      position: absolute
-      right: -20px
-      z-index: 1
-      background-image: linear-gradient(90deg,rgba(31,27,46,0) 0,#1f1b2e 100%)
-      width: 60px
-      height: 100%
     &_row
       overflow: hidden
       margin: 0 -20px
       padding: 24px 20px
-    &_item
-      border-radius: 8px
-
-//.shadow
-//  &__right,&__left
-//    background-image: linear-gradient(270deg,rgba(31,27,46,0) 0,#1f1b2e 100%)
+    &_title
+      margin-bottom: 16px
+      font-size: 15px
+      font-weight: 700
+      color: #fff

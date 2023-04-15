@@ -1,4 +1,6 @@
 import ITVSlide from "/src/types/ITVSlide";
-import jsonSlides from '../../../../mockData/tvChannelsSlides.json'
+import jsonChannelsSlides from '../../../../mockData/tvChannelsSlides.json'
+import jsonSportChannelsSlides from '../../../../mockData/tvSportChannelsSlides.json'
 
-export const tvSlides = (jsonSlides as ITVSlide[]);
+export const tvSlides = (jsonChannelsSlides as ITVSlide[]);
+export const tvSportSlides = (jsonSportChannelsSlides as ITVSlide[]);
