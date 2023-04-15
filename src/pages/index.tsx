@@ -4,6 +4,7 @@ import Layout from "../components/Layout/Layout";
 import {store} from "../store";
 import PromoPlate from "../components/PromoPlate/PromoPlate";
 import TopTen from "../components/TopTen/TopTen";
+import IviOnlineCinema from "../components/IviOnlineCinema/IviOnlineCinema";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
         <BannerSlider />
         <PromoPlate />
         <TopTen />
+        <IviOnlineCinema />
       </Layout>
     </Provider>
   );

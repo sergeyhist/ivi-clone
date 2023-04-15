@@ -1,0 +1,55 @@
+.section
+    padding: 24px 0
+    &__container
+        width: 80%
+
+    &__title
+        color: #fff
+        font-size: 20px
+
+    &__paragraf
+        color: #a5a1b2
+        margin-top: 8px
+        overflow: hidden
+        display: -webkit-box
+        -webkit-box-orient: vertical
+        -webkit-line-clamp: 2
+
+        &:first-child
+            margin-top: 0
+
+.list
+    &__item
+        margin-left: 12px
+        padding-left: 16px
+        position: relative
+        color: #a5a1b2
+        margin-top: 8px
+
+        &::before
+            content: ''
+            position: absolute
+            display: block
+            width: 6px
+            height: 6px
+            border-radius: 100%
+            background: #a5a1b2
+            left: 0
+            top: 11px
+
+.dropdown
+    margin-top: 12px
+
+    &>:not(:first-child)
+        display: none
+
+    &_active>:not(:first-child)
+        display: block
+
+.dropdown__toggle
+    margin-top: 8px
+    color: #ffffffe0
+    background: none
+    cursor: pointer
+    font-size: 15px
+    font-weight: 500
