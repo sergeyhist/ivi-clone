@@ -15,12 +15,7 @@ const FooterWidget: FC = () => {
           <CiBullhorn size={56} />
           <BsSlashLg
             size={48}
-            style={{
-              position: "absolute",
-              left: "0",
-              top: "4px",
-              transform: "rotate(110deg)",
-            }}
+            className={styles.widget__slash}
           />
         </div>
       </div>
