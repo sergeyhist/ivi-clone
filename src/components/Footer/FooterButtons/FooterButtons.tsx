@@ -47,7 +47,7 @@ const FooterButtons: FC = () => {
           width="40px"
           padding="0"
           clickCallback={() => {
-            window.open("support@ivi.ru");
+            window.open("mailto:support@ivi.ru");
           }}
         >
           <HiOutlineMail size={20} />

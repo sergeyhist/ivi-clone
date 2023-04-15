@@ -2,9 +2,10 @@ import { FC, ReactNode } from "react";
 import styles from "./CustomButton.module.sass";
 
 interface CustomButtonProps {
+  className?: string;
   children: ReactNode;
   clickCallback?: () => void;
-  type?: "purple" | "red";
+  type?: "purple" | "red" | "pattern";
   padding?: string;
   width?: string;
   height?: string;
@@ -15,6 +16,7 @@ interface CustomButtonProps {
 }
 
 const CustomButton: FC<CustomButtonProps> = ({
+  className,
   children,
   clickCallback,
   type,
@@ -26,7 +28,8 @@ const CustomButton: FC<CustomButtonProps> = ({
   flex,
   borderRadius,
 }) => {
-  const classNames = type
+  const classNames = className ? " " + className: "";
+  const typeSelector = type
     ? styles.btn + " " + styles[`btn_${type}`]
     : styles.btn;
 
@@ -44,7 +47,7 @@ const CustomButton: FC<CustomButtonProps> = ({
     <button
       onClick={clickCallback}
       style={styleSelector}
-      className={classNames + " unselectable"}
+      className={typeSelector + classNames + " unselectable"}
     >
       <div className={styles.btn__content}>{children}</div>
     </button>
