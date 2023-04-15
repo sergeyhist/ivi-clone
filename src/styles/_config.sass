@@ -1,9 +1,8 @@
 @use 'vars'
-	
+
 @use 'node_modules/bootstrap/scss/mixins/_breakpoints.scss' // Bootstrap Breakpoints mixin
 @use 'node_modules/bootstrap/scss/bootstrap-grid.scss' // Optional Bootstrap Grid
 @use 'swiper/css'
-@use 'swiper/css/navigation'
 
 // FONTS LOAD SECTION
 @mixin font($fname, $fstyle, $fweight, $furl)
@@ -16,7 +15,7 @@
 @include font('iviSans', normal, 400, '../assets/fonts/iviSans-Regular.woff2')
 @include font('iviSans', normal, 500, '../assets/fonts/iviSans-Medium.woff2')
 @include font('iviSans', normal, 700, '../assets/fonts/iviSans-Bold.woff2')
-
+@include font('ivi-icons', normal, 400, '../assets/fonts/ivi-icons.woff')
 
 // GENERAL CSS SETTINGS
 ::placeholder

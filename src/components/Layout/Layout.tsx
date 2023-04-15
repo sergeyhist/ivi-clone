@@ -1,19 +1,16 @@
-import { FC, ReactNode, useEffect } from "react";
+import {FC, ReactNode, useEffect} from "react";
 import Head from "next/head";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import { useDispatch } from "react-redux";
-import { setWindowSize } from "/src/store/slices/windowSizeSlice";
+import {useDispatch} from "react-redux";
+import {setWindowSize} from "/src/store/slices/windowSizeSlice";
 
 interface LayoutProps {
   title?: string;
   children: ReactNode;
 }
 
-const Layout: FC<LayoutProps> = ({
-  title = "Онлайн кинотеатр Иви",
-  children,
-}) => {
+const Layout: FC<LayoutProps> = ({title = "Онлайн кинотеатр Иви", children}) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -39,7 +36,7 @@ const Layout: FC<LayoutProps> = ({
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header />
-      <main>{children}</main>
+      <main className="container">{children}</main>
       <Footer />
     </>
   );
