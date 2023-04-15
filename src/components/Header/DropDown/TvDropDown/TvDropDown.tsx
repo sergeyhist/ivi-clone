@@ -1,11 +1,21 @@
-import {FC} from "react";
+import {FC, useState} from "react";
 import styles from './TvDropDown.module.sass';
-import {Navigation} from "swiper";
-import { Swiper } from 'swiper/react';
+import {Swiper} from 'swiper/react';
 import {tvSlides} from "/src/components/Header/DropDown/TvDropDown/TvDropDown.utils";
 import {SwiperSlide} from "swiper/react";
+import SliderButtons from "/src/UI/SliderButtons/SliderButtons";
+import {Swiper as SwiperEvent} from "swiper/types";
 
 const TvDropDown: FC = () => {
+    const [buttonsPosition, setButtonsPosition] = useState({prev: false, next: true});
+
+    const handleSlideChange = (event: SwiperEvent): void => {
+        setButtonsPosition({
+            prev: !event.isBeginning,
+            next: !event.isEnd,
+        })
+    }
+
     return (
         <>
             <div className={styles.tv__left_content}>
@@ -32,18 +42,21 @@ const TvDropDown: FC = () => {
                 <button className={styles.tv__links_button}>Телепрограмма</button>
             </div>
             <div className={styles.channels__container}>
-                <div>
+                <div className={styles.channels__slider_row}>
                     <Swiper
+                        className={styles.channels__slider}
                         spaceBetween={1}
                         slidesPerView={5}
+                        onSlideChange={handleSlideChange}
                     >
                         {
-                            tvSlides.map(slide=>
-                            <SwiperSlide key={slide.id}>
-                                    <img src={slide.imageUrl} alt="" />
-                            </SwiperSlide>
+                            tvSlides.map(slide =>
+                                <SwiperSlide key={slide.id}>
+                                    <img src={slide.imageUrl} alt=""/>
+                                </SwiperSlide>
                             )
                         }
+                        <SliderButtons state={buttonsPosition}/>
                     </Swiper>
                 </div>
             </div>

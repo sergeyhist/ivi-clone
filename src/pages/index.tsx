@@ -1,21 +1,14 @@
-import Head from 'next/head'
-import Banner from '../components/Banner/BannerSlider'
-import Footer from '../components/Footer/Footer';
-import Header from '/src/components/Header/Header';
+import { Provider } from "react-redux";
+import Banner from "../components/BannerSlider/BannerSlider";
+import Layout from "../components/Layout/Layout";
+import { store } from "../store";
 
 export default function Home() {
   return (
-    <>
-      <Head>
-        <title>Иви</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <main>
-        <Header />
+    <Provider store={store}>
+      <Layout>
         <Banner />
-        <Footer />
-      </main>
-    </>
-  )
+      </Layout>
+    </Provider>
+  );
 }

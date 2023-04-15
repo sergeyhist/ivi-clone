@@ -1,8 +1,30 @@
+@mixin transition
+  transition: all .3s linear
+
 .btns
   display: grid 
-  gap: 12px
   position: relative
 
   &__wrapper
+    margin-top: 12px
     display: flex
     gap: 12px
+
+.list
+  &-enter
+    opacity: 0
+    visibility: hidden
+
+    &-active
+      opacity: 1
+      visibility: visible
+      @include transition
+
+  &-exit
+    opacity: 1
+    visibility: visible
+
+    &-active
+      opacity: 0
+      visibility: hidden
+      @include transition
