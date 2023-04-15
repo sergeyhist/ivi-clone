@@ -1,5 +1,23 @@
+@use 'src/styles/vars'
+
+.tv
+  &__left_content
+    .tv
+      &__links
+        &__title
+          font-size: 15px
+          font-weight: 700
+          color: #fff
+        &__list
+          font-size: 15px
+          color: vars.$primaryColor
+        &_button
+          background: #312B45
+
 .channels
   &__container
+    position: relative
+    max-width: 680px
     width: 100%
   &__item
     width: 100px
@@ -9,7 +27,20 @@
     display: flex
     align-items: center
     overflow: visible
+    &_shadow
+      position: absolute
+      right: -20px
+      z-index: 1
+      background-image: linear-gradient(90deg,rgba(31,27,46,0) 0,#1f1b2e 100%)
+      width: 60px
+      height: 100%
     &_row
       overflow: hidden
       margin: 0 -20px
       padding: 24px 20px
+    &_item
+      border-radius: 8px
+
+//.shadow
+//  &__right,&__left
+//    background-image: linear-gradient(270deg,rgba(31,27,46,0) 0,#1f1b2e 100%)

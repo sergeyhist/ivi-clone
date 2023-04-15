@@ -5,15 +5,27 @@ import {tvSlides} from "/src/components/Header/DropDown/TvDropDown/TvDropDown.ut
 import {SwiperSlide} from "swiper/react";
 import SliderButtons from "/src/UI/SliderButtons/SliderButtons";
 import {Swiper as SwiperEvent} from "swiper/types";
+import CustomButton from "/src/UI/CustomButton/CustomButton";
+import Image from "next/image";
 
 const TvDropDown: FC = () => {
     const [buttonsPosition, setButtonsPosition] = useState({prev: false, next: true});
+    const [activeSlideIndex, setActiveSlideIndex] = useState(0);
+
 
     const handleSlideChange = (event: SwiperEvent): void => {
         setButtonsPosition({
             prev: !event.isBeginning,
             next: !event.isEnd,
         })
+        setActiveSlideIndex(event.activeIndex);
+    }
+
+    const handleLastSlide = (swiper: SwiperEvent): void =>{
+        const lastSlideIndex = swiper.activeIndex + +swiper.params.slidesPerView;
+        const lastSlide = swiper.slides[lastSlideIndex];
+
+        lastSlide.style.backgroundColor = 'red';
     }
 
     return (
@@ -39,23 +51,29 @@ const TvDropDown: FC = () => {
                         </li>
                     </ul>
                 </div>
-                <button className={styles.tv__links_button}>Телепрограмма</button>
+                <CustomButton className={styles.tv__links_button}>Телепрограмма</CustomButton>
             </div>
             <div className={styles.channels__container}>
                 <div className={styles.channels__slider_row}>
                     <Swiper
+                        slidesPerGroup={5}
                         className={styles.channels__slider}
-                        spaceBetween={1}
-                        slidesPerView={5}
-                        onSlideChange={handleSlideChange}
+                        spaceBetween={0}
+                        slidesPerView={6}
+                        onSlideChange={
+                            (e)=>{
+                                handleSlideChange(e);
+                            }
+                        }
                     >
                         {
                             tvSlides.map(slide =>
                                 <SwiperSlide key={slide.id}>
-                                    <img src={slide.imageUrl} alt=""/>
+                                    <Image className={styles.channels__slider_item + " unselectable"} src={slide.imageUrl} alt="slider item" width={88} height={58}/>
                                 </SwiperSlide>
                             )
                         }
+                        <div className={styles.channels__slider_shadow}></div>
                         <SliderButtons state={buttonsPosition}/>
                     </Swiper>
                 </div>
