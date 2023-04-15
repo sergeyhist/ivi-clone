@@ -34,17 +34,13 @@ const TvDropDown: FC = () => {
             <div className={styles.channels__container}>
                 <div>
                     <Swiper
-                        modules={[Navigation]}
-                        spaceBetween={15}
-                        slidesPerView={1.000001}
-                        navigation={true}
-                        loop={true}
-                        centeredSlides={true}
+                        spaceBetween={1}
+                        slidesPerView={5}
                     >
                         {
                             tvSlides.map(slide=>
                             <SwiperSlide key={slide.id}>
-                                <img src={slide.imageUrl} alt="" />
+                                    <img src={slide.imageUrl} alt="" />
                             </SwiperSlide>
                             )
                         }

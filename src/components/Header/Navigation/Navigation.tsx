@@ -15,8 +15,15 @@ const Navigation:FC<NavigationProps> = ({setSelectedGenre,setShowDropDown,setIsP
         setSelectedGenre(genre);
     }
 
+    const handleTVHover = ():void =>{
+        setIsTVSelected(true);
+        setShowDropDown(true);
+        setSelectedGenre('');
+    }
+
     const handleMouseEnter = ():void =>{
         setIsProfileSelected(false);
+        setIsTVSelected(false);
         setShowDropDown(true);
     }
 
@@ -28,7 +35,7 @@ const Navigation:FC<NavigationProps> = ({setSelectedGenre,setShowDropDown,setIsP
                 <li className={styles.nav__item} onMouseEnter={()=>{handleGenreHover("movie"); handleMouseEnter()}}>Фильмы</li>
                 <li className={styles.nav__item} onMouseEnter={()=>{handleGenreHover("series"); handleMouseEnter()}} >Сериалы</li>
                 <li className={styles.nav__item} onMouseEnter={()=>{handleGenreHover("cartoons"); handleMouseEnter()}}>Мультфильмы</li>
-                <li className={styles.nav__item} onMouseEnter={()=>setIsTVSelected(true)} >TV+</li>
+                <li className={styles.nav__item} onMouseEnter={handleTVHover} >TV+</li>
             </ul>
         </nav>
     )
