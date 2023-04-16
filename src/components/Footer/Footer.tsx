@@ -5,13 +5,11 @@ import FooterCopyright from "./FooterCopyright/FooterCopyright";
 
 const Footer: FC = () => {
   return (
-    <>
-      <footer className="container">
-        <FooterTop />
-        <FooterBottom />
-        <FooterCopyright />
-      </footer>
-    </>
+    <footer className="container">
+      <FooterTop />
+      <FooterBottom />
+      <FooterCopyright />
+    </footer>
   );
 };
 
