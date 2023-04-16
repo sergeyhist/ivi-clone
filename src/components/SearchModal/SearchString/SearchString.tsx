@@ -21,24 +21,27 @@ const SearchString: FC<SearchStringProps> = ({
   const stringActiveClassName = searchStates.stringActive
     ? ` ${styles.string_active}`
     : "";
+  const mouseOverButtonHover = (state: boolean) => {
+    !searchStates.stringActive &&
+      setSearchStates({ ...searchStates, buttonHover: state });
+  };
+  const setStringAndInputActive = () => {
+    setSearchStates({
+      ...searchStates,
+      stringActive: true,
+      inputActive: true,
+    });
+  };
 
   return (
     <div
       onMouseOver={() => {
-        !searchStates.stringActive &&
-          setSearchStates({ ...searchStates, buttonHover: true });
+        mouseOverButtonHover(true);
       }}
       onMouseOut={() => {
-        !searchStates.stringActive &&
-          setSearchStates({ ...searchStates, buttonHover: false });
+        mouseOverButtonHover(false);
       }}
-      onClick={() => {
-        setSearchStates({
-          ...searchStates,
-          stringActive: true,
-          inputActive: true,
-        });
-      }}
+      onClick={setStringAndInputActive}
       className={styles.string + stringActiveClassName}
     >
       <SearchInput
