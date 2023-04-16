@@ -21,14 +21,15 @@ const SearchButton: FC<SearchButtonProps> = ({
     searchQuery.length > 0 || searchStates.buttonActive
       ? ` ${styles.btn_active}`
       : "";
+  const clickHandler = () => {
+    if (searchQuery.length > 0) {
+      clickCallback();
+    };
+  };
 
   return (
     <button
-      onClick={() => {
-        if (searchQuery.length > 0) {
-          clickCallback();
-        }
-      }}
+      onClick={clickHandler}
       className={styles.btn + buttonHoverClassName + buttonActiveClassName}
     >
       {searchQuery.length > 0 ? <IoClose size={25} /> : <IoSearch size={20} />}
