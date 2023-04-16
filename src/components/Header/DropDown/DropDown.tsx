@@ -1,4 +1,4 @@
-import {FC} from "react";
+import {FC, ReactElement} from "react";
 import styles from './DropDown.module.sass';
 import {Genres} from "/src/types/genreType";
 import ProfileDropDown from "/src/components/Header/DropDown/ProfileDropDown/ProfileDropDown";
@@ -16,6 +16,15 @@ interface DropDownProps {
 
 
 const DropDown: FC<DropDownProps> = ({selectedGenre, isNotificationSelected, isProfileSelected,isTVSelected}) => {
+
+    const gerDropDownContent = (typeDropDown:any): ReactElement =>{
+        switch (typeDropDown){
+            case 'movies':
+                return <NotificationDropDown/>;
+        }
+    }
+
+
     return (
         <div className={styles.dropdown__container}>
             {

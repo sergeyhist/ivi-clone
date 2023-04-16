@@ -5,7 +5,7 @@ import FooterCopyright from "./FooterCopyright/FooterCopyright";
 
 const Footer: FC = () => {
   return (
-    <footer className='container'>
+    <footer className="container">
       <FooterTop />
       <FooterBottom />
       <FooterCopyright />

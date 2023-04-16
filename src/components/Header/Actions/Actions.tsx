@@ -6,40 +6,51 @@ import styles from './Actions.module.sass';
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import {Genres} from "/src/types/genreType";
 
-interface ActionsProps{
+interface ActionsProps {
     setIsNotificationSelected: Dispatch<SetStateAction<boolean>>,
     setSelectedGenres: Dispatch<SetStateAction<Genres>>,
     setShowDropDown: Dispatch<SetStateAction<boolean>>,
     setIsProfileSelected: Dispatch<SetStateAction<boolean>>,
+    setIsSearchActive: Dispatch<SetStateAction<boolean>>,
 }
 
-const Actions: FC<ActionsProps> = ({setIsNotificationSelected,setShowDropDown,setSelectedGenres,setIsProfileSelected}) => {
+const Actions: FC<ActionsProps> = ({
+                                       setIsNotificationSelected,
+                                       setShowDropDown,
+                                       setSelectedGenres,
+                                       setIsProfileSelected,
+                                       setIsSearchActive
+                                   }) => {
 
-    const resetStateForNotification = ():void =>{
+    const resetStateForNotification = (): void => {
         setSelectedGenres('');
         setIsProfileSelected(false);
     }
 
-    const resetStateForProfile = ():void =>{
+    const resetStateForProfile = (): void => {
         setSelectedGenres('');
         setIsNotificationSelected(false);
     }
 
-    const handleNotificationEnter = ():void =>{
+    const handleNotificationEnter = (): void => {
         setIsNotificationSelected(true);
         resetStateForNotification();
         setShowDropDown(true);
     }
 
-    const handleNotificationLeave = ():void =>{
+    const handleNotificationLeave = (): void => {
         setIsNotificationSelected(false);
         setShowDropDown(false);
     }
 
-    const handleProfileEnter = ():void =>{
+    const handleProfileEnter = (): void => {
         setIsProfileSelected(true);
         resetStateForProfile();
         setShowDropDown(true);
+    }
+
+    const handleSearchClick = (): void => {
+        setIsSearchActive(true);
     }
 
     return (
@@ -48,11 +59,12 @@ const Actions: FC<ActionsProps> = ({setIsNotificationSelected,setShowDropDown,se
             }} type='purple' height='25px' padding='7px 11px'>
                 Оплатить подписку
             </CustomButton>
-            <div className={styles.actions__search}>
+            <div className={styles.actions__search} onClick={handleSearchClick}>
                 <div className={styles.search__icon}><BsSearch/></div>
                 <div>Поиск</div>
             </div>
-            <div className={styles.actions__notifications} onMouseEnter={handleNotificationEnter} onMouseLeave={handleNotificationLeave}>
+            <div className={styles.actions__notifications} onMouseEnter={handleNotificationEnter}
+                 onMouseLeave={handleNotificationLeave}>
                 <AiOutlineBell/>
             </div>
             <div className={styles.actions__profile} onMouseEnter={handleProfileEnter}>
