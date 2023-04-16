@@ -4,70 +4,31 @@ import {BsSearch} from 'react-icons/bs';
 import {BiUser} from 'react-icons/bi';
 import styles from './Actions.module.sass';
 import CustomButton from "/src/UI/CustomButton/CustomButton";
-import {Genres} from "/src/types/genreType";
+import {DropDownType} from "/src/components/Header/Header";
 
 interface ActionsProps {
-    setIsNotificationSelected: Dispatch<SetStateAction<boolean>>,
-    setSelectedGenres: Dispatch<SetStateAction<Genres>>,
-    setShowDropDown: Dispatch<SetStateAction<boolean>>,
-    setIsProfileSelected: Dispatch<SetStateAction<boolean>>,
+    setDropDownType: Dispatch<SetStateAction<DropDownType>>,
     setIsSearchActive: Dispatch<SetStateAction<boolean>>,
 }
 
-const Actions: FC<ActionsProps> = ({
-                                       setIsNotificationSelected,
-                                       setShowDropDown,
-                                       setSelectedGenres,
-                                       setIsProfileSelected,
-                                       setIsSearchActive
-                                   }) => {
-
-    const resetStateForNotification = (): void => {
-        setSelectedGenres('');
-        setIsProfileSelected(false);
-    }
-
-    const resetStateForProfile = (): void => {
-        setSelectedGenres('');
-        setIsNotificationSelected(false);
-    }
-
-    const handleNotificationEnter = (): void => {
-        setIsNotificationSelected(true);
-        resetStateForNotification();
-        setShowDropDown(true);
-    }
-
-    const handleNotificationLeave = (): void => {
-        setIsNotificationSelected(false);
-        setShowDropDown(false);
-    }
-
-    const handleProfileEnter = (): void => {
-        setIsProfileSelected(true);
-        resetStateForProfile();
-        setShowDropDown(true);
-    }
-
+const Actions: FC<ActionsProps> = ({setDropDownType, setIsSearchActive}) => {
     const handleSearchClick = (): void => {
         setIsSearchActive(true);
     }
 
     return (
         <div className={styles.actions__container}>
-            <CustomButton clickCallback={() => {
-            }} type='purple' height='25px' padding='7px 11px'>
+            <CustomButton type='purple' height='25px' padding='7px 11px'>
                 Оплатить подписку
             </CustomButton>
             <div className={styles.actions__search} onClick={handleSearchClick}>
                 <div className={styles.search__icon}><BsSearch/></div>
                 <div>Поиск</div>
             </div>
-            <div className={styles.actions__notifications} onMouseEnter={handleNotificationEnter}
-                 onMouseLeave={handleNotificationLeave}>
+            <div className={styles.actions__notifications} onMouseEnter={() => setDropDownType('notification')}>
                 <AiOutlineBell/>
             </div>
-            <div className={styles.actions__profile} onMouseEnter={handleProfileEnter}>
+            <div className={styles.actions__profile} onMouseEnter={() => setDropDownType('profile')}>
                 <BiUser/>
             </div>
         </div>

@@ -2,10 +2,10 @@ import {FC} from "react";
 import Links from "/src/components/Header/DropDown/Links/Links";
 import styles from './LinkList.module.sass';
 import {getLinksSectionTitles} from "/src/components/Header/Header.utils";
-import {Genres} from "/src/types/genreType";
+import {DropDownType} from "/src/components/Header/Header";
 
 interface LinkListProps{
-    selectedGenre: Genres
+    selectedGenre: DropDownType
 }
 
 const LinkList: FC<LinkListProps> = ({selectedGenre}) => {

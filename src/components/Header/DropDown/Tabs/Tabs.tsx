@@ -1,10 +1,10 @@
 import {FC} from "react";
-import {Genres} from "/src/types/genreType";
 import {getGenreTabs} from "/src/components/Header/DropDown/Tabs/Tabs.utils";
 import styles from './Tabs.module.sass';
+import {DropDownType} from "/src/components/Header/Header";
 
 interface TabsProps {
-    selectedGenre: Genres
+    selectedGenre: DropDownType
 }
 
 const Tabs: FC<TabsProps> = ({selectedGenre}) => {

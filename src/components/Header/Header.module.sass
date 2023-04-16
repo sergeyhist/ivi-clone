@@ -1,9 +1,9 @@
 @use 'src/styles/vars'
+@mixin dropDownActive
+  transition: .3s
 
 .header
   position: relative
-  .active
-    background: #1F1B2E
   &__content
     display: flex
     padding: 0 12px
@@ -17,18 +17,33 @@
     line-height: 20px
     font-weight: 500
     font-style: normal
-    transition: .4s ALL
+    transition: .3s
+    &_active
+      background: #1F1B2E
   &__logo
     cursor: pointer
   &__navigation
     display: flex
     align-items: center
+    height: 100%
+    &_layout
+      height: 100%
+      display: flex
+      align-items: center
   &__dropdown
     position: relative
     z-index: 2
-    opacity: 0
-    visibility: hidden
-    transition: opacity .4s ease-in-out
-  &__dropdown_active
-    opacity: 1
-    visibility: visible
+    &-enter
+      opacity: 0
+      &-active
+        opacity: 1
+        @include dropDownActive
+
+    &-exit
+      opacity: 1
+      &-active
+        opacity: 0
+        @include dropDownActive
+
+
+

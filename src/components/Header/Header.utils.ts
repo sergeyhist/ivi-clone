@@ -1,9 +1,10 @@
 import {GenreFilters, GenreLinks, Genres} from "/src/types/genreType";
 import {cartoonsGenres, moviesGenres, seriesGenres} from "/src/locales/genresDropDownData";
+import {DropDownType} from "/src/components/Header/Header";
 
-export const getGenreLinks = (genre: Genres): GenreFilters => {
+export const getGenreLinks = (genre: DropDownType): GenreFilters => {
     switch (genre) {
-        case "movie":
+        case "movies":
             return moviesGenres as GenreFilters;
         case "series":
             return seriesGenres as GenreFilters;
@@ -23,7 +24,7 @@ export const getTranslatedFilter = (filter: string): string => {
     }
 }
 
-export const getLinksSectionTitles = (title: string, selectedGenre: Genres): GenreLinks => {
+export const getLinksSectionTitles = (title: string, selectedGenre: DropDownType): GenreLinks => {
     const links = getGenreLinks(selectedGenre)[`${getTranslatedFilter(title)}`] as GenreFilters;
     return {title, links} as GenreLinks;
 }
