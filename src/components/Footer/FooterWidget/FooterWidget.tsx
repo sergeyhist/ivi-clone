@@ -7,6 +7,7 @@ import {FC} from "react";
 const FooterWidget: FC = () => {
   return (
     <Link
+      target="_blank"
       href="https://www.ivi.ru/subscribe?redirect_url=%2F"
       className={styles.widget}
     >
