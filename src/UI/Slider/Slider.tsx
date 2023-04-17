@@ -16,11 +16,11 @@ interface SliderProps {
 
 const Slider: FC<SliderProps> = ({
   children,
-  swiperClassName,
-  rowClassName,
+  swiperClassName = "",
+  rowClassName = "",
   breakpoints,
-  prevClassName,
-  nextClassName,
+  prevClassName = "",
+  nextClassName = "",
 }) => {
   const [show, setShow] = useState({ prev: false, next: true });
   return (
