@@ -1,4 +1,4 @@
-import {CSSProperties} from "react";
+import { CSSProperties } from "react";
 import { FC, ReactNode } from "react";
 import styles from "./CustomButton.module.sass";
 
@@ -6,7 +6,7 @@ interface CustomButtonProps {
   className?: string;
   children: ReactNode;
   clickCallback?: () => void;
-  type?: "purple" | "red" | "pattern" | "icon";
+  type?: "purple" | "red" | "promo" | "icon";
   style?: CSSProperties;
 }
 
@@ -17,7 +17,7 @@ const CustomButton: FC<CustomButtonProps> = ({
   type,
   style,
 }) => {
-  const classNames = className ? ` ${className}`: "";
+  const classNames = className ? ` ${className}` : "";
   const typeSelector = type
     ? ` ${styles.btn} ${styles[`btn_${type}`]}`
     : styles.btn;
