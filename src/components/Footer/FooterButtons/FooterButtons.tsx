@@ -35,7 +35,7 @@ const FooterButtons: FC = () => {
   return (
     <div className={styles.btns}>
       <CustomButton
-        width="196px"
+        style={{width: "196px"}}
         clickCallback={() => {
           window.open("https://www.ivi.ru/profile");
         }}
@@ -44,8 +44,7 @@ const FooterButtons: FC = () => {
       </CustomButton>
       <div className={styles.btns__wrapper}>
         <CustomButton
-          width="40px"
-          padding="0"
+          type="icon"
           clickCallback={() => {
             window.open("mailto:support@ivi.ru");
           }}
@@ -54,8 +53,7 @@ const FooterButtons: FC = () => {
         </CustomButton>
         <div ref={phoneRef}>
           <CustomButton
-            width="40px"
-            padding="0"
+            type="icon"
             clickCallback={() => {
               setIsListActive((curr) => !curr);
             }}
