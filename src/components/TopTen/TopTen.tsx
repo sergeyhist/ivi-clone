@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { SwiperSlide } from "swiper/react";
-import { slides } from "./TopTen.utils";
+import { slides, breakpoints } from "./TopTen.utils";
 import TopTenSlide from "./TopTenSlide/TopTenSlide";
 import styles from "./TopTen.module.sass";
 import Slider from "/src/UI/Slider/Slider";
@@ -13,26 +13,7 @@ const TopTen: FC = () => {
         <Image width={116} height={24} className={styles.section__img} src="/images/topten.svg" alt="" /> за неделю
       </h2>
 
-      <Slider
-        breakpoints={{
-          0: {
-            slidesPerView: 2,
-            spaceBetween: 24,
-          },
-          600: {
-            slidesPerView: 3,
-            spaceBetween: 24,
-          },
-          880: {
-            slidesPerView: 4,
-            spaceBetween: 24,
-          },
-          1160: {
-            slidesPerView: 5,
-            spaceBetween: 24,
-          },
-        }}
-      >
+      <Slider breakpoints={breakpoints}>
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
             <TopTenSlide

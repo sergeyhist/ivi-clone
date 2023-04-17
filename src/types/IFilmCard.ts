@@ -3,11 +3,8 @@ export default interface IHomeSlide {
   imgUrl: string;
   route: string;
   raiting: string;
-  raitingBar1: string;
-  raitingBar2: string;
-  raitingBar3: string;
-  raitingBar4: string;
-  chartRaiting: string;
+  raitingBars: number[];
+  chartRaiting: number;
   chartName: string;
   info: string;
   infoTime: string;

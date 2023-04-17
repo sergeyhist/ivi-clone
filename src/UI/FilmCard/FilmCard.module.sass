@@ -135,19 +135,11 @@
             font-size: 24px
 
 .raiting
+    width: 20px
     &__bar
-        width: 20px
-        height: 2px
-        background-color: rgba(165,161,178,.32)
-        border-radius: 1px
         margin-bottom: 2px
-
-    &__bar:last-child
-        margin-bottom: 0
-
-    &__value
-        height: 100%
-        background-color: #ea003d
+        &:last-child
+            margin-bottom: 0
 
 .chart
     margin-bottom: 12px
@@ -157,12 +149,9 @@
         text-transform: lowercase
         margin-bottom: 4px
 
-    &__bar
+    .chart__bar
         width: 100%
         height: 4px
         background-color: rgba(165,161,178,.32)
         border-radius: 2px
-
-    &__value
-        height: 100%
-        background-color: #ea003d
+        overflow: hidden

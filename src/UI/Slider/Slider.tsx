@@ -7,11 +7,11 @@ import { Swiper as swiperType } from "swiper/types";
 
 interface SliderProps {
   children: ReactNode;
-  swiperClassName?: string | undefined;
-  rowClassName?: string | undefined;
+  swiperClassName?: string;
+  rowClassName?: string;
   breakpoints: SwiperOptions["breakpoints"];
-  prevClassName?: string | undefined;
-  nextClassName?: string | undefined;
+  prevClassName?: string;
+  nextClassName?: string;
 }
 
 const Slider: FC<SliderProps> = ({
