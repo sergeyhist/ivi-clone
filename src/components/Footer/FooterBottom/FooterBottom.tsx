@@ -32,9 +32,8 @@ const FooterBottom: FC = () => {
         {bottomRightLinks.map((link, i) => (
           <CustomButton
             key={i}
-            borderRadius="50%"
-            width="40px"
-            padding="0"
+            type="icon"
+            style={{borderRadius: '50%'}}
             clickCallback={() => {
               linkTypeHandler(link);
             }}
