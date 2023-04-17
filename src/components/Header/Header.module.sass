@@ -2,8 +2,14 @@
 @mixin dropDownActive
   transition: .3s
 
+@mixin headerLayout
+  display: flex
+  height: 100%
+  align-items: center
+
 .header
   position: relative
+
   &__content
     display: flex
     padding: 0 12px
@@ -18,29 +24,37 @@
     font-weight: 500
     font-style: normal
     transition: .3s
+
     &_active
       background: #1F1B2E
+
   &__logo
     cursor: pointer
-  &__navigation
-    display: flex
-    align-items: center
-    height: 100%
+
+  &__action
     &_layout
-      height: 100%
-      display: flex
-      align-items: center
+      @include headerLayout
+
+  &__navigation
+    @include headerLayout
+
+    &_layout
+      @include headerLayout
+
   &__dropdown
     position: relative
     z-index: 2
+
     &-enter
       opacity: 0
+
       &-active
         opacity: 1
         @include dropDownActive
 
     &-exit
       opacity: 1
+
       &-active
         opacity: 0
         @include dropDownActive

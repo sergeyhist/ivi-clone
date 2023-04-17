@@ -18,7 +18,7 @@ const Actions: FC<ActionsProps> = ({setDropDownType, setIsSearchActive}) => {
 
     return (
         <div className={styles.actions__container}>
-            <CustomButton type='purple' height='25px' padding='7px 11px'>
+            <CustomButton type='purple'>
                 Оплатить подписку
             </CustomButton>
             <div className={styles.actions__search} onClick={handleSearchClick}>

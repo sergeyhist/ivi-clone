@@ -1,4 +1,4 @@
-import {Dispatch, FC, SetStateAction, useRef} from "react";
+import {Dispatch, FC, SetStateAction} from "react";
 import styles from './Navigation.module.sass';
 import {DropDownType} from "/src/components/Header/Header";
 

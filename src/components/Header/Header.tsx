@@ -39,7 +39,7 @@ const Header: FC = () => {
                             <Navigation setDropDownType={setDropDownType}/>
                         </div>
                     </div>
-                    <div ref={actionRef}>
+                    <div ref={actionRef} className={styles.header__action_layout}>
                         <Actions setDropDownType={setDropDownType} setIsSearchActive={setIsSearchActive}/>
                     </div>
                 </div>
