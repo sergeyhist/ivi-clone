@@ -16,13 +16,13 @@ const BannerSlide: FC<BannerSlideProps> = ({ slide }) => {
   return (
     <Link className={styles.link} href={"/"}>
       <article className={swiperSlide.isActive ? styles.slide : `${styles.slide} ${styles.slide_hidden}`}>
-        <Image width={1200} height={700} className={styles.slide__img} src={slide.bannerUrl} alt="" />
+        <Image width={1216} height={524} className={styles.slide__img} src={slide.bannerUrl} alt="" />
 
-        <Image width={1200} height={700} className={styles.slide__img_mobile} src={slide.mobileBannerUrl} alt="" />
+        <Image width={1216} height={1358} className={styles.slide__img_mobile} src={slide.mobileBannerUrl} alt="" />
 
         <div className={styles.promo}>
           {slide.logoUrl && (
-            <Image width={1200} height={700} className={styles.promo__logo} src={slide.logoUrl} alt="" />
+            <Image width={487} height={200} className={styles.promo__logo} src={slide.logoUrl} alt="" />
           )}
           {slide.title && <h3 className={styles.promo__title}>{slide.title}</h3>}
           <p className={styles.promo__text}>{slide.description}</p>

@@ -1,6 +1,6 @@
 
 .section
-    padding-top: 24px
+    padding: 24px 0
 
     .row
         display: flex
@@ -43,14 +43,18 @@
         font-style: normal
 
 @media (max-width: 880px)
-    .row
-        flex-direction: column
+    .section
+        .row
+            flex-direction: column
 
-    .link
-        width: 100%
-        margin-bottom: 16px
-        &:last-child
-            margin-bottom: 0
+        .button
+            width: 100%
+
+        .link
+            width: 100%
+            margin-bottom: 16px
+            &:last-child
+                margin-bottom: 0
 
 @media (max-width: 342px)
     .link__icon_present

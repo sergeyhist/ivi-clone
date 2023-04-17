@@ -10,6 +10,7 @@ const PromoPlate: FC = () => {
 			<div className={styles.row}>
 				<Link className={styles.link} href={"/"}>
 					<CustomButton
+					type="promo"
 						className={`${styles.button} ${styles.button_subscribe}`}
 					>
 						<Image
@@ -23,7 +24,7 @@ const PromoPlate: FC = () => {
 					</CustomButton>
 				</Link>
 
-				<CustomButton className={`${styles.button}`}>
+				<CustomButton type="promo" className={`${styles.button}`}>
 					<Image
 						width={56}
 						height={32}
