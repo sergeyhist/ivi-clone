@@ -21,7 +21,7 @@ const ProfileDropDown: FC = () => {
                 }
             </div>
             <div className={styles.profile__side}>
-                <CustomButton type='red' width='95%' height='40px' padding='9px 15px'>
+                <CustomButton type='red'>
                     <div>
                         Войти или зарегестрироватся
                     </div>

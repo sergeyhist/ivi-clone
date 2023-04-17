@@ -5,9 +5,7 @@ import Actions from "/src/components/Header/Actions/Actions";
 import DropDown from "/src/components/Header/DropDown/DropDown";
 import SearchModal from "/src/components/SearchModal/SearchModal";
 import {CSSTransition} from "react-transition-group";
-
-export type DropDownType = "movies" | "series" | "cartoons" | "tv" | "notification" | "profile" | "";
-
+import {DropDownType} from "/src/components/Header/Header.utils";
 
 const Header: FC = () => {
     const [isSearchActive, setIsSearchActive] = useState(false);

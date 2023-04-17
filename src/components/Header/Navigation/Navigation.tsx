@@ -1,6 +1,6 @@
 import {Dispatch, FC, SetStateAction} from "react";
 import styles from './Navigation.module.sass';
-import {DropDownType} from "/src/components/Header/Header";
+import {DropDownType} from "/src/components/Header/Header.utils";
 
 interface NavigationProps{
     setDropDownType: Dispatch<SetStateAction<DropDownType>>,

@@ -1,6 +1,7 @@
-import {GenreFilters, GenreLinks, Genres} from "/src/types/genreType";
+import {GenreFilters, GenreLinks} from "/src/types/genreType";
 import {cartoonsGenres, moviesGenres, seriesGenres} from "/src/locales/genresDropDownData";
-import {DropDownType} from "/src/components/Header/Header";
+
+export type DropDownType = "movies" | "series" | "cartoons" | "tv" | "notification" | "profile" | "";
 
 export const getGenreLinks = (genre: DropDownType): GenreFilters => {
     switch (genre) {

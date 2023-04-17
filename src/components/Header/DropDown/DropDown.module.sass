@@ -8,10 +8,11 @@
     z-index: 2
     background: #1F1B2E
     border-radius: 0 0 15px 15px
-    border-top: 1px solid rgba(255,255,255,.16)
+    border-top: 1px solid rgba(255, 255, 255, .16)
     padding: 20px 0 20px 20px
     height: 392px
     max-height: 392px
+
   &__notification
     display: flex
     flex-direction: column
@@ -19,23 +20,12 @@
     align-items: center
     margin: 0 auto
     gap: 20px
+
     &_icon
       width: 56px
       height: 56px
       color: vars.$primaryColor
+
     &_text
       font-size: 15px
       color: vars.$primaryColor
-  &-enter
-    opacity: 0
-
-    &-active
-      opacity: 1
-      transition: .4s
-
-    &-exit
-      opacity: 1
-
-      &-active
-        opacity: 0
-        transition: .4s
