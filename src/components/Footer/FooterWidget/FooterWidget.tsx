@@ -7,6 +7,7 @@ import {FC} from "react";
 const FooterWidget: FC = () => {
   return (
     <Link
+      target="_blank"
       href="https://www.ivi.ru/subscribe?redirect_url=%2F"
       className={styles.widget}
     >
@@ -15,12 +16,7 @@ const FooterWidget: FC = () => {
           <CiBullhorn size={56} />
           <BsSlashLg
             size={48}
-            style={{
-              position: "absolute",
-              left: "0",
-              top: "4px",
-              transform: "rotate(110deg)",
-            }}
+            className={styles.widget__slash}
           />
         </div>
       </div>

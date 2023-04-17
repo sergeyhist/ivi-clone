@@ -1,6 +1,6 @@
-import {FC, MutableRefObject, useState} from "react";
+import { FC } from "react";
 import styles from "./SliderButtons.module.sass";
-import {useSwiper} from "swiper/react";
+import { useSwiper } from "swiper/react";
 
 interface IStateProp {
   prev: boolean;
@@ -8,12 +8,16 @@ interface IStateProp {
 }
 
 interface SliderButtonsProps {
-  prevClassName?: string;
-  nextClassName?: string;
+  prevClassName?: string | undefined;
+  nextClassName?: string | undefined;
   state?: IStateProp;
 }
 
-const SliderButtons: FC<SliderButtonsProps> = ({nextClassName, prevClassName, state = {prev: true, next: true}}) => {
+const SliderButtons: FC<SliderButtonsProps> = ({
+  nextClassName,
+  prevClassName,
+  state = { prev: true, next: true },
+}) => {
   const swiper = useSwiper();
 
   const nextClick = () => {
@@ -25,7 +29,7 @@ const SliderButtons: FC<SliderButtonsProps> = ({nextClassName, prevClassName, st
   };
 
   return (
-    <div>
+    <>
       {state.prev && (
         <button onClick={prevClick} className={`${styles.button} ${styles.button_prev} ${prevClassName}`}>
           <i className={styles.button_prev__icon}></i>
@@ -37,7 +41,7 @@ const SliderButtons: FC<SliderButtonsProps> = ({nextClassName, prevClassName, st
           <i className={styles.button_next__icon}></i>
         </button>
       )}
-    </div>
+    </>
   );
 };
 

@@ -1,33 +1,42 @@
-import {FC, useState, ReactNode} from "react";
-import {Swiper} from "swiper/react";
+import { FC, useState, ReactNode } from "react";
+import { Swiper } from "swiper/react";
 import styles from "./Slider.module.sass";
 import SliderButtons from "/src/UI/SliderButtons/SliderButtons";
-import {SwiperOptions} from "swiper";
+import { SwiperOptions } from "swiper";
+import { Swiper as swiperType } from "swiper/types";
 
 interface SliderProps {
   children: ReactNode;
-  className?: string;
-  spaceBetween?: number;
+  swiperClassName?: string | undefined;
+  rowClassName?: string | undefined;
   breakpoints: SwiperOptions["breakpoints"];
+  prevClassName?: string | undefined;
+  nextClassName?: string | undefined;
 }
 
-const Slider: FC<SliderProps> = ({children, className, spaceBetween = 24, breakpoints}) => {
-  const [show, setShow] = useState({prev: false, next: true});
+const Slider: FC<SliderProps> = ({
+  children,
+  swiperClassName,
+  rowClassName,
+  breakpoints,
+  prevClassName,
+  nextClassName,
+}) => {
+  const [show, setShow] = useState({ prev: false, next: true });
   return (
-    <div className={styles.row}>
+    <div className={`${styles.row} ${rowClassName}`}>
       <Swiper
-        onSlideChange={(event) => {
+        onSlideChange={(event: swiperType) => {
           setShow({
             prev: !event.isBeginning,
             next: !event.isEnd,
           });
         }}
-        className={`${styles.swiper} ${className}`}
-        spaceBetween={spaceBetween}
+        className={`${styles.swiper} ${swiperClassName}`}
         breakpoints={breakpoints}
       >
         {children}
-        <SliderButtons state={show} prevClassName={styles.prev} nextClassName={styles.next} />
+        <SliderButtons state={show} prevClassName={prevClassName} nextClassName={nextClassName} />
       </Swiper>
     </div>
   );
