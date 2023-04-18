@@ -1,0 +1,36 @@
+@use '/src/styles/vars'
+@use '../WidgetBottom.module.sass' as bottom
+
+.info
+  display: grid
+  grid-template-areas: 'icon title' 'icon desc'
+  column-gap: 12px
+
+  &__logo
+    height: 48px
+    width: 48px
+    border-radius: 8px
+    background-color: vars.$accent
+    background-image: url('/images/widget/logo.svg')
+    background-size: 100%
+    grid-area: icon
+  
+  &__title, &__description
+    @include bottom.textDef
+
+  &__title
+    color: white
+    font-size: 20px
+    font-weight: 700
+    height: 24px
+    line-height: 24px
+    grid-area: title
+
+  &__description
+    color: #d9d7e0
+    font-size: 13px
+    font-weight: 400
+    height: 16px
+    line-height: 16px
+    margin-top: 4px
+    gird-area: desc

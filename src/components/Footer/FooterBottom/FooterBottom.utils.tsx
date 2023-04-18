@@ -15,20 +15,28 @@ import { BsApple } from "react-icons/bs";
 export const bottomRightLinks: Array<ILink> = [
   {
     url: "https://vk.com/iviru?crc=fa4448c13e06e69ba9e814e8743c7e2e",
-    text: <FaVk />,
+    content: <FaVk />,
     target: "_blank",
   },
-  { url: "https://ok.ru/ivi.ru", text: <FaOdnoklassniki />, target: "_blank" },
-  { url: "https://twitter.com/ivi_ru", text: <FaTwitter />, target: "_blank" },
-  { url: "https://vb.me/a0544c", text: <MdPhoneInTalk />, target: "_blank" },
+  {
+    url: "https://ok.ru/ivi.ru",
+    content: <FaOdnoklassniki />,
+    target: "_blank",
+  },
+  {
+    url: "https://twitter.com/ivi_ru",
+    content: <FaTwitter />,
+    target: "_blank",
+  },
+  { url: "https://vb.me/a0544c", content: <MdPhoneInTalk />, target: "_blank" },
   {
     url: "https://www.linkedin.com/company/2543415/",
-    text: <FaLinkedinIn />,
+    content: <FaLinkedinIn />,
     target: "_blank",
   },
   {
     url: "https://t.me/official_iviru",
-    text: <FaTelegramPlane style={{ paddingRight: "3px" }} />,
+    content: <FaTelegramPlane style={{ paddingRight: "3px" }} />,
     target: "_blank",
   },
 ];
@@ -36,7 +44,7 @@ export const bottomRightLinks: Array<ILink> = [
 export const bottomLeftLinks: Array<ILink> = [
   {
     url: "https://go.onelink.me/app/devicesiOS",
-    text: (
+    content: (
       <ButtonContent
         icon={<BsApple size={20} />}
         topText="Загрузить в"
@@ -47,7 +55,7 @@ export const bottomLeftLinks: Array<ILink> = [
   },
   {
     url: "https://go.onelink.me/app/devicesAndroid",
-    text: (
+    content: (
       <ButtonContent
         icon={<FaGooglePlay size={18} />}
         topText="Доступно в"
@@ -58,7 +66,7 @@ export const bottomLeftLinks: Array<ILink> = [
   },
   {
     url: "https://www.ivi.ru/pages/tvsmart",
-    text: (
+    content: (
       <ButtonContent
         icon={<IoTvSharp size={20} />}
         topText="Смотрите на"
@@ -69,7 +77,7 @@ export const bottomLeftLinks: Array<ILink> = [
   },
   {
     url: "https://www.ivi.ru/devices",
-    text: (
+    content: (
       <ButtonContent
         icon={<MdDevices size={20} />}
         bottomText="Все устройства"
