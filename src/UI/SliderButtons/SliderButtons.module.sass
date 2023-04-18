@@ -29,3 +29,15 @@
         right: -20px
         &__icon::after
             content: "\e00b"
+
+@media (max-width: 600px)
+    .button
+        &_prev, &_next
+            &__icon::after
+                font-size: 20px
+
+        &_next
+            right: -16px
+
+        &_prev
+            left: -16px
