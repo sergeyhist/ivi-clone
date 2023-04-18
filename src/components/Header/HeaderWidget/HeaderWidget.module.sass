@@ -1,0 +1,122 @@
+@use '/src/styles/vars'
+
+@mixin leftFade
+  background-image: linear-gradient(270deg,rgba(49,43,69,0),rgba(49,43,69,.96))
+  
+@mixin rightFade
+  background-image: linear-gradient(90deg,rgba(49,43,69,0),rgba(49,43,69,.96))
+
+@mixin bottomFade
+  background-image: linear-gradient(180deg,rgba(49,43,69,0),rgba(49,43,69,.96))
+
+.widget
+  display: grid
+  justify-content: center
+  justify-items: center
+  width: 244px
+  background-color: #312b45
+  border-radius: 8px
+  height: 264px
+  overflow: hidden
+  position: relative
+
+  &__slideshow
+    margin-block: 16px
+    transform: translateY(-64px)
+    opacity: .2
+    transition: .3s
+
+    &_active
+      opacity: 1
+
+  &__border
+    height: 264px
+    pointer-events: none
+    position: absolute
+    width: 64px
+    top: 0
+
+    &__left
+      left: 0
+      @include leftFade
+
+    &__right
+      right: 0
+      @include rightFade
+
+  &__fade
+    @include bottomFade
+    position: absolute
+    height: 48px
+    width: 100%
+    left: 0
+    top: -48px
+
+  &__logo
+    height: 48px
+    width: 48px
+    border-radius: 8px
+    background-color: vars.$accent
+    background-image: url('/images/widget/logo.svg')
+    background-size: 100%
+    grid-area: icon
+
+  &__bottom
+    display: grid
+    gap: 12px
+    position: absolute
+    bottom: 0
+    padding-block: 8px 12px
+    padding-inline: 16px
+    background-color: rgba(49,43,69,.96)
+    transition: .5s
+    transform: translate(0, 68px)
+
+    &_active
+      transform: translate(0, 0)
+
+  &__subscribe
+    display: grid
+    gap: 12px
+    transition: .5s
+    opacity: 0
+
+    &_active
+      opacity: 1
+
+    & > p
+      color: #a5a1b2
+      font-size: 10px
+      height: 12px
+      line-height: 12px
+      overflow: hidden
+      text-align: center
+      text-overflow: ellipsis
+      white-space: nowrap
+
+  &__info
+    display: grid
+    grid-template-areas: 'icon title' 'icon desc'
+    column-gap: 12px
+
+  &__title, &__description
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+
+  &__title
+    color: white
+    font-size: 20px
+    font-weight: 700
+    height: 24px
+    line-height: 24px
+    grid-area: title
+
+  &__description
+    color: #d9d7e0
+    font-size: 13px
+    font-weight: 400
+    height: 16px
+    line-height: 16px
+    margin-top: 4px
+    gird-area: desc

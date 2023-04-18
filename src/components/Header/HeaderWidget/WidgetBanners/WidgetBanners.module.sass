@@ -1,0 +1,42 @@
+$bannersCount: 3
+
+@keyframes primary
+  0%
+    transform: translateX(0)
+
+  to
+    transform: translateX(calc(136px * ($bannersCount * -1)))
+
+@keyframes secondary
+  0%
+    transform: translateX(calc(136px * $bannersCount))
+
+  to
+    transform: translateX(0)
+
+.banners
+  display: flex
+  align-items: center
+  width: calc($bannersCount * (128 + 8)) + px
+  position: relative
+  height: 80px
+
+  &__primary, &__secondary
+    display: flex
+    gap: 8px
+    position: absolute
+    will-change: transform
+
+  &__primary
+    animation: primary calc($bannersCount * 12s) linear infinite
+
+    &_reverse
+      animation-direction: reverse
+      animation-duration: calc($bannersCount * 18s)
+
+  &__secondary
+    animation: secondary calc($bannersCount * 12s) linear infinite
+
+    &_reverse
+      animation-direction: reverse
+      animation-duration: calc($bannersCount * 18s)
