@@ -14,9 +14,9 @@ const WidgetBanners: FC<WidgetBannersProps> = ({ isReverse, links }) => {
     : "";
 
   const createBanners = () => {
-    let banners: Array<ReactNode> = [];
+    const banners: Array<ReactNode> = [];
 
-    for (let i in [0, 1]) {
+    [0, 1].forEach((i) => {
       banners.push(
         <div key={i} className={styles.banners__banner + reverseClassName}>
           {links.map((link, i) => (
@@ -24,7 +24,8 @@ const WidgetBanners: FC<WidgetBannersProps> = ({ isReverse, links }) => {
           ))}
         </div>
       );
-    }
+    });
+
     return banners;
   };
 

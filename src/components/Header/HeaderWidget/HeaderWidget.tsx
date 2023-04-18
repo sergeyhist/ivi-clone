@@ -6,11 +6,15 @@ import WidgetBottom from "./WidgetBottom/WidgetBottom";
 
 const HeaderWidget: FC = () => {
   const [isBottomActive, setIsBottomActive] = useState(false);
+  const [isSlideshowActive, setIsSlideshowActive] = useState(false);
   const slideshowRef = useRef<HTMLDivElement>(null);
+  const slideshowActive = isSlideshowActive
+    ? ` ${styles.widget__slideshow_active}`
+    : "";
 
   useEffect(() => {
-    slideshowRef.current?.classList.add(styles.widget__slideshow_active);
-  }, [slideshowRef]);
+    setIsSlideshowActive(true);
+  }, []);
 
   return (
     <div
@@ -22,7 +26,10 @@ const HeaderWidget: FC = () => {
       }}
       className={styles.widget}
     >
-      <div ref={slideshowRef} className={styles.widget__slideshow}>
+      <div
+        ref={slideshowRef}
+        className={styles.widget__slideshow + slideshowActive}
+      >
         <WidgetBanners links={topLinks} />
         <WidgetBanners isReverse={true} links={middleLinks} />
         <WidgetBanners links={bottomLinks} />
