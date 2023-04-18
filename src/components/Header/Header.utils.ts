@@ -1,16 +1,16 @@
-import {GenreFilters, GenreLinks} from "/src/types/genreType";
+import {IGenreFilters, IGenreLinks} from "/src/types/genreType";
 import {cartoonsGenres, moviesGenres, seriesGenres} from "/src/locales/genresDropDownData";
 
 export type DropDownType = "movies" | "series" | "cartoons" | "tv" | "notification" | "profile" | "";
 
-export const getGenreLinks = (genre: DropDownType): GenreFilters => {
+export const getGenreLinks = (genre: DropDownType): IGenreFilters => {
     switch (genre) {
         case "movies":
-            return moviesGenres as GenreFilters;
+            return moviesGenres as IGenreFilters;
         case "series":
-            return seriesGenres as GenreFilters;
+            return seriesGenres as IGenreFilters;
         case "cartoons":
-            return cartoonsGenres as GenreFilters;
+            return cartoonsGenres as IGenreFilters;
     }
 }
 
@@ -25,7 +25,7 @@ export const getTranslatedFilter = (filter: string): string => {
     }
 }
 
-export const getLinksSectionTitles = (title: string, selectedGenre: DropDownType): GenreLinks => {
-    const links = getGenreLinks(selectedGenre)[`${getTranslatedFilter(title)}`] as GenreFilters;
-    return {title, links} as GenreLinks;
+export const getLinksSectionTitles = (title: string, selectedGenre: DropDownType): IGenreLinks => {
+    const links = getGenreLinks(selectedGenre)[`${getTranslatedFilter(title)}`] as IGenreFilters;
+    return {title, links} as IGenreLinks;
 }

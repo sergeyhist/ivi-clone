@@ -5,17 +5,17 @@ import {profileDropDownCards} from "/src/locales/profileDropDownData";
 import {profileLinks} from "/src/components/Header/DropDown/ProfileDropDown/ProfileDropDown.utils";
 
 const ProfileDropDown: FC = () => {
-    return(
+    return (
         <div className={styles.profile__dropdown_container}>
             <div className={styles.profile__main}>
                 {
-                    profileDropDownCards.icons.map((icon,i)=>{
-                        return (
-                            <a className={styles.profile__main_card} href={profileLinks[i]} target='_blank' key={i}>
-                                <div className={styles.card__icon}>{icon}</div>
-                                <div className={styles.card__text}>{profileDropDownCards.cardsText[i]}</div>
-                            </a>
-                        )
+                    profileDropDownCards.icons.map((icon, i) => {
+                            return (
+                                <a className={styles.profile__main_card} href={profileLinks[i]} target='_blank' key={i}>
+                                    <div className={styles.card__icon}>{icon}</div>
+                                    <div className={styles.card__text}>{profileDropDownCards.cardsText[i]}</div>
+                                </a>
+                            )
                         }
                     )
                 }

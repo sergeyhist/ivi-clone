@@ -4,30 +4,37 @@
     width: 220px
     flex-direction: column
     justify-content: space-between
-    border-right: 1px solid rgba(255,255,255,.16)
+    border-right: 1px solid rgba(255, 255, 255, .16)
     padding-right: 10px
+
     .tv
       &__links
         &__title
           font-size: 15px
           font-weight: 700
           color: #fff
+
         &_button
+          width: 100%
           background: #312B45
+          transition: 0.3s
+
+          &:hover
+            background: #3d3656
 
 .channels
   &__container
     position: relative
-    padding-left: 30px
     max-width: 680px
     width: 50%
+
   &__slider
     &_row
       overflow: hidden
       margin: 0 -20px
       padding: 24px 20px
+
     &_title
-      margin-bottom: 16px
       font-size: 15px
       font-weight: 700
       color: #fff

@@ -1,33 +1,19 @@
-import {FC, useState} from "react";
+import {FC} from "react";
 import styles from "./TvSlider.module.sass";
-import {Swiper, SwiperSlide} from "swiper/react";
+import {SwiperSlide} from "swiper/react";
 import Image from "next/image";
-import SliderButtons from "/src/UI/SliderButtons/SliderButtons";
-import {Swiper as SwiperEvent} from "swiper/types";
 import ITVSlide from "/src/types/ITVSlide";
+import Slider from "/src/UI/Slider/Slider";
+import {tvSlideBreakpoints} from "/src/components/Header/DropDown/TvDropDown/TvDropDown.utils";
 
-interface TvSliderProps{
+interface TvSliderProps {
     slides: ITVSlide[]
 }
 
-const TvSlider:FC<TvSliderProps> = ({slides})=>{
-    const [buttonsPosition, setButtonsPosition] = useState({prev: false, next: true});
-
-    const handleSlideChange = (event: SwiperEvent): void => {
-        setButtonsPosition({
-            prev: !event.isBeginning,
-            next: !event.isEnd,
-        })
-    }
-
-    return(
-        <Swiper
-            slidesPerGroup={5}
-            className={styles.channels__slider}
-            spaceBetween={0}
-            slidesPerView={6}
-            onSlideChange={handleSlideChange}
-        >
+const TvSlider: FC<TvSliderProps> = ({slides}) => {
+    return (
+        <Slider breakpoints={tvSlideBreakpoints} swiperClassName={styles.channels__slider}
+                prevClassName={styles.button_prev} nextClassName={styles.button_next}>
             {
                 slides.map(slide =>
                     <SwiperSlide key={slide.id}>
@@ -38,9 +24,9 @@ const TvSlider:FC<TvSliderProps> = ({slides})=>{
                     </SwiperSlide>
                 )
             }
-            <div className={styles.channels__slider_shadow}></div>
-            <SliderButtons className={styles.channels__slider_buttons} state={buttonsPosition}/>
-        </Swiper>
+            <div className={styles.slider__shadow_left}></div>
+            <div className={styles.slider__shadow_right}></div>
+        </Slider>
     )
 }
 

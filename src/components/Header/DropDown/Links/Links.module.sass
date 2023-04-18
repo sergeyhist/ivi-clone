@@ -2,34 +2,31 @@
 
 .list
   &__container
-    width: 500px
+    width: 350px
 
   &__title
     color: #fff
     font-size: 15px
     font-weight: 700
+    line-height: 16px
+    margin-bottom: 8px
 
 .links__container
   display: flex
-  gap: 10px
+  max-height: 340px
+  gap: 8px
   flex-direction: column
   flex-wrap: wrap
 
   .list__item
     display: flex
     font-size: 15px
+    white-space: nowrap
     color: vars.$primaryColor
     line-height: 20px
     font-weight: 400
     cursor: pointer
     transition-duration: .4s
+
     &:hover
       color: #fff
-
-.links__container__row
-  display: flex
-  width: 500px
-  flex-direction: row
-  flex-wrap: wrap
-  .list__item
-    flex-basis: 40%

@@ -1,11 +1,9 @@
-export type Genres = 'movie' | "series" | "cartoons" | "";
-
-export interface GenreLinks{
+export interface IGenreLinks{
     title: string,
     links: string[],
 }
 
-export interface GenreFilters{
+export interface IGenreFilters{
     genres: string[],
     countries: string[],
     years: string[],

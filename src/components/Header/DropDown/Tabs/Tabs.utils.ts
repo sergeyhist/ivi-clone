@@ -1,8 +1,8 @@
 import {cartoonsTabs, moviesTabs, seriesTabs} from "/src/locales/tabsDropDownData";
-import {DropDownType} from "/src/components/Header/Header";
+import {DropDownType} from "/src/components/Header/Header.utils";
 
-export const getGenreTabs = (genre: DropDownType) =>{
-    switch (genre){
+export const getGenreTabs = (genre: DropDownType) => {
+    switch (genre) {
         case "movies":
             return moviesTabs;
         case "series":

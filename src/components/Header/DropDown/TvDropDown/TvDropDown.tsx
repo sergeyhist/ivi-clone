@@ -4,13 +4,16 @@ import {tvSlides, tvSportSlides} from "/src/components/Header/DropDown/TvDropDow
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import TvLinks from "/src/components/Header/DropDown/TvDropDown/TvLinks/TvLinks";
 import TvSlider from "/src/components/Header/DropDown/TvDropDown/TvSlider/TvSlider";
+import SideWidget from "/src/components/Header/DropDown/SideWidget/SideWidget";
 
 const TvDropDown: FC = () => {
     return (
         <>
             <div className={styles.tv__left_content}>
                 <TvLinks/>
-                <CustomButton className={styles.tv__links_button}>Телепрограмма</CustomButton>
+                <a href="https://www.ivi.ru/tvplus/tv-schedule-today" target="_blank">
+                    <CustomButton className={styles.tv__links_button}>Телепрограмма</CustomButton>
+                </a>
             </div>
             <div className={styles.channels__container}>
                 <div className={styles.channels__slider_row}>
@@ -22,6 +25,7 @@ const TvDropDown: FC = () => {
                     <TvSlider slides={tvSportSlides}/>
                 </div>
             </div>
+            <SideWidget/>
         </>
     )
 }

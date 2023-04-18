@@ -1,19 +1,18 @@
 import {FC} from "react";
 import styles from "./Links.module.sass";
-import {GenreLinks} from "/src/types/genreType";
+import {IGenreLinks} from "/src/types/genreType";
 
 interface LinkProps {
-    linksSection: GenreLinks
-    rowDirection?: boolean
+    linksSection: IGenreLinks
 }
 
-const Links: FC<LinkProps> = ({linksSection,rowDirection}) => {
+const Links: FC<LinkProps> = ({linksSection}) => {
     return (
         <div className={styles.list__container}>
             <h3 className={styles.list__title}>{linksSection.title}</h3>
-            <div className={`${styles.links__container} ${rowDirection && styles.links__container__row}`}>
+            <div className={styles.links__container}>
                 {
-                   linksSection.links.map((link,i)=>{
+                    linksSection.links.map((link, i) => {
                         return (
                             <div key={i} className={`${styles.list__item} nav-link active`}>
                                 {link}
