@@ -24,7 +24,7 @@ const SearchButton: FC<SearchButtonProps> = ({
   const clickHandler = () => {
     if (searchQuery.length > 0) {
       clickCallback();
-    };
+    }
   };
 
   return (

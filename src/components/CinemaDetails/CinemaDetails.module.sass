@@ -1,0 +1,29 @@
+.section
+    padding: 24px 0
+    &__container
+        width: 80%
+
+.dropdown
+    margin-top: 12px
+
+    &>:not(:first-child)
+        display: none
+
+    &_active>:not(:first-child)
+        display: block
+
+.button_toggle
+    margin-top: 8px
+    color: #ffffffe0
+    background: none
+    cursor: pointer
+    font-size: 15px
+    font-weight: 500
+
+@media (max-width: 1019px)
+    .section__container
+        width: 100%
+
+@media (max-width: 600px)
+    .section__title
+        font-size: 15px

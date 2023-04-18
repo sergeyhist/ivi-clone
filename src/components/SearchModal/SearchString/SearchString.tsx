@@ -3,7 +3,7 @@ import styles from "./SearchString.module.sass";
 import SearchInput from "../SearchInput/SearchInput";
 import { ISearchStates } from "../SearchModal";
 import SearchPlaceholder from "../SearchPlaceholder/SearchPlaceholder";
-import SearchButton from "../SearcButton/SearchButton";
+import SearchButton from "../SearchButton/SearchButton";
 
 interface SearchStringProps {
   searchQuery: string;
