@@ -11,7 +11,7 @@ interface WidgetBannerProps {
 const WidgetBanner: FC<WidgetBannerProps> = ({link}) => {
   return (
     <Link
-      className={styles.banner}
+      className={styles.banner + ' unselectable'}
       target={link.target}
       href={link.url}
     >
@@ -19,7 +19,7 @@ const WidgetBanner: FC<WidgetBannerProps> = ({link}) => {
         width={128}
         height={72}
         className={styles.banner__image}
-        src={link.text as string}
+        src={link.content as string}
         alt="Small banner"
       ></Image>
     </Link>

@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import WidgetBanner from "../WidgetBanner/WidgetBanner";
 import styles from "./WidgetBanners.module.sass";
 import ILink from "/src/types/ILink";
@@ -9,21 +9,28 @@ interface WidgetBannersProps {
 }
 
 const WidgetBanners: FC<WidgetBannersProps> = ({ isReverse, links }) => {
-  const reverseHandler = (type: string) =>
-    isReverse ? ` ${styles[`banners__${type}_reverse`]}` : "";
+  const reverseClassName = isReverse
+    ? ` ${styles.banners__banner_reverse}`
+    : "";
+
+  const createBanners = () => {
+    let banners: Array<ReactNode> = [];
+
+    for (let i in [0, 1]) {
+      banners.push(
+        <div key={i} className={styles.banners__banner + reverseClassName}>
+          {links.map((link, i) => (
+            <WidgetBanner key={i} link={link} />
+          ))}
+        </div>
+      );
+    }
+    return banners;
+  };
 
   return (
     <div className={styles.banners}>
-      <div className={styles.banners__primary + reverseHandler("primary")}>
-        {links.map((link, i) => (
-          <WidgetBanner key={i} link={link} />
-        ))}
-      </div>
-      <div className={styles.banners__secondary + reverseHandler("secondary")}>
-        {links.map((link, i) => (
-          <WidgetBanner key={i} link={link} />
-        ))}
-      </div>
+      {createBanners().map((banner) => banner)}
     </div>
   );
 };
