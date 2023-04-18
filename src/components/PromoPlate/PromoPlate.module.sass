@@ -1,33 +1,38 @@
 
 .section
-    padding-top: 24px
+    padding: 24px 0
 
-.row
-    display: flex
-    justify-content: space-between
-    
-.link
-    border-radius: 8px
-    background-color: #1f1b2e
-    color: #fff
-    text-decoration: none
-    text-align: center
-    display: flex
-    align-items: center
-    justify-content: center
-    height: 48px
-    width: calc( 50% - 12px )
-    transition: .3s
+    .row
+        display: flex
+        justify-content: space-between
 
-    &:hover
-        background-color: #231f34
+    .link
+        display: block
+        align-items: center
+        justify-content: center
+        width: calc( 50% - 12px )
+        .button
+            width: 100%
 
-    &_subscribe
-        background-image: url('/images/promoButtonPattern.svg')
+    .button
+        border-radius: 8px
+        color: #fff
+        text-decoration: none
+        text-align: center
+        display: flex
+        align-items: center
+        justify-content: center
+        width: calc( 50% - 12px )
+        transition: .3s
+        border: none
+        height: 48px
 
-    &__icon
-        margin-right: 8px
+        &_subscribe
+            background-image: url('/images/promoButtonPattern.svg')
+            background-size: auto 48px
 
+        &__icon
+            margin-right: 8px
 
 .arrow_right
     font-family: ivi-icons
@@ -36,18 +41,21 @@
         content: '\E00B'
         font-family: ivi-icons
         font-style: normal
-        
 
 @media (max-width: 880px)
-    .row
-        flex-direction: column
+    .section
+        .row
+            flex-direction: column
 
-    .link
-        width: 100%
-        margin-bottom: 16px
-        &:last-child
-            margin-bottom: 0
+        .button
+            width: 100%
+
+        .link
+            width: 100%
+            margin-bottom: 16px
+            &:last-child
+                margin-bottom: 0
 
 @media (max-width: 342px)
-    .link__icon_present
+    .button__icon_present
         display: none
