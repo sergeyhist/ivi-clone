@@ -1,121 +1,106 @@
+@mixin chatMessage
+  margin-top: 20px
+  padding: 16px
+  min-width: 420px
+  max-height: 72px
+
+@mixin chatMessageTitle
+  color: #fff
+  font-size: 15px
+  line-height: 20px
+  font-weight: 700
+  font-style: normal
+
 .chat
   &__form
     display: flex
     flex-direction: column
     align-items: flex-end
     margin-top: 16px
+    padding-right: 100px
+
   &__message
-    padding: 16px
-    width: inherit
-    max-width: 420px
-    min-height: 72px
+    @include chatMessage
     border-radius: 16px 16px 16px 0
     background-color: #312b45
+
+    &_sended
+      @include chatMessage
+      @include chatMessageTitle
+      margin-right: -200px
+      background-color: #1f1b2e
+      border-radius: 16px 16px 0 16px
+
     &__title
-      color: #fff
-      font-size: 15px
-      line-height: 20px
-      font-weight: 700
-      font-style: normal
+      @include chatMessageTitle
+
     &__text
       color: #a5a1b2
       font-size: 13px
       line-height: 16px
-  &__input
-    position: absolute
-    cursor: pointer
-    bottom: 5px
-    left: 29px
-    color: #1f1b2e
-    font-size: 15px
-    line-height: 20px
-    font-weight: 700
-    font-style: normal
-    background-color: #e8f0fe
-    &__container
-      width: 290px
-      margin-top: 30px
-    &__content
-      position: relative
-      cursor: pointer
-      width: 100%
-      height: 40px
-      color: #1f1b2e
-      font-size: 15px
-      line-height: 20px
-      font-weight: 500
-      font-style: normal
-      background-color: #e8f0fe
-      border-radius: 8px
-    &__placeholder
-      color: #a5a1b2
-      position: absolute
-      transform-origin: 0 0
-      z-index: 2
-      font-size: 15px
-      line-height: 20px
-      font-weight: 500
+
+.error
+  &-enter
+    opacity: 0
+    transform: translateY(100%)
+
+    &-active
+      opacity: 1
+      transform: translateY(0%)
       transition: .3s
-      overflow: hidden
-      white-space: nowrap
-      text-overflow: ellipsis
-      will-change: transform
-      pointer-events: none
-      top: 10px
-      left: 29px
-    &__icon
-      font-family: iconfont, sans-serif
-      font-size: 16px
-      &:before
-        color: rgba(31,27,46,.16)
-        content: "\E050"
-    &_block
-      display: flex
-      margin-left: 10px
-      line-height: 40px
-  &__button
-    width: 100%
-    margin-top: 10px
 
-.privacy_policy
-  margin-top: 25px
-  font-size: 13px
-  color: #a5a1b2
-  &__link
-    box-shadow: 0 2px 0 #7e798f, inset 0 0 0 #7e798f
-    color: #fff
-    transition-duration: .4s
-    &:visited
-      color: #fff
-    &:hover
-      background-color: #7e798f
+  &-exit
+    opacity: 1
+    transform: translateY(0%)
 
-.chat__error
+    &-active
+      opacity: 0
+      transform: translateY(100%)
+
+      transition: .3s
+
+  &__container
+    width: 80%
+
+.email__container
   display: flex
-  margin-top: 30px
-  width: 80%
-  background-color: #ff542e
-  padding: 12px 12px 12px
-  border-radius: 4px
-  .error
-    &__title
-      color: #fff
-      font-size: 16px
-      line-height: 20px
-      font-weight: 700
-    &__text
-      color: #ffbaab
-      font-size: 13px
-      line-height: 16px
-      font-weight: 400
-    &__icon
-      svg
-        width: 32px
-        height: 32px
+  align-items: center
 
-
-.input_active
-  cursor: auto
-.placeholder_active
+.change__email
+  position: relative
+  margin-top: 20px
+  margin-right: 20px
+  cursor: pointer
+  width: 40px
+  height: 40px
+  border-radius: 40px
+  background-color: transparent
+  border: 2px solid rgba(255, 255, 255, .32)
   transition: .3s
-  transform: translate3d(0,-8px,0) scale(.86666667) perspective(1px)
+  &:hover
+    border-color: rgba(255, 255, 255, .70)
+
+  &:before
+    position: absolute
+    font-size: 16px
+    line-height: 16px
+    top: 25%
+    left: 30%
+    content: "\E0D6"
+    font-family: iconfont,sans-serif
+    color: #fff
+.show__icon
+  &:before
+    position: absolute
+    pointer-events: none
+    top: 25%
+    right: 20px
+    content: "\E357"
+    font-family: iconfont, sans-serif
+    font-size: 16px
+    line-height: 16px
+    color: #1f1b2e
+
+.password_show
+  &:before
+    content: "\E21F"

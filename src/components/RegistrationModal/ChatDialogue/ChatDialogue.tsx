@@ -1,90 +1,109 @@
-import {ChangeEvent, FC, FormEvent, useRef, useState} from "react";
+import {Dispatch, FC, FormEvent, SetStateAction, useEffect, useRef, useState} from "react";
 import styles from './ChatDialogue.module.sass';
-import CustomButton from "/src/UI/CustomButton/CustomButton";
-import {validateEmail} from "/src/components/RegistrationModal/ChatDialogue/ChatDoalogue.utils";
-import {RiErrorWarningLine} from 'react-icons/ri';
+import {
+    cssTransitionClassNames,
+    validateEmail
+} from "/src/components/RegistrationModal/ChatDialogue/ChatDoalogue.utils";
+import PrivacyPolicy from "/src/components/RegistrationModal/ChatDialogue/PrivacyPolicy/PrivacyPolicy";
+import AuthInput from "/src/components/RegistrationModal/ChatDialogue/AuthInput/AuthInput";
+import {CSSTransition} from "react-transition-group";
+import ErrorMessage from "/src/components/RegistrationModal/ChatDialogue/ErrorMessage/ErrorMessage";
 
-const ChatDialogue: FC = () => {
-    const [isInputActive, setIsInputActive] = useState(false);
+interface ChatDialogueProps {
+    setProgressBarWidth: Dispatch<SetStateAction<{ width: string }>>
+}
+
+const ChatDialogue: FC<ChatDialogueProps> = ({setProgressBarWidth}) => {
     const [email, setEmail] = useState('');
-    const [isValid, setIsValid] = useState(true);
+    const [password, setPassword] = useState('');
+    const [showPassword,setShowPassword] = useState(false);
+    const [showErrorMessage, setShowErrorMessage] = useState(false);
+    const [showForm, setShowFrom] = useState(false);
+    const [isEmailInputSuccess, setIsEmailInputSuccess] = useState(false);
 
-    const inputRef = useRef<HTMLInputElement>(null);
+    const errorRef = useRef<HTMLDivElement>(null);
+    const formRef = useRef<HTMLFormElement>(null);
 
-    const handleEmailChange = (e: ChangeEvent<HTMLInputElement>) => {
-        const {value} = e.target;
+    useEffect(() => {
+        setShowFrom(true);
+    }, []);
 
-        setEmail(value);
-    }
+    useEffect(() => {
+        if (isEmailInputSuccess) {
+            setProgressBarWidth({width: '50%'});
+        }
+    }, [isEmailInputSuccess]);
 
-    const handleInputClick = (): void => {
-        setIsInputActive(true);
-        if (inputRef.current)
-            inputRef.current.focus();
-    }
-
-    const handleInputBlur = (): void => {
-        if (inputRef.current.value === '')
-            setIsInputActive(false);
+    const handleEmailSubmit = (e: MouseEvent) => {
+        e.preventDefault();
+        setShowErrorMessage(!validateEmail(email));
+        setIsEmailInputSuccess(validateEmail(email));
     }
 
     const handleSubmitForm = (e: FormEvent): void => {
         e.preventDefault();
-        setIsValid(validateEmail(email));
     }
 
     return (
-        <form onSubmit={handleSubmitForm} className={styles.chat__form}>
-            <div className={styles.chat__message}>
-                <h3 className={styles.chat__message__title}>Войдите или зарегестрируйтесь</h3>
-                <p className={styles.chat__message__text}>чтобы пользоваться сервисом на любом устройстве</p>
-            </div>
-            <div>
-                <div className={styles.chat__input__container}>
-                    <div className={styles.chat__input__content} onClick={handleInputClick}>
-                        <div
-                            className={`${styles.chat__input__placeholder} ${isInputActive ? styles.placeholder_active : ''}`}>Через
-                            email
-                        </div>
-                        <div className={styles.chat__input_block}>
-                            <div className={styles.chat__input__icon}></div>
-                            <input type="text"
-                                   ref={inputRef}
-                                   value={email}
-                                   className={`${styles.chat__input} ${isInputActive ? styles.input_active : ''}`}
-                                   onBlur={handleInputBlur}
-                                   onChange={handleEmailChange}
+        <CSSTransition classNames={cssTransitionClassNames} nodeRef={formRef} in={showForm} timeout={300} unmountOnExit>
+            <form ref={formRef} noValidate={true} onSubmit={handleSubmitForm} className={styles.chat__form}>
+                <div className={styles.chat__message}>
+                    <h3 className={styles.chat__message__title}>Войдите или зарегестрируйтесь</h3>
+                    {
+                        !isEmailInputSuccess &&
+                        <p className={styles.chat__message__text}>чтобы пользоваться сервисом на любом устройстве</p>
+                    }
+                </div>
+                {
+                    !isEmailInputSuccess ?
+                        <div>
+                            <AuthInput showErrorMessage={showErrorMessage}
+                                       clickCallback={handleEmailSubmit}
+                                       setIsValid={setShowErrorMessage}
+                                       authData={email}
+                                       setAuthData={setEmail}
+                                       placeholderText="Через email"
+                                       inputType="email"
                             />
+                            <PrivacyPolicy/>
+                        </div> :
+                        <div className={styles.email__container}>
+                            <div className={styles.change__email}>
+
+                            </div>
+                            <div className={styles.chat__message_sended}>
+                                {email}
+                            </div>
                         </div>
+                }
+                {
+                    isEmailInputSuccess &&
+                    <>
+                        <div className={styles.chat__message}>
+                            <h3 className={styles.chat__message__title}>Войдите пароль чтобы войти</h3>
+                        </div>
+                        <AuthInput showErrorMessage={showErrorMessage}
+                                   setIsValid={setShowErrorMessage}
+                                   authData={password}
+                                   setAuthData={setPassword}
+                                   placeholderText="Введите пароль"
+                                   inputType="password"
+                        >
+                            <div className={`${styles.show__icon} ${showPassword ? styles.password_show : ''}`}
+                                 onClick={(e)=>{ e.preventDefault(); setShowPassword(prevState => !prevState)}}
+                            ></div>
+                        </AuthInput>
+                    </>
+                }
+                <CSSTransition classNames={cssTransitionClassNames} nodeRef={errorRef} in={showErrorMessage}
+                               timeout={300}
+                               unmountOnExit>
+                    <div className={styles.error__container} ref={errorRef}>
+                        <ErrorMessage/>
                     </div>
-                    <CustomButton className={styles.chat__button} type="red">
-                        Продолжить
-                    </CustomButton>
-                </div>
-                <div className={styles.privacy_policy}>
-                    <p>
-                        Нажимая «Продолжить», я соглашаюсь
-                        <br/>
-                        {`с `}<a className={styles.privacy_policy__link} href="https://www.ivi.ru/info/confidential"
-                                 target="_blank">Политикой конфиденциальности</a>
-                        <br/>
-                        {`и `}<a className={styles.privacy_policy__link} href="https://www.ivi.ru/info/agreement"
-                                 target="_blank">Пользовательским соглашением</a>
-                    </p>
-                </div>
-            </div>
-            {!isValid &&
-                <div className={styles.chat__error}>
-                    <div className={styles.error__icon}>
-                        <RiErrorWarningLine/>
-                    </div>
-                    <div>
-                        <h3 className={styles.error__title}>Ошибка</h3>
-                        <div className={styles.error__text} >Неправильно указаны данные</div>
-                    </div>
-                </div>
-            }
-        </form>
+                </CSSTransition>
+            </form>
+        </CSSTransition>
     )
 }
 
