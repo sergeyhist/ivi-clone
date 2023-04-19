@@ -24,7 +24,7 @@ const FooterBottom: FC = () => {
               linkTypeHandler(link);
             }}
           >
-            {link.text}
+            {link.content}
           </CustomButton>
         ))}
       </div>
@@ -38,7 +38,7 @@ const FooterBottom: FC = () => {
               linkTypeHandler(link);
             }}
           >
-            {link.text}
+            {link.content}
           </CustomButton>
         ))}
       </div>

@@ -1,0 +1,17 @@
+@use 'src/styles/vars'
+
+.tabs
+  &__container
+    border-left: 1px solid rgba(255, 255, 255, .16)
+    height: 100%
+
+  &__item
+    color: vars.$primaryColor
+    cursor: pointer
+    margin-left: -1px
+    transition: .4s
+    padding-left: 16px
+
+    &:hover
+      color: #fff
+      border-left: 1px solid #fff

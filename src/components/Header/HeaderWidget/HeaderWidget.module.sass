@@ -1,0 +1,40 @@
+@mixin leftFade
+  background-image: linear-gradient(270deg,rgba(49,43,69,0),rgba(49,43,69,.96))
+  
+@mixin rightFade
+  background-image: linear-gradient(90deg,rgba(49,43,69,0),rgba(49,43,69,.96))
+
+.widget
+  display: grid
+  justify-content: center
+  justify-items: center
+  width: 244px
+  background-color: #312b45
+  border-radius: 8px
+  height: 264px
+  overflow: hidden
+  position: relative
+
+  &__slideshow
+    margin-block: 16px
+    transform: translateY(-64px)
+    opacity: .2
+    transition: .5s
+
+    &_active
+      opacity: 1
+
+  &__fade
+    height: 264px
+    pointer-events: none
+    position: absolute
+    width: 64px
+    top: 0
+
+    &_left
+      left: 0
+      @include leftFade
+
+    &_right
+      right: 0
+      @include rightFade

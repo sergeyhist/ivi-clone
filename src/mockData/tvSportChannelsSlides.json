@@ -1,0 +1,57 @@
+[
+  {
+    "id": 1,
+    "imageUrl": "/images/sportChannels/sportChannel1.jpg",
+    "link": "https://www.ivi.ru/tvchannels/watch/match-premer"
+  },
+  {
+    "id": 2,
+    "imageUrl": "/images/sportChannels/sportChannel2.jpg",
+    "link": "https://www.ivi.ru/tvchannels/watch/futbol-1"
+  },
+  {
+    "id": 3,
+    "imageUrl": "/images/sportChannels/sportChannel3.jpg",
+    "link": "https://www.ivi.ru/tvchannels/watch/futbol-2"
+  },
+  {
+    "id": 4,
+    "imageUrl": "/images/sportChannels/sportChannel4.jpg",
+    "link": "https://www.ivi.ru/tvchannels/watch/futbol-3"
+  },
+  {
+    "id": 5,
+    "imageUrl": "/images/sportChannels/sportChannel5.jpg",
+    "link": "https://www.ivi.ru/tvchannels/watch/match-boec"
+  },
+  {
+    "id": 6,
+    "imageUrl": "/images/sportChannels/sportChannel6.jpg",
+    "link": "https://www.ivi.ru/tvchannels/watch/khl-tv-hd"
+  },
+  {
+    "id": 7,
+    "imageUrl": "/images/sportChannels/sportChannel7.jpg",
+    "link": "https://www.ivi.ru/tvchannels/watch/start"
+  },
+  {
+    "id": 8,
+    "imageUrl": "/images/sportChannels/sportChannel8.jpg",
+    "link": "https://www.ivi.ru/tvchannels/watch/khl-tv"
+  },
+  {
+    "id": 9,
+    "imageUrl": "/images/sportChannels/sportChannel9.jpg",
+    "link": "https://www.ivi.ru/tvchannels/watch/match-igra"
+  },
+  {
+    "id": 10,
+    "imageUrl": "/images/sportChannels/sportChannel10.jpg",
+    "link": "https://www.ivi.ru/tvchannels/watch/match-arena"
+  },
+  {
+    "id": 11,
+    "imageUrl": "/images/sportChannels/sportChannel11.jpg",
+    "link": "https://www.ivi.ru/tvchannels/watch/match-strana"
+  }
+]
