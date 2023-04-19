@@ -1,5 +1,5 @@
-export default interface ITVSlide{
+export default interface ITVSlide {
     id: number,
-    imageUrl: string
-    link:string
+    imageUrl: string,
+    link: string
 }
