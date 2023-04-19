@@ -1,0 +1,59 @@
+@use 'src/styles/vars'
+
+.profile
+  &__dropdown_container
+    display: flex
+    width: 100%
+    height: 80%
+
+  &__main
+    display: flex
+    flex-wrap: wrap
+    width: 810px
+    column-gap: 24px
+
+    &_card
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      width: 179px
+      height: 108px
+      padding: 20px
+      background: #312B45
+      border-radius: 8px
+      transition: 0.3s
+
+      &:hover
+        background: #3d3656
+
+      .card__text
+        font-size: 15px
+        font-weight: 500
+        color: #fff
+
+      .card__icon
+        svg
+          width: 20px
+          height: 20px
+
+  &__side
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    padding-left: 10px
+    flex-grow: 1
+    border-left: 1px solid rgba(255, 255, 255, .16)
+
+    button
+      margin-right: 10px
+
+    &_links
+      display: flex
+      flex-direction: column
+      color: vars.$primaryColor
+
+      a
+        transition: all .2s
+
+        &:hover
+          color: #fff
