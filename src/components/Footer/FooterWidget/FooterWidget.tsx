@@ -2,9 +2,12 @@ import styles from "./FooterWidget.module.sass";
 import { CiBullhorn } from "react-icons/ci";
 import { BsSlashLg } from "react-icons/bs";
 import Link from "next/link";
-import {FC} from "react";
+import { FC } from "react";
+import { useTranslation } from "react-i18next";
 
 const FooterWidget: FC = () => {
+  const { t } = useTranslation();
+
   return (
     <Link
       target="_blank"
@@ -14,15 +17,10 @@ const FooterWidget: FC = () => {
       <div className={styles.widget__icon}>
         <div className={styles.widget__svg}>
           <CiBullhorn size={56} />
-          <BsSlashLg
-            size={48}
-            className={styles.widget__slash}
-          />
+          <BsSlashLg size={48} className={styles.widget__slash} />
         </div>
       </div>
-      <p className={styles.widget__text}>
-        Смотрите фильмы, сериалы и мультфильмы без рекламы
-      </p>
+      <p className={styles.widget__text}>{t("footer.widget")}</p>
     </Link>
   );
 };

@@ -4,10 +4,13 @@ import PromoPlate from "../components/PromoPlate/PromoPlate";
 import TopTen from "../components/TopTen/TopTen";
 import CinemaDetails from "../components/CinemaDetails/CinemaDetails";
 import HomeSliders from "../components/HomeSliders/HomeSliders";
+import {useTranslation} from "react-i18next";
 
 export default function Home() {
+  const { t } = useTranslation();
+
   return (
-    <Layout>
+    <Layout title={t('titles.home')}>
       <BannerSlider />
       <PromoPlate />
       <TopTen />
