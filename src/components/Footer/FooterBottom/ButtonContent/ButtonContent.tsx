@@ -1,4 +1,5 @@
 import { FC, ReactNode } from "react";
+import { useTranslation } from "react-i18next";
 import styles from "./ButtonContent.module.sass";
 
 interface ButtonContentProps {
@@ -12,12 +13,16 @@ const ButtonContent: FC<ButtonContentProps> = ({
   topText,
   bottomText,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.btn}>
       <div className={styles.btn__icon}>{icon}</div>
       <div className={styles.btn__text}>
-        {topText && <span className={styles.btn__top}>{topText}</span>}
-        <span className={styles.btn__bottom}>{bottomText}</span>
+        {topText && <span className={styles.btn__top}>{t(topText)}</span>}
+        <span className={styles.btn__bottom}>
+          {topText ? bottomText : t(bottomText)}
+        </span>
       </div>
     </div>
   );

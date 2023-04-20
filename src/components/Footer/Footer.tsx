@@ -3,11 +3,10 @@ import FooterTop from "./FooterTop/FooterTop";
 import FooterBottom from "./FooterBottom/FooterBottom";
 import FooterCopyright from "./FooterCopyright/FooterCopyright";
 import {useAppSelector} from "/src/hooks/redux";
-import {RootState} from "/src/store";
 import styles from './Footer.module.sass';
 
 const Footer: FC = () => {
-  const windowSize = useAppSelector((state: RootState) => state.windowSize);
+  const windowSize = useAppSelector(state => state.windowSize);
 
   return (
     <footer className={`${styles.footer} container`}>

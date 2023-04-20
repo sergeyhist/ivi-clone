@@ -1,12 +1,16 @@
 import { FC, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { BsTelephone } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import { CSSTransition } from "react-transition-group";
 import styles from "./FooterButtons.module.sass";
 import PhonesList from "./PhonesList/PhonesList";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
+import { setLocale } from "/src/utils/locale";
 
 const FooterButtons: FC = () => {
+  const { t } = useTranslation();
+
   const [isListActive, setIsListActive] = useState(false);
 
   const listRef = useRef<HTMLDivElement>(null);
@@ -35,12 +39,12 @@ const FooterButtons: FC = () => {
   return (
     <div className={styles.btns}>
       <CustomButton
-        style={{width: "196px"}}
+        style={{ width: "196px" }}
         clickCallback={() => {
           window.open("https://www.ivi.ru/profile");
         }}
       >
-        Написать в чате
+        {t("footer.chat")}
       </CustomButton>
       <div className={styles.btns__wrapper}>
         <CustomButton
@@ -61,6 +65,23 @@ const FooterButtons: FC = () => {
             <BsTelephone size={16} />
           </CustomButton>
         </div>
+
+        <CustomButton
+          type="icon"
+          clickCallback={() => {
+            setLocale("ru");
+          }}
+        >
+          ru
+        </CustomButton>
+        <CustomButton
+          type="icon"
+          clickCallback={() => {
+            setLocale("en");
+          }}
+        >
+          en
+        </CustomButton>
       </div>
       <CSSTransition
         in={isListActive}
