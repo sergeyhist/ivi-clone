@@ -13,28 +13,28 @@
   },
   "about": {
     "title": "About",
-    "links": {
-      "1": "About Company",
-      "2": "Jobs",
-      "3": "Beta-testing",
-      "4": "Information for partners",
-      "5": "Advertisements",
-      "6": "Terms of Use",
-      "7": "Privacy Policy",
-      "8": "Compliance"
-    }
+    "links": [
+      "About Company",
+      "Jobs",
+      "Beta-testing",
+      "Information for partners",
+      "Advertisements",
+      "Terms of Use",
+      "Privacy Policy",
+      "Compliance"
+    ]
   },
   "sections": {
     "title": "Sections",
-    "links": {
-      "1": "My Ivi",
-      "2": "What's new",
-      "3": "Movies",
-      "4": "Series",
-      "5": "Cartoons",
-      "6": "TV+",
-      "7": "Recommendations"
-    }
+    "links": [
+      "My Ivi",
+      "What's new",
+      "Movies",
+      "Series",
+      "Cartoons",
+      "TV+",
+      "Recommendations"
+    ]
   },
   "appstore": "Download from",
   "google": "Available in",

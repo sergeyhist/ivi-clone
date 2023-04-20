@@ -5,11 +5,13 @@ import { HiOutlineMail } from "react-icons/hi";
 import { CSSTransition } from "react-transition-group";
 import styles from "./FooterButtons.module.sass";
 import PhonesList from "./PhonesList/PhonesList";
+import {useAppDispatch} from "/src/hooks/redux";
+import {setLocale} from "/src/store/slices/localeSlice";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
-import { setLocale } from "/src/utils/locale";
 
 const FooterButtons: FC = () => {
   const { t } = useTranslation();
+  const dispatch = useAppDispatch();
 
   const [isListActive, setIsListActive] = useState(false);
 
@@ -69,7 +71,7 @@ const FooterButtons: FC = () => {
         <CustomButton
           type="icon"
           clickCallback={() => {
-            setLocale("ru");
+            dispatch(setLocale("ru"));
           }}
         >
           ru
@@ -77,7 +79,7 @@ const FooterButtons: FC = () => {
         <CustomButton
           type="icon"
           clickCallback={() => {
-            setLocale("en");
+            dispatch(setLocale("en"));
           }}
         >
           en
