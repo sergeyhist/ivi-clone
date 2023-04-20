@@ -1,5 +1,6 @@
 import enTitles from '../locales/en/titles.json';
 import enFooter from '../locales/en/footer.json';
+
 import ruTitles from '../locales/ru/titles.json';
 import ruFooter from '../locales/ru/footer.json';
 

@@ -33,7 +33,7 @@ const FooterBottom: FC = () => {
           <CustomButton
             key={i}
             type="icon"
-            style={{borderRadius: '50%'}}
+            style={{ borderRadius: "50%" }}
             clickCallback={() => {
               linkTypeHandler(link);
             }}

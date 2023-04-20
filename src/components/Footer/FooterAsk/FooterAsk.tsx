@@ -1,6 +1,6 @@
 import Link from "next/link";
-import {FC} from "react";
-import {useTranslation} from "react-i18next";
+import { FC } from "react";
+import { useTranslation } from "react-i18next";
 import styles from "./FooterAsk.module.sass";
 
 const FooterAsk: FC = () => {
@@ -14,7 +14,7 @@ const FooterAsk: FC = () => {
       >
         ask.ivi.ru
       </Link>
-      <p className={styles.ask__text}>{t('footer.ask')}</p>
+      <p className={styles.ask__text}>{t("footer.ask")}</p>
     </div>
   );
 };

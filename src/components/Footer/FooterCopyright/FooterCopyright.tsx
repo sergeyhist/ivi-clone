@@ -1,5 +1,5 @@
 import { FC } from "react";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 import styles from "./FooterCopyright.module.sass";
 import { useAppSelector } from "/src/hooks/redux";
 import { RootState } from "/src/store";
@@ -15,7 +15,7 @@ const FooterCopyright: FC = () => {
       <span>
         {windowSize.width > 1159 && (
           <span>
-            © {today.getFullYear()} ООО «{t('footer.copyright')}»
+            © {today.getFullYear()} ООО «{t("footer.copyright")}»
             <br />
           </span>
         )}
