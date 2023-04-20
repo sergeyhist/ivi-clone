@@ -16,13 +16,17 @@ interface ChatDialogueProps {
 const ChatDialogue: FC<ChatDialogueProps> = ({setProgressBarWidth}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [showPassword,setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState(false);
     const [isPasswordInputSelected, setIsPasswordInputSelected] = useState(false);
     const [showErrorMessage, setShowErrorMessage] = useState(false);
     const [showForm, setShowFrom] = useState(false);
     const [isEmailInputSuccess, setIsEmailInputSuccess] = useState(false);
+    const [isPasswordInputSuccess, setIsPasswordInputSuccess] = useState(false);
 
     const errorRef = useRef<HTMLDivElement>(null);
+    const emailInputRef = useRef<HTMLDivElement>(null);
+    const emailChangeRef = useRef<HTMLDivElement>(null);
+    const passwordInputRef = useRef<HTMLDivElement>(null);
     const formRef = useRef<HTMLFormElement>(null);
 
     useEffect(() => {
@@ -35,14 +39,20 @@ const ChatDialogue: FC<ChatDialogueProps> = ({setProgressBarWidth}) => {
         }
     }, [isEmailInputSuccess]);
 
-    const handleEmailSubmit = (e: MouseEvent) => {
+    const handleEmailSubmit = (e: MouseEvent): void => {
         e.preventDefault();
         setShowErrorMessage(!validateEmail(email));
         setIsEmailInputSuccess(validateEmail(email));
     }
 
+    const handleEmailChangeClick = (): void => {
+        setIsEmailInputSuccess(false);
+        setProgressBarWidth({width: '20%'});
+    }
+
     const handleSubmitForm = (e: FormEvent): void => {
         e.preventDefault();
+        setIsEmailInputSuccess(true);
     }
 
     return (
@@ -55,28 +65,34 @@ const ChatDialogue: FC<ChatDialogueProps> = ({setProgressBarWidth}) => {
                         <p className={styles.chat__message__text}>чтобы пользоваться сервисом на любом устройстве</p>
                     }
                 </div>
-                {
-                    !isEmailInputSuccess ?
-                        <div>
-                            <AuthInput showErrorMessage={showErrorMessage}
-                                       clickCallback={handleEmailSubmit}
-                                       setIsValid={setShowErrorMessage}
-                                       authData={email}
-                                       setAuthData={setEmail}
-                                       placeholderText="Через email"
-                                       inputType="email"
-                            />
-                            <PrivacyPolicy/>
-                        </div> :
-                        <div className={styles.email__container}>
-                            <div className={styles.change__email}>
+                <CSSTransition classNames={cssTransitionClassNames} nodeRef={emailInputRef} in={!isEmailInputSuccess}
+                               timeout={1}
+                               unmountOnExit>
+                    <div ref={emailInputRef}>
+                        <AuthInput showErrorMessage={showErrorMessage}
+                                   clickCallback={handleEmailSubmit}
+                                   setIsValid={setShowErrorMessage}
+                                   authData={email}
+                                   setAuthData={setEmail}
+                                   placeholderText="Через email"
+                                   inputType="email"
+                        />
+                        <PrivacyPolicy/>
+                    </div>
+                </CSSTransition>
 
-                            </div>
-                            <div className={styles.chat__message_sended}>
-                                {email}
-                            </div>
+                <CSSTransition classNames={cssTransitionClassNames} nodeRef={emailChangeRef} in={isEmailInputSuccess}
+                               timeout={300}
+                               unmountOnExit>
+                    <div ref={emailChangeRef} className={styles.email__container}>
+                        <div className={styles.change__email} onClick={handleEmailChangeClick}>
                         </div>
-                }
+                        <div className={styles.chat__message_sent}>
+                            {email}
+                        </div>
+                    </div>
+                </CSSTransition>
+
                 {
                     isEmailInputSuccess &&
                     <>
@@ -87,11 +103,16 @@ const ChatDialogue: FC<ChatDialogueProps> = ({setProgressBarWidth}) => {
                                    setIsValid={setShowErrorMessage}
                                    authData={password}
                                    setAuthData={setPassword}
+                                   setIsPasswordInputSelected={setIsPasswordInputSelected}
                                    placeholderText="Введите пароль"
                                    inputType={showPassword ? "text" : "password"}
                         >
-                            <div className={`${styles.show__icon} ${showPassword ? styles.password_show : ''}`}
-                                 onClick={(e)=>{ e.preventDefault(); setShowPassword(prevState => !prevState)}}
+                            <div
+                                className={`${styles.show__icon} ${isPasswordInputSelected ? "" : styles.show__icon_disabled} ${showPassword ? styles.password_show : ''}`}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    setShowPassword(prevState => !prevState)
+                                }}
                             ></div>
                         </AuthInput>
                     </>

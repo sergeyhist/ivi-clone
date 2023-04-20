@@ -24,7 +24,7 @@
     border-radius: 16px 16px 16px 0
     background-color: #312b45
 
-    &_sended
+    &_sent
       @include chatMessage
       @include chatMessageTitle
       margin-right: -200px
@@ -77,6 +77,7 @@
   background-color: transparent
   border: 2px solid rgba(255, 255, 255, .32)
   transition: .3s
+
   &:hover
     border-color: rgba(255, 255, 255, .70)
 
@@ -87,21 +88,24 @@
     top: 25%
     left: 30%
     content: "\E0D6"
-    font-family: iconfont,sans-serif
+    font-family: iconfont, sans-serif
     color: #fff
 
 .show__icon
   position: absolute
   top: 3px
   right: 20px
+
   &:before
     content: "\E357"
     font-family: iconfont, sans-serif
     font-size: 16px
     line-height: 16px
     color: #1f1b2e
+
   &_disabled
     pointer-events: none
+
     &:before
       opacity: 0.5
 

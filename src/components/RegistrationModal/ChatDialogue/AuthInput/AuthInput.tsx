@@ -1,4 +1,4 @@
-import {ChangeEvent, Dispatch, FC, ReactNode, SetStateAction, useRef, useState} from "react";
+import {ChangeEvent, Dispatch, FC, ReactNode, SetStateAction, useEffect, useRef, useState} from "react";
 import styles from "./AuthInput.module.sass";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 
@@ -29,6 +29,29 @@ const AuthInput: FC<EmailInputProps> = ({
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
     const inputRef = useRef<HTMLInputElement>(null);
+    const contentRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        if (inputRef.current.value !== '') {
+            setIsButtonDisabled(false);
+            setIsInputActive(true);
+            inputRef.current.focus();
+        }
+    }, [])
+
+    useEffect(() => {
+        const handleClickOutside = (e: MouseEvent) => {
+            if (contentRef.current && !contentRef.current.contains(e.target as Node)) {
+                console.log("click");
+                handleInputBlur();
+            }
+        }
+        window.addEventListener('mousedown', handleClickOutside);
+
+        return () => {
+            window.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [])
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         const {value} = e.target;
@@ -36,22 +59,28 @@ const AuthInput: FC<EmailInputProps> = ({
         value !== '' ? setIsButtonDisabled(false) : setIsButtonDisabled(true);
         setAuthData(value);
         setIsValid(false);
+        if (setIsPasswordInputSelected && value !== '')
+            setIsPasswordInputSelected(true);
     }
 
     const handleInputClick = (): void => {
-        setIsInputActive(true);
-        if (inputRef.current)
+        if (inputRef.current) {
             inputRef.current.focus();
+            setIsInputActive(true);
+        }
     }
 
     const handleInputBlur = (): void => {
         if (inputRef.current.value === '')
             setIsInputActive(false);
+        if (setIsPasswordInputSelected && inputRef.current.value === '')
+            setIsPasswordInputSelected(false);
     }
 
     return (
         <div className={styles.chat__input__container}>
-            <div className={`${styles.chat__input__content} ${showErrorMessage ? styles.chat__input__error : ''}`}
+            <div ref={contentRef}
+                 className={`${styles.chat__input__content} ${showErrorMessage ? styles.chat__input__error : ''}`}
                  onClick={handleInputClick}>
                 <div className={`${styles.chat__input__placeholder} ${isInputActive ? styles.placeholder_active : ''}`}>
                     {placeholderText}
@@ -62,7 +91,6 @@ const AuthInput: FC<EmailInputProps> = ({
                            ref={inputRef}
                            value={authData}
                            className={`${styles.chat__input} ${isInputActive ? styles.input_active : ''}`}
-                           onBlur={handleInputBlur}
                            onChange={handleInputChange}
                     />
                     {children}

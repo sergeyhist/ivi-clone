@@ -2,8 +2,8 @@ import {FC} from "react";
 import styles from "./ErrorMessage.module.sass";
 import {RiErrorWarningLine} from "react-icons/ri";
 
-const ErrorMessage:FC = ()=>{
-    return(
+const ErrorMessage: FC = () => {
+    return (
         <div className={styles.chat__error}>
             <div className={styles.error__icon}>
                 <RiErrorWarningLine/>
