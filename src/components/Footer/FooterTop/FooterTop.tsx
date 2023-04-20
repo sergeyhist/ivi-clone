@@ -6,30 +6,30 @@ import FooterAsk from "../FooterAsk/FooterAsk";
 import FooterWidget from "../FooterWidget/FooterWidget";
 import { topLeftLinks, topRightLinks } from "./FooterTop.utils";
 import FooterCert from "../FooterCert/FooterCert";
+import { useTranslation } from "react-i18next";
 
 const FooterTop: FC = () => {
+  const { t } = useTranslation();
+
   return (
     <div className={styles.top}>
       <div>
-        <span className={styles.top__title}>О нас</span>
+        <span className={styles.top__title}>{t('footer.about.title')}</span>
         <nav className={styles.top__nav}>
           <FooterList items={topLeftLinks} />
         </nav>
       </div>
       <div>
-        <span className={styles.top__title}>Разделы</span>
+        <span className={styles.top__title}>{t('footer.sections.title')}</span>
         <nav className={styles.top__nav}>
           <FooterList items={topRightLinks} />
           <FooterCert />
         </nav>
       </div>
       <div>
-        <span className={styles.top__title}>Служба поддержки</span>
+        <span className={styles.top__title}>{t("footer.support.title")}</span>
         <div className={styles.top__wrapper}>
-          <p>
-            Мы всегда готовы вам помочь.
-            <br /> Наши операторы онлайн 24/7
-          </p>
+          <p>{t("footer.support.text")}</p>
           <FooterButtons />
           <FooterAsk />
         </div>
