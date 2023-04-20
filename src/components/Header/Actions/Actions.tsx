@@ -5,6 +5,7 @@ import {BiUser} from 'react-icons/bi';
 import styles from './Actions.module.sass';
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import {DropDownType} from "/src/components/Header/Header.utils";
+import {useTranslation} from "react-i18next";
 
 interface ActionsProps {
     setDropDownType: Dispatch<SetStateAction<DropDownType>>,
@@ -12,14 +13,16 @@ interface ActionsProps {
 }
 
 const Actions: FC<ActionsProps> = ({setDropDownType, setIsSearchActive}) => {
+    const {t} = useTranslation();
+
     return (
         <div className={styles.actions__container}>
             <CustomButton type='purple'>
-                Оплатить подписку
+                {t("header.subscription")}
             </CustomButton>
             <div className={styles.actions__search} onClick={()=>{setIsSearchActive(true)}}>
                 <div className={styles.search__icon}><BsSearch/></div>
-                <div>Поиск</div>
+                <div>{t("header.search")}</div>
             </div>
             <a href="https://www.ivi.ru/profile/pull_notifications" target="_blank">
                 <div className={styles.actions__notifications} onMouseEnter={() => setDropDownType('notification')}>

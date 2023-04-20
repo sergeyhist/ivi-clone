@@ -1,0 +1,54 @@
+{
+  "navigation": ["My Ivi","What's new","Movies","Series","Cartoons"],
+  "tabs": {
+    "movies": [
+      "New items",
+      "Collection",
+      "Ivi.Rating",
+      "Coming soon on Ivi",
+      "Trailers",
+      "What to see",
+      "Movies in HD",
+      "Ivi choice",
+      "New Subscriptions",
+      "Movies Amediateka",
+      "Popular movies",
+      "Ivi movies"
+    ],
+    "series": [
+      "New items",
+      "Ivi.Rating",
+      "Series in HD",
+      "Free series",
+      "Series Amediateka",
+      "Series Paramount Play"
+    ],
+    "cartoons": [
+      "New items",
+      "Cartoons in HD",
+      "Cartoons Paramount Play / Nickelodeon",
+      "Cartoons DreamWorks",
+      "Cartoons СТС Kids"
+    ]
+  },
+  "headerWidget": {
+    "widgetTitle": "Ivi Sing Up",
+    "widgetPrice": "From 3.99$ per month",
+    "widgetBuyButton": "Turn on",
+    "widgetHint" : "You can disable it at any time",
+    "smartTvButton": "Watch on Smart TV"
+  },
+  "tv":{
+    "links": ["TV online","TV-channels","Entertainment","Kids","Sports TV","Documentary"],
+    "program": "TV program",
+    "channels": ["Federal channels","Sports channels"]
+  },
+  "profile" : {
+    "cardsText": ["Purchases", "Watch later", "History", "Subscriptions", "Certificate activation", "Login by code", "Payment methods"],
+    "settings": ["Settings","Help"],
+    "auth": "Login or Sing Up"
+  },
+  "notification": "Only important messages appear here",
+  "search": "Search",
+  "subscription" : "Buy subscription"
+}
