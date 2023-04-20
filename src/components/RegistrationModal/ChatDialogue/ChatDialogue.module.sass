@@ -89,17 +89,22 @@
     content: "\E0D6"
     font-family: iconfont,sans-serif
     color: #fff
+
 .show__icon
+  position: absolute
+  top: 3px
+  right: 20px
   &:before
-    position: absolute
-    pointer-events: none
-    top: 25%
-    right: 20px
     content: "\E357"
     font-family: iconfont, sans-serif
     font-size: 16px
     line-height: 16px
     color: #1f1b2e
+  &_disabled
+    pointer-events: none
+    &:before
+      opacity: 0.5
+
 
 .password_show
   &:before

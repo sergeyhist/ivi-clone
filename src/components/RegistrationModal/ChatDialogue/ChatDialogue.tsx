@@ -17,6 +17,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({setProgressBarWidth}) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword,setShowPassword] = useState(false);
+    const [isPasswordInputSelected, setIsPasswordInputSelected] = useState(false);
     const [showErrorMessage, setShowErrorMessage] = useState(false);
     const [showForm, setShowFrom] = useState(false);
     const [isEmailInputSuccess, setIsEmailInputSuccess] = useState(false);
@@ -87,7 +88,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({setProgressBarWidth}) => {
                                    authData={password}
                                    setAuthData={setPassword}
                                    placeholderText="Введите пароль"
-                                   inputType="password"
+                                   inputType={showPassword ? "text" : "password"}
                         >
                             <div className={`${styles.show__icon} ${showPassword ? styles.password_show : ''}`}
                                  onClick={(e)=>{ e.preventDefault(); setShowPassword(prevState => !prevState)}}

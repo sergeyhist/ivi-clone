@@ -2,18 +2,29 @@ import {ChangeEvent, Dispatch, FC, ReactNode, SetStateAction, useRef, useState} 
 import styles from "./AuthInput.module.sass";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 
-interface EmailInputProps{
-    authData:string,
+interface EmailInputProps {
+    authData: string,
     children?: ReactNode,
     setAuthData: Dispatch<SetStateAction<string>>,
     setIsValid: Dispatch<SetStateAction<boolean>>,
-    inputType: "email" | "password",
+    setIsPasswordInputSelected?: Dispatch<SetStateAction<boolean>>,
+    inputType: "email" | "password" | "text",
     placeholderText: string,
     showErrorMessage: boolean,
-    clickCallback?: ()=>void,
+    clickCallback?: () => void,
 }
 
-const AuthInput:FC<EmailInputProps> = ({authData,children, setAuthData,setIsValid,inputType,placeholderText,showErrorMessage, clickCallback}) =>{
+const AuthInput: FC<EmailInputProps> = ({
+                                            authData,
+                                            children,
+                                            setAuthData,
+                                            setIsValid,
+                                            setIsPasswordInputSelected,
+                                            inputType,
+                                            placeholderText,
+                                            showErrorMessage,
+                                            clickCallback
+                                        }) => {
     const [isInputActive, setIsInputActive] = useState(false);
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
@@ -38,9 +49,10 @@ const AuthInput:FC<EmailInputProps> = ({authData,children, setAuthData,setIsVali
             setIsInputActive(false);
     }
 
-    return(
+    return (
         <div className={styles.chat__input__container}>
-            <div className={`${styles.chat__input__content} ${showErrorMessage ? styles.chat__input__error : ''}`} onClick={handleInputClick}>
+            <div className={`${styles.chat__input__content} ${showErrorMessage ? styles.chat__input__error : ''}`}
+                 onClick={handleInputClick}>
                 <div className={`${styles.chat__input__placeholder} ${isInputActive ? styles.placeholder_active : ''}`}>
                     {placeholderText}
                 </div>
@@ -56,7 +68,9 @@ const AuthInput:FC<EmailInputProps> = ({authData,children, setAuthData,setIsVali
                     {children}
                 </div>
             </div>
-            <CustomButton clickCallback={clickCallback} className={`${styles.chat__button} ${isButtonDisabled ? styles.button_disabled : ''}`} type="red">
+            <CustomButton clickCallback={clickCallback}
+                          className={`${styles.chat__button} ${isButtonDisabled ? styles.button_disabled : ''}`}
+                          type="red">
                 Продолжить
             </CustomButton>
         </div>
