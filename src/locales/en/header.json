@@ -46,7 +46,7 @@
   "profile" : {
     "cardsText": ["Purchases", "Watch later", "History", "Subscriptions", "Certificate activation", "Login by code", "Payment methods"],
     "settings": ["Settings","Help"],
-    "auth": "Login or Sing Up"
+    "auth": "Login or Sign Up"
   },
   "notification": "Only important messages appear here",
   "search": "Search",
