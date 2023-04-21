@@ -20,7 +20,6 @@ const translationResources = {
   ru: {
     translation: {
       header: ruHeader,
-
       titles: ruTitles,
       footer: ruFooter,
       tabBar: ruTabBar,
