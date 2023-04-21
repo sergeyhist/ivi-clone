@@ -9,11 +9,16 @@ import {DropDownType} from "/src/components/Header/Header.utils";
 import {useAppSelector} from "/src/hooks/redux";
 import {RootState} from "/src/store";
 import Image from "next/image";
+import {createPortal} from "react-dom";
+import RegistrationModal from "/src/components/RegistrationModal/RegistrationModal";
+
+const documentRoot =  typeof window !== "undefined" ? document.getElementById("__next") : null;
 
 const Header: FC = () => {
     const [isSearchActive, setIsSearchActive] = useState(false);
     const [isDropdownActive, setIsDropdownActive] = useState(false);
     const [dropDownType, setDropDownType] = useState<DropDownType>("");
+    const showAuthModal = useAppSelector((state: RootState) => state.showAuthModal);
     const windowSizeWidth = useAppSelector((state: RootState) => state.windowSize.width);
 
     const refDropDown = useRef<HTMLDivElement>(null);
@@ -35,6 +40,11 @@ const Header: FC = () => {
             {
                 isSearchActive && <SearchModal closeCallback={() => setIsSearchActive(false)}/>
             }
+            <div>
+                {
+                    showAuthModal && documentRoot ? createPortal(<RegistrationModal/>,documentRoot) : <></>
+                }
+            </div>
             <header className={`${styles.header}  container`} onMouseOver={handleHeaderMouseOver}
                     onMouseLeave={() => setDropDownType('')}>
                 <div className={`${styles.header__content} ${dropDownType ? styles.header__content_active : ''}`}>
