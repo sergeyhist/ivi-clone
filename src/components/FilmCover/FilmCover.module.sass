@@ -1,0 +1,87 @@
+.desctop
+  padding: 24px 0
+  display: flex
+  justify-content: space-between
+
+.mobile
+  display: none
+  padding: 24px 0
+
+  &__row
+    display: flex
+    justify-content: space-between
+
+  &__content
+    width: 66%
+
+  &__buttons
+    width: 34%
+    padding-left: 40px
+
+.button
+  width: 100%
+  &__text
+    margin-left: 6px
+
+  &__icon
+    display: flex
+    align-items: center
+    &::after
+      font-family: iconfont
+      font-weight: 400
+      font-style: normal
+      font-size: 16px
+
+    &_play::after
+      content: "\E28D"
+
+    &_save::after
+      content: "\E12F"
+
+    &_download::after
+      content: "\E356"
+
+    &_film::after
+      content: "\E07B"
+
+.description
+  line-height: 22px
+  &__paragrapf:not(:last-child)
+    margin-bottom: 8px
+
+.badge
+  background-color: rgba(255,255,255,.16)
+  backdrop-filter: blur(0)
+  height: 20px
+  padding: 2px 6px
+  border-radius: 4px
+  color: #fff
+  font-size: 13px
+  line-height: 16px
+  box-shadow: 0 4px 12px transparent
+  font-weight: 500
+
+  &:not(:first-child)
+    margin-left: 8px
+
+@media (max-width: 1160px)
+  .mobile
+    display: block
+  .desctop
+    display: none
+
+  .option
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1607843137)
+    &:last-child
+      border-bottom: 0
+
+@media (max-width: 880px)
+  .mobile
+    &__row
+      flex-direction: column-reverse
+    &__content
+      width: 100%
+
+    &__buttons
+      width: 100%
+      padding: 0

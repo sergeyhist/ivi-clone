@@ -3,52 +3,46 @@ import styles from "./SliderButtons.module.sass";
 import { useSwiper } from "swiper/react";
 
 interface IStateProp {
-	prev: boolean;
-	next: boolean;
+  prev: boolean;
+  next: boolean;
 }
 
 interface SliderButtonsProps {
-	prevClassName?: string;
-	nextClassName?: string;
-	state?: IStateProp;
+  prevClassName?: string;
+  nextClassName?: string;
+  state?: IStateProp;
 }
 
 const SliderButtons: FC<SliderButtonsProps> = ({
-	nextClassName = "",
-	prevClassName = "",
-	state = { prev: true, next: true },
+  nextClassName = "",
+  prevClassName = "",
+  state = { prev: true, next: true },
 }) => {
-	const swiper = useSwiper();
+  const swiper = useSwiper();
 
-	const nextClick = () => {
-		swiper.slideNext();
-	};
+  const nextClick = () => {
+    swiper.slideNext();
+  };
 
-	const prevClick = () => {
-		swiper.slidePrev();
-	};
+  const prevClick = () => {
+    swiper.slidePrev();
+  };
 
-	return (
-		<>
-			{state.prev && (
-				<button
-					onClick={prevClick}
-					className={`${styles.button} ${styles.button_prev} ${prevClassName}`}
-				>
-					<i className={styles.button_prev__icon}></i>
-				</button>
-			)}
+  return (
+    <>
+      {state.prev && (
+        <button onClick={prevClick} className={`${styles.button} ${styles.button_prev} ${prevClassName}`}>
+          <i className={`${styles.button__icon_prev} ${styles.button__icon}`}></i>
+        </button>
+      )}
 
-			{state.next && (
-				<button
-					onClick={nextClick}
-					className={`${styles.button} ${styles.button_next} ${nextClassName}`}
-				>
-					<i className={styles.button_next__icon}></i>
-				</button>
-			)}
-		</>
-	);
+      {state.next && (
+        <button onClick={nextClick} className={`${styles.button} ${styles.button_next} ${nextClassName}`}>
+          <i className={`${styles.button__icon_next} ${styles.button__icon}`}></i>
+        </button>
+      )}
+    </>
+  );
 };
 
 export default SliderButtons;

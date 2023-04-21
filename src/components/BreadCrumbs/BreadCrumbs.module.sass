@@ -1,0 +1,26 @@
+.section
+  padding-top: 25px
+  display: flex
+  justify-content: space-between
+
+.list
+  display: flex
+  align-items: center
+
+  &__item
+    display: flex
+    align-items: center
+
+  &__item:not(:first-child)::before
+    content: ''
+    display: block
+    width: 2px
+    height: 2px
+    margin: 1px 7px 0
+    background-color: rgba(255,255,255,.56)
+
+  &__link
+    transition: .3s
+
+  &__link:hover
+    color: #fff

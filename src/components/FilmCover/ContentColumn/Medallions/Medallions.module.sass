@@ -1,0 +1,71 @@
+.medallions
+  display: grid
+  grid-template-columns: repeat(5,1fr)
+  grid-gap: 4px
+  justify-items: center
+  align-items: flex-start
+  margin-bottom: 24px
+  padding: 0 12px
+
+.medallion
+  display: flex
+  flex-direction: column
+  justify-content: center
+  align-items: center
+  cursor: pointer
+
+  &:hover
+    .medallion__wrapper
+      background-color: rgba(255,255,255,.24)
+    .medallion__text
+      color: #fff
+
+  &__wrapper
+    background-color: rgba(255,255,255,.16)
+    width: 56px
+    height: 56px
+    border-radius: 12px
+    display: flex
+    align-items: center
+    justify-content: center
+    transition: .3s
+
+  &__grade
+    height: 44px
+    width: 44px
+    background-color: #73a32f
+    display: flex
+    align-items: center
+    justify-content: center
+    border-radius: 8px
+    color: #fff
+
+  &__avatar
+    width: 44px
+    height: 44px
+    border-radius: 8px
+
+  &__text
+    text-align: center
+    font-size: 13px
+    color: rgba(255,255,255,.48)
+    margin-top: 8px
+    line-height: 16px
+    transition: .3s
+
+@media (max-width: 600px)
+  .medallion
+    max-width: 72px
+    min-height: 72px
+    &__wrapper
+      width: 44px
+      height: 44px
+
+    &__grade, &__avatar
+      width: 36px
+      height: 36px
+
+    &__text
+      font-size: 10px
+      margin-top: 4px
+      line-height: 12px

@@ -2,7 +2,7 @@ import { FC, useState } from "react";
 import styles from "./CinemaDetails.module.sass";
 import DropDown from "./DropDown/DropDown";
 
-const IviOnlineCinema: FC = () => {
+const CinemaDetails: FC = () => {
   const [showDropDown, setShowDropDown] = useState(false);
 
   const dropDownClassName = showDropDown ? `${styles.dropdown} ${styles.dropdown_active}` : `${styles.dropdown}`;
@@ -32,4 +32,4 @@ const IviOnlineCinema: FC = () => {
   );
 };
 
-export default IviOnlineCinema;
+export default CinemaDetails;

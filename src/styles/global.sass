@@ -4,7 +4,7 @@
 @use 'config'
 
 body
-  font-family: vars.$userfont
+  font-family: vars.$userfont, vars.$systemfont
   font-size: vars.$fontsize
   line-height: vars.$lineheight
   color: vars.$textcolor
@@ -12,6 +12,7 @@ body
   position: relative
   overflow-x: hidden
   background-color: #100e19
+  -webkit-font-smoothing: antialiased
 
 ul
   list-style: none
@@ -19,7 +20,7 @@ ul
 a
   text-decoration: none
   color: inherit
-  
+
   &:visited, &:active
     color: inherit
 
@@ -30,9 +31,13 @@ a
   outline: 0
   box-sizing: border-box
 
+button
+  font-family: inherit
+  background: none
+
 .container
   padding: 0 32px
-  max-width: 1240px
+  max-width: 1280px
   margin: 0 auto
 
 .unselectable

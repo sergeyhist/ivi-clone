@@ -4,7 +4,7 @@ export const slides = [
     mainImgUrl: "/images/top1.jpeg",
     logoImgUrl: "/images/toplogo1.png",
     numberImgUrl: "/images/num1.svg",
-    route: "/",
+    route: "/films/1",
   },
   {
     id: 2,

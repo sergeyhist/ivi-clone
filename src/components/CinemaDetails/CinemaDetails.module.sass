@@ -6,10 +6,19 @@
 .dropdown
     margin-top: 12px
 
+    &>:first-child
+        overflow: hidden
+        display: -webkit-box
+        -webkit-box-orient: vertical
+        -webkit-line-clamp: 2
+
     &>:not(:first-child)
         display: none
 
     &_active>:not(:first-child)
+        display: block
+
+    &_active>:first-child
         display: block
 
 .button_toggle

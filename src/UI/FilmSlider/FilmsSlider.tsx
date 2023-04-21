@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { SwiperSlide } from "swiper/react";
 import styles from "./FilmsSlider.module.sass";
-import Slider from "/src/UI/Slider/Slider";
+import Slider from "../Slider/Slider";
 import Link from "next/link";
 import FilmCard from "../FilmCard/FilmCard";
 import IFilmCard from "../../types/IFilmCard";
