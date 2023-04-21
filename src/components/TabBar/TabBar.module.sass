@@ -1,0 +1,100 @@
+@mixin itemLink
+  font-family: iconfont, sans-serif
+  font-size: 20px
+  line-height: 20px
+  color: #a5a1b2
+
+.container
+  position: fixed
+  display: flex
+  width: 100%
+  height: 48px
+  bottom: 0
+  justify-content: center
+  z-index: 2
+  backdrop-filter: blur(8px)
+  background-color: rgba(31, 27, 46, .88)
+  box-shadow: 0 -20px 40px rgba(7, 5, 14, .24)
+
+  .content
+    display: flex
+    max-width: 700px
+    width: 100%
+    box-shadow: 0 -20px 40px rgba(7, 5, 14, .24)
+    box-sizing: border-box
+    height: 48px
+    justify-content: center
+
+    &__item
+      cursor: pointer
+      display: flex
+      flex-direction: column
+      align-items: center
+      justify-content: center
+      flex-basis: 100%
+      flex-grow: 1
+      flex-shrink: 1
+      max-width: 120px
+      padding-bottom: 4px
+      padding-top: 4px
+      position: relative
+
+      &__home
+        &:before
+          content: "\E226"
+          @include itemLink
+
+      &__catalogue
+        &:before
+          content: "\E07C"
+          @include itemLink
+
+      &__search
+        &:before
+          content: "\E33D"
+          @include itemLink
+
+      &__tv
+        &:before
+          content: "\E3A9"
+          @include itemLink
+
+      &__more
+        &:before
+          content: "\E26A"
+          @include itemLink
+
+      &__caption
+        align-self: center
+        color: #a5a1b2
+        font-size: 10px
+        font-style: normal
+        font-weight: 500
+        height: 12px
+        line-height: 12px
+        max-width: 100%
+        overflow: hidden
+        text-overflow: ellipsis
+        white-space: nowrap
+
+      .glow__image
+        background-image: url(https://solea-parent.dfs.ivi.ru/picture/7e798f,7e798f/tabBarGlow.svg)
+        background-position: 50% 50%
+        background-repeat: no-repeat
+        background-size: 64px 48px
+        height: 48px
+        left: 50%
+        opacity: 0
+        position: absolute
+        top: 0
+        transform: translateX(-50%)
+        width: 64px
+
+      .active
+        opacity: 1
+
+      .item_selected
+        color: #fff
+
+        &:before
+          color: #fff

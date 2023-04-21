@@ -2,13 +2,13 @@ import { configureStore } from "@reduxjs/toolkit";
 import i18next, { changeLanguage } from "i18next";
 import localeSlice from "./slices/localeSlice";
 import windowSizeSlice from "./slices/windowSizeSlice";
-import authSlice from "./slices/authSlice";
+import modalsSlice from "./slices/modalsSlice";
 
 export const store = configureStore({
   reducer: {
     windowSize: windowSizeSlice,
     locale: localeSlice,
-    showAuthModal: authSlice,
+    showModal: modalsSlice,
   },
 });
 

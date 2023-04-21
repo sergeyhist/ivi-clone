@@ -4,14 +4,14 @@ import CustomButton from "/src/UI/CustomButton/CustomButton";
 import {cardsIcons, profileLinks} from "/src/components/Header/DropDown/ProfileDropDown/ProfileDropDown.utils";
 import {useTranslation} from "react-i18next";
 import {useAppDispatch} from "/src/hooks/redux";
-import {setShowAuthModal} from "/src/store/slices/authSlice";
+import {setShowAuthModal} from "/src/store/slices/modalsSlice";
 
 const ProfileDropDown: FC = () => {
     const {t} = useTranslation();
     const dispatch = useAppDispatch();
 
     const handleAuthClick = ():void =>{
-        dispatch(setShowAuthModal(true));
+        dispatch(setShowAuthModal({showAuthModal:true}));
     }
 
     return (
