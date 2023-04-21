@@ -37,7 +37,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({setProgressBarWidth}) => {
         if (isEmailInputSuccess) {
             setProgressBarWidth({width: '50%'});
         }
-    }, [isEmailInputSuccess]);
+    }, [isEmailInputSuccess,setProgressBarWidth]);
 
     const handleEmailSubmit = (e: MouseEvent): void => {
         e.preventDefault();
