@@ -1,17 +1,20 @@
 import {FC} from "react";
-import {getGenreTabs} from "/src/components/Header/DropDown/Tabs/Tabs.utils";
 import styles from './Tabs.module.sass';
 import {DropDownType} from "/src/components/Header/Header.utils";
+import {useTranslation} from "react-i18next";
 
 interface TabsProps {
     selectedGenre: DropDownType
 }
 
 const Tabs: FC<TabsProps> = ({selectedGenre}) => {
+    const {t} = useTranslation();
+    const translatedTabs:string[] = t(`header.tabs.${selectedGenre}`,{returnObjects:true});
+
     return (
         <div className={styles.tabs__container}>
             {
-                getGenreTabs(selectedGenre).map((tab, i) => {
+                translatedTabs.map((tab, i) => {
                     return (
                         <div key={i} className={styles.tabs__item}>
                             {tab}
