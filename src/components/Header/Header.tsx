@@ -1,16 +1,16 @@
-import { FC, useEffect, useRef, useState } from "react";
+import {FC, useEffect, useRef, useState, MouseEvent} from "react";
 import styles from "./Header.module.sass";
 import Navigation from "/src/components/Header/Navigation/Navigation";
 import Actions from "/src/components/Header/Actions/Actions";
 import DropDown from "/src/components/Header/DropDown/DropDown";
 import SearchModal from "/src/components/SearchModal/SearchModal";
-import { CSSTransition } from "react-transition-group";
-import { DropDownType } from "/src/components/Header/Header.utils";
-import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
-import { RootState } from "/src/store";
+import {CSSTransition} from "react-transition-group";
+import {DropDownType} from "/src/components/Header/Header.utils";
+import {useAppDispatch, useAppSelector} from "/src/hooks/redux";
+import {RootState} from "/src/store";
 import Image from "next/image";
 import RegistrationModal from "/src/components/RegistrationModal/RegistrationModal";
-import { setShowAuthModal } from "/src/store/slices/authSlice";
+import {setShowAuthModal} from "/src/store/slices/authSlice";
 import createAppPortal from "/src/utils/createAppPortal";
 
 const Header: FC = () => {
@@ -35,9 +35,9 @@ const Header: FC = () => {
 
   const handleHeaderMouseOver = (e: MouseEvent): void => {
     !navigationRef.current?.contains(e.target as Node) &&
-      !refDropDown.current?.contains(e.target as Node) &&
-      !actionRef.current?.contains(e.target as Node) &&
-      setDropDownType("");
+    !refDropDown.current?.contains(e.target as Node) &&
+    !actionRef.current?.contains(e.target as Node) &&
+    setDropDownType("");
   };
 
   return (
@@ -54,11 +54,11 @@ const Header: FC = () => {
         )}
       {isSearchActive &&
         createAppPortal(
-          <SearchModal closeCallback={() => setIsSearchActive(false)} />
+          <SearchModal closeCallback={() => setIsSearchActive(false)}/>
         )}
       <div
         className={`${styles.header__content} ${
-          dropDownType ? styles.header__content_active : ""
+          dropDownType && windowSizeWidth > 1160 ? styles.header__content_active : ""
         }`}
       >
         <div className={styles.header__navigation}>
@@ -74,7 +74,7 @@ const Header: FC = () => {
           )}
           <div ref={navigationRef} className={styles.header__navigation_layout}>
             {windowSizeWidth > 1160 && (
-              <Navigation setDropDownType={setDropDownType} />
+              <Navigation setDropDownType={setDropDownType}/>
             )}
           </div>
         </div>
@@ -98,7 +98,7 @@ const Header: FC = () => {
         unmountOnExit
       >
         <div ref={refDropDown} className={`${styles.header__dropdown}`}>
-          <DropDown dropDownType={dropDownType} />
+          <DropDown dropDownType={dropDownType}/>
         </div>
       </CSSTransition>
     </header>

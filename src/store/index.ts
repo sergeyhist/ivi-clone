@@ -13,9 +13,9 @@ export const store = configureStore({
 });
 
 store.subscribe(() => {
-  i18next.language !== store.getState().locale &&
-    changeLanguage(store.getState().locale);
-  localStorage.setItem("currentLocale", store.getState().locale);
+  i18next.language !== store.getState().locale.current &&
+    changeLanguage(store.getState().locale.current);
+  localStorage.setItem("currentLocale", store.getState().locale.current);
 });
 
 export type RootState = ReturnType<typeof store.getState>;

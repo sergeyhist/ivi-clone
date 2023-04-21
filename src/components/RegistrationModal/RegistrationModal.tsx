@@ -10,15 +10,14 @@ interface RegistrationModalProps {
 const RegistrationModal: FC<RegistrationModalProps> = ({ closeCallback }) => {
   const [progressBarWidth, setProgressBarWidth] = useState({ width: "10%" });
 
-  const keydownHandler = (e: KeyboardEvent) => {
-    e.key === "Escape" && closeCallback();
-  };
-
   useEffect(() => {
+    const keydownHandler = (e: KeyboardEvent) => {
+      e.key === "Escape" && closeCallback();
+    };
     document.addEventListener("keydown", keydownHandler);
 
     return () => document.removeEventListener("keydown", keydownHandler);
-  }, []);
+  }, [closeCallback]);
 
   return (
     <div className={styles.chat__container}>
