@@ -9,7 +9,7 @@ import {DropDownType} from "/src/components/Header/Header.utils";
 import {useAppDispatch, useAppSelector} from "/src/hooks/redux";
 import {RootState} from "/src/store";
 import Image from "next/image";
-import RegistrationModal from "/src/components/RegistrationModal/RegistrationModal";
+import AuthModal from "/src/components/RegistrationModal/AuthModal";
 import {setShowAuthModal} from "/src/store/slices/authSlice";
 import createAppPortal from "/src/utils/createAppPortal";
 
@@ -48,7 +48,7 @@ const Header: FC = () => {
     >
       {showAuthModal &&
         createAppPortal(
-          <RegistrationModal
+          <AuthModal
             closeCallback={() => dispatch(setShowAuthModal(false))}
           />
         )}
