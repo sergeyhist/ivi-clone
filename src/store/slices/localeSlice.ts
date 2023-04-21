@@ -1,19 +1,19 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
+import {createSlice} from "@reduxjs/toolkit";
+import type {PayloadAction} from "@reduxjs/toolkit";
 
-const initialState: string =
-  (typeof window !== "undefined" && localStorage.getItem("currentLocale")) ||
-  "ru";
+const initialState: {
+  current: string
+} = {current: (typeof window !== "undefined" && localStorage.getItem("currentLocale")) || "ru"}
 
 export const localeSlice = createSlice({
   name: "locale",
   initialState,
   reducers: {
     setLocale: (state, action: PayloadAction<string>) => {
-      return (state = action.payload);
+      state.current = action.payload;
     },
   },
 });
 
-export const { setLocale } = localeSlice.actions;
+export const {setLocale} = localeSlice.actions;
 export default localeSlice.reducer;

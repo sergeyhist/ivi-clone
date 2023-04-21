@@ -5,6 +5,7 @@ import Header from "../Header/Header";
 import { useDispatch } from "react-redux";
 import { setWindowSize } from "/src/store/slices/windowSizeSlice";
 import TabBar from "/src/components/TabBar/TabBar";
+import {useAppSelector} from "/src/hooks/redux";
 
 interface LayoutProps {
   title: string;
@@ -12,10 +13,11 @@ interface LayoutProps {
 }
 
 const Layout: FC<LayoutProps> = ({ title, children }) => {
+  const windowSizeWidth = useAppSelector(state => state.windowSize.width);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const resizeHandler = () => {
+    const resizeHandler = ():void => {
       dispatch(
         setWindowSize({
           width: window.innerWidth,
@@ -24,7 +26,8 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
       );
     };
 
-    resizeHandler(), window.addEventListener("resize", resizeHandler);
+    resizeHandler();
+    window.addEventListener("resize", resizeHandler);
 
     return () => window.removeEventListener("resize", resizeHandler);
   }, [dispatch]);
@@ -34,11 +37,11 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
       <Head>
         <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <Header />
       <main className="container">{children}</main>
-        <TabBar/>
+      {windowSizeWidth < 1160 && <TabBar/>}
       <Footer />
     </>
   );

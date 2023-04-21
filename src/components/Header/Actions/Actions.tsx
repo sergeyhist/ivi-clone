@@ -5,34 +5,44 @@ import {BiUser} from 'react-icons/bi';
 import styles from './Actions.module.sass';
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import {DropDownType} from "/src/components/Header/Header.utils";
+import {useTranslation} from "react-i18next";
+import {useAppDispatch, useAppSelector} from "/src/hooks/redux";
+import {setShowSearchModal} from "/src/store/slices/modalsSlice";
 
 interface ActionsProps {
-    setDropDownType: Dispatch<SetStateAction<DropDownType>>,
-    setIsSearchActive: Dispatch<SetStateAction<boolean>>,
+  setDropDownType: Dispatch<SetStateAction<DropDownType>>,
 }
 
-const Actions: FC<ActionsProps> = ({setDropDownType, setIsSearchActive}) => {
-    return (
-        <div className={styles.actions__container}>
-            <CustomButton type='purple'>
-                Оплатить подписку
-            </CustomButton>
-            <div className={styles.actions__search} onClick={()=>{setIsSearchActive(true)}}>
-                <div className={styles.search__icon}><BsSearch/></div>
-                <div>Поиск</div>
-            </div>
-            <a href="https://www.ivi.ru/profile/pull_notifications" target="_blank">
-                <div className={styles.actions__notifications} onMouseEnter={() => setDropDownType('notification')}>
-                    <AiOutlineBell/>
-                </div>
-            </a>
-            <a href="https://www.ivi.ru/profile" target="_blank">
-                <div className={styles.actions__profile} onMouseEnter={() => setDropDownType('profile')}>
-                    <BiUser/>
-                </div>
-            </a>
+const Actions: FC<ActionsProps> = ({setDropDownType}) => {
+  const {t} = useTranslation();
+  const windowSizeWidth = useAppSelector(state => state.windowSize.width);
+  const dispatch = useAppDispatch();
+
+  return (
+    <div className={styles.actions__container}>
+      <CustomButton type='purple'>
+        {t("header.subscription")}
+      </CustomButton>
+      {
+        windowSizeWidth > 1159 &&
+        <div className={styles.actions__search} onClick={() => dispatch(setShowSearchModal({showSearchModal:true}))}>
+          <div className={styles.search__icon}><BsSearch/></div>
+          <div>{t("header.search")}</div>
         </div>
-    )
+      }
+
+      <a href="https://www.ivi.ru/profile/pull_notifications" target="_blank">
+        <div className={styles.actions__notifications} onMouseEnter={() => setDropDownType('notification')}>
+          <AiOutlineBell/>
+        </div>
+      </a>
+      <a href="https://www.ivi.ru/profile" target="_blank">
+        <div className={styles.actions__profile} onMouseEnter={() => setDropDownType('profile')}>
+          <BiUser/>
+        </div>
+      </a>
+    </div>
+  )
 }
 
 export default Actions
