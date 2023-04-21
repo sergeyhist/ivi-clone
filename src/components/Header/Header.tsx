@@ -10,16 +10,13 @@ import {useAppDispatch, useAppSelector} from "/src/hooks/redux";
 import {RootState} from "/src/store";
 import Image from "next/image";
 import AuthModal from "/src/components/RegistrationModal/AuthModal";
-import {setShowAuthModal} from "/src/store/slices/authSlice";
 import createAppPortal from "/src/utils/createAppPortal";
+import {setShowAuthModal, setShowSearchModal} from "/src/store/slices/modalsSlice";
 
 const Header: FC = () => {
-  const [isSearchActive, setIsSearchActive] = useState(false);
   const [isDropdownActive, setIsDropdownActive] = useState(false);
   const [dropDownType, setDropDownType] = useState<DropDownType>("");
-  const showAuthModal = useAppSelector(
-    (state: RootState) => state.showAuthModal
-  );
+  const showModal = useAppSelector((state) => state.showModal);
   const windowSizeWidth = useAppSelector(
     (state: RootState) => state.windowSize.width
   );
@@ -46,15 +43,15 @@ const Header: FC = () => {
       onMouseOver={handleHeaderMouseOver}
       onMouseLeave={() => setDropDownType("")}
     >
-      {showAuthModal &&
+      {showModal.showAuthModal &&
         createAppPortal(
           <AuthModal
-            closeCallback={() => dispatch(setShowAuthModal(false))}
+            closeCallback={() => dispatch(setShowAuthModal({showAuthModal: false}))}
           />
         )}
-      {isSearchActive &&
+      {showModal.showSearchModal &&
         createAppPortal(
-          <SearchModal closeCallback={() => setIsSearchActive(false)}/>
+          <SearchModal closeCallback={() => dispatch(setShowSearchModal({showSearchModal: false}))}/>
         )}
       <div
         className={`${styles.header__content} ${
@@ -79,10 +76,7 @@ const Header: FC = () => {
           </div>
         </div>
         <div ref={actionRef} className={styles.header__action_layout}>
-          <Actions
-            setDropDownType={setDropDownType}
-            setIsSearchActive={setIsSearchActive}
-          />
+          <Actions setDropDownType={setDropDownType}/>
         </div>
       </div>
       <CSSTransition
