@@ -6,11 +6,12 @@
     transition: .3s
     z-index: 3
     position: absolute
-    height: 100%
+    height: calc(100% - 20px)
     width: 30px
     display: flex
     align-items: center
     justify-content: center
+    bottom: 0
 
     &:active
         transform: scale(.6)
@@ -26,12 +27,12 @@
             color: #fff
 
     &_prev
-        left: -28px
+        left: -40px
         &__icon::after
             content: '\E009'
 
     &_next
-        right: -28px
+        right: -40px
         &__icon::after
             content: "\e00b"
 
