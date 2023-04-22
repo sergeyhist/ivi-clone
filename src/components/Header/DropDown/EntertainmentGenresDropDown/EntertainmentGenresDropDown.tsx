@@ -6,19 +6,19 @@ import styles from "./EntertainmentGenresDropDown.module.sass";
 import SideWidget from "/src/components/Header/DropDown/SideWidget/SideWidget";
 
 interface EntertainmentGenresDropDownProps {
-    selectedGenre: DropDownType
+  selectedGenre: DropDownType
 }
 
 const EntertainmentGenresDropDown: FC<EntertainmentGenresDropDownProps> = ({selectedGenre}) => {
-    return (
-        <>
-            <div className={styles.dropdown}>
-                <LinkList selectedGenre={selectedGenre}/>
-                <Tabs selectedGenre={selectedGenre}/>
-            </div>
-            <SideWidget/>
-        </>
-    )
+  return (
+    <>
+      <div className={styles.dropdown}>
+        <LinkList selectedGenre={selectedGenre}/>
+        <Tabs selectedGenre={selectedGenre}/>
+      </div>
+      <SideWidget/>
+    </>
+  )
 }
 
-export default EntertainmentGenresDropDown
+export default EntertainmentGenresDropDown;

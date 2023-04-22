@@ -8,14 +8,31 @@ interface CustomButtonProps {
   clickCallback?: () => void;
   type?: "purple" | "red" | "promo" | "icon" | "dark";
   style?: CSSProperties;
+  preventDefault?: boolean;
 }
 
-const CustomButton: FC<CustomButtonProps> = ({ className, children, clickCallback, type, style }) => {
+const CustomButton: FC<CustomButtonProps> = ({
+  className,
+  children,
+  clickCallback,
+  type,
+  style,
+  preventDefault,
+}) => {
   const classNames = className ? ` ${className}` : "";
-  const typeSelector = type ? ` ${styles.btn} ${styles[`btn_${type}`]}` : styles.btn;
+  const typeSelector = type
+    ? ` ${styles.btn} ${styles[`btn_${type}`]}`
+    : styles.btn;
 
   return (
-    <button onClick={clickCallback} style={style} className={typeSelector + classNames + " unselectable"}>
+    <button
+      onClick={(e) => {
+        preventDefault && e.preventDefault();
+        clickCallback && clickCallback();
+      }}
+      style={style}
+      className={typeSelector + classNames + " unselectable"}
+    >
       <div className={styles.btn__content}>{children}</div>
     </button>
   );

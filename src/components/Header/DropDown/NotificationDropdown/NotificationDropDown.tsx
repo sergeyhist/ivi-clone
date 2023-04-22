@@ -4,16 +4,16 @@ import {MdOutlineNotificationsActive} from "react-icons/md";
 import {useTranslation} from "react-i18next";
 
 const NotificationDropDown: FC = () => {
-    const {t} = useTranslation();
+  const {t} = useTranslation();
 
-    return (
-        <div className={styles.dropdown__notification}>
-            <MdOutlineNotificationsActive className={styles.dropdown__notification_icon}/>
-            <div className={styles.dropdown__notification_text}>
-                {t("header.notification")}
-            </div>
-        </div>
-    )
+  return (
+    <div className={styles.dropdown__notification}>
+      <MdOutlineNotificationsActive className={styles.dropdown__notification_icon}/>
+      <div className={styles.dropdown__notification_text}>
+        {t("header.notification")}
+      </div>
+    </div>
+  )
 }
 
-export default NotificationDropDown
+export default NotificationDropDown;
