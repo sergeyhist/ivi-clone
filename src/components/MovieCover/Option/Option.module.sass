@@ -1,0 +1,29 @@
+.option
+  margin-top: 16px
+  line-height: 22px
+  &:first-child
+    margin-top: 0
+  &__values
+    color: #fff
+    margin-top: 4px
+    display: flex
+    flex-wrap: wrap
+
+@media (max-width: 1160px)
+  .option
+    display: flex
+    align-items: center
+    padding: 12px 0
+    line-height: 20px
+    margin-top: 0
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1607843137)
+    &:last-child
+      border-bottom: 0
+
+    &__values
+      margin-top: 0
+      margin-right: 0
+      margin-left: auto
+      height: 20px
+      overflow: hidden
+      justify-content: flex-end

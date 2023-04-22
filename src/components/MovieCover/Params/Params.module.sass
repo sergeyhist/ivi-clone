@@ -1,0 +1,75 @@
+.params
+  margin-bottom: 24px
+
+.list
+  display: flex
+  align-items: center
+  justify-content: center
+  margin-bottom: 4px
+  padding: 0 12px
+
+  &:last-child
+    margin-bottom: 0
+
+  &__item
+    display: flex
+    align-items: center
+
+  &__item::before
+    content: ''
+    display: block
+    width: 8px
+
+  &__item_dot:not(:first-child)::before
+    content: ''
+    display: block
+    width: 2px
+    height: 2px
+    margin: 1px 7px 0
+    background-color: rgba(255,255,255,.56)
+
+  &__link
+    transition: .3s
+
+  &__link:hover
+    color: #fff
+
+  &__badge
+    background-color: rgba(255,255,255,.16)
+    backdrop-filter: blur(0)
+    height: 20px
+    padding: 2px 6px
+    border-radius: 4px
+    color: #fff
+    font-size: 13px
+    line-height: 16px
+    box-shadow: 0 4px 12px transparent
+    font-weight: 500
+
+.icon
+  margin-right: 4px
+  display: flex
+  align-items: center
+
+.icon::after
+  font-family: iconfont
+  font-weight: 400
+  font-style: normal
+
+.icon_sound::after
+  content: "\E2E6"
+
+.icon_label::after
+  content: "\E2DF"
+
+@media (max-width: 1160px)
+  .list
+    justify-content: flex-start
+    padding: 0
+
+    &__item
+      line-height: 20px
+
+@media (max-width: 880px)
+  .list
+    justify-content: center

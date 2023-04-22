@@ -8,3 +8,12 @@ $userfont: iviSans // User Font Family
 $systemfont: Arial,Helvetica,Helvetica Neue,FreeSans,sans-serif // System Font Family
 $background: #100e19
 $primaryColor: rgba(255,255,255,.48)
+
+@keyframes modalInit
+  from
+    opacity: 0
+  to
+    opacity: 1
+
+@mixin modalInitAnimation
+  animation: modalInit .3s 1

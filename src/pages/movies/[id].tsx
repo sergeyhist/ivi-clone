@@ -1,6 +1,6 @@
 import { FC } from "react";
 import Layout from "../../components/Layout/Layout";
-import FilmCover from "/src/components/FilmCover/FilmCover";
+import MovieCover from "../../components/MovieCover/MovieCover";
 import BreadCrumbs from "/src/components/BreadCrumbs/BreadCrumbs";
 
 const Film: FC = () => {
@@ -13,7 +13,7 @@ const Film: FC = () => {
           { route: "/films", name: "Драмы" },
         ]}
       />
-      <FilmCover />
+      <MovieCover />
     </Layout>
   );
 };

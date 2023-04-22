@@ -4,17 +4,18 @@
     cursor: pointer
     z-index: 3
     position: absolute
-    height: 100%
+    height: calc(100% - 20px)
     width: 30px
     display: flex
     align-items: center
     justify-content: center
-    transition: .3s
+    bottom: 0
 
-    &_prev
-        left: -28px
-    &_next
-        right: -28px
+    &:active
+        transform: scale(.6)
+
+    &:hover
+        opacity: 1
 
     &__icon
         opacity: 0.72
@@ -24,10 +25,15 @@
             font-style: normal
             font-size: 30px
             color: #fff
-        &_prev::after
+
+    &_prev
+        left: -40px
+        &__icon::after
             content: '\E009'
 
-        &_next::after
+    &_next
+        right: -40px
+        &__icon::after
             content: "\e00b"
 
     &_prev:hover
