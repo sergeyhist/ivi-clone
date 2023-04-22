@@ -17,25 +17,61 @@ const Medallions: FC = () => {
       </li>
       <li className={styles.medallion}>
         <div className={styles.medallion__wrapper}>
-          <Image className={styles.medallion__avatar} height={44} width={44} src="/images/avatar1.jpeg" alt="avatar" />
+          <Image
+            className={styles.medallion__avatar}
+            height={44}
+            width={44}
+            src="/images/avatar1.jpeg"
+            alt="avatar"
+          />
         </div>
         <p className={styles.medallion__text}>Франсуа Клюзе</p>
       </li>
       <li className={styles.medallion}>
         <div className={styles.medallion__wrapper}>
-          <Image className={styles.medallion__avatar} height={44} width={44} src="/images/avatar1.jpeg" alt="avatar" />
+          <Image
+            className={styles.medallion__avatar}
+            height={44}
+            width={44}
+            src="/images/avatar1.jpeg"
+            alt="avatar"
+          />
         </div>
         <p className={styles.medallion__text}>Франсуа Клюзе</p>
       </li>
       <li className={styles.medallion}>
         <div className={styles.medallion__wrapper}>
-          <Image className={styles.medallion__avatar} height={44} width={44} src="/images/avatar1.jpeg" alt="avatar" />
+          <Image
+            className={styles.medallion__avatar}
+            height={44}
+            width={44}
+            src="/images/avatar1.jpeg"
+            alt="avatar"
+          />
         </div>
         <p className={styles.medallion__text}>Франсуа Клюзе</p>
       </li>
       <li className={styles.medallion}>
         <div className={styles.medallion__wrapper}>
-          <Image className={styles.medallion__avatar} height={44} width={44} src="/images/avatar1.jpeg" alt="avatar" />
+          <Image
+            className={styles.medallion__avatar}
+            height={44}
+            width={44}
+            src="/images/avatar1.jpeg"
+            alt="avatar"
+          />
+        </div>
+        <p className={styles.medallion__text}>Франсуа Клюзе</p>
+      </li>
+      <li className={styles.medallion}>
+        <div className={styles.medallion__wrapper}>
+          <Image
+            className={styles.medallion__avatar}
+            height={44}
+            width={44}
+            src="/images/avatar1.jpeg"
+            alt="avatar"
+          />
         </div>
         <p className={styles.medallion__text}>Франсуа Клюзе</p>
       </li>

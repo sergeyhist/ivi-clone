@@ -9,7 +9,7 @@ import { Autoplay } from "swiper";
 interface SliderProps {
   children: ReactNode;
   swiperClassName?: string;
-  rowClassName?: string;
+  wrapperClassName?: string;
   breakpoints: SwiperOptions["breakpoints"];
   prevClassName?: string;
   nextClassName?: string;
@@ -20,9 +20,9 @@ interface SliderProps {
 
 const Slider: FC<SliderProps> = ({
   children,
-  swiperClassName = "",
-  rowClassName = "",
   breakpoints,
+  swiperClassName = "",
+  wrapperClassName = "",
   prevClassName = "",
   nextClassName = "",
   loop = false,
@@ -41,7 +41,7 @@ const Slider: FC<SliderProps> = ({
   };
 
   return (
-    <div className={`${styles.row} ${rowClassName} unselectable`}>
+    <div className={`${styles.wrapper} ${wrapperClassName} unselectable`}>
       <Swiper
         modules={[Autoplay]}
         ref={swiperRef}

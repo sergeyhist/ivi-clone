@@ -56,8 +56,14 @@
 
     &__grade
       height: 48px
-      width: 48px
+      min-width: 48px
+      max-width: 48px
       font-size: 20px
 
     &__grades
       display: none
+
+@media (max-width: 600px)
+  .raiting
+    &__badge
+      margin-right: 0

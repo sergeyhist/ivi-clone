@@ -27,6 +27,7 @@ const FilmsSlider: FC<HomeSliderProps> = ({
       )}
 
       <Slider
+        swiperClassName={styles.swiper}
         prevClassName={styles.prev}
         nextClassName={styles.next}
         breakpoints={breakpoints}

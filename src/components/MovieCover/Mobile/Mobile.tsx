@@ -6,12 +6,12 @@ import Trailer from "../Trailer/Trailer";
 import TrailerButtons from "../TrailerButtons/TrailerButtons";
 import Medallions from "../Medallions/Medallions";
 import FilmButton from "../FilmButton/FilmButton";
-import DropDown from "../DropDown/DropDown";
 import Description from "../Description/Description";
 import Raiting from "../Raiting/Raiting";
 import Option from "../Option/Option";
 import Badge from "../Badge/Badge";
 import Options from "../Options/Options";
+import TextDropDown from "/src/UI/TextDropDown/TextDropDown";
 
 const Mobile: FC = () => {
   return (
@@ -29,9 +29,9 @@ const Mobile: FC = () => {
               ></i>
               <p className={styles.button__text}>Бесплатные фильмы</p>
             </FilmButton>
-            <DropDown>
+            <TextDropDown>
               <Description />
-            </DropDown>
+            </TextDropDown>
             <Raiting
               grade="8.9"
               title="Рейтинг Иви"
