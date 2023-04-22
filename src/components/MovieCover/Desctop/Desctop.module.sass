@@ -1,0 +1,23 @@
+.desctop
+  padding: 24px 0
+  display: flex
+  justify-content: space-between
+
+.content
+  width: 37.5%
+
+.trailer
+  width: 62.5%
+  padding-right: 44px
+
+.badge
+  &:not(:first-child)
+    margin-left: 8px
+
+.trailer__stiky
+  position: sticky
+  top: 32px
+
+@media (max-width: 1160px)
+  .desctop
+    display: none

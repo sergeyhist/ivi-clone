@@ -3,22 +3,54 @@
     &__container
         width: 80%
 
+    &__title
+        font-size: 20px
+        font-style: normal
+        font-weight: 700
+        line-height: 24px
+        color: #fff
+
+    &__container
+        width: 80%
+
+    &__title
+        color: #fff
+        font-size: 20px
+
+.list
+    &__item
+        margin-left: 12px
+        padding-left: 16px
+        position: relative
+        color: #a5a1b2
+        margin-top: 8px
+
+        &::before
+            content: ''
+            position: absolute
+            display: block
+            width: 6px
+            height: 6px
+            border-radius: 100%
+            background: #a5a1b2
+            left: 0
+            top: 11px
+
 .dropdown
     margin-top: 12px
 
-    &>:not(:first-child)
-        display: none
+    &__paragraf
+        color: #a5a1b2
+        margin-top: 8px
 
-    &_active>:not(:first-child)
-        display: block
+        &:first-child
+            margin-top: 0
 
-.button_toggle
-    margin-top: 8px
+.dropdown__toggle
     color: #ffffffe0
-    background: none
-    cursor: pointer
-    font-size: 15px
     font-weight: 500
+    &:hover
+        color: #fff
 
 @media (max-width: 1019px)
     .section__container

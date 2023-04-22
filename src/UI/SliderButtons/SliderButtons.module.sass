@@ -2,8 +2,6 @@
 .button
     background: none
     cursor: pointer
-    opacity: 0.72
-    transition: .3s
     z-index: 3
     position: absolute
     height: calc(100% - 20px)
@@ -14,36 +12,55 @@
     bottom: 0
 
     &:active
-        transform: scale(.6)
+        .button__icon
+            transform: scale(.6)
 
     &:hover
         opacity: 1
 
-    &_prev, &_next
-        &__icon::after
+    &__icon
+        opacity: 0.72
+        transition: .2s
+        &::after
             font-family: ivi-icons
             font-style: normal
             font-size: 30px
             color: #fff
 
+        &_prev::after
+            content: '\E009'
+
+        &_next::after
+            content: "\e00b"
+
     &_prev
         left: -40px
-        &__icon::after
-            content: '\E009'
 
     &_next
         right: -40px
-        &__icon::after
-            content: "\e00b"
+
+    &_prev:hover
+        .button__icon_prev
+            opacity: 1
+
+    &_next:hover
+        .button__icon_next
+            opacity: 1
+
+    &_next:active
+        .button__icon_next
+            transform: scale(.6)
+
+    &_prev:active
+        .button__icon_prev
+            transform: scale(.6)
 
 @media (max-width: 600px)
-    .button
-        &_prev, &_next
-            &__icon::after
-                font-size: 20px
+    .button__icon::after
+        font-size: 20px
 
-        &_next
-            right: -26px
+    .button_next
+        right: -26px
 
-        &_prev
-            left: -26px
+    .button_prev
+        left: -26px
