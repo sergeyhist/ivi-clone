@@ -6,22 +6,22 @@ import {IoTvSharp} from "react-icons/io5";
 import {useTranslation} from "react-i18next";
 
 const SideWidget: FC = () => {
-    const {t} = useTranslation();
+  const {t} = useTranslation();
 
-    return (
-        <div className={styles.widget}>
-            <HeaderWidget/>
-            <a href="https://www.ivi.ru/pages/tvsmart/" target='_blank'>
-                <CustomButton className={styles.button}>
-                    <IoTvSharp/>
-                    <div>
-                        {t("header.headerWidget.smartTvButton")}
-                    </div>
-                </CustomButton>
-            </a>
+  return (
+    <div className={styles.widget}>
+      <HeaderWidget/>
+      <a href="https://www.ivi.ru/pages/tvsmart/" target='_blank'>
+        <CustomButton className={styles.button}>
+          <IoTvSharp/>
+          <div>
+            {t("header.headerWidget.smartTvButton")}
+          </div>
+        </CustomButton>
+      </a>
 
-        </div>
-    )
+    </div>
+  )
 }
 
-export default SideWidget
+export default SideWidget;

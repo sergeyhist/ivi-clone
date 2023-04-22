@@ -38,4 +38,4 @@ const TabBar: FC = () => {
   )
 }
 
-export default TabBar
+export default TabBar;

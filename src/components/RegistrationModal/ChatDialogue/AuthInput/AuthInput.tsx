@@ -20,7 +20,7 @@ interface EmailInputProps {
   inputType: "email" | "password" | "text";
   placeholderText: string;
   showErrorMessage: boolean;
-  clickCallback?: () => void;
+  clickCallback?: (e: MouseEvent) => void;
 }
 
 const AuthInput: FC<EmailInputProps> = ({
@@ -132,4 +132,3 @@ const AuthInput: FC<EmailInputProps> = ({
 };
 
 export default AuthInput;
-
