@@ -13,7 +13,11 @@ interface HomeSliderProps {
   categoryRoute?: string;
 }
 
-const FilmsSlider: FC<HomeSliderProps> = ({ slides, title, categoryRoute }) => {
+const FilmsSlider: FC<HomeSliderProps> = ({
+  slides,
+  title,
+  categoryRoute = "/",
+}) => {
   return (
     <div className={styles.wrapper}>
       {title && categoryRoute && (
@@ -22,7 +26,11 @@ const FilmsSlider: FC<HomeSliderProps> = ({ slides, title, categoryRoute }) => {
         </Link>
       )}
 
-      <Slider prevClassName={styles.prev} nextClassName={styles.next} breakpoints={breakpoints}>
+      <Slider
+        prevClassName={styles.prev}
+        nextClassName={styles.next}
+        breakpoints={breakpoints}
+      >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
             <FilmCard slide={slide} />

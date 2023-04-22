@@ -12,29 +12,32 @@
     bottom: 0
 
     &:active
-        transform: scale(.6)
+        .button__icon
+            transform: scale(.6)
 
     &:hover
         opacity: 1
 
     &__icon
         opacity: 0.72
-        transition: .3s
+        transition: .2s
         &::after
             font-family: ivi-icons
             font-style: normal
             font-size: 30px
             color: #fff
 
+        &_prev::after
+            content: '\E009'
+
+        &_next::after
+            content: "\e00b"
+
     &_prev
         left: -40px
-        &__icon::after
-            content: '\E009'
 
     &_next
         right: -40px
-        &__icon::after
-            content: "\e00b"
 
     &_prev:hover
         .button__icon_prev

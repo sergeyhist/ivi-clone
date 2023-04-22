@@ -3,7 +3,8 @@ import { Swiper, SwiperRef } from "swiper/react";
 import styles from "./Slider.module.sass";
 import SliderButtons from "/src/UI/SliderButtons/SliderButtons";
 import { SwiperOptions } from "swiper";
-import { Swiper as swiperType } from "swiper/types";
+import { Swiper as swiperType, AutoplayOptions } from "swiper/types";
+import { Autoplay } from "swiper";
 
 interface SliderProps {
   children: ReactNode;
@@ -12,6 +13,9 @@ interface SliderProps {
   breakpoints: SwiperOptions["breakpoints"];
   prevClassName?: string;
   nextClassName?: string;
+  loop?: boolean;
+  centeredSlides?: boolean;
+  autoplay?: boolean | AutoplayOptions;
 }
 
 const Slider: FC<SliderProps> = ({
@@ -21,6 +25,9 @@ const Slider: FC<SliderProps> = ({
   breakpoints,
   prevClassName = "",
   nextClassName = "",
+  loop = false,
+  centeredSlides = false,
+  autoplay = false,
 }) => {
   const [show, setShow] = useState({ prev: false, next: true });
   const swiperRef = useRef<SwiperRef>(null);
@@ -36,6 +43,7 @@ const Slider: FC<SliderProps> = ({
   return (
     <div className={`${styles.row} ${rowClassName} unselectable`}>
       <Swiper
+        modules={[Autoplay]}
         ref={swiperRef}
         onSlideChange={(event: swiperType) => {
           setShow({
@@ -45,6 +53,9 @@ const Slider: FC<SliderProps> = ({
         }}
         className={`${styles.swiper} ${swiperClassName}`}
         breakpoints={breakpoints}
+        loop={loop}
+        centeredSlides={centeredSlides}
+        autoplay={autoplay}
       >
         {children}
       </Swiper>

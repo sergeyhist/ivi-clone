@@ -28,7 +28,9 @@ const SliderButtons: FC<SliderButtonsProps> = ({
           onClick={prevCallback}
           className={`${styles.button} ${styles.button_prev} ${prevClassName}`}
         >
-          <i className={styles.button_prev__icon}></i>
+          <i
+            className={`${styles.button__icon} ${styles.button__icon_prev}`}
+          ></i>
         </button>
       )}
 
@@ -37,7 +39,9 @@ const SliderButtons: FC<SliderButtonsProps> = ({
           onClick={nextCallback}
           className={`${styles.button} ${styles.button_next} ${nextClassName}`}
         >
-          <i className={styles.button_next__icon}></i>
+          <i
+            className={`${styles.button__icon} ${styles.button__icon_next}`}
+          ></i>
         </button>
       )}
     </>
