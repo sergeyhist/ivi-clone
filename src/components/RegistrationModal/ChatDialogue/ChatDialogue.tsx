@@ -39,8 +39,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({setProgressBarWidth}) => {
     }
   }, [isEmailInputSuccess, setProgressBarWidth]);
 
-  const handleEmailSubmit = (e: MouseEvent): void => {
-    e.preventDefault();
+  const handleEmailSubmit = (): void => {
     setShowErrorMessage(!validateEmail(email));
     setIsEmailInputSuccess(validateEmail(email));
   }
@@ -71,6 +70,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({setProgressBarWidth}) => {
           <div ref={emailInputRef}>
             <AuthInput showErrorMessage={showErrorMessage}
                        clickCallback={handleEmailSubmit}
+                       preventDefault={true}
                        setIsValid={setShowErrorMessage}
                        authData={email}
                        setAuthData={setEmail}

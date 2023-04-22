@@ -20,7 +20,8 @@ interface EmailInputProps {
   inputType: "email" | "password" | "text";
   placeholderText: string;
   showErrorMessage: boolean;
-  clickCallback?: (e: MouseEvent) => void;
+  clickCallback?: () => void;
+  preventDefault?: boolean;
 }
 
 const AuthInput: FC<EmailInputProps> = ({
@@ -33,6 +34,7 @@ const AuthInput: FC<EmailInputProps> = ({
   placeholderText,
   showErrorMessage,
   clickCallback,
+  preventDefault,
 }) => {
   const [isInputActive, setIsInputActive] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -119,6 +121,7 @@ const AuthInput: FC<EmailInputProps> = ({
         </div>
       </div>
       <CustomButton
+        preventDefault={preventDefault}
         clickCallback={clickCallback}
         className={`${styles.chat__button} ${
           isButtonDisabled ? styles.button_disabled : ""
