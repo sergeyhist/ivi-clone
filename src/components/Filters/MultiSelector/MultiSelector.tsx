@@ -1,13 +1,13 @@
-import { Dispatch, FC, SetStateAction, useRef, useState } from "react";
+import { Dispatch, FC, SetStateAction, useState } from "react";
 import { SwiperSlide } from "swiper/react";
-import styles from "./FilterBlock.module.sass";
+import styles from "./MultiSelector.module.sass";
 import ListItem from "./ListItem/ListItem";
 import SliderContent from "./SliderContent/SliderContent";
 import { IFilter, IFilterSlide } from "/src/types/IFilter";
 import Slider from "/src/UI/Slider/Slider";
+import FilterTitle from "../FilterTitle/FilterTitle";
 
 interface FilterBlockProps {
-  type: "multi" | "single";
   title: string;
   items: IFilter[];
   sliderItems?: IFilterSlide[];
@@ -15,8 +15,7 @@ interface FilterBlockProps {
   setActiveFilters: Dispatch<SetStateAction<string[]>>;
 }
 
-const FilterBlock: FC<FilterBlockProps> = ({
-  type,
+const MultiSelector: FC<FilterBlockProps> = ({
   title,
   items,
   sliderItems,
@@ -33,43 +32,44 @@ const FilterBlock: FC<FilterBlockProps> = ({
     }
   };
 
-  const activeTitle = isDropdownActive ? ` ${styles.filter__title_active}` : "";
-  const activeArrow = isDropdownActive ? ` ${styles.filter__arrow_active}` : "";
   const activeDropdown = isDropdownActive
     ? ` ${styles.filter__dropdown_active}`
     : "";
 
   return (
     <div className={styles.filter + " unselectable"}>
-      <div
-        onClick={() => {
-          setIsDropdownActive((curr) => !curr);
-        }}
-        className={styles.filter__title + activeTitle}
-      >
-        {title}
-        <span className={styles.filter__arrow + activeArrow}></span>
-      </div>
+      <FilterTitle
+        text={title}
+        isDropdownActive={isDropdownActive}
+        setIsDropdownActive={setIsDropdownActive}
+      />
       <div className={styles.filter__dropdown + activeDropdown}>
         {sliderItems && (
           <Slider
-            rowClassName={styles.filter__slider}
+            wrapperClassName={styles.filter__slider}
             swiperClassName={styles.swiper}
             breakpoints={{
               0: { slidesPerView: 3, spaceBetween: 12 },
               743: { slidesPerView: 5, spaceBetween: 12 },
             }}
-            prevClassName={styles.filter__prev}
-            nextClassName={styles.filter__next}
+            prevClassName={styles.prev}
+            nextClassName={styles.next}
           >
             {sliderItems.map((item, i) => (
               <SwiperSlide key={i}>
-                <SliderContent icon={item.icon as string} text={item.text} />
+                <SliderContent
+                  icon={item.icon as string}
+                  text={item.text}
+                  isActive={activeFilters.includes(item.slug)}
+                  clickCallback={() => {
+                    clickHandler(item.slug);
+                  }}
+                />
               </SwiperSlide>
             ))}
           </Slider>
         )}
-        <ul className={styles.filter__items}>
+        <ul className={styles.filter__list}>
           {items.map((item, i) => (
             <ListItem
               key={i}
@@ -86,4 +86,4 @@ const FilterBlock: FC<FilterBlockProps> = ({
   );
 };
 
-export default FilterBlock;
+export default MultiSelector;

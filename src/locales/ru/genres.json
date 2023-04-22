@@ -1,3 +1,16 @@
 {
-  "drama": "Драма"
+  "drama": "Драмы",
+  "comedy": "Комедии",
+  "thriller": "Триллеры",
+  "western": "Вестерны",
+  "adventure": "Приключения",
+  "arthouse": "Артхаус",
+  "children": "Для детей",
+  "foreign": "Зарубежные",
+  "mystic": "Мистика",
+  "ussr": "Советские",
+  "horror": "Ужасы",
+  "biography": "Биография",
+  "military": "Военные",
+  "action": "Боевики"
 }
