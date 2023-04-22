@@ -1,7 +1,8 @@
-import { Dispatch, FC, SetStateAction, useState } from "react";
+import { Dispatch, FC, SetStateAction, useRef, useState } from "react";
 import { SwiperSlide } from "swiper/react";
 import styles from "./FilterBlock.module.sass";
 import ListItem from "./ListItem/ListItem";
+import SliderContent from "./SliderContent/SliderContent";
 import { IFilter, IFilterSlide } from "/src/types/IFilter";
 import Slider from "/src/UI/Slider/Slider";
 
@@ -51,18 +52,22 @@ const FilterBlock: FC<FilterBlockProps> = ({
       </div>
       <div className={styles.filter__dropdown + activeDropdown}>
         {sliderItems && (
-            <Slider swiperClassName={styles.filter__slider}
-              breakpoints={{
-                0: {slidesPerView: 3, spaceBetween: 12},
-                743: { slidesPerView: 5, spaceBetween: 12 },
-              }}
-            >
-              {sliderItems.map((item, i) => (
-                <SwiperSlide key={i}>
-                  <div>{item.text}</div>
-                </SwiperSlide>
-              ))}
-            </Slider>
+          <Slider
+            rowClassName={styles.filter__slider}
+            swiperClassName={styles.swiper}
+            breakpoints={{
+              0: { slidesPerView: 3, spaceBetween: 12 },
+              743: { slidesPerView: 5, spaceBetween: 12 },
+            }}
+            prevClassName={styles.filter__prev}
+            nextClassName={styles.filter__next}
+          >
+            {sliderItems.map((item, i) => (
+              <SwiperSlide key={i}>
+                <SliderContent icon={item.icon as string} text={item.text} />
+              </SwiperSlide>
+            ))}
+          </Slider>
         )}
         <ul className={styles.filter__items}>
           {items.map((item, i) => (
