@@ -4,8 +4,8 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import { useDispatch } from "react-redux";
 import { setWindowSize } from "/src/store/slices/windowSizeSlice";
-import TabBar from "/src/components/TabBar/TabBar";
 import {useAppSelector} from "/src/hooks/redux";
+import TabBar from "/src/components/TabBar/TabBar";
 
 interface LayoutProps {
   title: string;
