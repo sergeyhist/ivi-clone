@@ -25,7 +25,7 @@ const Actions: FC<ActionsProps> = ({setDropDownType}) => {
       </CustomButton>
       {
         windowSizeWidth > 1159 &&
-        <div className={styles.actions__search} onClick={() => dispatch(setShowSearchModal({showSearchModal:true}))}>
+        <div className={styles.actions__search} onClick={() => dispatch(setShowSearchModal({showSearchModal: true}))}>
           <div className={styles.search__icon}><BsSearch/></div>
           <div>{t("header.search")}</div>
         </div>
@@ -45,4 +45,4 @@ const Actions: FC<ActionsProps> = ({setDropDownType}) => {
   )
 }
 
-export default Actions
+export default Actions;
