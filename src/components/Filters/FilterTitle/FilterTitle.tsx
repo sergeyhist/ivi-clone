@@ -5,12 +5,14 @@ interface FilterTitleProps {
   text: string;
   isDropdownActive: boolean;
   setIsDropdownActive: Dispatch<SetStateAction<boolean>>;
+  activeFilters?: string[];
 }
 
 const FilterTitle: FC<FilterTitleProps> = ({
   text,
   isDropdownActive,
   setIsDropdownActive,
+  activeFilters,
 }) => {
   const activeTitle = isDropdownActive ? ` ${styles.title_active}` : "";
   const activeArrow = isDropdownActive ? ` ${styles.title__arrow_active}` : "";
@@ -22,7 +24,14 @@ const FilterTitle: FC<FilterTitleProps> = ({
       }}
       className={styles.title + activeTitle}
     >
-      {text}
+      <div className={styles.title__text}>
+        {text}
+        {activeFilters && activeFilters.length > 0 && (
+          <span className={styles.title__filters}>
+            {activeFilters.join(", ")}
+          </span>
+        )}
+      </div>
       <span className={styles.title__arrow + activeArrow} />
     </div>
   );

@@ -1,0 +1,23 @@
+@use '/src/styles/vars'
+
+.reset
+  display: flex
+  align-items: center
+  background: transparent
+  cursor: pointer
+  color: white
+  gap: 8px
+  padding-inline: 8px
+  transition: .4s
+
+  &:hover
+    color: vars.$accent
+
+  &__icon
+    width: 16px
+    height: 16px
+
+  &__text
+    font-size: 15px
+    line-height: 15px 
+    white-space: nowrap

@@ -1,27 +1,40 @@
-import { Dispatch, FC, SetStateAction, useState } from "react";
-import { SwiperSlide } from "swiper/react";
+import {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import styles from "./MultiSelector.module.sass";
 import ListItem from "./ListItem/ListItem";
-import SliderContent from "./SliderContent/SliderContent";
 import { IFilter, IFilterSlide } from "/src/types/IFilter";
-import Slider from "/src/UI/Slider/Slider";
 import FilterTitle from "../FilterTitle/FilterTitle";
+import FilterSlider from "./FilterSlider/FilterSlider";
+import { useTranslation } from "react-i18next";
 
-interface FilterBlockProps {
+interface MultiSelectorProps {
   title: string;
   items: IFilter[];
-  sliderItems?: IFilterSlide[];
+  sliderItems: IFilterSlide[];
   activeFilters: string[];
   setActiveFilters: Dispatch<SetStateAction<string[]>>;
+  dropdownPosition: "center" | "left" | "right";
 }
 
-const MultiSelector: FC<FilterBlockProps> = ({
+const MultiSelector: FC<MultiSelectorProps> = ({
   title,
   items,
   sliderItems,
   activeFilters,
   setActiveFilters,
+  dropdownPosition,
 }) => {
+  const { t } = useTranslation();
+
+  const titleRef = useRef<HTMLDivElement>(null);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
   const [isDropdownActive, setIsDropdownActive] = useState(false);
 
   const clickHandler = (slug: string) => {
@@ -36,39 +49,57 @@ const MultiSelector: FC<FilterBlockProps> = ({
     ? ` ${styles.filter__dropdown_active}`
     : "";
 
+  const activeFiltersText = items.reduce((result: string[], item) => {
+    return activeFilters.includes(item.slug)
+      ? [...result, t(item.text)]
+      : result;
+  }, []);
+
+  useEffect(() => {
+    const clickHandler = (e: MouseEvent) => {
+      !dropdownRef.current?.contains(e.target as Node) &&
+        !titleRef.current?.contains(e.target as Node) &&
+        setIsDropdownActive(false);
+    };
+
+    const keydownHandler = (e: KeyboardEvent) => {
+      e.key === "Escape" && setIsDropdownActive(false);
+    };
+
+    document.addEventListener("mousedown", clickHandler);
+    document.addEventListener("keydown", keydownHandler);
+
+    return () => {
+      document.removeEventListener("mousedown", clickHandler);
+      document.removeEventListener("keydown", keydownHandler);
+    };
+  }, [setIsDropdownActive]);
+
   return (
     <div className={styles.filter + " unselectable"}>
-      <FilterTitle
-        text={title}
-        isDropdownActive={isDropdownActive}
-        setIsDropdownActive={setIsDropdownActive}
-      />
-      <div className={styles.filter__dropdown + activeDropdown}>
-        {sliderItems && (
-          <Slider
-            wrapperClassName={styles.filter__slider}
-            swiperClassName={styles.swiper}
-            breakpoints={{
-              0: { slidesPerView: 3, spaceBetween: 12 },
-              743: { slidesPerView: 5, spaceBetween: 12 },
-            }}
-            prevClassName={styles.prev}
-            nextClassName={styles.next}
-          >
-            {sliderItems.map((item, i) => (
-              <SwiperSlide key={i}>
-                <SliderContent
-                  icon={item.icon as string}
-                  text={item.text}
-                  isActive={activeFilters.includes(item.slug)}
-                  clickCallback={() => {
-                    clickHandler(item.slug);
-                  }}
-                />
-              </SwiperSlide>
-            ))}
-          </Slider>
-        )}
+      <div ref={titleRef}>
+        <FilterTitle
+          text={title}
+          isDropdownActive={isDropdownActive}
+          setIsDropdownActive={setIsDropdownActive}
+          activeFilters={activeFiltersText}
+        />
+      </div>
+      <div
+        ref={dropdownRef}
+        className={
+          styles.filter__dropdown +
+          activeDropdown +
+          ` ${styles[`filter__dropdown_${dropdownPosition}`]}`
+        }
+      >
+        <FilterSlider
+          items={sliderItems}
+          activeFilters={activeFilters}
+          clickCallback={(result) => {
+            clickHandler(result);
+          }}
+        />
         <ul className={styles.filter__list}>
           {items.map((item, i) => (
             <ListItem

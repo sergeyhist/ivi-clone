@@ -9,10 +9,20 @@
     visibility: hidden
     background-color: #312b45
     border-radius: 4px
-    box-shadow: 0 16px 32px rgba(7,5,14,.4)
+    box-shadow: 0 20px 40px rgba(7,5,14,.4)
     z-index: 1
-    padding: 16px
-    width: 630px
+    padding: 20px
+    max-width: 180%
+    transition: .3s
+
+    &_center
+      left: -40%
+
+    &_left
+      left: 0
+
+    &_right
+      right: 0
 
     &_active
       opacity: 1
@@ -26,20 +36,25 @@
     padding-top: 4px
     border-top: 1px solid rgba(255,255,255,.32)
 
-  &__slider
-    & .swiper
-      padding: 0
-      margin: 0 10px 0 0
+@media screen and (max-width: 1160px), screen and (max-width: 715px)
+  .filter
+    &__list
+      grid-template-columns: repeat(2,1fr)
 
-    & .prev, & .next
-      width: 20px
-      background: #312b45
+@media screen and (715px < width < 960px)
+  .filter
+    &__list
+      grid-template-columns: repeat(3,1fr)
 
-      & > i::after
-        font-size: 20px
+@media screen and (max-width: 500px)
+  .filter
+    &__list
+      grid-template-columns: 1fr
 
-    & .prev
-      left: -13px
+@media screen and (max-width: 960px)
+  .filter
+    position: unset
 
-    & .next
-      right: -13px
+    &__dropdown
+      max-width: calc(100% - 40px)
+      left: 20px

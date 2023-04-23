@@ -6,21 +6,34 @@ import {
 } from "react-icons/gi";
 import { MdTheaterComedy } from "react-icons/md";
 import { RiTreasureMapLine } from "react-icons/ri";
+import { SwiperOptions } from "swiper";
 import { IFilter, IFilterSlide } from "/src/types/IFilter";
+
+export const sliderBreakpoints: { [width: number]: SwiperOptions } = {
+  0: { slidesPerView: 1, slidesPerGroup: 1 },
+  350: { slidesPerView: 2 },
+  460: { slidesPerView: 3 },
+  590: { slidesPerView: 4 },
+  700: { slidesPerView: 5 },
+  960: { slidesPerView: 4 },
+  1160: { slidesPerView: 5, slidesPerGroup: 2, spaceBetween: 12 },
+};
 
 export const genreFilterItems: IFilter[] = [
   { slug: "arthouse", text: "genres.arthouse" },
   { slug: "western", text: "genres.western" },
   { slug: "children", text: "genres.children" },
   { slug: "foreign", text: "genres.foreign" },
-  { slug: "comedy", text: "genres.comedy" },
   { slug: "mystic", text: "genres.mystic" },
-  { slug: "adventure", text: "genres.adventure" },
   { slug: "ussr", text: "genres.ussr" },
   { slug: "horror", text: "genres.horror" },
   { slug: "biography", text: "genres.biography" },
-  { slug: "action", text: "genres.action" },
   { slug: "military", text: "genres.military" },
+  { slug: "drama", text: "genres.drama" },
+  { slug: "comedy", text: "genres.comedy" },
+  { slug: "action", text: "genres.action" },
+  { slug: "thriller", text: "genres.thriller" },
+  { slug: "adventure", text: "genres.adventure" },
 ];
 
 export const genreFilterSlides: IFilterSlide[] = [

@@ -18,7 +18,7 @@ const SliderContent: FC<SliderContentProps> = ({
   const { t } = useTranslation();
 
   const activeClassName = isActive ? ` ${styles.content_active}` : "";
-  const onlyTextClassName = !icon ? ` ${styles.content_onlytext}` : "";
+  const onlyTextClassName = !icon ? ` ${styles[`content_text-only`]}` : "";
 
   return (
     <div onClick={clickCallback} className={styles.content + activeClassName + onlyTextClassName}>
