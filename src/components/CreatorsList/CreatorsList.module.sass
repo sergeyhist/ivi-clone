@@ -1,0 +1,129 @@
+.container
+  display: flex
+
+  .items
+    display: grid
+    grid-template-columns: repeat(10, 1fr)
+    height: 146px
+    overflow: hidden
+    flex-grow: 1
+
+    .item
+      display: flex
+      user-select: none
+      gap: 10px
+      flex-direction: column
+
+      .image
+        width: 88px
+        height: 88px
+        border-radius: 50%
+        overflow: hidden
+
+      .title, .second__title
+        color: #d9d7e0
+        overflow: hidden
+        white-space: nowrap
+        text-overflow: ellipsis
+        font-size: 13px
+        line-height: 16px
+        font-weight: 500
+        transition: .2s
+
+      .subtitle
+        color: #a5a1b2
+        font-size: 13px
+        line-height: 16px
+        font-weight: 400
+
+      &:hover
+        .title, .second__title
+          color: #ffffff
+
+  .more__button
+    width: 88px
+    height: 88px
+    cursor: pointer
+    user-select: none
+    font-weight: 500
+    color: #a5a1b2
+    font-size: 15px
+    line-height: 88px
+    text-align: center
+    background-color: #1f1b2e
+    border-radius: 50%
+    transition: .3s
+
+    &:hover
+      background-color: #272038
+      color: #d9d4ee
+
+@media (max-width: 1260px)
+  .container
+    .items
+      grid-template-columns: repeat(9, 1fr)
+
+@media (max-width: 1160px)
+  .container
+    .items
+      grid-template-columns: repeat(8, 1fr)
+
+@media (max-width: 1060px)
+  .container
+    .items
+      grid-template-columns: repeat(7, 1fr)
+
+@media (max-width: 950px)
+  .container
+    .items
+      grid-template-columns: repeat(6, 1fr)
+
+@media (max-width: 835px)
+  .container
+    .items
+      grid-template-columns: repeat(5, 1fr)
+
+@media (max-width: 725px)
+  .container
+    .items
+      grid-template-columns: repeat(4, 1fr)
+
+@media (max-width: 615px)
+  .container
+    .items
+      grid-template-columns: repeat(4, 1fr)
+
+@media (max-width: 600px)
+  .container
+    .items
+      grid-template-columns: repeat(5, 1fr)
+      grid-row-gap: 50px
+
+      .item
+        .image
+          width: 72px
+          height: 72px
+
+          img
+            width: 72px
+            height: 72px
+
+    .more__button
+      width: 72px
+      height: 72px
+      line-height: 72px
+
+@media (max-width: 563px)
+  .container
+    .items
+      grid-template-columns: repeat(4, 1fr)
+
+@media (max-width: 473px)
+  .container
+    .items
+      grid-template-columns: repeat(3, 1fr)
+
+@media (max-width: 385px)
+  .container
+    .items
+      grid-template-columns: repeat(2, 1fr)
