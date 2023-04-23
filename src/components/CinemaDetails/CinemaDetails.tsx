@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styles from "./CinemaDetails.module.sass";
 import TextDropDown from "/src/UI/TextDropDown/TextDropDown";
-import { paragrafs, list, bottomParagraf } from "./DropDown/DropDown.utils";
+import { paragrafs, list, bottomParagraf } from "./CinemaDetails.utils";
 
 const CinemaDetails: FC = () => {
   return (

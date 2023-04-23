@@ -1,19 +1,23 @@
 import { FC } from "react";
 import Layout from "../../components/Layout/Layout";
-import MovieCover from "../../components/MovieCover/MovieCover";
+import MovieInfo from "../../components/MovieInfo/MovieInfo";
 import BreadCrumbs from "/src/components/BreadCrumbs/BreadCrumbs";
+import WatchAllDevices from "/src/components/WatchAllDevices/WatchAllDevices";
+import { movie } from "../../components/MovieInfo/MovieInfo.utils";
 
 const Film: FC = () => {
   return (
-    <Layout title="1+1 (Фильм 2011)">
+    <Layout
+      title={`${movie.title} (${movie.movieType} ${movie.movieParams.movieYear})"}`}
+    >
       <BreadCrumbs
         pages={[
-          { route: "/", name: "Главная" },
-          { route: "/films", name: "Фильмы" },
-          { route: "/films", name: "Драмы" },
+          { route: "/movies", name: "Фильмы" },
+          { route: movie.id, name: movie.title },
         ]}
       />
-      <MovieCover />
+      <MovieInfo movie={movie} />
+      <WatchAllDevices movieTitle="1+1" imageUrl="/images/trailer1.jpeg" />
     </Layout>
   );
 };

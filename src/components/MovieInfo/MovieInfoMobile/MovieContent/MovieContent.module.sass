@@ -1,0 +1,21 @@
+.button
+  width: 100%
+  margin-bottom: 16px
+  &__text
+    margin-left: 6px
+
+  &__icon
+    display: flex
+    align-items: center
+    &::after
+      font-family: iconfont
+      font-weight: 400
+      font-style: normal
+      font-size: 16px
+
+    &_film::after
+      content: "\E07B"
+
+.badge
+  &:not(:first-child)
+    margin-left: 8px

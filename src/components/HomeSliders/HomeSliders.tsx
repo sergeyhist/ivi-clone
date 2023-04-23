@@ -1,17 +1,16 @@
 import { FC } from "react";
 import { slides } from "./HomeSliders.utils";
-import IFilmCard from "../../types/IFilmCard";
-import FilmsSlider from "/src/UI/FilmSlider/FilmsSlider";
-import FilmsTooltips from "/src/UI/FilmTooltips/FilmTooltips";
+import MovieSlider from "../../UI/MovieSlider/MovieSlider";
+import MovieTooltips from "../../UI/MovieTooltips/MovieTooltips";
 import styles from "./HomeSliders.module.sass";
 
 const HomeSliders: FC = () => {
   return (
     <>
-      <FilmsTooltips />
+      <MovieTooltips />
       <section className={styles.section}>
-        <FilmsSlider title="Лучшие фильмы в подписке" slides={slides as IFilmCard[]} />
-        <FilmsSlider title="Лучшие комедии" slides={slides as IFilmCard[]} />
+        <MovieSlider title="Лучшие фильмы в подписке" slides={slides} />
+        <MovieSlider title="Лучшие комедии" slides={slides} />
       </section>
     </>
   );

@@ -10,10 +10,17 @@ const TopTen: FC = () => {
   return (
     <section className={styles.section}>
       <h2 className={styles.section__title}>
-        <Image width={116} height={24} className={styles.section__img} src="/images/topten.svg" alt="" /> за неделю
+        <Image
+          width={116}
+          height={24}
+          className={styles.section__img}
+          src="/images/topten.svg"
+          alt=""
+        />{" "}
+        за неделю
       </h2>
 
-      <Slider breakpoints={breakpoints}>
+      <Slider swiperClassName={styles.swiper} breakpoints={breakpoints}>
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
             <TopTenSlide
