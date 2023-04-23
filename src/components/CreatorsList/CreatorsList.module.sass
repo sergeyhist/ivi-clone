@@ -3,10 +3,10 @@
 
   .items
     display: grid
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+    grid-template-columns: repeat(10, 1fr)
     height: 146px
     overflow: hidden
-    flex-grow: 2
+    flex-grow: 1
 
     .item
       display: flex
@@ -61,42 +61,42 @@
 @media (max-width: 1260px)
   .container
     .items
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+      grid-template-columns: repeat(9, 1fr)
 
 @media (max-width: 1160px)
   .container
     .items
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+      grid-template-columns: repeat(8, 1fr)
 
 @media (max-width: 1060px)
   .container
     .items
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr
+      grid-template-columns: repeat(7, 1fr)
 
 @media (max-width: 950px)
   .container
     .items
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr
+      grid-template-columns: repeat(6, 1fr)
 
 @media (max-width: 835px)
   .container
     .items
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr
+      grid-template-columns: repeat(5, 1fr)
 
 @media (max-width: 725px)
   .container
     .items
-      grid-template-columns: 1fr 1fr 1fr 1fr
+      grid-template-columns: repeat(4, 1fr)
 
 @media (max-width: 615px)
   .container
     .items
-      grid-template-columns: 1fr 1fr 1fr
+      grid-template-columns: repeat(4, 1fr)
 
 @media (max-width: 600px)
   .container
     .items
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr
+      grid-template-columns: repeat(5, 1fr)
       grid-row-gap: 50px
 
       .item
@@ -116,14 +116,14 @@
 @media (max-width: 563px)
   .container
     .items
-      grid-template-columns: 1fr 1fr 1fr 1fr
+      grid-template-columns: repeat(4, 1fr)
 
 @media (max-width: 473px)
   .container
     .items
-      grid-template-columns: 1fr 1fr 1fr
+      grid-template-columns: repeat(3, 1fr)
 
 @media (max-width: 385px)
   .container
     .items
-      grid-template-columns: 1fr 1fr
+      grid-template-columns: repeat(2, 1fr)
