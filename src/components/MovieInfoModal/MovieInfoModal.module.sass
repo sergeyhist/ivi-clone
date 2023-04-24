@@ -5,3 +5,39 @@
   background-color: vars.$modalBackground
   height: 2000px
   @include vars.modalInitAnimation
+  .content
+    width: 100%
+    max-width: 608px
+    .title
+      margin-bottom: 20px
+      font-size: 40px
+      line-height: 44px
+      font-weight: 900
+      color: #fff
+    .tabs
+      &__list
+        display: flex
+        gap: 24px
+        border-bottom: 2px solid rgba(255,255,255,.2)
+        &_wrapper
+      &__item
+        position: relative
+        cursor: pointer
+        color: #fff
+        opacity: .72
+        font-size: 15px
+        line-height: 20px
+        font-weight: 500
+        transition: .3s
+        &:hover
+          opacity: 1
+
+      &__content
+  .active
+    opacity: 1 !important
+    &:before
+      content: ""
+      position: absolute
+      bottom: -2px
+      width: 100%
+      border-bottom: 3px solid #ea003d

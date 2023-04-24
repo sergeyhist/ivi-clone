@@ -65,7 +65,7 @@ const Header: FC = () => {
         )}
       <div
         className={`${styles.header__content} ${
-          dropDownType && windowSizeWidth > 1160
+          isDropdownActive && windowSizeWidth > 1160
             ? styles.header__content_active
             : ""
         }`}
