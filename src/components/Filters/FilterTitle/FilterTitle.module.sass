@@ -1,0 +1,41 @@
+.title
+  display: flex
+  align-items: center
+  justify-content: space-between
+  width: 100%
+  cursor: pointer
+  background-color: #312b45
+  height: 56px
+  border-radius: 4px
+  padding: 8px 16px
+  font-weight: 500
+  color: white
+
+  &__text
+    display: grid
+    gap: 5px
+    width: 90%
+
+  &__filters
+    color: #a5a1b2
+    font-size: 13px
+    line-height: 16px
+    height: 16px
+    width: 100%
+    text-overflow: ellipsis
+    white-space: nowrap
+    overflow: hidden
+
+  &_active
+    background-color: #7e798f
+
+  &__arrow
+    font-family: iconfont
+    font-size: 6px
+    line-height: 6px
+
+    &_active
+      transform: rotate(180deg)
+
+    &::before
+      content: "\E033"
