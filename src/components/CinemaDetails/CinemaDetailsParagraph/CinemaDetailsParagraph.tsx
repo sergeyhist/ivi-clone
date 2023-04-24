@@ -1,5 +1,5 @@
 import { FC } from "react";
-import styles from "./CinemaDetails.module.sass";
+import styles from "../CinemaDetails.module.sass";
 
 const CinemaDetailsParagraph: FC = () => {
   return (
