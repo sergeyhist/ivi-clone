@@ -27,6 +27,16 @@ const Filters: FC = () => {
   const [actorFilter, setActorFilter] = useState<string>("");
   const [directorFilter, setDirectorFilter] = useState<string>("");
 
+  const resetHandler = () => {
+    setGenreFilters([]);
+    setCountryFilters([]);
+    setYearFilter("all");
+    setRatingFilter("0");
+    setRatingCountFilter("0");
+    setActorFilter("");
+    setDirectorFilter("");
+  };
+
   return (
     <section className={styles.filters}>
       <MultiSelector
@@ -77,17 +87,7 @@ const Filters: FC = () => {
           setActiveFilter={setDirectorFilter}
         />
       </div>
-      <ResetButton
-        clickCallback={() => {
-          setGenreFilters([]);
-          setCountryFilters([]);
-          setYearFilter("all");
-          setRatingFilter("0");
-          setRatingCountFilter("0");
-          setActorFilter("");
-          setDirectorFilter("");
-        }}
-      />
+      <ResetButton clickCallback={resetHandler} />
     </section>
   );
 };

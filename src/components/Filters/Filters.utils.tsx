@@ -1,3 +1,4 @@
+import i18next from "i18next";
 import {
   GiBolterGun,
   GiDramaMasks,
@@ -17,6 +18,21 @@ export const sliderBreakpoints: { [width: number]: SwiperOptions } = {
   700: { slidesPerView: 5 },
   960: { slidesPerView: 4 },
   1160: { slidesPerView: 5, slidesPerGroup: 2, spaceBetween: 12 },
+};
+
+export const getFiltersTexts = (
+  items: IFilter[],
+  active: string | string[]
+) => {
+  return items.reduce((result: string[], item) => {
+    const condition =
+      typeof active === "string"
+        ? active !== "all" && item.slug === active
+        : active.includes(item.slug);
+    return condition
+      ? [...result, item.text ? i18next.t(item.text) : item.slug]
+      : result;
+  }, []);
 };
 
 export const genreFilterItems: IFilter[] = [

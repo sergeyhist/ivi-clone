@@ -11,7 +11,7 @@ import ListItem from "./ListItem/ListItem";
 import { IFilter, IFilterSlide } from "/src/types/IFilter";
 import FilterTitle from "../FilterTitle/FilterTitle";
 import FilterSlider from "./FilterSlider/FilterSlider";
-import { useTranslation } from "react-i18next";
+import { getFiltersTexts } from "../Filters.utils";
 
 interface MultiSelectorProps {
   title: string;
@@ -30,8 +30,6 @@ const MultiSelector: FC<MultiSelectorProps> = ({
   setActiveFilters,
   dropdownPosition,
 }) => {
-  const { t } = useTranslation();
-
   const titleRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -49,11 +47,7 @@ const MultiSelector: FC<MultiSelectorProps> = ({
     ? ` ${styles.filter__dropdown_active}`
     : "";
 
-  const activeFiltersText = items.reduce((result: string[], item) => {
-    return activeFilters.includes(item.slug)
-      ? [...result, t(item.text)]
-      : result;
-  }, []);
+  const activeFiltersText = getFiltersTexts(items, activeFilters);
 
   useEffect(() => {
     const clickHandler = (e: MouseEvent) => {

@@ -6,7 +6,7 @@ import {
   useRef,
   useState,
 } from "react";
-import { useTranslation } from "react-i18next";
+import { getFiltersTexts } from "../Filters.utils";
 import FilterTitle from "../FilterTitle/FilterTitle";
 import ListItem from "./ListItem/ListItem";
 import styles from "./SingleSelector.module.sass";
@@ -25,8 +25,6 @@ const SingleSelector: FC<SingleSelectorProps> = ({
   activeFilter,
   setActiveFilter,
 }) => {
-  const { t } = useTranslation();
-
   const titleRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -36,13 +34,7 @@ const SingleSelector: FC<SingleSelectorProps> = ({
     ? ` ${styles.selector__dropdown_active}`
     : "";
 
-  const activeFilterText = items.reduce(
-    (result: string[], item) =>
-      activeFilter !== "all" && item.slug === activeFilter
-        ? [...result, item.text ? t(item.text) : item.slug]
-        : result,
-    []
-  );
+  const activeFilterText = getFiltersTexts(items, activeFilter);
 
   useEffect(() => {
     const clickHandler = (e: MouseEvent) => {

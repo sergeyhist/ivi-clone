@@ -24,7 +24,7 @@ const ListItem: FC<ListItemProps> = ({
     <li onClick={clickCallback} className={styles.item + activeItem}>
       {text ? t(text) : slug}
       <div className={styles.item__checkbox + activeCheckbox}>
-        <div></div>
+        <div className={styles.item__point}></div>
       </div>
     </li>
   );

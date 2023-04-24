@@ -21,6 +21,13 @@
   &:hover &__checkbox:not(&__checkbox_active)
     opacity: .32
 
+  &__point
+    width: 4px
+    height: 4px
+    background: white
+    border-radius: 50%
+    opacity: 0
+
   &__checkbox
     @include defFlex
     justify-content: center
@@ -31,16 +38,9 @@
     opacity: 0
     transition: .4s
 
-    & > div
-      width: 4px
-      height: 4px
-      background: white
-      border-radius: 50%
-      opacity: 0
-
     &_active
       opacity: 1
       color: white
 
-      & > div
+      & > .item__point
         opacity: 1
