@@ -36,7 +36,17 @@
     &:hover
       opacity: .9
 
-    &::-webkit-slider-thumb, &::-moz-range-thumb
+    &::-webkit-slider-thumb
+      appearance: none
+      width: 20px
+      height: 20px
+      cursor: pointer
+      border-radius: 6px
+      border-color: vars.$accent
+      background: vars.$accent
+      margin-top: -8px
+
+    &::-moz-range-thumb
       appearance: none
       width: 20px
       height: 20px
@@ -45,7 +55,14 @@
       border-color: vars.$accent
       background: vars.$accent
 
-    &::-webkit-slider-runnable-track, &::-moz-range-track
+    &::-webkit-slider-runnable-track
+      appearance: none
+      height: 5px
+      background: rgba(255, 255, 255, .2)
+      border-radius: 2px
+
+    &::-moz-range-track
+      appearance: none
       height: 5px
       background: rgba(255, 255, 255, .2)
       border-radius: 2px
