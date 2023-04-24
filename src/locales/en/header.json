@@ -32,9 +32,9 @@
     ]
   },
   "headerWidget": {
-    "widgetTitle": "Ivi Sing Up",
+    "widgetTitle": "Ivi Sign Up",
     "widgetPrice": "From 3.99$ per month",
-    "widgetBuyButton": "Turn on",
+    "widgetBuyButton": "Subscribe",
     "widgetHint" : "You can disable it at any time",
     "smartTvButton": "Watch on Smart TV"
   },
