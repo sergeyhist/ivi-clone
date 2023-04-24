@@ -27,8 +27,8 @@ const DropDown: FC<DropDownProps> = ({dropDownType}) => {
         return <TvDropDown/>;
       case 'notification':
         return <NotificationDropDown/>;
-      default:
-        return <ProfileDropDown/>
+      case 'profile':
+        return <ProfileDropDown/>;
     }
   }
 
