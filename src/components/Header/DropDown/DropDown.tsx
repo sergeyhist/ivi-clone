@@ -1,4 +1,4 @@
-import {FC, ReactElement, useRef} from "react";
+import {FC, ReactNode, useRef} from "react";
 import styles from './DropDown.module.sass';
 import ProfileDropDown from "/src/components/Header/DropDown/ProfileDropDown/ProfileDropDown";
 import NotificationDropDown from "/src/components/Header/DropDown/NotificationDropdown/NotificationDropDown";
@@ -17,7 +17,7 @@ const DropDown: FC<DropDownProps> = ({dropDownType}) => {
   const dropDownContentRef = useRef<HTMLDivElement>(null);
   const windowSizeWidth = useAppSelector((state: RootState) => state.windowSize.width);
 
-  const getDropDownContent = (typeDropDown: DropDownType): ReactElement => {
+  const getDropDownContent = (typeDropDown: DropDownType): ReactNode => {
     switch (typeDropDown) {
       case 'movies':
       case 'series':
