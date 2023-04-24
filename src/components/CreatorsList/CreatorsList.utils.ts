@@ -1,7 +1,7 @@
 import {ICreator} from "/src/types/ICreator";
 
 export const creatorsData: ICreator[] = [
-  {firstName: "Грег",      lastName: "Яйтанс",     role: "режиссёр", imageUrl: "/images/creators/1.jpg"},
+  {firstName: "Грег",      lastName: "Яйтанс",     role: "режиссёр"},
   {firstName: "Кэти",      lastName: "Джейкобс",   role: "режиссёр", imageUrl: "/images/creators/2.jpg"},
   {firstName: "Хью",       lastName: "Лори",       role: "актёр",    imageUrl: "/images/creators/3.jpg"},
   {firstName: "Роберт",    lastName: "Леонард",    role: "актёр",    imageUrl: "/images/creators/4.jpg"},

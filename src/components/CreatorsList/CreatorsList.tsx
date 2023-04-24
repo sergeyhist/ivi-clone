@@ -9,15 +9,17 @@ interface CreatorsListProps {
 }
 
 const CreatorsList: FC<CreatorsListProps> = ({creators}) => {
+  const firstTenCreators = creators.slice(0,10);
+
   return (
     <div className={styles.container}>
       <div className={styles.items}>
         {
-          creators.map((creator, i) => {
+          firstTenCreators.map((creator, i) => {
             return (
               <Link className={styles.item} key={i} href='/'>
                 <div className={styles.image}>
-                  <Image src={creator.imageUrl} width={88} height={88} alt={creator.firstName}></Image>
+                  <Image src={creator.imageUrl || "/images/creators/unnamed.png"} width={88} height={88} alt={creator.firstName}></Image>
                 </div>
                 <div>
                   <h4 className={styles.title}>{creator.firstName}</h4>

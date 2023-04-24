@@ -1,0 +1,7 @@
+@use '/src/styles/vars'
+.container
+  @include vars.modalPosition
+  position: absolute
+  background-color: vars.$modalBackground
+  height: 2000px
+  @include vars.modalInitAnimation
