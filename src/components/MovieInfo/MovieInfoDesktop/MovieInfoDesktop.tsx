@@ -24,12 +24,9 @@ const MovieInfoDesktop: FC<MovieInfoDesktopProps> = ({ movie }) => {
       </div>
       <div className={styles.content}>
         <MovieTitle title={movie.title} year={movie.year} type={movie.type} />
-
         <MovieParams movie={movie} />
         <MovieMedallions movie={movie} />
-
         <MovieDropDown movie={movie} />
-
         <MovieRating
           grade={movie.rating.grade}
           category={movie.rating.gradeCategory}

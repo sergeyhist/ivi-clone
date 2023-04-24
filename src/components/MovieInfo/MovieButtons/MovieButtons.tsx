@@ -27,7 +27,7 @@ const MovieButtons: FC = () => {
         </CustomButton>
         <CustomButton
           type="dark"
-          className={`${styles.button} ${styles.button_desctop}`}
+          className={`${styles.button} ${styles.button_desktop}`}
         >
           <i
             className={`${styles.button__icon} ${styles.button__icon_film}`}

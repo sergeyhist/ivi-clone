@@ -1,13 +1,17 @@
 import { FC } from "react";
 import styles from "./MovieOption.module.sass";
 
-interface OptionProps {
+interface MovieOptionProps {
   children: React.ReactNode;
   title?: string | undefined | null;
   className?: string;
 }
 
-const MovieOption: FC<OptionProps> = ({ children, title, className = "" }) => {
+const MovieOption: FC<MovieOptionProps> = ({
+  children,
+  title,
+  className = "",
+}) => {
   return (
     <div className={`${styles.option} ${className}`}>
       {title && <p className={styles.option__title}>{title}</p>}

@@ -87,6 +87,7 @@ export const movie: IMovie = {
 };
 
 export const breadCrumbPages = [
+  { route: "/", name: "Главная" },
   { route: "/movies", name: "Фильмы" },
   { route: movie.id, name: movie.title },
 ];
