@@ -4,7 +4,7 @@ import styles from "../CinemaDetails.module.sass";
 const CinemaDetailsParagraphs: FC = () => {
   return (
     <>
-      <p className={styles.dropdown__paragraf}>
+      <p className={styles.dropdown__paragraph}>
         Каждый день миллионы людей ищут фильмы онлайн, и никто не хочет
         усложнять себе жизнь – и вы наверняка один из них! А раз так, то Иви –
         это именно тот ресурс, который вам нужен. От лучших кинолент в
@@ -12,7 +12,7 @@ const CinemaDetailsParagraphs: FC = () => {
         от необходимости идти в кинотеатр или изучать программу телепередач – у
         посетителей нашего ресурса гораздо больше возможностей.
       </p>
-      <p className={styles.dropdown__paragraf}>
+      <p className={styles.dropdown__paragraph}>
         Видеотека Иви – это постоянно пополняющаяся коллекция в рунете, которая
         насчитывает более 60 тысяч отечественного и зарубежного контента,
         доступного для просмотра онлайн. Мы первыми в России подписали контракты
@@ -20,7 +20,7 @@ const CinemaDetailsParagraphs: FC = () => {
         20th Century Fox, Universal, Paramount, MGM и другими) и на постоянной
         основе сотрудничаем с крупнейшими российскими компаниями и телеканалами.
       </p>
-      <p className={styles.dropdown__paragraf}>
+      <p className={styles.dropdown__paragraph}>
         Онлайн-кинотеатр ivi.ru – это:
       </p>
     </>
