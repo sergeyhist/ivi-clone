@@ -1,0 +1,92 @@
+.buttons
+  margin-top: 24px
+  width: 100%
+
+  &__content
+    display: flex
+    justify-content: space-between
+    flex-wrap: wrap
+
+  .button
+    margin-right: 16px
+    margin-bottom: 16px
+    transition: .2s
+
+    &:last-child
+      margin-right: 0
+      margin-left: auto
+
+    &__content
+      display: flex
+      align-items: center
+
+    &__text
+      margin-left: 6px
+      transition: .2s
+
+    &__icon
+      display: flex
+      align-items: center
+      transition: .2s
+      &::after
+        font-family: iconfont
+        font-weight: 400
+        font-style: normal
+        font-size: 16px
+
+      &_play::after
+        content: "\E28D"
+
+      &_save::after
+        content: "\E12F"
+
+      &_download::after
+        content: "\E356"
+
+      &_film::after
+        content: "\E07B"
+
+@media (max-width: 1160px)
+  .buttons
+    margin: 0
+
+    .button
+      margin-right: 0
+      margin-bottom: 12px
+      width: calc(50% - 6px)
+
+      &:nth-child(3n-2)
+        width: 100%
+
+      &_desktop
+        display: none
+
+@media (max-width: 880px)
+  .buttons
+    display: flex
+    justify-content: center
+    margin-bottom: 32px
+
+    &__content
+      display: inline-flex
+      background: linear-gradient(180deg,rgba(255,255,255,0) 0,rgba(255,255,255,.16) 100%)
+      border-radius: 0 0 16px 16px
+
+    .button, .button:nth-child(3n-2)
+      width: auto
+      border-radius: 0
+
+    .button
+      background: none
+      height: 44px
+      margin: 0
+      transition: 0s
+      &:hover
+        background: none
+        .button__text
+          color: #fff
+
+        .button__icon
+          transform: scale(1.1)
+          transform-origin: 50% 50%
+          color: #fff

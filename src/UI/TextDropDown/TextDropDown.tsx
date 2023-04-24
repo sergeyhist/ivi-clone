@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import styles from "./TextDropDown.module.sass";
 
-interface ItoogleTitles {
+interface IToogleTitles {
   defaultTitle: string;
   activeTitle: string;
 }
@@ -10,7 +10,7 @@ interface DropDownProps {
   children: React.ReactNode;
   dropDownClassName?: string;
   toogleClassName?: string;
-  toogleTitles?: ItoogleTitles;
+  toogleTitles?: IToogleTitles;
 }
 
 const TextDropDown: FC<DropDownProps> = ({
@@ -30,11 +30,12 @@ const TextDropDown: FC<DropDownProps> = ({
 
   const toggleDropDown = (event: React.MouseEvent) => {
     if (showDropDown) {
-      (event.target as HTMLButtonElement).innerHTML = toogleTitles.defaultTitle;
+      (event.target as HTMLButtonElement).textContent =
+        toogleTitles.defaultTitle;
       setShowDropDown(!showDropDown);
       return;
     }
-    (event.target as HTMLButtonElement).innerHTML = toogleTitles.activeTitle;
+    (event.target as HTMLButtonElement).textContent = toogleTitles.activeTitle;
     setShowDropDown(!showDropDown);
   };
 
