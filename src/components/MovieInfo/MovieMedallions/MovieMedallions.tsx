@@ -2,12 +2,15 @@ import { FC } from "react";
 import styles from "./MovieMedallions.module.sass";
 import Image from "next/image";
 import { IMovie } from "/src/types/IMovie";
+import { useTranslation } from "react-i18next";
 
 interface MovieMedallionsProps {
   movie: IMovie;
 }
 
 const MovieMedallions: FC<MovieMedallionsProps> = ({ movie }) => {
+  const { t } = useTranslation();
+
   return (
     <ul className={styles.medallions}>
       <li className={styles.medallion}>
@@ -15,9 +18,9 @@ const MovieMedallions: FC<MovieMedallionsProps> = ({ movie }) => {
           <p className={styles.medallion__grade}>{movie.rating.grade}</p>
         </div>
         <p className={styles.medallion__text}>
-          Рейтинг
+          {t("movie.medallions.rating")}
           <br />
-          Иви
+          {t("movie.medallions.ivi")}
         </p>
       </li>
       {movie.creators.map((creator, index) => (
