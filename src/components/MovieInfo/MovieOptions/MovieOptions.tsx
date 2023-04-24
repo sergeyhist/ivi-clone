@@ -1,11 +1,11 @@
 import { FC } from "react";
 import styles from "./MovieOptions.module.sass";
 
-interface OptionsProps {
+interface MovieOptionsProps {
   children: React.ReactNode;
 }
 
-const MovieOptions: FC<OptionsProps> = ({ children }) => {
+const MovieOptions: FC<MovieOptionsProps> = ({ children }) => {
   return <div className={styles.options}>{children}</div>;
 };
 
