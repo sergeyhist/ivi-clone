@@ -8,41 +8,53 @@ import MovieBadge from "../../MovieBadge/MovieBadge";
 import MovieOptions from "../../MovieOptions/MovieOptions";
 import TextDropDown from "/src/UI/TextDropDown/TextDropDown";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
-import { IMovie } from "../../MovieInfo.utils";
+import { IMovie } from "/src/types/IMovie";
+import { useTranslation } from "react-i18next";
 
 interface MovieContentProps {
   movie: IMovie;
 }
 
 const MovieContent: FC<MovieContentProps> = ({ movie }) => {
+  const { t } = useTranslation();
+
   return (
     <>
-      <MovieMedallions creators={movie.movieCreators} />
+      <MovieMedallions movie={movie} />
 
       <CustomButton type="dark" className={styles.button}>
         <i className={`${styles.button__icon} ${styles.button__icon_film}`}></i>
         <p className={styles.button__text}>Бесплатные фильмы</p>
       </CustomButton>
 
-      <TextDropDown>
+      <TextDropDown
+        toogleTitles={{
+          defaultTitle: t("movie.details.show"),
+          activeTitle: t("movie.details.hide"),
+        }}
+      >
         <MovieDescription descriptionHTML={movie.description} />
       </TextDropDown>
 
-      <MovieRating grade="8.9" category="Интересный сюжет" grades="143 908" />
+      <MovieRating
+        grade={movie.rating.grade}
+        category={movie.rating.gradeCategory}
+        grades={movie.rating.grades}
+      />
 
       <MovieOptions>
         <MovieOption className={styles.option} title="Языки">
-          {movie.movieParams.movieLangs.map((lang, index) => (
+          {movie.langs.map((lang, index) => (
             <span key={index}>{lang.name}</span>
           ))}
         </MovieOption>
         <MovieOption className={styles.option} title="Субтитры">
-          {movie.movieParams.movieSubtitles.map((lang, index) => (
+          {movie.subtitles.map((lang, index) => (
             <span key={index}>{lang.name}</span>
           ))}
         </MovieOption>
         <MovieOption className={styles.option} title="Качество">
-          {movie.movieParams.movieQualities.map((quality, index) => (
+          {movie.qualities.map((quality, index) => (
             <MovieBadge key={index} className={styles.badge}>
               {quality}
             </MovieBadge>

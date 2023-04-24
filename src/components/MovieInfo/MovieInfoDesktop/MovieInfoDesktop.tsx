@@ -7,7 +7,7 @@ import MovieTrailerButtons from "../MovieButtons/MovieButtons";
 import MovieMedallions from "../MovieMedallions/MovieMedallions";
 import MovieRating from "../MovieRating/MovieRating";
 import MovieDropDown from "./MovieDropDown/MovieDropDown";
-import { IMovie } from "../MovieInfo.utils";
+import { IMovie } from "/src/types/IMovie";
 
 interface MovieInfoDesktopProps {
   movie: IMovie;
@@ -23,21 +23,17 @@ const MovieInfoDesktop: FC<MovieInfoDesktopProps> = ({ movie }) => {
         </div>
       </div>
       <div className={styles.content}>
-        <MovieTitle
-          title={movie.title}
-          year={movie.movieParams.movieYear}
-          type={movie.movieType}
-        />
+        <MovieTitle title={movie.title} year={movie.year} type={movie.type} />
 
-        <MovieParams params={movie.movieParams} />
-        <MovieMedallions creators={movie.movieCreators} />
+        <MovieParams movie={movie} />
+        <MovieMedallions movie={movie} />
 
         <MovieDropDown movie={movie} />
 
         <MovieRating
-          grade={movie.movieRating.grade}
-          category={movie.movieRating.gradeCategory}
-          grades={movie.movieRating.grades}
+          grade={movie.rating.grade}
+          category={movie.rating.gradeCategory}
+          grades={movie.rating.grades}
         />
       </div>
     </section>

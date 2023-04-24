@@ -23,6 +23,9 @@ export interface IMovie {
   type: string;
   access: string;
   imgUrl: string;
+  age: number;
+  year: number;
+  time: string;
   subtitles: IMovieLang[];
   langs: IMovieLang[];
   qualities: string[];

@@ -4,8 +4,8 @@ import MovieTitle from "../MovieTitle/MovieTitle";
 import MovieParams from "../MovieParams/MovieParams";
 import MovieTrailer from "../MovieTrailer/MovieTrailer";
 import MovieTrailerButtons from "../MovieButtons/MovieButtons";
-import { IMovie } from "../MovieInfo.utils";
 import MovieContent from "./MovieContent/MovieContent";
+import { IMovie } from "/src/types/IMovie";
 
 interface MovieInfoMobileProps {
   movie: IMovie;
@@ -15,12 +15,8 @@ const MovieInfoMobile: FC<MovieInfoMobileProps> = ({ movie }) => {
   return (
     <>
       <section className={styles.mobile}>
-        <MovieTitle
-          title={movie.title}
-          type={movie.movieType}
-          year={movie.movieParams.movieYear}
-        />
-        <MovieParams params={movie.movieParams} />
+        <MovieTitle title={movie.title} type={movie.type} year={movie.year} />
+        <MovieParams movie={movie} />
         <MovieTrailer movie={movie} />
         <div className={styles.mobile__row}>
           <div className={styles.mobile__content}>

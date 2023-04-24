@@ -3,7 +3,7 @@ import styles from "./MovieOption.module.sass";
 
 interface OptionProps {
   children: React.ReactNode;
-  title?: string;
+  title?: string | undefined | null;
   className?: string;
 }
 

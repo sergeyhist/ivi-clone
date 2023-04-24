@@ -2,22 +2,28 @@ import { FC } from "react";
 import styles from "./MovieParams.module.sass";
 import Badge from "../MovieBadge/MovieBadge";
 import Link from "next/link";
-import { IMovieParams } from "../MovieInfo.utils";
+import { IMovie } from "/src/types/IMovie";
 
 interface MovieParamsProps {
-  params: IMovieParams;
+  movie: IMovie;
 }
 
-const MovieParams: FC<MovieParamsProps> = ({ params }) => {
+const MovieParams: FC<MovieParamsProps> = ({ movie }) => {
+  const quality = movie.qualities.find((quality) => quality === "FullHD");
+  const lang = movie.langs.find((lang) => lang.shortName === "Рус");
+  const subtitle = movie.subtitles.find(
+    (subtitle) => subtitle.shortName === "Рус"
+  );
+
   return (
     <div className={styles.params}>
       <ul className={styles.list}>
-        <li className={styles.list__item}>{params.movieYear}</li>
-        <li className={styles.list__item}>{params.movieTime}</li>
-        <li className={styles.list__item}>{params.movieAge}+</li>
+        <li className={styles.list__item}>{movie.year}</li>
+        <li className={styles.list__item}>{movie.time}</li>
+        <li className={styles.list__item}>{movie.age}+</li>
       </ul>
       <ul className={styles.list}>
-        {params.movieCategories.map((category, index) => (
+        {movie.categories.map((category, index) => (
           <li
             key={index}
             className={`${styles.list__item} ${styles.list__item_dot}`}
@@ -29,17 +35,23 @@ const MovieParams: FC<MovieParamsProps> = ({ params }) => {
         ))}
       </ul>
       <ul className={styles.list}>
-        <li className={styles.list__item}>
-          <Badge>{params.movieQualities[0]}</Badge>
-        </li>
-        <li className={styles.list__item}>
-          <i className={`${styles.icon} ${styles.icon_sound}`}></i>
-          {params.movieLangs[0].shortName}
-        </li>
-        <li className={styles.list__item}>
-          <i className={`${styles.icon} ${styles.icon_label}`}></i>
-          {params.movieSubtitles[0].shortName}
-        </li>
+        {quality && (
+          <li className={styles.list__item}>
+            <Badge>{quality}</Badge>
+          </li>
+        )}
+        {lang && (
+          <li className={styles.list__item}>
+            <i className={`${styles.icon} ${styles.icon_sound}`}></i>
+            {lang.shortName}
+          </li>
+        )}
+        {subtitle && (
+          <li className={styles.list__item}>
+            <i className={`${styles.icon} ${styles.icon_label}`}></i>
+            {subtitle.shortName}
+          </li>
+        )}
       </ul>
     </div>
   );

@@ -3,21 +3,14 @@ import Layout from "../../components/Layout/Layout";
 import MovieInfo from "../../components/MovieInfo/MovieInfo";
 import BreadCrumbs from "/src/components/BreadCrumbs/BreadCrumbs";
 import WatchAllDevices from "/src/components/WatchAllDevices/WatchAllDevices";
-import { movie } from "../../components/MovieInfo/MovieInfo.utils";
+import { movie, breadCrumbPages } from "../../utils/movie";
 
 const Film: FC = () => {
   return (
-    <Layout
-      title={`${movie.title} (${movie.movieType} ${movie.movieParams.movieYear})"}`}
-    >
-      <BreadCrumbs
-        pages={[
-          { route: "/movies", name: "Фильмы" },
-          { route: movie.id, name: movie.title },
-        ]}
-      />
+    <Layout title={`${movie.title} (${movie.type} ${movie.year})"}`}>
+      <BreadCrumbs pages={breadCrumbPages} />
       <MovieInfo movie={movie} />
-      <WatchAllDevices movieTitle="1+1" imageUrl="/images/trailer1.jpeg" />
+      <WatchAllDevices movieTitle={movie.title} imageUrl={movie.imgUrl} />
     </Layout>
   );
 };

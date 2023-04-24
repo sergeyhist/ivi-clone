@@ -1,7 +1,7 @@
 import { FC, useEffect, useMemo, useState } from "react";
 import MovieCoverMobile from "./MovieInfoMobile/MovieInfoMobile";
 import MovieCoverDesktop from "./MovieInfoDesktop/MovieInfoDesktop";
-import { IMovie } from "./MovieInfo.utils";
+import { IMovie } from "/src/types/IMovie";
 import { useAppSelector } from "/src/hooks/redux";
 
 interface MovieCoverProps {
@@ -13,7 +13,6 @@ const MovieCover: FC<MovieCoverProps> = ({ movie }) => {
   const [isMobile, setMobile] = useState<boolean>(false);
 
   useEffect(() => {
-    console.log(isMobile, windowSize.width);
     if (windowSize.width <= 1160 && !isMobile) {
       setMobile(true);
     }

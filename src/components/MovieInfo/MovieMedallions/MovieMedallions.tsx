@@ -1,18 +1,18 @@
 import { FC } from "react";
 import styles from "./MovieMedallions.module.sass";
 import Image from "next/image";
-import { ICreators } from "../MovieInfo.utils";
+import { IMovie } from "/src/types/IMovie";
 
 interface MovieMedallionsProps {
-  creators: ICreators[];
+  movie: IMovie;
 }
 
-const MovieMedallions: FC<MovieMedallionsProps> = ({ creators }) => {
+const MovieMedallions: FC<MovieMedallionsProps> = ({ movie }) => {
   return (
     <ul className={styles.medallions}>
       <li className={styles.medallion}>
         <div className={styles.medallion__wrapper}>
-          <p className={styles.medallion__grade}>8,7</p>
+          <p className={styles.medallion__grade}>{movie.rating.grade}</p>
         </div>
         <p className={styles.medallion__text}>
           Рейтинг
@@ -20,18 +20,20 @@ const MovieMedallions: FC<MovieMedallionsProps> = ({ creators }) => {
           Иви
         </p>
       </li>
-      {creators.map((creator) => (
-        <li key={creator.id} className={styles.medallion}>
+      {movie.creators.map((creator, index) => (
+        <li key={index} className={styles.medallion}>
           <div className={styles.medallion__wrapper}>
             <Image
               className={styles.medallion__avatar}
               height={44}
               width={44}
-              src={creator.imgUrl}
+              src={creator.imageUrl}
               alt="avatar"
             />
           </div>
-          <p className={styles.medallion__text}>{creator.name}</p>
+          <p className={styles.medallion__text}>
+            {creator.firstName} {creator.lastName}
+          </p>
         </li>
       ))}
     </ul>

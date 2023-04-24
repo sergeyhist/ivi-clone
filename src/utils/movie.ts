@@ -1,99 +1,61 @@
-export interface ILocale {
-  name: string;
-  shortName: string;
-}
-export interface ICategory {
-  name: string;
-  route: string;
-}
-
-export interface ICreators {
-  id: string;
-  name: string;
-  imgUrl: string;
-}
-
-export interface IMovieParams {
-  movieYear: number;
-  movieTime: string;
-  movieAge: number;
-  movieSubtitles: ILocale[];
-  movieLangs: ILocale[];
-  movieQualities: string[];
-  movieCategories: ICategory[];
-}
-
-export interface IMovieRating {
-  grade: string;
-  gradeCategory: string;
-  grades: string;
-}
-
-export interface IMovie {
-  id: string;
-  title: string;
-  movieType: string;
-  access: string;
-  movieImgUrl: string;
-  movieParams: IMovieParams;
-  movieRating: IMovieRating;
-  movieCreators: ICreators[];
-  description: string;
-}
+import { IMovie } from "/src/types/IMovie";
 
 export const movie: IMovie = {
   id: "1",
   title: "1+1",
   access: "subscriber",
-  movieType: "Фильм",
-  movieImgUrl: "/images/trailer1.jpeg",
-  movieParams: {
-    movieYear: 2011,
-    movieTime: "1 ч. 52 мин",
-    movieAge: 16,
-    movieSubtitles: [
-      { name: "Русский", shortName: "Рус" },
-      { name: "Французкий", shortName: "Fr" },
-    ],
-    movieLangs: [{ name: "Русский", shortName: "Рус" }],
-    movieQualities: ["4k", "FullHD", "HD", "1080", "720", "5.1"],
-    movieCategories: [
-      { name: "Франция", route: "/" },
-      { name: "Драмы", route: "/" },
-      { name: "Комедии", route: "/" },
-      { name: "Биография", route: "/" },
-    ],
-  },
-  movieRating: {
+  type: "Фильм",
+  imgUrl: "/images/trailer1.jpeg",
+  year: 2011,
+  age: 16,
+  time: "1 ч. 52 мин",
+  subtitles: [
+    { id: "1", name: "Русский", shortName: "Рус" },
+    { id: "2", name: "Французкий", shortName: "Fr" },
+  ],
+  langs: [{ id: "1", name: "Русский", shortName: "Рус" }],
+  qualities: ["4k", "FullHD", "HD", "1080", "720", "5.1"],
+  categories: [
+    { id: "1", name: "Франция", route: "/" },
+    { id: "2", name: "Драмы", route: "/" },
+    { id: "3", name: "Комедии", route: "/" },
+    { id: "4", name: "Биография", route: "/" },
+  ],
+  rating: {
     grade: "8,9",
     gradeCategory: "Интересный сюжет",
     grades: "143 908",
   },
-  movieCreators: [
+  creators: [
     {
-      id: "1",
-      name: "Франсуа Клюзе",
-      imgUrl: "/images/avatar1.jpeg",
+      firstName: "Франсуа",
+      lastName: "Клюзе",
+      role: "Актер",
+      imageUrl: "/images/avatar1.jpeg",
     },
     {
-      id: "2",
-      name: "Франсуа Клюзе",
-      imgUrl: "/images/avatar1.jpeg",
+      firstName: "Франсуа",
+      lastName: "Клюзе",
+      role: "Актер",
+      imageUrl: "/images/avatar1.jpeg",
     },
     {
-      id: "3",
-      name: "Франсуа Клюзе",
-      imgUrl: "/images/avatar1.jpeg",
+      firstName: "Франсуа",
+      lastName: "Клюзе",
+      role: "Актер",
+      imageUrl: "/images/avatar1.jpeg",
     },
     {
-      id: "4",
-      name: "Франсуа Клюзе",
-      imgUrl: "/images/avatar1.jpeg",
+      firstName: "Франсуа",
+      lastName: "Клюзе",
+      role: "Актер",
+      imageUrl: "/images/avatar1.jpeg",
     },
     {
-      id: "5",
-      name: "Франсуа Клюзе",
-      imgUrl: "/images/avatar1.jpeg",
+      firstName: "Франсуа",
+      lastName: "Клюзе",
+      role: "Актер",
+      imageUrl: "/images/avatar1.jpeg",
     },
   ],
   description: `
@@ -121,4 +83,10 @@ export const movie: IMovie = {
       качестве. Приятного просмотра!
     </p>
   `,
+  route: "/movies/1",
 };
+
+export const breadCrumbPages = [
+  { route: "/movies", name: "Фильмы" },
+  { route: movie.id, name: movie.title },
+];
