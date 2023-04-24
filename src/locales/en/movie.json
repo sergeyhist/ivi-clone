@@ -24,6 +24,11 @@
     "subscription": "by subscription ivi",
     "promo": "First 30 days of subscription for 1 ₽"
   },
+  "params": {
+    "quality": "FullHD",
+    "lang": "Eng",
+    "subtitle": "Eng"
+  },
   "devices": {
     "watch": "Watch",
     "title": "on all devices",

@@ -24,6 +24,11 @@
     "subscription": "по подписке на иви",
     "promo": "Первые 30 дней подписки за 1 ₽"
   },
+  "params": {
+    "quality": "FullHD",
+    "lang": "Рус",
+    "subtitle": "Рус"
+  },
   "devices": {
     "watch": "Смотреть",
     "title": "на всех устройствах",

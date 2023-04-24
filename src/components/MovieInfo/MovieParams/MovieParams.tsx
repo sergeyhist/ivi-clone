@@ -3,17 +3,14 @@ import styles from "./MovieParams.module.sass";
 import Badge from "../MovieBadge/MovieBadge";
 import Link from "next/link";
 import { IMovie } from "/src/types/IMovie";
+import { useTranslation } from "react-i18next";
 
 interface MovieParamsProps {
   movie: IMovie;
 }
 
 const MovieParams: FC<MovieParamsProps> = ({ movie }) => {
-  const quality = movie.qualities.find((quality) => quality === "FullHD");
-  const lang = movie.langs.find((lang) => lang.shortName === "Рус");
-  const subtitle = movie.subtitles.find(
-    (subtitle) => subtitle.shortName === "Рус"
-  );
+  const { t } = useTranslation();
 
   return (
     <div className={styles.params}>
@@ -35,23 +32,19 @@ const MovieParams: FC<MovieParamsProps> = ({ movie }) => {
         ))}
       </ul>
       <ul className={styles.list}>
-        {quality && (
-          <li className={styles.list__item}>
-            <Badge>{quality}</Badge>
-          </li>
-        )}
-        {lang && (
-          <li className={styles.list__item}>
-            <i className={`${styles.icon} ${styles.icon_sound}`}></i>
-            {lang.shortName}
-          </li>
-        )}
-        {subtitle && (
-          <li className={styles.list__item}>
-            <i className={`${styles.icon} ${styles.icon_label}`}></i>
-            {subtitle.shortName}
-          </li>
-        )}
+        <li className={styles.list__item}>
+          <Badge>{t("movie.params.quality")}</Badge>
+        </li>
+
+        <li className={styles.list__item}>
+          <i className={`${styles.icon} ${styles.icon_sound}`}></i>
+          {t("movie.params.lang")}
+        </li>
+
+        <li className={styles.list__item}>
+          <i className={`${styles.icon} ${styles.icon_label}`}></i>
+          {t("movie.params.subtitle")}
+        </li>
       </ul>
     </div>
   );
