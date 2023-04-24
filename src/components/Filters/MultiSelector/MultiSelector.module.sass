@@ -1,0 +1,60 @@
+.filter
+  width: 100%
+  position: relative
+
+  &__dropdown
+    position: absolute
+    margin-top: 4px
+    opacity: 0
+    visibility: hidden
+    background-color: #312b45
+    border-radius: 4px
+    box-shadow: 0 20px 40px rgba(7,5,14,.4)
+    z-index: 1
+    padding: 20px
+    max-width: 180%
+    transition: .3s
+
+    &_center
+      left: -40%
+
+    &_left
+      left: 0
+
+    &_right
+      right: 0
+
+    &_active
+      opacity: 1
+      visibility: visible
+
+  &__list
+    display: grid
+    grid-template-columns: repeat(3,1fr)
+    grid-column-gap: 40px
+    margin-top: 16px
+    padding-top: 4px
+    border-top: 1px solid rgba(255,255,255,.32)
+
+@media screen and (max-width: 1160px), screen and (max-width: 715px)
+  .filter
+    &__list
+      grid-template-columns: repeat(2,1fr)
+
+@media screen and (715px < width < 960px)
+  .filter
+    &__list
+      grid-template-columns: repeat(3,1fr)
+
+@media screen and (max-width: 500px)
+  .filter
+    &__list
+      grid-template-columns: 1fr
+
+@media screen and (max-width: 960px)
+  .filter
+    position: unset
+
+    &__dropdown
+      max-width: calc(100% - 40px)
+      left: 20px

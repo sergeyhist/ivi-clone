@@ -1,0 +1,22 @@
+.selector
+  position: relative
+
+  &__dropdown
+    position: absolute
+    margin-top: 4px
+    opacity: 0
+    visibility: hidden
+    background-color: #312b45
+    border-radius: 4px
+    box-shadow: 0 16px 32px rgba(7,5,14,.4)
+    z-index: 1
+    padding: 16px
+    width: 100%
+
+    &_active
+      opacity: 1
+      visibility: visible
+
+  &__list
+    display: grid
+    gap: 12px

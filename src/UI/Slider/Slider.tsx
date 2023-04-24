@@ -16,6 +16,7 @@ interface SliderProps {
   loop?: boolean;
   centeredSlides?: boolean;
   autoplay?: boolean | AutoplayOptions;
+  simulateTouch?: boolean;
 }
 
 const Slider: FC<SliderProps> = ({
@@ -28,6 +29,7 @@ const Slider: FC<SliderProps> = ({
   loop = false,
   centeredSlides = false,
   autoplay = false,
+  simulateTouch = true,
 }) => {
   const [show, setShow] = useState({ prev: false, next: true });
   const swiperRef = useRef<SwiperRef>(null);
@@ -56,6 +58,7 @@ const Slider: FC<SliderProps> = ({
         loop={loop}
         centeredSlides={centeredSlides}
         autoplay={autoplay}
+        simulateTouch={simulateTouch}
       >
         {children}
       </Swiper>

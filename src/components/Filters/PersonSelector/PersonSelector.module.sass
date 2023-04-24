@@ -1,0 +1,25 @@
+.selector
+  display: grid
+  gap: 4px
+
+  &__input
+    display: flex
+    align-items: center
+    width: 100%
+    background-color: #312b45
+    height: 56px
+    border-radius: 4px
+    padding: 8px 16px
+    font-weight: 500
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
+    color: white
+
+    &::placeholder
+      color: rgba(255, 255, 255, .6)
+
+  &__dropdown
+    position: absolute
+    opacity: 0
+    visibility: hidden

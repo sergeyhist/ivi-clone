@@ -1,19 +1,25 @@
 import { FC } from "react";
 import Layout from "../../components/Layout/Layout";
-import MovieCover from "../../components/MovieCover/MovieCover";
+import MovieInfo from "../../components/MovieInfo/MovieInfo";
 import BreadCrumbs from "/src/components/BreadCrumbs/BreadCrumbs";
+import WatchAllDevices from "/src/components/WatchAllDevices/WatchAllDevices";
+import { movie } from "../../utils/movie";
+import { useTranslation } from "react-i18next";
 
 const Film: FC = () => {
+  const { t } = useTranslation();
+
   return (
-    <Layout title="1+1 (Фильм 2011)">
+    <Layout title={`${movie.title} (${movie.type} ${movie.year})`}>
       <BreadCrumbs
         pages={[
-          { route: "/", name: "Главная" },
-          { route: "/films", name: "Фильмы" },
-          { route: "/films", name: "Драмы" },
+          { route: "/", name: t("breadcrumbs.home") },
+          { route: "/movies", name: t("breadcrumbs.movies") },
+          { route: movie.id, name: movie.title },
         ]}
       />
-      <MovieCover />
+      <MovieInfo movie={movie} />
+      <WatchAllDevices movieTitle={movie.title} imageUrl={movie.imgUrl} />
     </Layout>
   );
 };
