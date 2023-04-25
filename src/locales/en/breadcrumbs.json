@@ -1,4 +1,4 @@
 {
-  "home": "Home",
-  "movies": "Movies"
+  "/": "Home",
+  "/movies/": "Movies"
 }
