@@ -1,5 +1,5 @@
 import { Dispatch, FC, SetStateAction } from "react";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "react-i18next";
 import styles from "./FilterTitle.module.sass";
 import { IFilter } from "/src/types/IFilter";
 
@@ -32,7 +32,9 @@ const FilterTitle: FC<FilterTitleProps> = ({
         {text}
         {activeFilters && activeFilters.length > 0 && (
           <span className={styles.title__filters}>
-            {activeFilters.map((filter) => t(filter.text)).join(", ")}
+            {activeFilters
+              .map((filter) => (filter.text ? t(filter.text) : filter.slug))
+              .join(", ")}
           </span>
         )}
       </div>
