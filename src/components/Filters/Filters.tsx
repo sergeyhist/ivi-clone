@@ -1,5 +1,6 @@
-import { FC, useState } from "react";
+import { Dispatch, FC, SetStateAction, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { useThrottledCallback } from "use-debounce";
 import styles from "./Filters.module.sass";
 import {
   countryFilterItems,
@@ -12,29 +13,25 @@ import PersonSelector from "./PersonSelector/PersonSelector";
 import RangeSelector from "./RangeSelector/RangeSelector";
 import ResetButton from "./ResetButton/ResetButton";
 import SingleSelector from "./SingleSelector/SingleSelector";
-import { IFilter } from "/src/types/IFilter";
+import { IActiveFilters, IFilter } from "/src/types/IFilter";
+
+interface FiltersProps {
+  activeFilters: IActiveFilters;
+  setActiveFilters: Dispatch<SetStateAction<IActiveFilters>>;
+}
 
 const sortHandler = (a: IFilter, b: IFilter) => (a.slug > b.slug ? 1 : -1);
 
-const Filters: FC = () => {
+const Filters: FC<FiltersProps> = ({ activeFilters, setActiveFilters }) => {
   const { t } = useTranslation();
 
-  const [genreFilters, setGenreFilters] = useState<string[]>([]);
-  const [countryFilters, setCountryFilters] = useState<string[]>([]);
-  const [yearFilter, setYearFilter] = useState<string>("all");
-  const [ratingFilter, setRatingFilter] = useState<string>("0");
-  const [ratingCountFilter, setRatingCountFilter] = useState<string>("0");
-  const [actorFilter, setActorFilter] = useState<string>("");
-  const [directorFilter, setDirectorFilter] = useState<string>("");
+  const defaultFilters = useRef(activeFilters);
+  const setThrottledFilters = useThrottledCallback((filters: IActiveFilters) => {
+    setActiveFilters(filters);
+  }, 50);
 
   const resetHandler = () => {
-    setGenreFilters([]);
-    setCountryFilters([]);
-    setYearFilter("all");
-    setRatingFilter("0");
-    setRatingCountFilter("0");
-    setActorFilter("");
-    setDirectorFilter("");
+    setThrottledFilters(defaultFilters.current);
   };
 
   return (
@@ -43,48 +40,74 @@ const Filters: FC = () => {
         title={t("filters.genre")}
         items={genreFilterItems.sort(sortHandler)}
         sliderItems={genreFilterSlides}
-        activeFilters={genreFilters}
-        setActiveFilters={setGenreFilters}
+        activeFilters={activeFilters.genre}
+        getFilters={(filters) =>
+          setThrottledFilters({ ...activeFilters, genre: filters })
+        }
         dropdownPosition="left"
       />
       <MultiSelector
         title={t("filters.country")}
         items={countryFilterItems.sort(sortHandler)}
         sliderItems={[...countryFilterItems].slice(0, 10)}
-        activeFilters={countryFilters}
-        setActiveFilters={setCountryFilters}
+        activeFilters={activeFilters.country}
+        getFilters={(filters) =>
+          setThrottledFilters({ ...activeFilters, country: filters })
+        }
         dropdownPosition="center"
       />
       <SingleSelector
         title={t("filters.years.title")}
         items={yearFilterItems}
-        activeFilter={yearFilter}
-        setActiveFilter={setYearFilter}
+        activeFilter={activeFilters.year}
+        getFilter={(filter) =>
+          setThrottledFilters({ ...activeFilters, year: filter })
+        }
       />
       <RangeSelector
         title={t("filters.rating")}
         max={9}
         step={0.1}
-        activeFilter={ratingFilter}
-        setActiveFilter={setRatingFilter}
+        activeFilter={activeFilters.rating}
+        getFilter={(filter) =>
+          setThrottledFilters({
+            ...activeFilters,
+            rating: {
+              slug: filter,
+              text: `filters.ratingFrom`,
+            },
+          })
+        }
       />
       <RangeSelector
         title={t("filters.ratingCount")}
         max={500000}
-        step={5000}
-        activeFilter={ratingCountFilter}
-        setActiveFilter={setRatingCountFilter}
+        step={10000}
+        activeFilter={activeFilters.ratingCount}
+        getFilter={(filter) =>
+          setThrottledFilters({
+            ...activeFilters,
+            ratingCount: {
+              slug: filter,
+              text: 'filters.ratingCountFrom',
+            },
+          })
+        }
       />
       <div className={styles.filters__person}>
         <PersonSelector
           type="actor"
-          activeFilter={actorFilter}
-          setActiveFilter={setActorFilter}
+          activeFilter={activeFilters.actor}
+          getFilter={(filter) =>
+            setActiveFilters({ ...activeFilters, actor: filter })
+          }
         />
         <PersonSelector
           type="director"
-          activeFilter={directorFilter}
-          setActiveFilter={setDirectorFilter}
+          activeFilter={activeFilters.director}
+          getFilter={(filter) =>
+            setThrottledFilters({ ...activeFilters, director: filter })
+          }
         />
       </div>
       <ResetButton clickCallback={resetHandler} />

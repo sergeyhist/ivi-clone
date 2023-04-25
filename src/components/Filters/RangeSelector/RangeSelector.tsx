@@ -1,13 +1,14 @@
-import { Dispatch, FC, SetStateAction } from "react";
+import { FC } from "react";
 import { useTranslation } from "react-i18next";
 import styles from "./RangeSelector.module.sass";
+import { IFilter } from "/src/types/IFilter";
 
 interface RangeSelectorProps {
   title: string;
   max: number;
   step: number;
-  activeFilter: string;
-  setActiveFilter: Dispatch<SetStateAction<string>>;
+  activeFilter: IFilter;
+  getFilter: (filter: string) => void;
 }
 
 const RangeSelector: FC<RangeSelectorProps> = ({
@@ -15,22 +16,22 @@ const RangeSelector: FC<RangeSelectorProps> = ({
   max,
   step,
   activeFilter,
-  setActiveFilter,
+  getFilter,
 }) => {
   const { t } = useTranslation();
 
   return (
-    <div className={styles.selector + ' unselectable'}>
+    <div className={styles.selector + " unselectable"}>
       <span className={styles.selector__title}>{title}</span>
       <span className={styles.selector__value}>
         {t("filters.from")}
-        <span>{` ${activeFilter}`}</span>
+        <span>{` ${activeFilter.slug}`}</span>
       </span>
       <input
         className={styles.selector__input}
         type="range"
-        value={activeFilter}
-        onChange={(e) => setActiveFilter(e.target.value)}
+        value={activeFilter.slug}
+        onChange={(e) => getFilter(e.target.value)}
         max={max}
         step={step}
       />

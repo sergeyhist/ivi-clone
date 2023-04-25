@@ -3,13 +3,13 @@ import { SwiperSlide } from "swiper/react";
 import { sliderBreakpoints } from "../../Filters.utils";
 import styles from "./FilterSlider.module.sass";
 import SliderContent from "./SliderContent/SliderContent";
-import { IFilterSlide } from "/src/types/IFilter";
+import { IFilter, IFilterSlide } from "/src/types/IFilter";
 import Slider from "/src/UI/Slider/Slider";
 
 interface FilterSliderProps {
   items: IFilterSlide[];
-  activeFilters: string[];
-  clickCallback: (result: string) => void;
+  activeFilters: IFilter[];
+  clickCallback: (result: IFilter) => void;
 }
 
 const FilterSlider: FC<FilterSliderProps> = ({
@@ -30,8 +30,8 @@ const FilterSlider: FC<FilterSliderProps> = ({
           <SliderContent
             icon={item.icon as string}
             text={item.text}
-            isActive={activeFilters.includes(item.slug)}
-            clickCallback={() => clickCallback(item.slug)}
+            isActive={activeFilters.some((filter) => filter.slug === item.slug)}
+            clickCallback={() => clickCallback(item)}
           />
         </SwiperSlide>
       ))}

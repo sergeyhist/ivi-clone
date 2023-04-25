@@ -1,11 +1,13 @@
 import { Dispatch, FC, SetStateAction } from "react";
+import { useTranslation } from "react-i18next";
 import styles from "./FilterTitle.module.sass";
+import { IFilter } from "/src/types/IFilter";
 
 interface FilterTitleProps {
   text: string;
   isDropdownActive: boolean;
   setIsDropdownActive: Dispatch<SetStateAction<boolean>>;
-  activeFilters?: string[];
+  activeFilters?: IFilter[];
 }
 
 const FilterTitle: FC<FilterTitleProps> = ({
@@ -14,6 +16,8 @@ const FilterTitle: FC<FilterTitleProps> = ({
   setIsDropdownActive,
   activeFilters,
 }) => {
+  const { t } = useTranslation();
+
   const activeTitle = isDropdownActive ? ` ${styles.title_active}` : "";
   const activeArrow = isDropdownActive ? ` ${styles.title__arrow_active}` : "";
 
@@ -28,7 +32,9 @@ const FilterTitle: FC<FilterTitleProps> = ({
         {text}
         {activeFilters && activeFilters.length > 0 && (
           <span className={styles.title__filters}>
-            {activeFilters.join(", ")}
+            {activeFilters
+              .map((filter) => (filter.text ? t(filter.text) : filter.slug))
+              .join(", ")}
           </span>
         )}
       </div>
