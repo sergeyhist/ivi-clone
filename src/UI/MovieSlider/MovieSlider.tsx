@@ -11,12 +11,14 @@ interface HomeSliderProps {
   slides: IMovieCard[];
   title?: string;
   categoryRoute?: string;
+  slideType?: "default" | "related";
 }
 
 const MovieSlider: FC<HomeSliderProps> = ({
   slides,
   title,
   categoryRoute = "/",
+  slideType = "default",
 }) => {
   return (
     <div className={styles.wrapper}>
@@ -34,7 +36,7 @@ const MovieSlider: FC<HomeSliderProps> = ({
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <MovieCard slide={slide} />
+            <MovieCard type={slideType} slide={slide} />
           </SwiperSlide>
         ))}
       </Slider>

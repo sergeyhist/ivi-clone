@@ -5,6 +5,7 @@ import BreadCrumbs from "/src/components/BreadCrumbs/BreadCrumbs";
 import WatchAllDevices from "/src/components/WatchAllDevices/WatchAllDevices";
 import { movie } from "../../utils/movie";
 import { useTranslation } from "react-i18next";
+import RelatedMovies from "/src/components/RelatedMovies/RelatedMovies";
 
 const Film: FC = () => {
   const { t } = useTranslation();
@@ -19,6 +20,7 @@ const Film: FC = () => {
         ]}
       />
       <MovieInfo movie={movie} />
+      <RelatedMovies />
       <WatchAllDevices movieTitle={movie.title} imageUrl={movie.imgUrl} />
     </Layout>
   );
