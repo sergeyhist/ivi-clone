@@ -17,9 +17,20 @@
   "rating": "Рейтинг кинопоиска",
   "ratingCount": "Количество оценок",
   "from": "от",
+  "ratingFrom": "$t(filters.rating) $t(filters.from)",
+  "ratingCountFrom": "$t(filters.ratingCount) $t(filters.from)",
   "person": {
     "actor": "Актеры",
     "director": "Режиссеры"
   },
-  "reset": "Сбросить фильтры"
+  "reset": "Сбросить фильтры",
+  "all": {
+    "genre": "Все жанры",
+    "country": "Все страны",
+    "year": "Все года",
+    "rating": "Любой рейтинг",
+    "ratingCount": "Любое количество оценок",
+    "actor": "Все актеры",
+    "director": "Все режиссеры"
+  }
 }

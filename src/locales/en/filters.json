@@ -17,9 +17,20 @@
   "rating": "Kinopoisk rating",
   "ratingCount": "Ratings count",
   "from": "from",
+  "ratingFrom": "$t(filters.rating) $t(filters.from)",
+  "ratingCountFrom": "$t(filters.ratingCount) $t(filters.from)",
   "person": {
     "actor": "Actors",
     "director": "Directors"
   },
-  "reset": "Reset filters"
+  "reset": "Reset filters",
+  "all": {
+    "genre": "All genres",
+    "country": "All countries",
+    "year": "All years",
+    "rating": "Any ratings",
+    "ratingCount": "Any ratings count",
+    "actor": "All actors",
+    "director": "All directors"
+  }
 }
