@@ -10,9 +10,9 @@ interface FiltersInfoProps {
 const FiltersInfo: FC<FiltersInfoProps> = ({ activeFilters }) => {
   const activeFiltersTextArray: string[] = [];
 
-  Object.keys(activeFilters).forEach((key) => {
+  for (let key in activeFilters) {
     activeFiltersTextArray.push(updateTextArray(activeFilters, key));
-  });
+  }
 
   return <div className={styles.info}>{activeFiltersTextArray.join(", ")}</div>;
 };
