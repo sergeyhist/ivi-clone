@@ -9,7 +9,7 @@ import { DropDownType } from "/src/components/Header/Header.utils";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
 import { RootState } from "/src/store";
 import Image from "next/image";
-import AuthModal from "/src/components/RegistrationModal/AuthModal";
+import AuthModal from "/src/components/AuthModal/AuthModal";
 import createAppPortal from "/src/utils/createAppPortal";
 import {
   setShowAuthModal,

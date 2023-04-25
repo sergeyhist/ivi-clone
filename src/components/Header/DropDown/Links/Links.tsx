@@ -1,6 +1,6 @@
 import {FC} from "react";
 import styles from "./Links.module.sass";
-import {IGenreLinks} from "/src/types/genreType";
+import {IGenreLinks} from "/src/types/IGenre";
 
 interface LinkProps {
   linksSection: IGenreLinks

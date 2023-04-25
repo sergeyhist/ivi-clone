@@ -3,11 +3,11 @@ import styles from './ChatDialogue.module.sass';
 import {
   cssTransitionClassNames,
   validateEmail
-} from "/src/components/RegistrationModal/ChatDialogue/ChatDoalogue.utils";
-import PrivacyPolicy from "/src/components/RegistrationModal/ChatDialogue/PrivacyPolicy/PrivacyPolicy";
-import AuthInput from "/src/components/RegistrationModal/ChatDialogue/AuthInput/AuthInput";
+} from "/src/components/AuthModal/ChatDialogue/ChatDoalogue.utils";
+import PrivacyPolicy from "/src/components/AuthModal/ChatDialogue/PrivacyPolicy/PrivacyPolicy";
+import AuthInput from "/src/components/AuthModal/ChatDialogue/AuthInput/AuthInput";
 import {CSSTransition} from "react-transition-group";
-import ErrorMessage from "/src/components/RegistrationModal/ChatDialogue/ErrorMessage/ErrorMessage";
+import ErrorMessage from "/src/components/AuthModal/ChatDialogue/ErrorMessage/ErrorMessage";
 
 interface ChatDialogueProps {
   setProgressBarWidth: Dispatch<SetStateAction<{ width: string }>>

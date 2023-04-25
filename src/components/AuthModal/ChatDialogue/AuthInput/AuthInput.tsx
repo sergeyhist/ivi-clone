@@ -85,7 +85,7 @@ const AuthInput: FC<EmailInputProps> = ({
 
   const handleInputClick = (): void => {
     if (inputRef.current) {
-      inputRef.current.focus();
+      inputRef.current?.focus();
       setIsInputActive(true);
     }
   };
