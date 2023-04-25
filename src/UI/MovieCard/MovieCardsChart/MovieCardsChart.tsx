@@ -4,14 +4,14 @@ import IMovieCard from "../../../types/IMovieCard";
 import ProgressBar from "../../ProgressBar/ProgressBar";
 
 interface MovieCardsChartProps {
-  slide: IMovieCard;
+  content: IMovieCard;
 }
 
-const MovieCardsChart: FC<MovieCardsChartProps> = ({ slide }) => {
+const MovieCardsChart: FC<MovieCardsChartProps> = ({ content }) => {
   return (
     <div className={styles.chart}>
-      <p className={styles.chart__name}>{slide.chartName}</p>
-      <ProgressBar value={slide.chartRating} className={styles.chart__bar} />
+      <p className={styles.chart__name}>{content.chartName}</p>
+      <ProgressBar value={content.chartRating} className={styles.chart__bar} />
     </div>
   );
 };

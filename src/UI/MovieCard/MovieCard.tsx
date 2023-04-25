@@ -5,20 +5,20 @@ import MovieCardRelated from "./MovieCardRelated/MovieCardRelated";
 import MovieCardPoster from "./MovieCardPoster/MovieCardPoster";
 
 interface HomeSliderProps {
-  slide: IMovieCard;
+  content: IMovieCard;
   type?: "default" | "related" | "poster";
 }
 
-const MovieCard: FC<HomeSliderProps> = ({ slide, type = "default" }) => {
+const MovieCard: FC<HomeSliderProps> = ({ content, type = "default" }) => {
   switch (type) {
     case "default":
-      return <MovieCardDefault slide={slide} />;
+      return <MovieCardDefault content={content} />;
     case "related":
-      return <MovieCardRelated slide={slide} />;
+      return <MovieCardRelated content={content} />;
     case "poster":
-      return <MovieCardPoster slide={slide} />;
+      return <MovieCardPoster content={content} />;
     default:
-      return <MovieCardDefault slide={slide} />;
+      return <MovieCardDefault content={content} />;
   }
 };
 

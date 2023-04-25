@@ -1,4 +1,4 @@
-.icons
+.buttons
   display: flex
   flex-direction: column
   position: absolute
@@ -15,25 +15,25 @@
     background: none
     cursor: pointer
 
-    .icon
-      display: block
-      height: 20px
-      &::after
-        font-family: 'ivi-icons'
-        font-style: normal
-        font-size: 18px
-        color: #fff
-        line-height: 20px
+.icon
+  display: block
+  height: 20px
+  &::after
+    font-family: 'ivi-icons'
+    font-style: normal
+    font-size: 18px
+    color: #fff
+    line-height: 20px
 
-    .icon_save::after
-      content: '\E02D'
+  &_save::after
+    content: '\E02D'
 
-    .icon_similar::after
-      content: '\E05B'
+  &_similar::after
+    content: '\E05B'
 
-    .icon_star::after
-      font-family: iconfont
-      content: "\E311"
+  &_star::after
+    font-family: iconfont
+    content: "\E311"
 
-    .icon_block::after
-      content: '\E023'
+  &_block::after
+    content: '\E023'

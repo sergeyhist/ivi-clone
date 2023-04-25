@@ -4,10 +4,10 @@ import IMovieCard from "../../../types/IMovieCard";
 import ProgressBar from "../../ProgressBar/ProgressBar";
 
 interface MovieCardsRatingProps {
-  slide: IMovieCard;
+  content: IMovieCard;
 }
 
-const MovieCardsRating: FC<MovieCardsRatingProps> = ({ slide }) => {
+const MovieCardsRating: FC<MovieCardsRatingProps> = ({ content }) => {
   return (
     <div className={styles.rating}>
       <div className={styles.grade}>
@@ -22,7 +22,7 @@ const MovieCardsRating: FC<MovieCardsRatingProps> = ({ slide }) => {
         </span>
       </div>
       <div className={styles.rating__bars}>
-        {slide.ratingBars.map((value, index) => (
+        {content.ratingBars.map((value, index) => (
           <ProgressBar
             key={index}
             className={styles.rating__bar}

@@ -2,7 +2,7 @@
 .link
     display: block
 
-.slide
+.content
     position: relative
 
     &__link
@@ -21,14 +21,14 @@
         display: none
 
     &:hover
-        .slide__filter
+        .content__filter
             &::after
                 background: rgba(7,5,14,.8)
 
-        .slide__inner
+        .content__inner
             display: flex
 
-        .slide__title
+        .content__title
             color: #fff
 
     &__img

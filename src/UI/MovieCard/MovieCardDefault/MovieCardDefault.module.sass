@@ -2,7 +2,7 @@
 .link
     display: block
 
-.slide
+.content
     cursor: pointer
 
     &__link
@@ -21,15 +21,15 @@
         display: none
 
     &:hover
-        .slide__filter
+        .content__filter
             transform: scale(1.05) translateY(0)
             &::after
                 background: rgba(7,5,14,.8)
 
-        .slide__inner
+        .content__inner
             display: flex
 
-        .slide__title
+        .content__title
             color: #fff
 
     &__img

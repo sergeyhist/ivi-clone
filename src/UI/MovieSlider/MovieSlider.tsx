@@ -36,7 +36,7 @@ const MovieSlider: FC<HomeSliderProps> = ({
       >
         {slides.map((slide) => (
           <SwiperSlide key={slide.id}>
-            <MovieCard type={slideType} slide={slide} />
+            <MovieCard type={slideType} content={slide} />
           </SwiperSlide>
         ))}
       </Slider>

@@ -8,39 +8,39 @@ import MovieCardsRating from "../MovieCardsRating/MovieCardsRating";
 import MovieCardsChart from "../MovieCardsChart/MovieCardsChart";
 
 interface MovieCardRelatedProps {
-  slide: IMovieCard;
+  content: IMovieCard;
 }
 
-const MovieCardRelated: FC<MovieCardRelatedProps> = ({ slide }) => {
-  const typeTitle = getTypeTitle(slide.type);
-  const typeClassName = getTypeClassName(slide.type);
+const MovieCardRelated: FC<MovieCardRelatedProps> = ({ content }) => {
+  const typeTitle = getTypeTitle(content.type);
+  const typeClassName = getTypeClassName(content.type);
 
   return (
-    <article className={styles.slide}>
-      <Link className={styles.slide__link} href={slide.route}>
-        <div className={styles.slide__filter}>
+    <article className={styles.content}>
+      <Link className={styles.content__link} href={content.route}>
+        <div className={styles.content__filter}>
           <Image
             height={234}
             width={153}
-            className={styles.slide__img}
-            src={slide.imgUrl}
+            className={styles.content__img}
+            src={content.imgUrl}
             alt=""
           />
-          <div className={styles.slide__inner}>
+          <div className={styles.content__inner}>
             <button className={styles.button}>
               <i className={`${styles.icon_save} ${styles.icon}`}></i>
             </button>
             <div className={styles.information}>
-              <MovieCardsRating slide={slide} />
-              <MovieCardsChart slide={slide} />
-              <p className={styles.information__text}>{slide.info}</p>
-              <p className={styles.information__text}>{slide.infoTime}</p>
+              <MovieCardsRating content={content} />
+              <MovieCardsChart content={content} />
+              <p className={styles.information__text}>{content.info}</p>
+              <p className={styles.information__text}>{content.infoTime}</p>
             </div>
           </div>
           <div className={styles.age}></div>
         </div>
-        <div className={styles.slide__bottom}>
-          <h4 className={styles.slide__title}>{slide.title}</h4>
+        <div className={styles.content__bottom}>
+          <h4 className={styles.content__title}>{content.title}</h4>
           <p className={typeClassName}>{typeTitle}</p>
         </div>
       </Link>

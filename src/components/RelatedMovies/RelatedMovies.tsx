@@ -14,7 +14,7 @@ const RelatedMovies: FC = () => {
           slides={slides}
         />
         <div style={{ width: "200px" }}>
-          <MovieCard type="poster" slide={slides[0]} />
+          <MovieCard type="poster" content={slides[0]} />
         </div>
       </section>
     </>
