@@ -23,7 +23,7 @@ const FiltersInfo: FC<FiltersInfoProps> = ({ activeFilters }) => {
   const isFilterNotDefault = (key: string) =>
     !["all", "0", ""].includes((activeFilters[key] as IFilter).slug);
 
-  const textSelector = (key: string) =>
+  const getTextSelector = (key: string) =>
     (activeFilters[key] as IFilter).text
       ? t((activeFilters[key] as IFilter).text)
       : (activeFilters[key] as IFilter).slug;
@@ -35,7 +35,7 @@ const FiltersInfo: FC<FiltersInfoProps> = ({ activeFilters }) => {
 
   const updateTextArray = (key: string) => {
     if (!Array.isArray(activeFilters[key]) && isFilterNotDefault(key)) {
-      return activeFiltersTextArray.push(textSelector(key) + getRatingSlug(key));
+      return activeFiltersTextArray.push(getTextSelector(key) + getRatingSlug(key));
     }
 
     if (Array.isArray(activeFilters[key]) && isArrayNotEmpty(key)) {
