@@ -5,9 +5,9 @@ import {
   validateEmail
 } from "/src/components/AuthModal/ChatDialogue/ChatDoalogue.utils";
 import PrivacyPolicy from "/src/components/AuthModal/ChatDialogue/PrivacyPolicy/PrivacyPolicy";
-import AuthInput from "/src/components/AuthModal/ChatDialogue/AuthInput/AuthInput";
 import {CSSTransition} from "react-transition-group";
 import ErrorMessage from "/src/components/AuthModal/ChatDialogue/ErrorMessage/ErrorMessage";
+import ModalInput from "/src/UI/ModalInput/ModalInput";
 
 interface ChatDialogueProps {
   setProgressBarWidth: Dispatch<SetStateAction<{ width: string }>>
@@ -68,14 +68,16 @@ const ChatDialogue: FC<ChatDialogueProps> = ({setProgressBarWidth}) => {
                        timeout={1}
                        unmountOnExit>
           <div ref={emailInputRef}>
-            <AuthInput showErrorMessage={showErrorMessage}
-                       clickCallback={handleEmailSubmit}
-                       preventDefault={true}
-                       setIsValid={setShowErrorMessage}
-                       authData={email}
-                       setAuthData={setEmail}
-                       placeholderText="Через email"
-                       inputType="email"
+            <ModalInput showErrorMessage={showErrorMessage}
+                        clickCallback={handleEmailSubmit}
+                        preventDefault={true}
+                        showIcon={true}
+                        setIsValid={setShowErrorMessage}
+                        authData={email}
+                        setAuthData={setEmail}
+                        placeholderText="Через email"
+                        buttonText="Продолжить"
+                        inputType="email"
             />
             <PrivacyPolicy/>
           </div>
@@ -99,13 +101,15 @@ const ChatDialogue: FC<ChatDialogueProps> = ({setProgressBarWidth}) => {
             <div className={styles.chat__message}>
               <h3 className={styles.chat__message__title}>Войдите пароль чтобы войти</h3>
             </div>
-            <AuthInput showErrorMessage={showErrorMessage}
-                       setIsValid={setShowErrorMessage}
-                       authData={password}
-                       setAuthData={setPassword}
-                       setIsPasswordInputSelected={setIsPasswordInputSelected}
-                       placeholderText="Введите пароль"
-                       inputType={showPassword ? "text" : "password"}
+            <ModalInput showErrorMessage={showErrorMessage}
+                        setIsValid={setShowErrorMessage}
+                        authData={password}
+                        showIcon={true}
+                        setAuthData={setPassword}
+                        setIsPasswordInputSelected={setIsPasswordInputSelected}
+                        placeholderText="Введите пароль"
+                        buttonText="Продолжить"
+                        inputType={showPassword ? "text" : "password"}
             >
               <div
                 className={`${styles.show__icon} ${isPasswordInputSelected ? "" : styles.show__icon_disabled} ${showPassword ? styles.password_show : ''}`}
@@ -114,7 +118,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({setProgressBarWidth}) => {
                   setShowPassword(prevState => !prevState)
                 }}
               ></div>
-            </AuthInput>
+            </ModalInput>
           </>
         }
         <CSSTransition classNames={cssTransitionClassNames} nodeRef={errorRef} in={showErrorMessage}

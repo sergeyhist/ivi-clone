@@ -5,9 +5,7 @@ import Header from "../Header/Header";
 import { useDispatch } from "react-redux";
 import { setWindowSize } from "/src/store/slices/windowSizeSlice";
 import {useAppSelector} from "/src/hooks/redux";
-import TabBar from "/src/components/TabBar/TabBar";
-import MovieInfoModal from "/src/components/MovieInfoModal/MovieInfoModal";
-import {creatorsData} from "/src/components/CreatorsList/CreatorsList.utils";
+import MobileMenu from "/src/components/MobileMenu/MobileMenu";
 
 interface LayoutProps {
   title: string;
@@ -43,8 +41,7 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
       </Head>
       <Header />
       <main className="container">{children}</main>
-      <MovieInfoModal creators={creatorsData} movieTitle="Доктор хаус"/>
-      {windowSizeWidth < 1160 && <TabBar/>}
+      {windowSizeWidth < 1160 && <MobileMenu/>}
       <Footer />
     </>
   );

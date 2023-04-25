@@ -11,21 +11,12 @@ export const getGenreLinks = (genre: DropDownType) => {
             return seriesGenres as IGenreFilters;
         case "cartoons":
             return cartoonsGenres as IGenreFilters;
+        default:
+            return { genres: [], countries: [], years: [] };
     }
 }
 
-export const getTranslatedFilter = (filter: string)=> {
-    switch (filter) {
-        case "Жанры":
-            return 'genres';
-        case "Страны":
-            return 'countries';
-        case "Годы":
-            return 'years';
-    }
-}
-
-export const getLinksSectionTitles = (title: string, selectedGenre: DropDownType): IGenreLinks => {
-    const links = getGenreLinks(selectedGenre)[`${getTranslatedFilter(title)}`] as IGenreFilters;
+export const getLinksSectionTitles = (title: keyof IGenreFilters, selectedGenre: DropDownType): IGenreLinks => {
+    const links = getGenreLinks(selectedGenre)[title];
     return {title, links} as IGenreLinks;
 }
