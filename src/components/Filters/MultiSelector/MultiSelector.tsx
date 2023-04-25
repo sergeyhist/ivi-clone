@@ -1,24 +1,17 @@
-import {
-  Dispatch,
-  FC,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { FC, useRef, useState } from "react";
 import styles from "./MultiSelector.module.sass";
 import ListItem from "./ListItem/ListItem";
 import { IFilter, IFilterSlide } from "/src/types/IFilter";
 import FilterTitle from "../FilterTitle/FilterTitle";
 import FilterSlider from "./FilterSlider/FilterSlider";
-import { getFiltersTexts } from "../Filters.utils";
+import useCloseEvents from "/src/hooks/useCloseEvents";
 
 interface MultiSelectorProps {
   title: string;
   items: IFilter[];
   sliderItems: IFilterSlide[];
-  activeFilters: string[];
-  setActiveFilters: Dispatch<SetStateAction<string[]>>;
+  activeFilters: IFilter[];
+  getFilters: (filters: IFilter[]) => void;
   dropdownPosition: "center" | "left" | "right";
 }
 
@@ -27,7 +20,7 @@ const MultiSelector: FC<MultiSelectorProps> = ({
   items,
   sliderItems,
   activeFilters,
-  setActiveFilters,
+  getFilters,
   dropdownPosition,
 }) => {
   const titleRef = useRef<HTMLDivElement>(null);
@@ -35,11 +28,11 @@ const MultiSelector: FC<MultiSelectorProps> = ({
 
   const [isDropdownActive, setIsDropdownActive] = useState(false);
 
-  const clickHandler = (slug: string) => {
-    if (activeFilters.includes(slug)) {
-      setActiveFilters(activeFilters.filter((el) => el !== slug));
+  const clickHandler = (item: IFilter) => {
+    if (activeFilters.some((filter) => filter.slug === item.slug)) {
+      getFilters(activeFilters.filter((filter) => filter.slug !== item.slug));
     } else {
-      setActiveFilters([...activeFilters, slug]);
+      getFilters([...activeFilters, { slug: item.slug, text: item.text }]);
     }
   };
 
@@ -47,27 +40,7 @@ const MultiSelector: FC<MultiSelectorProps> = ({
     ? ` ${styles.filter__dropdown_active}`
     : "";
 
-  const activeFiltersText = getFiltersTexts(items, activeFilters);
-
-  useEffect(() => {
-    const clickHandler = (e: MouseEvent) => {
-      !dropdownRef.current?.contains(e.target as Node) &&
-        !titleRef.current?.contains(e.target as Node) &&
-        setIsDropdownActive(false);
-    };
-
-    const keydownHandler = (e: KeyboardEvent) => {
-      e.key === "Escape" && setIsDropdownActive(false);
-    };
-
-    document.addEventListener("mousedown", clickHandler);
-    document.addEventListener("keydown", keydownHandler);
-
-    return () => {
-      document.removeEventListener("mousedown", clickHandler);
-      document.removeEventListener("keydown", keydownHandler);
-    };
-  }, [setIsDropdownActive]);
+  useCloseEvents([titleRef, dropdownRef], setIsDropdownActive);
 
   return (
     <div className={styles.filter + " unselectable"}>
@@ -76,7 +49,7 @@ const MultiSelector: FC<MultiSelectorProps> = ({
           text={title}
           isDropdownActive={isDropdownActive}
           setIsDropdownActive={setIsDropdownActive}
-          activeFilters={activeFiltersText}
+          activeFilters={activeFilters}
         />
       </div>
       <div
@@ -99,9 +72,11 @@ const MultiSelector: FC<MultiSelectorProps> = ({
             <ListItem
               key={i}
               text={item.text}
-              isActive={activeFilters.includes(item.slug)}
+              isActive={activeFilters.some(
+                (filter) => filter.slug === item.slug
+              )}
               clickCallback={() => {
-                clickHandler(item.slug);
+                clickHandler(item);
               }}
             />
           ))}

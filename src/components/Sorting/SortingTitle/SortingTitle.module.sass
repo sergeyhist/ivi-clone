@@ -1,0 +1,29 @@
+.title
+  display: flex
+  gap: 8px
+  align-items: center
+  font-size: 15px
+  line-height: 20px
+  font-weight: 500
+  overflow: hidden
+  white-space: nowrap
+  text-overflow: ellipsis
+  height: 20px
+  cursor: pointer
+  color: white
+
+  &__icon
+    transform: scale(-1,1)
+    width: 20px
+    height: 20px
+
+  &__arrow
+    font-family: iconfont
+    font-size: 6px
+    line-height: 6px
+
+    &_active
+      transform: rotate(180deg)
+
+    &::before
+      content: "\E033"
