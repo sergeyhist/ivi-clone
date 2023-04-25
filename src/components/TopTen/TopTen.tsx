@@ -5,8 +5,11 @@ import TopTenSlide from "./TopTenSlide/TopTenSlide";
 import styles from "./TopTen.module.sass";
 import Slider from "/src/UI/Slider/Slider";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 const TopTen: FC = () => {
+  const { t } = useTranslation();
+
   return (
     <section className={styles.section}>
       <h2 className={styles.section__title}>
@@ -17,7 +20,7 @@ const TopTen: FC = () => {
           src="/images/topten.svg"
           alt=""
         />{" "}
-        за неделю
+        {t("home.top.title")}
       </h2>
 
       <Slider swiperClassName={styles.swiper} breakpoints={breakpoints}>

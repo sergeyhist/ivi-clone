@@ -9,7 +9,7 @@ import { breakpoints } from "./MovieSlider.utils";
 
 interface HomeSliderProps {
   slides: IMovieCard[];
-  title?: string;
+  title?: string | null;
   categoryRoute?: string;
   slideType?: "default" | "related";
 }

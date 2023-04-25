@@ -8,7 +8,7 @@ import enCountries from "../locales/en/countries.json";
 import enMovie from "../locales/en/movie.json";
 import enBreadcrumbs from "../locales/en/breadcrumbs.json";
 import enTooltips from "../locales/en/tooltips.json";
-import enDetails from "../locales/en/details.json";
+import enHome from "../locales/en/home.json";
 
 import ruHeader from "../locales/ru/header.json";
 import ruTitles from "../locales/ru/titles.json";
@@ -20,7 +20,7 @@ import ruCountries from "../locales/ru/countries.json";
 import ruMovie from "../locales/ru/movie.json";
 import ruBreadcrumbs from "../locales/ru/breadcrumbs.json";
 import ruTooltips from "../locales/ru/tooltips.json";
-import ruDetails from "../locales/ru/details.json";
+import ruHome from "../locales/ru/home.json";
 
 const translationResources = {
   en: {
@@ -35,7 +35,7 @@ const translationResources = {
       movie: enMovie,
       breadcrumbs: enBreadcrumbs,
       tooltips: enTooltips,
-      details: enDetails,
+      home: enHome,
     },
   },
   ru: {
@@ -50,7 +50,7 @@ const translationResources = {
       movie: ruMovie,
       breadcrumbs: ruBreadcrumbs,
       tooltips: ruTooltips,
-      details: ruDetails,
+      home: ruHome,
     },
   },
 };

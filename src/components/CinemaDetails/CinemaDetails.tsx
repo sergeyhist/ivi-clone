@@ -10,18 +10,20 @@ const CinemaDetails: FC = () => {
   return (
     <section className={styles.section}>
       <div className={styles.section__container}>
-        <h2 className={styles.section__title}>{t("details.title")}</h2>
+        <h2 className={styles.section__title}>{t("home.details.title")}</h2>
         <TextDropDown
           dropDownClassName={styles.dropdown}
           toogleTitles={{
-            defaultTitle: t("details.toggle.default"),
-            activeTitle: t("details.toggle.active"),
+            defaultTitle: t("home.details.toggle.default"),
+            activeTitle: t("home.details.toggle.active"),
           }}
           toogleClassName={styles.dropdown__toggle}
         >
           <CinemaDetailsParagraphs />
           <CinemaDetailsList />
-          <p className={styles.dropdown__paragraph}>{t("details.promo")}</p>
+          <p className={styles.dropdown__paragraph}>
+            {t("home.details.promo")}
+          </p>
         </TextDropDown>
       </div>
     </section>

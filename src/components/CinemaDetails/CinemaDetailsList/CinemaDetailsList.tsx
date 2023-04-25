@@ -6,8 +6,6 @@ import { listItems } from "../CinemaDetails.utils";
 const CinemaDetailsList: FC = () => {
   const { t } = useTranslation();
 
-  console.log(t("details.list.0"));
-
   return (
     <ul className={styles.list}>
       {listItems.map((item, index) => (
