@@ -2,22 +2,25 @@ import { FC } from "react";
 import { slides } from "../HomeSliders/HomeSliders.utils";
 import MovieSlider from "../../UI/MovieSlider/MovieSlider";
 import styles from "./RelatedMovies.module.sass";
-import MovieCard from "/src/UI/MovieCard/MovieCard";
+import { useTranslation } from "react-i18next";
 
-const RelatedMovies: FC = () => {
+interface RelatedMoviesProps {
+  movieTitle: string;
+}
+
+const RelatedMovies: FC<RelatedMoviesProps> = ({ movieTitle }) => {
+  const { t } = useTranslation();
+
   return (
-    <>
-      <section className={styles.section}>
-        <MovieSlider
-          title="С фильмом смотрят так же"
-          slideType="related"
-          slides={slides}
-        />
-        <div style={{ width: "200px" }}>
-          <MovieCard type="poster" content={slides[0]} />
-        </div>
-      </section>
-    </>
+    <section className={styles.section}>
+      <MovieSlider
+        title={`${t("movie.related.with")} ${movieTitle} ${t(
+          "movie.related.watch"
+        )}`}
+        slideType="related"
+        slides={slides}
+      />
+    </section>
   );
 };
 

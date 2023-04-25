@@ -1,11 +1,12 @@
 import { FC } from "react";
+import { movie } from "../../utils/movie";
+import { useTranslation } from "react-i18next";
 import Layout from "../../components/Layout/Layout";
 import MovieInfo from "../../components/MovieInfo/MovieInfo";
 import BreadCrumbs from "/src/components/BreadCrumbs/BreadCrumbs";
 import WatchAllDevices from "/src/components/WatchAllDevices/WatchAllDevices";
-import { movie } from "../../utils/movie";
-import { useTranslation } from "react-i18next";
 import RelatedMovies from "/src/components/RelatedMovies/RelatedMovies";
+import CreatorsList from "/src/components/CreatorsList/CreatorsList";
 
 const Film: FC = () => {
   const { t } = useTranslation();
@@ -20,7 +21,8 @@ const Film: FC = () => {
         ]}
       />
       <MovieInfo movie={movie} />
-      <RelatedMovies />
+      <RelatedMovies movieTitle={movie.title} />
+      <CreatorsList creators={movie.creators} />
       <WatchAllDevices movieTitle={movie.title} imageUrl={movie.imgUrl} />
     </Layout>
   );
