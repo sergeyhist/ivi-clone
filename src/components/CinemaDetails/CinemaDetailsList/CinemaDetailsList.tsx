@@ -1,48 +1,18 @@
 import { FC } from "react";
 import styles from "../CinemaDetails.module.sass";
+import { useTranslation } from "react-i18next";
+import { listItems } from "../CinemaDetails.utils";
 
 const CinemaDetailsList: FC = () => {
+  const { t } = useTranslation();
+
   return (
     <ul className={styles.list}>
-      <li className={styles.list__item}>
-        уникальная рекомендательная система, учитывающая ваши предпочтения и
-        предлагающая посмотреть именно то, что точно придется вам по душе;
-      </li>
-
-      <li className={styles.list__item}>
-        просмотр в одно касание на любом из устройств, подключенном к вашему
-        Иви-аккаунту – от смартфонов до телевизоров с технологией Smart TV;
-      </li>
-
-      <li className={styles.list__item}>
-        возможность скачивать в память мобильного устройства лицензионный
-        контент и смотреть его без доступа к Интернету;
-      </li>
-
-      <li className={styles.list__item}>
-        уникальные условия и преимущества для обладателей подписки Иви, делающей
-        кинопросмотр комфортным и приятным;
-      </li>
-
-      <li className={styles.list__item}>
-        удобная и продвинутая система уведомлений, вы не пропустите выход
-        крутого обсуждаемого блокбастера – мы известим о появлении подходящим
-        для вас способом;
-      </li>
-
-      <li className={styles.list__item}>
-        возможность добавлять фильмы в «смотреть позже», чтобы вернуться к ним в
-        свободное время;
-      </li>
-
-      <li className={styles.list__item}>
-        контент, для просмотра которого не требуется устанавливать видеоплееры
-        или искать кодеки;
-      </li>
-
-      <li className={styles.list__item}>
-        просмотр онлайн контента хорошего разрешения без регистрации и смс.
-      </li>
+      {listItems.map((item, index) => (
+        <li key={index} className={styles.list__item}>
+          {t(item)}
+        </li>
+      ))}
     </ul>
   );
 };

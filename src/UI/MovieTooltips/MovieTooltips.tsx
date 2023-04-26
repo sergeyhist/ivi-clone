@@ -1,24 +1,21 @@
 import { FC } from "react";
 import { Tooltip } from "react-tooltip";
 import styles from "./MovieToolTips.module.sass";
+import { useTranslation } from "react-i18next";
+import { buttonsId } from "/src/utils/movieCard";
 
-const FilmsTooltips: FC = () => {
+const MovieTooltips: FC = () => {
+  const { t } = useTranslation();
+
   return (
     <>
-      <Tooltip className={styles.tooltip} id="save" place="top">
-        <p>Смотреть позже</p>
-      </Tooltip>
-      <Tooltip className={styles.tooltip} id="similar" place="top">
-        <p>Похожее</p>
-      </Tooltip>
-      <Tooltip className={styles.tooltip} id="favorite" place="top">
-        <p>Уже смотрел, оценить</p>
-      </Tooltip>
-      <Tooltip className={styles.tooltip} id="block" place="top">
-        <p>Не нравится такое</p>
-      </Tooltip>
+      {buttonsId.map((id, index) => (
+        <Tooltip key={index} className={styles.tooltip} id={id} place="top">
+          <p>{t(`tooltips.${id}`)}</p>
+        </Tooltip>
+      ))}
     </>
   );
 };
 
-export default FilmsTooltips;
+export default MovieTooltips;
