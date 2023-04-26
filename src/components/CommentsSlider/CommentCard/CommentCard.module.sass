@@ -1,0 +1,90 @@
+.comment
+  position: relative
+
+  &__link
+    display: block
+    padding: 20px 20px 52px
+    background-color: #1f1b2e
+    transition: .3s
+    border-radius: 8px
+    overflow: hidden
+
+    &:hover
+      background-color: #231f34
+
+  &__content
+    font-size: 15px
+    line-height: 22px
+    font-weight: 400
+    height: 66px
+    -webkit-line-clamp: 3
+    white-space: normal
+    color: #fff
+    font-style: normal
+    display: -webkit-box
+    overflow: hidden
+    -webkit-box-orient: vertical
+    text-overflow: ellipsis
+
+  &__author
+    color: #a5a1b2
+    margin-bottom: 8px
+    font-size: 13px
+    line-height: 16px
+    font-weight: 700
+    font-style: normal
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
+    min-height: 16px
+
+  &__date
+    position: absolute
+    left: 20px
+    bottom: 20px
+    color: #a5a1b2
+    font-size: 13px
+    line-height: 16px
+    font-weight: 400
+    font-style: normal
+
+.vote
+  position: absolute
+  right: 20px
+  bottom: 20px
+  display: flex
+  align-items: center
+  z-index: 1
+
+  &__value
+    font-size: 15px
+    line-height: 20px
+    font-weight: 700
+    font-style: normal
+    padding: 0 8px
+    &_positive
+      color: #73a32f
+
+  &__like, &__dislike
+    cursor: pointer
+    transition: .3s
+    &:hover
+      .icon::after
+        color: #fff
+
+.icon
+  &::after
+    font-family: iconfont
+    font-weight: 400
+    font-style: normal
+    color: rgba(126,121,143,.72)
+    width: 16px
+    height: 16px
+    font-size: 16px
+    line-height: 16px
+    transition: .3s
+  &_like::after
+    content: "\E3A4"
+
+  &_dislike::after
+    content: "\E39C"

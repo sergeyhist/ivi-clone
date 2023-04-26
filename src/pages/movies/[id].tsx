@@ -6,6 +6,7 @@ import BreadCrumbs from "/src/components/BreadCrumbs/BreadCrumbs";
 import WatchAllDevices from "/src/components/WatchAllDevices/WatchAllDevices";
 import RelatedMovies from "/src/components/RelatedMovies/RelatedMovies";
 import CreatorsList from "/src/components/CreatorsList/CreatorsList";
+import CommentsSlider from "/src/components/CommentsSlider/CommentsSlider";
 
 const Movie: FC = () => {
   return (
@@ -15,6 +16,7 @@ const Movie: FC = () => {
       <RelatedMovies movieTitle={movie.title} />
       <CreatorsList creators={movie.creators} />
       <WatchAllDevices movieTitle={movie.title} imageUrl={movie.imgUrl} />
+      <CommentsSlider />
       <BreadCrumbs currentTitle={movie.title} />
     </Layout>
   );
