@@ -16,8 +16,8 @@ const WidgetBanner: FC<WidgetBannerProps> = ({link}) => {
       href={link.url}
     >
       <Image
-        width={128}
-        height={72}
+        width={256}
+        height={144}
         className={styles.banner__image}
         src={link.content as string}
         alt="Small banner"
