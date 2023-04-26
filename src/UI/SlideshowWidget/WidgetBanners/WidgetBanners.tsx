@@ -5,7 +5,7 @@ import ILink from "/src/types/ILink";
 
 interface WidgetBannersProps {
   isReverse?: boolean;
-  links: Array<ILink>;
+  links: ILink[];
 }
 
 const WidgetBanners: FC<WidgetBannersProps> = ({ isReverse, links }) => {

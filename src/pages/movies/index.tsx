@@ -6,8 +6,11 @@ import Sorting from "/src/components/Sorting/Sorting";
 import { IActiveFilters } from "/src/types/IFilter";
 import styles from "/src/styles/pages/MoviesPage.module.sass";
 import FiltersInfo from "/src/components/FiltersInfo/FiltersInfo";
+import BreadCrumbs from "/src/components/BreadCrumbs/BreadCrumbs";
+import SlideshowWidget from "/src/UI/SlideshowWidget/SlideshowWidget";
+import {slideshowItems} from "/src/utils/slideshowItems";
 
-export default function Home() {
+const Home = () => {
   const { t } = useTranslation();
 
   const [activeFilters, setActiveFilters] = useState<IActiveFilters>({
@@ -25,6 +28,7 @@ export default function Home() {
   return (
     <Layout title={t("titles.movies")}>
       <div className={styles.page}>
+        <BreadCrumbs type="slash" currentTitle={t('titles.movies') || ''} />
         <h1 className={styles.page__title}>{t('titles.movies')}</h1>
         <FiltersInfo activeFilters={activeFilters} />
         <Sorting
@@ -45,3 +49,5 @@ export default function Home() {
     </Layout>
   );
 }
+
+export default Home;

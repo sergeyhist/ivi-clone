@@ -10,7 +10,7 @@ interface FiltersInfoProps {
 const FiltersInfo: FC<FiltersInfoProps> = ({ activeFilters }) => {
   const activeFiltersTextArray: string[] = [];
 
-  for (let key in activeFilters) {
+  for (const key in activeFilters) {
     activeFiltersTextArray.push(updateTextArray(activeFilters, key));
   }
 
