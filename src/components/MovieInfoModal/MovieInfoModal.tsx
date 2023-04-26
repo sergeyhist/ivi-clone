@@ -8,12 +8,13 @@ import MovieCard from "/src/UI/MovieCard/MovieCard";
 import {slides} from "/src/components/HomeSliders/HomeSliders.utils";
 
 interface MovieInfoModalProps {
-  creators: ICreator[],
-  defaultTab?: InfoTabs,
-  movieTitle: string
+  creators: ICreator[];
+  defaultTab?: InfoTabs;
+  movieTitle: string;
+  closeCallback: () => void;
 }
 
-const MovieInfoModal: FC<MovieInfoModalProps> = ({creators, movieTitle,defaultTab = "actors"}) => {
+const MovieInfoModal: FC<MovieInfoModalProps> = ({creators, movieTitle, defaultTab = "actors", closeCallback}) => {
   const [selectedTab, setSelectedTab] = useState<InfoTabs>(defaultTab);
 
   const getSelectedTab = (tab: InfoTabs): ReactNode => {
@@ -26,20 +27,20 @@ const MovieInfoModal: FC<MovieInfoModalProps> = ({creators, movieTitle,defaultTa
     }
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     const overflowBodyStyle = document.body.style.overflow;
 
     document.body.style.overflow = "hidden"
 
-    return ()=> {
+    return () => {
       document.body.style.overflow = overflowBodyStyle;
     }
-  },[])
+  }, [])
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        К сериалу
+      <div className={styles.header} onClick={closeCallback}>
+        К фильму
       </div>
       <div className={styles.wrapper}>
         <div className={styles.content}>
@@ -55,11 +56,11 @@ const MovieInfoModal: FC<MovieInfoModalProps> = ({creators, movieTitle,defaultTa
             </ul>
           </div>
           <div className={styles.tabs__content}>
-            { getSelectedTab(selectedTab) }
+            {getSelectedTab(selectedTab)}
           </div>
         </div>
         <div className={styles.card}>
-          <MovieCard content={slides[0]} type="poster" />
+          <MovieCard content={slides[0]} type="poster"/>
         </div>
       </div>
     </div>

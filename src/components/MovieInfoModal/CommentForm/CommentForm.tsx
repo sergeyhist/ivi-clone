@@ -4,27 +4,27 @@ import CommentsList from "/src/components/MovieInfoModal/CommentsList/CommentsLi
 import ModalInput from "/src/UI/ModalInput/ModalInput";
 import styles from "./CommentForm.module.sass";
 
-interface CommentFormProps{
+interface CommentFormProps {
   comments: IComment[]
 }
 
-const CommentForm:FC<CommentFormProps> = ({comments})=>{
+const CommentForm: FC<CommentFormProps> = ({comments}) => {
   const [commentsState, setCommentsState] = useState<IComment[]>(comments);
   const [inputText, setInputText] = useState("");
-  const handleSubmitForm = (e: FormEvent) =>{
+  const handleSubmitForm = (e: FormEvent): void => {
     e.preventDefault();
-    const newComment ={
+    const newComment = {
       id: commentsState.length + 1,
       author: "Vegeta",
       text: inputText
     }
-    setCommentsState([...commentsState,newComment]);
+    setCommentsState([...commentsState, newComment]);
     setInputText("");
   }
 
-  return(
+  return (
     <form onSubmit={handleSubmitForm}>
-      <ModalInput className ={styles.input}
+      <ModalInput className={styles.input}
                   authData={inputText}
                   setAuthData={setInputText}
                   inputType="text"

@@ -3,15 +3,16 @@ import styles from './ProfileDropDown.module.sass';
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import {cardsIcons, profileLinks} from "/src/components/Header/DropDown/ProfileDropDown/ProfileDropDown.utils";
 import {useTranslation} from "react-i18next";
-import {useAppDispatch} from "/src/hooks/redux";
-import {setShowAuthModal} from "/src/store/slices/modalsSlice";
+import {useAppDispatch, useAppSelector} from "/src/hooks/redux";
+import {setShowModal} from "/src/store/slices/modalsSlice";
 
 const ProfileDropDown: FC = () => {
   const {t} = useTranslation();
+  const showModal = useAppSelector(state => state.showModal);
   const dispatch = useAppDispatch();
 
   const handleAuthClick = (): void => {
-    dispatch(setShowAuthModal({showAuthModal: true}));
+    dispatch(setShowModal({...showModal, showAuthModal: true}));
   }
 
   return (

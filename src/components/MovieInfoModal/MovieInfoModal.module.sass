@@ -6,6 +6,7 @@
   background-color: vars.$modalBackground
   height: 100%
   @include vars.modalInitAnimation
+
   .header
     display: flex
     font-size: 15px
@@ -19,30 +20,38 @@
     font-weight: 500
     cursor: pointer
     transition: .3s
+
     &:before
       content: "\E040"
       font-size: 20px
-      font-family: iconfont,sans-serif
+      font-family: iconfont, sans-serif
+
     &:hover
       opacity: 1
+
   .wrapper
     display: flex
     margin-top: 50px
+
     .content
       width: 100%
       max-width: 608px
+
       .title
         margin-bottom: 20px
         font-size: 40px
         line-height: 44px
         font-weight: 900
         color: #fff
+
       .tabs
         &__list
           display: flex
           gap: 24px
-          border-bottom: 2px solid rgba(255,255,255,.2)
+          border-bottom: 2px solid rgba(255, 255, 255, .2)
+
           &_wrapper
+
         &__item
           position: relative
           cursor: pointer
@@ -52,16 +61,20 @@
           line-height: 20px
           font-weight: 500
           transition: .3s
+
           &:hover
             opacity: 1
 
     .active
       opacity: 1 !important
+
       &:before
         content: ""
         position: absolute
         bottom: -2px
         width: 100%
         border-bottom: 3px solid #ea003d
+
     .card
+      margin-left: 100px
       width: 152px

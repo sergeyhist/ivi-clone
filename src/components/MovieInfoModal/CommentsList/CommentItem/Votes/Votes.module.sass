@@ -1,12 +1,13 @@
 @mixin iconFont
-  font-family: iconfont,sans-serif
-  color: rgba(126,121,143,.72)
+  font-family: iconfont, sans-serif
+  color: rgba(126, 121, 143, .72)
   font-size: 16px
   line-height: 16px
 
 .container
   display: flex
   gap: 8px
+
   .like
     &:before
       content: "\E3A4"
@@ -17,12 +18,15 @@
     font-size: 15px
     line-height: 20px
     font-weight: 700
+
   .dislike
     &:before
       content: "\E39C"
       @include iconFont
+
   .like, .dislike
     cursor: pointer
+
     &:hover
       &:before
-        color: rgba(126,121,143,.99)
+        color: rgba(126, 121, 143, .99)

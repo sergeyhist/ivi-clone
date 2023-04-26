@@ -7,22 +7,17 @@ import SearchModal from "/src/components/SearchModal/SearchModal";
 import { CSSTransition } from "react-transition-group";
 import { DropDownType } from "/src/components/Header/Header.utils";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
-import { RootState } from "/src/store";
 import Image from "next/image";
 import AuthModal from "/src/components/AuthModal/AuthModal";
 import createAppPortal from "/src/utils/createAppPortal";
-import {
-  setShowAuthModal,
-  setShowSearchModal,
-} from "/src/store/slices/modalsSlice";
+import {setShowModal} from "/src/store/slices/modalsSlice";
+import Link from "next/link";
 
 const Header: FC = () => {
   const [isDropdownActive, setIsDropdownActive] = useState(false);
   const [dropDownType, setDropDownType] = useState<DropDownType>("");
   const showModal = useAppSelector((state) => state.showModal);
-  const windowSizeWidth = useAppSelector(
-    (state: RootState) => state.windowSize.width
-  );
+  const windowSizeWidth = useAppSelector((state) => state.windowSize.width);
   const dispatch = useAppDispatch();
 
   const refDropDown = useRef<HTMLDivElement>(null);
@@ -51,7 +46,7 @@ const Header: FC = () => {
         createAppPortal(
           <AuthModal
             closeCallback={() =>
-              dispatch(setShowAuthModal({ showAuthModal: false }))
+              dispatch(setShowModal({...showModal, showAuthModal: false }))
             }
           />
         )}
@@ -59,7 +54,7 @@ const Header: FC = () => {
         createAppPortal(
           <SearchModal
             closeCallback={() =>
-              dispatch(setShowSearchModal({ showSearchModal: false }))
+              dispatch(setShowModal({...showModal, showSearchModal: false }))
             }
           />
         )}
@@ -72,14 +67,14 @@ const Header: FC = () => {
       >
         <div className={styles.header__navigation}>
           {windowSizeWidth > 599 && (
-            <div className={styles.header__logo}>
+            <Link href='/' className={styles.header__logo}>
               <Image
                 src="/images/iviLogo.svg"
                 alt="ivi logo"
                 width={77}
                 height={56}
               />
-            </div>
+            </Link>
           )}
           <div ref={navigationRef} className={styles.header__navigation_layout}>
             {windowSizeWidth > 1160 && (

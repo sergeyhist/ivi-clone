@@ -3,13 +3,17 @@ import styles from "./CreatorsList.module.sass";
 import {ICreator} from "/src/types/ICreator";
 import Image from "next/image";
 import Link from "next/link";
+import {useAppDispatch, useAppSelector} from "/src/hooks/redux";
+import {setShowModal} from "/src/store/slices/modalsSlice";
 
 interface CreatorsListProps {
   creators: ICreator[]
 }
 
 const CreatorsList: FC<CreatorsListProps> = ({creators}) => {
-  const firstTenCreators = creators.slice(0,10);
+  const showModal = useAppSelector(state => state.showModal);
+  const dispatch = useAppDispatch();
+  const firstTenCreators = creators.slice(0, 10);
 
   return (
     <div className={styles.container}>
@@ -19,7 +23,8 @@ const CreatorsList: FC<CreatorsListProps> = ({creators}) => {
             return (
               <Link className={styles.item} key={i} href='/'>
                 <div className={styles.image}>
-                  <Image src={creator.imageUrl || "/images/creators/unnamed.png"} width={88} height={88} alt={creator.firstName}></Image>
+                  <Image src={creator.imageUrl || "/images/creators/unnamed.png"} width={88} height={88}
+                         alt={creator.firstName}></Image>
                 </div>
                 <div>
                   <h4 className={styles.title}>{creator.firstName}</h4>
@@ -31,7 +36,10 @@ const CreatorsList: FC<CreatorsListProps> = ({creators}) => {
           })
         }
       </div>
-      <div className={styles.more__button}>Ещё</div>
+      <div className={styles.more__button} onClick={() => {
+        dispatch(setShowModal({...showModal, showMovieInfoModal: true}))
+      }}>Ещё
+      </div>
     </div>
   )
 }

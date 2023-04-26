@@ -1,24 +1,32 @@
-import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface ModalStates{
-  showSearchModal: boolean,
-  showAuthModal: boolean,
+interface ModalStates {
+  showSearchModal: boolean;
+  showAuthModal: boolean;
+  showMovieInfoModal: boolean;
 }
 
-const initialState:ModalStates = {showAuthModal:false,showSearchModal:false};
+const initialState: ModalStates = {
+  showAuthModal: false,
+  showSearchModal: false,
+  showMovieInfoModal: false,
+};
 
 export const modalsSlice = createSlice({
   name: "modals",
   initialState,
   reducers: {
-    setShowAuthModal: (state, action: PayloadAction<{ showAuthModal: boolean }>) => {
+    setShowModal: (
+      state,
+      action: PayloadAction<ModalStates>
+    ) => {
       state.showAuthModal = action.payload.showAuthModal;
+      state.showSearchModal = action.payload.showSearchModal;
+      state.showMovieInfoModal = action.payload.showMovieInfoModal;
     },
-    setShowSearchModal: (state, action: PayloadAction<{ showSearchModal: boolean }>) => {
-      state.showSearchModal= action.payload.showSearchModal;
-    },
-  }
+  },
 });
 
-export const {setShowAuthModal,setShowSearchModal} = modalsSlice.actions;
+export const { setShowModal } = modalsSlice.actions;
 export default modalsSlice.reducer;
+
