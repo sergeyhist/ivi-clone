@@ -7,7 +7,7 @@ import CustomButton from "/src/UI/CustomButton/CustomButton";
 import {DropDownType} from "/src/components/Header/Header.utils";
 import {useTranslation} from "react-i18next";
 import {useAppDispatch, useAppSelector} from "/src/hooks/redux";
-import {setShowSearchModal} from "/src/store/slices/modalsSlice";
+import {setShowModal} from "/src/store/slices/modalsSlice";
 
 interface ActionsProps {
   setDropDownType: Dispatch<SetStateAction<DropDownType>>,
@@ -16,6 +16,7 @@ interface ActionsProps {
 const Actions: FC<ActionsProps> = ({setDropDownType}) => {
   const {t} = useTranslation();
   const windowSizeWidth = useAppSelector(state => state.windowSize.width);
+  const showModal = useAppSelector(state => state.showModal);
   const dispatch = useAppDispatch();
 
   return (
@@ -25,7 +26,8 @@ const Actions: FC<ActionsProps> = ({setDropDownType}) => {
       </CustomButton>
       {
         windowSizeWidth > 1159 &&
-        <div className={styles.actions__search} onClick={() => dispatch(setShowSearchModal({showSearchModal: true}))}>
+        <div className={styles.actions__search}
+             onClick={() => dispatch(setShowModal({...showModal, showSearchModal: true}))}>
           <div className={styles.search__icon}><BsSearch/></div>
           <div>{t("header.search")}</div>
         </div>

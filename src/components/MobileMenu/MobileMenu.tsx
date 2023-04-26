@@ -1,13 +1,14 @@
 import {FC, useState} from "react";
-import styles from "./TabBar.module.sass";
-import {iconsClassNames, tabsLinks} from "/src/components/TabBar/TabBar.utils";
+import styles from "./MobileMenu.module.sass";
+import {iconsClassNames, tabsLinks} from "/src/components/MobileMenu/MobileMenu.utils";
 import {useTranslation} from "react-i18next";
-import {useAppDispatch} from "/src/hooks/redux";
-import {setShowSearchModal} from "/src/store/slices/modalsSlice";
+import {useAppDispatch, useAppSelector} from "/src/hooks/redux";
+import {setShowModal} from "/src/store/slices/modalsSlice";
 
-const TabBar: FC = () => {
+const MobileMenu: FC = () => {
   const {t} = useTranslation();
   const [activeTab, setActiveTab] = useState<number | null>(null);
+  const showModal = useAppSelector((state) => state.showModal);
   const dispatch = useAppDispatch();
 
   const handleTabClick = (index: number): void => {
@@ -22,12 +23,12 @@ const TabBar: FC = () => {
             return (
               <a className={styles.content__item} onClick={() => {
                 handleTabClick(i);
-                i === 2 && dispatch(setShowSearchModal({showSearchModal: true}))
-              }} key={i} href={i !== 2 ? tabsLinks[i] : undefined} target="_blank">
+                i === 2 && dispatch(setShowModal({...showModal,showSearchModal: true}))
+              }} key={i} href={i !== 2 ? tabsLinks[i] : undefined} target={i!== 0 && "_blank" || undefined}>
                 <div className={`${styles.glow__image} ${activeTab === i ? styles.active : ''}`}></div>
-                <div className={`${iconClass} ${activeTab === i ? styles.item_selected : ''}`}></div>
+                <div className={`${iconClass} ${styles.icon} ${activeTab === i ? styles.item_selected : ''}`}></div>
                 <div className={`${styles.content__item__caption} ${activeTab === i ? styles.item_selected : ''}`}>
-                  {t(`tabBar.links.${i}`)}
+                  {t(`mobileMenu.links.${i}`)}
                 </div>
               </a>
             )
@@ -38,4 +39,4 @@ const TabBar: FC = () => {
   )
 }
 
-export default TabBar;
+export default MobileMenu;

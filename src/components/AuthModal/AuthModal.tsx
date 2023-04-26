@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import styles from "./AuthModal.module.sass";
-import ChatHeader from "/src/components/RegistrationModal/ChatHeader/ChatHeader";
-import ChatDialogue from "/src/components/RegistrationModal/ChatDialogue/ChatDialogue";
+import ChatHeader from "/src/components/AuthModal/ChatHeader/ChatHeader";
+import ChatDialogue from "/src/components/AuthModal/ChatDialogue/ChatDialogue";
 
 interface RegistrationModalProps {
   closeCallback: () => void;

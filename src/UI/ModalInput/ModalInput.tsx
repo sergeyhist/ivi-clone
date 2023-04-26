@@ -8,34 +8,40 @@ import {
   useRef,
   useState,
 } from "react";
-import styles from "./AuthInput.module.sass";
+import styles from "./ModalInput.module.sass";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 
-interface EmailInputProps {
-  authData: string;
+interface ModalInputProps {
+  authData?: string;
   children?: ReactNode;
-  setAuthData: Dispatch<SetStateAction<string>>;
-  setIsValid: Dispatch<SetStateAction<boolean>>;
+  setAuthData?: Dispatch<SetStateAction<string>>;
+  setIsValid?: Dispatch<SetStateAction<boolean>>;
   setIsPasswordInputSelected?: Dispatch<SetStateAction<boolean>>;
   inputType: "email" | "password" | "text";
+  showIcon: boolean;
   placeholderText: string;
-  showErrorMessage: boolean;
+  buttonText: string;
+  showErrorMessage?: boolean;
   clickCallback?: () => void;
   preventDefault?: boolean;
+  className?: string;
 }
 
-const AuthInput: FC<EmailInputProps> = ({
-  authData,
-  children,
-  setAuthData,
-  setIsValid,
-  setIsPasswordInputSelected,
-  inputType,
-  placeholderText,
-  showErrorMessage,
-  clickCallback,
-  preventDefault,
-}) => {
+const ModalInput: FC<ModalInputProps> = ({
+                                           authData,
+                                           children,
+                                           setAuthData,
+                                           setIsValid,
+                                           setIsPasswordInputSelected,
+                                           inputType,
+                                           placeholderText,
+                                           buttonText,
+                                           showErrorMessage,
+                                           clickCallback,
+                                           preventDefault,
+                                           showIcon,
+                                           className,
+                                         }) => {
   const [isInputActive, setIsInputActive] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
 
@@ -74,45 +80,45 @@ const AuthInput: FC<EmailInputProps> = ({
   }, [setIsPasswordInputSelected]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    const { value } = e.target;
+    const {value} = e.target;
 
     value !== "" ? setIsButtonDisabled(false) : setIsButtonDisabled(true);
-    setAuthData(value);
-    setIsValid(false);
+    setAuthData && setAuthData(value);
+    setIsValid && setIsValid(false);
     if (setIsPasswordInputSelected && value !== "")
       setIsPasswordInputSelected(true);
   };
 
   const handleInputClick = (): void => {
     if (inputRef.current) {
-      inputRef.current.focus();
+      inputRef.current?.focus();
       setIsInputActive(true);
     }
   };
 
   return (
-    <div className={styles.chat__input__container}>
+    <div className={`${styles.input__container} ${className ? className : ""}`}>
       <div
         ref={contentRef}
-        className={`${styles.chat__input__content} ${
-          showErrorMessage ? styles.chat__input__error : ""
+        className={`${styles.input__content} ${
+          showErrorMessage ? styles.input__error : ""
         }`}
         onClick={handleInputClick}
       >
         <div
-          className={`${styles.chat__input__placeholder} ${
+          className={`${styles.input__placeholder} ${
             isInputActive ? styles.placeholder_active : ""
           }`}
         >
           {placeholderText}
         </div>
-        <div className={styles.chat__input_block}>
-          <div className={styles.chat__input__icon}></div>
+        <div className={styles.input_block}>
+          {showIcon && <div className={styles.input__icon}></div>}
           <input
             type={inputType}
             ref={inputRef}
             value={authData}
-            className={`${styles.chat__input} ${
+            className={`${styles.input} ${
               isInputActive ? styles.input_active : ""
             }`}
             onChange={handleInputChange}
@@ -123,15 +129,15 @@ const AuthInput: FC<EmailInputProps> = ({
       <CustomButton
         preventDefault={preventDefault}
         clickCallback={clickCallback}
-        className={`${styles.chat__button} ${
+        className={`${styles.button} ${
           isButtonDisabled ? styles.button_disabled : ""
         }`}
         type="red"
       >
-        Продолжить
+        {buttonText}
       </CustomButton>
     </div>
   );
 };
 
-export default AuthInput;
+export default ModalInput;

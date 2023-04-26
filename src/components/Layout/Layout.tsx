@@ -5,8 +5,8 @@ import Header from "../Header/Header";
 import { useDispatch } from "react-redux";
 import { setWindowSize } from "/src/store/slices/windowSizeSlice";
 import { useAppSelector } from "/src/hooks/redux";
-import TabBar from "/src/components/TabBar/TabBar";
 import { useDebouncedCallback } from "use-debounce";
+import MobileMenu from "/src/components/MobileMenu/MobileMenu";
 
 interface LayoutProps {
   title: string;
@@ -42,7 +42,7 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
       </Head>
       <Header />
       <main className="container">{children}</main>
-      {windowSizeWidth < 1160 && <TabBar />}
+      {windowSizeWidth < 1160 && <MobileMenu />}
       <Footer />
     </>
   );
