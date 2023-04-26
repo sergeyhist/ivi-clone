@@ -8,3 +8,14 @@ export interface IFilter {
 export interface IFilterSlide extends IFilter {
   icon?: ReactNode;
 }
+
+export interface IActiveFilters {
+  [key: string]: IFilter | IFilter[];
+  genre: IFilter[];
+  country: IFilter[];
+  year: IFilter;
+  rating: IFilter;
+  ratingCount: IFilter;
+  actor: IFilter;
+  director: IFilter;
+}

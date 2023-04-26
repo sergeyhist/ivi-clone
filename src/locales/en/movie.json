@@ -34,5 +34,9 @@
     "title": "on all devices",
     "text": "The application is available for download on iOS, Android, SmartTV and set-top boxes",
     "button": "Connect devices"
+  },
+  "related": {
+    "with": "With film",
+    "watch": "watch the same"
   }
 }

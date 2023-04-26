@@ -1,29 +1,22 @@
-import {
-  Dispatch,
-  FC,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
-import { getFiltersTexts } from "../Filters.utils";
+import { FC, useRef, useState } from "react";
 import FilterTitle from "../FilterTitle/FilterTitle";
 import ListItem from "./ListItem/ListItem";
 import styles from "./SingleSelector.module.sass";
+import useCloseEvents from "/src/hooks/useCloseEvents";
 import { IFilter } from "/src/types/IFilter";
 
 interface SingleSelectorProps {
   title: string;
   items: IFilter[];
-  activeFilter: string;
-  setActiveFilter: Dispatch<SetStateAction<string>>;
+  activeFilter: IFilter;
+  getFilter: (filter: IFilter) => void;
 }
 
 const SingleSelector: FC<SingleSelectorProps> = ({
   title,
   items,
   activeFilter,
-  setActiveFilter,
+  getFilter,
 }) => {
   const titleRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -34,27 +27,7 @@ const SingleSelector: FC<SingleSelectorProps> = ({
     ? ` ${styles.selector__dropdown_active}`
     : "";
 
-  const activeFilterText = getFiltersTexts(items, activeFilter);
-
-  useEffect(() => {
-    const clickHandler = (e: MouseEvent) => {
-      !dropdownRef.current?.contains(e.target as Node) &&
-        !titleRef.current?.contains(e.target as Node) &&
-        setIsDropdownActive(false);
-    };
-
-    const keydownHandler = (e: KeyboardEvent) => {
-      e.key === "Escape" && setIsDropdownActive(false);
-    };
-
-    document.addEventListener("mousedown", clickHandler);
-    document.addEventListener("keydown", keydownHandler);
-
-    return () => {
-      document.removeEventListener("mousedown", clickHandler);
-      document.removeEventListener("keydown", keydownHandler);
-    };
-  }, [setIsDropdownActive]);
+  useCloseEvents([titleRef, dropdownRef], setIsDropdownActive);
 
   return (
     <div className={styles.selector + " unselectable"}>
@@ -63,7 +36,7 @@ const SingleSelector: FC<SingleSelectorProps> = ({
           text={title}
           isDropdownActive={isDropdownActive}
           setIsDropdownActive={setIsDropdownActive}
-          activeFilters={activeFilterText}
+          activeFilters={activeFilter.slug !== 'all' ? [activeFilter] : undefined}
         />
       </div>
       <div
@@ -76,8 +49,8 @@ const SingleSelector: FC<SingleSelectorProps> = ({
               key={i}
               slug={item.slug}
               text={item.text}
-              isActive={activeFilter === item.slug}
-              clickCallback={() => setActiveFilter(item.slug)}
+              isActive={activeFilter.slug === item.slug}
+              clickCallback={() => getFilter(item)}
             />
           ))}
         </ul>

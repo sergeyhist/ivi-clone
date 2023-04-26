@@ -1,6 +1,6 @@
 import styles from "./MovieCard.module.sass";
 
-export const getTypeTitle = (type: number) => {
+export const getTypeTitle = (type: number): string => {
   switch (type) {
     case 1:
       return "Покупка";
@@ -11,13 +11,13 @@ export const getTypeTitle = (type: number) => {
   }
 };
 
-export const getTypeClassName = (type: number) => {
+export const getTypeClassName = (type: number): string => {
   switch (type) {
     case 1:
-      return `${styles.slide__type} ${styles.slide__type_purchase}`;
+      return `${styles.access} ${styles.access_purchase}`;
     case 2:
-      return `${styles.slide__type}`;
+      return `${styles.access}`;
     default:
-      return `${styles.slide__type} ${styles.slide__type_subscription}`;
+      return `${styles.access} ${styles.access_subscription}`;
   }
 };

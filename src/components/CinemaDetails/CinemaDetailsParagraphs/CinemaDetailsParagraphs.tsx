@@ -1,28 +1,18 @@
 import { FC } from "react";
 import styles from "../CinemaDetails.module.sass";
+import { useTranslation } from "react-i18next";
+import { paragraphs } from "../CinemaDetails.utils";
 
 const CinemaDetailsParagraphs: FC = () => {
+  const { t } = useTranslation();
+
   return (
     <>
-      <p className={styles.dropdown__paragraph}>
-        Каждый день миллионы людей ищут фильмы онлайн, и никто не хочет
-        усложнять себе жизнь – и вы наверняка один из них! А раз так, то Иви –
-        это именно тот ресурс, который вам нужен. От лучших кинолент в
-        HD-качестве вас отделяет буквально один клик. Мы не просто освобождаем
-        от необходимости идти в кинотеатр или изучать программу телепередач – у
-        посетителей нашего ресурса гораздо больше возможностей.
-      </p>
-      <p className={styles.dropdown__paragraph}>
-        Видеотека Иви – это постоянно пополняющаяся коллекция в рунете, которая
-        насчитывает более 60 тысяч отечественного и зарубежного контента,
-        доступного для просмотра онлайн. Мы первыми в России подписали контракты
-        с крупнейшими голливудскими студиями (Walt Disney, Warner Bros., Sony,
-        20th Century Fox, Universal, Paramount, MGM и другими) и на постоянной
-        основе сотрудничаем с крупнейшими российскими компаниями и телеканалами.
-      </p>
-      <p className={styles.dropdown__paragraph}>
-        Онлайн-кинотеатр ivi.ru – это:
-      </p>
+      {paragraphs.map((paragraph, index) => (
+        <p key={index} className={styles.dropdown__paragraph}>
+          {t(paragraph)}
+        </p>
+      ))}
     </>
   );
 };

@@ -21,7 +21,31 @@
 
   &__link
     font-weight: 500
-    transition: .3s
+    transition: .2s
 
   &__link:hover
     color: #fff
+
+.list_slash
+  .list
+    &__item
+      color: #ffffff8f
+      font-size: 13px
+
+    &__item:not(:first-child)::before
+      content: '/'
+      margin: 0 4px 0 3px
+      background: none
+      height: auto
+      width: auto
+      color: #ffffff8f
+      font-size: 13px
+
+    &__link
+      color: #fff
+      font-size: 13px
+      position: relative
+      box-shadow: 0 2px 0 #7e798f, inset 0 0 0 #7e798f
+
+    &__link:hover
+      box-shadow: 0 0 0 #7e798f, inset 0 -1.5em 0 #7e798f
