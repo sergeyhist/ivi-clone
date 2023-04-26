@@ -9,7 +9,7 @@ interface CommentItemProps{
 }
 
 const CommentItem:FC<CommentItemProps> = ({comment,level})=>{
-  const indentation = level * 16;
+  const indentation = level * 8;
 
   return(
     <div className={styles.container}>

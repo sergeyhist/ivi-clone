@@ -22,6 +22,34 @@ export const comments: IComment[] = [
             id: 4,
             author: "Misato",
             text: "Ответ на ответ на комментарий 1",
+            replies: [
+              {
+                id: 7,
+                author: "Misato",
+                text: "Ответ на ответ на комментарий 1",
+                replies: [
+                  {
+                    id: 8,
+                    author: "Misato",
+                    text: "Ответ на ответ на комментарий 1",
+                    replies: [
+                      {
+                        id: 9,
+                        author: "Misato",
+                        text: "Ответ на ответ на комментарий 1",
+                        replies: [
+                          {
+                            id: 10,
+                            author: "Misato",
+                            text: "Ответ на ответ на комментарий 1",
+                          },
+                        ],
+                      },
+                    ],
+                  },
+                ],
+              },
+            ],
           },
         ],
       },
