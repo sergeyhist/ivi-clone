@@ -1,7 +1,6 @@
 import { FC } from "react";
 import IMovieCard from "../../types/IMovieCard";
 import MovieCardDefault from "./MovieCardDefault/MovieCardDefault";
-import MovieCardRelated from "./MovieCardRelated/MovieCardRelated";
 import MovieCardPoster from "./MovieCardPoster/MovieCardPoster";
 
 interface HomeSliderProps {
@@ -14,11 +13,9 @@ const MovieCard: FC<HomeSliderProps> = ({ content, type = "default" }) => {
     case "default":
       return <MovieCardDefault content={content} />;
     case "related":
-      return <MovieCardRelated content={content} />;
+      return <MovieCardDefault type="related" content={content} />;
     case "poster":
       return <MovieCardPoster content={content} />;
-    default:
-      return <MovieCardDefault content={content} />;
   }
 };
 
