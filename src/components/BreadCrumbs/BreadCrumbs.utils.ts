@@ -1,4 +1,4 @@
-export const getRoutes = (path: string) => {
+export const getRoutes = (path: string): string[] => {
   const catalogs = path.split("/");
   const routes: string[] = [];
   let prevPath = "";
