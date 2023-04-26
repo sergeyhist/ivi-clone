@@ -1,37 +1,20 @@
 import { FC } from "react";
 import styles from "./MovieCardButtons.module.sass";
+import { buttonsId } from "../../../../utils/movieCard";
 
 const MovieCardButtons: FC = () => {
   return (
     <div className={styles.buttons}>
-      <button
-        data-tooltip-id="save"
-        data-tooltip-place={"top"}
-        className={styles.buttons__button}
-      >
-        <i className={`${styles.icon_save} ${styles.icon}`}></i>
-      </button>
-      <button
-        data-tooltip-id="similar"
-        data-tooltip-place={"top"}
-        className={styles.buttons__button}
-      >
-        <i className={`${styles.icon_similar} ${styles.icon}`}></i>
-      </button>
-      <button
-        data-tooltip-id="favorite"
-        data-tooltip-place={"top"}
-        className={styles.buttons__button}
-      >
-        <i className={`${styles.icon_star} ${styles.icon}`}></i>
-      </button>
-      <button
-        data-tooltip-id="block"
-        data-tooltip-place={"top"}
-        className={styles.buttons__button}
-      >
-        <i className={`${styles.icon_block} ${styles.icon}`}></i>
-      </button>
+      {buttonsId.map((id, index) => (
+        <button
+          key={index}
+          data-tooltip-id={id}
+          data-tooltip-place={"top"}
+          className={styles.buttons__button}
+        >
+          <i className={`${styles[`icon_${id}`]} ${styles.icon}`}></i>
+        </button>
+      ))}
     </div>
   );
 };
