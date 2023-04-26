@@ -4,8 +4,9 @@ import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import { useDispatch } from "react-redux";
 import { setWindowSize } from "/src/store/slices/windowSizeSlice";
-import {useAppSelector} from "/src/hooks/redux";
+import { useAppSelector } from "/src/hooks/redux";
 import TabBar from "/src/components/TabBar/TabBar";
+import { useDebouncedCallback } from "use-debounce";
 
 interface LayoutProps {
   title: string;
@@ -13,24 +14,24 @@ interface LayoutProps {
 }
 
 const Layout: FC<LayoutProps> = ({ title, children }) => {
-  const windowSizeWidth = useAppSelector(state => state.windowSize.width);
+  const windowSizeWidth = useAppSelector((state) => state.windowSize.width);
   const dispatch = useDispatch();
 
+  const debouncedResize = useDebouncedCallback((): void => {
+    dispatch(
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      })
+    );
+  }, 200);
+
   useEffect(() => {
-    const resizeHandler = ():void => {
-      dispatch(
-        setWindowSize({
-          width: window.innerWidth,
-          height: window.innerHeight,
-        })
-      );
-    };
+    debouncedResize();
+    window.addEventListener("resize", debouncedResize);
 
-    resizeHandler();
-    window.addEventListener("resize", resizeHandler);
-
-    return () => window.removeEventListener("resize", resizeHandler);
-  }, [dispatch]);
+    return () => window.removeEventListener("resize", debouncedResize);
+  }, [dispatch, debouncedResize]);
 
   return (
     <>
@@ -41,7 +42,7 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
       </Head>
       <Header />
       <main className="container">{children}</main>
-      {windowSizeWidth < 1160 && <TabBar/>}
+      {windowSizeWidth < 1160 && <TabBar />}
       <Footer />
     </>
   );
