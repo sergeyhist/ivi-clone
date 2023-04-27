@@ -25,9 +25,11 @@ const Actions: FC<ActionsProps> = ({setDropDownType}) => {
     <div className={styles.actions__container}>
       {
         router.pathname !== "/" ?
-          <CustomButton className={styles.subscription} type="red">
-            {t("header.freeSubscription")}
-          </CustomButton>
+          <div onMouseEnter={() => setDropDownType('subscription')}>
+            <CustomButton className={styles.subscription} type="red">
+              {t("header.freeSubscription")}
+            </CustomButton>
+          </div>
           :
           <CustomButton type='purple'>
             {t("header.subscription")}

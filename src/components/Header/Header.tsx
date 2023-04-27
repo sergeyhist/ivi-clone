@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
 import Image from "next/image";
 import AuthModal from "/src/components/AuthModal/AuthModal";
 import createAppPortal from "/src/utils/createAppPortal";
-import {setShowModal} from "/src/store/slices/modalsSlice";
+import { setShowModal } from "/src/store/slices/modalsSlice";
 import Link from "next/link";
 
 const Header: FC = () => {
@@ -46,7 +46,7 @@ const Header: FC = () => {
         createAppPortal(
           <AuthModal
             closeCallback={() =>
-              dispatch(setShowModal({...showModal, showAuthModal: false }))
+              dispatch(setShowModal({ ...showModal, showAuthModal: false }))
             }
           />
         )}
@@ -54,7 +54,7 @@ const Header: FC = () => {
         createAppPortal(
           <SearchModal
             closeCallback={() =>
-              dispatch(setShowModal({...showModal, showSearchModal: false }))
+              dispatch(setShowModal({ ...showModal, showSearchModal: false }))
             }
           />
         )}
@@ -67,7 +67,7 @@ const Header: FC = () => {
       >
         <div className={styles.header__navigation}>
           {windowSizeWidth > 599 && (
-            <Link href='/' className={styles.header__logo}>
+            <Link href="/" className={styles.header__logo}>
               <Image
                 src="/images/iviLogo.svg"
                 alt="ivi logo"

@@ -18,13 +18,13 @@ const FooterButtons: FC = () => {
   const listRef = useRef<HTMLDivElement>(null);
   const phoneRef = useRef<HTMLDivElement>(null);
 
-  const clickHandler = (e: MouseEvent) => {
+  const clickHandler = (e: MouseEvent): void => {
     !listRef.current?.contains(e.target as Node) &&
       !phoneRef.current?.contains(e.target as Node) &&
       setIsListActive(false);
   };
 
-  const keydownHandler = (e: KeyboardEvent) => {
+  const keydownHandler = (e: KeyboardEvent): void => {
     e.key === "Escape" && setIsListActive(false);
   };
 

@@ -31,7 +31,7 @@ const SearchModal: FC<SearchModalProps> = ({ closeCallback }) => {
     inputActive: true,
   });
 
-  const keydownHandler = (e: KeyboardEvent) => {
+  const keydownHandler = (e: KeyboardEvent): void => {
     e.key === "Escape" && closeCallback();
     e.key === "Enter" &&
       window.open(
@@ -39,7 +39,7 @@ const SearchModal: FC<SearchModalProps> = ({ closeCallback }) => {
       );
   };
 
-  const clickHandler = (e: MouseEvent) => {
+  const clickHandler = (e: MouseEvent): void => {
     if (
       !stringRef.current?.contains(e.target as Node) &&
       searchQuery.length === 0

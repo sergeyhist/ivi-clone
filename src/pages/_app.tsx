@@ -5,8 +5,9 @@ import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
 import { store } from "../store";
 import '../utils/i18n';
+import {ReactNode} from "react";
 
-const App = ({ Component, pageProps }: AppProps) => {
+const App = ({ Component, pageProps }: AppProps): ReactNode => {
   return (
     <Provider store={store}>
       <Component {...pageProps} />

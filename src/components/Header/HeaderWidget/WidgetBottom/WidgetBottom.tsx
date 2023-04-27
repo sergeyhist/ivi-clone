@@ -16,7 +16,7 @@ const WidgetBottom: FC<WidgetBottomProps> = ({isBottomActive}) => {
         ? ` ${styles.bottom__subscribe_active}`
         : "";
 
-    const openSubscription = () => {
+    const openSubscription = (): void => {
         window.open("https://www.ivi.ru/profile/subscription");
     };
 

@@ -9,6 +9,7 @@ const FooterAsk: FC = () => {
   return (
     <div className={styles.ask}>
       <Link
+        target="_blank"
         className={styles.ask__link}
         href="https://ask.ivi.ru/?_gl=1*17d3i43*_ga*MTYyOTgwODIxOC4xNjgxMjEzNzAx*_ga_GETQ4387MJ*MTY4MTI5Mzg5My4zLjEuMTY4MTMwNDIxNS41NS4wLjA."
       >

@@ -28,7 +28,7 @@ const MultiSelector: FC<MultiSelectorProps> = ({
 
   const [isDropdownActive, setIsDropdownActive] = useState(false);
 
-  const clickHandler = (item: IFilter) => {
+  const clickHandler = (item: IFilter): void => {
     if (activeFilters.some((filter) => filter.slug === item.slug)) {
       getFilters(activeFilters.filter((filter) => filter.slug !== item.slug));
     } else {

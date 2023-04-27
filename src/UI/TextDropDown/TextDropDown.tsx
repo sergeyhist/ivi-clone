@@ -28,7 +28,7 @@ const TextDropDown: FC<DropDownProps> = ({
     ? `${styles.dropdown} ${styles.dropdown_active}`
     : `${styles.dropdown}`;
 
-  const toggleDropDown = (event: React.MouseEvent) => {
+  const toggleDropDown = (event: React.MouseEvent): void => {
     if (showDropDown) {
       (event.target as HTMLButtonElement).textContent =
         toogleTitles.defaultTitle;

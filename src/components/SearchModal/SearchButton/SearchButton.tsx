@@ -21,7 +21,7 @@ const SearchButton: FC<SearchButtonProps> = ({
     searchQuery.length > 0 || searchStates.buttonActive
       ? ` ${styles.btn_active}`
       : "";
-  const clickHandler = () => {
+  const clickHandler = (): void => {
     if (searchQuery.length > 0) {
       clickCallback();
     }

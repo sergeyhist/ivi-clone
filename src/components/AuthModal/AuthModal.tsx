@@ -11,7 +11,7 @@ const AuthModal: FC<RegistrationModalProps> = ({ closeCallback }) => {
   const [progressBarWidth, setProgressBarWidth] = useState({ width: "10%" });
 
   useEffect(() => {
-    const keydownHandler = (e: KeyboardEvent) => {
+    const keydownHandler = (e: KeyboardEvent):void => {
       e.key === "Escape" && closeCallback();
     };
     document.addEventListener("keydown", keydownHandler);
