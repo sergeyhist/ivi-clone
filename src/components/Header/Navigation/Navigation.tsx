@@ -17,8 +17,18 @@ const Navigation: FC<NavigationProps> = ({
   return (
     <nav className={styles.nav}>
       <ul className={styles.nav__list}>
-        <li className={styles.nav__item}>{t("header.navigation.0")}</li>
-        <li className={styles.nav__item}>{t("header.navigation.1")}</li>
+        <li
+          className={styles.nav__item}
+          onMouseEnter={() => setIsDropdownActive(false)}
+        >
+          {t("header.navigation.0")}
+        </li>
+        <li
+          className={styles.nav__item}
+          onMouseEnter={() => setIsDropdownActive(false)}
+        >
+          {t("header.navigation.1")}
+        </li>
         <li
           className={styles.nav__item}
           onMouseEnter={() => {

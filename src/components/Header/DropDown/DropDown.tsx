@@ -8,6 +8,7 @@ import TvDropDown from "/src/components/Header/DropDown/TvDropDown/TvDropDown";
 import {DropDownType} from "/src/components/Header/Header.utils";
 import {useAppSelector} from "/src/hooks/redux";
 import {RootState} from "/src/store";
+import SubscriptionDropdown from "/src/components/Header/DropDown/SubscriptionDropdown/SubscriptionDropdown";
 
 interface DropDownProps {
   dropDownType: DropDownType
@@ -29,6 +30,8 @@ const DropDown: FC<DropDownProps> = ({dropDownType}) => {
         return <NotificationDropDown/>;
       case 'profile':
         return <ProfileDropDown/>;
+      case 'subscription':
+        return <SubscriptionDropdown/>;
     }
   }
 

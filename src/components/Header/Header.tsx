@@ -84,7 +84,7 @@ const Header: FC = () => {
           </div>
         </div>
         <div ref={actionRef} className={styles.header__action_layout}>
-          <Actions setDropDownType={setDropDownType} />
+          <Actions setIsDropdownActive={setIsDropdownActive} setDropDownType={setDropDownType} />
         </div>
       </div>
       <CSSTransition
