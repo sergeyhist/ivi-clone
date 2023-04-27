@@ -25,6 +25,10 @@ const Actions: FC<ActionsProps> = ({
   const dispatch = useAppDispatch();
   const router = useRouter();
 
+  const handleSearchClick = ():void =>{
+    dispatch(setShowModal({ ...showModal, showSearchModal: true }))
+  }
+
   return (
     <div className={styles.actions__container}>
       {router.pathname !== "/" ? (
@@ -48,9 +52,7 @@ const Actions: FC<ActionsProps> = ({
         <div
           className={styles.actions__search}
           onMouseEnter={() => setIsDropdownActive(false)}
-          onClick={() =>
-            dispatch(setShowModal({ ...showModal, showSearchModal: true }))
-          }
+          onClick={handleSearchClick}
         >
           <div className={styles.search__icon}>
             <BsSearch />
