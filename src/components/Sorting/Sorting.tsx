@@ -31,7 +31,7 @@ const Sorting: FC<SortingProps> = ({
   const titleValue =
     sortOptions.find((option) => option.slug === activeSorting)?.text || "";
 
-  const optionClickHandler = (slug: string) => {
+  const optionClickHandler = (slug: string): void => {
     setActiveSorting(slug);
     setIsDropdownActive(false);
   };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
 import Filters from "/src/components/Filters/Filters";
 import Layout from "/src/components/Layout/Layout";
@@ -7,10 +7,8 @@ import { IActiveFilters } from "/src/types/IFilter";
 import styles from "/src/styles/pages/MoviesPage.module.sass";
 import FiltersInfo from "/src/components/FiltersInfo/FiltersInfo";
 import BreadCrumbs from "/src/components/BreadCrumbs/BreadCrumbs";
-import SlideshowWidget from "/src/UI/SlideshowWidget/SlideshowWidget";
-import {slideshowItems} from "/src/utils/slideshowItems";
 
-const Home = () => {
+const Home = (): ReactNode => {
   const { t } = useTranslation();
 
   const [activeFilters, setActiveFilters] = useState<IActiveFilters>({

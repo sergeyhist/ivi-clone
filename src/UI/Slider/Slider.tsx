@@ -34,11 +34,11 @@ const Slider: FC<SliderProps> = ({
   const [show, setShow] = useState({ prev: false, next: true });
   const swiperRef = useRef<SwiperRef>(null);
 
-  const nextCallback = () => {
+  const nextCallback = ():void => {
     swiperRef.current?.swiper.slideNext();
   };
 
-  const prevCallback = () => {
+  const prevCallback = ():void => {
     swiperRef.current?.swiper.slidePrev();
   };
 
