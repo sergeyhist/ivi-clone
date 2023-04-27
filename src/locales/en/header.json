@@ -1,6 +1,16 @@
 {
-  "navigation": ["My Ivi","What's new","Movies","Series","Cartoons"],
-  "genreTitles": ["Genres","Countries","Years"],
+  "navigation": [
+    "My Ivi",
+    "What's new",
+    "Movies",
+    "Series",
+    "Cartoons"
+  ],
+  "genreTitles": [
+    "Genres",
+    "Countries",
+    "Years"
+  ],
   "tabs": {
     "movies": [
       "New items",
@@ -36,20 +46,55 @@
     "widgetTitle": "Ivi Sign Up",
     "widgetPrice": "From 3.99$ per month",
     "widgetBuyButton": "Subscribe",
-    "widgetHint" : "You can disable it at any time",
+    "widgetHint": "You can disable it at any time",
     "smartTvButton": "Watch on Smart TV"
   },
-  "tv":{
-    "links": ["TV online","TV-channels","Entertainment","Kids","Sports TV","Documentary"],
+  "tv": {
+    "links": [
+      "TV online",
+      "TV-channels",
+      "Entertainment",
+      "Kids",
+      "Sports TV",
+      "Documentary"
+    ],
     "program": "TV program",
-    "channels": ["Federal channels","Sports channels"]
+    "channels": [
+      "Federal channels",
+      "Sports channels"
+    ]
   },
-  "profile" : {
-    "cardsText": ["Purchases", "Watch later", "History", "Subscriptions", "Certificate activation", "Login by code", "Payment methods"],
-    "settings": ["Settings","Help"],
+  "subscriptionTitles": {
+    "header": [
+      "Ivi Subscription",
+      "Cost 4,99$ per month, renew automatically"
+    ],
+    "titles": [
+      "New TV series and movies",
+      "Weekly additions to the catalog with movies and TV series from all over the world",
+      "Movies and TV series without ad",
+      "Family account on 5 devices",
+      "Downloading to mobile devices"
+    ]
+  },
+  "profile": {
+    "cardsText": [
+      "Purchases",
+      "Watch later",
+      "History",
+      "Subscriptions",
+      "Certificate activation",
+      "Login by code",
+      "Payment methods"
+    ],
+    "settings": [
+      "Settings",
+      "Help"
+    ],
     "auth": "Login or Sign Up"
   },
   "notification": "Only important messages appear here",
   "search": "Search",
-  "subscription" : "Buy subscription"
+  "subscription": "Buy subscription",
+  "freeSubscription": "Watch 30 days for free"
 }

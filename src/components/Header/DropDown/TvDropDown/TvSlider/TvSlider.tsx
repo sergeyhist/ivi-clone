@@ -17,7 +17,7 @@ const TvSlider: FC<TvSliderProps> = ({slides}) => {
       {
         slides.map(slide =>
           <SwiperSlide key={slide.id}>
-            <a href={slide.link} target='_blank'>
+            <a className={styles.link} href={slide.link} target='_blank'>
               <Image className={styles.channels__slider_item + " unselectable"}
                      src={slide.imageUrl} alt="slider item" width={88} height={58}/>
             </a>

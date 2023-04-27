@@ -1,0 +1,100 @@
+.container
+  display: flex
+  width: 100%
+  justify-content: space-between
+
+  .header
+    margin-top: 30px
+
+    .title
+      color: #fff
+      font-size: 28px
+      line-height: 32px
+      font-weight: 700
+
+    p
+      color: rgba(217, 215, 224, .48)
+      font-size: 15px
+      line-height: 20px
+      margin-top: 8px
+
+  .bottom__content
+    display: flex
+    gap: 20px
+    align-items: center
+
+    .hint
+      color: #a5a1b2
+      font-size: 13px
+      line-height: 16px
+
+    .button
+      width: 381px
+
+  .titles
+    display: grid
+    gap: 24px
+    margin-top: 32px
+    max-width: 608px
+    grid-template-columns: repeat(3, 1fr)
+
+    .item
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      background-color: #312b45
+      height: 128px
+      user-select: none
+      pointer-events: none
+      padding: 20px
+      border-radius: 8px
+      min-height: 108px
+
+      &_long
+        grid-column: 2 / span 2
+
+      .text
+        color: #fff
+        font-size: 15px
+        line-height: 20px
+        font-weight: 500
+
+      .icon
+        font-family: iconfont, sans-serif
+        color: #fff
+        font-size: 20px
+        opacity: .48
+        line-height: 20px
+
+      .news
+        &:before
+          content: "\E134"
+
+      .catalog
+        &:before
+          content: "\E073"
+
+      .ad_free
+        &:before
+          content: "\E26D"
+
+      .crossplatform
+        &:before
+          content: "\E02A"
+
+      .download
+        &:before
+          content: "\E0D0"
+
+  .content
+    &__left
+      display: flex
+      margin-right: 100px
+      flex-direction: column
+      justify-content: space-between
+
+    &__rigth
+      display: flex
+      align-items: center
+      margin-right: 100px
+      height: 500px

@@ -1,7 +1,7 @@
 import {IGenreFilters, IGenreLinks} from "/src/types/IGenre";
 import {cartoonsGenres, moviesGenres, seriesGenres} from "/src/locales/genresDropDownData";
 
-export type DropDownType = "movies" | "series" | "cartoons" | "tv" | "notification" | "profile" | "";
+export type DropDownType = "movies" | "series" | "cartoons" | "tv" | "notification" | "profile" | "subscription" | "";
 
 export const getGenreLinks = (genre: DropDownType): IGenreFilters => {
   switch (genre) {
