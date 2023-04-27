@@ -44,6 +44,13 @@
     "program": "TV program",
     "channels": ["Federal channels","Sports channels"]
   },
+  "subscriptionTitles": [
+    "New TV series and movies",
+    "Weekly additions to the catalog with movies and TV series from all over the world",
+    "Movies and TV series without ad",
+    "Family account on 5 devices",
+    "Downloading to mobile devices"
+  ],
   "profile" : {
     "cardsText": ["Purchases", "Watch later", "History", "Subscriptions", "Certificate activation", "Login by code", "Payment methods"],
     "settings": ["Settings","Help"],

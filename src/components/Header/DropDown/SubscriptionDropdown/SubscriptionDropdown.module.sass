@@ -1,0 +1,52 @@
+.container
+  display: flex
+  width: 100%
+  justify-content: space-between
+  background: #1f1b2e
+  .header
+    .title
+  .titles
+    display: grid
+    gap: 24px
+    max-width: 608px
+    grid-template-columns: repeat(3, 1fr)
+    .item
+      display: flex
+      flex-direction: column
+      justify-content: space-between
+      background-color: #312b45
+      height: 128px
+      user-select: none
+      pointer-events: none
+      padding: 20px
+      border-radius: 8px
+      min-height: 108px
+      &_long
+        grid-column: 2 / span 2
+
+      .text
+        color: #fff
+        font-size: 15px
+        line-height: 20px
+        font-weight: 500
+      .icon
+        font-family: iconfont,sans-serif
+        color: #fff
+        font-size: 20px
+        opacity: .48
+        line-height: 20px
+      .news
+        &:before
+          content: "\E134"
+      .catalog
+        &:before
+          content: "\E073"
+      .ad_free
+        &:before
+          content: "\E26D"
+      .crossplatform
+        &:before
+          content: "\E02A"
+      .download
+        &:before
+          content: "\E0D0"

@@ -1,6 +1,6 @@
 import styles from "./SubscriptionDropdown.module.sass";
 
-export const titlesIconsLassNames = [
+export const titlesIconsClassNames = [
   styles.news,
   styles.catalog,
   styles.ad_free,

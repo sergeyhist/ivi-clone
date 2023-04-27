@@ -31,8 +31,6 @@ const Header: FC = () => {
       !actionRef.current?.contains(e.target as Node)
     ) {
       setIsDropdownActive(false);
-    } else {
-      setIsDropdownActive(true);
     }
   };
 
@@ -78,12 +76,15 @@ const Header: FC = () => {
           )}
           <div ref={navigationRef} className={styles.header__navigation_layout}>
             {windowSizeWidth > 1160 && (
-              <Navigation setDropDownType={setDropDownType} />
+              <Navigation
+                setIsDropdownActive={setIsDropdownActive}
+                setDropDownType={setDropDownType}
+              />
             )}
           </div>
         </div>
         <div ref={actionRef} className={styles.header__action_layout}>
-          <Actions setDropDownType={setDropDownType} />
+          <Actions setIsDropdownActive={setIsDropdownActive} setDropDownType={setDropDownType} />
         </div>
       </div>
       <CSSTransition
