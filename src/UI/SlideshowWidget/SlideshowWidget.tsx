@@ -20,8 +20,8 @@ const SlideshowWidget: FC<SlideshowWidgetProps> = ({
 }) => {
   const [isSlideshowActive, setIsSlideshowActive] = useState(false);
 
-  const slideshowActive = isSlideshowActive
-    ? ` ${styles.slideshow_active}`
+  const wrapperActive = isSlideshowActive
+    ? ` ${styles.wrapper_active}`
     : "";
 
   const linksCount = useMemo(() => rowCount * 3, [rowCount]);
@@ -41,8 +41,8 @@ const SlideshowWidget: FC<SlideshowWidgetProps> = ({
   }, [setIsSlideshowActive]);
 
   return (
-    <div style={widgetStyles} className={styles.slideshow + slideshowActive}>
-      {widgets}
+    <div style={widgetStyles} className={styles.wrapper + wrapperActive}>
+      <div className={styles.slideshow}>{widgets}</div>
       <div
         className={`${styles.fade} ${styles.fade__left} ${
           isDark ? styles.fade__left_alt : styles.fade__left_default

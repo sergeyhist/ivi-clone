@@ -1,27 +1,28 @@
 @mixin leftFade
-  background-image: linear-gradient(270deg,rgba(49,43,69,0),rgba(49,43,69,.96))
-  
+  background-image: linear-gradient(270deg, rgba(49, 43, 69, 0), rgba(49, 43, 69, .96))
+
 @mixin rightFade
-  background-image: linear-gradient(90deg,rgba(49,43,69,0),rgba(49,43,69,.96))
+  background-image: linear-gradient(90deg, rgba(49, 43, 69, 0), rgba(49, 43, 69, .96))
 
 @mixin leftFadeAlt
-  background-image: linear-gradient(270deg,rgba(31,27,46,0) 0,#1f1b2e 100%)
+  background-image: linear-gradient(270deg, rgba(31, 27, 46, 0) 0, #1f1b2e 100%)
 
 @mixin rightFadeAlt
-  background-image: linear-gradient(90deg,rgba(31,27,46,0) 0,#1f1b2e 100%)
+  background-image: linear-gradient(90deg, rgba(31, 27, 46, 0) 0, #1f1b2e 100%)
 
-.slideshow
-  display: flex
-  flex-direction: column
-  justify-content: center
-  opacity: .2
-  transition: .5s
-  overflow: hidden
+.wrapper
   position: relative
   height: fit-content
-
+  opacity: .2
+  transition: .5s
   &_active
     opacity: 1
+
+  .slideshow
+    display: flex
+    flex-direction: column
+    justify-content: center
+    overflow: hidden
 
   .fade
     height: 100%
@@ -31,16 +32,16 @@
     top: 0
 
     &__left
-      left: 0
+      left: -2px
 
       &_default
         @include leftFade
 
       &_alt
         @include leftFadeAlt
-      
+
     &__right
-      right: 0
+      right: -2px
 
       &_default
         @include rightFade
