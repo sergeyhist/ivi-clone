@@ -38,5 +38,9 @@
   "related": {
     "with": "With film",
     "watch": "watch the same"
+  },
+  "comments": {
+    "comments": "Comments",
+    "leave": "Leave a comment"
   }
 }

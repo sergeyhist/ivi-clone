@@ -8,8 +8,10 @@ import CustomButton from "/src/UI/CustomButton/CustomButton";
 import { comments } from "./CommentsSlider.utils";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
 import { setShowModal } from "/src/store/slices/modalsSlice";
+import { useTranslation } from "react-i18next";
 
 const CommentsSlider: FC = () => {
+  const { t } = useTranslation();
   const showModal = useAppSelector((state) => state.showModal);
   const dispatch = useAppDispatch();
 
@@ -21,14 +23,15 @@ const CommentsSlider: FC = () => {
     <section className={styles.section}>
       <div className={styles.section__row}>
         <h4 onClick={clickHandler} className={styles.title}>
-          Комментарии<span className={styles.title__counter}>301</span>
+          {t("movie.comments.comments")}
+          <span className={styles.title__counter}>{comments.length}</span>
         </h4>
         <CustomButton
           type="frame"
           className={`${styles.button} ${styles.button_desktop}`}
           clickCallback={clickHandler}
         >
-          Оставить отзыв
+          {t("movie.comments.leave")}
         </CustomButton>
       </div>
       <Slider
@@ -48,7 +51,7 @@ const CommentsSlider: FC = () => {
         className={`${styles.button} ${styles.button_mobile}`}
         clickCallback={clickHandler}
       >
-        Оставить отзыв
+        {t("movie.comments.leave")}
       </CustomButton>
     </section>
   );
