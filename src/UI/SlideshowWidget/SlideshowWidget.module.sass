@@ -4,6 +4,12 @@
 @mixin rightFade
   background-image: linear-gradient(90deg,rgba(49,43,69,0),rgba(49,43,69,.96))
 
+@mixin leftFadeAlt
+  background-image: linear-gradient(270deg,rgba(31,27,46,0) 0,#1f1b2e 100%)
+
+@mixin rightFadeAlt
+  background-image: linear-gradient(90deg,rgba(31,27,46,0) 0,#1f1b2e 100%)
+
 .slideshow
   display: flex
   flex-direction: column
@@ -17,17 +23,27 @@
   &_active
     opacity: 1
 
-  &__fade
+  .fade
     height: 100%
     pointer-events: none
     position: absolute
-    width: 26%
+    width: 30%
     top: 0
 
-    &_left
-      left: -5px
-      @include leftFade
+    &__left
+      left: 0
 
-    &_right
-      right: -5px
-      @include rightFade
+      &_default
+        @include leftFade
+
+      &_alt
+        @include leftFadeAlt
+      
+    &__right
+      right: 0
+
+      &_default
+        @include rightFade
+
+      &_alt
+        @include rightFadeAlt

@@ -1,11 +1,4 @@
-import {
-  FC,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useMemo,
-  useState,
-} from "react";
+import { FC, useEffect, useMemo, useState } from "react";
 import styles from "./SlideshowWidget.module.sass";
 import { widgetInitHandler } from "./SlideshowWidget.utils";
 import ILink from "/src/types/ILink";
@@ -15,6 +8,7 @@ interface SlideshowWidgetProps {
   rowCount: 3 | 4;
   scale?: number;
   width?: string;
+  isDark?: boolean;
 }
 
 const SlideshowWidget: FC<SlideshowWidgetProps> = ({
@@ -22,6 +16,7 @@ const SlideshowWidget: FC<SlideshowWidgetProps> = ({
   rowCount,
   scale,
   width,
+  isDark,
 }) => {
   const [isSlideshowActive, setIsSlideshowActive] = useState(false);
 
@@ -38,7 +33,7 @@ const SlideshowWidget: FC<SlideshowWidgetProps> = ({
 
   const widgetStyles = {
     scale: scale ? scale.toString() : "1",
-    width: width ? width : "fit-content",
+    width: width ? width : "auto",
   };
 
   useEffect(() => {
@@ -49,10 +44,14 @@ const SlideshowWidget: FC<SlideshowWidgetProps> = ({
     <div style={widgetStyles} className={styles.slideshow + slideshowActive}>
       {widgets}
       <div
-        className={`${styles.slideshow__fade} ${styles.slideshow__fade_left}`}
+        className={`${styles.fade} ${styles.fade__left} ${
+          isDark ? styles.fade__left_alt : styles.fade__left_default
+        }`}
       />
       <div
-        className={`${styles.slideshow__fade} ${styles.slideshow__fade_right}`}
+        className={`${styles.fade} ${styles.fade__right} ${
+          isDark ? styles.fade__right_alt : styles.fade__right_default
+        }`}
       />
     </div>
   );
