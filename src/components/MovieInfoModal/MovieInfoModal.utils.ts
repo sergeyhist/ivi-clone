@@ -1,6 +1,4 @@
-import {IComment} from "/src/types/IComment";
-
-export type InfoTabs = "actors" | "comments";
+import { IComment } from "/src/types/IComment";
 
 export const comments: IComment[] = [
   {
@@ -63,8 +61,8 @@ export const comments: IComment[] = [
       {
         id: 6,
         author: "Levi",
-        text: "Ответ на комментарий 2"
-      }
-    ]
+        text: "Ответ на комментарий 2",
+      },
+    ],
   },
 ];

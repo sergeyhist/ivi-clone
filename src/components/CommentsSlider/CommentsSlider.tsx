@@ -16,7 +16,12 @@ const CommentsSlider: FC = () => {
   const dispatch = useAppDispatch();
 
   const clickHandler = (): void => {
-    dispatch(setShowModal({ ...showModal, showMovieInfoModal: true }));
+    dispatch(
+      setShowModal({
+        ...showModal,
+        showMovieInfoModal: { isShow: true, defaultTab: "comments" },
+      })
+    );
   };
 
   return (

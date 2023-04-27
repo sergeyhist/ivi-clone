@@ -25,14 +25,17 @@ const Movie: FC = () => {
       <WatchAllDevices movieTitle={movie.title} imageUrl={movie.imgUrl} />
       <CommentsSlider />
       <BreadCrumbs currentTitle={movie.title} />
-      {showModal.showMovieInfoModal &&
+      {showModal.showMovieInfoModal.isShow &&
         createAppPortal(
           <MovieInfoModal
             creators={movie.creators}
             movieTitle={movie.title}
             closeCallback={() =>
               dispatch(
-                setShowModal({ ...showModal, showMovieInfoModal: false })
+                setShowModal({
+                  ...showModal,
+                  showMovieInfoModal: { isShow: false, defaultTab: "actors" },
+                })
               )
             }
           />
