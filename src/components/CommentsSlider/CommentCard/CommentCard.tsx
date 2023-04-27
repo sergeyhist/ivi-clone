@@ -1,9 +1,9 @@
 import { FC, MouseEventHandler } from "react";
 import styles from "./CommentCard.module.sass";
-import { IComment } from "/src/types/IComent";
+import { IMovieComment } from "/src/types/IMovie";
 
 interface CommentsCardProps {
-  comment: IComment;
+  comment: IMovieComment;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 

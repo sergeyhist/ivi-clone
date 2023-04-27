@@ -5,10 +5,18 @@ export interface IMovieLang {
   name: string;
   shortName: string;
 }
-export interface IMovieCategory {
+export interface IMovieGenre {
   id: string;
   name: string;
   route: string;
+}
+
+export interface IMovieComment {
+  id: number;
+  author: string;
+  text: string;
+  date: string;
+  replies?: IMovieComment[];
 }
 
 export interface IMovieRating {
@@ -31,7 +39,8 @@ export interface IMovie {
   qualities: string[];
   rating: IMovieRating;
   creators: ICreator[];
-  categories: IMovieCategory[];
+  categories: IMovieGenre[];
   description: string;
   route: string;
+  comments: IMovieComment[];
 }

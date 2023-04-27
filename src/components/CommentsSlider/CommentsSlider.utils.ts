@@ -1,4 +1,4 @@
-import { IComment } from "/src/types/IComent";
+import { IMovieComment } from "/src/types/IMovie";
 
 export const breakpoints = {
   1160: {
@@ -19,7 +19,7 @@ export const breakpoints = {
   },
 };
 
-export const comments: IComment[] = [
+export const comments: IMovieComment[] = [
   {
     id: 1,
     author: "Анастасия",
