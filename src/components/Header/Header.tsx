@@ -64,7 +64,6 @@ const Header: FC = () => {
         }`}
       >
         <div className={styles.header__navigation}>
-          {windowSizeWidth > 599 && (
             <Link href="/" className={styles.header__logo}>
               <Image
                 src="/images/iviLogo.svg"
@@ -73,7 +72,6 @@ const Header: FC = () => {
                 height={56}
               />
             </Link>
-          )}
           <div ref={navigationRef} className={styles.header__navigation_layout}>
             {windowSizeWidth > 1160 && (
               <Navigation
