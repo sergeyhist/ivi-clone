@@ -38,12 +38,12 @@ const Actions: FC<ActionsProps> = ({
             setIsDropdownActive(true);
           }}
         >
-          <CustomButton className={styles.subscription} type="red">
+          <CustomButton className={styles.subscription__button} type="red">
             {t("header.freeSubscription")}
           </CustomButton>
         </div>
       ) : (
-        <div onMouseEnter={() => setIsDropdownActive(false)}>
+        <div className={styles.purple__button} onMouseEnter={() => setIsDropdownActive(false)}>
           <CustomButton type="purple">{t("header.subscription")}</CustomButton>
         </div>
       )}

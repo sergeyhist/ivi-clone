@@ -7,11 +7,12 @@
 .container
   position: fixed
   display: flex
-  width: 100%
+  width: 101%
+  left: -1px
   height: 48px
-  bottom: 0
+  bottom: -1px
   justify-content: center
-  z-index: 2
+  z-index: 4
   backdrop-filter: blur(8px)
   background-color: rgba(31, 27, 46, .88)
   box-shadow: 0 -20px 40px rgba(7, 5, 14, .24)
@@ -38,8 +39,10 @@
       padding-bottom: 4px
       padding-top: 4px
       position: relative
+
       .icon
         @include itemLink
+
       &__home
         &:before
           content: "\E226"
