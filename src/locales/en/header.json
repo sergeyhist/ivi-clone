@@ -51,5 +51,6 @@
   },
   "notification": "Only important messages appear here",
   "search": "Search",
-  "subscription" : "Buy subscription"
+  "subscription" : "Buy subscription",
+  "freeSubscription" : "Watch 30 days for free"
 }

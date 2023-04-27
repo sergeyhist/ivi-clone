@@ -8,6 +8,7 @@ import {DropDownType} from "/src/components/Header/Header.utils";
 import {useTranslation} from "react-i18next";
 import {useAppDispatch, useAppSelector} from "/src/hooks/redux";
 import {setShowModal} from "/src/store/slices/modalsSlice";
+import {useRouter} from "next/router";
 
 interface ActionsProps {
   setDropDownType: Dispatch<SetStateAction<DropDownType>>,
@@ -18,12 +19,21 @@ const Actions: FC<ActionsProps> = ({setDropDownType}) => {
   const windowSizeWidth = useAppSelector(state => state.windowSize.width);
   const showModal = useAppSelector(state => state.showModal);
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   return (
     <div className={styles.actions__container}>
-      <CustomButton type='purple'>
-        {t("header.subscription")}
-      </CustomButton>
+      {
+        router.pathname !== "/" ?
+          <CustomButton className={styles.subscription} type="red">
+            {t("header.freeSubscription")}
+          </CustomButton>
+          :
+          <CustomButton type='purple'>
+            {t("header.subscription")}
+          </CustomButton>
+      }
+
       {
         windowSizeWidth > 1159 &&
         <div className={styles.actions__search}
