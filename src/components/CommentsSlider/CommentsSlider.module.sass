@@ -13,6 +13,14 @@
     font-weight: 500
     font-style: normal
     height: 32px
+  &_mobile
+    width: 100%
+    font-size: 13px
+    line-height: 16px
+    font-weight: 500
+    font-style: normal
+    height: 32px
+    display: none
 
 .title
   font-size: 24px
@@ -45,3 +53,10 @@
 .swiper
   padding-top: 24px
   padding-bottom: 24px
+
+@media (max-width: 600px)
+  .button
+    &_desktop
+      display: none
+    &_mobile
+      display: block

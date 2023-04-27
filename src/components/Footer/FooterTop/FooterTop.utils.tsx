@@ -2,7 +2,7 @@ import ILink from "/src/types/ILink";
 
 export const topLeftLinks: Array<ILink> = [
   {
-    content: 'footer.about.links.0',
+    content: "footer.about.links.0",
     url: "https://corp.ivi.ru/?_gl=1*15hvcv0*_ga*MTYyOTgwODIxOC4xNjgxMjEzNzAx*_ga_GETQ4387MJ*MTY4MTI5Mzg5My4zLjEuMTY4MTI5OTQ0Ny42MC4wLjA.",
     target: "_blank",
   },
@@ -44,12 +44,32 @@ export const topLeftLinks: Array<ILink> = [
 ];
 
 export const topRightLinks: Array<ILink> = [
-  { content: "footer.sections.links.0", url: "https://www.ivi.ru/", target: "_blank" },
-  { content: "footer.sections.links.1", url: "https://www.ivi.ru/new", target: "_blank" },
-  { content: "footer.sections.links.2", url: "" },
-  { content: "footer.sections.links.3", url: "" },
-  { content: "footer.sections.links.4", url: "" },
-  { content: "footer.sections.links.5", url: "https://www.ivi.ru/tvplus", target: "_blank" },
+  {
+    content: "footer.sections.links.0",
+    url: "https://www.ivi.ru/",
+    target: "_blank",
+  },
+  {
+    content: "footer.sections.links.1",
+    url: "https://www.ivi.ru/new",
+    target: "_blank",
+  },
+  { content: "footer.sections.links.2", url: "/movies" },
+  {
+    content: "footer.sections.links.3",
+    url: "https://www.ivi.ru/series",
+    target: "_blank",
+  },
+  {
+    content: "footer.sections.links.4",
+    url: "https://www.ivi.ru/animation",
+    target: "_blank",
+  },
+  {
+    content: "footer.sections.links.5",
+    url: "https://www.ivi.ru/tvplus",
+    target: "_blank",
+  },
   {
     content: "footer.sections.links.6",
     url: "https://www.ivi.ru/goodmovies",

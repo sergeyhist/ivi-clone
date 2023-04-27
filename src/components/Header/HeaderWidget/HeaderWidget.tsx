@@ -17,7 +17,9 @@ const HeaderWidget: FC = () => {
       }}
       className={styles.widget}
     >
-      <SlideshowWidget items={slideshowItems} rowCount={3} />
+      <div className={styles.widget__slideshow}>
+        <SlideshowWidget items={slideshowItems} rowCount={3} />
+      </div>
       <WidgetBottom isBottomActive={isBottomActive} />
     </div>
   );

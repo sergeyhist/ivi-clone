@@ -8,7 +8,7 @@ import ILink from "/src/types/ILink";
 const FooterBottom: FC = () => {
   const router = useRouter();
 
-  const linkTypeHandler = (link: ILink) => {
+  const linkTypeHandler = (link: ILink): void => {
     link.target && link.target === "_blank"
       ? window.open(link.url)
       : router.push(link.url);

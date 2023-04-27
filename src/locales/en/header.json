@@ -1,5 +1,6 @@
 {
   "navigation": ["My Ivi","What's new","Movies","Series","Cartoons"],
+  "genreTitles": ["Genres","Countries","Years"],
   "tabs": {
     "movies": [
       "New items",

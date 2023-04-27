@@ -1,20 +1,20 @@
-import { FC } from "react";
+import { FC, MouseEventHandler } from "react";
 import styles from "./CommentCard.module.sass";
-import Link from "next/link";
 import { IComment } from "/src/types/IComent";
 
 interface CommentsCardProps {
   comment: IComment;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 
-const CommentsCard: FC<CommentsCardProps> = ({ comment }) => {
+const CommentsCard: FC<CommentsCardProps> = ({ comment, onClick }) => {
   return (
     <article className={styles.comment}>
-      <Link className={styles.comment__link} href={"/"}>
+      <button onClick={onClick} className={styles.comment__button}>
         <p className={styles.comment__author}>{comment.author}</p>
         <p className={styles.comment__content}>{comment.text}</p>
         <p className={styles.comment__date}>{comment.date}</p>
-      </Link>
+      </button>
       <div className={styles.vote}>
         <button className={styles.vote__like}>
           <i className={`${styles.icon} ${styles.icon_like}`}></i>

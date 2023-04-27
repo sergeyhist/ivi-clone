@@ -1,6 +1,6 @@
 @use 'src/styles/vars'
 @mixin dropDownActive
-  transition: .3s
+  transition: .4s
 
 @mixin headerLayout
   display: flex
@@ -12,12 +12,12 @@
 
   &__content
     display: flex
-    padding: 0 12px
     align-items: center
     justify-content: space-between
     color: vars.$primaryColor
     background: vars.$background
-    width: 100%
+    margin-inline: -12px
+    padding: 0 12px
     height: 72px
     font-size: 15px
     line-height: 20px
@@ -54,6 +54,7 @@
 
     &-exit
       opacity: 1
+      pointer-events: none
 
       &-active
         opacity: 0

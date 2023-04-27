@@ -13,6 +13,9 @@
   "plugins": ["@typescript-eslint"],
   "root": true,
   "rules": {
-    "@typescript-eslint/no-floating-promises": "off"
-  }
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/explicit-function-return-type": ["error", {
+        "allowExpressions": true
+      }]
+    }
 }

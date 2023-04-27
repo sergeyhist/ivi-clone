@@ -20,7 +20,7 @@ interface FiltersProps {
   setActiveFilters: Dispatch<SetStateAction<IActiveFilters>>;
 }
 
-const sortHandler = (a: IFilter, b: IFilter) => (a.slug > b.slug ? 1 : -1);
+const sortHandler = (a: IFilter, b: IFilter): 1 | -1  => (a.slug > b.slug ? 1 : -1);
 
 const Filters: FC<FiltersProps> = ({ activeFilters, setActiveFilters }) => {
   const { t } = useTranslation();
@@ -30,7 +30,7 @@ const Filters: FC<FiltersProps> = ({ activeFilters, setActiveFilters }) => {
     setActiveFilters(filters);
   }, 50);
 
-  const resetHandler = () => {
+  const resetHandler = (): void => {
     setThrottledFilters(defaultFilters.current);
   };
 

@@ -29,7 +29,7 @@ const SlideshowWidget: FC<SlideshowWidgetProps> = ({
     ? ` ${styles.slideshow_active}`
     : "";
 
-  const linksCount = useMemo(() => rowCount * 3, [items, rowCount]);
+  const linksCount = useMemo(() => rowCount * 3, [rowCount]);
 
   const widgets = useMemo(
     () => widgetInitHandler(items, linksCount),
