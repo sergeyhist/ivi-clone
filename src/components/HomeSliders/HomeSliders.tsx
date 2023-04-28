@@ -12,8 +12,13 @@ const HomeSliders: FC = () => {
     <>
       <MovieTooltips />
       <section className={styles.section}>
-        <MovieSlider title={t("home.compilations.subscribe")} slides={slides} />
-        <MovieSlider title={t("home.compilations.comedy")} slides={slides} />
+        <div className="container">
+          <MovieSlider
+            title={t("home.compilations.subscribe")}
+            slides={slides}
+          />
+          <MovieSlider title={t("home.compilations.comedy")} slides={slides} />
+        </div>
       </section>
     </>
   );

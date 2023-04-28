@@ -39,28 +39,30 @@ const Sorting: FC<SortingProps> = ({
   useCloseEvents([titleRef, dropdownRef], setIsDropdownActive);
 
   return (
-    <div className={styles.sorting + " unselectable"}>
-      <div ref={titleRef}>
-        <SortingTitle
-          value={titleValue}
-          isDropdownActive={isDropdownActive}
-          setIsDropdownActive={setIsDropdownActive}
-        />
-      </div>
-      <div
-        ref={dropdownRef}
-        className={styles.sorting__dropdown + activeDropdown}
-      >
-        <div className={styles.sorting__description}>{t("sorting.desc")}</div>
-        {sortOptions.map((option, i) => (
-          <SortingOption
-            key={i}
-            isActive={activeSorting === option.slug}
-            clickCallback={() => optionClickHandler(option.slug)}
-          >
-            {option.text}
-          </SortingOption>
-        ))}
+    <div className="container">
+      <div className={styles.sorting + " unselectable"}>
+        <div ref={titleRef}>
+          <SortingTitle
+            value={titleValue}
+            isDropdownActive={isDropdownActive}
+            setIsDropdownActive={setIsDropdownActive}
+          />
+        </div>
+        <div
+          ref={dropdownRef}
+          className={styles.sorting__dropdown + activeDropdown}
+        >
+          <div className={styles.sorting__description}>{t("sorting.desc")}</div>
+          {sortOptions.map((option, i) => (
+            <SortingOption
+              key={i}
+              isActive={activeSorting === option.slug}
+              clickCallback={() => optionClickHandler(option.slug)}
+            >
+              {option.text}
+            </SortingOption>
+          ))}
+        </div>
       </div>
     </div>
   );

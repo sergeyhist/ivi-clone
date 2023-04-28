@@ -26,38 +26,40 @@ const CommentsSlider: FC = () => {
 
   return (
     <section className={styles.section}>
-      <div className={styles.section__row}>
-        <h4 onClick={clickHandler} className={styles.title}>
-          {t("movie.comments.comments")}
-          <span className={styles.title__counter}>{comments.length}</span>
-        </h4>
+      <div className="container">
+        <div className={styles.section__row}>
+          <h4 onClick={clickHandler} className={styles.title}>
+            {t("movie.comments.comments")}
+            <span className={styles.title__counter}>{comments.length}</span>
+          </h4>
+          <CustomButton
+            type="frame"
+            className={`${styles.button} ${styles.button_desktop}`}
+            clickCallback={clickHandler}
+          >
+            {t("movie.comments.leave")}
+          </CustomButton>
+        </div>
+        <Slider
+          swiperClassName={styles.swiper}
+          prevClassName={styles.prev}
+          nextClassName={styles.next}
+          breakpoints={breakpoints}
+        >
+          {comments.map((comment, index) => (
+            <SwiperSlide key={index}>
+              <CommentsCard onClick={clickHandler} comment={comment} />
+            </SwiperSlide>
+          ))}
+        </Slider>
         <CustomButton
           type="frame"
-          className={`${styles.button} ${styles.button_desktop}`}
+          className={`${styles.button} ${styles.button_mobile}`}
           clickCallback={clickHandler}
         >
           {t("movie.comments.leave")}
         </CustomButton>
       </div>
-      <Slider
-        swiperClassName={styles.swiper}
-        prevClassName={styles.prev}
-        nextClassName={styles.next}
-        breakpoints={breakpoints}
-      >
-        {comments.map((comment, index) => (
-          <SwiperSlide key={index}>
-            <CommentsCard onClick={clickHandler} comment={comment} />
-          </SwiperSlide>
-        ))}
-      </Slider>
-      <CustomButton
-        type="frame"
-        className={`${styles.button} ${styles.button_mobile}`}
-        clickCallback={clickHandler}
-      >
-        {t("movie.comments.leave")}
-      </CustomButton>
     </section>
   );
 };

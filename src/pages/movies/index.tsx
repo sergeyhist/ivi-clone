@@ -26,8 +26,9 @@ const Home = (): ReactNode => {
   return (
     <Layout title={t("titles.movies")}>
       <div className={styles.page}>
-        <BreadCrumbs type="slash" currentTitle={t('titles.movies') || ''} />
-        <h1 className={styles.page__title}>{t('titles.movies')}</h1>
+        <BreadCrumbs type="slash" currentTitle={t("titles.movies") || ""} />
+        <h1 className={styles.page__title}>{t("titles.movies")}</h1>{" "}
+        {/* TODO: h1 лучше вынести в компонент FiltersInfo */}
         <FiltersInfo activeFilters={activeFilters} />
         <Sorting
           activeSorting={activeSorting}
@@ -46,6 +47,6 @@ const Home = (): ReactNode => {
       </div>
     </Layout>
   );
-}
+};
 
 export default Home;

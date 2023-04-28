@@ -26,28 +26,30 @@ const BreadCrumbs: FC<BreadCrumbsProps> = ({
 
   return (
     <section className={sectionClassName}>
-      <nav className={styles.nav}>
-        <ul className={`${styles.list} ${listClassName}`}>
-          {routes.map((route, index) => (
-            <li key={index} className={styles.list__item}>
-              <Link className={styles.list__link} href={route}>
-                {t(`breadcrumbs.${route}`)}
-              </Link>
-            </li>
-          ))}
-          {currentTitle && (
-            <li className={styles.list__item}>{currentTitle}</li>
-          )}
-        </ul>
-      </nav>
-      {mobileVersion === true && (
-        <div className={styles.back}>
-          <Link
-            href={getPrevRoute(router.pathname)}
-            className={styles.back__link}
-          ></Link>
-        </div>
-      )}
+      <div className="container">
+        <nav className={styles.nav}>
+          <ul className={`${styles.list} ${listClassName}`}>
+            {routes.map((route, index) => (
+              <li key={index} className={styles.list__item}>
+                <Link className={styles.list__link} href={route}>
+                  {t(`breadcrumbs.${route}`)}
+                </Link>
+              </li>
+            ))}
+            {currentTitle && (
+              <li className={styles.list__item}>{currentTitle}</li>
+            )}
+          </ul>
+        </nav>
+        {mobileVersion === true && (
+          <div className={styles.back}>
+            <Link
+              href={getPrevRoute(router.pathname)}
+              className={styles.back__link}
+            ></Link>
+          </div>
+        )}
+      </div>
     </section>
   );
 };
