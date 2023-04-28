@@ -1,6 +1,14 @@
 ## Ivi clone
 Brief description of the project.
 
+## Technologies
+- Next.js framework for server-side rendering of React applications.
+- TypeScript programming language for creating reliable and maintainable code.
+- Redux Toolkit library for state management in the application.
+- Sass preprocessor for convenient styling of components.
+- i18next library for interface localization.
+- Swiper, React Icons, and React Tooltip - additional libraries for convenient layout and interface creation.
+
 ## Installation
 To install the project, follow these steps:
 - Clone the repository to your local machine.
