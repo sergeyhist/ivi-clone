@@ -13,8 +13,8 @@ interface MovieInfoMobileProps {
 
 const MovieInfoMobile: FC<MovieInfoMobileProps> = ({ movie }) => {
   return (
-    <>
-      <section className={styles.mobile}>
+    <section className={styles.mobile}>
+      <div className="container">
         <MovieTitle title={movie.title} type={movie.type} year={movie.year} />
         <MovieParams movie={movie} />
         <MovieTrailer movie={movie} />
@@ -26,8 +26,8 @@ const MovieInfoMobile: FC<MovieInfoMobileProps> = ({ movie }) => {
             <MovieTrailerButtons />
           </div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 };
 

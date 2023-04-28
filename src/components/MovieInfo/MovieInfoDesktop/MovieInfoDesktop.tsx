@@ -16,22 +16,30 @@ interface MovieInfoDesktopProps {
 const MovieInfoDesktop: FC<MovieInfoDesktopProps> = ({ movie }) => {
   return (
     <section className={styles.desktop}>
-      <div className={styles.trailer}>
-        <div className={styles.trailer__sticky}>
-          <MovieTrailer movie={movie} />
-          <MovieTrailerButtons />
+      <div className="container">
+        <div className={styles.desktop__row}>
+          <div className={styles.trailer}>
+            <div className={styles.trailer__sticky}>
+              <MovieTrailer movie={movie} />
+              <MovieTrailerButtons />
+            </div>
+          </div>
+          <div className={styles.content}>
+            <MovieTitle
+              title={movie.title}
+              year={movie.year}
+              type={movie.type}
+            />
+            <MovieParams movie={movie} />
+            <MovieMedallions movie={movie} />
+            <MovieDropDown movie={movie} />
+            <MovieRating
+              grade={movie.rating.grade}
+              category={movie.rating.gradeCategory}
+              grades={movie.rating.grades}
+            />
+          </div>
         </div>
-      </div>
-      <div className={styles.content}>
-        <MovieTitle title={movie.title} year={movie.year} type={movie.type} />
-        <MovieParams movie={movie} />
-        <MovieMedallions movie={movie} />
-        <MovieDropDown movie={movie} />
-        <MovieRating
-          grade={movie.rating.grade}
-          category={movie.rating.gradeCategory}
-          grades={movie.rating.grades}
-        />
       </div>
     </section>
   );

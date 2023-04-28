@@ -14,7 +14,11 @@ const FiltersInfo: FC<FiltersInfoProps> = ({ activeFilters }) => {
     activeFiltersTextArray.push(updateTextArray(activeFilters, key));
   }
 
-  return <div className={styles.info}>{activeFiltersTextArray.join(", ")}</div>;
+  return (
+    <div className="container">
+      <div className={styles.info}>{activeFiltersTextArray.join(", ")}</div>
+    </div>
+  );
 };
 
 export default FiltersInfo;

@@ -41,7 +41,7 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <Header />
-      <main className="container">{children}</main>
+      <main>{children}</main>
       {windowSizeWidth < 1160 && <MobileMenu />}
       <Footer />
     </>

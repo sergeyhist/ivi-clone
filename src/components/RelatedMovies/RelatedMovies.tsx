@@ -13,13 +13,15 @@ const RelatedMovies: FC<RelatedMoviesProps> = ({ movieTitle }) => {
 
   return (
     <section className={styles.section}>
-      <MovieSlider
-        title={`${t("movie.related.with")} ${movieTitle} ${t(
-          "movie.related.watch"
-        )}`}
-        slideType="related"
-        slides={slides}
-      />
+      <div className="container">
+        <MovieSlider
+          title={`${t("movie.related.with")} ${movieTitle} ${t(
+            "movie.related.watch"
+          )}`}
+          slideType="related"
+          slides={slides}
+        />
+      </div>
     </section>
   );
 };

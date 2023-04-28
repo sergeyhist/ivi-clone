@@ -200,9 +200,3 @@ export const movie: IMovie = {
   route: "/movies/1",
   comments: [],
 };
-
-export const breadCrumbPages = [
-  { route: "/", name: "Главная" },
-  { route: "/movies", name: "Фильмы" },
-  { route: movie.id, name: movie.title },
-];
