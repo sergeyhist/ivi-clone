@@ -20,7 +20,7 @@ This will start the development server and the application will be available at 
 ## Contributing
 Contributions to this project are welcome. To contribute, follow these steps:
 - Fork this repository.
-- Create a branch: git checkout -b <branch_name>
-- Make your changes and commit them: git commit -m '<commit_message>'
-- Push to the original branch: git push origin <project_name>/<location>
+- Create a branch: `git checkout -b <branch_name>`
+- Make your changes and commit them: `git commit -m '<commit_message>'`
+- Push to the original branch: `git push origin <project_name>/<location>`
 - Create the pull request.
