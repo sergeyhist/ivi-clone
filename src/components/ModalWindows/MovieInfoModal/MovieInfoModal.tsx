@@ -7,8 +7,9 @@ import { useAppSelector } from "/src/hooks/redux";
 import { InfoTabs } from "/src/types/InfoTabs";
 import CreatorsModalList from "/src/components/ModalWindows/MovieInfoModal/CreatorsModalList/CreatorsModalList";
 import CommentForm from "/src/components/ModalWindows/MovieInfoModal/CommentForm/CommentForm";
-import {comments} from "/src/components/ModalWindows/MovieInfoModal/MovieInfoModal.utils";
+import { comments } from "/src/components/ModalWindows/MovieInfoModal/MovieInfoModal.utils";
 import useOverflowHidden from "/src/hooks/useOverflowHidden";
+import { useTranslation } from "react-i18next";
 
 interface MovieInfoModalProps {
   creators: ICreator[];
@@ -27,6 +28,7 @@ const MovieInfoModal: FC<MovieInfoModalProps> = ({
   const [selectedTab, setSelectedTab] = useState<InfoTabs>(
     defaultTab || "actors"
   );
+  const { t } = useTranslation();
 
   const getSelectedTab = (tab: InfoTabs): ReactNode => {
     switch (tab) {
@@ -42,12 +44,12 @@ const MovieInfoModal: FC<MovieInfoModalProps> = ({
   return (
     <div className={styles.container}>
       <div className={styles.header} onClick={closeCallback}>
-        К фильму
+        {t("movieInfo.backLink")}
       </div>
       <div className={styles.wrapper}>
         <div className={styles.content}>
           <h2 className={styles.title}>
-            {movieTitle} актёры и создатели фильма
+            {`${movieTitle} ${t("movieInfo.title")}`}
           </h2>
           <div className={styles.tabs__list_wrapper}>
             <ul className={styles.tabs__list}>
@@ -57,7 +59,7 @@ const MovieInfoModal: FC<MovieInfoModalProps> = ({
                 }`}
                 onClick={() => setSelectedTab("actors")}
               >
-                Создатели
+                {t("movieInfo.tabs.0")}
               </li>
               <li
                 className={`${styles.tabs__item} ${
@@ -65,7 +67,7 @@ const MovieInfoModal: FC<MovieInfoModalProps> = ({
                 }`}
                 onClick={() => setSelectedTab("comments")}
               >
-                Отзывы
+                {t("movieInfo.tabs.1")}
               </li>
             </ul>
           </div>
