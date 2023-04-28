@@ -1,4 +1,4 @@
-## Ivi clon
+## Ivi clone
 Brief description of the project.
 
 ## Installation
