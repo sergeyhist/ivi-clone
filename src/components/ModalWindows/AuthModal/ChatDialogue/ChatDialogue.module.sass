@@ -1,3 +1,5 @@
+@use "/src/styles/vars"
+
 @mixin chatMessage
   margin-top: 20px
   padding: 16px
@@ -35,7 +37,7 @@
       @include chatMessageTitle
 
     &__text
-      color: #a5a1b2
+      color: vars.$secondaryColor
       font-size: 13px
       line-height: 16px
 

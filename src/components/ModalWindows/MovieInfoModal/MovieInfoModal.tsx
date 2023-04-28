@@ -1,13 +1,14 @@
-import { FC, ReactNode, useEffect, useState } from "react";
+import { FC, ReactNode, useState } from "react";
 import styles from "./MovieInfoModal.module.sass";
 import { ICreator } from "/src/types/ICreator";
-import CreatorsModalList from "/src/components/MovieInfoModal/CreatorsModalList/CreatorsModalList";
-import { comments } from "/src/components/MovieInfoModal/MovieInfoModal.utils";
-import CommentForm from "/src/components/MovieInfoModal/CommentForm/CommentForm";
 import MovieCard from "/src/UI/MovieCard/MovieCard";
 import { slides } from "/src/components/HomeSliders/HomeSliders.utils";
 import { useAppSelector } from "/src/hooks/redux";
 import { InfoTabs } from "/src/types/InfoTabs";
+import CreatorsModalList from "/src/components/ModalWindows/MovieInfoModal/CreatorsModalList/CreatorsModalList";
+import CommentForm from "/src/components/ModalWindows/MovieInfoModal/CommentForm/CommentForm";
+import {comments} from "/src/components/ModalWindows/MovieInfoModal/MovieInfoModal.utils";
+import useOverflowHidden from "/src/hooks/useOverflowHidden";
 
 interface MovieInfoModalProps {
   creators: ICreator[];
@@ -36,15 +37,7 @@ const MovieInfoModal: FC<MovieInfoModalProps> = ({
     }
   };
 
-  useEffect(() => {
-    const overflowBodyStyle = document.body.style.overflow;
-
-    document.body.style.overflow = "hidden";
-
-    return () => {
-      document.body.style.overflow = overflowBodyStyle;
-    };
-  }, []);
+  useOverflowHidden();
 
   return (
     <div className={styles.container}>

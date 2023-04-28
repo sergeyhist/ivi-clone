@@ -1,13 +1,9 @@
 @use '/src/styles/vars'
 
 .search
-  width: 100vw
-  min-height: 100%
-  position: fixed
-  top: 0
-  left: 0
-  z-index: 10
-  background-color: rgba(7,5,14,.96)
+  @include vars.modalPosition
+  display: unset
+  background-color: vars.$modalBackground
   -webkit-font-smoothing: antialiased
   @include vars.modalInitAnimation
 

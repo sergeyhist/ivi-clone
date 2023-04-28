@@ -1,6 +1,7 @@
 import { ChangeEvent, FC, useEffect, useRef } from "react";
 import { ISearchStates } from "../SearchModal";
 import styles from "./SearchInput.module.sass";
+import useOverflowHidden from "/src/hooks/useOverflowHidden";
 
 interface SearchInputProps {
   searchQuery: string;
@@ -18,6 +19,8 @@ const SearchInput: FC<SearchInputProps> = ({
   useEffect(() => {
     searchStates.inputActive && inputRef.current?.focus();
   }, [searchStates]);
+
+  useOverflowHidden();
 
   return (
     <input

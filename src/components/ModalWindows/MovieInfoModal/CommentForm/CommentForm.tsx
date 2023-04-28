@@ -1,8 +1,8 @@
 import {FC, FormEvent, useState} from "react";
 import {IComment} from "/src/types/IComment";
-import CommentsList from "/src/components/MovieInfoModal/CommentsList/CommentsList";
 import ModalInput from "/src/UI/ModalInput/ModalInput";
 import styles from "./CommentForm.module.sass";
+import CommentsList from "/src/components/ModalWindows/MovieInfoModal/CommentsList/CommentsList";
 
 interface CommentFormProps {
   comments: IComment[]

@@ -1,3 +1,5 @@
+@use "/src/styles/vars"
+
 .comment
   position: relative
 
@@ -29,7 +31,7 @@
     text-overflow: ellipsis
 
   &__author
-    color: #a5a1b2
+    color: vars.$secondaryColor
     margin-bottom: 8px
     font-size: 13px
     line-height: 16px
@@ -44,7 +46,7 @@
     position: absolute
     left: 20px
     bottom: 20px
-    color: #a5a1b2
+    color: vars.$secondaryColor
     font-size: 13px
     line-height: 16px
     font-weight: 400

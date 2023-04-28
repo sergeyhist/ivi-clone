@@ -3,15 +3,15 @@ import styles from "./Header.module.sass";
 import Navigation from "/src/components/Header/Navigation/Navigation";
 import Actions from "/src/components/Header/Actions/Actions";
 import DropDown from "/src/components/Header/DropDown/DropDown";
-import SearchModal from "/src/components/SearchModal/SearchModal";
 import { CSSTransition } from "react-transition-group";
 import { DropDownType } from "/src/components/Header/Header.utils";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
 import Image from "next/image";
-import AuthModal from "/src/components/AuthModal/AuthModal";
 import createAppPortal from "/src/utils/createAppPortal";
 import { setShowModal } from "/src/store/slices/modalsSlice";
 import Link from "next/link";
+import SearchModal from "/src/components/ModalWindows/SearchModal/SearchModal";
+import AuthModal from "/src/components/ModalWindows/AuthModal/AuthModal";
 
 const Header: FC = () => {
   const [isDropdownActive, setIsDropdownActive] = useState(false);
@@ -64,14 +64,14 @@ const Header: FC = () => {
         }`}
       >
         <div className={styles.header__navigation}>
-            <Link href="/" className={styles.header__logo}>
-              <Image
-                src="/images/iviLogo.svg"
-                alt="ivi logo"
-                width={77}
-                height={56}
-              />
-            </Link>
+          <Link href="/" className={styles.header__logo}>
+            <Image
+              src="/images/iviLogo.svg"
+              alt="ivi logo"
+              width={77}
+              height={56}
+            />
+          </Link>
           <div ref={navigationRef} className={styles.header__navigation_layout}>
             {windowSizeWidth > 1160 && (
               <Navigation
@@ -82,7 +82,10 @@ const Header: FC = () => {
           </div>
         </div>
         <div ref={actionRef} className={styles.header__action_layout}>
-          <Actions setIsDropdownActive={setIsDropdownActive} setDropDownType={setDropDownType} />
+          <Actions
+            setIsDropdownActive={setIsDropdownActive}
+            setDropDownType={setDropDownType}
+          />
         </div>
       </div>
       <CSSTransition

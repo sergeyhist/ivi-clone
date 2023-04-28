@@ -1,3 +1,5 @@
+@use "/src/styles/vars"
+
 @mixin bottomFade
   background-image: linear-gradient(180deg,rgba(49,43,69,0),rgba(49,43,69,.96))
 
@@ -33,7 +35,7 @@
     & > p
       @include textDef
       text-align: center
-      color: #a5a1b2
+      color: vars.$secondaryColor
       font-size: 10px
       height: 12px
       line-height: 12px

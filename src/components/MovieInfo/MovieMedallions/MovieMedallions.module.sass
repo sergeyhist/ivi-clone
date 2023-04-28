@@ -1,6 +1,8 @@
+@use '/src/styles/vars'
+
 .medallions
   display: grid
-  grid-template-columns: repeat(5,1fr)
+  grid-template-columns: repeat(5, 1fr)
   grid-gap: 4px
   justify-items: center
   align-items: flex-start
@@ -20,12 +22,13 @@
 
   &:hover
     .medallion__wrapper
-      background-color: rgba(255,255,255,.24)
+      background-color: rgba(255, 255, 255, .24)
+
     .medallion__text
       color: #fff
 
   &__wrapper
-    background-color: rgba(255,255,255,.16)
+    background-color: rgba(255, 255, 255, .16)
     width: 56px
     height: 56px
     border-radius: 12px
@@ -52,19 +55,20 @@
   &__text
     text-align: center
     font-size: 13px
-    color: rgba(255,255,255,.48)
+    color: vars.$primaryColor
     margin-top: 8px
     line-height: 16px
     transition: .3s
 
 @media (max-width: 1160px)
   .medallions
-    grid-template-columns: repeat(6,1fr)
+    grid-template-columns: repeat(6, 1fr)
 
 @media (max-width: 600px)
   .medallion
     max-width: 72px
     min-height: 72px
+
     &__wrapper
       width: 44px
       height: 44px
@@ -83,10 +87,10 @@
 
 @media (max-width: 510px)
   .medallions
-    grid-template-columns: repeat(5,1fr)
+    grid-template-columns: repeat(5, 1fr)
     height: 72px
 
 @media (max-width: 400px)
   .medallions
-    grid-template-columns: repeat(4,1fr)
+    grid-template-columns: repeat(4, 1fr)
     height: 72px

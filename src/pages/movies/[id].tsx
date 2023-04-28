@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { movie } from "../../utils/movie";
+import { movie } from "/src/utils/movie";
 import Layout from "../../components/Layout/Layout";
 import MovieInfo from "../../components/MovieInfo/MovieInfo";
 import BreadCrumbs from "/src/components/BreadCrumbs/BreadCrumbs";
@@ -9,12 +9,21 @@ import CreatorsList from "/src/components/CreatorsList/CreatorsList";
 import CommentsSlider from "/src/components/CommentsSlider/CommentsSlider";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
 import createAppPortal from "/src/utils/createAppPortal";
-import MovieInfoModal from "/src/components/MovieInfoModal/MovieInfoModal";
 import { setShowModal } from "/src/store/slices/modalsSlice";
+import MovieInfoModal from "/src/components/ModalWindows/MovieInfoModal/MovieInfoModal";
 
 const Movie: FC = () => {
   const showModal = useAppSelector((state) => state.showModal);
   const dispatch = useAppDispatch();
+
+  const closeCallback = (): void => {
+    dispatch(
+      setShowModal({
+        ...showModal,
+        showMovieInfoModal: { isShow: false, defaultTab: "actors" },
+      })
+    );
+  };
 
   return (
     <Layout title={`${movie.title} (${movie.type} ${movie.year})`}>
@@ -30,14 +39,7 @@ const Movie: FC = () => {
           <MovieInfoModal
             creators={movie.creators}
             movieTitle={movie.title}
-            closeCallback={() =>
-              dispatch(
-                setShowModal({
-                  ...showModal,
-                  showMovieInfoModal: { isShow: false, defaultTab: "actors" },
-                })
-              )
-            }
+            closeCallback={closeCallback}
           />
         )}
     </Layout>

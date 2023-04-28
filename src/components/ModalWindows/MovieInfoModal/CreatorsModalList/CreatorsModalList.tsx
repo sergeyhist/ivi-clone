@@ -1,7 +1,7 @@
 import {FC} from "react";
 import styles from "./CreatorsModalList.module.sass";
 import {ICreator} from "/src/types/ICreator";
-import Creators from "/src/components/MovieInfoModal/CreatorsModalList/Creators/Creators";
+import Creators from "/src/components/ModalWindows/MovieInfoModal/CreatorsModalList/Creators/Creators";
 
 interface CreatorsModalListProps{
   creators: ICreator[]
