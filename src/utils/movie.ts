@@ -198,6 +198,7 @@ export const movie: IMovie = {
     </p>
   `,
   route: "/movies/1",
+  comments: [],
 };
 
 export const breadCrumbPages = [

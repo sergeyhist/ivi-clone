@@ -1,7 +1,7 @@
 import { FC, useState } from "react";
 import styles from "./TextDropDown.module.sass";
 
-interface IToogleTitles {
+interface IToпgleTitles {
   defaultTitle: string;
   activeTitle: string;
 }
@@ -9,15 +9,15 @@ interface IToogleTitles {
 interface DropDownProps {
   children: React.ReactNode;
   dropDownClassName?: string;
-  toogleClassName?: string;
-  toogleTitles?: IToogleTitles;
+  toggleClassName?: string;
+  toggleTitles?: IToпgleTitles;
 }
 
 const TextDropDown: FC<DropDownProps> = ({
   children,
   dropDownClassName = "",
-  toogleClassName = "",
-  toogleTitles = {
+  toggleClassName = "",
+  toggleTitles = {
     defaultTitle: "Показать детали",
     activeTitle: "Свернуть детали",
   },
@@ -31,23 +31,23 @@ const TextDropDown: FC<DropDownProps> = ({
   const toggleDropDown = (event: React.MouseEvent): void => {
     if (showDropDown) {
       (event.target as HTMLButtonElement).textContent =
-        toogleTitles.defaultTitle;
+        toggleTitles.defaultTitle;
       setShowDropDown(!showDropDown);
       return;
     }
-    (event.target as HTMLButtonElement).textContent = toogleTitles.activeTitle;
+    (event.target as HTMLButtonElement).textContent = toggleTitles.activeTitle;
     setShowDropDown(!showDropDown);
   };
 
   return (
     <div className={styles.content}>
       <div className={`${dropDownClass} ${dropDownClassName}`}>{children}</div>
-      <div className={styles.toogle}>
+      <div className={styles.toggle}>
         <button
           onClick={toggleDropDown}
-          className={`${styles.toogle__button} ${toogleClassName}`}
+          className={`${styles.toggle__button} ${toggleClassName}`}
         >
-          {toogleTitles.defaultTitle}
+          {toggleTitles.defaultTitle}
         </button>
       </div>
     </div>
