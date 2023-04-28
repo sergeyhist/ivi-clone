@@ -49,3 +49,24 @@
 
     &__link:hover
       box-shadow: 0 0 0 #7e798f, inset 0 -1.5em 0 #7e798f
+
+.back
+  display: none
+  &__link
+    padding: 0 16px
+
+    &::after
+      content: '\E008'
+      font-family: ivi-icons
+      font-weight: 400
+      font-size: 20px
+      line-height: 20px
+      color: #fff
+
+@media (max-width: 600px)
+  .section_mobile
+    .back
+      display: block
+
+    .nav
+      display: none

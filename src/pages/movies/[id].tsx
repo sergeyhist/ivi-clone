@@ -18,7 +18,7 @@ const Movie: FC = () => {
 
   return (
     <Layout title={`${movie.title} (${movie.type} ${movie.year})`}>
-      <BreadCrumbs />
+      <BreadCrumbs mobileVersion={true} />
       <MovieInfo movie={movie} />
       <RelatedMovies movieTitle={movie.title} />
       <CreatorsList creators={movie.creators} />
