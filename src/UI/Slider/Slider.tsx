@@ -34,16 +34,16 @@ const Slider: FC<SliderProps> = ({
   const [show, setShow] = useState({ prev: false, next: true });
   const swiperRef = useRef<SwiperRef>(null);
 
-  const nextCallback = ():void => {
+  const nextCallback = (): void => {
     swiperRef.current?.swiper.slideNext();
   };
 
-  const prevCallback = ():void => {
+  const prevCallback = (): void => {
     swiperRef.current?.swiper.slidePrev();
   };
 
   return (
-    <div className={`${styles.wrapper} ${wrapperClassName} unselectable`}>
+    <div className={`${styles.wrapper} ${wrapperClassName}`}>
       <Swiper
         modules={[Autoplay]}
         ref={swiperRef}
