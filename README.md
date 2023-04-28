@@ -3,9 +3,6 @@ Brief description of the project.
 
 ## Installation
 To install the project, follow these steps:
-
-## Clone the repository to your local machine.
-Run npm install to install all the dependencies.
 - Clone the repository to your local machine.
 - Run `npm install` to install all the dependencies.
 
