@@ -1,16 +1,16 @@
-import { FC, useState } from "react";
+import { FC, ReactNode, useState, MouseEvent } from "react";
 import styles from "./TextDropDown.module.sass";
 
-interface IToпgleTitles {
+interface IToggleTitles {
   defaultTitle: string;
   activeTitle: string;
 }
 
 interface DropDownProps {
-  children: React.ReactNode;
+  children: ReactNode;
   dropDownClassName?: string;
   toggleClassName?: string;
-  toggleTitles?: IToпgleTitles;
+  toggleTitles?: IToggleTitles;
 }
 
 const TextDropDown: FC<DropDownProps> = ({
@@ -28,7 +28,7 @@ const TextDropDown: FC<DropDownProps> = ({
     ? `${styles.dropdown} ${styles.dropdown_active}`
     : `${styles.dropdown}`;
 
-  const toggleDropDown = (event: React.MouseEvent): void => {
+  const toggleDropDown = (event: MouseEvent): void => {
     if (showDropDown) {
       (event.target as HTMLButtonElement).textContent =
         toggleTitles.defaultTitle;
