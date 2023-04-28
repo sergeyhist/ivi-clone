@@ -1,0 +1,20 @@
+@use "/src/styles/vars"
+
+.placeholder
+  color: vars.$secondaryColor
+  position: absolute
+  transform-origin: 0 0
+  font-size: 15px
+  line-height: 20px
+  font-weight: 500
+  transition: .3s
+  overflow: hidden
+  white-space: nowrap
+  text-overflow: ellipsis
+  will-change: transform
+  pointer-events: none
+  top: 10px
+  left: 10px
+
+  &_active
+    transform: translate3d(0,-8px,0) scale(.86666667) perspective(1px)

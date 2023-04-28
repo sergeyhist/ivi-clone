@@ -1,0 +1,117 @@
+@use "/src/styles/vars"
+
+@mixin chatMessage
+  margin-top: 20px
+  padding: 16px
+  min-width: 420px
+  max-height: 72px
+
+@mixin chatMessageTitle
+  color: #fff
+  font-size: 15px
+  line-height: 20px
+  font-weight: 700
+  font-style: normal
+
+.chat
+  &__form
+    display: flex
+    flex-direction: column
+    align-items: flex-end
+    margin-top: 16px
+    padding-right: 100px
+
+  &__message
+    @include chatMessage
+    border-radius: 16px 16px 16px 0
+    background-color: #312b45
+
+    &_sent
+      @include chatMessage
+      @include chatMessageTitle
+      margin-right: -200px
+      background-color: #1f1b2e
+      border-radius: 16px 16px 0 16px
+
+    &__title
+      @include chatMessageTitle
+
+    &__text
+      color: vars.$secondaryColor
+      font-size: 13px
+      line-height: 16px
+
+.error
+  &-enter
+    opacity: 0
+    transform: translateY(100%)
+
+    &-active
+      opacity: 1
+      transform: translateY(0%)
+      transition: .3s
+
+  &-exit
+    opacity: 1
+    transform: translateY(0%)
+
+    &-active
+      opacity: 0
+      transform: translateY(100%)
+
+      transition: .3s
+
+  &__container
+    width: 80%
+
+.email__container
+  display: flex
+  align-items: center
+
+.change__email
+  position: relative
+  margin-top: 20px
+  margin-right: 20px
+  cursor: pointer
+  width: 40px
+  height: 40px
+  border-radius: 40px
+  background-color: transparent
+  border: 2px solid rgba(255, 255, 255, .32)
+  transition: .3s
+
+  &:hover
+    border-color: rgba(255, 255, 255, .70)
+
+  &:before
+    position: absolute
+    font-size: 16px
+    line-height: 16px
+    top: 25%
+    left: 30%
+    content: "\E0D6"
+    font-family: iconfont, sans-serif
+    color: #fff
+
+.show__icon
+  position: absolute
+  top: 3px
+  right: 20px
+
+  &:before
+    content: "\E357"
+    font-family: iconfont, sans-serif
+    font-size: 16px
+    line-height: 16px
+    color: #1f1b2e
+
+  &_disabled
+    pointer-events: none
+
+    &:before
+      opacity: 0.5
+
+
+.password_show
+  &:before
+    content: "\E21F"

@@ -1,8 +1,10 @@
+@use "/src/styles/vars"
+
 @mixin itemLink
   font-family: iconfont, sans-serif
   font-size: 20px
   line-height: 20px
-  color: #a5a1b2
+  color: vars.$secondaryColor
 
 .container
   position: fixed
@@ -65,7 +67,7 @@
 
       &__caption
         align-self: center
-        color: #a5a1b2
+        color: vars.$secondaryColor
         font-size: 10px
         font-style: normal
         font-weight: 500

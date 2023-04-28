@@ -9,6 +9,7 @@ $systemfont: Arial,Helvetica,Helvetica Neue,FreeSans,sans-serif // System Font F
 $background: #100e19
 $modalBackground: rgba(7, 5, 14, 0.95)
 $primaryColor: rgba(255,255,255,.48)
+$secondaryColor: #a5a1b2
 
 @keyframes modalInit
   from
@@ -22,6 +23,8 @@ $primaryColor: rgba(255,255,255,.48)
 @mixin modalPosition
   position: fixed
   display: flex
+  height: 100%
+  overflow-y: auto
   flex-direction: column
   align-items: center
   top: 0

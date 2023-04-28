@@ -10,6 +10,8 @@ import enBreadcrumbs from "../locales/en/breadcrumbs.json";
 import enTooltips from "../locales/en/tooltips.json";
 import enHome from "../locales/en/home.json";
 import enSorting from "../locales/en/sorting.json";
+import enMovieInfo from "../locales/en/movieInfo.json";
+import enCreators from "../locales/en/creators.json";
 
 import ruHeader from "../locales/ru/header.json";
 import ruTitles from "../locales/ru/titles.json";
@@ -23,6 +25,8 @@ import ruBreadcrumbs from "../locales/ru/breadcrumbs.json";
 import ruTooltips from "../locales/ru/tooltips.json";
 import ruHome from "../locales/ru/home.json";
 import ruSorting from "../locales/ru/sorting.json";
+import ruMovieInfo from "../locales/ru/movieInfo.json";
+import ruCreators from "../locales/ru/creators.json";
 
 const translationResources = {
   en: {
@@ -39,6 +43,8 @@ const translationResources = {
       tooltips: enTooltips,
       home: enHome,
       sorting: enSorting,
+      movieInfo: enMovieInfo,
+      creators: enCreators,
     },
   },
   ru: {
@@ -55,6 +61,8 @@ const translationResources = {
       tooltips: ruTooltips,
       home: ruHome,
       sorting: ruSorting,
+      movieInfo: ruMovieInfo,
+      creators: ruCreators,
     },
   },
 };
