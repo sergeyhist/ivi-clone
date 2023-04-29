@@ -35,7 +35,7 @@ const MovieSlider: FC<HomeSliderProps> = ({
         breakpoints={breakpoints}
       >
         {slides.map((slide) => (
-          <SwiperSlide key={slide.id}>
+          <SwiperSlide className="unselectable" key={slide.id}>
             <MovieCard type={slideType} content={slide} />
           </SwiperSlide>
         ))}
