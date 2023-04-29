@@ -1,12 +1,12 @@
 import { FC, ReactNode, useEffect } from "react";
 import Head from "next/head";
-import Footer from "../Footer/Footer";
-import Header from "../Header/Header";
+import Footer from "./Footer/Footer";
+import Header from "./Header/Header";
 import { useDispatch } from "react-redux";
 import { setWindowSize } from "/src/store/slices/windowSizeSlice";
 import { useAppSelector } from "/src/hooks/redux";
 import { useDebouncedCallback } from "use-debounce";
-import MobileMenu from "/src/components/MobileMenu/MobileMenu";
+import MobileMenu from "./MobileMenu/MobileMenu";
 
 interface LayoutProps {
   title: string;

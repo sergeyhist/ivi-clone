@@ -2,7 +2,7 @@ import { FC, ReactNode, useState } from "react";
 import styles from "./MovieInfoModal.module.sass";
 import { ICreator } from "/src/types/ICreator";
 import MovieCard from "/src/UI/MovieCard/MovieCard";
-import { slides } from "/src/components/HomeSliders/HomeSliders.utils";
+import { slides } from "../../Home/HomeSliders/HomeSliders.utils";
 import { useAppSelector } from "/src/hooks/redux";
 import { InfoTabs } from "/src/types/InfoTabs";
 import CreatorsModalList from "/src/components/ModalWindows/MovieInfoModal/CreatorsModalList/CreatorsModalList";

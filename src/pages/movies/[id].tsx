@@ -1,12 +1,12 @@
 import { FC } from "react";
 import { movie } from "/src/utils/movie";
 import Layout from "../../components/Layout/Layout";
-import MovieInfo from "../../components/MovieInfo/MovieInfo";
-import BreadCrumbs from "/src/components/BreadCrumbs/BreadCrumbs";
-import WatchAllDevices from "/src/components/WatchAllDevices/WatchAllDevices";
-import RelatedMovies from "/src/components/RelatedMovies/RelatedMovies";
-import CreatorsList from "/src/components/CreatorsList/CreatorsList";
-import CommentsSlider from "/src/components/CommentsSlider/CommentsSlider";
+import MovieInfo from "../../components/Movie/MovieInfo/MovieInfo";
+import BreadCrumbs from "../../UI/BreadCrumbs/BreadCrumbs";
+import WatchAllDevices from "/src/components/Movie/WatchAllDevices/WatchAllDevices";
+import RelatedMovies from "/src/components/Movie/RelatedMovies/RelatedMovies";
+import CreatorsList from "/src/components/Movie/CreatorsList/CreatorsList";
+import CommentsSlider from "/src/components/Movie/CommentsSlider/CommentsSlider";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
 import createAppPortal from "/src/utils/createAppPortal";
 import { setShowModal } from "/src/store/slices/modalsSlice";

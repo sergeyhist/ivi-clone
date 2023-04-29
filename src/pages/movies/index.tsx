@@ -1,12 +1,12 @@
 import { ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
-import Filters from "/src/components/Filters/Filters";
+import Filters from "/src/components/Movies/Filters/Filters";
 import Layout from "/src/components/Layout/Layout";
-import Sorting from "/src/components/Sorting/Sorting";
+import Sorting from "/src/components/Movies/Sorting/Sorting";
 import { IActiveFilters } from "/src/types/IFilter";
 import styles from "/src/styles/pages/MoviesPage.module.sass";
-import FiltersInfo from "/src/components/FiltersInfo/FiltersInfo";
-import BreadCrumbs from "/src/components/BreadCrumbs/BreadCrumbs";
+import FiltersInfo from "/src/components/Movies/FiltersInfo/FiltersInfo";
+import BreadCrumbs from "../../UI/BreadCrumbs/BreadCrumbs";
 
 const Home = (): ReactNode => {
   const { t } = useTranslation();
@@ -27,7 +27,9 @@ const Home = (): ReactNode => {
     <Layout title={t("titles.movies")}>
       <div className={styles.page}>
         <BreadCrumbs type="slash" currentTitle={t("titles.movies") || ""} />
-        <h1 className={styles.page__title}>{t("titles.movies")}</h1>{" "}
+        <h1 className={styles.page__title + " container"}>
+          {t("titles.movies")}
+        </h1>{" "}
         {/* TODO: h1 лучше вынести в компонент FiltersInfo */}
         <FiltersInfo activeFilters={activeFilters} />
         <Sorting
