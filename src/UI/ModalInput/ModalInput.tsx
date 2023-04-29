@@ -18,7 +18,7 @@ interface ModalInputProps {
   setIsValid?: Dispatch<SetStateAction<boolean>>;
   setIsPasswordInputSelected?: Dispatch<SetStateAction<boolean>>;
   inputType: "email" | "password" | "text";
-  showIcon: boolean;
+  showIcon?: boolean;
   placeholderText: string;
   buttonText: string;
   showErrorMessage?: boolean;
@@ -39,7 +39,7 @@ const ModalInput: FC<ModalInputProps> = ({
                                            showErrorMessage,
                                            clickCallback,
                                            preventDefault,
-                                           showIcon,
+                                           showIcon = false,
                                            className,
                                          }) => {
   const [isInputActive, setIsInputActive] = useState(false);
