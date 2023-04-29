@@ -1,11 +1,11 @@
 import { ReactNode, useState } from "react";
 import { useTranslation } from "react-i18next";
-import Filters from "/src/components/Movies/Filters/Filters";
+import Filters from "../../components/Catalog/Filters/Filters";
 import Layout from "/src/components/Layout/Layout";
-import Sorting from "/src/components/Movies/Sorting/Sorting";
+import Sorting from "../../components/Catalog/Sorting/Sorting";
 import { IActiveFilters } from "/src/types/IFilter";
 import styles from "/src/styles/pages/MoviesPage.module.sass";
-import FiltersInfo from "/src/components/Movies/FiltersInfo/FiltersInfo";
+import FiltersInfo from "../../components/Catalog/FiltersInfo/FiltersInfo";
 import BreadCrumbs from "../../UI/BreadCrumbs/BreadCrumbs";
 
 const Home = (): ReactNode => {
