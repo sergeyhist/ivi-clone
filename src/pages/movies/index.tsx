@@ -29,9 +29,7 @@ const Movies: FC = () => {
     <Layout title={t("titles:movies")}>
       <div className={styles.page}>
         <BreadCrumbs type="slash" currentTitle={"Жанр"} />
-        <h1 className={styles.page__title + " container"}>
-          {t("titles:movies")}
-        </h1>{" "}
+        <h1 className={styles.page__title + " container"}>{t("titles:movies")}</h1>{" "}
         <FiltersInfo activeFilters={activeFilters} />
         <Sorting
           activeSorting={activeSorting}
@@ -43,10 +41,7 @@ const Movies: FC = () => {
             { slug: "abc", text: t("sorting:abc") },
           ]}
         />
-        <Filters
-          activeFilters={activeFilters}
-          setActiveFilters={setActiveFilters}
-        />
+        <Filters activeFilters={activeFilters} setActiveFilters={setActiveFilters} />
       </div>
     </Layout>
   );
@@ -60,6 +55,7 @@ export const getStaticProps = async ({
   return {
     props: {
       ...(await serverSideTranslations(locale, [
+        "common",
         "titles",
         "footer",
         "header",

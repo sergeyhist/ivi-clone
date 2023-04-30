@@ -16,7 +16,7 @@ const BreadCrumbs: FC<BreadCrumbsProps> = ({
   currentTitle,
   mobileVersion = false,
 }) => {
-  const { t } = useTranslation("breadcrumbs");
+  const { t } = useTranslation("common");
   const router = useRouter();
   const routes = getRoutes(router.pathname);
   const listClassName = type == "dots" ? styles.list_dots : styles.list_slash;
@@ -32,13 +32,11 @@ const BreadCrumbs: FC<BreadCrumbsProps> = ({
             {routes.map((route, index) => (
               <li key={index} className={styles.list__item}>
                 <Link className={styles.list__link} href={route}>
-                  {t(`${route}`)}
+                  {t(`breadcrumbs.${route}`)}
                 </Link>
               </li>
             ))}
-            {currentTitle && (
-              <li className={styles.list__item}>{currentTitle}</li>
-            )}
+            {currentTitle && <li className={styles.list__item}>{currentTitle}</li>}
           </ul>
         </nav>
         {mobileVersion === true && (
