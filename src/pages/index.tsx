@@ -36,6 +36,7 @@ export const getStaticProps = async ({
         "header",
         "home",
         "tooltips",
+        "mobileMenu",
       ])),
     },
   };

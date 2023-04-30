@@ -68,6 +68,7 @@ export const getStaticProps = async ({
         "filters",
         "countries",
         "genres",
+        "mobileMenu",
       ])),
     },
   };
