@@ -48,11 +48,11 @@ const Movie: FC = () => {
   );
 };
 
-export async function getServerSideProps({
+export const getServerSideProps = async ({
   locale,
 }: {
   locale: string;
-}): Promise<GetServerSidePropsResult<Record<string, unknown>>> {
+}): Promise<GetServerSidePropsResult<Record<string, unknown>>> => {
   return {
     props: {
       ...(await serverSideTranslations(locale, [
@@ -63,9 +63,8 @@ export async function getServerSideProps({
         "breadcrumbs",
         "movieInfo",
       ])),
-      // Will be passed to the page component as props
     },
   };
-}
+};
 
 export default Movie;

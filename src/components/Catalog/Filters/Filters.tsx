@@ -26,8 +26,6 @@ const sortHandler = (a: IFilter, b: IFilter): 1 | -1 =>
 const Filters: FC<FiltersProps> = ({ activeFilters, setActiveFilters }) => {
   const { t } = useTranslation("filters");
 
-  console.log(t("ratingFrom"));
-
   const defaultFilters = useRef(activeFilters);
   const setThrottledFilters = useThrottledCallback(
     (filters: IActiveFilters) => {

@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { FC, useState } from "react";
 import Filters from "../../components/Catalog/Filters/Filters";
 import Layout from "/src/components/Layout/Layout";
 import Sorting from "../../components/Catalog/Sorting/Sorting";
@@ -10,7 +10,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticPropsResult } from "next";
 
-const Home = (): ReactNode => {
+const Movies: FC = () => {
   const { t } = useTranslation(["titles", "sorting"]);
 
   const [activeFilters, setActiveFilters] = useState<IActiveFilters>({
@@ -52,11 +52,11 @@ const Home = (): ReactNode => {
   );
 };
 
-export async function getStaticProps({
+export const getStaticProps = async ({
   locale,
 }: {
   locale: string;
-}): Promise<GetStaticPropsResult<Record<string, unknown>>> {
+}): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
   return {
     props: {
       ...(await serverSideTranslations(locale, [
@@ -71,6 +71,6 @@ export async function getStaticProps({
       ])),
     },
   };
-}
+};
 
-export default Home;
+export default Movies;

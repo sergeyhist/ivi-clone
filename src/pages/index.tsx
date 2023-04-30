@@ -5,16 +5,12 @@ import PromoButtons from "../components/Home/PromoButtons/PromoButtons";
 import TopTen from "../components/Home/TopTen/TopTen";
 import CinemaDetails from "../components/Home/CinemaDetails/CinemaDetails";
 import HomeSliders from "../components/Home/HomeSliders/HomeSliders";
-import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { GetStaticPropsResult } from "next";
 
 const Home: FC = () => {
   const { t } = useTranslation("titles");
-  const { locale, locales } = useRouter();
-
-  console.log(locale, locales);
-  console.log(t("home"));
 
   return (
     <Layout title={t("home")}>
@@ -27,11 +23,11 @@ const Home: FC = () => {
   );
 };
 
-export async function getStaticProps({
+export const getStaticProps = async ({
   locale,
 }: {
   locale: string;
-}): Promise<object> {
+}): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
   return {
     props: {
       ...(await serverSideTranslations(locale, [
@@ -39,10 +35,10 @@ export async function getStaticProps({
         "footer",
         "header",
         "home",
+        "tooltips",
       ])),
-      // Will be passed to the page component as props
     },
   };
-}
+};
 
 export default Home;
