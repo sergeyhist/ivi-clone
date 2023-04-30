@@ -5,15 +5,12 @@ import { HiOutlineMail } from "react-icons/hi";
 import { CSSTransition } from "react-transition-group";
 import styles from "./FooterButtons.module.sass";
 import PhonesList from "./PhonesList/PhonesList";
-import { useAppDispatch } from "/src/hooks/redux";
-import { setLocale } from "/src/store/slices/localeSlice";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import { useRouter } from "next/router";
 
 const FooterButtons: FC = () => {
   const { t } = useTranslation("footer");
-  const dispatch = useAppDispatch();
-  const { locale, locales, push, asPath } = useRouter();
+  const { locales, push, asPath } = useRouter();
 
   const [isListActive, setIsListActive] = useState(false);
 
@@ -27,7 +24,7 @@ const FooterButtons: FC = () => {
   };
 
   const localeClick = (locale: string): void => {
-    push(asPath, undefined, { locale: locale });
+    push(asPath, undefined, { locale: locale, scroll: false });
   };
 
   const keydownHandler = (e: KeyboardEvent): void => {
@@ -78,9 +75,7 @@ const FooterButtons: FC = () => {
           <CustomButton
             key={locale}
             type="icon"
-            clickCallback={() => {
-              localeClick(locale);
-            }}
+            clickCallback={() => localeClick(locale)}
           >
             {locale}
           </CustomButton>
