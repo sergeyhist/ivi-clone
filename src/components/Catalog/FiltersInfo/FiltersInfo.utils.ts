@@ -1,4 +1,3 @@
-import i18next from "i18next";
 import { IActiveFilters, IFilter } from "/src/types/IFilter";
 
 const getRatingSlug = (activeFilters: IActiveFilters, key: string): string =>
@@ -16,13 +15,11 @@ const isFilterNotDefault = (
 
 const getTextSelector = (activeFilters: IActiveFilters, key: string): string =>
   (activeFilters[key] as IFilter).text
-    ? i18next.t((activeFilters[key] as IFilter).text)
+    ? (activeFilters[key] as IFilter).text
     : (activeFilters[key] as IFilter).slug;
 
 const arrayToString = (activeFilters: IActiveFilters, key: string): string =>
-  (activeFilters[key] as IFilter[])
-    .map((filter) => i18next.t(filter.text))
-    .join(", ");
+  (activeFilters[key] as IFilter[]).map((filter) => filter.text).join(", ");
 
 export const updateTextArray = (
   activeFilters: IActiveFilters,
@@ -44,5 +41,5 @@ export const updateTextArray = (
     return arrayToString(activeFilters, key);
   }
 
-  return i18next.t(`filters.all.${key}`);
+  return `all.${key}`;
 };

@@ -1,5 +1,5 @@
 import { Dispatch, FC, SetStateAction, useRef } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { useThrottledCallback } from "use-debounce";
 import styles from "./Filters.module.sass";
 import {
@@ -24,7 +24,9 @@ const sortHandler = (a: IFilter, b: IFilter): 1 | -1 =>
   a.slug > b.slug ? 1 : -1;
 
 const Filters: FC<FiltersProps> = ({ activeFilters, setActiveFilters }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("filters");
+
+  console.log(t("ratingFrom"));
 
   const defaultFilters = useRef(activeFilters);
   const setThrottledFilters = useThrottledCallback(
@@ -42,7 +44,7 @@ const Filters: FC<FiltersProps> = ({ activeFilters, setActiveFilters }) => {
     <div className="container">
       <div className={styles.filters}>
         <MultiSelector
-          title={t("filters.genre")}
+          title={t("genre")}
           items={genreFilterItems.sort(sortHandler)}
           sliderItems={genreFilterSlides}
           activeFilters={activeFilters.genre}
@@ -52,7 +54,7 @@ const Filters: FC<FiltersProps> = ({ activeFilters, setActiveFilters }) => {
           dropdownPosition="left"
         />
         <MultiSelector
-          title={t("filters.country")}
+          title={t("country")}
           items={countryFilterItems.sort(sortHandler)}
           sliderItems={[...countryFilterItems].slice(0, 10)}
           activeFilters={activeFilters.country}
@@ -62,7 +64,7 @@ const Filters: FC<FiltersProps> = ({ activeFilters, setActiveFilters }) => {
           dropdownPosition="center"
         />
         <SingleSelector
-          title={t("filters.years.title")}
+          title={t("years.title")}
           items={yearFilterItems}
           activeFilter={activeFilters.year}
           getFilter={(filter) =>
@@ -70,7 +72,7 @@ const Filters: FC<FiltersProps> = ({ activeFilters, setActiveFilters }) => {
           }
         />
         <RangeSelector
-          title={t("filters.rating")}
+          title={t("rating")}
           max={9}
           step={0.1}
           activeFilter={activeFilters.rating}
@@ -79,13 +81,13 @@ const Filters: FC<FiltersProps> = ({ activeFilters, setActiveFilters }) => {
               ...activeFilters,
               rating: {
                 slug: filter,
-                text: `filters.ratingFrom`,
+                text: t("ratingFrom"),
               },
             })
           }
         />
         <RangeSelector
-          title={t("filters.ratingCount")}
+          title={t("ratingCount")}
           max={500000}
           step={10000}
           activeFilter={activeFilters.ratingCount}
@@ -94,7 +96,7 @@ const Filters: FC<FiltersProps> = ({ activeFilters, setActiveFilters }) => {
               ...activeFilters,
               ratingCount: {
                 slug: filter,
-                text: "filters.ratingCountFrom",
+                text: t("ratingCountFrom"),
               },
             })
           }

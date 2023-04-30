@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import styles from "./PersonSelector.module.sass";
 import { IFilter } from "/src/types/IFilter";
 
@@ -14,7 +14,7 @@ const PersonSelector: FC<PersonSelectorProps> = ({
   activeFilter,
   getFilter,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("filters");
 
   return (
     <div className={styles.selector}>
@@ -25,7 +25,7 @@ const PersonSelector: FC<PersonSelectorProps> = ({
           getFilter({ slug: e.target.value, text: e.target.value })
         }
         type="text"
-        placeholder={t(`filters.person.${type}`) || ""}
+        placeholder={t(`person.${type}`) || ""}
       />
       <div className={styles.selector__dropdown}></div>
     </div>

@@ -1,15 +1,19 @@
 import { FC } from "react";
 import styles from "./BottomInfo.module.sass";
-import {useTranslation} from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 const BottomInfo: FC = () => {
-    const {t} = useTranslation();
+  const { t } = useTranslation("header");
 
   return (
     <div className={styles.info}>
       <div className={styles.info__logo} />
-      <span className={styles.info__title}>{t("header.headerWidget.widgetTitle")}</span>
-      <span className={styles.info__description}>{t("header.headerWidget.widgetPrice")}</span>
+      <span className={styles.info__title}>
+        {t("headerWidget.widgetTitle")}
+      </span>
+      <span className={styles.info__description}>
+        {t("headerWidget.widgetPrice")}
+      </span>
     </div>
   );
 };

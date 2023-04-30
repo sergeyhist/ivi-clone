@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction } from "react";
 import styles from "./Navigation.module.sass";
 import { DropDownType } from "../Header.utils";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 interface NavigationProps {
   setIsDropdownActive: Dispatch<SetStateAction<boolean>>;
@@ -12,7 +12,7 @@ const Navigation: FC<NavigationProps> = ({
   setIsDropdownActive,
   setDropDownType,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("header");
 
   return (
     <nav className={styles.nav}>
@@ -21,13 +21,13 @@ const Navigation: FC<NavigationProps> = ({
           className={styles.nav__item}
           onMouseEnter={() => setIsDropdownActive(false)}
         >
-          {t("header.navigation.0")}
+          {t("navigation.0")}
         </li>
         <li
           className={styles.nav__item}
           onMouseEnter={() => setIsDropdownActive(false)}
         >
-          {t("header.navigation.1")}
+          {t("navigation.1")}
         </li>
         <li
           className={styles.nav__item}
@@ -36,7 +36,7 @@ const Navigation: FC<NavigationProps> = ({
             setDropDownType("movies");
           }}
         >
-          {t("header.navigation.2")}
+          {t("navigation.2")}
         </li>
         <li
           className={styles.nav__item}
@@ -45,7 +45,7 @@ const Navigation: FC<NavigationProps> = ({
             setDropDownType("series");
           }}
         >
-          {t("header.navigation.3")}
+          {t("navigation.3")}
         </li>
         <li
           className={styles.nav__item}
@@ -54,7 +54,7 @@ const Navigation: FC<NavigationProps> = ({
             setDropDownType("cartoons");
           }}
         >
-          {t("header.navigation.4")}
+          {t("navigation.4")}
         </li>
         <li
           className={styles.nav__item}

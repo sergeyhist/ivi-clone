@@ -17,8 +17,8 @@
   "rating": "Рейтинг кинопоиска",
   "ratingCount": "Количество оценок",
   "from": "от",
-  "ratingFrom": "$t(filters.rating) $t(filters.from)",
-  "ratingCountFrom": "$t(filters.ratingCount) $t(filters.from)",
+  "ratingFrom": "Рейтинг кинопоиска от",
+  "ratingCountFrom": "Количество оценок от",
   "person": {
     "actor": "Актеры",
     "director": "Режиссеры"

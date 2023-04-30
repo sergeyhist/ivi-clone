@@ -4,7 +4,7 @@ import { ISortingOption } from "/src/types/ISorting";
 import useCloseEvents from "/src/hooks/useCloseEvents";
 import SortingTitle from "./SortingTitle/SortingTitle";
 import SortingOption from "./SortingOption/SortingOption";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 interface SortingProps {
   activeSorting: string;
@@ -17,7 +17,7 @@ const Sorting: FC<SortingProps> = ({
   setActiveSorting,
   sortOptions,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("sorting");
 
   const titleRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -52,7 +52,7 @@ const Sorting: FC<SortingProps> = ({
           ref={dropdownRef}
           className={styles.sorting__dropdown + activeDropdown}
         >
-          <div className={styles.sorting__description}>{t("sorting.desc")}</div>
+          <div className={styles.sorting__description}>{t("desc")}</div>
           {sortOptions.map((option, i) => (
             <SortingOption
               key={i}

@@ -3,7 +3,7 @@ import styles from "./BreadCrumbs.module.sass";
 import { useRouter } from "next/router";
 import { getRoutes, getPrevRoute } from "./BreadCrumbs.utils";
 import Link from "next/link";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 interface BreadCrumbsProps {
   type?: "dots" | "slash";
@@ -16,7 +16,7 @@ const BreadCrumbs: FC<BreadCrumbsProps> = ({
   currentTitle,
   mobileVersion = false,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("breadcrumbs");
   const router = useRouter();
   const routes = getRoutes(router.pathname);
   const listClassName = type == "dots" ? styles.list_dots : styles.list_slash;
@@ -32,7 +32,7 @@ const BreadCrumbs: FC<BreadCrumbsProps> = ({
             {routes.map((route, index) => (
               <li key={index} className={styles.list__item}>
                 <Link className={styles.list__link} href={route}>
-                  {t(`breadcrumbs.${route}`)}
+                  {t(`${route}`)}
                 </Link>
               </li>
             ))}

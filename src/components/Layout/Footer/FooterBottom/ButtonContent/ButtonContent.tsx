@@ -1,5 +1,5 @@
 import { FC, ReactNode } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import styles from "./ButtonContent.module.sass";
 
 interface ButtonContentProps {
@@ -13,7 +13,7 @@ const ButtonContent: FC<ButtonContentProps> = ({
   topText,
   bottomText,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("footer");
 
   return (
     <div className={styles.btn}>

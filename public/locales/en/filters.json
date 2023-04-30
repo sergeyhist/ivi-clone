@@ -17,8 +17,8 @@
   "rating": "Kinopoisk rating",
   "ratingCount": "Ratings count",
   "from": "from",
-  "ratingFrom": "$t(filters.rating) $t(filters.from)",
-  "ratingCountFrom": "$t(filters.ratingCount) $t(filters.from)",
+  "ratingFrom": "Kinopoisk rating from",
+  "ratingCountFrom": "Ratings count from",
   "person": {
     "actor": "Actors",
     "director": "Directors"

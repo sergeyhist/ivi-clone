@@ -2,12 +2,14 @@ import { FC } from "react";
 import styles from "./FiltersInfo.module.sass";
 import { updateTextArray } from "./FiltersInfo.utils";
 import { IActiveFilters } from "/src/types/IFilter";
+import { useTranslation } from "next-i18next";
 
 interface FiltersInfoProps {
   activeFilters: IActiveFilters;
 }
 
 const FiltersInfo: FC<FiltersInfoProps> = ({ activeFilters }) => {
+  const { t } = useTranslation("filters");
   const activeFiltersTextArray: string[] = [];
 
   for (const key in activeFilters) {
@@ -16,7 +18,11 @@ const FiltersInfo: FC<FiltersInfoProps> = ({ activeFilters }) => {
 
   return (
     <div className="container">
-      <div className={styles.info}>{activeFiltersTextArray.join(", ")}</div>
+      <div className={styles.info}>
+        {activeFiltersTextArray.map((filter, index) => (
+          <span key={index}>{t(`${filter}`)}, </span>
+        ))}
+      </div>
     </div>
   );
 };

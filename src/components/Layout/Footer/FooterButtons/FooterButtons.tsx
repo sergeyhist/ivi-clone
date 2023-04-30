@@ -1,17 +1,19 @@
 import { FC, useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { BsTelephone } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
 import { CSSTransition } from "react-transition-group";
 import styles from "./FooterButtons.module.sass";
 import PhonesList from "./PhonesList/PhonesList";
-import {useAppDispatch} from "/src/hooks/redux";
-import {setLocale} from "/src/store/slices/localeSlice";
+import { useAppDispatch } from "/src/hooks/redux";
+import { setLocale } from "/src/store/slices/localeSlice";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
+import { useRouter } from "next/router";
 
 const FooterButtons: FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("footer");
   const dispatch = useAppDispatch();
+  const { locale, locales, push, asPath } = useRouter();
 
   const [isListActive, setIsListActive] = useState(false);
 
@@ -22,6 +24,10 @@ const FooterButtons: FC = () => {
     !listRef.current?.contains(e.target as Node) &&
       !phoneRef.current?.contains(e.target as Node) &&
       setIsListActive(false);
+  };
+
+  const localeClick = (locale: string): void => {
+    push(asPath, undefined, { locale: locale });
   };
 
   const keydownHandler = (e: KeyboardEvent): void => {
@@ -46,7 +52,7 @@ const FooterButtons: FC = () => {
           window.open("https://www.ivi.ru/profile");
         }}
       >
-        {t("footer.chat")}
+        {t("chat")}
       </CustomButton>
       <div className={styles.btns__wrapper}>
         <CustomButton
@@ -68,22 +74,17 @@ const FooterButtons: FC = () => {
           </CustomButton>
         </div>
 
-        <CustomButton
-          type="icon"
-          clickCallback={() => {
-            dispatch(setLocale("ru"));
-          }}
-        >
-          ru
-        </CustomButton>
-        <CustomButton
-          type="icon"
-          clickCallback={() => {
-            dispatch(setLocale("en"));
-          }}
-        >
-          en
-        </CustomButton>
+        {locales?.map((locale) => (
+          <CustomButton
+            key={locale}
+            type="icon"
+            clickCallback={() => {
+              localeClick(locale);
+            }}
+          >
+            {locale}
+          </CustomButton>
+        ))}
       </div>
       <CSSTransition
         in={isListActive}
