@@ -1,9 +1,10 @@
 import { FC } from "react";
 import styles from "./ChatHeader.module.sass";
+import ProgressBar from "/src/UI/ProgressBar/ProgressBar";
 
 interface ChatHeaderProps {
   closeCallback: () => void;
-  progressBarWidth: { width: string };
+  progressBarWidth: { width: number };
 }
 
 const ChatHeader: FC<ChatHeaderProps> = ({
@@ -19,9 +20,10 @@ const ChatHeader: FC<ChatHeaderProps> = ({
           className={styles.header__button}
         ></button>
       </div>
-      <div className={styles.header_progress}>
-        <div className={styles.progress__bar} style={progressBarWidth}></div>
-      </div>
+      <ProgressBar
+        value={progressBarWidth.width}
+        className={styles.progress__bar}
+      />
     </div>
   );
 };

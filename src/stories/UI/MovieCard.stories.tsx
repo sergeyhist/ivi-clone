@@ -6,7 +6,7 @@ import "/src/styles/_vars.sass";
 import MovieTooltips from "/src/UI/MovieTooltips/MovieTooltips";
 
 const meta: Meta<typeof MovieCard> = {
-  title: "MovieCard",
+  title: "UI/MovieCard",
   decorators: [
     (Story) => (
       <div style={{ width: "10000px" }}>
