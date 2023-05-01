@@ -18,14 +18,12 @@ import PrivacyPolicy from "/src/components/ModalWindows/AuthModal/ChatDialogue/P
 import ErrorMessage from "/src/components/ModalWindows/AuthModal/ChatDialogue/ErrorMessage/ErrorMessage";
 
 interface ChatDialogueProps {
-  setProgressBarWidth: Dispatch<SetStateAction<{ width: string }>>;
+  setProgressBarWidth: Dispatch<SetStateAction<{ width: number }>>;
 }
 
 const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
-  const [isPasswordInputSelected, setIsPasswordInputSelected] = useState(false);
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [showForm, setShowFrom] = useState(false);
   const [isEmailInputSuccess, setIsEmailInputSuccess] = useState(false);
@@ -41,7 +39,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
 
   useEffect(() => {
     if (isEmailInputSuccess) {
-      setProgressBarWidth({ width: "50%" });
+      setProgressBarWidth({ width: 50 });
     }
   }, [isEmailInputSuccess, setProgressBarWidth]);
 
@@ -52,7 +50,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
 
   const handleEmailChangeClick = (): void => {
     setIsEmailInputSuccess(false);
-    setProgressBarWidth({ width: "20%" });
+    setProgressBarWidth({ width: 10 });
   };
 
   const handleSubmitForm = (e: FormEvent): void => {
@@ -137,21 +135,10 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
               authData={password}
               showIcon={true}
               setAuthData={setPassword}
-              setIsPasswordInputSelected={setIsPasswordInputSelected}
               placeholderText="Введите пароль"
               buttonText="Продолжить"
-              inputType={showPassword ? "text" : "password"}
-            >
-              <div
-                className={`${styles.show__icon} ${
-                  isPasswordInputSelected ? "" : styles.show__icon_disabled
-                } ${showPassword ? styles.password_show : ""}`}
-                onClick={(e) => {
-                  e.preventDefault();
-                  setShowPassword((prevState) => !prevState);
-                }}
-              ></div>
-            </ModalInput>
+              inputType="password"
+            />
           </>
         )}
         <CSSTransition

@@ -9,7 +9,7 @@ interface RegistrationModalProps {
 }
 
 const AuthModal: FC<RegistrationModalProps> = ({ closeCallback }) => {
-  const [progressBarWidth, setProgressBarWidth] = useState({ width: "10%" });
+  const [progressBarWidth, setProgressBarWidth] = useState({ width: 10 });
 
   useEffect(() => {
     const keydownHandler = (e: KeyboardEvent): void => {

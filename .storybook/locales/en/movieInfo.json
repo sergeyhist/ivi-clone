@@ -1,0 +1,12 @@
+{
+  "title": "actors and creators",
+  "backLink" : "Back to movie",
+  "tabs": ["Creators","Reviews"],
+  "creators": ["Directors","Actors"],
+  "commentsInput": {
+    "placeholder": "Write a review",
+    "submit": "Sew"
+  },
+  "movies": "movies",
+  "showButton": "Show more"
+}
