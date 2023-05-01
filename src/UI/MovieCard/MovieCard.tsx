@@ -3,12 +3,12 @@ import IMovieCard from "../../types/IMovieCard";
 import MovieCardDefault from "./MovieCardDefault/MovieCardDefault";
 import MovieCardPoster from "./MovieCardPoster/MovieCardPoster";
 
-interface HomeSliderProps {
+interface MovieCardProps {
   content: IMovieCard;
   type?: "default" | "related" | "poster";
 }
 
-const MovieCard: FC<HomeSliderProps> = ({ content, type = "default" }) => {
+const MovieCard: FC<MovieCardProps> = ({ content, type = "default" }) => {
   switch (type) {
     case "default":
       return <MovieCardDefault content={content} />;

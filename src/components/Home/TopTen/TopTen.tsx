@@ -5,10 +5,10 @@ import TopTenSlide from "./TopTenSlide/TopTenSlide";
 import styles from "./TopTen.module.sass";
 import Slider from "/src/UI/Slider/Slider";
 import Image from "next/image";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 const TopTen: FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("home");
 
   return (
     <section className={styles.section}>
@@ -21,7 +21,7 @@ const TopTen: FC = () => {
             src="/images/topten.svg"
             alt=""
           />{" "}
-          {t("home.top.title")}
+          {t("top.title")}
         </h2>
 
         <Slider swiperClassName={styles.swiper} breakpoints={breakpoints}>

@@ -4,9 +4,10 @@ import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
 import { store } from "../store";
 import "../utils/i18n";
-import { ReactNode } from "react";
+import { FC } from "react";
+import { appWithTranslation } from "next-i18next";
 
-const App = ({ Component, pageProps }: AppProps): ReactNode => {
+const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <Provider store={store}>
       <Component {...pageProps} />
@@ -14,4 +15,4 @@ const App = ({ Component, pageProps }: AppProps): ReactNode => {
   );
 };
 
-export default App;
+export default appWithTranslation(App);

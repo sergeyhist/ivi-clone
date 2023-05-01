@@ -5,7 +5,7 @@ import { BiUser } from "react-icons/bi";
 import styles from "./Actions.module.sass";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import { DropDownType } from "../Header.utils";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
 import { setShowModal } from "/src/store/slices/modalsSlice";
 import { useRouter } from "next/router";
@@ -19,7 +19,7 @@ const Actions: FC<ActionsProps> = ({
   setDropDownType,
   setIsDropdownActive,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("header");
   const windowSizeWidth = useAppSelector((state) => state.windowSize.width);
   const showModal = useAppSelector((state) => state.showModal);
   const dispatch = useAppDispatch();
@@ -39,7 +39,7 @@ const Actions: FC<ActionsProps> = ({
           }}
         >
           <CustomButton className={styles.subscription__button} type="red">
-            {t("header.freeSubscription")}
+            {t("freeSubscription")}
           </CustomButton>
         </div>
       ) : (
@@ -47,7 +47,7 @@ const Actions: FC<ActionsProps> = ({
           className={styles.purple__button}
           onMouseEnter={() => setIsDropdownActive(false)}
         >
-          <CustomButton type="purple">{t("header.subscription")}</CustomButton>
+          <CustomButton type="purple">{t("subscription")}</CustomButton>
         </div>
       )}
 
@@ -60,7 +60,7 @@ const Actions: FC<ActionsProps> = ({
           <div className={styles.search__icon}>
             <BsSearch />
           </div>
-          <div>{t("header.search")}</div>
+          <div>{t("search")}</div>
         </div>
       )}
 

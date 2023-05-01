@@ -3,10 +3,10 @@ import Link from "next/link";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import styles from "./PromoButtons.module.sass";
 import Image from "next/image";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 const PromoButtons: FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("home");
 
   return (
     <section className={styles.section}>
@@ -24,7 +24,7 @@ const PromoButtons: FC = () => {
                 src="/images/thunder.svg"
                 alt=""
               />
-              {t("home.buttons.subscribe")}
+              {t("buttons.subscribe")}
             </CustomButton>
           </Link>
 
@@ -36,7 +36,7 @@ const PromoButtons: FC = () => {
               src="/images/present.svg"
               alt=""
             />{" "}
-            {t("home.buttons.activate")}
+            {t("buttons.activate")}
           </CustomButton>
         </div>
       </div>

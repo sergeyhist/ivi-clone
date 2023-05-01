@@ -5,10 +5,10 @@ import CustomButton from "/src/UI/CustomButton/CustomButton";
 import TvLinks from "./TvLinks/TvLinks";
 import TvSlider from "./TvSlider/TvSlider";
 import SideWidget from "../SideWidget/SideWidget";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 const TvDropDown: FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("header");
 
   return (
     <>
@@ -16,20 +16,20 @@ const TvDropDown: FC = () => {
         <TvLinks />
         <a href="https://www.ivi.ru/tvplus/tv-schedule-today" target="_blank">
           <CustomButton className={styles.tv__links_button}>
-            {t("header.tv.program")}
+            {t("tv.program")}
           </CustomButton>
         </a>
       </div>
       <div className={styles.channels__container}>
         <div className={styles.channels__slider_row}>
           <h2 className={styles.channels__slider_title}>
-            {t("header.tv.channels.0")}
+            {t("tv.channels.0")}
           </h2>
           <TvSlider slides={tvSlides} />
         </div>
         <div className={styles.channels__slider_row}>
           <h2 className={styles.channels__slider_title}>
-            {t("header.tv.channels.1")}
+            {t("tv.channels.1")}
           </h2>
           <TvSlider slides={tvSportSlides} />
         </div>

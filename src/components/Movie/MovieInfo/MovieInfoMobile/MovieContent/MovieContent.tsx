@@ -9,26 +9,26 @@ import MovieOptions from "../../MovieOptions/MovieOptions";
 import TextDropDown from "/src/UI/TextDropDown/TextDropDown";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import { IMovie } from "/src/types/IMovie";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 interface MovieContentProps {
   movie: IMovie;
 }
 
 const MovieContent: FC<MovieContentProps> = ({ movie }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("movie");
 
   return (
     <>
       <MovieMedallions movie={movie} />
       <CustomButton type="dark" className={styles.button}>
         <i className={`${styles.button__icon} ${styles.button__icon_film}`}></i>
-        <p className={styles.button__text}>{t("movie.trailer.free")}</p>
+        <p className={styles.button__text}>{t("trailer.free")}</p>
       </CustomButton>
       <TextDropDown
-        toogleTitles={{
-          defaultTitle: t("movie.details.show"),
-          activeTitle: t("movie.details.hide"),
+        toggleTitles={{
+          defaultTitle: t("details.show"),
+          activeTitle: t("details.hide"),
         }}
       >
         <MovieDescription descriptionHTML={movie.description} />
@@ -39,23 +39,17 @@ const MovieContent: FC<MovieContentProps> = ({ movie }) => {
         grades={movie.rating.grades}
       />
       <MovieOptions>
-        <MovieOption className={styles.option} title={t("movie.details.langs")}>
+        <MovieOption className={styles.option} title={t("details.langs")}>
           {movie.langs.map((lang, index) => (
             <span key={index}>{lang.name}</span>
           ))}
         </MovieOption>
-        <MovieOption
-          className={styles.option}
-          title={t("movie.details.subtitles")}
-        >
+        <MovieOption className={styles.option} title={t("details.subtitles")}>
           {movie.subtitles.map((lang, index) => (
             <span key={index}>{lang.name}</span>
           ))}
         </MovieOption>
-        <MovieOption
-          className={styles.option}
-          title={t("movie.details.quality")}
-        >
+        <MovieOption className={styles.option} title={t("details.quality")}>
           {movie.qualities.map((quality, index) => (
             <MovieBadge key={index} className={styles.badge}>
               {quality}

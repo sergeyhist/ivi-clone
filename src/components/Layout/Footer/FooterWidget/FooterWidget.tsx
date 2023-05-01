@@ -3,10 +3,10 @@ import { CiBullhorn } from "react-icons/ci";
 import { BsSlashLg } from "react-icons/bs";
 import Link from "next/link";
 import { FC } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 const FooterWidget: FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("footer");
 
   return (
     <Link
@@ -20,7 +20,7 @@ const FooterWidget: FC = () => {
           <BsSlashLg size={48} className={styles.widget__slash} />
         </div>
       </div>
-      <p className={styles.widget__text}>{t("footer.widget")}</p>
+      <p className={styles.widget__text}>{t("widget")}</p>
     </Link>
   );
 };

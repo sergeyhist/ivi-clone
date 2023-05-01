@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { FC } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import styles from "./FooterAsk.module.sass";
 
 const FooterAsk: FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("footer");
 
   return (
     <div className={styles.ask}>
@@ -15,7 +15,7 @@ const FooterAsk: FC = () => {
       >
         ask.ivi.ru
       </Link>
-      <p className={styles.ask__text}>{t("footer.ask")}</p>
+      <p className={styles.ask__text}>{t("ask")}</p>
     </div>
   );
 };

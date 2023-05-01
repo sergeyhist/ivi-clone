@@ -1,23 +1,21 @@
 import { FC } from "react";
 import styles from "./SubscriptionDropdown.module.sass";
 import { titlesIconsClassNames } from "./SubscriptionDropdown.utils";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import SlideshowWidget from "/src/UI/SlideshowWidget/SlideshowWidget";
 import { slideshowItems } from "/src/utils/slideshowItems";
 import Link from "next/link";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 
 const SubscriptionDropdown: FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("header");
 
   return (
     <div className={styles.container}>
       <div className={styles.content__left}>
         <div className={styles.header}>
-          <h2 className={styles.title}>
-            {t("header.subscriptionTitles.header.0")}
-          </h2>
-          <p>{t("header.subscriptionTitles.header.1")}</p>
+          <h2 className={styles.title}>{t("subscriptionTitles.header.0")}</h2>
+          <p>{t("subscriptionTitles.header.1")}</p>
         </div>
         <div className={styles.titles}>
           {titlesIconsClassNames.map((title, i) => (
@@ -27,7 +25,7 @@ const SubscriptionDropdown: FC = () => {
             >
               <div className={`${title} ${styles.icon}`}></div>
               <div className={styles.text}>
-                {t(`header.subscriptionTitles.titles.${i}`)}
+                {t(`subscriptionTitles.titles.${i}`)}
               </div>
             </div>
           ))}
@@ -35,12 +33,10 @@ const SubscriptionDropdown: FC = () => {
         <div className={styles.bottom__content}>
           <Link href="https://www.ivi.ru/subscribe" target="_blank">
             <CustomButton className={styles.button} type="red">
-              {t("header.freeSubscription")}
+              {t("freeSubscription")}
             </CustomButton>
           </Link>
-          <div className={styles.hint}>
-            {t("header.headerWidget.widgetHint")}
-          </div>
+          <div className={styles.hint}>{t("headerWidget.widgetHint")}</div>
         </div>
       </div>
       <div className={styles.content__rigth}>
