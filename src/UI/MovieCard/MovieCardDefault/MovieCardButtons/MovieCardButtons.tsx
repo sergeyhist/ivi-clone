@@ -15,15 +15,9 @@ const MovieCardButtons: FC = () => {
           key={index}
           placement="top-start"
           content={`${t(`tooltips.${id}`)}`}
-          arrow="small"
+          arrow={true}
         >
-          <button
-            // data-tooltip-id={"movie-tooltip"}
-            // data-tooltip-place={"top"}
-            // data-tooltip-delay-show={100}
-            // data-tooltip-content={`${t(`tooltips.${id}`)}`}
-            className={styles.buttons__button}
-          >
+          <button className={styles.buttons__button}>
             <i className={`${styles[`icon_${id}`]} ${styles.icon}`}></i>
           </button>
         </Tippy>

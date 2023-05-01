@@ -101,3 +101,26 @@
 .placeholder_active
   transition: .3s
   transform: translate3d(0, -8px, 0) scale(.86666667) perspective(1px)
+
+.show__icon
+  position: absolute
+  top: 3px
+  right: 20px
+
+  &:before
+    content: "\E357"
+    font-family: iconfont, sans-serif
+    font-size: 16px
+    line-height: 16px
+    color: #1f1b2e
+
+  &_disabled
+    pointer-events: none
+
+    &:before
+      opacity: 0.5
+
+
+.password_show
+  &:before
+    content: "\E21F"

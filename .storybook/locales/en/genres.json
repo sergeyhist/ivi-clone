@@ -1,0 +1,16 @@
+{
+  "drama": "Drama",
+  "comedy": "Comedy",
+  "thriller": "Thriller",
+  "western": "Western",
+  "adventure": "Adventure",
+  "arthouse": "Art Film",
+  "children": "For children",
+  "foreign": "Foreign",
+  "mystic": "Mystic",
+  "ussr": "Soviet",
+  "horror": "Horror",
+  "biography": "Biography",
+  "military": "Military",
+  "action": "Action"
+}
