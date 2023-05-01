@@ -16,6 +16,7 @@ const MovieCardButtons: FC = () => {
           placement="top-start"
           content={`${t(`tooltips.${id}`)}`}
           arrow={true}
+          duration={[0, 0]}
         >
           <button className={styles.buttons__button}>
             <i className={`${styles[`icon_${id}`]} ${styles.icon}`}></i>
