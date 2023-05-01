@@ -5,7 +5,7 @@ import { useTranslation } from "react-i18next";
 import { buttonsId } from "/src/utils/movieCard";
 
 const MovieTooltips: FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
 
   return (
     <>

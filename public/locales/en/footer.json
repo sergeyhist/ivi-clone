@@ -1,0 +1,44 @@
+{
+  "widget": "Watch movies, series and cartoons without ads",
+  "phone": {
+    "number": "8 800 234-49-23",
+    "info": "Free throughout Russia"
+  },
+  "chat": "Write in chat",
+  "ask": "Responses to questions",
+  "cert": "Certificate activation",
+  "support": {
+    "title": "Support",
+    "text": "We are always there for you.\n Our operators are online 24/7"
+  },
+  "about": {
+    "title": "About",
+    "links": [
+      "About Company",
+      "Jobs",
+      "Beta-testing",
+      "Information for partners",
+      "Advertisements",
+      "Terms of Use",
+      "Privacy Policy",
+      "Compliance"
+    ]
+  },
+  "sections": {
+    "title": "Sections",
+    "links": [
+      "My Ivi",
+      "What's new",
+      "Movies",
+      "Series",
+      "Cartoons",
+      "TV+",
+      "Recommendations"
+    ]
+  },
+  "appstore": "Download from",
+  "google": "Available in",
+  "smarttv": "Watch on",
+  "devices": "All devices",
+  "copyright": "Ivi.ru"
+}

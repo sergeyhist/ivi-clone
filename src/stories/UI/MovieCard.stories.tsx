@@ -38,6 +38,6 @@ export const FirstStory: Story = {
       title : "Тень за спиной",
       type : 1
     },
-    type: "related"
+    type: "default"
   },
 };

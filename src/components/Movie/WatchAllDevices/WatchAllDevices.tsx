@@ -2,7 +2,7 @@ import { FC } from "react";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import Image from "next/image";
 import styles from "./WatchAllDevices.module.sass";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 interface WatchAllDevicesProps {
   imageUrl: string;
@@ -13,20 +13,18 @@ const WatchAllDevices: FC<WatchAllDevicesProps> = ({
   imageUrl,
   movieTitle,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("movie");
 
   return (
     <section className="container">
       <div className={styles.wrapper}>
         <div className={styles.appeal}>
           <h2 className={styles.title}>{`${t(
-            "movie.devices.watch"
-          )} «${movieTitle}» ${t("movie.devices.title")}`}</h2>
-          <p className={styles.subtitle}>{t("movie.devices.text")}</p>
+            "devices.watch"
+          )} «${movieTitle}» ${t("devices.title")}`}</h2>
+          <p className={styles.subtitle}>{t("devices.text")}</p>
           <CustomButton className={styles.button} type="red">
-            <div className={styles.button__text}>
-              {t("movie.devices.button")}
-            </div>
+            <div className={styles.button__text}>{t("devices.button")}</div>
           </CustomButton>
         </div>
         <div className={styles.devices}>

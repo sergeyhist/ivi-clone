@@ -1,15 +1,15 @@
 import { FC } from "react";
 import styles from "./Tabs.module.sass";
 import { DropDownType } from "../../Header.utils";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 interface TabsProps {
   selectedGenre: DropDownType;
 }
 
 const Tabs: FC<TabsProps> = ({ selectedGenre }) => {
-  const { t } = useTranslation();
-  const translatedTabs: string[] = t(`header.tabs.${selectedGenre}`, {
+  const { t } = useTranslation("header");
+  const translatedTabs: string[] = t(`tabs.${selectedGenre}`, {
     returnObjects: true,
   });
 

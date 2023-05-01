@@ -47,7 +47,7 @@ export const bottomLeftLinks: Array<ILink> = [
     content: (
       <ButtonContent
         icon={<BsApple size={20} />}
-        topText="footer.appstore"
+        topText="appstore"
         bottomText="App Store"
       />
     ),
@@ -58,7 +58,7 @@ export const bottomLeftLinks: Array<ILink> = [
     content: (
       <ButtonContent
         icon={<FaGooglePlay size={18} />}
-        topText="footer.google"
+        topText="google"
         bottomText="Google Play"
       />
     ),
@@ -69,7 +69,7 @@ export const bottomLeftLinks: Array<ILink> = [
     content: (
       <ButtonContent
         icon={<IoTvSharp size={20} />}
-        topText="footer.smarttv"
+        topText="smarttv"
         bottomText="Smart TV"
       />
     ),
@@ -78,10 +78,7 @@ export const bottomLeftLinks: Array<ILink> = [
   {
     url: "https://www.ivi.ru/devices",
     content: (
-      <ButtonContent
-        icon={<MdDevices size={20} />}
-        bottomText={'footer.devices'}
-      />
+      <ButtonContent icon={<MdDevices size={20} />} bottomText={"devices"} />
     ),
     target: "_blank",
   },

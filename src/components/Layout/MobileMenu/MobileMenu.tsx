@@ -1,13 +1,13 @@
 import { FC, useState, MouseEvent } from "react";
 import styles from "./MobileMenu.module.sass";
 import { iconsClassNames, tabsLinks } from "./MobileMenu.utils";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
 import { setShowModal } from "/src/store/slices/modalsSlice";
 import Link from "next/link";
 
 const MobileMenu: FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("mobileMenu");
   const [activeTab, setActiveTab] = useState<number | null>(null);
   const showModal = useAppSelector((state) => state.showModal);
   const dispatch = useAppDispatch();
@@ -49,7 +49,7 @@ const MobileMenu: FC = () => {
                   activeTab === i ? styles.item_selected : ""
                 }`}
               >
-                {t(`mobileMenu.links.${i}`)}
+                {t(`links.${i}`)}
               </div>
             </Link>
           );

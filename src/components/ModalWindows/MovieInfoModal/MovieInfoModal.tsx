@@ -9,7 +9,7 @@ import CreatorsModalList from "/src/components/ModalWindows/MovieInfoModal/Creat
 import CommentForm from "/src/components/ModalWindows/MovieInfoModal/CommentForm/CommentForm";
 import { comments } from "/src/components/ModalWindows/MovieInfoModal/MovieInfoModal.utils";
 import useOverflowHidden from "/src/hooks/useOverflowHidden";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 interface MovieInfoModalProps {
   creators: ICreator[];
@@ -28,7 +28,7 @@ const MovieInfoModal: FC<MovieInfoModalProps> = ({
   const [selectedTab, setSelectedTab] = useState<InfoTabs>(
     defaultTab || "actors"
   );
-  const { t } = useTranslation();
+  const { t } = useTranslation("movieInfo");
 
   const getSelectedTab = (tab: InfoTabs): ReactNode => {
     switch (tab) {
@@ -44,13 +44,11 @@ const MovieInfoModal: FC<MovieInfoModalProps> = ({
   return (
     <div className={styles.container}>
       <div className={styles.header} onClick={closeCallback}>
-        {t("movieInfo.backLink")}
+        {t("backLink")}
       </div>
       <div className={styles.wrapper}>
         <div className={styles.content}>
-          <h2 className={styles.title}>
-            {`${movieTitle} ${t("movieInfo.title")}`}
-          </h2>
+          <h2 className={styles.title}>{`${movieTitle} ${t("title")}`}</h2>
           <div className={styles.tabs__list_wrapper}>
             <ul className={styles.tabs__list}>
               <li
@@ -59,7 +57,7 @@ const MovieInfoModal: FC<MovieInfoModalProps> = ({
                 }`}
                 onClick={() => setSelectedTab("actors")}
               >
-                {t("movieInfo.tabs.0")}
+                {t("tabs.0")}
               </li>
               <li
                 className={`${styles.tabs__item} ${
@@ -67,7 +65,7 @@ const MovieInfoModal: FC<MovieInfoModalProps> = ({
                 }`}
                 onClick={() => setSelectedTab("comments")}
               >
-                {t("movieInfo.tabs.1")}
+                {t("tabs.1")}
               </li>
             </ul>
           </div>

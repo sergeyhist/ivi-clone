@@ -4,7 +4,7 @@ import styles from "./Creators.module.sass";
 import Link from "next/link";
 import Image from "next/image";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 interface CreatorsProps {
   creators: ICreator[];
@@ -13,7 +13,7 @@ interface CreatorsProps {
 const Creators: FC<CreatorsProps> = ({ creators }) => {
   const [showAllCreators, setShowAllCreators] = useState(false);
   const [creatorsToShow, setCreatorsToShow] = useState<ICreator[]>(creators);
-  const { t } = useTranslation();
+  const { t } = useTranslation("movieInfo");
 
   useEffect(() => {
     if (creatorsToShow.length > 16 && !showAllCreators)
@@ -39,9 +39,7 @@ const Creators: FC<CreatorsProps> = ({ creators }) => {
           <div>
             <h4 className={styles.creators__name}>{creator.firstName}</h4>
             <h4 className={styles.creators__name}>{creator.lastName}</h4>
-            <div className={styles.movies_count}>{`0 ${t(
-              "movieInfo.movies"
-            )}`}</div>
+            <div className={styles.movies_count}>{`0 ${t("movies")}`}</div>
           </div>
         </Link>
       ))}
@@ -51,7 +49,7 @@ const Creators: FC<CreatorsProps> = ({ creators }) => {
           clickCallback={() => setShowAllCreators(true)}
           type="frame"
         >
-          {t("movieInfo.showButton")}
+          {t("showButton")}
         </CustomButton>
       )}
     </div>

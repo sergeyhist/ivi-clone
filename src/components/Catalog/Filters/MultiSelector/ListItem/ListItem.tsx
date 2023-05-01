@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import styles from "./ListItem.module.sass";
 
 interface ListItemProps {
@@ -9,7 +9,7 @@ interface ListItemProps {
 }
 
 const ListItem: FC<ListItemProps> = ({ text, isActive, clickCallback }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("filters");
 
   const activeItem = isActive ? ` ${styles.item_active}` : "";
   const activeCheckbox = isActive ? ` ${styles.item__checkbox_active}` : "";

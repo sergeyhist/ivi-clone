@@ -5,13 +5,15 @@ import PromoButtons from "../components/Home/PromoButtons/PromoButtons";
 import TopTen from "../components/Home/TopTen/TopTen";
 import CinemaDetails from "../components/Home/CinemaDetails/CinemaDetails";
 import HomeSliders from "../components/Home/HomeSliders/HomeSliders";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { GetStaticPropsResult } from "next";
 
 const Home: FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("titles");
 
   return (
-    <Layout title={t("titles.home")}>
+    <Layout title={t("home")}>
       <BannerSlider />
       <PromoButtons />
       <TopTen />
@@ -19,6 +21,26 @@ const Home: FC = () => {
       <HomeSliders />
     </Layout>
   );
+};
+
+export const getStaticProps = async ({
+  locale,
+}: {
+  locale: string;
+}): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, [
+        "common",
+        "titles",
+        "footer",
+        "header",
+        "home",
+        "tooltips",
+        "mobileMenu",
+      ])),
+    },
+  };
 };
 
 export default Home;

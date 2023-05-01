@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
 import { setShowModal } from "/src/store/slices/modalsSlice";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 interface CreatorsListProps {
   creators: ICreator[];
@@ -14,7 +14,7 @@ interface CreatorsListProps {
 const CreatorsList: FC<CreatorsListProps> = ({ creators }) => {
   const showModal = useAppSelector((state) => state.showModal);
   const dispatch = useAppDispatch();
-  const { t } = useTranslation();
+  const { t } = useTranslation("creators");
 
   const firstTenCreators = creators.slice(0, 10);
 
@@ -37,9 +37,7 @@ const CreatorsList: FC<CreatorsListProps> = ({ creators }) => {
                   <h4 className={styles.title}>{creator.firstName}</h4>
                   <h4 className={styles.second__title}>{creator.lastName}</h4>
                   <p className={styles.subtitle}>
-                    {creator.role === "режиссёр"
-                      ? t("creators.roles.0")
-                      : t("creators.roles.1")}
+                    {creator.role === "режиссёр" ? t("roles.0") : t("roles.1")}
                   </p>
                 </div>
               </Link>
@@ -57,7 +55,7 @@ const CreatorsList: FC<CreatorsListProps> = ({ creators }) => {
             );
           }}
         >
-          {t("creators.moreButton")}
+          {t("moreButton")}
         </div>
       </div>
     </section>

@@ -1,0 +1,46 @@
+{
+  "rating": {
+    "title": "Rating ivi",
+    "estimate": "Estimate",
+    "grades": "amount grades"
+  },
+  "medallions": {
+    "rating": "Rating",
+    "ivi": "Ivi"
+  },
+  "details": {
+    "show": "Show details",
+    "hide": "Hide details",
+    "langs": "Langs",
+    "subtitles": "Subtitles",
+    "quality": "Quality"
+  },
+  "trailer": {
+    "name": "Trailer",
+    "expand": "Expand trailer",
+    "movies": "Movies",
+    "free": "Free movies",
+    "watch": "Watch",
+    "subscription": "by subscription ivi",
+    "promo": "First 30 days of subscription for 1 ₽"
+  },
+  "params": {
+    "quality": "FullHD",
+    "lang": "Eng",
+    "subtitle": "Eng"
+  },
+  "devices": {
+    "watch": "Watch",
+    "title": "on all devices",
+    "text": "The application is available for download on iOS, Android, SmartTV and set-top boxes",
+    "button": "Connect devices"
+  },
+  "related": {
+    "with": "With film",
+    "watch": "watch the same"
+  },
+  "comments": {
+    "comments": "Comments",
+    "leave": "Leave a comment"
+  }
+}
