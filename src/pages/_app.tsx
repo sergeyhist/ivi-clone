@@ -1,5 +1,6 @@
 import "/src/styles/global.sass";
 import "react-tooltip/dist/react-tooltip.css";
+import "tippy.js/dist/tippy.css";
 import type { AppProps } from "next/app";
 import { Provider } from "react-redux";
 import { store } from "../store";

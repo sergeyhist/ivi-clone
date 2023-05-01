@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useSwiperSlide } from "swiper/react";
 import Link from "next/link";
-import IBannerSlide from "../../../types/IBannerSlide";
+import IBannerSlide from "/src/types/IBannerSlide";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import styles from "./BannerSlide.module.sass";
 import Image from "next/image";
@@ -15,14 +15,36 @@ const BannerSlide: FC<BannerSlideProps> = ({ slide }) => {
 
   return (
     <Link className={styles.link} href={"/"}>
-      <article className={swiperSlide.isActive ? styles.slide : `${styles.slide} ${styles.slide_hidden}`}>
-        <Image width={1216} height={524} className={styles.slide__img} src={slide.bannerUrl} alt="" />
+      <article
+        className={
+          swiperSlide.isActive ? styles.slide : `${styles.slide} ${styles.slide_hidden}`
+        }
+      >
+        <Image
+          width={1216}
+          height={524}
+          className={styles.slide__img}
+          src={slide.bannerUrl}
+          alt=""
+        />
 
-        <Image width={1216} height={1358} className={styles.slide__img_mobile} src={slide.mobileBannerUrl} alt="" />
+        <Image
+          width={1216}
+          height={1358}
+          className={styles.slide__img_mobile}
+          src={slide.mobileBannerUrl}
+          alt=""
+        />
 
         <div className={styles.promo}>
           {slide.logoUrl && (
-            <Image width={487} height={200} className={styles.promo__logo} src={slide.logoUrl} alt="" />
+            <Image
+              width={487}
+              height={200}
+              className={styles.promo__logo}
+              src={slide.logoUrl}
+              alt=""
+            />
           )}
           {slide.title && <h3 className={styles.promo__title}>{slide.title}</h3>}
           <p className={styles.promo__text}>{slide.description}</p>
