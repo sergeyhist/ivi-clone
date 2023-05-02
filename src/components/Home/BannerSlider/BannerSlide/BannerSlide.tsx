@@ -20,11 +20,11 @@ const BannerSlide: FC<BannerSlideProps> = ({ slide }) => {
           swiperSlide.isActive ? styles.slide : `${styles.slide} ${styles.slide_hidden}`
         }
       >
-        <Image
+        <img
           width={1216}
           height={524}
           className={styles.slide__img}
-          src={slide.bannerUrl}
+          src="https://sun9-13.userapi.com/impg/ulQhEIFwIBtLA5-9VZB4UTEgB0r2DLCfM2msxA/L0mIH4z_yCo.jpg?size=720x395&quality=96&sign=d2e9cc50c8a59cad8cf09b41a92c47ba&c_uniq_tag=qJOJ3szHFJAfuN5sG2WeeEe7QXnBwFyOGoWu4-Q8aeg&type=album"
           alt=""
         />
 
