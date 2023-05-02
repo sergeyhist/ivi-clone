@@ -1,19 +1,18 @@
 import {FC} from "react";
 import styles from "./Links.module.sass";
-import {IGenreLinks} from "/src/types/IGenre";
 
 interface LinkProps {
-  linksSection: IGenreLinks
+  links: string[]
   title: string
 }
 
-const Links: FC<LinkProps> = ({linksSection,title}) => {
+const Links: FC<LinkProps> = ({links,title}) => {
   return (
     <div className={styles.list__container}>
       <h3 className={styles.list__title}>{title}</h3>
       <div className={styles.links__container}>
         {
-          linksSection.links.map((link, i) => {
+          links.map((link, i) => {
             return (
               <div key={i} className={`${styles.list__item} nav-link active`}>
                 {link}

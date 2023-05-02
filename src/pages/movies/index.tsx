@@ -65,6 +65,7 @@ export const getStaticProps = async ({
         "countries",
         "genres",
         "mobileMenu",
+        "dropDownCategory"
       ])),
     },
   };

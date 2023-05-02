@@ -1,0 +1,45 @@
+{
+  "movies": {
+    "countries": [
+      "Russian",
+      "Foreign",
+      "Soviet movie"
+    ],
+    "years": [
+      "Movies of 2023",
+      "Movies of 2022",
+      "Movies of 2021",
+      "Movies of 2020"
+    ]
+  },
+  "series": {
+    "countries": [
+      "Russian",
+      "Foreign",
+      "American",
+      "Ukrainian",
+      "Korean",
+      "Turkish"
+    ],
+    "years": [
+      "Series of 2023",
+      "Series of 2022",
+      "Series of 2021",
+      "Series of 2020"
+    ]
+  },
+  "cartoons": {
+    "countries": [
+      "Soviet",
+      "Russian",
+      "American",
+      "Foreign"
+    ],
+    "years": [
+      "Cartoons of 2023",
+      "Cartoons of 2022",
+      "Cartoons of 2021",
+      "Cartoons of 2020"
+    ]
+  }
+}
