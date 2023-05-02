@@ -1,8 +1,7 @@
 @use 'vars'
 
-@use 'node_modules/bootstrap/scss/mixins/_breakpoints.scss' // Bootstrap Breakpoints mixin
-@use 'node_modules/bootstrap/scss/bootstrap-grid.scss' // Optional Bootstrap Grid
 @use 'swiper/css'
+@use '../../node_modules/tippy.js/dist/tippy.css'
 
 // FONTS LOAD SECTION
 @mixin font($fname, $fstyle, $fweight, $furl)
@@ -17,11 +16,3 @@
 @include font('iviSans', normal, 700, '../assets/fonts/iviSans-Bold.woff2')
 @include font('ivi-icons', normal, 400, '../assets/fonts/ivi-icons.woff')
 @include font('iconfont', normal, 400, '../assets/fonts/iconfont.woff')
-
-// GENERAL CSS SETTINGS
-::placeholder
-	color: #666
-
-::selection
-	background-color: vars.$accent
-	color: #fff

@@ -2,7 +2,6 @@ import {
   ChangeEvent,
   Dispatch,
   FC,
-  ReactNode,
   SetStateAction,
   useEffect,
   useRef,
@@ -13,12 +12,10 @@ import CustomButton from "/src/UI/CustomButton/CustomButton";
 
 interface ModalInputProps {
   authData?: string;
-  children?: ReactNode;
   setAuthData?: Dispatch<SetStateAction<string>>;
   setIsValid?: Dispatch<SetStateAction<boolean>>;
-  setIsPasswordInputSelected?: Dispatch<SetStateAction<boolean>>;
   inputType: "email" | "password" | "text";
-  showIcon: boolean;
+  showIcon?: boolean;
   placeholderText: string;
   buttonText: string;
   showErrorMessage?: boolean;
@@ -28,22 +25,22 @@ interface ModalInputProps {
 }
 
 const ModalInput: FC<ModalInputProps> = ({
-                                           authData,
-                                           children,
-                                           setAuthData,
-                                           setIsValid,
-                                           setIsPasswordInputSelected,
-                                           inputType,
-                                           placeholderText,
-                                           buttonText,
-                                           showErrorMessage,
-                                           clickCallback,
-                                           preventDefault,
-                                           showIcon,
-                                           className,
-                                         }) => {
+  authData,
+  setAuthData,
+  setIsValid,
+  inputType,
+  placeholderText,
+  buttonText,
+  showErrorMessage,
+  clickCallback,
+  preventDefault,
+  showIcon = false,
+  className,
+}) => {
   const [isInputActive, setIsInputActive] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
+  const [isPasswordInputSelected, setIsPasswordInputSelected] = useState(false);
 
   const inputRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -53,8 +50,21 @@ const ModalInput: FC<ModalInputProps> = ({
       setIsButtonDisabled(false);
       setIsInputActive(true);
       inputRef.current?.focus();
+      if(inputType === "password")
+        setIsPasswordInputSelected(true);
     }
+    return () => {
+      setShowPassword(false);
+    };
   }, []);
+
+  useEffect(() => {
+    if (showPassword && inputRef.current && inputType === "password") {
+      inputRef.current.type = "text";
+    } else {
+      if (inputRef.current && inputType === "password") inputRef.current.type = "password";
+    }
+  }, [showPassword,isPasswordInputSelected]);
 
   useEffect(() => {
     const handleInputBlur = (): void => {
@@ -80,7 +90,7 @@ const ModalInput: FC<ModalInputProps> = ({
   }, [setIsPasswordInputSelected]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    const {value} = e.target;
+    const { value } = e.target;
 
     value !== "" ? setIsButtonDisabled(false) : setIsButtonDisabled(true);
     setAuthData && setAuthData(value);
@@ -123,7 +133,17 @@ const ModalInput: FC<ModalInputProps> = ({
             }`}
             onChange={handleInputChange}
           />
-          {children}
+          {inputType === "password" && (
+            <div
+              className={`${styles.show__icon} ${
+                isPasswordInputSelected ? "" : styles.show__icon_disabled
+              } ${showPassword ? styles.password_show : ""}`}
+              onClick={(e) => {
+                e.preventDefault();
+                setShowPassword((prevState) => !prevState);
+              }}
+            ></div>
+          )}
         </div>
       </div>
       <CustomButton

@@ -2,14 +2,14 @@ import { FC } from "react";
 import styles from "./MovieMedallions.module.sass";
 import Image from "next/image";
 import { IMovie } from "/src/types/IMovie";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 interface MovieMedallionsProps {
   movie: IMovie;
 }
 
 const MovieMedallions: FC<MovieMedallionsProps> = ({ movie }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("movie");
 
   return (
     <ul className={styles.medallions}>
@@ -18,9 +18,9 @@ const MovieMedallions: FC<MovieMedallionsProps> = ({ movie }) => {
           <p className={styles.medallion__grade}>{movie.rating.grade}</p>
         </div>
         <p className={styles.medallion__text}>
-          {t("movie.medallions.rating")}
+          {t("medallions.rating")}
           <br />
-          {t("movie.medallions.ivi")}
+          {t("medallions.ivi")}
         </p>
       </li>
       {movie.creators.map((creator, index) => (
@@ -30,7 +30,7 @@ const MovieMedallions: FC<MovieMedallionsProps> = ({ movie }) => {
               className={styles.medallion__avatar}
               height={44}
               width={44}
-              src={creator.imageUrl}
+              src={creator.imageUrl || ""}
               alt="avatar"
             />
           </div>

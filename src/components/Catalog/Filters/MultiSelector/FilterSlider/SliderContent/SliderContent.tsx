@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import styles from "./SliderContent.module.sass";
 
 interface SliderContentProps {
@@ -15,13 +15,16 @@ const SliderContent: FC<SliderContentProps> = ({
   isActive,
   clickCallback,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["filters", "genres", "countries"]);
 
   const activeClassName = isActive ? ` ${styles.content_active}` : "";
   const onlyTextClassName = !icon ? ` ${styles[`content_text-only`]}` : "";
 
   return (
-    <div onClick={clickCallback} className={styles.content + activeClassName + onlyTextClassName}>
+    <div
+      onClick={clickCallback}
+      className={styles.content + activeClassName + onlyTextClassName}
+    >
       {icon && <span className={styles.content__icon}>{icon}</span>}
       <span className={styles.content__text}>{t(text)}</span>
     </div>

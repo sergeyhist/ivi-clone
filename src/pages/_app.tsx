@@ -1,12 +1,12 @@
-import "/src/styles/global.sass";
-import "react-tooltip/dist/react-tooltip.css";
 import type { AppProps } from "next/app";
+import { FC } from "react";
 import { Provider } from "react-redux";
 import { store } from "../store";
+import { appWithTranslation } from "next-i18next";
 import "../utils/i18n";
-import { ReactNode } from "react";
+import "/src/styles/global.sass";
 
-const App = ({ Component, pageProps }: AppProps): ReactNode => {
+const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <Provider store={store}>
       <Component {...pageProps} />
@@ -14,4 +14,4 @@ const App = ({ Component, pageProps }: AppProps): ReactNode => {
   );
 };
 
-export default App;
+export default appWithTranslation(App);

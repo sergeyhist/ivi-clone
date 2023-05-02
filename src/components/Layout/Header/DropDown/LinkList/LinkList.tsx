@@ -2,30 +2,30 @@ import { FC } from "react";
 import Links from "../Links/Links";
 import styles from "./LinkList.module.sass";
 import { DropDownType, getLinksSectionTitles } from "../../Header.utils";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 interface LinkListProps {
   selectedGenre: DropDownType;
 }
 
 const LinkList: FC<LinkListProps> = ({ selectedGenre }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("header");
 
   return (
     <div className={styles.list}>
       <div>
         <Links
-          title={t("header.genreTitles.0")}
+          title={t("genreTitles.0")}
           linksSection={getLinksSectionTitles("genres", selectedGenre)}
         />
       </div>
       <div className={styles.list__container}>
         <Links
-          title={t("header.genreTitles.1")}
+          title={t("genreTitles.1")}
           linksSection={getLinksSectionTitles("countries", selectedGenre)}
         />
         <Links
-          title={t("header.genreTitles.2")}
+          title={t("genreTitles.2")}
           linksSection={getLinksSectionTitles("years", selectedGenre)}
         />
       </div>

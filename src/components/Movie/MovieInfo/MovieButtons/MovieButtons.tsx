@@ -1,10 +1,10 @@
 import { FC } from "react";
 import styles from "./MovieButtons.module.sass";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 const MovieButtons: FC = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("movie");
 
   return (
     <div className={styles.buttons}>
@@ -13,7 +13,7 @@ const MovieButtons: FC = () => {
           <i
             className={`${styles.button__icon} ${styles.button__icon_play}`}
           ></i>
-          <p className={styles.button__text}>{t("movie.trailer.name")}</p>
+          <p className={styles.button__text}>{t("trailer.name")}</p>
         </CustomButton>
         <CustomButton type="dark" className={styles.button}>
           <i
@@ -32,7 +32,7 @@ const MovieButtons: FC = () => {
           <i
             className={`${styles.button__icon} ${styles.button__icon_film}`}
           ></i>
-          <p className={styles.button__text}>{t("movie.trailer.free")}</p>
+          <p className={styles.button__text}>{t("trailer.free")}</p>
         </CustomButton>
       </div>
     </div>

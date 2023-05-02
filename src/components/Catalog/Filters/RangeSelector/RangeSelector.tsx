@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import styles from "./RangeSelector.module.sass";
 import { IFilter } from "/src/types/IFilter";
 
@@ -18,13 +18,13 @@ const RangeSelector: FC<RangeSelectorProps> = ({
   activeFilter,
   getFilter,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("filters");
 
   return (
     <div className={styles.selector + " unselectable"}>
       <span className={styles.selector__title}>{title}</span>
       <span className={styles.selector__value}>
-        {t("filters.from")}
+        {t("from")}
         <span>{` ${activeFilter.slug}`}</span>
       </span>
       <input

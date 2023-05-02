@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { TfiClose } from "react-icons/tfi";
 import styles from "./ResetButton.module.sass";
 
@@ -8,14 +8,14 @@ interface ResetButtonProps {
 }
 
 const ResetButton: FC<ResetButtonProps> = ({ clickCallback }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("filters");
 
   return (
-    <button onClick={clickCallback} className={styles.reset + ' unselectable'}>
+    <button onClick={clickCallback} className={styles.reset + " unselectable"}>
       <span className={styles.reset__icon}>
         <TfiClose size={16} />
       </span>
-      <span className={styles.reset__text}>{t("filters.reset")}</span>
+      <span className={styles.reset__text}>{t("reset")}</span>
     </button>
   );
 };

@@ -20,6 +20,7 @@ const MovieSlider: FC<HomeSliderProps> = ({
   categoryRoute = "/",
   slideType = "default",
 }) => {
+  console.log(slides);
   return (
     <div className={styles.wrapper}>
       {title && categoryRoute && (

@@ -3,14 +3,14 @@ import styles from "./MovieParams.module.sass";
 import Badge from "../MovieBadge/MovieBadge";
 import Link from "next/link";
 import { IMovie } from "/src/types/IMovie";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 interface MovieParamsProps {
   movie: IMovie;
 }
 
 const MovieParams: FC<MovieParamsProps> = ({ movie }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("movie");
 
   return (
     <div className={styles.params}>
@@ -33,17 +33,17 @@ const MovieParams: FC<MovieParamsProps> = ({ movie }) => {
       </ul>
       <ul className={styles.list}>
         <li className={styles.list__item}>
-          <Badge>{t("movie.params.quality")}</Badge>
+          <Badge>{t("params.quality")}</Badge>
         </li>
 
         <li className={styles.list__item}>
           <i className={`${styles.icon} ${styles.icon_sound}`}></i>
-          {t("movie.params.lang")}
+          {t("params.lang")}
         </li>
 
         <li className={styles.list__item}>
           <i className={`${styles.icon} ${styles.icon_label}`}></i>
-          {t("movie.params.subtitle")}
+          {t("params.subtitle")}
         </li>
       </ul>
     </div>
