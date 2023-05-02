@@ -1,19 +1,27 @@
 import { FC } from "react";
 import styles from "./MovieCardButtons.module.sass";
 import { buttonsId } from "../../../../utils/movieCard";
+import { useTranslation } from "next-i18next";
+import Tippy from "@tippyjs/react";
 
 const MovieCardButtons: FC = () => {
+  const { t } = useTranslation("common");
+
   return (
     <div className={styles.buttons}>
       {buttonsId.map((id, index) => (
-        <button
+        <Tippy
+          className={styles.tooltip}
           key={index}
-          data-tooltip-id={id}
-          data-tooltip-place={"top"}
-          className={styles.buttons__button}
+          placement="top-start"
+          content={`${t(`tooltips.${id}`)}`}
+          arrow={true}
+          duration={[0, 0]}
         >
-          <i className={`${styles[`icon_${id}`]} ${styles.icon}`}></i>
-        </button>
+          <button className={styles.buttons__button}>
+            <i className={`${styles[`icon_${id}`]} ${styles.icon}`}></i>
+          </button>
+        </Tippy>
       ))}
     </div>
   );

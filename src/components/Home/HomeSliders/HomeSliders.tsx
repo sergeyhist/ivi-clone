@@ -1,7 +1,6 @@
 import {FC, useEffect,useState} from "react";
 import {getSlides, slides} from "./HomeSliders.utils";
 import MovieSlider from "/src/UI/MovieSlider/MovieSlider";
-import MovieTooltips from "/src/UI/MovieTooltips/MovieTooltips";
 import styles from "./HomeSliders.module.sass";
 import { useTranslation } from "next-i18next";
 import {AxiosResponse} from "axios";
@@ -17,15 +16,12 @@ const HomeSliders: FC = () => {
 
 
   return (
-    <>
-      <MovieTooltips />
-      <section className={styles.section}>
-        <div className="container">
-          <MovieSlider title={t("compilations.subscribe")} slides={slides} />
-          <MovieSlider title={t("compilations.comedy")} slides={slides} />
-        </div>
-      </section>
-    </>
+    <section className={styles.section}>
+      <div className="container">
+        <MovieSlider title={t("compilations.subscribe")} slides={slides} />
+        <MovieSlider title={t("compilations.comedy")} slides={slides} />
+      </div>
+    </section>
   );
 };
 
