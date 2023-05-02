@@ -6,9 +6,6 @@
     flex-wrap: wrap
     gap: 24px
 
-    .button
-      width: 100%
-
     .movies_count
       color: vars.$secondaryColor
       font-size: 13px
@@ -34,3 +31,25 @@
     line-height: 20px
     font-weight: 500
     transition: .3s
+
+.button
+   width: 100%
+   margin-top: 30px
+
+@media (max-width: 1160px)
+  .creators
+    &__image
+      width: 100%
+      height: auto
+      img
+        width: 100%
+        height: auto
+
+@media (max-width: 880px)
+  .creators__list
+    display: grid
+    grid-template-columns: repeat(4,1fr)
+
+@media (max-width: 530px)
+  .creators__list
+    display: flex

@@ -10,7 +10,9 @@ const config: StorybookConfig = {
   ],
   framework: {
     name: "@storybook/nextjs",
-    options: {},
+    options: {
+      nextConfigPath: path.resolve(__dirname, '../next.config.js'),
+    },
   },
   webpackFinal: async (config, {configType}) => {
     config.resolve.modules = [path.resolve(__dirname, '..'), 'node_modules'];
