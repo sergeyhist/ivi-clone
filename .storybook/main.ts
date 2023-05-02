@@ -7,6 +7,7 @@ const config: StorybookConfig = {
     "@storybook/addon-links",
     "@storybook/addon-essentials",
     "@storybook/addon-interactions",
+    "storybook-addon-next"
   ],
   framework: {
     name: "@storybook/nextjs",
@@ -14,6 +15,7 @@ const config: StorybookConfig = {
       nextConfigPath: path.resolve(__dirname, '../next.config.js'),
     },
   },
+  staticDirs: ["../public"],
   webpackFinal: async (config, {configType}) => {
     config.resolve.modules = [path.resolve(__dirname, '..'), 'node_modules'];
     config.resolve.alias = {
