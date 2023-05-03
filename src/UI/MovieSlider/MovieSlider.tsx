@@ -4,11 +4,11 @@ import styles from "./MovieSlider.module.sass";
 import Slider from "../Slider/Slider";
 import Link from "next/link";
 import MovieCard from "../MovieCard/MovieCard";
-import IMovieCard from "../../types/IMovieCard";
 import { breakpoints } from "./MovieSlider.utils";
+import { IMovie } from "/src/types/IMovie";
 
 interface HomeSliderProps {
-  slides: IMovieCard[];
+  slides: IMovie[];
   title?: string | null;
   categoryRoute?: string;
   slideType?: "default" | "related";
@@ -34,8 +34,8 @@ const MovieSlider: FC<HomeSliderProps> = ({
         nextClassName={styles.next}
         breakpoints={breakpoints}
       >
-        {slides.map((slide) => (
-          <SwiperSlide className="unselectable" key={slide.id}>
+        {slides.map((slide, index) => (
+          <SwiperSlide className="unselectable" key={index}>
             <MovieCard type={slideType} content={slide} />
           </SwiperSlide>
         ))}

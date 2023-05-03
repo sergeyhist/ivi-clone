@@ -8,12 +8,14 @@ import MovieMedallions from "../MovieMedallions/MovieMedallions";
 import MovieRating from "../MovieRating/MovieRating";
 import MovieDropDown from "./MovieDropDown/MovieDropDown";
 import { IMovie } from "/src/types/IMovie";
+import { useRouter } from "next/router";
 
 interface MovieInfoDesktopProps {
   movie: IMovie;
 }
 
 const MovieInfoDesktop: FC<MovieInfoDesktopProps> = ({ movie }) => {
+  const { locale } = useRouter();
   return (
     <section className={styles.desktop}>
       <div className="container">
@@ -26,18 +28,13 @@ const MovieInfoDesktop: FC<MovieInfoDesktopProps> = ({ movie }) => {
           </div>
           <div className={styles.content}>
             <MovieTitle
-              title={movie.title}
+              title={locale === "ru" ? movie.name_ru : movie.name_en}
               year={movie.year}
-              type={movie.type}
             />
             <MovieParams movie={movie} />
             <MovieMedallions movie={movie} />
             <MovieDropDown movie={movie} />
-            <MovieRating
-              grade={movie.rating.grade}
-              category={movie.rating.gradeCategory}
-              grades={movie.rating.grades}
-            />
+            <MovieRating grade={movie.rating} grades={movie.assessments} />
           </div>
         </div>
       </div>

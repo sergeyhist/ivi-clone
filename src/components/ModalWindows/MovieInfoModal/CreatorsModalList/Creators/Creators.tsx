@@ -20,6 +20,7 @@ const Creators: FC<CreatorsProps> = ({ creators }) => {
   const [creatorsToShow, setCreatorsToShow] = useState<ICreator[]>(creators);
   const router = useRouter();
   const { t } = useTranslation("movieInfo");
+  const { locale } = useRouter();
 
   useEffect(() => {
     if (creatorsToShow.length > 16 && !showAllCreators)
@@ -31,31 +32,32 @@ const Creators: FC<CreatorsProps> = ({ creators }) => {
   }, [showAllCreators, setCreatorsToShow, creators]);
 
   return (
-    <div>
-      <div className={styles.creators__list}>
-        {creatorsToShow.map((creator, i) => (
-          <Link className={styles.creators__item} key={i} href="/">
-            <div className={styles.creators__image}>
-              <Image
-                src={creator.imageUrl || "/images/creators/unnamed.png"}
-                width={128}
-                height={128}
-                alt={creator.lastName}
-              />
-            </div>
-            <div>
-              <h4 className={styles.creators__name}>{creator.firstName}</h4>
-              <h4 className={styles.creators__name}>{creator.lastName}</h4>
-              <div className={styles.movies_count}>{`${
-                router.locale === "en"
-                  ? declensionMoviesEn((Math.random() * 10) ^ 0)
-                  : declensionMoviesRu((Math.random() * 10) ^ 0)
-              }`}</div>
-            </div>
-          </Link>
-        ))}
-
-      </div>
+    <div className={styles.creators__list}>
+      {creatorsToShow.map((creator, i) => (
+        <Link className={styles.creators__item} key={i} href="/">
+          <div className={styles.creators__image}>
+            <Image
+              src={"https:" + creator.img || "/images/creators/unnamed.png"}
+              width={128}
+              height={128}
+              alt={creator.last_name_en}
+            />
+          </div>
+          <div>
+            <h4 className={styles.creators__name}>
+              {creator[`first_name_${String(locale)}`] || creator.first_name_en}
+            </h4>
+            <h4 className={styles.creators__name}>
+              {creator[`last_name_${String(locale)}`] || creator.last_name_en}
+            </h4>
+            <div className={styles.movies_count}>{`${
+              router.locale === "en"
+                ? declensionMoviesEn((Math.random() * 10) ^ 0)
+                : declensionMoviesRu((Math.random() * 10) ^ 0)
+            }`}</div>
+          </div>
+        </Link>
+      ))}
       {creators.length > 16 && !showAllCreators && (
         <CustomButton
           className={styles.button}
@@ -66,7 +68,6 @@ const Creators: FC<CreatorsProps> = ({ creators }) => {
         </CustomButton>
       )}
     </div>
-
   );
 };
 

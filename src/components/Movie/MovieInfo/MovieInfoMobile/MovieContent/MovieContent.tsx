@@ -33,26 +33,22 @@ const MovieContent: FC<MovieContentProps> = ({ movie }) => {
       >
         <MovieDescription descriptionHTML={movie.description} />
       </TextDropDown>
-      <MovieRating
-        grade={movie.rating.grade}
-        category={movie.rating.gradeCategory}
-        grades={movie.rating.grades}
-      />
+      <MovieRating grade={movie.rating} grades={movie.assessments} />
       <MovieOptions>
         <MovieOption className={styles.option} title={t("details.langs")}>
-          {movie.langs.map((lang, index) => (
-            <span key={index}>{lang.name}</span>
+          {movie.languagesAudio.map((lang) => (
+            <span key={lang.language_id}>{lang.language}</span>
           ))}
         </MovieOption>
         <MovieOption className={styles.option} title={t("details.subtitles")}>
-          {movie.subtitles.map((lang, index) => (
-            <span key={index}>{lang.name}</span>
+          {movie.languagesSubtitle.map((lang) => (
+            <span key={lang.language_id}>{lang.language}</span>
           ))}
         </MovieOption>
         <MovieOption className={styles.option} title={t("details.quality")}>
-          {movie.qualities.map((quality, index) => (
-            <MovieBadge key={index} className={styles.badge}>
-              {quality}
+          {movie.qualities.map((quality) => (
+            <MovieBadge key={quality.quality_id} className={styles.badge}>
+              {quality.quality}
             </MovieBadge>
           ))}
         </MovieOption>

@@ -1,5 +1,5 @@
 import type { StorybookConfig } from "@storybook/nextjs";
-const path = require('path');
+const path = require("path");
 
 const config: StorybookConfig = {
   stories: ["../src/**/*.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
@@ -20,9 +20,9 @@ const config: StorybookConfig = {
     config.resolve.modules = [path.resolve(__dirname, '..'), 'node_modules'];
     config.resolve.alias = {
       ...config.resolve.alias,
-      'next-i18next': 'react-i18next'
+      "next-i18next": "react-i18next",
     };
-    return config
+    return config;
   },
   docs: {
     autodocs: "tag",

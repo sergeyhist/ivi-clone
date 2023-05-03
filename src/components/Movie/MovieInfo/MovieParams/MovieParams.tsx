@@ -16,17 +16,17 @@ const MovieParams: FC<MovieParamsProps> = ({ movie }) => {
     <div className={styles.params}>
       <ul className={styles.list}>
         <li className={styles.list__item}>{movie.year}</li>
-        <li className={styles.list__item}>{movie.time}</li>
-        <li className={styles.list__item}>{movie.age}+</li>
+        <li className={styles.list__item}>{movie.duration}</li>
+        <li className={styles.list__item}>{movie.age_limit}+</li>
       </ul>
       <ul className={styles.list}>
-        {movie.categories.map((category, index) => (
+        {movie.genres.map((genre) => (
           <li
-            key={index}
+            key={genre.genre_id}
             className={`${styles.list__item} ${styles.list__item_dot}`}
           >
-            <Link href={category.route} className={styles.list__link}>
-              {category.name}
+            <Link href={"/movies/" + genre.slug} className={styles.list__link}>
+              {genre.genre_ru}
             </Link>
           </li>
         ))}

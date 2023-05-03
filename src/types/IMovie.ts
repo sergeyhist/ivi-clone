@@ -1,46 +1,44 @@
-import { ICreator } from "./ICreator";
-
-export interface IMovieLang {
-  id: string;
-  name: string;
-  shortName: string;
-}
-export interface IMovieGenre {
-  id: string;
-  name: string;
-  route: string;
-}
-
-export interface IMovieComment {
-  id: number;
-  author: string;
-  text: string;
-  date: string;
-  replies?: IMovieComment[];
-}
-
-export interface IMovieRating {
-  grade: string;
-  gradeCategory: string;
-  grades: string;
-}
+import { IGenre } from "./IGenre";
 
 export interface IMovie {
-  id: string;
-  title: string;
-  type: string;
-  access: string;
-  imgUrl: string;
-  age: number;
-  year: number;
-  time: string;
-  subtitles: IMovieLang[];
-  langs: IMovieLang[];
-  qualities: string[];
-  rating: IMovieRating;
-  creators: ICreator[];
-  categories: IMovieGenre[];
+  film_id: string;
+  name_ru: string;
+  name_en: string;
   description: string;
-  route: string;
-  comments: IMovieComment[];
+  year: number;
+  country: string;
+  rating: number;
+  assessments: number;
+  reviews: number;
+  age_limit: number;
+  duration: number;
+  img: string;
+  trailers: ITrailer[];
+  genres: IGenre[];
+  qualities: IQuality[];
+  languagesAudio: ILanguagesAudio[];
+  languagesSubtitle: ILanguagesSubtitle[];
+  [key: string]: any;
+}
+
+export interface ITrailer {
+  trailer_id: string;
+  trailer: string;
+  img: string;
+  date: string;
+}
+
+export interface IQuality {
+  quality_id: string;
+  quality: string;
+}
+
+export interface ILanguagesAudio {
+  language_id: string;
+  language: string;
+}
+
+export interface ILanguagesSubtitle {
+  language_id: string;
+  language: string;
 }

@@ -1,11 +1,13 @@
 import { FC } from "react";
 import styles from "./CreatorsList.module.sass";
-import { ICreator } from "/src/types/ICreator";
 import Image from "next/image";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
 import { setShowModal } from "/src/store/slices/modalsSlice";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import { creators } from "/src/utils/creators";
+import { ICreator } from "/src/types/ICreator";
 
 interface CreatorsListProps {
   creators: ICreator[];
@@ -15,6 +17,7 @@ const CreatorsList: FC<CreatorsListProps> = ({ creators }) => {
   const showModal = useAppSelector((state) => state.showModal);
   const dispatch = useAppDispatch();
   const { t } = useTranslation("creators");
+  const { locale } = useRouter();
 
   const firstTenCreators = creators.slice(0, 10);
 
@@ -27,17 +30,21 @@ const CreatorsList: FC<CreatorsListProps> = ({ creators }) => {
               <Link className={styles.item} key={i} href="/">
                 <div className={styles.image}>
                   <Image
-                    src={creator.imageUrl || "/images/creators/unnamed.png"}
+                    src={"https:" + creator.img || "/images/creators/unnamed.png"}
                     width={88}
                     height={88}
-                    alt={creator.firstName}
+                    alt={creator.first_name_en}
                   ></Image>
                 </div>
                 <div>
-                  <h4 className={styles.title}>{creator.firstName}</h4>
-                  <h4 className={styles.second__title}>{creator.lastName}</h4>
+                  <h4 className={styles.title}>
+                    {creator[`first_name_${String(locale)}`] || creator.first_name_en}
+                  </h4>
+                  <h4 className={styles.second__title}>
+                    {creator[`last_name_${String(locale)}`] || creator.last_name_en}
+                  </h4>
                   <p className={styles.subtitle}>
-                    {creator.role === "режиссёр" ? t("roles.0") : t("roles.1")}
+                    {creator.film_role_slug === "actor" ? t("roles.1") : t("roles.0")}
                   </p>
                 </div>
               </Link>

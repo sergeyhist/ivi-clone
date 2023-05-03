@@ -1,6 +1,6 @@
 import { ICreator } from "/src/types/ICreator";
 
-export const creatorsData: ICreator[] = [
+export const creators: ICreator[] = [
   {
     film_role: "актёр",
     film_role_slug: "actor",

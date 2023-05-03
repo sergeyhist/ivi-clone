@@ -2,14 +2,14 @@ import { FC, ReactNode, useState } from "react";
 import styles from "./MovieInfoModal.module.sass";
 import { ICreator } from "/src/types/ICreator";
 import MovieCard from "/src/UI/MovieCard/MovieCard";
-import { slides } from "../../Home/HomeSliders/HomeSliders.utils";
 import { useAppSelector } from "/src/hooks/redux";
 import { InfoTabs } from "/src/types/InfoTabs";
 import CreatorsModalList from "/src/components/ModalWindows/MovieInfoModal/CreatorsModalList/CreatorsModalList";
 import CommentForm from "/src/components/ModalWindows/MovieInfoModal/CommentForm/CommentForm";
-import { comments } from "/src/components/ModalWindows/MovieInfoModal/MovieInfoModal.utils";
+import { comments } from "./MovieInfoModal.utils";
 import useOverflowHidden from "/src/hooks/useOverflowHidden";
 import { useTranslation } from "next-i18next";
+import { movie } from "/src/utils/movie";
 import axios from "axios";
 
 interface MovieInfoModalProps {
@@ -26,14 +26,13 @@ const MovieInfoModal: FC<MovieInfoModalProps> = ({
   const defaultTab = useAppSelector(
     (state) => state.showModal.showMovieInfoModal.defaultTab
   );
-  const screenWidth = useAppSelector(state => state.windowSize.width);
-  const [selectedTab, setSelectedTab] = useState<InfoTabs>(
-    defaultTab || "actors"
-  );
+
+  const screenWidth = useAppSelector((state) => state.windowSize.width);
+  const [selectedTab, setSelectedTab] = useState<InfoTabs>(defaultTab || "actors");
+
   const { t } = useTranslation("movieInfo");
 
-
-  axios.get('http://85.237.34.125:4000/films?limit=20').then((res)=>console.log(res));
+  axios.get("http://85.237.34.125:4000/films?limit=20").then((res) => console.log(res));
 
   const getSelectedTab = (tab: InfoTabs): ReactNode => {
     switch (tab) {
@@ -74,15 +73,14 @@ const MovieInfoModal: FC<MovieInfoModalProps> = ({
               </li>
             </ul>
           </div>
-          <div className={styles.tabs__content}>
-            {getSelectedTab(selectedTab)}
-          </div>
+          <div className={styles.tabs__content}>{getSelectedTab(selectedTab)}</div>
         </div>
-        {screenWidth > 880 &&
+
+        {screenWidth > 880 && (
           <div className={styles.card}>
-            <MovieCard content={slides[0]} type="poster" />
+            <MovieCard content={movie} type="poster" />
           </div>
-        }
+        )}
       </div>
     </div>
   );

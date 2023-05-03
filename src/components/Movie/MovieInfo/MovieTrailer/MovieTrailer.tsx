@@ -15,7 +15,7 @@ const MovieTrailer: FC<MovieTrailerProps> = ({ movie }) => {
   return (
     <div className={styles.trailer}>
       <Image
-        src={movie.imgUrl}
+        src={"https:" + movie.img}
         className={styles.trailer__img}
         width={858}
         height={483}
@@ -30,9 +30,7 @@ const MovieTrailer: FC<MovieTrailerProps> = ({ movie }) => {
           <CustomButton className={styles.button} type="red">
             <div className={styles.button__content}>
               <p className={styles.button__title}>{t("trailer.watch")}</p>
-              <p className={styles.button__subtitle}>
-                {t("trailer.subscription")}
-              </p>
+              <p className={styles.button__subtitle}>{t("trailer.subscription")}</p>
             </div>
           </CustomButton>
           <p className={styles.trailer__text}>{t("trailer.promo")}</p>
