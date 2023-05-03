@@ -9,6 +9,7 @@ import { useTranslation } from "next-i18next";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
 import { setShowModal } from "/src/store/slices/modalsSlice";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
 interface ActionsProps {
   setDropDownType: Dispatch<SetStateAction<DropDownType>>;
@@ -30,7 +31,7 @@ const Actions: FC<ActionsProps> = ({
   };
 
   return (
-    <div className={styles.actions__container}>
+    <div className={styles.container}>
       {router.pathname !== "/" ? (
         <div
           onMouseEnter={() => {
@@ -53,20 +54,23 @@ const Actions: FC<ActionsProps> = ({
 
       {windowSizeWidth > 1159 && (
         <div
-          className={styles.actions__search}
+          className={styles.search}
           onMouseEnter={() => setIsDropdownActive(false)}
           onClick={handleSearchClick}
         >
-          <div className={styles.search__icon}>
+          <div className={styles.icon}>
             <BsSearch />
           </div>
           <div>{t("search")}</div>
         </div>
       )}
 
-      <a href="https://www.ivi.ru/profile/pull_notifications" target="_blank">
+      <Link
+        href="https://www.ivi.ru/profile/pull_notifications"
+        target="_blank"
+      >
         <div
-          className={styles.actions__notifications}
+          className={styles.notifications}
           onMouseEnter={() => {
             setDropDownType("notification");
             setIsDropdownActive(true);
@@ -74,10 +78,10 @@ const Actions: FC<ActionsProps> = ({
         >
           <AiOutlineBell />
         </div>
-      </a>
-      <a href="https://www.ivi.ru/profile" target="_blank">
+      </Link>
+      <Link href="https://www.ivi.ru/profile" target="_blank">
         <div
-          className={styles.actions__profile}
+          className={styles.profile}
           onMouseEnter={() => {
             setDropDownType("profile");
             setIsDropdownActive(true);
@@ -85,7 +89,7 @@ const Actions: FC<ActionsProps> = ({
         >
           <BiUser />
         </div>
-      </a>
+      </Link>
     </div>
   );
 };
