@@ -10,6 +10,8 @@ interface MovieCardPosterProps {
 }
 
 const MovieCardPoster: FC<MovieCardPosterProps> = ({ content }) => {
+  const img = content.img ? `https:${content.img}` : "/images/film1.jpeg";
+
   return (
     <article className={styles.content}>
       <Link className={styles.content__link} href={"/movies/" + content.film_id}>
@@ -18,7 +20,7 @@ const MovieCardPoster: FC<MovieCardPosterProps> = ({ content }) => {
             height={234}
             width={153}
             className={styles.content__img}
-            src={"https:" + content.img}
+            src={img}
             alt=""
           />
         </div>

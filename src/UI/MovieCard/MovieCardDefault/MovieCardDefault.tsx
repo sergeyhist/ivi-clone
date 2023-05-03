@@ -16,6 +16,7 @@ interface MovieCardDefaultProps {
 const MovieCardDefault: FC<MovieCardDefaultProps> = ({ content, type = "default" }) => {
   const className = type == "related" ? styles.content_related : styles.content_default;
   const { locale } = useRouter();
+  const img = content.img ? `https:${content.img}` : "/images/film1.jpeg";
 
   return (
     <article className={`${styles.content} ${className}`}>
@@ -25,7 +26,7 @@ const MovieCardDefault: FC<MovieCardDefaultProps> = ({ content, type = "default"
             height={234}
             width={153}
             className={styles.content__img}
-            src={"https:" + content.img}
+            src={img}
             alt=""
           />
           <div className={styles.content__inner}>
