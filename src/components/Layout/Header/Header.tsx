@@ -1,4 +1,4 @@
-import { FC, useRef, useState, MouseEvent } from "react";
+import { FC, useRef, useState, MouseEvent, ChangeEvent } from "react";
 import styles from "./Header.module.sass";
 import Navigation from "./Navigation/Navigation";
 import Actions from "./Actions/Actions";
@@ -12,6 +12,8 @@ import { setShowModal } from "/src/store/slices/modalsSlice";
 import Link from "next/link";
 import SearchModal from "/src/components/ModalWindows/SearchModal/SearchModal";
 import AuthModal from "/src/components/ModalWindows/AuthModal/AuthModal";
+import ToggleSwitch from "/src/UI/ToggleSwitch/ToggleSwitch";
+import { useRouter } from "next/router";
 
 const Header: FC = () => {
   const [isDropdownActive, setIsDropdownActive] = useState(false);
@@ -19,6 +21,7 @@ const Header: FC = () => {
   const showModal = useAppSelector((state) => state.showModal);
   const windowSizeWidth = useAppSelector((state) => state.windowSize.width);
   const dispatch = useAppDispatch();
+  const { push, asPath } = useRouter();
 
   const refDropDown = useRef<HTMLDivElement>(null);
   const navigationRef = useRef<HTMLDivElement>(null);
@@ -32,6 +35,12 @@ const Header: FC = () => {
     ) {
       setIsDropdownActive(false);
     }
+  };
+
+  const handleInputCheck = (e?: ChangeEvent<HTMLInputElement>): void => {
+    if (e && e.target.checked)
+      push(asPath, undefined, { locale: "ru", scroll: false });
+    else push(asPath, undefined, { locale: "en", scroll: false });
   };
 
   return (
@@ -82,6 +91,13 @@ const Header: FC = () => {
           </div>
         </div>
         <div ref={actionRef} className={styles.header__action_layout}>
+          <ToggleSwitch
+            className={styles.switch}
+            leftContent="EN"
+            rightContent="RU"
+            scale={"0.7"}
+            clickCallback={handleInputCheck}
+          />
           <Actions
             setIsDropdownActive={setIsDropdownActive}
             setDropDownType={setDropDownType}
