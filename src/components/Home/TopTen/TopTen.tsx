@@ -19,7 +19,7 @@ const TopTen: FC = () => {
             height={24}
             className={styles.section__img}
             src="/images/topten.svg"
-            alt=""
+            alt="topten"
           />{" "}
           {t("top.title")}
         </h2>

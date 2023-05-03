@@ -27,7 +27,7 @@ const TopTenSlide: FC<TopTenSlideProps> = ({
             loading="lazy"
             className={styles.slide__img}
             src={mainImgUrl}
-            alt=""
+            alt="movieImg"
           />
         </div>
         <Image
@@ -36,7 +36,7 @@ const TopTenSlide: FC<TopTenSlideProps> = ({
           loading="lazy"
           className={styles.slide__logo}
           src={logoImgUrl}
-          alt=""
+          alt="movieLogo"
         />
         <Image
           width={32}
@@ -44,7 +44,7 @@ const TopTenSlide: FC<TopTenSlideProps> = ({
           loading="lazy"
           className={styles.slide__number}
           src={numberImgUrl}
-          alt=""
+          alt="number"
         />
       </article>
     </Link>

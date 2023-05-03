@@ -25,7 +25,7 @@ const BannerSlide: FC<BannerSlideProps> = ({ slide }) => {
           height={524}
           className={styles.slide__img}
           src={slide.bannerUrl}
-          alt=""
+          alt="banner"
         />
 
         <Image
@@ -33,7 +33,7 @@ const BannerSlide: FC<BannerSlideProps> = ({ slide }) => {
           height={1358}
           className={styles.slide__img_mobile}
           src={slide.mobileBannerUrl}
-          alt=""
+          alt="mobileBanner"
         />
 
         <div className={styles.promo}>
@@ -43,7 +43,7 @@ const BannerSlide: FC<BannerSlideProps> = ({ slide }) => {
               height={200}
               className={styles.promo__logo}
               src={slide.logoUrl}
-              alt=""
+              alt="logo"
             />
           )}
           {slide.title && <h3 className={styles.promo__title}>{slide.title}</h3>}
