@@ -1,3 +1,5 @@
+@use "src/styles/vars"
+
 @keyframes close-button__skew-animation
   11.1%
     -webkit-transform: none
@@ -53,7 +55,7 @@
     color: #b8b6c0
 
   &:hover::before
-    color: white
+    color: vars.$whiteTextColor
     transform-origin: center
     animation-duration: .5s
     transition: color 80ms

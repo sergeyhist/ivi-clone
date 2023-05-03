@@ -89,6 +89,7 @@ export const getServerSideProps = async ({
         "header",
         "movie",
         "creators",
+        "dropDownCategory",
         "breadcrumbs",
         "movieInfo",
         "mobileMenu",

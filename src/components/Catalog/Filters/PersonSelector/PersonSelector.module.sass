@@ -1,3 +1,5 @@
+@use "src/styles/vars"
+
 .selector
   display: grid
   gap: 4px
@@ -14,7 +16,7 @@
     overflow: hidden
     white-space: nowrap
     text-overflow: ellipsis
-    color: white
+    color: vars.$whiteTextColor
 
     &::placeholder
       color: rgba(255, 255, 255, .6)

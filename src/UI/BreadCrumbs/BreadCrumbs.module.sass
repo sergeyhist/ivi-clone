@@ -1,3 +1,5 @@
+@use "src/styles/vars"
+
 .section
   padding-top: 25px
   display: flex
@@ -25,7 +27,7 @@
     transition: .2s
 
   &__link:hover
-    color: #fff
+    color: vars.$whiteTextColor
 
 .list_slash
   .list
@@ -43,7 +45,7 @@
       font-size: 13px
 
     &__link
-      color: #fff
+      color: vars.$whiteTextColor
       font-size: 13px
       position: relative
       box-shadow: 0 2px 0 #7e798f, inset 0 0 0 #7e798f
@@ -62,7 +64,7 @@
       font-weight: 400
       font-size: 20px
       line-height: 20px
-      color: #fff
+      color: vars.$whiteTextColor
 
 @media (max-width: 600px)
   .section_mobile
