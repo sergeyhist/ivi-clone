@@ -16,8 +16,8 @@ export interface IMovie {
   trailers: ITrailer[];
   genres: IGenre[];
   qualities: IQuality[];
-  languagesAudio: ILanguagesAudio[];
-  languagesSubtitle: ILanguagesSubtitle[];
+  languagesAudio: ILanguage[];
+  languagesSubtitle: ILanguage[];
   [key: string]: any;
 }
 
@@ -33,12 +33,7 @@ export interface IQuality {
   quality: string;
 }
 
-export interface ILanguagesAudio {
-  language_id: string;
-  language: string;
-}
-
-export interface ILanguagesSubtitle {
+export interface ILanguage {
   language_id: string;
   language: string;
 }
