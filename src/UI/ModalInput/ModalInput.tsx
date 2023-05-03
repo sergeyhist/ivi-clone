@@ -137,7 +137,7 @@ const ModalInput: FC<ModalInputProps> = ({
             <div
               className={`${styles.show__icon} ${
                 isPasswordInputSelected ? "" : styles.show__icon_disabled
-              } ${showPassword ? styles.password_show : ""}`}
+              } ${!showPassword ? styles.password_show : ""}`}
               onClick={(e) => {
                 e.preventDefault();
                 setShowPassword((prevState) => !prevState);

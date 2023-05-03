@@ -7,6 +7,7 @@ interface ToggleSwitchProps {
   rightContent: string;
   clickCallback: (e?: ChangeEvent<HTMLInputElement>) => void;
   scale?: string;
+  isChecked?: boolean;
 }
 
 const ToggleSwitch: FC<ToggleSwitchProps> = ({
@@ -14,6 +15,7 @@ const ToggleSwitch: FC<ToggleSwitchProps> = ({
   leftContent,
   rightContent,
   clickCallback,
+  isChecked= false,
   scale = "0.8",
 }) => {
   return (
@@ -25,6 +27,7 @@ const ToggleSwitch: FC<ToggleSwitchProps> = ({
         className={styles.checkbox}
         id={`react-switch-new`}
         onChange={clickCallback}
+        checked={isChecked}
         type="checkbox"
       />
       <label className={styles.label} htmlFor={`react-switch-new`}>

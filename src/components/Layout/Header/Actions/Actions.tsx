@@ -30,6 +30,9 @@ const Actions: FC<ActionsProps> = ({
     dispatch(setShowModal({ ...showModal, showSearchModal: true }));
   };
 
+  const handleProfileClick = (): void => {
+    dispatch(setShowModal({ ...showModal, showAuthModal: true }));
+  };
   return (
     <div className={styles.container}>
       {router.pathname !== "/" ? (
@@ -79,9 +82,9 @@ const Actions: FC<ActionsProps> = ({
           <AiOutlineBell />
         </div>
       </Link>
-      <Link href="https://www.ivi.ru/profile" target="_blank">
         <div
           className={styles.profile}
+          onClick={handleProfileClick}
           onMouseEnter={() => {
             setDropDownType("profile");
             setIsDropdownActive(true);
@@ -89,7 +92,6 @@ const Actions: FC<ActionsProps> = ({
         >
           <BiUser />
         </div>
-      </Link>
     </div>
   );
 };
