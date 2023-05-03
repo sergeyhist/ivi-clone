@@ -1,4 +1,5 @@
 @use "/src/styles/vars"
+@use '/src/styles/mixins'
 
 .link
     display: block
@@ -20,6 +21,10 @@
         width: 100%
         height: 100%
         display: none
+
+    &__title
+        white-space: nowrap
+        @include mixins.ellipsis()
 
     &:hover
         .content__filter

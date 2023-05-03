@@ -6,7 +6,6 @@ import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
 import { setShowModal } from "/src/store/slices/modalsSlice";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import { creators } from "/src/utils/creators";
 import { ICreator } from "/src/types/ICreator";
 
 interface CreatorsListProps {
