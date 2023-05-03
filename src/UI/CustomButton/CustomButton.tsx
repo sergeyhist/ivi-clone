@@ -30,7 +30,7 @@ const CustomButton: FC<CustomButtonProps> = ({
         clickCallback && clickCallback();
       }}
       style={style}
-      className={typeSelector + className + " unselectable"}
+      className={typeSelector + ` ${className}` + " unselectable"}
     >
       <div className={styles.btn__content}>{children}</div>
     </button>
