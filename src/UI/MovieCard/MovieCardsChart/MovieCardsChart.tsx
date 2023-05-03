@@ -1,17 +1,17 @@
 import { FC } from "react";
 import styles from "./MovieCardsChart.module.sass";
-import IMovieCard from "../../../types/IMovieCard";
+import { IMovie } from "/src/types/IMovie";
 import ProgressBar from "../../ProgressBar/ProgressBar";
 
 interface MovieCardsChartProps {
-  content: IMovieCard;
+  content: IMovie;
 }
 
 const MovieCardsChart: FC<MovieCardsChartProps> = ({ content }) => {
   return (
     <div className={styles.chart}>
-      <p className={styles.chart__name}>{content.chartName}</p>
-      <ProgressBar value={content.chartRating} className={styles.chart__bar} />
+      <p className={styles.chart__name}>{"Рейтинг"}</p>
+      <ProgressBar value={content.rating * 10} className={styles.chart__bar} />
     </div>
   );
 };

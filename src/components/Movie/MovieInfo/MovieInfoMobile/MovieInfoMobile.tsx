@@ -6,16 +6,21 @@ import MovieTrailer from "../MovieTrailer/MovieTrailer";
 import MovieTrailerButtons from "../MovieButtons/MovieButtons";
 import MovieContent from "./MovieContent/MovieContent";
 import { IMovie } from "/src/types/IMovie";
+import { useRouter } from "next/router";
 
 interface MovieInfoMobileProps {
   movie: IMovie;
 }
 
 const MovieInfoMobile: FC<MovieInfoMobileProps> = ({ movie }) => {
+  const { locale } = useRouter();
   return (
     <section className={styles.mobile}>
       <div className="container">
-        <MovieTitle title={movie.title} type={movie.type} year={movie.year} />
+        <MovieTitle
+          title={locale === "ru" ? movie.name_ru : movie.name_en}
+          year={movie.year}
+        />
         <MovieParams movie={movie} />
         <MovieTrailer movie={movie} />
         <div className={styles.mobile__row}>

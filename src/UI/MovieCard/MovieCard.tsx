@@ -1,10 +1,10 @@
 import { FC } from "react";
-import IMovieCard from "../../types/IMovieCard";
 import MovieCardDefault from "./MovieCardDefault/MovieCardDefault";
 import MovieCardPoster from "./MovieCardPoster/MovieCardPoster";
+import { IMovie } from "/src/types/IMovie";
 
 interface MovieCardProps {
-  content: IMovieCard;
+  content: IMovie;
   type?: "default" | "related" | "poster";
 }
 

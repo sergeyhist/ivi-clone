@@ -3,12 +3,11 @@ import styles from "./MovieRating.module.sass";
 import { useTranslation } from "next-i18next";
 
 interface RatingProps {
-  grade: string;
-  category: string;
-  grades: string;
+  grade: number;
+  grades: number;
 }
 
-const MovieRating: FC<RatingProps> = ({ grade, category, grades }) => {
+const MovieRating: FC<RatingProps> = ({ grade, grades }) => {
   const { t } = useTranslation("movie");
 
   return (
@@ -17,7 +16,7 @@ const MovieRating: FC<RatingProps> = ({ grade, category, grades }) => {
         <p className={styles.rating__grade}>{grade}</p>
         <div className={styles.rating__column}>
           <p className={styles.rating__title}>{t("rating.title")}</p>
-          <p className={styles.rating__category}>{category}</p>
+          {/* <p className={styles.rating__category}>{'category'}</p> */}
           <p className={styles.rating__grades}>
             {grades} {t("rating.grades")}
           </p>

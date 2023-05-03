@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { movie } from "/src/utils/movie";
 import Layout from "../../components/Layout/Layout";
 import MovieInfo from "../../components/Movie/MovieInfo/MovieInfo";
@@ -13,10 +13,34 @@ import { setShowModal } from "/src/store/slices/modalsSlice";
 import MovieInfoModal from "/src/components/ModalWindows/MovieInfoModal/MovieInfoModal";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetServerSidePropsResult } from "next";
+import axios from "axios";
+import { useRouter } from "next/router";
+import { creators } from "/src/utils/creators";
+import { comments } from "/src/utils/comments";
 
 const Movie: FC = () => {
   const showModal = useAppSelector((state) => state.showModal);
   const dispatch = useAppDispatch();
+  const { locale } = useRouter();
+  // const [movie, setFetchedMovie] = useState<IMovie>();
+
+  const name = locale === "ru" ? movie?.name_ru : movie?.name_en;
+
+  // useEffect(() => {
+  //   fetchMovie();
+  // }, []);
+
+  // const fetchMovie = async (): Promise<void> => {
+  //   try {
+  //     const response = await axios.get<IMovie>(
+  //       "http://85.237.34.125:4000/films/984fdb2d-da0c-4e04-926a-f72f103c4ccb"
+  //     );
+  //     console.log(response.data);
+  //     setFetchedMovie(response.data);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   const closeCallback = (): void => {
     dispatch(
@@ -28,23 +52,27 @@ const Movie: FC = () => {
   };
 
   return (
-    <Layout title={`${movie.title} (${movie.type} ${movie.year})`}>
-      <BreadCrumbs mobileVersion={true} />
-      <MovieInfo movie={movie} />
-      <RelatedMovies movieTitle={movie.title} />
-      <CreatorsList creators={movie.creators} />
-      <WatchAllDevices movieTitle={movie.title} imageUrl={movie.imgUrl} />
-      <CommentsSlider />
-      <BreadCrumbs currentTitle={movie.title} />
-      {showModal.showMovieInfoModal.isShow &&
-        createAppPortal(
-          <MovieInfoModal
-            creators={movie.creators}
-            movieTitle={movie.title}
-            closeCallback={closeCallback}
-          />
-        )}
-    </Layout>
+    <>
+      {movie && (
+        <Layout title={`${String(name)} (${String(movie?.year)})`}>
+          <BreadCrumbs mobileVersion={true} />
+          <MovieInfo movie={movie} />
+          <RelatedMovies movieTitle={String(name)} />
+          <CreatorsList creators={creators} />
+          <WatchAllDevices movieTitle={String(name)} imageUrl={String(movie?.img)} />
+          <CommentsSlider comments={comments} />
+          <BreadCrumbs currentTitle={String(name)} />
+          {showModal.showMovieInfoModal.isShow &&
+            createAppPortal(
+              <MovieInfoModal
+                movieTitle={String(name)}
+                creators={creators}
+                closeCallback={closeCallback}
+              />
+            )}
+        </Layout>
+      )}
+    </>
   );
 };
 

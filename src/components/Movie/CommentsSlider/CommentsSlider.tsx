@@ -5,12 +5,16 @@ import { SwiperSlide } from "swiper/react";
 import { breakpoints } from "./CommentsSlider.utils";
 import CommentsCard from "./CommentCard/CommentCard";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
-import { comments } from "./CommentsSlider.utils";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
 import { setShowModal } from "/src/store/slices/modalsSlice";
 import { useTranslation } from "next-i18next";
+import { IComment } from "/src/types/IComment";
 
-const CommentsSlider: FC = () => {
+interface CommentsSliderProps {
+  comments: IComment[];
+}
+
+const CommentsSlider: FC<CommentsSliderProps> = ({ comments }) => {
   const { t } = useTranslation("movie");
   const showModal = useAppSelector((state) => state.showModal);
   const dispatch = useAppDispatch();

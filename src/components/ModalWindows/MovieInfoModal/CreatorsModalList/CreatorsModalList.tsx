@@ -11,8 +11,8 @@ interface CreatorsModalListProps {
 const CreatorsModalList: FC<CreatorsModalListProps> = ({ creators }) => {
   const { t } = useTranslation("movieInfo");
 
-  const directors = creators.filter((creator) => creator.role === "режиссёр");
-  const actors = creators.filter((creator) => creator.role === "актёр");
+  const directors = creators.filter((creator) => creator.film_role_slug === "rezhisser");
+  const actors = creators.filter((creator) => creator.film_role_slug === "actor");
 
   return (
     <div className={styles.container}>

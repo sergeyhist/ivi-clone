@@ -9,19 +9,16 @@ interface WatchAllDevicesProps {
   movieTitle: string;
 }
 
-const WatchAllDevices: FC<WatchAllDevicesProps> = ({
-  imageUrl,
-  movieTitle,
-}) => {
+const WatchAllDevices: FC<WatchAllDevicesProps> = ({ imageUrl, movieTitle }) => {
   const { t } = useTranslation("movie");
 
   return (
     <section className="container">
       <div className={styles.wrapper}>
         <div className={styles.appeal}>
-          <h2 className={styles.title}>{`${t(
-            "devices.watch"
-          )} «${movieTitle}» ${t("devices.title")}`}</h2>
+          <h2 className={styles.title}>{`${t("devices.watch")} «${movieTitle}» ${t(
+            "devices.title"
+          )}`}</h2>
           <p className={styles.subtitle}>{t("devices.text")}</p>
           <CustomButton className={styles.button} type="red">
             <div className={styles.button__text}>{t("devices.button")}</div>
@@ -45,14 +42,14 @@ const WatchAllDevices: FC<WatchAllDevicesProps> = ({
             />
             <Image
               className={styles.poster__tv}
-              src={imageUrl}
+              src={"https:" + imageUrl}
               width={337}
               height={192}
               alt={movieTitle}
             />
             <Image
               className={styles.poster__tablet}
-              src={imageUrl}
+              src={"https:" + imageUrl}
               width={188}
               height={102}
               alt={movieTitle}
