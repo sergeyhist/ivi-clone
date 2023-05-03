@@ -6,11 +6,9 @@ import { CSSTransition } from "react-transition-group";
 import styles from "./FooterButtons.module.sass";
 import PhonesList from "./PhonesList/PhonesList";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
-import { useRouter } from "next/router";
 
 const FooterButtons: FC = () => {
   const { t } = useTranslation("footer");
-  const { locales, push, asPath } = useRouter();
 
   const [isListActive, setIsListActive] = useState(false);
 
@@ -21,10 +19,6 @@ const FooterButtons: FC = () => {
     !listRef.current?.contains(e.target as Node) &&
       !phoneRef.current?.contains(e.target as Node) &&
       setIsListActive(false);
-  };
-
-  const localeClick = (locale: string): void => {
-    push(asPath, undefined, { locale: locale, scroll: false });
   };
 
   const keydownHandler = (e: KeyboardEvent): void => {
@@ -70,16 +64,6 @@ const FooterButtons: FC = () => {
             <BsTelephone size={16} />
           </CustomButton>
         </div>
-
-        {locales?.map((locale) => (
-          <CustomButton
-            key={locale}
-            type="icon"
-            clickCallback={() => localeClick(locale)}
-          >
-            {locale}
-          </CustomButton>
-        ))}
       </div>
       <CSSTransition
         in={isListActive}
