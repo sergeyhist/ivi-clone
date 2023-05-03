@@ -1,4 +1,4 @@
-import { FC, useRef, useState, MouseEvent, ChangeEvent } from "react";
+import {FC, useRef, useState, MouseEvent, ChangeEvent, useEffect} from "react";
 import styles from "./Header.module.sass";
 import Navigation from "./Navigation/Navigation";
 import Actions from "./Actions/Actions";
@@ -18,14 +18,19 @@ import { useRouter } from "next/router";
 const Header: FC = () => {
   const [isDropdownActive, setIsDropdownActive] = useState(false);
   const [dropDownType, setDropDownType] = useState<DropDownType>("");
+  const [selectedLanguage, setSelectedLanguage] = useState(false);
   const showModal = useAppSelector((state) => state.showModal);
   const windowSizeWidth = useAppSelector((state) => state.windowSize.width);
   const dispatch = useAppDispatch();
-  const { push, asPath } = useRouter();
+  const {locale, push, asPath } = useRouter();
 
   const refDropDown = useRef<HTMLDivElement>(null);
   const navigationRef = useRef<HTMLDivElement>(null);
   const actionRef = useRef<HTMLDivElement>(null);
+
+  useEffect(()=>{
+    locale === "ru" ? setSelectedLanguage(true) : setSelectedLanguage(false);
+  },[setSelectedLanguage,locale])
 
   const handleHeaderMouseOver = (e: MouseEvent): void => {
     if (
@@ -41,6 +46,7 @@ const Header: FC = () => {
     if (e && e.target.checked)
       push(asPath, undefined, { locale: "ru", scroll: false });
     else push(asPath, undefined, { locale: "en", scroll: false });
+    setSelectedLanguage(prevState => !prevState);
   };
 
   return (
@@ -96,6 +102,7 @@ const Header: FC = () => {
             leftContent="EN"
             rightContent="RU"
             scale={"0.7"}
+            isChecked={selectedLanguage}
             clickCallback={handleInputCheck}
           />
           <Actions

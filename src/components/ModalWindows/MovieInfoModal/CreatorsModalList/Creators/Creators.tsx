@@ -5,11 +5,8 @@ import Link from "next/link";
 import Image from "next/image";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import { useTranslation } from "next-i18next";
-import {
-  declensionMoviesEn,
-  declensionMoviesRu,
-} from "/src/components/ModalWindows/MovieInfoModal/CreatorsModalList/Creators/Creators.utils";
 import { useRouter } from "next/router";
+import {declOfNum} from "/src/utils/declOfNum";
 
 interface CreatorsProps {
   creators: ICreator[];
@@ -21,6 +18,8 @@ const Creators: FC<CreatorsProps> = ({ creators }) => {
   const router = useRouter();
   const { t } = useTranslation("movieInfo");
   const { locale } = useRouter();
+
+  const randNum = (Math.random() * 10) ^ 0;
 
   useEffect(() => {
     if (creatorsToShow.length > 16 && !showAllCreators)
@@ -52,8 +51,8 @@ const Creators: FC<CreatorsProps> = ({ creators }) => {
             </h4>
             <div className={styles.movies_count}>{`${
               router.locale === "en"
-                ? declensionMoviesEn((Math.random() * 10) ^ 0)
-                : declensionMoviesRu((Math.random() * 10) ^ 0)
+                ? randNum.toString() + " " + declOfNum(randNum,["movie","movies","movies"])
+                : randNum.toString() + " " + declOfNum(randNum,["фильм","фильма",'фильмов'])
             }`}</div>
           </div>
         </Link>

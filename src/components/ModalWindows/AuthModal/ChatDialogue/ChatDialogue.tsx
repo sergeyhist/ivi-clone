@@ -11,11 +11,11 @@ import styles from "./ChatDialogue.module.sass";
 import { CSSTransition } from "react-transition-group";
 import ModalInput from "/src/UI/ModalInput/ModalInput";
 import {
-  cssTransitionClassNames,
-  validateEmail,
+  cssTransitionClassNames
 } from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDoalogue.utils";
-import PrivacyPolicy from "/src/components/ModalWindows/AuthModal/ChatDialogue/PrivacyPolicy/PrivacyPolicy";
 import ErrorMessage from "/src/components/ModalWindows/AuthModal/ChatDialogue/ErrorMessage/ErrorMessage";
+import EmailInput from "/src/components/ModalWindows/AuthModal/ChatDialogue/EmailInput/EmailInput";
+import {createUser} from "/src/api/createUser";
 
 interface ChatDialogueProps {
   setProgressBarWidth: Dispatch<SetStateAction<{ width: number }>>;
@@ -28,8 +28,6 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
   const [showForm, setShowFrom] = useState(false);
   const [isEmailInputSuccess, setIsEmailInputSuccess] = useState(false);
 
-  const errorRef = useRef<HTMLDivElement>(null);
-  const emailInputRef = useRef<HTMLDivElement>(null);
   const emailChangeRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
 
@@ -43,11 +41,6 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
     }
   }, [isEmailInputSuccess, setProgressBarWidth]);
 
-  const handleEmailSubmit = (): void => {
-    setShowErrorMessage(!validateEmail(email));
-    setIsEmailInputSuccess(validateEmail(email));
-  };
-
   const handleEmailChangeClick = (): void => {
     setIsEmailInputSuccess(false);
     setProgressBarWidth({ width: 10 });
@@ -55,7 +48,11 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
 
   const handleSubmitForm = (e: FormEvent): void => {
     e.preventDefault();
-    setIsEmailInputSuccess(true);
+    if(email && password){
+      createUser({email: email, password: password})
+    }
+    else
+      setIsEmailInputSuccess(true);
   };
 
   return (
@@ -82,29 +79,14 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
             </p>
           )}
         </div>
-        <CSSTransition
-          classNames={cssTransitionClassNames}
-          nodeRef={emailInputRef}
-          in={!isEmailInputSuccess}
-          timeout={1}
-          unmountOnExit
-        >
-          <div ref={emailInputRef}>
-            <ModalInput
-              showErrorMessage={showErrorMessage}
-              clickCallback={handleEmailSubmit}
-              preventDefault={true}
-              showIcon={true}
-              setIsValid={setShowErrorMessage}
-              authData={email}
-              setAuthData={setEmail}
-              placeholderText="Через email"
-              buttonText="Продолжить"
-              inputType="email"
-            />
-            <PrivacyPolicy />
-          </div>
-        </CSSTransition>
+        <EmailInput
+          email={email}
+          isEmailInputSuccess={isEmailInputSuccess}
+          setEmail={setEmail}
+          setIsEmailInputSuccess={setIsEmailInputSuccess}
+          setShowErrorMessage={setShowErrorMessage}
+          showErrorMessage={showErrorMessage}
+        />
 
         <CSSTransition
           classNames={cssTransitionClassNames}
@@ -126,7 +108,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
           <>
             <div className={styles.chat__message}>
               <h3 className={styles.chat__message__title}>
-                Войдите пароль чтобы войти
+                Введите пароль чтобы войти
               </h3>
             </div>
             <ModalInput
@@ -141,17 +123,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
             />
           </>
         )}
-        <CSSTransition
-          classNames={cssTransitionClassNames}
-          nodeRef={errorRef}
-          in={showErrorMessage}
-          timeout={300}
-          unmountOnExit
-        >
-          <div className={styles.error__container} ref={errorRef}>
-            <ErrorMessage />
-          </div>
-        </CSSTransition>
+        <ErrorMessage showErrorMessage={showErrorMessage}/>
       </form>
     </CSSTransition>
   );
