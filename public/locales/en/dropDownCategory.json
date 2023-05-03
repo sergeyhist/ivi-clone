@@ -1,0 +1,109 @@
+{
+  "movies": {
+    "genres": [
+      "Dramas",
+      "Fantasy",
+      "Historical",
+      "Adventures",
+      "Comedy",
+      "Melodrama",
+      "Action",
+      "Fantastic",
+      "Thrillers",
+      "Military",
+      "Westerns",
+      "Family",
+      "Film noir",
+      "Music",
+      "Horrors",
+      "Detective",
+      "Art house",
+      "Documentary",
+      "Sport",
+      "Shorts",
+      "For Adults"
+    ],
+    "countries": [
+      "Russian",
+      "Foreign",
+      "Soviet movie"
+    ],
+    "years": [
+      "Movies of 2023",
+      "Movies of 2022",
+      "Movies of 2021",
+      "Movies of 2020"
+    ]
+  },
+  "series": {
+    "genres": [
+      "Family",
+      "Music",
+      "Horrors",
+      "Detective",
+      "Art house",
+      "Musicals",
+      "Dramas",
+      "Fantasy",
+      "Criminal",
+      "Cartoons",
+      "Action",
+      "Fantastic",
+      "Shorts",
+      "For Adults",
+      "For children",
+      "Thrillers",
+      "Military",
+      "Westerns",
+      "Historical",
+      "Adventures",
+      "Comedy",
+      "Anime"
+    ],
+    "countries": [
+      "Russian",
+      "Foreign",
+      "American",
+      "Ukrainian",
+      "Korean",
+      "Turkish"
+    ],
+    "years": [
+      "Series of 2023",
+      "Series of 2022",
+      "Series of 2021",
+      "Series of 2020"
+    ]
+  },
+  "cartoons": {
+    "genres": [
+      "Anime",
+      "Dramas",
+      "Fantasy",
+      "Criminal",
+      "Historical",
+      "Adventures",
+      "Comedy",
+      "Cartoons",
+      "Fantastic",
+      "Family",
+      "Music",
+      "Horrors",
+      "Art house",
+      "Musical",
+      "For children"
+    ],
+    "countries": [
+      "Soviet",
+      "Russian",
+      "American",
+      "Foreign"
+    ],
+    "years": [
+      "Cartoons of 2023",
+      "Cartoons of 2022",
+      "Cartoons of 2021",
+      "Cartoons of 2020"
+    ]
+  }
+}

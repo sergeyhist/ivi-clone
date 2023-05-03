@@ -10,6 +10,7 @@ import { comments } from "./MovieInfoModal.utils";
 import useOverflowHidden from "/src/hooks/useOverflowHidden";
 import { useTranslation } from "next-i18next";
 import { movie } from "/src/utils/movie";
+import axios from "axios";
 
 interface MovieInfoModalProps {
   creators: ICreator[];
@@ -23,10 +24,15 @@ const MovieInfoModal: FC<MovieInfoModalProps> = ({
   closeCallback,
 }) => {
   const defaultTab = useAppSelector(
-    (State) => State.showModal.showMovieInfoModal.defaultTab
+    (state) => state.showModal.showMovieInfoModal.defaultTab
   );
+
+  const screenWidth = useAppSelector((state) => state.windowSize.width);
   const [selectedTab, setSelectedTab] = useState<InfoTabs>(defaultTab || "actors");
+
   const { t } = useTranslation("movieInfo");
+
+  axios.get("http://85.237.34.125:4000/films?limit=20").then((res) => console.log(res));
 
   const getSelectedTab = (tab: InfoTabs): ReactNode => {
     switch (tab) {
@@ -69,9 +75,12 @@ const MovieInfoModal: FC<MovieInfoModalProps> = ({
           </div>
           <div className={styles.tabs__content}>{getSelectedTab(selectedTab)}</div>
         </div>
-        <div className={styles.card}>
-          <MovieCard content={movie} type="poster" />
-        </div>
+
+        {screenWidth > 880 && (
+          <div className={styles.card}>
+            <MovieCard content={movie} type="poster" />
+          </div>
+        )}
       </div>
     </div>
   );

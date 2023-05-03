@@ -12,14 +12,13 @@ interface CustomButtonProps {
 }
 
 const CustomButton: FC<CustomButtonProps> = ({
-  className,
+  className = "",
   children,
   clickCallback,
   type,
   style,
   preventDefault,
 }) => {
-  const classNames = className ? ` ${className}` : "";
   const typeSelector = type
     ? ` ${styles.btn} ${styles[`btn_${type}`]}`
     : styles.btn;
@@ -31,7 +30,7 @@ const CustomButton: FC<CustomButtonProps> = ({
         clickCallback && clickCallback();
       }}
       style={style}
-      className={typeSelector + classNames + " unselectable"}
+      className={typeSelector + className + " unselectable"}
     >
       <div className={styles.btn__content}>{children}</div>
     </button>

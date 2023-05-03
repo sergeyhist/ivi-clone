@@ -4,3 +4,4 @@ export interface IGenre {
   genre_en: string;
   slug: string;
 }
+
