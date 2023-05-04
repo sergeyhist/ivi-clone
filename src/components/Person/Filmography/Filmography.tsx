@@ -1,10 +1,22 @@
-import {FC} from "react";
+import {FC, useState} from "react";
+import styles from "./Filmography.module.sass";
+import {IMovie} from "/src/types/IMovie";
 
-const Filmography:FC = ()=>{
+interface FilmographyProps{
+  moviesId: string[];
+}
+
+const Filmography:FC<FilmographyProps> = ({moviesId})=>{
+  const [movies,SetMovies] = useState<IMovie[]>([]);
+
   return(
-    <div>
+    <section className={styles.section}>
+      <div className={styles.container}>
+        <div className={styles.content}>
 
-    </div>
+        </div>
+      </div>
+    </section>
   )
 }
 

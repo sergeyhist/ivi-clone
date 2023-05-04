@@ -1,7 +1,6 @@
-import {IPerson} from "/src/types/IPerson";
-import {movie} from "/src/utils/movie";
+import { IPerson } from "/src/types/IPerson";
 
-export const personData: IPerson ={
+export const personData: IPerson = {
   person_id: "44bd3a0c-0199-4b62-a567-5c435b9f4c18",
   first_name_ru: "Кейси",
   last_name_ru: "Аффлек",
@@ -12,8 +11,11 @@ export const personData: IPerson ={
     {
       movie_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
       movie_role: "режиссер",
-      slug: "rezhisser"
-    }
+      slug: "rezhisser",
+    },
   ],
-  movies: [movie]
-}
+  movies: [
+    "984fdb2d-da0c-4e04-926a-f72f103c4ccb",
+    "934bf135-3edd-41e4-a463-b242a4340279",
+  ],
+};

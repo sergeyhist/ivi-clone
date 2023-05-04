@@ -11,7 +11,7 @@ interface PersonCardProps{
 const PersonCard:FC<PersonCardProps> = ({person})=>{
   const router = useRouter();
   const firstName = router.locale ==="ru" ? person.first_name_ru : person.first_name_en;
-  const lastName = router.locale ==="ru" ? person.last_name_ru : person.last_name_en
+  const lastName = router.locale ==="ru" ? person.last_name_ru : person.last_name_en;
 
   return(
     <section className={styles.section}>

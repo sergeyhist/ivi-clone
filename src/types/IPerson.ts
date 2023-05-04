@@ -1,5 +1,3 @@
-import {IMovie} from "/src/types/IMovie";
-
 export interface IPerson {
   person_id: string
   first_name_ru: string
@@ -8,7 +6,7 @@ export interface IPerson {
   last_name_en: string
   img: string
   movieRoles: IMovieRole[]
-  movies: IMovie[]
+  movies: string[]
 }
 
 export interface IMovieRole {
