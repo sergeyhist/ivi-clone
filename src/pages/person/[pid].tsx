@@ -26,6 +26,8 @@ export const getServerSideProps = async ({
         "header",
         "mobileMenu",
         "dropDownCategory",
+        "person",
+        "breadcrumbs"
       ])),
     },
   };
