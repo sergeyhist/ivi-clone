@@ -7,16 +7,14 @@ import Link from "next/link";
 import { useTranslation } from "next-i18next";
 
 interface PersonCardProps {
+  firstName?: string;
+  lastName?: string;
   person: IPerson;
 }
 
-const PersonCard: FC<PersonCardProps> = ({ person }) => {
+const PersonCard: FC<PersonCardProps> = ({ person, firstName, lastName }) => {
   const { t } = useTranslation("person");
   const router = useRouter();
-  const firstName =
-    router.locale === "ru" ? person.first_name_ru : person.first_name_en;
-  const lastName =
-    router.locale === "ru" ? person.last_name_ru : person.last_name_en;
 
   return (
     <section className={styles.section}>
@@ -29,11 +27,17 @@ const PersonCard: FC<PersonCardProps> = ({ person }) => {
             <Image
               width={120}
               height={120}
-              src={"https://" + person.img}
+              src={
+                person.img.includes("yastatic.net")
+                  ? person.img
+                  : "https://" + person.img
+              }
               alt={person.last_name_en}
             />
           </div>
-          <h1 className={styles.title}>{`${firstName} ${lastName}`}</h1>
+          <h1 className={styles.title}>
+            {(firstName && lastName) && `${firstName} ${lastName}`}
+          </h1>
         </div>
       </div>
     </section>

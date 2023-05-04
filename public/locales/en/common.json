@@ -1,7 +1,8 @@
 {
   "breadcrumbs": {
     "/": "Home",
-    "/movies/": "Movies"
+    "/movies/": "Movies",
+    "/person": "Actor"
   },
   "tooltips": {
     "save": "Watch later",

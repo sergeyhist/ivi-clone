@@ -2,7 +2,7 @@ import styles from "./MobileMenu.module.sass";
 
 export const tabsLinks = [
   "/",
-  "https://www.ivi.ru/movies",
+  "/movies",
   "https://www.ivi.ru/tvplus",
   "https://www.ivi.ru/search",
   "https://www.ivi.ru/?navigation"

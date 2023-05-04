@@ -7,20 +7,31 @@ import CustomButton from "/src/UI/CustomButton/CustomButton";
 import BreadCrumbs from "/src/UI/BreadCrumbs/BreadCrumbs";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import { declOfNum } from "/src/utils/declOfNum";
+import useMovieDeclination from "/src/hooks/useMovieDeclination";
 
 interface FilmographyProps {
+  firstName?: string;
+  lastName?: string;
   moviesId: string[];
 }
 
-const Filmography: FC<FilmographyProps> = ({ moviesId }) => {
+const Filmography: FC<FilmographyProps> = ({ moviesId,firstName,lastName }) => {
   const [movies, setMovies] = useState<IMovie[] | undefined>([]);
+  const [moviesToShow, setMoviesToShow] = useState<IMovie[] | undefined>();
   const { t } = useTranslation("person");
   const router = useRouter();
 
   useEffect(() => {
     movieApi.getMoviesById(moviesId).then((res) => setMovies(res));
   }, [moviesId]);
+
+  useEffect(() => {
+    setMoviesToShow(movies?.slice(0, 8));
+  }, [movies]);
+
+  const handleShowMovies = (): void => {
+    setMoviesToShow(movies);
+  };
 
   return (
     <section className={styles.section}>
@@ -31,21 +42,23 @@ const Filmography: FC<FilmographyProps> = ({ moviesId }) => {
             <span>
               {movies &&
                 `${movies.length} ${
-                  router.locale === "ru"
-                    ? declOfNum(movies.length, ["фильм", "фильма", "фильмов"])
-                    : declOfNum(movies.length, ["movie", "movies", "movies"])
+                  useMovieDeclination(movies.length)
                 }`}
             </span>
           </h2>
           <div className={styles.movies}>
-            {movies?.map((movie, i) => {
+            {moviesToShow?.map((movie, i) => {
               return (
                 <div className={styles.movie__item} key={i}>
                   <div className={styles.img}>
                     <Image
                       width={80}
                       height={123}
-                      src={"https://" + movie.img}
+                      src={
+                        movie.img
+                          ? "https:" + movie.img
+                          : "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/eac905d6-a5b8-4ce4-aff2-0c565a923fa7/360"
+                      }
                       alt={movie.name_en}
                     />
                   </div>
@@ -67,7 +80,14 @@ const Filmography: FC<FilmographyProps> = ({ moviesId }) => {
               );
             })}
           </div>
-          {/*<BreadCrumbs type="slash" />*/}
+          {movies && moviesToShow && moviesToShow.length <= 8 && (
+            <div className={styles.show__btn} onClick={handleShowMovies}>
+              {`${t("showButton")} ${movies.length - 8} ${useMovieDeclination(
+                movies.length
+              )} `}
+            </div>
+          )}
+          {/*<BreadCrumbs type="slash" currentTitle={(firstName && lastName) && `${firstName} ${lastName}`}/>*/}
         </div>
       </div>
     </section>

@@ -37,6 +37,11 @@
             display: flex
             align-items: center
             gap: 20px
+            .img
+              width: 80px
+              height: 123px
+              border-radius: 8px 8px 8px 8px
+              overflow: hidden
 
             .btn
               width: 140px
@@ -46,12 +51,6 @@
             width: 100%
             justify-content: space-between
             align-items: center
-
-            .img
-              width: 80px
-              height: 123px
-              border-radius: 8px 8px 8px 8px
-              overflow: hidden
 
             .info
               .year, .name
@@ -68,6 +67,13 @@
                 line-height: 16px
                 font-weight: 500
                 color: vars.$secondaryColor
+      .show__btn
+        cursor: pointer
+        color: vars.$secondaryColor
+        margin-top: 20px
+        font-size: 15px
+        line-height: 22px
+        font-weight: 400
 
 @media (max-width: 880px)
   .section
