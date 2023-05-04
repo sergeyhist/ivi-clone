@@ -32,7 +32,7 @@ const MobileMenu: FC = () => {
               }}
               key={i}
               href={tabsLinks[i]}
-              target={(i !== 0 && "_blank") || undefined}
+              target={(i !== (0 || 1) && "_blank") || undefined}
             >
               <div
                 className={`${styles.glow__image} ${

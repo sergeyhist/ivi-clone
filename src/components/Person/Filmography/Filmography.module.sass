@@ -1,0 +1,106 @@
+@use "src/styles/vars"
+
+.section
+  .container
+    padding-inline: 32px
+    max-width: 1280px
+    width: 100%
+    margin: 0 auto
+
+    .content
+      max-width: 620px
+      width: 100%
+      margin-inline: auto
+
+      .title
+        color: vars.$whiteTextColor
+        font-size: 24px
+        margin-top: 20px
+        line-height: 28px
+        font-weight: 700
+        margin-bottom: 30px
+
+        span
+          color: vars.$secondaryColor
+          margin-left: 8px
+          font-size: 15px
+          font-weight: 400
+          line-height: 20px
+
+      .movies
+        display: flex
+        flex-direction: column
+        gap: 20px
+
+        .movie
+          &__item
+            display: flex
+            align-items: center
+            gap: 20px
+            .img
+              width: 80px
+              height: 123px
+              border-radius: 8px 8px 8px 8px
+              overflow: hidden
+
+            .btn
+              width: 140px
+
+          &__poster
+            display: flex
+            width: 100%
+            justify-content: space-between
+            align-items: center
+
+            .info
+              .year, .name
+                color: vars.$whiteTextColor
+                font-size: 15px
+                line-height: 22px
+                font-weight: 500
+
+              .name
+                margin-block: 4px
+
+              .rating
+                font-size: 13px
+                line-height: 16px
+                font-weight: 500
+                color: vars.$secondaryColor
+      .show__btn
+        cursor: pointer
+        color: vars.$secondaryColor
+        margin-top: 20px
+        font-size: 15px
+        line-height: 22px
+        font-weight: 400
+
+@media (max-width: 880px)
+  .section
+    .container
+      margin: 0
+
+      .content
+        max-width: unset
+        margin: 30px 0 0
+
+@media (max-width: 600px)
+  .section
+    .container
+      .content
+        .title
+          display: flex
+          flex-direction: column
+
+          span
+            margin: 5px 0 0
+
+        .movies
+          .movie__poster
+            flex-direction: column
+            justify-items: flex-start
+            align-items: flex-start
+            gap: 10px
+
+            .btn
+              width: 100%

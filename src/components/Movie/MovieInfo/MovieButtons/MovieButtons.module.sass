@@ -1,3 +1,5 @@
+@use "src/styles/vars"
+
 .buttons
   margin-top: 24px
   width: 100%
@@ -84,9 +86,9 @@
       &:hover
         background: none
         .button__text
-          color: #fff
+          color: vars.$whiteTextColor
 
         .button__icon
           transform: scale(1.1)
           transform-origin: 50% 50%
-          color: #fff
+          color: vars.$whiteTextColor

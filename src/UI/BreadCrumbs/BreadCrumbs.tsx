@@ -39,7 +39,7 @@ const BreadCrumbs: FC<BreadCrumbsProps> = ({
             {currentTitle && <li className={styles.list__item}>{currentTitle}</li>}
           </ul>
         </nav>
-        {mobileVersion === true && (
+        {mobileVersion && (
           <div className={styles.back}>
             <Link
               href={getPrevRoute(router.pathname)}
