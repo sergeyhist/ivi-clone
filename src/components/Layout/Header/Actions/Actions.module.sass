@@ -1,3 +1,5 @@
+@use "src/styles/vars"
+
 .container
   display: flex
   align-items: center
@@ -19,7 +21,7 @@
   transition: .4s
 
   &:hover
-    color: #fff
+    color: vars.$whiteTextColor
 
   .icon
     width: 24px
@@ -30,7 +32,7 @@
   transition: .4s
 
   &:hover
-    color: #fff
+    color: vars.$whiteTextColor
 
   svg
     width: 24px
@@ -45,8 +47,8 @@
   transition: .4s
 
   &:hover
-    color: #fff
-    border-color: #fff
+    color: vars.$whiteTextColor
+    border-color: vars.$whiteTextColor
 
   svg
     width: 20px

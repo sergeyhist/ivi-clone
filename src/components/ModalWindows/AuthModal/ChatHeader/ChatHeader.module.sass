@@ -1,3 +1,5 @@
+@use "src/styles/vars"
+
 .header
   &__container
     width: 100vw
@@ -11,7 +13,7 @@
     align-items: center
 
   &__title
-    color: #fff
+    color: vars.$whiteTextColor
     font-size: 15px
     line-height: 20px
     font-weight: 700
@@ -33,7 +35,7 @@
       content: "\E093"
 
     &:hover
-      color: white
+      color: vars.$whiteTextColor
 
     .progress__bar
       height: 100%

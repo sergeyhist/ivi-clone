@@ -1,3 +1,5 @@
+@use "src/styles/vars"
+
 @mixin defFlex
   display: flex
   align-items: center
@@ -16,7 +18,7 @@
     padding-top: 12px
 
   &:hover, &_active
-    color: white
+    color: vars.$whiteTextColor
 
   &:hover &__checkbox:not(&__checkbox_active)
     opacity: .32
@@ -24,7 +26,7 @@
   &__point
     width: 4px
     height: 4px
-    background: white
+    background: vars.$whiteTextColor
     border-radius: 50%
     opacity: 0
 
@@ -33,14 +35,14 @@
     justify-content: center
     width: 16px
     height: 16px
-    border: 2px solid white
+    border: 2px solid vars.$whiteTextColor
     border-radius: 50%
     opacity: 0
     transition: .4s
 
     &_active
       opacity: 1
-      color: white
+      color: vars.$whiteTextColor
 
       & > .item__point
         opacity: 1
