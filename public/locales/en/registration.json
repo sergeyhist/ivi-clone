@@ -1,0 +1,22 @@
+{
+  "title": "Login or Registration",
+  "hintMessage": {
+    "title": "Log in or Sign up",
+    "subtitle": "to use the service on any device"
+  },
+  "passwordMessage": "Enter password to login",
+  "emailPlaceholder": "Via email",
+  "passwordPlaceholder": "Enter password",
+  "submit": "Continue",
+  "errorMessage": {
+    "title": "Error",
+    "subtitle": "Incorrect data"
+  },
+  "privacy": {
+    "firstTitle": "By clicking «Continue», I agree",
+    "firstArticle": "with",
+    "secondArticle": "and",
+    "secondTitle": "Privacy Policy",
+    "thirdTitle": "Terms of use"
+  }
+}

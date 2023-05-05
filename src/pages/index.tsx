@@ -39,6 +39,7 @@ export const getStaticProps = async ({
         "tooltips",
         "mobileMenu",
         "dropDownCategory",
+        "registration",
         "genres",
       ])),
     },

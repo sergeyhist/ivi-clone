@@ -1,4 +1,5 @@
 @use "/src/styles/vars"
+@use "/src/styles/mixins"
 
 @mixin chatMessage
   margin-top: 20px
@@ -12,6 +13,8 @@
   line-height: 20px
   font-weight: 700
   font-style: normal
+  @include mixins.ellipsis
+
 
 .chat
   &__form
@@ -40,6 +43,7 @@
       color: vars.$secondaryColor
       font-size: 13px
       line-height: 16px
+      margin-top: 10px
 
 .error
   &-enter
@@ -89,3 +93,32 @@
     content: "\E0D6"
     font-family: iconfont, sans-serif
     color: vars.$whiteTextColor
+
+@media (max-width: 750px)
+
+    .email__container
+      width: 100%
+      .change__email
+        width: 40px
+        height: 40px
+
+    .chat
+      &__form
+        padding: 20px
+      &__message
+        &_sent
+          min-width: unset
+          margin-right: 0
+          width: 100%
+
+@media (max-width: 600px)
+  .chat
+    &__form
+      align-items: flex-start
+      width: 100%
+    &__message
+      width: 100%
+      min-width: unset
+      max-height: unset
+
+

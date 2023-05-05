@@ -5,12 +5,15 @@ import { store } from "../store";
 import { appWithTranslation } from "next-i18next";
 import "../utils/i18n";
 import "/src/styles/global.sass";
+import {GoogleOAuthProvider} from "@react-oauth/google";
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <Provider store={store}>
-      <Component {...pageProps} />
-    </Provider>
+    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID || "err"}>
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
+    </GoogleOAuthProvider>
   );
 };
 

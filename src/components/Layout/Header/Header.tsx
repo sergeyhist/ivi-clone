@@ -42,7 +42,7 @@ const Header: FC = () => {
     }
   };
 
-  const handleInputCheck = (e?: ChangeEvent<HTMLInputElement>): void => {
+  const handleLocaleClick = (e?: ChangeEvent<HTMLInputElement>): void => {
     if (e && e.target.checked)
       push(asPath, undefined, { locale: "ru", scroll: false });
     else push(asPath, undefined, { locale: "en", scroll: false });
@@ -103,7 +103,7 @@ const Header: FC = () => {
             rightContent="RU"
             scale={"0.7"}
             isChecked={selectedLanguage}
-            clickCallback={handleInputCheck}
+            clickCallback={handleLocaleClick}
           />
           <Actions
             setIsDropdownActive={setIsDropdownActive}
