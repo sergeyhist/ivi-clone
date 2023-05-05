@@ -5,6 +5,7 @@ import { IFilters } from "/src/types/IFilter";
 import FilterTitle from "../FilterTitle/FilterTitle";
 import FilterSlider from "./FilterSlider/FilterSlider";
 import useCloseEvents from "/src/hooks/useCloseEvents";
+import { isFilterActive } from "../Filters.utils";
 
 interface MultiSelectorProps {
   title: string;
@@ -29,7 +30,7 @@ const MultiSelector: FC<MultiSelectorProps> = ({
   const [isDropdownActive, setIsDropdownActive] = useState(false);
 
   const clickHandler = (slug: string): void => {
-    if (filters[filtersType].includes(slug)) {
+    if (isFilterActive(filters[filtersType], slug)) {
       getFilters(
         typeof filters[filtersType] !== "string"
           ? (filters[filtersType] as string[]).filter(
@@ -84,7 +85,7 @@ const MultiSelector: FC<MultiSelectorProps> = ({
             <ListItem
               key={i}
               text={`${filtersType}:${item}`}
-              isActive={filters[filtersType].includes(item)}
+              isActive={isFilterActive(filters[filtersType], item)}
               clickCallback={() => {
                 clickHandler(item);
               }}

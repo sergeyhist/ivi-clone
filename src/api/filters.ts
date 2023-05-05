@@ -15,7 +15,7 @@ export const getFilteredMovies = async (
         rating: filters.rating,
         assessments: filters.assessments,
         year: filters.year === "all" ? undefined : filters.year,
-        country: filters.country,
+        countries: filters.countries,
         limit: limit,
       },
     });

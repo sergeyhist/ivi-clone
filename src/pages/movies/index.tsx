@@ -33,7 +33,7 @@ const Movies: FC<MoviesProps> = ({ genres, countries }) => {
 
   const [filters, setFilters] = useState<IFilters>({
     genres: [],
-    country: [],
+    countries: [],
     year: "all",
     rating: "0",
     assessments: "0",
@@ -55,16 +55,16 @@ const Movies: FC<MoviesProps> = ({ genres, countries }) => {
   const getFiltersFromRoute = (): IFilters => {
     const result: IFilters = {
       genres: [],
-      country: [],
+      countries: [],
       year: "all",
       rating: "0",
       assessments: "0",
     };
 
     result.genres = router.query.genres ? router.query.genres : result.genres;
-    result.country = router.query.country
-      ? router.query.country
-      : result.country;
+    result.countries = router.query.countries
+      ? router.query.countries
+      : result.countries;
     result.year = router.query.year
       ? (router.query.year as string)
       : result.year;
@@ -158,7 +158,7 @@ export const getStaticProps = async ({
         "breadcrumbs",
         "sorting",
         "filters",
-        "country",
+        "countries",
         "genres",
         "mobileMenu",
         "dropDownCategory",

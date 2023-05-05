@@ -1,6 +1,10 @@
 import { FC } from "react";
 import { SwiperSlide } from "swiper/react";
-import { genreIcons, sliderBreakpoints } from "../../Filters.utils";
+import {
+  genreIcons,
+  isFilterActive,
+  sliderBreakpoints,
+} from "../../Filters.utils";
 import styles from "./FilterSlider.module.sass";
 import SliderContent from "./SliderContent/SliderContent";
 import { IFilters } from "/src/types/IFilter";
@@ -32,7 +36,7 @@ const FilterSlider: FC<FilterSliderProps> = ({
           <SliderContent
             icon={genreIcons[item]}
             text={`${filtersType}:${item}`}
-            isActive={filters[filtersType].includes(item)}
+            isActive={isFilterActive(filters[filtersType], item)}
             clickCallback={() => clickCallback(item)}
           />
         </SwiperSlide>

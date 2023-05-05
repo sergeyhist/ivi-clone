@@ -1,5 +1,4 @@
 import { i18n } from "next-i18next";
-import {useRouter} from "next/router";
 import { ReactNode } from "react";
 import {
   GiBolterGun,
@@ -30,7 +29,7 @@ export const genreIcons: { [key: string]: ReactNode } = {
   triller: <GiGhostAlly size={32} />,
   vestern: <GiWinchesterRifle size={32} />,
   priklyucheniya: <RiTreasureMapLine size={32} />,
-  anime: <GiChargedArrow size={32} />
+  anime: <GiChargedArrow size={32} />,
 };
 
 export const yearFilterItems: string[] = [
@@ -68,10 +67,7 @@ const getTextSelector = (filters: IFilters, key: string): string => {
     return i18n?.t(`${key}:${filters[key] as string}`) || "";
   }
 
-  if (
-    !(filters[key] as string) &&
-    ["rating", "assessments"].includes(key)
-  ) {
+  if (!(filters[key] as string) && ["rating", "assessments"].includes(key)) {
     return (
       i18n?.t(
         `filters:${key === "rating" ? "ratingFrom" : "ratingCountFrom"}`
@@ -90,16 +86,10 @@ const arrayToString = (filters: IFilters, key: string): string =>
     .join(", ");
 
 const updateTextArray = (filters: IFilters, key: string): string => {
-  if (
-    !Array.isArray(filters[key]) &&
-    isFilterNotDefault(filters, key)
-  ) {
+  if (!Array.isArray(filters[key]) && isFilterNotDefault(filters, key)) {
     return getTextSelector(filters, key);
   }
-  if (
-    Array.isArray(filters[key]) &&
-    isArrayNotEmpty(filters, key)
-  ) {
+  if (Array.isArray(filters[key]) && isArrayNotEmpty(filters, key)) {
     return arrayToString(filters, key);
   }
   return i18n?.t(`filters:all.${key}`) || "";
@@ -109,4 +99,8 @@ export const getFiltersText = (filters: IFilters) => {
   return Object.keys(filters)
     .map((key: string) => updateTextArray(filters, key))
     .join(", ");
+};
+
+export const isFilterActive = (filter: string | string[], slug: string) => {
+  return typeof filter === "string" ? filter === slug : filter.includes(slug);
 };

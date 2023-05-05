@@ -33,7 +33,7 @@ const Filters: FC<FiltersProps> = ({ genres, countries, filters }) => {
     <div className={styles.filters}>
       <MultiSelector
         title={t("genre")}
-        items={genres.sort(sortHandler)}
+        items={genres}
         filters={filters}
         filtersType="genres"
         getFilters={(result) =>
@@ -45,9 +45,9 @@ const Filters: FC<FiltersProps> = ({ genres, countries, filters }) => {
         title={t("country")}
         items={countries.sort(sortHandler)}
         filters={filters}
-        filtersType={"country"}
+        filtersType={"countries"}
         getFilters={(result) =>
-          setQueryParams(router, { ...filters, country: result })
+          setQueryParams(router, { ...filters, countries: result })
         }
         dropdownPosition="center"
       />
