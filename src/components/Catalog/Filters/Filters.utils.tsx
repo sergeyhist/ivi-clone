@@ -1,5 +1,9 @@
+import { i18n } from "next-i18next";
+import {useRouter} from "next/router";
+import { ReactNode } from "react";
 import {
   GiBolterGun,
+  GiChargedArrow,
   GiDramaMasks,
   GiGhostAlly,
   GiWinchesterRifle,
@@ -7,7 +11,7 @@ import {
 import { MdTheaterComedy } from "react-icons/md";
 import { RiTreasureMapLine } from "react-icons/ri";
 import { SwiperOptions } from "swiper";
-import { IFilter, IFilterSlide } from "/src/types/IFilter";
+import { IFilters } from "/src/types/IFilter";
 
 export const sliderBreakpoints: { [width: number]: SwiperOptions } = {
   0: { slidesPerView: 1, slidesPerGroup: 1 },
@@ -19,49 +23,90 @@ export const sliderBreakpoints: { [width: number]: SwiperOptions } = {
   1160: { slidesPerView: 5, slidesPerGroup: 2, spaceBetween: 12 },
 };
 
-export const genreFilterSlides: IFilterSlide[] = [
-  { slug: "drama", text: "genres:drama", icon: <GiDramaMasks size={32} /> },
-  {
-    slug: "komediya",
-    text: "genres:komediya",
-    icon: <MdTheaterComedy size={32} />,
-  },
-  { slug: "boevik", text: "genres:boevik", icon: <GiBolterGun size={32} /> },
-  {
-    slug: "triller",
-    text: "genres:triller",
-    icon: <GiGhostAlly size={32} />,
-  },
-  {
-    slug: "vestern",
-    text: "genres:vestern",
-    icon: <GiWinchesterRifle size={32} />,
-  },
-  {
-    slug: "priklyucheniya",
-    text: "genres:priklyucheniya",
-    icon: <RiTreasureMapLine size={32} />,
-  },
+export const genreIcons: { [key: string]: ReactNode } = {
+  drama: <GiDramaMasks size={32} />,
+  komediya: <MdTheaterComedy size={32} />,
+  boevik: <GiBolterGun size={32} />,
+  triller: <GiGhostAlly size={32} />,
+  vestern: <GiWinchesterRifle size={32} />,
+  priklyucheniya: <RiTreasureMapLine size={32} />,
+  anime: <GiChargedArrow size={32} />
+};
+
+export const yearFilterItems: string[] = [
+  "all",
+  "2023",
+  "2022",
+  "2021",
+  "2020",
+  "2019",
+  "2018",
+  "2017",
+  "2016",
+  "2022-2023",
+  "2021-2022",
+  "2020-2021",
+  "2019-2020",
+  "2010-2020",
+  "2010-2015",
+  "2000-2010",
+  "1990-2000",
+  "1980-1990",
+  "0-1990",
 ];
 
-export const yearFilterItems: IFilter[] = [
-  { slug: "all", text: "filters:years.all" },
-  { slug: "2023", text: "filters:years.2023" },
-  { slug: "2022", text: "filters:years.2022" },
-  { slug: "2021", text: "filters:years.2021" },
-  { slug: "2020", text: "filters:years.2020" },
-  { slug: "2019", text: "filters:years.2019" },
-  { slug: "2018", text: "filters:years.2018" },
-  { slug: "2017", text: "filters:years.2017" },
-  { slug: "2016", text: "filters:years.2016" },
-  { slug: "2022-2023", text: "" },
-  { slug: "2021-2022", text: "" },
-  { slug: "2020-2021", text: "" },
-  { slug: "2019-2020", text: "" },
-  { slug: "2010-2020", text: "" },
-  { slug: "2010-2015", text: "" },
-  { slug: "2000-2010", text: "" },
-  { slug: "1990-2000", text: "" },
-  { slug: "1980-1990", text: "" },
-  { slug: "0-1990", text: "filters:years.until" },
-];
+const defaultValues = ["all", "0", ""];
+
+const isArrayNotEmpty = (filters: IFilters, key: string): boolean =>
+  (filters[key] as string[]).length > 0;
+
+const isFilterNotDefault = (filters: IFilters, key: string): boolean =>
+  !defaultValues.includes(filters[key] as string);
+
+const getTextSelector = (filters: IFilters, key: string): string => {
+  if (filters[key] as string) {
+    return i18n?.t(`${key}:${filters[key] as string}`) || "";
+  }
+
+  if (
+    !(filters[key] as string) &&
+    ["rating", "assessments"].includes(key)
+  ) {
+    return (
+      i18n?.t(
+        `filters:${key === "rating" ? "ratingFrom" : "ratingCountFrom"}`
+      ) +
+      " " +
+      `${filters[key] as string}`
+    );
+  }
+
+  return filters[key] as string;
+};
+
+const arrayToString = (filters: IFilters, key: string): string =>
+  (filters[key] as string[])
+    .map((filter) => i18n?.t(`${key}:${filter}`))
+    .join(", ");
+
+const updateTextArray = (filters: IFilters, key: string): string => {
+  if (
+    !Array.isArray(filters[key]) &&
+    isFilterNotDefault(filters, key)
+  ) {
+    return getTextSelector(filters, key);
+  }
+  if (
+    Array.isArray(filters[key]) &&
+    isArrayNotEmpty(filters, key)
+  ) {
+    return arrayToString(filters, key);
+  }
+  return i18n?.t(`filters:all.${key}`) || "";
+};
+
+export const getFiltersText = (filters: IFilters) => {
+  return Object.keys(filters)
+    .map((key: string) => updateTextArray(filters, key))
+    .join(", ");
+};

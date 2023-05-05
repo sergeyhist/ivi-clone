@@ -1,10 +1,18 @@
-import { Dispatch, FC, SetStateAction, useRef, useState } from "react";
+import {
+  Dispatch,
+  FC,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import styles from "./Sorting.module.sass";
 import { ISortingOption } from "/src/types/ISorting";
 import useCloseEvents from "/src/hooks/useCloseEvents";
 import SortingTitle from "./SortingTitle/SortingTitle";
 import SortingOption from "./SortingOption/SortingOption";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
 
 interface SortingProps {
   activeSorting: string;
@@ -18,6 +26,7 @@ const Sorting: FC<SortingProps> = ({
   sortOptions,
 }) => {
   const { t } = useTranslation("sorting");
+  const router = useRouter();
 
   const titleRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -37,6 +46,11 @@ const Sorting: FC<SortingProps> = ({
   };
 
   useCloseEvents([titleRef, dropdownRef], setIsDropdownActive);
+
+  useEffect(() => {
+    activeSorting.includes("name_") &&
+      setActiveSorting(`name_${router.locale}`);
+  }, [router.locale]);
 
   return (
     <div className="container">

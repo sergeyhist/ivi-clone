@@ -1,133 +1,100 @@
-import {
-  Dispatch,
-  FC,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+import { FC, useRef } from "react";
 import { useTranslation } from "next-i18next";
 import styles from "./Filters.module.sass";
-import { genreFilterSlides, yearFilterItems } from "./Filters.utils";
+import { yearFilterItems } from "./Filters.utils";
 import MultiSelector from "./MultiSelector/MultiSelector";
 import PersonSelector from "./PersonSelector/PersonSelector";
 import RangeSelector from "./RangeSelector/RangeSelector";
 import ResetButton from "./ResetButton/ResetButton";
 import SingleSelector from "./SingleSelector/SingleSelector";
-import { IActiveFilters, IFilter } from "/src/types/IFilter";
-import { IGenre } from "/src/types/IGenre";
-import {getAllCountries, getAllGenres} from "/src/api/getData";
+import { IFilters } from "/src/types/IFilter";
+import { useRouter } from "next/router";
+import {setQueryParams} from "/src/utils/query";
 
 interface FiltersProps {
-  activeFilters: IActiveFilters;
-  setActiveFilters: Dispatch<SetStateAction<IActiveFilters>>;
+  genres: string[];
+  countries: string[];
+  filters: IFilters;
 }
 
-const sortHandler = (a: IFilter, b: IFilter): 1 | -1 =>
-  a.slug > b.slug ? 1 : -1;
+const sortHandler = (a: string, b: string): 1 | -1 => (a > b ? 1 : -1);
 
-const Filters: FC<FiltersProps> = ({ activeFilters, setActiveFilters }) => {
+const Filters: FC<FiltersProps> = ({ genres, countries, filters }) => {
   const { t } = useTranslation("filters");
+  const router = useRouter();
 
-  const [genresList, setGenresList] = useState<IFilter[]>([]);
-  const [countriesList, setCountriesList] = useState<IFilter[]>([]);
-
-  useEffect(() => {
-    getAllGenres().then((genres) =>
-      setGenresList(
-        genres.data.map((genre: IGenre) => {
-          return { slug: genre.slug, text: `genres:${genre.slug}` };
-        })
-      )
-    );
-    getAllCountries().then((countries) =>
-      setCountriesList(
-        countries.data.map((country: any) => {
-          return { slug: country.country, text: country.country };
-        })
-      )
-    );
-  }, [setGenresList]);
-
-  const defaultFilters = useRef(activeFilters);
+  const defaultFilters = useRef(filters);
 
   const resetHandler = (): void => {
-    setActiveFilters(defaultFilters.current);
+    setQueryParams(router, defaultFilters.current);
   };
 
   return (
     <div className={styles.filters}>
       <MultiSelector
         title={t("genre")}
-        items={genresList.sort(sortHandler)}
-        sliderItems={genreFilterSlides}
-        activeFilters={activeFilters.genre}
-        getFilters={(filters) =>
-          setActiveFilters({ ...activeFilters, genre: filters })
+        items={genres.sort(sortHandler)}
+        filters={filters}
+        filtersType="genres"
+        getFilters={(result) =>
+          setQueryParams(router, { ...filters, genres: result })
         }
         dropdownPosition="left"
       />
       <MultiSelector
         title={t("country")}
-        items={countriesList.sort(sortHandler)}
-        sliderItems={[...countriesList].slice(0, 10)}
-        activeFilters={activeFilters.country}
-        getFilters={(filters) =>
-          setActiveFilters({ ...activeFilters, country: filters })
+        items={countries.sort(sortHandler)}
+        filters={filters}
+        filtersType={"country"}
+        getFilters={(result) =>
+          setQueryParams(router, { ...filters, country: result })
         }
         dropdownPosition="center"
       />
       <SingleSelector
-        title={t("years.title")}
+        title={t("year")}
         items={yearFilterItems}
-        activeFilter={activeFilters.year}
-        getFilter={(filter) =>
-          setActiveFilters({ ...activeFilters, year: filter })
+        filters={filters}
+        filtersType="year"
+        getFilter={(result) =>
+          setQueryParams(router, { ...filters, year: result })
         }
       />
       <RangeSelector
         title={t("rating")}
         max={9}
         step={0.1}
-        activeFilter={activeFilters.rating}
-        getFilter={(filter) =>
-          setActiveFilters({
-            ...activeFilters,
-            rating: {
-              slug: filter,
-              text: t("ratingFrom"),
-            },
+        filter={filters.rating}
+        getFilter={(result) =>
+          setQueryParams(router, {
+            ...filters,
+            rating: result,
           })
         }
       />
       <RangeSelector
         title={t("ratingCount")}
-        max={500000}
+        max={1000000}
         step={10000}
-        activeFilter={activeFilters.ratingCount}
-        getFilter={(filter) =>
-          setActiveFilters({
-            ...activeFilters,
-            ratingCount: {
-              slug: filter,
-              text: t("ratingCountFrom"),
-            },
+        filter={filters.assessments}
+        getFilter={(result) =>
+          setQueryParams(router, {
+            ...filters,
+            assessments: result,
           })
         }
       />
       <div className={styles.filters__person}>
         <PersonSelector
           type="actor"
-          activeFilter={activeFilters.actor}
-          getFilter={(filter) =>
-            setActiveFilters({ ...activeFilters, actor: filter })
+          getFilter={(result) =>
+            setQueryParams(router, { ...filters, actor: result })
           }
         />
         <PersonSelector
           type="director"
-          activeFilter={activeFilters.director}
-          getFilter={(filter) =>
-            setActiveFilters({ ...activeFilters, director: filter })
+          getFilter={(result) =>
+            setQueryParams(router, { ...filters, director: result })
           }
         />
       </div>

@@ -1,10 +1,9 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import Filters from "../../components/Catalog/Filters/Filters";
 import Layout from "/src/components/Layout/Layout";
 import Sorting from "../../components/Catalog/Sorting/Sorting";
-import { IActiveFilters } from "/src/types/IFilter";
+import { IFilters } from "/src/types/IFilter";
 import styles from "/src/styles/pages/MoviesPage.module.sass";
-import FiltersInfo from "../../components/Catalog/FiltersInfo/FiltersInfo";
 import BreadCrumbs from "../../UI/BreadCrumbs/BreadCrumbs";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -12,72 +11,128 @@ import { GetStaticPropsResult } from "next";
 import MoviesList from "/src/components/Catalog/MoviesList/MoviesList";
 import { useDebouncedCallback } from "use-debounce";
 import MoreButton from "/src/components/Catalog/MoreButton/MoreButton";
-import {getFilteredMovies} from "/src/api/filters";
-import {IMovie} from "/src/types/IMovie";
+import { getFilteredMovies } from "/src/api/filters";
+import { IMovie } from "/src/types/IMovie";
+import { useRouter } from "next/router";
+import getSortedList from "/src/utils/getSortedList";
+import { getFiltersText } from "/src/components/Catalog/Filters/Filters.utils";
+import { getCountriesSlugs, getGenresSlugs } from "/src/api/getData";
+import { setQueryParams } from "/src/utils/query";
+import { compareFilters } from "/src/utils/compare";
 
-const Movies: FC = () => {
+const listLimit = 21;
+
+interface MoviesProps {
+  genres: string[];
+  countries: string[];
+}
+
+const Movies: FC<MoviesProps> = ({ genres, countries }) => {
   const { t } = useTranslation(["titles", "sorting"]);
+  const router = useRouter();
 
-  const [activeFilters, setActiveFilters] = useState<IActiveFilters>({
-    genre: [],
+  const [filters, setFilters] = useState<IFilters>({
+    genres: [],
     country: [],
-    year: { slug: "all", text: "" },
-    rating: { slug: "0", text: "" },
-    ratingCount: { slug: "0", text: "" },
-    actor: { slug: "", text: "" },
-    director: { slug: "", text: "" },
+    year: "all",
+    rating: "0",
+    assessments: "0",
   });
-
-  const [activeSorting, setActiveSorting] = useState("ratings-count");
+  const [activeSorting, setActiveSorting] = useState("assessments");
   const [filteredMovies, setFilteredMovies] = useState<IMovie[]>([]);
   const [isMoviesLoading, setIsMoviesLoading] = useState(true);
-  const [listLimit, setListLimit] = useState(21);
+  const [page, setPage] = useState<number>(1);
 
-  const debouncedFilter = useDebouncedCallback(() => {
-    getFilteredMovies(activeFilters, 1000)?.then((movies: IMovie[] | undefined) => {
-      movies && setFilteredMovies(movies);
+  const debouncedFilter = useDebouncedCallback((filters: IFilters) => {
+    getFilteredMovies(filters, 1000)?.then((movies: IMovie[] | undefined) => {
+      movies && movies.length > 0
+        ? setFilteredMovies(getSortedList(activeSorting, movies))
+        : setFilteredMovies([]);
       setIsMoviesLoading(false);
     });
-  }, 300);
+  }, 500);
+
+  const getFiltersFromRoute = (): IFilters => {
+    const result: IFilters = {
+      genres: [],
+      country: [],
+      year: "all",
+      rating: "0",
+      assessments: "0",
+    };
+
+    result.genres = router.query.genres ? router.query.genres : result.genres;
+    result.country = router.query.country
+      ? router.query.country
+      : result.country;
+    result.year = router.query.year
+      ? (router.query.year as string)
+      : result.year;
+    result.rating = router.query.rating
+      ? (router.query.rating as string)
+      : result.rating;
+    result.assessments = router.query.assessments
+      ? (router.query.assessments as string)
+      : result.assessments;
+
+    if (compareFilters(filters, result)) {
+      setIsMoviesLoading(true);
+      debouncedFilter(result);
+    }
+
+    return result;
+  };
+
+  const setPageRoute = (page: number) => {
+    setQueryParams(router, { page: page.toString() });
+  };
+
+  useEffect(() => {
+    router.query.page ? setPage(Number(router.query.page)) : setPage(1);
+    setFilters(getFiltersFromRoute());
+  }, [router, setPage]);
 
   useEffect(() => {
     setIsMoviesLoading(true);
-    debouncedFilter();
-  }, [activeFilters, debouncedFilter]);
+    debouncedFilter(filters);
+  }, [activeSorting]);
 
   return (
     <Layout title={t("titles:movies")}>
       <div className={styles.page}>
-        <BreadCrumbs type="slash" currentTitle={"Жанр"} />
+        <BreadCrumbs type="slash" currentTitle={getFiltersText(filters)} />
         <h1 className={styles.page__title + " container"}>
           {t("titles:movies")}
         </h1>{" "}
-        <FiltersInfo activeFilters={activeFilters} />
+        <div className={styles.page__info + " container"}>
+          {getFiltersText(filters)}
+        </div>
         <Sorting
           activeSorting={activeSorting}
           setActiveSorting={setActiveSorting}
           sortOptions={[
             { slug: "assessments", text: t("sorting:ratings-count") },
             { slug: "rating", text: t("sorting:rating") },
-            { slug: "date", text: t("sorting:date") },
-            { slug: "", text: t("sorting:abc") },
+            { slug: "year", text: t("sorting:date") },
+            { slug: `name_${router.locale}`, text: t("sorting:abc") },
           ]}
         />
         <div className="container">
-          <Filters
-            activeFilters={activeFilters}
-            setActiveFilters={setActiveFilters}
-          />
+          <Filters countries={countries} genres={genres} filters={filters} />
         </div>
         {filteredMovies && (
           <MoviesList
             isLoading={isMoviesLoading}
-            items={filteredMovies.slice(0, listLimit)}
+            items={filteredMovies.slice(0, listLimit * page)}
           />
         )}
-        {listLimit < filteredMovies?.length && (
+        {filteredMovies && listLimit * page < filteredMovies?.length && (
           <div className=" container">
-            <MoreButton limit={listLimit} setLimit={setListLimit} />
+            <MoreButton
+              clickCallback={() => {
+                setPageRoute(page + 1);
+              }}
+            />
           </div>
         )}
       </div>
@@ -90,6 +145,9 @@ export const getStaticProps = async ({
 }: {
   locale: string;
 }): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
+  const genres = await getGenresSlugs();
+  const countries = await getCountriesSlugs();
+
   return {
     props: {
       ...(await serverSideTranslations(locale, [
@@ -100,11 +158,14 @@ export const getStaticProps = async ({
         "breadcrumbs",
         "sorting",
         "filters",
-        "countries",
+        "country",
         "genres",
         "mobileMenu",
         "dropDownCategory",
+        "year",
       ])),
+      genres: genres,
+      countries: countries,
     },
   };
 };

@@ -1,14 +1,13 @@
 import { FC, useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
 import styles from "./RangeSelector.module.sass";
-import { IFilter } from "/src/types/IFilter";
 import { useDebouncedCallback } from "use-debounce";
 
 interface RangeSelectorProps {
   title: string;
   max: number;
   step: number;
-  activeFilter: IFilter;
+  filter: string;
   getFilter: (filter: string) => void;
 }
 
@@ -16,7 +15,7 @@ const RangeSelector: FC<RangeSelectorProps> = ({
   title,
   max,
   step,
-  activeFilter,
+  filter,
   getFilter,
 }) => {
   const { t } = useTranslation("filters");
@@ -28,8 +27,8 @@ const RangeSelector: FC<RangeSelectorProps> = ({
   const [rangeValue, setRangeValue] = useState("");
 
   useEffect(() => {
-    activeFilter.slug === "0" && setRangeValue(activeFilter.slug);
-  }, [activeFilter, setRangeValue]);
+    filter === "0" && setRangeValue(filter);
+  }, [filter, setRangeValue]);
 
   return (
     <div className={styles.selector + " unselectable"}>

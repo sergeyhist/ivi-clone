@@ -5,7 +5,7 @@ import MovieCard from "/src/UI/MovieCard/MovieCard";
 
 interface MoviesListProps {
   isLoading?: boolean;
-  items: any[];
+  items: IMovie[];
 }
 
 const MoviesList: FC<MoviesListProps> = ({ isLoading, items }) => {

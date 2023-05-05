@@ -1,9 +1,46 @@
 import axios from "axios";
+import { IGenre } from "../types/IGenre";
 
-export const getAllGenres = () => {
-  return axios.get("http://85.237.34.125:4000/genres");
+const ip = "85.237.34.125"
+
+export const getGenres = async () => {
+  try {
+    const response = await axios.get(`http://${ip}:4000/genres`);
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
 };
 
-export const getAllCountries = () => {
-  return axios.get("http://85.237.34.125:4000/countries");
+export const getCountries = async () => {
+  try {
+    const response = await axios.get(`http://${ip}:4000/countries`);
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getGenresSlugs = async (): Promise<string[] | undefined> => {
+  try {
+    const data = await getGenres();
+    const slugs = await data.map((genre: IGenre) => genre.slug);
+
+    return slugs;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getCountriesSlugs = async (): Promise<string[] | undefined> => {
+  try {
+    const data = await getCountries();
+    const slugs = await data.map((country: any) => country.slug);
+
+    return slugs;
+  } catch (error) {
+    console.log(error);
+  }
 };

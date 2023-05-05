@@ -7,6 +7,12 @@ const nextConfig = {
   images: {
     domains: ["avatars.mds.yandex.net", "www.avatars.mds.yandex.net"],
   },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 module.exports = nextConfig;

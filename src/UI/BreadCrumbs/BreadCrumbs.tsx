@@ -36,7 +36,11 @@ const BreadCrumbs: FC<BreadCrumbsProps> = ({
                 </Link>
               </li>
             ))}
-            {currentTitle && <li className={styles.list__item}>{currentTitle}</li>}
+            {currentTitle && (
+              <li className={styles.list__item}>
+                <span className={styles.list__current}>{currentTitle}</span>
+              </li>
+            )}
           </ul>
         </nav>
         {mobileVersion && (
