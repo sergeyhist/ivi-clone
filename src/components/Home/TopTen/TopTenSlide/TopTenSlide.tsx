@@ -11,29 +11,24 @@ interface TopTenSlideProps {
   route: string;
 }
 
-const TopTenSlide: FC<TopTenSlideProps> = ({
-  mainImgUrl,
-  logoImgUrl,
-  numberImgUrl,
-  route,
-}) => {
+const TopTenSlide: FC<TopTenSlideProps> = ({ mainImgUrl, logoImgUrl, numberImgUrl, route }) => {
   return (
     <Link className={styles.link} href={route}>
       <article className={styles.slide}>
         <div className={styles.slide__wrapper}>
           <Image
-            width={304}
-            height={620}
-            loading="lazy"
             className={styles.slide__img}
             src={mainImgUrl}
             alt="movieImg"
+            placeholder="blur"
+            blurDataURL="/images/placeholder.svg"
+            fill={true}
+            sizes="width: 100vw"
           />
         </div>
         <Image
           width={460}
           height={200}
-          loading="lazy"
           className={styles.slide__logo}
           src={logoImgUrl}
           alt="movieLogo"
@@ -41,7 +36,6 @@ const TopTenSlide: FC<TopTenSlideProps> = ({
         <Image
           width={32}
           height={44}
-          loading="lazy"
           className={styles.slide__number}
           src={numberImgUrl}
           alt="number"

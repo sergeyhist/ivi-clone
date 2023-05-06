@@ -1,12 +1,12 @@
 {
   "rating": {
-    "title": "Rating ivi",
+    "title": "Kinopoisk rating",
     "estimate": "Estimate",
     "grades": "amount grades"
   },
   "medallions": {
-    "rating": "Rating",
-    "ivi": "Ivi"
+    "rating": "Kinopoisk",
+    "ivi": "Rating"
   },
   "details": {
     "show": "Show details",
@@ -42,5 +42,23 @@
   "comments": {
     "comments": "Comments",
     "leave": "Leave a comment"
+  },
+  "creators": {
+    "rezhisser": "Director",
+    "aktyor": "Actor",
+    "scenariy": "Scenery",
+    "prodyuser": "Producer",
+    "aktyor-dublyazha": "Dubbing actor",
+    "hudozhnik": "Painter",
+    "operator": "Operator",
+    "kompozitor": "Compositor",
+    "directors": "directors",
+    "actors": "actors",
+    "scenarists": "Scriptwriters",
+    "producers": "producers",
+    "dubbing": "dubbing",
+    "painters": "Artists",
+    "operators": "operators",
+    "compositors": "Composers"
   }
 }

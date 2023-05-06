@@ -15,8 +15,8 @@ const MovieParams: FC<MovieParamsProps> = ({ movie }) => {
   return (
     <div className={styles.params}>
       <ul className={styles.list}>
-        <li className={styles.list__item}>{movie.year}</li>
-        <li className={styles.list__item}>{movie.duration}</li>
+        <li className={styles.list__item}>{movie.year} год</li>
+        <li className={styles.list__item}>{movie.duration} минут</li>
         <li className={styles.list__item}>{movie.age_limit}+</li>
       </ul>
       <ul className={styles.list}>

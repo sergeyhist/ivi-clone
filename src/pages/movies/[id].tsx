@@ -1,5 +1,4 @@
 import { FC, useEffect, useState } from "react";
-import { movie } from "/src/utils/movie";
 import Layout from "../../components/Layout/Layout";
 import MovieInfo from "../../components/Movie/MovieInfo/MovieInfo";
 import BreadCrumbs from "../../UI/BreadCrumbs/BreadCrumbs";
@@ -13,34 +12,38 @@ import { setShowModal } from "/src/store/slices/modalsSlice";
 import MovieInfoModal from "/src/components/ModalWindows/MovieInfoModal/MovieInfoModal";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetServerSidePropsResult } from "next";
-import axios from "axios";
 import { useRouter } from "next/router";
-import { creators } from "/src/utils/creators";
-import { comments } from "/src/utils/comments";
+import { getMovie } from "/src/api/getMovie";
+import { IMovie } from "/src/types/IMovie";
+import { getMovieComments } from "/src/api/getMovieComments";
+import { IComment } from "/src/types/IComment";
+import { getMoviePersons } from "/src/api/getMoviePersons";
+import { IPerson } from "/src/types/IPerson";
+import { mockMovie } from "/src/utils/movie";
+import { mockPersons } from "/src/utils/person";
+import { mockComments } from "/src/utils/comments";
+import { getMovieName } from "/src/utils/movie";
 
 const Movie: FC = () => {
   const showModal = useAppSelector((state) => state.showModal);
   const dispatch = useAppDispatch();
-  const { locale } = useRouter();
-  // const [movie, setFetchedMovie] = useState<IMovie>();
-
-  const name = locale === "ru" ? movie?.name_ru : movie?.name_en;
+  const { locale, query } = useRouter();
+  const [movie, setMovie] = useState<IMovie | undefined>(mockMovie);
+  const [comments, setComments] = useState<IComment[] | undefined>(mockComments);
+  const [persons, setPersons] = useState<IPerson[] | undefined>(mockPersons);
 
   // useEffect(() => {
-  //   fetchMovie();
-  // }, []);
-
-  // const fetchMovie = async (): Promise<void> => {
-  //   try {
-  //     const response = await axios.get<IMovie>(
-  //       "http://85.237.34.125:4000/films/984fdb2d-da0c-4e04-926a-f72f103c4ccb"
-  //     );
-  //     console.log(response.data);
-  //     setFetchedMovie(response.data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  //   console.log(query.id);
+  //   getMovie(String(query.id)).then((movie) => {
+  //     setMovie(movie);
+  //   });
+  //   getMovieComments(String(query.id)).then((comments) => {
+  //     setComments(comments);
+  //   });
+  //   getMoviePersons(String(query.id)).then((persons) => {
+  //     setPersons(persons);
+  //   });
+  // }, [query.id]);
 
   const closeCallback = (): void => {
     dispatch(
@@ -53,20 +56,21 @@ const Movie: FC = () => {
 
   return (
     <>
-      {movie && (
-        <Layout title={`${String(name)} (${String(movie?.year)})`}>
+      {movie && comments && persons && (
+        <Layout title={`${getMovieName(movie, locale)} (${movie.year})`}>
           <BreadCrumbs mobileVersion={true} />
-          <MovieInfo movie={movie} />
-          <RelatedMovies movieTitle={String(name)} />
-          <CreatorsList creators={creators} />
-          <WatchAllDevices movieTitle={String(name)} imageUrl={String(movie?.img)} />
+          <MovieInfo movie={movie} persons={persons} />
+          <RelatedMovies movieTitle={getMovieName(movie, locale)} />
+          <CreatorsList persons={persons} />
+          <WatchAllDevices movieTitle={getMovieName(movie, locale)} imageUrl={movie.img} />
           <CommentsSlider comments={comments} />
-          <BreadCrumbs currentTitle={String(name)} />
+          <BreadCrumbs currentTitle={getMovieName(movie, locale)} />
           {showModal.showMovieInfoModal.isShow &&
             createAppPortal(
               <MovieInfoModal
-                movieTitle={String(name)}
-                creators={creators}
+                movieTitle={getMovieName(movie, locale)}
+                comments={comments}
+                persons={persons}
                 closeCallback={closeCallback}
               />
             )}

@@ -18,7 +18,7 @@ export interface IMovie {
   qualities: IQuality[];
   languagesAudio: ILanguage[];
   languagesSubtitle: ILanguage[];
-  [key: string]: any;
+  [key: string]: string | unknown;
 }
 
 export interface ITrailer {

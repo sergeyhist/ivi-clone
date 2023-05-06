@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styles from "./MovieCardButtons.module.sass";
-import { buttonsId } from "../../../../utils/movieCard";
+import { buttonsId } from "./MovieCardButtons.utils";
 import { useTranslation } from "next-i18next";
 import Tippy from "@tippyjs/react";
 

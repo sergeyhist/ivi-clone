@@ -44,18 +44,20 @@ const CommentsSlider: FC<CommentsSliderProps> = ({ comments }) => {
             {t("comments.leave")}
           </CustomButton>
         </div>
-        <Slider
-          swiperClassName={styles.swiper}
-          prevClassName={styles.prev}
-          nextClassName={styles.next}
-          breakpoints={breakpoints}
-        >
-          {comments.map((comment, index) => (
-            <SwiperSlide key={index}>
-              <CommentsCard onClick={clickHandler} comment={comment} />
-            </SwiperSlide>
-          ))}
-        </Slider>
+        {comments.length !== 0 && (
+          <Slider
+            swiperClassName={styles.swiper}
+            prevClassName={styles.prev}
+            nextClassName={styles.next}
+            breakpoints={breakpoints}
+          >
+            {comments.map((comment, index) => (
+              <SwiperSlide key={index}>
+                <CommentsCard onClick={clickHandler} comment={comment} />
+              </SwiperSlide>
+            ))}
+          </Slider>
+        )}
         <CustomButton
           type="frame"
           className={`${styles.button} ${styles.button_mobile}`}

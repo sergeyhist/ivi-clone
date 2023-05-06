@@ -51,14 +51,21 @@
     width: 44px
     height: 44px
     border-radius: 8px
+    object-fit: cover
 
-  &__text
+  &__title
     text-align: center
     font-size: 13px
     color: vars.$primaryColor
-    margin-top: 8px
     line-height: 16px
     transition: .3s
+    text-overflow: ellipsis
+    overflow: hidden
+    white-space: nowrap
+    font-weight: 400
+    width: 100%
+    &:not(:last-child)
+      margin-top: 8px
 
 @media (max-width: 1160px)
   .medallions
@@ -68,7 +75,7 @@
   .medallion
     min-width: 62px
     max-width: 72px
-    height: 72px
+    max-height: 72px
 
     &__wrapper
       width: 44px
@@ -84,15 +91,15 @@
       line-height: 12px
 
   .medallions
-    height: 72px
+    max-height: 72px
     padding: 0
 
 @media (max-width: 510px)
   .medallions
     grid-template-columns: repeat(5, 1fr)
-    height: 72px
+    max-height: 72px
 
 @media (max-width: 400px)
   .medallions
     grid-template-columns: repeat(4, 1fr)
-    height: 72px
+    max-height: 72px

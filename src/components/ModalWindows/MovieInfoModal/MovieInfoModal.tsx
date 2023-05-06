@@ -1,43 +1,40 @@
 import { FC, ReactNode, useState } from "react";
 import styles from "./MovieInfoModal.module.sass";
-import { ICreator } from "/src/types/ICreator";
 import MovieCard from "/src/UI/MovieCard/MovieCard";
 import { useAppSelector } from "/src/hooks/redux";
 import { InfoTabs } from "/src/types/InfoTabs";
 import CreatorsModalList from "/src/components/ModalWindows/MovieInfoModal/CreatorsModalList/CreatorsModalList";
 import CommentForm from "/src/components/ModalWindows/MovieInfoModal/CommentForm/CommentForm";
-import { comments } from "./MovieInfoModal.utils";
 import useOverflowHidden from "/src/hooks/useOverflowHidden";
 import { useTranslation } from "next-i18next";
-import { movie } from "/src/utils/movie";
-import axios from "axios";
+import { mockMovie } from "/src/utils/movie";
+import { IComment } from "/src/types/IComment";
+import { IPerson } from "/src/types/IPerson";
 
 interface MovieInfoModalProps {
-  creators: ICreator[];
+  persons: IPerson[];
+  comments: IComment[];
   movieTitle: string;
   closeCallback: () => void;
 }
 
 const MovieInfoModal: FC<MovieInfoModalProps> = ({
-  creators,
+  persons,
+  comments,
   movieTitle,
   closeCallback,
 }) => {
-  const defaultTab = useAppSelector(
-    (state) => state.showModal.showMovieInfoModal.defaultTab
-  );
-
+  const { t } = useTranslation("movieInfo");
+  const defaultTab = useAppSelector((state) => state.showModal.showMovieInfoModal.defaultTab);
   const screenWidth = useAppSelector((state) => state.windowSize.width);
   const [selectedTab, setSelectedTab] = useState<InfoTabs>(defaultTab || "actors");
-
-  const { t } = useTranslation("movieInfo");
-
-  axios.get("http://85.237.34.125:4000/films?limit=20").then((res) => console.log(res));
+  const commentsTabClass = selectedTab === "comments" ? styles.active : "";
+  const actorsTabClass = selectedTab === "actors" ? styles.active : "";
 
   const getSelectedTab = (tab: InfoTabs): ReactNode => {
     switch (tab) {
       case "actors":
-        return <CreatorsModalList creators={creators} />;
+        return <CreatorsModalList persons={persons} />;
       case "comments":
         return <CommentForm comments={comments} />;
     }
@@ -56,17 +53,13 @@ const MovieInfoModal: FC<MovieInfoModalProps> = ({
           <div className={styles.tabs__list_wrapper}>
             <ul className={styles.tabs__list}>
               <li
-                className={`${styles.tabs__item} ${
-                  selectedTab === "actors" ? styles.active : ""
-                }`}
+                className={`${styles.tabs__item} ${actorsTabClass}`}
                 onClick={() => setSelectedTab("actors")}
               >
                 {t("tabs.0")}
               </li>
               <li
-                className={`${styles.tabs__item} ${
-                  selectedTab === "comments" ? styles.active : ""
-                }`}
+                className={`${styles.tabs__item} ${commentsTabClass}`}
                 onClick={() => setSelectedTab("comments")}
               >
                 {t("tabs.1")}
@@ -78,7 +71,7 @@ const MovieInfoModal: FC<MovieInfoModalProps> = ({
 
         {screenWidth > 880 && (
           <div className={styles.card}>
-            <MovieCard content={movie} type="poster" />
+            <MovieCard content={mockMovie} type="poster" />
           </div>
         )}
       </div>

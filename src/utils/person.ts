@@ -1,21 +1,292 @@
 import { IPerson } from "/src/types/IPerson";
 
-export const personData: IPerson = {
-  person_id: "44bd3a0c-0199-4b62-a567-5c435b9f4c18",
-  first_name_ru: "Кейси",
-  last_name_ru: "Аффлек",
-  first_name_en: "Casey",
-  last_name_en: "Affleck",
-  img: "//avatars.mds.yandex.net/get-kinopoisk-image/1599028/09a6ecb6-052b-41fb-8323-1b95a10cb33a/280x420",
-  movieRoles: [
-    {
-      movie_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
-      movie_role: "режиссер",
-      slug: "rezhisser",
-    },
-  ],
-  movies: [
-    "984fdb2d-da0c-4e04-926a-f72f103c4ccb",
-    "934bf135-3edd-41e4-a463-b242a4340279",
-  ],
+export const getPersonFirstName = (person: IPerson, locale: string | undefined = "en"): string => {
+  return String(person["first_name_" + String(locale)]);
 };
+
+export const getPersonLastName = (person: IPerson, locale: string | undefined = "en"): string => {
+  return String(person["last_name_" + String(locale)]);
+};
+
+export const getPersonRole = (person: IPerson): string => {
+  return person.filmRoles[0].slug;
+};
+
+export const mockPersons: IPerson[] = [
+  {
+    person_id: "a3fe3d20-5dd4-4991-bfa7-8b0632888b2e",
+    first_name_ru: "Мелисса",
+    last_name_ru: "Сейджмиллер",
+    first_name_en: "Melissa",
+    last_name_en: "Sagemiller",
+    img: "//avatars.mds.yandex.net/get-kinopoisk-image/1704946/0790ac1a-79fc-4a78-8082-2d6ad3994f50/280x420",
+    filmRoles: [
+      {
+        film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
+        film_role: "режиссер",
+        slug: "rezhisser",
+      },
+    ],
+    films: [
+      {
+        film_id: "934bf135-3edd-41e4-a463-b242a4340279",
+      },
+      {
+        film_id: "3d70dd42-7435-46f7-a7c7-621e9a7fee17",
+      },
+    ],
+  },
+  {
+    person_id: "a3fe3d20-5dd4-4991-bfa7-8b0632888b2e",
+    first_name_ru: "Мелисса",
+    last_name_ru: "Сейджмиллер",
+    first_name_en: "Melissa",
+    last_name_en: "Sagemiller",
+    img: "//avatars.mds.yandex.net/get-kinopoisk-image/1704946/0790ac1a-79fc-4a78-8082-2d6ad3994f50/280x420",
+    filmRoles: [
+      {
+        film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
+        film_role: "режиссер",
+        slug: "rezhisser",
+      },
+    ],
+    films: [
+      {
+        film_id: "934bf135-3edd-41e4-a463-b242a4340279",
+      },
+      {
+        film_id: "3d70dd42-7435-46f7-a7c7-621e9a7fee17",
+      },
+    ],
+  },
+  {
+    person_id: "a3fe3d20-5dd4-4991-bfa7-8b0632888b2e",
+    first_name_ru: "Мелисса",
+    last_name_ru: "Сейджмиллер",
+    first_name_en: "Melissa",
+    last_name_en: "Sagemiller",
+    img: "//avatars.mds.yandex.net/get-kinopoisk-image/1704946/0790ac1a-79fc-4a78-8082-2d6ad3994f50/280x420",
+    filmRoles: [
+      {
+        film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
+        film_role: "режиссер",
+        slug: "rezhisser",
+      },
+    ],
+    films: [
+      {
+        film_id: "934bf135-3edd-41e4-a463-b242a4340279",
+      },
+      {
+        film_id: "3d70dd42-7435-46f7-a7c7-621e9a7fee17",
+      },
+    ],
+  },
+  {
+    person_id: "a3fe3d20-5dd4-4991-bfa7-8b0632888b2e",
+    first_name_ru: "Мелисса",
+    last_name_ru: "Сейджмиллер",
+    first_name_en: "Melissa",
+    last_name_en: "Sagemiller",
+    img: "//avatars.mds.yandex.net/get-kinopoisk-image/1704946/0790ac1a-79fc-4a78-8082-2d6ad3994f50/280x420",
+    filmRoles: [
+      {
+        film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
+        film_role: "режиссер",
+        slug: "rezhisser",
+      },
+    ],
+    films: [
+      {
+        film_id: "934bf135-3edd-41e4-a463-b242a4340279",
+      },
+      {
+        film_id: "3d70dd42-7435-46f7-a7c7-621e9a7fee17",
+      },
+    ],
+  },
+  {
+    person_id: "a3fe3d20-5dd4-4991-bfa7-8b0632888b2e",
+    first_name_ru: "Мелисса",
+    last_name_ru: "Сейджмиллер",
+    first_name_en: "Melissa",
+    last_name_en: "Sagemiller",
+    img: "//avatars.mds.yandex.net/get-kinopoisk-image/1704946/0790ac1a-79fc-4a78-8082-2d6ad3994f50/280x420",
+    filmRoles: [
+      {
+        film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
+        film_role: "режиссер",
+        slug: "rezhisser",
+      },
+    ],
+    films: [
+      {
+        film_id: "934bf135-3edd-41e4-a463-b242a4340279",
+      },
+      {
+        film_id: "3d70dd42-7435-46f7-a7c7-621e9a7fee17",
+      },
+    ],
+  },
+  {
+    person_id: "a3fe3d20-5dd4-4991-bfa7-8b0632888b2e",
+    first_name_ru: "Мелисса",
+    last_name_ru: "Сейджмиллер",
+    first_name_en: "Melissa",
+    last_name_en: "Sagemiller",
+    img: "//avatars.mds.yandex.net/get-kinopoisk-image/1704946/0790ac1a-79fc-4a78-8082-2d6ad3994f50/280x420",
+    filmRoles: [
+      {
+        film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
+        film_role: "режиссер",
+        slug: "rezhisser",
+      },
+    ],
+    films: [
+      {
+        film_id: "934bf135-3edd-41e4-a463-b242a4340279",
+      },
+      {
+        film_id: "3d70dd42-7435-46f7-a7c7-621e9a7fee17",
+      },
+    ],
+  },
+  {
+    person_id: "a3fe3d20-5dd4-4991-bfa7-8b0632888b2e",
+    first_name_ru: "Мелисса",
+    last_name_ru: "Сейджмиллер",
+    first_name_en: "Melissa",
+    last_name_en: "Sagemiller",
+    img: "//avatars.mds.yandex.net/get-kinopoisk-image/1704946/0790ac1a-79fc-4a78-8082-2d6ad3994f50/280x420",
+    filmRoles: [
+      {
+        film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
+        film_role: "режиссер",
+        slug: "rezhisser",
+      },
+    ],
+    films: [
+      {
+        film_id: "934bf135-3edd-41e4-a463-b242a4340279",
+      },
+      {
+        film_id: "3d70dd42-7435-46f7-a7c7-621e9a7fee17",
+      },
+    ],
+  },
+  {
+    person_id: "a3fe3d20-5dd4-4991-bfa7-8b0632888b2e",
+    first_name_ru: "Мелисса",
+    last_name_ru: "Сейджмиллер",
+    first_name_en: "Melissa",
+    last_name_en: "Sagemiller",
+    img: "//avatars.mds.yandex.net/get-kinopoisk-image/1704946/0790ac1a-79fc-4a78-8082-2d6ad3994f50/280x420",
+    filmRoles: [
+      {
+        film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
+        film_role: "режиссер",
+        slug: "rezhisser",
+      },
+    ],
+    films: [
+      {
+        film_id: "934bf135-3edd-41e4-a463-b242a4340279",
+      },
+      {
+        film_id: "3d70dd42-7435-46f7-a7c7-621e9a7fee17",
+      },
+    ],
+  },
+  {
+    person_id: "a3fe3d20-5dd4-4991-bfa7-8b0632888b2e",
+    first_name_ru: "Мелисса",
+    last_name_ru: "Сейджмиллер",
+    first_name_en: "Melissa",
+    last_name_en: "Sagemiller",
+    img: "//avatars.mds.yandex.net/get-kinopoisk-image/1704946/0790ac1a-79fc-4a78-8082-2d6ad3994f50/280x420",
+    filmRoles: [
+      {
+        film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
+        film_role: "режиссер",
+        slug: "rezhisser",
+      },
+    ],
+    films: [
+      {
+        film_id: "934bf135-3edd-41e4-a463-b242a4340279",
+      },
+      {
+        film_id: "3d70dd42-7435-46f7-a7c7-621e9a7fee17",
+      },
+    ],
+  },
+  {
+    person_id: "a3fe3d20-5dd4-4991-bfa7-8b0632888b2e",
+    first_name_ru: "Мелисса",
+    last_name_ru: "Сейджмиллер",
+    first_name_en: "Melissa",
+    last_name_en: "Sagemiller",
+    img: "//avatars.mds.yandex.net/get-kinopoisk-image/1704946/0790ac1a-79fc-4a78-8082-2d6ad3994f50/280x420",
+    filmRoles: [
+      {
+        film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
+        film_role: "режиссер",
+        slug: "rezhisser",
+      },
+    ],
+    films: [
+      {
+        film_id: "934bf135-3edd-41e4-a463-b242a4340279",
+      },
+      {
+        film_id: "3d70dd42-7435-46f7-a7c7-621e9a7fee17",
+      },
+    ],
+  },
+  {
+    person_id: "a3fe3d20-5dd4-4991-bfa7-8b0632888b2e",
+    first_name_ru: "Мелисса",
+    last_name_ru: "Сейджмиллер",
+    first_name_en: "Melissa",
+    last_name_en: "Sagemiller",
+    img: "//avatars.mds.yandex.net/get-kinopoisk-image/1704946/0790ac1a-79fc-4a78-8082-2d6ad3994f50/280x420",
+    filmRoles: [
+      {
+        film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
+        film_role: "режиссер",
+        slug: "rezhisser",
+      },
+    ],
+    films: [
+      {
+        film_id: "934bf135-3edd-41e4-a463-b242a4340279",
+      },
+      {
+        film_id: "3d70dd42-7435-46f7-a7c7-621e9a7fee17",
+      },
+    ],
+  },
+  {
+    person_id: "a3fe3d20-5dd4-4991-bfa7-8b0632888b2e",
+    first_name_ru: "Мелисса",
+    last_name_ru: "Сейджмиллер",
+    first_name_en: "Melissa",
+    last_name_en: "Sagemiller",
+    img: "//avatars.mds.yandex.net/get-kinopoisk-image/1704946/0790ac1a-79fc-4a78-8082-2d6ad3994f50/280x420",
+    filmRoles: [
+      {
+        film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
+        film_role: "режиссер",
+        slug: "rezhisser",
+      },
+    ],
+    films: [
+      {
+        film_id: "934bf135-3edd-41e4-a463-b242a4340279",
+      },
+      {
+        film_id: "3d70dd42-7435-46f7-a7c7-621e9a7fee17",
+      },
+    ],
+  },
+];

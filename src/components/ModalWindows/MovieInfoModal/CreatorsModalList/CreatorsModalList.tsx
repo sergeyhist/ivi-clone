@@ -1,29 +1,39 @@
 import { FC } from "react";
 import styles from "./CreatorsModalList.module.sass";
-import { ICreator } from "/src/types/ICreator";
 import Creators from "/src/components/ModalWindows/MovieInfoModal/CreatorsModalList/Creators/Creators";
 import { useTranslation } from "next-i18next";
+import { IPerson } from "/src/types/IPerson";
 
 interface CreatorsModalListProps {
-  creators: ICreator[];
+  persons: IPerson[];
 }
 
-const CreatorsModalList: FC<CreatorsModalListProps> = ({ creators }) => {
-  const { t } = useTranslation("movieInfo");
+const CreatorsModalList: FC<CreatorsModalListProps> = ({ persons }) => {
+  const { t } = useTranslation("movie");
 
-  const directors = creators.filter((creator) => creator.film_role_slug === "rezhisser");
-  const actors = creators.filter((creator) => creator.film_role_slug === "actor");
+  const directors = persons.filter((person) => person.filmRoles[0].slug === "rezhisser");
+  const actors = persons.filter((person) => person.filmRoles[0].slug === "aktyor");
+  const scenarists = persons.filter((person) => person.filmRoles[0].slug === "scenariy");
+  const producers = persons.filter((person) => person.filmRoles[0].slug === "prodyuser");
+  const dubbing = persons.filter((person) => person.filmRoles[0].slug === "aktyor-dublyazha");
+  const painters = persons.filter((person) => person.filmRoles[0].slug === "hudozhnik");
+  const operators = persons.filter((person) => person.filmRoles[0].slug === "operator");
+  const compositors = persons.filter((person) => person.filmRoles[0].slug === "kompozitor");
 
   return (
     <div className={styles.container}>
-      <div className={styles.creators__container}>
-        <h2 className={styles.creators__title}>{t("creators.0")}</h2>
-        <Creators creators={directors} />
-      </div>
-      <div className={styles.creators__container}>
-        <h2 className={styles.creators__title}>{t("creators.1")}</h2>
-        <Creators creators={actors} />
-      </div>
+      {directors.length !== 0 && <Creators title={t("creators.directors")} persons={directors} />}
+      {actors.length !== 0 && <Creators title={t("creators.actors")} persons={actors} />}
+      {scenarists.length !== 0 && (
+        <Creators title={t("creators.scenarists")} persons={scenarists} />
+      )}
+      {producers.length !== 0 && <Creators title={t("creators.producers")} persons={producers} />}
+      {dubbing.length !== 0 && <Creators title={t("creators.dubbing")} persons={dubbing} />}
+      {painters.length !== 0 && <Creators title={t("creators.painters")} persons={painters} />}
+      {operators.length !== 0 && <Creators title={t("creators.operators")} persons={operators} />}
+      {compositors.length !== 0 && (
+        <Creators title={t("creators.compositors")} persons={compositors} />
+      )}
     </div>
   );
 };

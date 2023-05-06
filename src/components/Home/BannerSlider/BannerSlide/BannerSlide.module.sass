@@ -23,10 +23,10 @@
         display: block
         position: relative
 
-    &__img_mobile
-        display: none
-        height: auto
-        width: 100%
+        &_mobile
+            display: none
+            height: auto
+            width: 100%
 
     &_hidden
         opacity: 0.5
@@ -36,6 +36,7 @@
         bottom: 32px
         left: 32px
         width: calc(((100% + 32px*2)/100)*40)
+        z-index: 1
 
         &__logo
             margin-bottom: 20px

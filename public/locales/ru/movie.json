@@ -1,12 +1,12 @@
 {
   "rating": {
-    "title": "Рейтинг иви",
+    "title": "Рейтинг Кинопоиска",
     "estimate": "Оценить",
     "grades": "оценок"
   },
   "medallions": {
     "rating": "Рейтинг",
-    "ivi": "Иви"
+    "ivi": "Кинопоиска"
   },
   "details": {
     "show": "Показать детали",
@@ -42,5 +42,23 @@
   "comments": {
     "comments": "Комментарии",
     "leave": "Оставить комментарий"
+  },
+  "creators": {
+    "rezhisser": "Режисер",
+    "aktyor": "Актер",
+    "scenariy": "Сценарий",
+    "prodyuser": "Продюсер",
+    "aktyor-dublyazha": "Актер дубляжа",
+    "hudozhnik": "Художник",
+    "operator": "Оператор",
+    "kompozitor": "Композитор",
+    "directors": "Режисеры",
+    "actors": "Актеры",
+    "scenarists": "Сценаристы",
+    "producers": "Продюсеры",
+    "dubbing": "Дубляж",
+    "painters": "Художники",
+    "operators": "Операторы",
+    "compositors": "Композиторы"
   }
 }

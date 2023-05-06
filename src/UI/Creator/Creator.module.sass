@@ -1,0 +1,83 @@
+@use "/src/styles/vars"
+.creator
+  display: flex
+  user-select: none
+  gap: 10px
+  flex-direction: column
+  margin-bottom: 24px
+  width: 88px
+
+  &_large
+    width: 128px
+
+    .wrapper
+      width: 128px
+      height: 128px
+      aspect-ratio: 298/357
+
+    .title
+      font-size: 15px
+
+.wrapper
+  width: 88px
+  height: 88px
+  border-radius: 100%
+  overflow: hidden
+  position: relative
+  aspect-ratio: 1/1
+  background-color: #1f1b2e
+
+  &__img
+    object-fit: cover
+    border-radius: 100%
+
+.title
+  color: #d9d7e0
+  overflow: hidden
+  white-space: nowrap
+  text-overflow: ellipsis
+  font-size: 13px
+  line-height: 16px
+  font-weight: 500
+  transition: .2s
+  width: 100%
+
+.subtitle
+  color: vars.$secondaryColor
+  font-size: 13px
+  line-height: 16px
+  font-weight: 400
+  width: 100%
+
+  &:hover
+    .title, .second__title
+      color: vars.$whiteTextColor
+
+.more__button
+  width: 88px
+  height: 88px
+  cursor: pointer
+  user-select: none
+  font-weight: 500
+  color: vars.$secondaryColor
+  font-size: 15px
+  line-height: 88px
+  text-align: center
+  background-color: #1f1b2e
+  border-radius: 50%
+  transition: .3s
+
+  &:hover
+    background-color: #272038
+    color: #d9d4ee
+
+@media (max-width: 600px)
+  .creator
+    width: 72px
+    .wrapper
+      width: 72px
+      height: 72px
+
+      &__img
+        width: 72px
+        height: 72px

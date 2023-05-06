@@ -14,12 +14,14 @@ const CommentForm: FC<CommentFormProps> = ({ comments }) => {
   const [inputText, setInputText] = useState("");
   const { t } = useTranslation("movieInfo");
 
-  const handleSubmitForm = (e: FormEvent): void => {
-    e.preventDefault();
-    const newComment = {
-      id: commentsState.length + 1,
-      author: "Vegeta",
+  const handleSubmitForm = (event: FormEvent): void => {
+    event.preventDefault();
+    const newComment: IComment = {
+      title: "Vegeta",
       text: inputText,
+      film_id: String(commentsState.length + 1),
+      parent_id: String(commentsState.length + 1),
+      user_id: commentsState.length + 1,
     };
     setCommentsState([...commentsState, newComment]);
     setInputText("");

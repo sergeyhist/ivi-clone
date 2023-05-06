@@ -1,6 +1,15 @@
 @use "/src/styles/vars"
 
 .creators
+  &__title
+    font-size: 20px
+    line-height: 24px
+    font-weight: 700
+    color: vars.$whiteTextColor
+    margin-bottom: 16px
+    margin-top: 16px
+
+.creators
   &__list
     display: flex
     flex-wrap: wrap
@@ -19,12 +28,6 @@
       .creators__name
         color: vars.$whiteTextColor
 
-  &__image
-    width: 128px
-    height: 128px
-    border-radius: 50%
-    overflow: hidden
-
   &__name
     color: #d9d7e0
     font-size: 15px
@@ -32,9 +35,17 @@
     font-weight: 500
     transition: .3s
 
+.wrapper
+  width: 128px
+  height: 128px
+  border-radius: 50%
+  overflow: hidden
+  &__img
+    object-fit: cover
+
 .button
-   width: 100%
-   margin-top: 30px
+  width: 100%
+  margin-top: 30px
 
 @media (max-width: 1160px)
   .creators
