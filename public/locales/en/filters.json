@@ -14,7 +14,7 @@
   "reset": "Reset filters",
   "all": {
     "genres": "All genres",
-    "country": "All countries",
+    "countries": "All countries",
     "year": "All years",
     "rating": "Any ratings",
     "assessments": "Any ratings count",

@@ -33,15 +33,15 @@ export const genreIcons: { [key: string]: ReactNode } = {
 };
 
 export const yearFilterItems: string[] = [
-  "all",
-  "2023",
-  "2022",
-  "2021",
-  "2020",
-  "2019",
-  "2018",
-  "2017",
-  "2016",
+  "0-0",
+  "2023-2023",
+  "2022-2022",
+  "2021-2021",
+  "2020-2020",
+  "2019-2019",
+  "2018-2018",
+  "2017-2017",
+  "2016-2016",
   "2022-2023",
   "2021-2022",
   "2020-2021",
@@ -54,20 +54,22 @@ export const yearFilterItems: string[] = [
   "0-1990",
 ];
 
-const defaultValues = ["all", "0", ""];
+export const filterDefaults = ["0-0", "0", ""];
+
+const isRating = (key: string) => ["rating", "assessments"].includes(key);
 
 const isArrayNotEmpty = (filters: IFilters, key: string): boolean =>
   (filters[key] as string[]).length > 0;
 
 const isFilterNotDefault = (filters: IFilters, key: string): boolean =>
-  !defaultValues.includes(filters[key] as string);
+  !filterDefaults.includes(filters[key] as string);
 
-const getTextSelector = (filters: IFilters, key: string): string => {
-  if (filters[key] as string) {
+const getText = (filters: IFilters, key: string): string => {
+  if (filters[key] && !isRating(key)) {
     return i18n?.t(`${key}:${filters[key] as string}`) || "";
   }
 
-  if (!(filters[key] as string) && ["rating", "assessments"].includes(key)) {
+  if (filters[key] && isRating(key)) {
     return (
       i18n?.t(
         `filters:${key === "rating" ? "ratingFrom" : "ratingCountFrom"}`
@@ -87,11 +89,13 @@ const arrayToString = (filters: IFilters, key: string): string =>
 
 const updateTextArray = (filters: IFilters, key: string): string => {
   if (!Array.isArray(filters[key]) && isFilterNotDefault(filters, key)) {
-    return getTextSelector(filters, key);
+    return getText(filters, key);
   }
+
   if (Array.isArray(filters[key]) && isArrayNotEmpty(filters, key)) {
     return arrayToString(filters, key);
   }
+
   return i18n?.t(`filters:all.${key}`) || "";
 };
 
@@ -101,6 +105,13 @@ export const getFiltersText = (filters: IFilters) => {
     .join(", ");
 };
 
-export const isFilterActive = (filter: string | string[], slug: string) => {
-  return typeof filter === "string" ? filter === slug : filter.includes(slug);
+export const isFilterActive = (
+  filter: string | string[] | undefined,
+  slug: string
+) => {
+  return typeof filter === "string"
+    ? filter === slug
+    : filter
+    ? filter.includes(slug)
+    : false;
 };

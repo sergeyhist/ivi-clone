@@ -12,10 +12,11 @@ export const getFilteredMovies = async (
     const response = await axios.get(`http://${ip}:4000/filter/films`, {
       params: {
         genres: filters.genres,
-        rating: filters.rating,
-        assessments: filters.assessments,
-        year: filters.year === "all" ? undefined : filters.year,
         countries: filters.countries,
+        rating: filters.rating === "0" ? undefined : filters.rating,
+        assessments: filters.assessments === "0" ? undefined : filters.assessments,
+        year_min: filters.year.length > 0 ? (filters.year as string).split('-')[0] : undefined,
+        year_max: filters.year.length > 0 ? (filters.year as string).split('-')[1] : undefined,
         limit: limit,
       },
     });

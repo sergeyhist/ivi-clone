@@ -12,7 +12,7 @@ interface MultiSelectorProps {
   items: string[];
   filters: IFilters;
   filtersType: string;
-  getFilters: (filters: string[] | string) => void;
+  getFilter: (filter: string) => void;
   dropdownPosition: "center" | "left" | "right";
 }
 
@@ -21,7 +21,7 @@ const MultiSelector: FC<MultiSelectorProps> = ({
   items,
   filters,
   filtersType,
-  getFilters,
+  getFilter,
   dropdownPosition,
 }) => {
   const titleRef = useRef<HTMLDivElement>(null);
@@ -30,21 +30,7 @@ const MultiSelector: FC<MultiSelectorProps> = ({
   const [isDropdownActive, setIsDropdownActive] = useState(false);
 
   const clickHandler = (slug: string): void => {
-    if (isFilterActive(filters[filtersType], slug)) {
-      getFilters(
-        typeof filters[filtersType] !== "string"
-          ? (filters[filtersType] as string[]).filter(
-              (filter) => filter !== slug
-            )
-          : (filters[filtersType] = [])
-      );
-    } else {
-      getFilters(
-        typeof filters[filtersType] !== "string"
-          ? [...(filters[filtersType] as string[]), slug]
-          : [filters[filtersType] as string, slug]
-      );
-    }
+    getFilter(slug)
   };
 
   const activeDropdown = isDropdownActive
@@ -60,7 +46,12 @@ const MultiSelector: FC<MultiSelectorProps> = ({
           text={title}
           isDropdownActive={isDropdownActive}
           setIsDropdownActive={setIsDropdownActive}
-          filters={filters}
+          filter={
+            !Array.isArray(filters[filtersType])
+              ? (filters[filtersType] as string)
+              : undefined
+          }
+          filters={Array.isArray(filters[filtersType]) ? filters : undefined}
           filtersType={filtersType}
         />
       </div>

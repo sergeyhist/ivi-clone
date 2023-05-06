@@ -1,13 +1,21 @@
 .filters
-  display: grid
-  grid-template-columns: repeat(3, 1fr)
-  column-gap: 12px
-  row-gap: 20px
   width: 100%
   background-color: #1f1b2e
   padding: 16px
   border-radius: 6px
   position: relative
+
+  &__top, &__bottom
+    display: grid
+    column-gap: 12px
+    row-gap: 20px
+    padding-bottom: 20px
+
+  &__top
+    grid-template-columns: repeat(3,  1fr)
+
+  &__bottom
+    grid-template-columns: repeat(4, 1fr)
 
   &__person
     display: grid
@@ -17,11 +25,19 @@
 
 @media screen and (max-width: 960px)
   .filters
-    grid-template-columns: repeat(2, 1fr)
+    &__top
+      grid-template-columns: repeat(2, 1fr)
+
+      & > div:nth-of-type(3)
+        grid-column: 1 / span 2
+
+    &__bottom
+      grid-template-columns: repeat(2, 1fr)
 
 @media screen and (max-width: 550px)
   .filters
-    grid-template-columns: 1fr
-
-    &__person
+    &__top, &__bottom
       grid-template-columns: 1fr
+
+      & > div:nth-of-type(3)
+        grid-column: auto

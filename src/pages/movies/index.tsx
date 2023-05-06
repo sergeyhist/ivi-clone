@@ -16,27 +16,39 @@ import { IMovie } from "/src/types/IMovie";
 import { useRouter } from "next/router";
 import getSortedList from "/src/utils/getSortedList";
 import { getFiltersText } from "/src/components/Catalog/Filters/Filters.utils";
-import { getCountriesSlugs, getGenresSlugs } from "/src/api/getData";
+import {
+  getActors,
+  getCountriesSlugs,
+  getDirectors,
+  getGenresSlugs,
+} from "/src/api/getData";
 import { setQueryParams } from "/src/utils/query";
 import { compareFilters } from "/src/utils/compare";
+import { IPerson } from "/src/types/IPerson";
 
 const listLimit = 21;
 
 interface MoviesProps {
   genres: string[];
   countries: string[];
+  actors: IPerson[];
+  directors: IPerson[];
 }
 
-const Movies: FC<MoviesProps> = ({ genres, countries }) => {
+const Movies: FC<MoviesProps> = ({ genres, countries, actors, directors }) => {
   const { t } = useTranslation(["titles", "sorting"]);
   const router = useRouter();
 
-  const [filters, setFilters] = useState<IFilters>({
+  const defaultFilter = useRef<IFilters>({
     genres: [],
     countries: [],
-    year: "all",
-    rating: "0",
-    assessments: "0",
+    year: [],
+    rating: [],
+    assessments: [],
+  });
+
+  const [filters, setFilters] = useState<IFilters>({
+    ...defaultFilter.current,
   });
   const [activeSorting, setActiveSorting] = useState("assessments");
   const [filteredMovies, setFilteredMovies] = useState<IMovie[]>([]);
@@ -53,26 +65,16 @@ const Movies: FC<MoviesProps> = ({ genres, countries }) => {
   }, 500);
 
   const getFiltersFromRoute = (): IFilters => {
-    const result: IFilters = {
-      genres: [],
-      countries: [],
-      year: "all",
-      rating: "0",
-      assessments: "0",
-    };
+    const result: IFilters = { ...defaultFilter.current };
 
     result.genres = router.query.genres ? router.query.genres : result.genres;
     result.countries = router.query.countries
       ? router.query.countries
       : result.countries;
-    result.year = router.query.year
-      ? (router.query.year as string)
-      : result.year;
-    result.rating = router.query.rating
-      ? (router.query.rating as string)
-      : result.rating;
+    result.year = router.query.year ? router.query.year : result.year;
+    result.rating = router.query.rating ? router.query.rating : result.rating;
     result.assessments = router.query.assessments
-      ? (router.query.assessments as string)
+      ? router.query.assessments
       : result.assessments;
 
     if (compareFilters(filters, result)) {
@@ -118,7 +120,13 @@ const Movies: FC<MoviesProps> = ({ genres, countries }) => {
           ]}
         />
         <div className="container">
-          <Filters countries={countries} genres={genres} filters={filters} />
+          <Filters
+            countries={countries}
+            genres={genres}
+            actors={actors}
+            directors={directors}
+            filters={filters}
+          />
         </div>
         {filteredMovies && (
           <MoviesList
@@ -147,6 +155,8 @@ export const getStaticProps = async ({
 }): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
   const genres = await getGenresSlugs();
   const countries = await getCountriesSlugs();
+  const actors = await getActors();
+  const directors = await getDirectors();
 
   return {
     props: {
@@ -166,6 +176,8 @@ export const getStaticProps = async ({
       ])),
       genres: genres,
       countries: countries,
+      actors: actors,
+      directors: directors,
     },
   };
 };

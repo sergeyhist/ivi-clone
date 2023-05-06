@@ -44,3 +44,23 @@ export const getCountriesSlugs = async (): Promise<string[] | undefined> => {
     console.log(error);
   }
 };
+
+export const getActors = async (): Promise<string[] | undefined> => {
+  try {
+    const response = await axios.get(`http://${ip}:4000/name/persons?film_role=actor`);
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getDirectors = async (): Promise<string[] | undefined> => {
+  try {
+    const response = await axios.get(`http://${ip}:4000/name/persons?film_role=filmmaker`);
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+  }
+};

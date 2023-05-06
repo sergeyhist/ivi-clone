@@ -3,12 +3,11 @@ import FilterTitle from "../FilterTitle/FilterTitle";
 import ListItem from "./ListItem/ListItem";
 import styles from "./SingleSelector.module.sass";
 import useCloseEvents from "/src/hooks/useCloseEvents";
-import { IFilters } from "/src/types/IFilter";
 
 interface SingleSelectorProps {
   title: string;
   items: string[];
-  filters: IFilters;
+  filter: string;
   filtersType: string;
   getFilter: (filter: string) => void;
 }
@@ -16,7 +15,7 @@ interface SingleSelectorProps {
 const SingleSelector: FC<SingleSelectorProps> = ({
   title,
   items,
-  filters,
+  filter,
   filtersType,
   getFilter,
 }) => {
@@ -38,7 +37,7 @@ const SingleSelector: FC<SingleSelectorProps> = ({
           text={title}
           isDropdownActive={isDropdownActive}
           setIsDropdownActive={setIsDropdownActive}
-          filters={filters}
+          filter={filter}
           filtersType={filtersType}
         />
       </div>
@@ -52,7 +51,7 @@ const SingleSelector: FC<SingleSelectorProps> = ({
               key={i}
               slug={item}
               text={`${filtersType}:${item}`}
-              isActive={filters[filtersType] === item}
+              isActive={filter === item || (i === 0 && filter.length === 0)}
               clickCallback={() => getFilter(item)}
             />
           ))}

@@ -3,6 +3,7 @@
 .selector
   display: grid
   gap: 4px
+  position: relative
 
   &__input
     display: flex
@@ -20,8 +21,29 @@
 
     &::placeholder
       color: rgba(255, 255, 255, .6)
-
-  &__dropdown
-    position: absolute
+      
+.dropdown
+  &-enter
     opacity: 0
+    transform-origin: top
+    transform: scaleY(0)
     visibility: hidden
+
+    &-active
+      opacity: 1
+      transform: scaleY(1)
+      visibility: visible
+      transition: .3s linear
+
+  &-exit
+    opacity: 1
+    transform-origin: top
+    transform: scaleY(1)
+    pointer-events: none
+    visibility: visible
+
+    &-active
+      opacity: 0
+      transform: scaleY(0)
+      visibility: hidden
+      transition: .3s linear

@@ -27,7 +27,7 @@ const RangeSelector: FC<RangeSelectorProps> = ({
   const [rangeValue, setRangeValue] = useState("");
 
   useEffect(() => {
-    filter === "0" && setRangeValue(filter);
+    filter.length === 0 && setRangeValue("0");
   }, [filter, setRangeValue]);
 
   return (

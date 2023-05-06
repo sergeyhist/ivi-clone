@@ -1,0 +1,31 @@
+@use '/src/styles/mixins'
+
+.list
+  position: absolute
+  background: #312b45
+  padding-block: 12px
+  border-radius: 4px
+  z-index: 1
+  top: 60px
+  width: 100%
+
+  &__item
+    display: grid
+    grid-template-columns: 30px 1fr
+    gap: 15px
+    cursor: pointer
+    padding: 8px 16px
+    align-items: center
+
+    &:hover
+      background: rgba(255, 255, 255, .3)
+
+  &__image
+    width: 30px
+    aspect-ratio: 2/3
+    position: relative
+    border-radius: 4px
+    overflow: hidden
+
+  &__name
+    @include mixins.ellipsis

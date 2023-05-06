@@ -1,9 +1,8 @@
 import { NextRouter } from "next/router";
-import { IFilters } from "../types/IFilter";
 
 export const setQueryParams = (
   router: NextRouter,
-  params: IFilters | { [key: string]: string | string[] }
+  params: { [key: string]: string | string[] }
 ) => {
   router.replace(
     {
