@@ -25,8 +25,8 @@ const PersonCard: FC<PersonCardProps> = ({ person, firstName, lastName }) => {
         <div className={styles.content}>
           <div className={styles.img}>
             <Image
-              width={120}
-              height={120}
+              fill
+              sizes="100%"
               src={
                 person.img.includes("yastatic.net")
                   ? person.img

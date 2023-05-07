@@ -9,7 +9,7 @@ interface ListItemProps {
 }
 
 const ListItem: FC<ListItemProps> = ({ text, isActive, clickCallback }) => {
-  const { t } = useTranslation("filters");
+  const { t } = useTranslation();
 
   const activeItem = isActive ? ` ${styles.item_active}` : "";
   const activeCheckbox = isActive ? ` ${styles.item__checkbox_active}` : "";

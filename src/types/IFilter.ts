@@ -1,21 +1,10 @@
-import { ReactNode } from "react";
-
-export interface IFilter {
-  slug: string;
-  text: string;
-}
-
-export interface IFilterSlide extends IFilter {
-  icon?: ReactNode;
-}
-
-export interface IActiveFilters {
-  [key: string]: IFilter | IFilter[];
-  genre: IFilter[];
-  country: IFilter[];
-  year: IFilter;
-  rating: IFilter;
-  ratingCount: IFilter;
-  actor: IFilter;
-  director: IFilter;
+export interface IFilters {
+  [key: string]: string | string[];
+  genres: string[] | string;
+  countries: string[] | string;
+  year: string[] | string;
+  rating: string[] | string;
+  assessments: string[] | string;
+  actor: string[] | string;
+  director: string[] | string;
 }

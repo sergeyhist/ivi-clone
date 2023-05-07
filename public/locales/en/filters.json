@@ -1,19 +1,7 @@
 {
   "genre": "Genres",
   "country": "Countries",
-  "years": {
-    "title": "Years",
-    "all": "All years",
-    "until": "Until 1990",
-    "2023": "2023 year",
-    "2022": "2022 year",
-    "2021": "2021 year",
-    "2020": "2020 year",
-    "2019": "2019 year",
-    "2018": "2018 year",
-    "2017": "2017 year",
-    "2016": "2016 year"
-  },
+  "year": "Years",
   "rating": "Kinopoisk rating",
   "ratingCount": "Ratings count",
   "from": "from",
@@ -25,11 +13,11 @@
   },
   "reset": "Reset filters",
   "all": {
-    "genre": "All genres",
-    "country": "All countries",
+    "genres": "All genres",
+    "countries": "All countries",
     "year": "All years",
     "rating": "Any ratings",
-    "ratingCount": "Any ratings count",
+    "assessments": "Any ratings count",
     "actor": "All actors",
     "director": "All directors"
   }

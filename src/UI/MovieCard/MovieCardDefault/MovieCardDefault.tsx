@@ -23,8 +23,8 @@ const MovieCardDefault: FC<MovieCardDefaultProps> = ({ content, type = "default"
       <Link className={styles.content__link} href={"movies/" + content.film_id}>
         <div className={styles.content__filter}>
           <Image
-            height={234}
-            width={153}
+            fill
+            sizes="100%"
             className={styles.content__img}
             src={img}
             alt=""

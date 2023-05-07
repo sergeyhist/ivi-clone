@@ -1,47 +1,52 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import Filters from "../../components/Catalog/Filters/Filters";
 import Layout from "/src/components/Layout/Layout";
 import Sorting from "../../components/Catalog/Sorting/Sorting";
-import { IActiveFilters } from "/src/types/IFilter";
 import styles from "/src/styles/pages/MoviesPage.module.sass";
-import FiltersInfo from "../../components/Catalog/FiltersInfo/FiltersInfo";
 import BreadCrumbs from "../../UI/BreadCrumbs/BreadCrumbs";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticPropsResult } from "next";
+import MoviesList from "/src/components/Catalog/MoviesList/MoviesList";
+import {
+  getActors,
+  getCountriesSlugs,
+  getDirectors,
+  getGenresSlugs,
+} from "/src/api/getData";
+import { IPerson } from "/src/types/IPerson";
+import { useAppSelector } from "/src/hooks/redux";
+import {getFiltersText} from "/src/utils/filters/getFiltersText";
 
-const Movies: FC = () => {
+interface MoviesProps {
+  genres: string[];
+  countries: string[];
+  actors: IPerson[];
+  directors: IPerson[];
+}
+
+const Movies: FC<MoviesProps> = ({ genres, countries, actors, directors }) => {
   const { t } = useTranslation(["titles", "sorting"]);
-
-  const [activeFilters, setActiveFilters] = useState<IActiveFilters>({
-    genre: [],
-    country: [],
-    year: { slug: "all", text: "" },
-    rating: { slug: "0", text: "" },
-    ratingCount: { slug: "0", text: "" },
-    actor: { slug: "", text: "" },
-    director: { slug: "", text: "" },
-  });
-
-  const [activeSorting, setActiveSorting] = useState("ratings-count");
+  const { filters } = useAppSelector((state) => state.filters);
 
   return (
     <Layout title={t("titles:movies")}>
       <div className={styles.page}>
-        <BreadCrumbs type="slash" currentTitle={"Жанр"} />
-        <h1 className={styles.page__title + " container"}>{t("titles:movies")}</h1>{" "}
-        <FiltersInfo activeFilters={activeFilters} />
-        <Sorting
-          activeSorting={activeSorting}
-          setActiveSorting={setActiveSorting}
-          sortOptions={[
-            { slug: "ratings-count", text: t("sorting:ratings-count") },
-            { slug: "rating", text: t("sorting:rating") },
-            { slug: "date", text: t("sorting:date") },
-            { slug: "abc", text: t("sorting:abc") },
-          ]}
+        <BreadCrumbs type="slash" currentTitle={getFiltersText(filters)} />
+        <h1 className={styles.page__title + " container"}>
+          {t("titles:movies")}
+        </h1>
+        <div className={styles.page__info + " container"}>
+          {getFiltersText(filters)}
+        </div>
+        <Sorting />
+        <Filters
+          countries={countries}
+          genres={genres}
+          actors={actors}
+          directors={directors}
         />
-        <Filters activeFilters={activeFilters} setActiveFilters={setActiveFilters} />
+        <MoviesList />
       </div>
     </Layout>
   );
@@ -52,6 +57,11 @@ export const getStaticProps = async ({
 }: {
   locale: string;
 }): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
+  const genres = await getGenresSlugs();
+  const countries = await getCountriesSlugs();
+  const actors = await getActors();
+  const directors = await getDirectors();
+
   return {
     props: {
       ...(await serverSideTranslations(locale, [
@@ -66,8 +76,13 @@ export const getStaticProps = async ({
         "genres",
         "mobileMenu",
         "dropDownCategory",
+        "year",
         "registration"
       ])),
+      genres: genres,
+      countries: countries,
+      actors: actors,
+      directors: directors,
     },
   };
 };

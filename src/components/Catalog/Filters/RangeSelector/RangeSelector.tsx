@@ -1,13 +1,13 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
 import styles from "./RangeSelector.module.sass";
-import { IFilter } from "/src/types/IFilter";
+import { useDebouncedCallback } from "use-debounce";
 
 interface RangeSelectorProps {
   title: string;
   max: number;
   step: number;
-  activeFilter: IFilter;
+  filter: string;
   getFilter: (filter: string) => void;
 }
 
@@ -15,23 +15,36 @@ const RangeSelector: FC<RangeSelectorProps> = ({
   title,
   max,
   step,
-  activeFilter,
+  filter,
   getFilter,
 }) => {
   const { t } = useTranslation("filters");
+
+  const debouncedGetFilter = useDebouncedCallback((value: string) => {
+    getFilter(value);
+  }, 200);
+
+  const [rangeValue, setRangeValue] = useState("");
+
+  useEffect(() => {
+    filter.length === 0 && setRangeValue("0");
+  }, [filter, setRangeValue]);
 
   return (
     <div className={styles.selector + " unselectable"}>
       <span className={styles.selector__title}>{title}</span>
       <span className={styles.selector__value}>
         {t("from")}
-        <span>{` ${activeFilter.slug}`}</span>
+        <span>{` ${rangeValue}`}</span>
       </span>
       <input
         className={styles.selector__input}
         type="range"
-        value={activeFilter.slug}
-        onChange={(e) => getFilter(e.target.value)}
+        value={rangeValue}
+        onChange={(e) => {
+          setRangeValue(e.target.value);
+          debouncedGetFilter(e.target.value);
+        }}
         max={max}
         step={step}
       />
