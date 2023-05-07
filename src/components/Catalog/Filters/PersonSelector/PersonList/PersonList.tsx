@@ -12,10 +12,9 @@ interface PersonListProps {
 const PersonList = forwardRef<HTMLUListElement, PersonListProps>(
   ({ items, getPerson }, ref) => {
     const router = useRouter();
+
     const clickHandler = (person: IPerson) => {
-      getPerson(
-        `${person.first_name_en.toLowerCase()}+${person.last_name_en.toLowerCase()}`
-      );
+      getPerson(`${person.first_name_en} ${person.last_name_en}`);
     };
 
     return (
@@ -25,7 +24,7 @@ const PersonList = forwardRef<HTMLUListElement, PersonListProps>(
             onClick={() => {
               clickHandler(item);
             }}
-            className={styles.list__item}
+            className={styles.list__item + " unselectable"}
             key={i}
           >
             <div className={styles.list__image}>

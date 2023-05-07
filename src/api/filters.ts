@@ -14,9 +14,24 @@ export const getFilteredMovies = async (
         genres: filters.genres,
         countries: filters.countries,
         rating: filters.rating === "0" ? undefined : filters.rating,
-        assessments: filters.assessments === "0" ? undefined : filters.assessments,
-        year_min: filters.year.length > 0 ? (filters.year as string).split('-')[0] : undefined,
-        year_max: filters.year.length > 0 ? (filters.year as string).split('-')[1] : undefined,
+        assessments:
+          filters.assessments === "0" ? undefined : filters.assessments,
+        year_min:
+          filters.year.length > 0
+            ? (filters.year as string).split("-")[0]
+            : undefined,
+        year_max:
+          filters.year.length > 0
+            ? (filters.year as string).split("-")[1]
+            : undefined,
+        actor:
+          filters.actor.length > 0
+            ? (filters.actor as string).split("_")
+            : undefined,
+        filmmaker:
+          filters.director.length > 0
+            ? (filters.director as string).split("_")
+            : undefined,
         limit: limit,
       },
     });

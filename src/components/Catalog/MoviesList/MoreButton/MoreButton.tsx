@@ -9,7 +9,10 @@ interface MoreButtonProps {
 const MoreButton: FC<MoreButtonProps> = ({ clickCallback }) => {
   const { t } = useTranslation();
   return (
-    <button onClick={() => clickCallback()} className={styles.button}>
+    <button
+      onClick={() => clickCallback()}
+      className={styles.button + " container"}
+    >
       {t("common:more")}
     </button>
   );

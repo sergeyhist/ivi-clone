@@ -5,4 +5,6 @@ export interface IFilters {
   year: string[] | string;
   rating: string[] | string;
   assessments: string[] | string;
+  actor: string[] | string;
+  director: string[] | string;
 }

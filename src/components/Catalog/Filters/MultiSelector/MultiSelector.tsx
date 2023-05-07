@@ -5,7 +5,7 @@ import { IFilters } from "/src/types/IFilter";
 import FilterTitle from "../FilterTitle/FilterTitle";
 import FilterSlider from "./FilterSlider/FilterSlider";
 import useCloseEvents from "/src/hooks/useCloseEvents";
-import { isFilterActive } from "../Filters.utils";
+import {isFilterActive} from "/src/utils/filters/isFilterActive";
 
 interface MultiSelectorProps {
   title: string;

@@ -1,4 +1,4 @@
-import { IMovie } from "../types/IMovie";
+import {IMovie} from "/src/types/IMovie";
 
 const getSortedList = (listKey: string, list: IMovie[]): IMovie[] => {
   const strSort = (a: IMovie, b: IMovie) => (a[listKey] > b[listKey] ? 1 : -1);

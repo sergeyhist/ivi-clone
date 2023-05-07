@@ -1,4 +1,4 @@
-import { IFilters } from "../types/IFilter";
+import { IFilters } from "/src/types/IFilter";
 
 export const compareFilters = (first: IFilters, second: IFilters): boolean =>
   Object.keys(first).reduce((condition, filter) => {
