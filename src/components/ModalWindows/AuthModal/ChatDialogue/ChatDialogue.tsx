@@ -16,6 +16,7 @@ import {
 import ErrorMessage from "/src/components/ModalWindows/AuthModal/ChatDialogue/ErrorMessage/ErrorMessage";
 import EmailInput from "/src/components/ModalWindows/AuthModal/ChatDialogue/EmailInput/EmailInput";
 import {createUser} from "/src/api/createUser";
+import {useTranslation} from "next-i18next";
 
 interface ChatDialogueProps {
   setProgressBarWidth: Dispatch<SetStateAction<{ width: number }>>;
@@ -27,6 +28,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [showForm, setShowFrom] = useState(false);
   const [isEmailInputSuccess, setIsEmailInputSuccess] = useState(false);
+  const { t } = useTranslation("registration");
 
   const emailChangeRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
@@ -71,11 +73,11 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
       >
         <div className={styles.chat__message}>
           <h3 className={styles.chat__message__title}>
-            Войдите или зарегестрируйтесь
+            {t("hintMessage.title")}
           </h3>
           {!isEmailInputSuccess && (
             <p className={styles.chat__message__text}>
-              чтобы пользоваться сервисом на любом устройстве
+              {t("hintMessage.subtitle")}
             </p>
           )}
         </div>
@@ -108,7 +110,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
           <>
             <div className={styles.chat__message}>
               <h3 className={styles.chat__message__title}>
-                Введите пароль чтобы войти
+                {t("passwordMessage")}
               </h3>
             </div>
             <ModalInput
@@ -117,8 +119,8 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
               authData={password}
               showIcon={true}
               setAuthData={setPassword}
-              placeholderText="Введите пароль"
-              buttonText="Продолжить"
+              placeholderText={t("passwordPlaceholder")}
+              buttonText={t("submit")}
               inputType="password"
             />
           </>

@@ -1,0 +1,13 @@
+@mixin headerLayout
+  display: flex
+  height: 100%
+  align-items: center
+
+.container
+  @include headerLayout
+
+  .logo
+    cursor: pointer
+
+  .content
+    @include headerLayout

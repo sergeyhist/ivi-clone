@@ -69,4 +69,8 @@ export const getDirectors = async (): Promise<IPerson[] | undefined> => {
   } catch (error) {
     console.log(error);
   }
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> d95376032b1478c9ca7873aab46af2a67f02bd33

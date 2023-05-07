@@ -6,6 +6,8 @@ import {
 } from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDoalogue.utils";
 import ModalInput from "/src/UI/ModalInput/ModalInput";
 import PrivacyPolicy from "/src/components/ModalWindows/AuthModal/ChatDialogue/PrivacyPolicy/PrivacyPolicy";
+import {useTranslation} from "next-i18next";
+import styles from "./EmailInput.module.sass";
 
 interface EmailInput {
   isEmailInputSuccess: boolean;
@@ -24,7 +26,10 @@ const EmailInput: FC<EmailInput> = ({
   email,
   setEmail,
 }) => {
+  const { t } = useTranslation("registration");
+
   const emailInputRef = useRef<HTMLDivElement>(null);
+
   const handleEmailSubmit = (): void => {
     setShowErrorMessage(!validateEmail(email));
     setIsEmailInputSuccess(validateEmail(email));
@@ -38,7 +43,7 @@ const EmailInput: FC<EmailInput> = ({
       timeout={1}
       unmountOnExit
     >
-      <div ref={emailInputRef}>
+      <div className={styles.container} ref={emailInputRef}>
         <ModalInput
           showErrorMessage={showErrorMessage}
           clickCallback={handleEmailSubmit}
@@ -47,8 +52,8 @@ const EmailInput: FC<EmailInput> = ({
           setIsValid={setShowErrorMessage}
           authData={email}
           setAuthData={setEmail}
-          placeholderText="Через email"
-          buttonText="Продолжить"
+          placeholderText={t("emailPlaceholder")}
+          buttonText={t("submit")}
           inputType="email"
         />
         <PrivacyPolicy />
