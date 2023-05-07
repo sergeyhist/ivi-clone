@@ -4,6 +4,7 @@ import Image from "next/image";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import { IMovie } from "/src/types/IMovie";
 import { useTranslation } from "next-i18next";
+import Link from "next/link";
 
 interface MovieTrailerProps {
   movie: IMovie;
@@ -20,6 +21,8 @@ const MovieTrailer: FC<MovieTrailerProps> = ({ movie }) => {
         width={858}
         height={483}
         alt="trailer-img"
+        placeholder="blur"
+        blurDataURL="/images/placeholder.svg"
       />
       <div className={styles.trailer__over}>
         <button className={styles.trailer__player}>
@@ -27,13 +30,18 @@ const MovieTrailer: FC<MovieTrailerProps> = ({ movie }) => {
           {t("trailer.expand")}
         </button>
         <div className={styles.trailer__center}>
-          <CustomButton className={styles.button} type="red">
+          {/* <CustomButton className={styles.button} type="red">
             <div className={styles.button__content}>
               <p className={styles.button__title}>{t("trailer.watch")}</p>
               <p className={styles.button__subtitle}>{t("trailer.subscription")}</p>
             </div>
           </CustomButton>
-          <p className={styles.trailer__text}>{t("trailer.promo")}</p>
+          <p className={styles.trailer__text}>{t("trailer.promo")}</p> */}
+          <Link
+            target="__blank"
+            href={movie.trailers[0].trailer}
+            className={styles.trailer__button}
+          />
         </div>
         <p className={styles.trailer__age}></p>
       </div>

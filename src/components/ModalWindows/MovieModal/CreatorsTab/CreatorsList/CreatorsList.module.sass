@@ -8,12 +8,12 @@
     color: vars.$whiteTextColor
     margin-bottom: 16px
     margin-top: 16px
+    padding: 0 12px
 
 .creators
   &__list
     display: flex
     flex-wrap: wrap
-    gap: 24px
 
     .movies_count
       color: vars.$secondaryColor
@@ -46,21 +46,3 @@
 .button
   width: 100%
   margin-top: 30px
-
-@media (max-width: 1160px)
-  .creators
-    &__image
-      width: 100%
-      height: auto
-      img
-        width: 100%
-        height: auto
-
-@media (max-width: 880px)
-  .creators__list
-    display: grid
-    grid-template-columns: repeat(4,1fr)
-
-@media (max-width: 530px)
-  .creators__list
-    display: flex

@@ -1,9 +1,10 @@
 import { IMovie } from "/src/types/IMovie";
 
-export const getMovieName = (
-  movie: IMovie,
-  locale: string | undefined = "en"
-): string => {
+export const getFormateNumber = (number: number): string => {
+  return number.toLocaleString("ru-RU");
+};
+
+export const getMovieName = (movie: IMovie, locale: string | undefined = "en"): string => {
   return String(movie["name_" + String(locale)]);
 };
 

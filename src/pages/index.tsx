@@ -8,17 +8,34 @@ import HomeSliders from "../components/Home/HomeSliders/HomeSliders";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticPropsResult } from "next";
+import { getMoviesByGenre } from "../api/movieApi";
+import { IMovie } from "../types/IMovie";
 
-const Home: FC = () => {
-  const { t } = useTranslation("titles");
+interface HomeProps {
+  bestFantasyMovies: IMovie[];
+  bestDramaMovies: IMovie[];
+}
+
+const Home: FC<HomeProps> = ({ bestFantasyMovies, bestDramaMovies }) => {
+  const { t } = useTranslation(["titles", "home"]);
+  const compilations = [
+    {
+      movies: bestFantasyMovies,
+      title: t("home:compilations.subscribe"),
+    },
+    {
+      movies: bestDramaMovies,
+      title: t("home:compilations.subscribe"),
+    },
+  ];
 
   return (
-    <Layout title={t("home")}>
+    <Layout title={t("titles:home")}>
       <BannerSlider />
       <PromoButtons />
       <TopTen />
       <CinemaDetails />
-      <HomeSliders />
+      <HomeSliders compilations={compilations} />
     </Layout>
   );
 };
@@ -28,8 +45,12 @@ export const getStaticProps = async ({
 }: {
   locale: string;
 }): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
+  const bestFantasyMovies = await getMoviesByGenre("fantasy");
+  const bestDramaMovies = await getMoviesByGenre("drama");
   return {
     props: {
+      bestFantasyMovies,
+      bestDramaMovies,
       ...(await serverSideTranslations(locale, [
         "common",
         "titles",

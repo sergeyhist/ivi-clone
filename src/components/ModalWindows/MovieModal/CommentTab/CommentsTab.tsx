@@ -1,15 +1,15 @@
 import { FC, FormEvent, useState } from "react";
 import { IComment } from "/src/types/IComment";
 import ModalInput from "/src/UI/ModalInput/ModalInput";
-import styles from "./CommentForm.module.sass";
-import CommentsList from "/src/components/ModalWindows/MovieInfoModal/CommentsList/CommentsList";
+import styles from "./CommentsTab.module.sass";
+import CommentsList from "./CommentsList/CommentsList";
 import { useTranslation } from "next-i18next";
 
-interface CommentFormProps {
+interface CommentsTabProps {
   comments: IComment[];
 }
 
-const CommentForm: FC<CommentFormProps> = ({ comments }) => {
+const CommentsTab: FC<CommentsTabProps> = ({ comments }) => {
   const [commentsState, setCommentsState] = useState<IComment[]>(comments);
   const [inputText, setInputText] = useState("");
   const { t } = useTranslation("movieInfo");
@@ -43,4 +43,4 @@ const CommentForm: FC<CommentFormProps> = ({ comments }) => {
   );
 };
 
-export default CommentForm;
+export default CommentsTab;

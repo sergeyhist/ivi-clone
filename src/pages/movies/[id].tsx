@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, memo } from "react";
 import Layout from "../../components/Layout/Layout";
 import MovieInfo from "../../components/Movie/MovieInfo/MovieInfo";
 import BreadCrumbs from "../../UI/BreadCrumbs/BreadCrumbs";
@@ -6,74 +6,60 @@ import WatchAllDevices from "/src/components/Movie/WatchAllDevices/WatchAllDevic
 import RelatedMovies from "/src/components/Movie/RelatedMovies/RelatedMovies";
 import CreatorsList from "/src/components/Movie/CreatorsList/CreatorsList";
 import CommentsSlider from "/src/components/Movie/CommentsSlider/CommentsSlider";
-import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
-import createAppPortal from "/src/utils/createAppPortal";
-import { setShowModal } from "/src/store/slices/modalsSlice";
-import MovieInfoModal from "/src/components/ModalWindows/MovieInfoModal/MovieInfoModal";
+import MovieModal from "../../components/ModalWindows/MovieModal/MovieModal";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetServerSidePropsResult } from "next";
 import { useRouter } from "next/router";
-import { getMovie } from "/src/api/getMovie";
 import { IMovie } from "/src/types/IMovie";
-import { getMovieComments } from "/src/api/getMovieComments";
 import { IComment } from "/src/types/IComment";
-import { getMoviePersons } from "/src/api/getMoviePersons";
 import { IPerson } from "/src/types/IPerson";
 import { mockMovie } from "/src/utils/movie";
 import { mockPersons } from "/src/utils/person";
 import { mockComments } from "/src/utils/comments";
 import { getMovieName } from "/src/utils/movie";
+import { useTranslation } from "next-i18next";
+import { getMovie, getMoviePersons, getMovieComments, getMoviesByGenre } from "/src/api/movieApi";
 
-const Movie: FC = () => {
-  const showModal = useAppSelector((state) => state.showModal);
-  const dispatch = useAppDispatch();
-  const { locale, query } = useRouter();
-  const [movie, setMovie] = useState<IMovie | undefined>(mockMovie);
-  const [comments, setComments] = useState<IComment[] | undefined>(mockComments);
-  const [persons, setPersons] = useState<IPerson[] | undefined>(mockPersons);
+interface MovieProps {
+  serverMovie: IMovie;
+  serverPersons: IPerson[];
+  serverComments: IComment[];
+  serverRelatedMovies: IMovie[];
+}
 
-  // useEffect(() => {
-  //   console.log(query.id);
-  //   getMovie(String(query.id)).then((movie) => {
-  //     setMovie(movie);
-  //   });
-  //   getMovieComments(String(query.id)).then((comments) => {
-  //     setComments(comments);
-  //   });
-  //   getMoviePersons(String(query.id)).then((persons) => {
-  //     setPersons(persons);
-  //   });
-  // }, [query.id]);
-
-  const closeCallback = (): void => {
-    dispatch(
-      setShowModal({
-        ...showModal,
-        showMovieInfoModal: { isShow: false, defaultTab: "actors" },
-      })
-    );
-  };
+const Movie: FC<MovieProps> = ({
+  serverMovie,
+  serverPersons = [],
+  serverComments = [],
+  serverRelatedMovies = [],
+}) => {
+  const { t } = useTranslation("common");
+  const { locale } = useRouter();
+  const movie = serverMovie;
+  const persons = serverPersons;
+  const comments = serverComments;
 
   return (
     <>
-      {movie && comments && persons && (
+      {movie && (
         <Layout title={`${getMovieName(movie, locale)} (${movie.year})`}>
           <BreadCrumbs mobileVersion={true} />
           <MovieInfo movie={movie} persons={persons} />
-          <RelatedMovies movieTitle={getMovieName(movie, locale)} />
+          <RelatedMovies movies={serverRelatedMovies} movieTitle={getMovieName(movie, locale)} />
           <CreatorsList persons={persons} />
           <WatchAllDevices movieTitle={getMovieName(movie, locale)} imageUrl={movie.img} />
           <CommentsSlider comments={comments} />
           <BreadCrumbs currentTitle={getMovieName(movie, locale)} />
-          {showModal.showMovieInfoModal.isShow &&
-            createAppPortal(
-              <MovieInfoModal
-                movieTitle={getMovieName(movie, locale)}
-                comments={comments}
-                persons={persons}
-                closeCallback={closeCallback}
-              />
-            )}
+          <MovieModal
+            movieTitle={getMovieName(movie, locale)}
+            comments={comments}
+            persons={persons}
+          />
+        </Layout>
+      )}
+      {!movie && (
+        <Layout title={t("not_found")}>
+          <h1>{t("not_found")}</h1>
         </Layout>
       )}
     </>
@@ -82,11 +68,22 @@ const Movie: FC = () => {
 
 export const getServerSideProps = async ({
   locale,
+  params,
 }: {
   locale: string;
+  params: { id: string };
 }): Promise<GetServerSidePropsResult<Record<string, unknown>>> => {
+  const serverMovie = await getMovie(String(params.id));
+  const serverPersons = await getMoviePersons(String(params.id));
+  const serverComments = await getMovieComments(String(params.id));
+  const serverRelatedMovies = await getMoviesByGenre(serverMovie?.genres[0].slug || "drama");
+
   return {
     props: {
+      serverMovie,
+      serverPersons,
+      serverComments,
+      serverRelatedMovies,
       ...(await serverSideTranslations(locale, [
         "common",
         "footer",
@@ -102,4 +99,4 @@ export const getServerSideProps = async ({
   };
 };
 
-export default Movie;
+export default memo(Movie);

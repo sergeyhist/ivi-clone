@@ -30,6 +30,9 @@ const Creator: FC<CreatorProps> = ({ person, type = "small", className = "" }) =
           src={getBackendImage(person.img)}
           fill={true}
           alt={person.first_name_en}
+          placeholder="blur"
+          blurDataURL="/images/placeholder.svg"
+          sizes="width: 100vw"
         />
       </div>
       <div>

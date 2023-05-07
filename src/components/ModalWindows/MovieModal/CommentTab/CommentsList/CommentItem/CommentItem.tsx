@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { IComment } from "/src/types/IComment";
 import styles from "./CommentItem.module.sass";
-import Votes from "/src/components/ModalWindows/MovieInfoModal/CommentsList/CommentItem/Votes/Votes";
+import Votes from "./Votes/Votes";
 
 interface CommentItemProps {
   comment: IComment;

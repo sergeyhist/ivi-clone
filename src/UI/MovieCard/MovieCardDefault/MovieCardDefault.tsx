@@ -23,7 +23,7 @@ const MovieCardDefault: FC<MovieCardDefaultProps> = ({ content, type = "default"
 
   return (
     <article className={`${styles.content} ${className}`}>
-      <Link className={styles.content__link} href={"movies/" + content.film_id}>
+      <Link className={styles.content__link} href={"/movies/" + content.film_id}>
         <div className={styles.content__filter}>
           <Image
             height={234}
@@ -42,9 +42,7 @@ const MovieCardDefault: FC<MovieCardDefaultProps> = ({ content, type = "default"
             <div className={styles.information}>
               <MovieCardRating content={content} />
               <MovieCardChart content={content} />
-              <p
-                className={styles.information__text}
-              >{`${content.year} ${content.country}`}</p>
+              <p className={styles.information__text}>{`${content.year} ${content.country}`}</p>
               <p className={styles.information__text}>{content.duration} минут</p>
             </div>
           </div>

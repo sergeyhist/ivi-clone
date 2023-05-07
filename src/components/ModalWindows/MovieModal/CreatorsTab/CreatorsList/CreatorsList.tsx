@@ -1,16 +1,16 @@
 import { FC, useEffect, useState } from "react";
-import styles from "./Creators.module.sass";
+import styles from "./CreatorsList.module.sass";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import { useTranslation } from "next-i18next";
 import { IPerson } from "/src/types/IPerson";
 import Creator from "/src/UI/Creator/Creator";
 
-interface CreatorsProps {
+interface CreatorsListProps {
   persons: IPerson[];
   title?: string | null;
 }
 
-const Creators: FC<CreatorsProps> = ({ persons, title }) => {
+const CreatorsList: FC<CreatorsListProps> = ({ persons, title }) => {
   const [showAllCreators, setShowAllCreators] = useState(false);
   const [creatorsToShow, setCreatorsToShow] = useState<IPerson[]>(persons);
   const { t } = useTranslation("movieInfo");
@@ -29,7 +29,7 @@ const Creators: FC<CreatorsProps> = ({ persons, title }) => {
       <h2 className={styles.creators__title}>{title}</h2>
       <div className={styles.creators__list}>
         {creatorsToShow.map((person, i) => (
-          <Creator key={i} person={person} type="large" />
+          <Creator className={styles.creator} key={i} person={person} type="large" />
         ))}
         {persons.length > 16 && !showAllCreators && (
           <CustomButton
@@ -45,4 +45,4 @@ const Creators: FC<CreatorsProps> = ({ persons, title }) => {
   );
 };
 
-export default Creators;
+export default CreatorsList;

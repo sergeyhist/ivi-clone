@@ -1,15 +1,18 @@
-import { useEffect } from "react";
+import { useLayoutEffect, useEffect } from "react";
+import { useAppSelector } from "/src/hooks/redux";
 
 const useOverflowHidden = (): void => {
-  useEffect(() => {
-    const overflowBodyStyle = document.body.style.overflow;
+  const showModal = useAppSelector((state) => state.showModal);
 
-    document.body.style.overflow = "hidden";
+  const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
-    return () => {
-      document.body.style.overflow = overflowBodyStyle;
-    };
-  }, []);
+  useIsomorphicLayoutEffect(() => {
+    if (showModal.showMovieModal.isShow) {
+      document.body.style.overflowY = "hidden";
+      return;
+    }
+    document.body.style.overflowY = "auto";
+  }, [showModal.showMovieModal.isShow]);
 };
 
 export default useOverflowHidden;

@@ -1,24 +1,24 @@
 import { FC } from "react";
-import styles from "./CreatorsModalList.module.sass";
-import Creators from "/src/components/ModalWindows/MovieInfoModal/CreatorsModalList/Creators/Creators";
+import styles from "./CreatorsTab.module.sass";
+import Creators from "./CreatorsList/CreatorsList";
 import { useTranslation } from "next-i18next";
 import { IPerson } from "/src/types/IPerson";
 
-interface CreatorsModalListProps {
+interface CreatorsTabProps {
   persons: IPerson[];
 }
 
-const CreatorsModalList: FC<CreatorsModalListProps> = ({ persons }) => {
+const CreatorsTab: FC<CreatorsTabProps> = ({ persons }) => {
   const { t } = useTranslation("movie");
 
-  const directors = persons.filter((person) => person.filmRoles[0].slug === "rezhisser");
-  const actors = persons.filter((person) => person.filmRoles[0].slug === "aktyor");
-  const scenarists = persons.filter((person) => person.filmRoles[0].slug === "scenariy");
-  const producers = persons.filter((person) => person.filmRoles[0].slug === "prodyuser");
-  const dubbing = persons.filter((person) => person.filmRoles[0].slug === "aktyor-dublyazha");
-  const painters = persons.filter((person) => person.filmRoles[0].slug === "hudozhnik");
+  const directors = persons.filter((person) => person.filmRoles[0].slug === "filmmaker");
+  const actors = persons.filter((person) => person.filmRoles[0].slug === "actor");
+  const scenarists = persons.filter((person) => person.filmRoles[0].slug === "scenario");
+  const producers = persons.filter((person) => person.filmRoles[0].slug === "producer");
+  const dubbing = persons.filter((person) => person.filmRoles[0].slug === "actordubbing");
+  const painters = persons.filter((person) => person.filmRoles[0].slug === "painter");
   const operators = persons.filter((person) => person.filmRoles[0].slug === "operator");
-  const compositors = persons.filter((person) => person.filmRoles[0].slug === "kompozitor");
+  const compositors = persons.filter((person) => person.filmRoles[0].slug === "composer");
 
   return (
     <div className={styles.container}>
@@ -38,4 +38,4 @@ const CreatorsModalList: FC<CreatorsModalListProps> = ({ persons }) => {
   );
 };
 
-export default CreatorsModalList;
+export default CreatorsTab;

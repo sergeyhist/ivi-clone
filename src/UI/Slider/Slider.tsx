@@ -53,6 +53,12 @@ const Slider: FC<SliderProps> = ({
             next: !event.isEnd,
           });
         }}
+        onSwiper={(event: swiperType) => {
+          setShow({
+            prev: !event.isBeginning,
+            next: !event.isEnd,
+          });
+        }}
         className={`${styles.swiper} ${swiperClassName}`}
         breakpoints={breakpoints}
         loop={loop}

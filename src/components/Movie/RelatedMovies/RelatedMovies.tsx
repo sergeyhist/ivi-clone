@@ -3,12 +3,14 @@ import { mockMovie } from "/src/utils/movie";
 import MovieSlider from "/src/UI/MovieSlider/MovieSlider";
 import styles from "./RelatedMovies.module.sass";
 import { useTranslation } from "next-i18next";
+import { IMovie } from "/src/types/IMovie";
 
 interface RelatedMoviesProps {
   movieTitle: string;
+  movies: IMovie[];
 }
 
-const RelatedMovies: FC<RelatedMoviesProps> = ({ movieTitle }) => {
+const RelatedMovies: FC<RelatedMoviesProps> = ({ movieTitle, movies = [] }) => {
   const { t } = useTranslation("movie");
 
   return (
@@ -17,7 +19,7 @@ const RelatedMovies: FC<RelatedMoviesProps> = ({ movieTitle }) => {
         <MovieSlider
           title={`${t("related.with")} ${movieTitle} ${t("related.watch")}`}
           slideType="related"
-          slides={[mockMovie]}
+          slides={movies}
         />
       </div>
     </section>

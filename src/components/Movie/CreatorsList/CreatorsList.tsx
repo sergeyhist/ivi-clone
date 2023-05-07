@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styles from "./CreatorsList.module.sass";
-import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
-import { setShowModal } from "/src/store/slices/modalsSlice";
+import { useAppDispatch } from "/src/hooks/redux";
+import { modalsSlice } from "/src/store/slices/modalsSlice";
 import { useTranslation } from "next-i18next";
 import { IPerson } from "/src/types/IPerson";
 import Creator from "/src/UI/Creator/Creator";
@@ -11,19 +11,14 @@ interface CreatorsListProps {
 }
 
 const CreatorsList: FC<CreatorsListProps> = ({ persons }) => {
-  const showModal = useAppSelector((state) => state.showModal);
+  const { setShowMovieModal } = modalsSlice.actions;
   const dispatch = useAppDispatch();
   const { t } = useTranslation("creators");
 
   const firstTenCreators = persons.slice(0, 10);
 
   const clickHandler = (): void => {
-    dispatch(
-      setShowModal({
-        ...showModal,
-        showMovieInfoModal: { isShow: true },
-      })
-    );
+    dispatch(setShowMovieModal({ isShow: true, defaultTab: "actors" }));
   };
 
   return (
