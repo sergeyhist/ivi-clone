@@ -1,0 +1,48 @@
+@use "/src/styles/vars"
+
+.creators
+  &__title
+    font-size: 20px
+    line-height: 24px
+    font-weight: 700
+    color: vars.$whiteTextColor
+    margin-bottom: 16px
+    margin-top: 16px
+    padding: 0 12px
+
+.creators
+  &__list
+    display: flex
+    flex-wrap: wrap
+
+    .movies_count
+      color: vars.$secondaryColor
+      font-size: 13px
+      line-height: 16px
+      font-weight: 400
+
+  &__item
+    user-select: none
+
+    &:hover
+      .creators__name
+        color: vars.$whiteTextColor
+
+  &__name
+    color: #d9d7e0
+    font-size: 15px
+    line-height: 20px
+    font-weight: 500
+    transition: .3s
+
+.wrapper
+  width: 128px
+  height: 128px
+  border-radius: 50%
+  overflow: hidden
+  &__img
+    object-fit: cover
+
+.button
+  width: 100%
+  margin-top: 30px

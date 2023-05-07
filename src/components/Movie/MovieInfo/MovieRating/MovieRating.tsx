@@ -1,6 +1,7 @@
 import { FC } from "react";
 import styles from "./MovieRating.module.sass";
 import { useTranslation } from "next-i18next";
+import { getFormateNumber } from "/src/utils/movie";
 
 interface RatingProps {
   grade: number;
@@ -16,9 +17,8 @@ const MovieRating: FC<RatingProps> = ({ grade, grades }) => {
         <p className={styles.rating__grade}>{grade}</p>
         <div className={styles.rating__column}>
           <p className={styles.rating__title}>{t("rating.title")}</p>
-          {/* <p className={styles.rating__category}>{'category'}</p> */}
           <p className={styles.rating__grades}>
-            {grades} {t("rating.grades")}
+            {getFormateNumber(grades)} {t("rating.grades")}
           </p>
         </div>
         <p className={styles.rating__badge}>{t("rating.estimate")}</p>

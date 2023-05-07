@@ -32,6 +32,7 @@ const WatchAllDevices: FC<WatchAllDevicesProps> = ({ imageUrl, movieTitle }) => 
               width={536}
               height={272}
               alt="Устройства для просмотра Иви"
+              loading="eager"
             />
             <Image
               className={styles.image__tablet}
@@ -39,6 +40,7 @@ const WatchAllDevices: FC<WatchAllDevicesProps> = ({ imageUrl, movieTitle }) => 
               width={200}
               height={136}
               alt="Устройства для просмотра Иви"
+              loading="eager"
             />
             <Image
               className={styles.poster__tv}
@@ -46,6 +48,8 @@ const WatchAllDevices: FC<WatchAllDevicesProps> = ({ imageUrl, movieTitle }) => 
               width={337}
               height={192}
               alt={movieTitle}
+              placeholder="blur"
+              blurDataURL="/images/placeholder.svg"
             />
             <Image
               className={styles.poster__tablet}
@@ -53,6 +57,8 @@ const WatchAllDevices: FC<WatchAllDevicesProps> = ({ imageUrl, movieTitle }) => 
               width={188}
               height={102}
               alt={movieTitle}
+              placeholder="blur"
+              blurDataURL="/images/placeholder.svg"
             />
           </div>
         </div>

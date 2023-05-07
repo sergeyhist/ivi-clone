@@ -1,6 +1,14 @@
 import { IMovie } from "/src/types/IMovie";
 
-export const movie: IMovie = {
+export const getFormateNumber = (number: number): string => {
+  return number.toLocaleString("ru-RU");
+};
+
+export const getMovieName = (movie: IMovie, locale: string | undefined = "en"): string => {
+  return String(movie["name_" + String(locale)]);
+};
+
+export const mockMovie: IMovie = {
   film_id: "984fdb2d-da0c-4e04-926a-f72f103c4ccb",
   name_ru: "Зеленая миля",
   name_en: "The Green Mile",

@@ -5,8 +5,8 @@ import { SwiperSlide } from "swiper/react";
 import { breakpoints } from "./CommentsSlider.utils";
 import CommentsCard from "./CommentCard/CommentCard";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
-import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
-import { setShowModal } from "/src/store/slices/modalsSlice";
+import { useAppDispatch } from "/src/hooks/redux";
+import { modalsSlice } from "/src/store/slices/modalsSlice";
 import { useTranslation } from "next-i18next";
 import { IComment } from "/src/types/IComment";
 
@@ -16,16 +16,11 @@ interface CommentsSliderProps {
 
 const CommentsSlider: FC<CommentsSliderProps> = ({ comments }) => {
   const { t } = useTranslation("movie");
-  const showModal = useAppSelector((state) => state.showModal);
+  const { setShowMovieModal } = modalsSlice.actions;
   const dispatch = useAppDispatch();
 
   const clickHandler = (): void => {
-    dispatch(
-      setShowModal({
-        ...showModal,
-        showMovieInfoModal: { isShow: true, defaultTab: "comments" },
-      })
-    );
+    dispatch(setShowMovieModal({ isShow: true, defaultTab: "comments" }));
   };
 
   return (
@@ -44,18 +39,20 @@ const CommentsSlider: FC<CommentsSliderProps> = ({ comments }) => {
             {t("comments.leave")}
           </CustomButton>
         </div>
-        <Slider
-          swiperClassName={styles.swiper}
-          prevClassName={styles.prev}
-          nextClassName={styles.next}
-          breakpoints={breakpoints}
-        >
-          {comments.map((comment, index) => (
-            <SwiperSlide key={index}>
-              <CommentsCard onClick={clickHandler} comment={comment} />
-            </SwiperSlide>
-          ))}
-        </Slider>
+        {comments.length !== 0 && (
+          <Slider
+            swiperClassName={styles.swiper}
+            prevClassName={styles.prev}
+            nextClassName={styles.next}
+            breakpoints={breakpoints}
+          >
+            {comments.map((comment, index) => (
+              <SwiperSlide key={index}>
+                <CommentsCard onClick={clickHandler} comment={comment} />
+              </SwiperSlide>
+            ))}
+          </Slider>
+        )}
         <CustomButton
           type="frame"
           className={`${styles.button} ${styles.button_mobile}`}

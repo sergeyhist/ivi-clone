@@ -1,12 +1,12 @@
 {
   "rating": {
-    "title": "Rating ivi",
+    "title": "Kinopoisk rating",
     "estimate": "Estimate",
     "grades": "amount grades"
   },
   "medallions": {
-    "rating": "Rating",
-    "ivi": "Ivi"
+    "rating": "Kinopoisk",
+    "ivi": "Rating"
   },
   "details": {
     "show": "Show details",
@@ -42,5 +42,23 @@
   "comments": {
     "comments": "Comments",
     "leave": "Leave a comment"
+  },
+  "creators": {
+    "filmmaker": "Director",
+    "actor": "Actor",
+    "scenario": "Scenery",
+    "producer": "Producer",
+    "actordubbing": "Dubbing actor",
+    "painter": "Painter",
+    "operator": "Operator",
+    "composer": "Compositor",
+    "directors": "directors",
+    "actors": "actors",
+    "scenarists": "Scriptwriters",
+    "producers": "producers",
+    "dubbing": "dubbing",
+    "painters": "Artists",
+    "operators": "operators",
+    "compositors": "Composers"
   }
 }

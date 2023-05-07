@@ -3,12 +3,14 @@ import MovieCoverMobile from "./MovieInfoMobile/MovieInfoMobile";
 import MovieCoverDesktop from "./MovieInfoDesktop/MovieInfoDesktop";
 import { IMovie } from "/src/types/IMovie";
 import { useAppSelector } from "/src/hooks/redux";
+import { IPerson } from "/src/types/IPerson";
 
 interface MovieCoverProps {
   movie: IMovie;
+  persons: IPerson[] | undefined;
 }
 
-const MovieCover: FC<MovieCoverProps> = ({ movie }) => {
+const MovieCover: FC<MovieCoverProps> = ({ movie, persons }) => {
   const windowSize = useAppSelector((state) => state.windowSize);
   const [isMobile, setMobile] = useState<boolean>(false);
 
@@ -23,11 +25,11 @@ const MovieCover: FC<MovieCoverProps> = ({ movie }) => {
 
   const MovieCover = useMemo(() => {
     return isMobile ? (
-      <MovieCoverMobile movie={movie} />
+      <MovieCoverMobile movie={movie} persons={persons} />
     ) : (
-      <MovieCoverDesktop movie={movie} />
+      <MovieCoverDesktop movie={movie} persons={persons} />
     );
-  }, [isMobile, movie]);
+  }, [isMobile, movie, persons]);
 
   return <>{MovieCover}</>;
 };

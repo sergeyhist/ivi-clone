@@ -12,8 +12,10 @@
     z-index: 2
   &__img
     display: block
-    width: 100%
     height: auto
+    width: 100%
+    object-fit: cover
+    aspect-ratio: 858/483
 
   &__over
     position: absolute
@@ -63,6 +65,22 @@
     position: absolute
     bottom: 16px
     left: 16px
+
+  &__button
+    background-color: vars.$accent
+    width: 88px
+    height: 88px
+    display: flex
+    align-items: center
+    justify-content: center
+    border-radius: 100%
+    cursor: pointer
+
+    &::after
+      content: "\E2CF"
+      font-family: iconfont
+      font-size: 40px
+      color: vars.$whiteTextColor
 
 .button
   opacity: 0.8

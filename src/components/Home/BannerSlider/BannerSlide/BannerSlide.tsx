@@ -16,9 +16,7 @@ const BannerSlide: FC<BannerSlideProps> = ({ slide }) => {
   return (
     <Link className={styles.link} href={"/"}>
       <article
-        className={
-          swiperSlide.isActive ? styles.slide : `${styles.slide} ${styles.slide_hidden}`
-        }
+        className={swiperSlide.isActive ? styles.slide : `${styles.slide} ${styles.slide_hidden}`}
       >
         <Image
           width={1216}
@@ -26,6 +24,8 @@ const BannerSlide: FC<BannerSlideProps> = ({ slide }) => {
           className={styles.slide__img}
           src={slide.bannerUrl}
           alt="banner"
+          placeholder="blur"
+          blurDataURL="/images/placeholder.svg"
         />
 
         <Image

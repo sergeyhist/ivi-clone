@@ -7,6 +7,7 @@ export interface IPerson {
   img: string;
   filmRoles: IMovieRole[];
   films: IMovieId[];
+  [key: string]: string | unknown;
 }
 
 export interface IMovieId {
@@ -15,7 +16,7 @@ export interface IMovieId {
 }
 
 export interface IMovieRole {
-  movie_role_id: string;
-  movie_role: string;
+  film_role_id: string;
+  film_role: string;
   slug: string;
 }
