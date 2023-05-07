@@ -6,9 +6,11 @@ export const sortSlugs = (
   order: DropDownType[],
   selectedGenre: DropDownType
 ): string[] => {
-  return [...list].sort((a, b) =>
-    a[order.indexOf(selectedGenre)] > b[order.indexOf(selectedGenre)] ? 1 : -1
-  );
+  if (list)
+    return [...list].sort((a, b) =>
+      a[order.indexOf(selectedGenre)] > b[order.indexOf(selectedGenre)] ? 1 : -1
+    );
+  return [];
 };
 
 export const localizeAndLimitList = (
@@ -17,15 +19,18 @@ export const localizeAndLimitList = (
   limit: number,
   t: TFunction
 ): string[] => {
-    return list
-      .map((slug) => {
-        return t(`${prefix}:${slug}`);
-      })
-      .slice(0, limit);
+  return list
+    .map((slug) => {
+      return t(`${prefix}:${slug}`);
+    })
+    .slice(0, limit);
 };
 
-export const makeLinksFromSlugs = (list:string[],referLink:string): string[] =>{
-  return list.map((slug)=>{
-    return `${referLink}=${slug}`
-  })
-}
+export const makeLinksFromSlugs = (
+  list: string[],
+  referLink: string
+): string[] => {
+  return list.map((slug) => {
+    return `${referLink}=${slug}`;
+  });
+};

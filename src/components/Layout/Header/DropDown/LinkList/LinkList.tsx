@@ -15,12 +15,7 @@ interface LinkListProps {
 }
 
 const LinkList: FC<LinkListProps> = ({ selectedGenre }) => {
-  const { t } = useTranslation([
-    "header",
-    "dropDownCategory",
-    "genres",
-    "countries",
-  ]);
+  const { t } = useTranslation();
 
   const [genresList, setGenresList] = useState<string[]>();
   const [countriesList, setCountriesList] = useState<string[]>();
@@ -36,6 +31,7 @@ const LinkList: FC<LinkListProps> = ({ selectedGenre }) => {
     order,
     selectedGenre
   );
+
   const genresSlugs = sortSlugs(
     [...storedSlugs.genresSlugs],
     order,
@@ -46,13 +42,13 @@ const LinkList: FC<LinkListProps> = ({ selectedGenre }) => {
   const countriesHrefs = makeLinksFromSlugs(countriesSlugs, "countries");
 
   const yearsHrefs = years.map((year, i) => {
-    return `years=202${years.length - 1 - i}`;
+    return `year=202${years.length - 1 - i}-202${years.length - 1 - i}`;
   });
 
   useEffect(() => {
     setGenresList(localizeAndLimitList(genresSlugs, "genres", 20, t));
     setCountriesList(localizeAndLimitList(countriesSlugs, "countries", 4, t));
-  }, [genresSlugs, countriesSlugs, t]);
+  }, []);
 
   return (
     <div className={styles.list}>
