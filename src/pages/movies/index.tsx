@@ -76,11 +76,8 @@ export const getStaticProps = async ({
         "genres",
         "mobileMenu",
         "dropDownCategory",
-<<<<<<< HEAD
         "year",
-=======
         "registration"
->>>>>>> d95376032b1478c9ca7873aab46af2a67f02bd33
       ])),
       genres: genres,
       countries: countries,
