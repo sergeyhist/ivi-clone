@@ -59,8 +59,8 @@ export const getStaticProps = async ({
         "genres",
         "countries",
       ])),
-      genresSlugs: genresSlugs,
-      countriesSlugs: countriesSlugs,
+      genresSlugs,
+      countriesSlugs,
     },
   };
 };
