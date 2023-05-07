@@ -1,21 +1,21 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { InfoTabs } from "/src/types/InfoTabs";
 
-interface IMovieInfoModal {
+interface IMovieModal {
   isShow: boolean;
-  defaultTab?: InfoTabs;
+  defaultTab: InfoTabs;
 }
 
 interface ModalStates {
   showSearchModal: boolean;
   showAuthModal: boolean;
-  showMovieInfoModal: IMovieInfoModal;
+  showMovieModal: IMovieModal;
 }
 
 const initialState: ModalStates = {
   showAuthModal: false,
   showSearchModal: false,
-  showMovieInfoModal: { isShow: false },
+  showMovieModal: { isShow: false, defaultTab: "actors" },
 };
 
 export const modalsSlice = createSlice({
@@ -25,7 +25,16 @@ export const modalsSlice = createSlice({
     setShowModal: (state, action: PayloadAction<ModalStates>) => {
       state.showAuthModal = action.payload.showAuthModal;
       state.showSearchModal = action.payload.showSearchModal;
-      state.showMovieInfoModal = action.payload.showMovieInfoModal;
+      state.showMovieModal = action.payload.showMovieModal;
+    },
+    setShowMovieModal: (state, action: PayloadAction<IMovieModal>) => {
+      state.showMovieModal = action.payload;
+    },
+    setShowSearchModal: (state, action: PayloadAction<boolean>) => {
+      state.showSearchModal = action.payload;
+    },
+    setShowAuthModal: (state, action: PayloadAction<boolean>) => {
+      state.showAuthModal = action.payload;
     },
   },
 });

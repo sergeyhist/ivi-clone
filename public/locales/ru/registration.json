@@ -1,0 +1,22 @@
+{
+  "title": "Вход или регистрация",
+  "hintMessage": {
+    "title": "Войдите или зарегистрируйтесь",
+    "subtitle": "чтобы пользоваться сервисом на любом устройстве"
+  },
+  "passwordMessage": "Введите пароль чтобы войти",
+  "emailPlaceholder": "Через email",
+  "passwordPlaceholder": "Введите пароль",
+  "submit": "Продолжить",
+  "errorMessage": {
+    "title": "Ошибка",
+    "subtitle": "Неправильно указаны данные"
+  },
+  "privacy": {
+    "firstTitle": "Нажимая «Продолжить», я соглашаюсь",
+    "firstArticle": "с",
+    "secondArticle": "и",
+    "secondTitle": "Политикой конфиденциальности",
+    "thirdTitle": "Пользовательским соглашением"
+  }
+}
