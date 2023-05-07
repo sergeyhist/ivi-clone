@@ -1,0 +1,32 @@
+.list
+  display: grid
+  grid-template-columns: repeat(7, minmax(132px, 100%)) 
+  column-gap: 20px
+  row-gap: 40px
+  justify-content: space-between
+  padding-block: 10px
+  transition: .5s
+
+  &_loading
+    pointer-events: none
+    opacity: .2
+
+@media screen and (max-width: 1160px)
+  .list
+    grid-template-columns: repeat(6, minmax(120px, 100%))
+
+@media screen and (max-width: 1060px)
+  .list
+    grid-template-columns: repeat(5, minmax(120px, 100%))
+
+@media screen and (max-width: 890px)
+  .list
+    grid-template-columns: repeat(4, minmax(120px, 100%))
+
+@media screen and (max-width: 700px)
+  .list
+    grid-template-columns: repeat(3, minmax(120px, 100%))
+
+@media screen and (max-width: 540px)
+  .list
+    grid-template-columns: repeat(2, minmax(120px, 100%))

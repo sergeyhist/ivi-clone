@@ -1,9 +1,9 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import { useTranslation } from "next-i18next";
 import styles from "./SliderContent.module.sass";
 
 interface SliderContentProps {
-  icon?: string;
+  icon?: ReactNode;
   text: string;
   isActive?: boolean;
   clickCallback: () => void;

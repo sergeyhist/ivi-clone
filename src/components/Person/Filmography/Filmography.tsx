@@ -52,8 +52,8 @@ const Filmography: FC<FilmographyProps> = ({ moviesId,firstName,lastName }) => {
                 <div className={styles.movie__item} key={i}>
                   <div className={styles.img}>
                     <Image
-                      width={80}
-                      height={123}
+                      fill
+                      sizes="100%"
                       src={
                         movie.img
                           ? "https:" + movie.img

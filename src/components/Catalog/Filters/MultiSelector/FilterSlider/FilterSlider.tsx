@@ -1,20 +1,23 @@
 import { FC } from "react";
 import { SwiperSlide } from "swiper/react";
-import { sliderBreakpoints } from "../../Filters.utils";
+import { genreIcons, sliderBreakpoints } from "../../Filters.utils";
 import styles from "./FilterSlider.module.sass";
 import SliderContent from "./SliderContent/SliderContent";
-import { IFilter, IFilterSlide } from "/src/types/IFilter";
+import { IFilters } from "/src/types/IFilter";
 import Slider from "/src/UI/Slider/Slider";
+import { isFilterActive } from "/src/utils/filters/isFilterActive";
 
 interface FilterSliderProps {
-  items: IFilterSlide[];
-  activeFilters: IFilter[];
-  clickCallback: (result: IFilter) => void;
+  items: string[];
+  filters: IFilters;
+  filtersType: string;
+  clickCallback: (result: string) => void;
 }
 
 const FilterSlider: FC<FilterSliderProps> = ({
   items,
-  activeFilters,
+  filters,
+  filtersType,
   clickCallback,
 }) => {
   return (
@@ -28,9 +31,9 @@ const FilterSlider: FC<FilterSliderProps> = ({
       {items.map((item, i) => (
         <SwiperSlide key={i}>
           <SliderContent
-            icon={item.icon as string}
-            text={item.text}
-            isActive={activeFilters.some((filter) => filter.slug === item.slug)}
+            icon={genreIcons[item]}
+            text={`${filtersType}:${item}`}
+            isActive={isFilterActive(filters[filtersType], item)}
             clickCallback={() => clickCallback(item)}
           />
         </SwiperSlide>

@@ -3,19 +3,20 @@ import FilterTitle from "../FilterTitle/FilterTitle";
 import ListItem from "./ListItem/ListItem";
 import styles from "./SingleSelector.module.sass";
 import useCloseEvents from "/src/hooks/useCloseEvents";
-import { IFilter } from "/src/types/IFilter";
 
 interface SingleSelectorProps {
   title: string;
-  items: IFilter[];
-  activeFilter: IFilter;
-  getFilter: (filter: IFilter) => void;
+  items: string[];
+  filter: string;
+  filtersType: string;
+  getFilter: (filter: string) => void;
 }
 
 const SingleSelector: FC<SingleSelectorProps> = ({
   title,
   items,
-  activeFilter,
+  filter,
+  filtersType,
   getFilter,
 }) => {
   const titleRef = useRef<HTMLDivElement>(null);
@@ -36,7 +37,8 @@ const SingleSelector: FC<SingleSelectorProps> = ({
           text={title}
           isDropdownActive={isDropdownActive}
           setIsDropdownActive={setIsDropdownActive}
-          activeFilters={activeFilter.slug !== 'all' ? [activeFilter] : undefined}
+          filter={filter}
+          filtersType={filtersType}
         />
       </div>
       <div
@@ -47,9 +49,9 @@ const SingleSelector: FC<SingleSelectorProps> = ({
           {items.map((item, i) => (
             <ListItem
               key={i}
-              slug={item.slug}
-              text={item.text}
-              isActive={activeFilter.slug === item.slug}
+              slug={item}
+              text={`${filtersType}:${item}`}
+              isActive={filter === item || (i === 0 && filter.length === 0)}
               clickCallback={() => getFilter(item)}
             />
           ))}

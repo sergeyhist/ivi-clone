@@ -1,26 +1,27 @@
 import { FC, useRef, useState } from "react";
 import styles from "./MultiSelector.module.sass";
 import ListItem from "./ListItem/ListItem";
-import { IFilter, IFilterSlide } from "/src/types/IFilter";
+import { IFilters } from "/src/types/IFilter";
 import FilterTitle from "../FilterTitle/FilterTitle";
 import FilterSlider from "./FilterSlider/FilterSlider";
 import useCloseEvents from "/src/hooks/useCloseEvents";
+import {isFilterActive} from "/src/utils/filters/isFilterActive";
 
 interface MultiSelectorProps {
   title: string;
-  items: IFilter[];
-  sliderItems: IFilterSlide[];
-  activeFilters: IFilter[];
-  getFilters: (filters: IFilter[]) => void;
+  items: string[];
+  filters: IFilters;
+  filtersType: string;
+  getFilter: (filter: string) => void;
   dropdownPosition: "center" | "left" | "right";
 }
 
 const MultiSelector: FC<MultiSelectorProps> = ({
   title,
   items,
-  sliderItems,
-  activeFilters,
-  getFilters,
+  filters,
+  filtersType,
+  getFilter,
   dropdownPosition,
 }) => {
   const titleRef = useRef<HTMLDivElement>(null);
@@ -28,12 +29,8 @@ const MultiSelector: FC<MultiSelectorProps> = ({
 
   const [isDropdownActive, setIsDropdownActive] = useState(false);
 
-  const clickHandler = (item: IFilter): void => {
-    if (activeFilters.some((filter) => filter.slug === item.slug)) {
-      getFilters(activeFilters.filter((filter) => filter.slug !== item.slug));
-    } else {
-      getFilters([...activeFilters, { slug: item.slug, text: item.text }]);
-    }
+  const clickHandler = (slug: string): void => {
+    getFilter(slug)
   };
 
   const activeDropdown = isDropdownActive
@@ -49,7 +46,13 @@ const MultiSelector: FC<MultiSelectorProps> = ({
           text={title}
           isDropdownActive={isDropdownActive}
           setIsDropdownActive={setIsDropdownActive}
-          activeFilters={activeFilters}
+          filter={
+            !Array.isArray(filters[filtersType])
+              ? (filters[filtersType] as string)
+              : undefined
+          }
+          filters={Array.isArray(filters[filtersType]) ? filters : undefined}
+          filtersType={filtersType}
         />
       </div>
       <div
@@ -61,8 +64,9 @@ const MultiSelector: FC<MultiSelectorProps> = ({
         }
       >
         <FilterSlider
-          items={sliderItems}
-          activeFilters={activeFilters}
+          items={items.slice(0, 10)}
+          filters={filters}
+          filtersType={filtersType}
           clickCallback={(result) => {
             clickHandler(result);
           }}
@@ -71,10 +75,8 @@ const MultiSelector: FC<MultiSelectorProps> = ({
           {items.map((item, i) => (
             <ListItem
               key={i}
-              text={item.text}
-              isActive={activeFilters.some(
-                (filter) => filter.slug === item.slug
-              )}
+              text={`${filtersType}:${item}`}
+              isActive={isFilterActive(filters[filtersType], item)}
               clickCallback={() => {
                 clickHandler(item);
               }}

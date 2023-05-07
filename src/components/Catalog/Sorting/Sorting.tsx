@@ -1,23 +1,22 @@
-import { Dispatch, FC, SetStateAction, useRef, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import styles from "./Sorting.module.sass";
-import { ISortingOption } from "/src/types/ISorting";
 import useCloseEvents from "/src/hooks/useCloseEvents";
 import SortingTitle from "./SortingTitle/SortingTitle";
 import SortingOption from "./SortingOption/SortingOption";
 import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
+import { setSortingMethod } from "/src/store/slices/filtersSlice";
+import {getSortOptions} from "./Sorting.utils";
 
-interface SortingProps {
-  activeSorting: string;
-  setActiveSorting: Dispatch<SetStateAction<string>>;
-  sortOptions: ISortingOption[];
-}
-
-const Sorting: FC<SortingProps> = ({
-  activeSorting,
-  setActiveSorting,
-  sortOptions,
-}) => {
+const Sorting: FC = () => {
   const { t } = useTranslation("sorting");
+  const router = useRouter();
+
+  const sortOptions = getSortOptions(router);
+
+  const filtersState = useAppSelector((state) => state.filters);
+  const dispatch = useAppDispatch();
 
   const titleRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -29,14 +28,20 @@ const Sorting: FC<SortingProps> = ({
     : "";
 
   const titleValue =
-    sortOptions.find((option) => option.slug === activeSorting)?.text || "";
+    sortOptions.find((option) => option.slug === filtersState.sortingMethod)
+      ?.text || "";
 
   const optionClickHandler = (slug: string): void => {
-    setActiveSorting(slug);
+    dispatch(setSortingMethod(slug));
     setIsDropdownActive(false);
   };
 
   useCloseEvents([titleRef, dropdownRef], setIsDropdownActive);
+
+  useEffect(() => {
+    filtersState.sortingMethod.includes("name_") &&
+      dispatch(setSortingMethod(`name_${router.locale}`));
+  }, [router.locale]);
 
   return (
     <div className="container">
@@ -56,7 +61,7 @@ const Sorting: FC<SortingProps> = ({
           {sortOptions.map((option, i) => (
             <SortingOption
               key={i}
-              isActive={activeSorting === option.slug}
+              isActive={filtersState.sortingMethod === option.slug}
               clickCallback={() => optionClickHandler(option.slug)}
             >
               {option.text}
