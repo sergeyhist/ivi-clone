@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useEffect } from "react";
 import BannerSlider from "../components/Home/BannerSlider/BannerSlider";
 import Layout from "../components/Layout/Layout";
 import PromoButtons from "../components/Home/PromoButtons/PromoButtons";
@@ -10,14 +10,25 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticPropsResult } from "next";
 import { getMoviesByGenre } from "../api/movieApi";
 import { IMovie } from "../types/IMovie";
+import { useAppDispatch } from "/src/hooks/redux";
+import { getCountriesSlugs, getGenresSlugs } from "/src/api/getData";
+import { setSlugs } from "/src/store/slices/slugsSlice";
 
 interface HomeProps {
   bestFantasyMovies: IMovie[];
   bestDramaMovies: IMovie[];
+  genresSlugs: string[];
+  countriesSlugs: string[];
 }
 
-const Home: FC<HomeProps> = ({ bestFantasyMovies, bestDramaMovies }) => {
+const Home: FC<HomeProps> = ({
+  bestFantasyMovies,
+  bestDramaMovies,
+  genresSlugs,
+  countriesSlugs,
+}) => {
   const { t } = useTranslation(["titles", "home"]);
+  const dispatch = useAppDispatch();
   const compilations = [
     {
       movies: bestFantasyMovies,
@@ -28,6 +39,10 @@ const Home: FC<HomeProps> = ({ bestFantasyMovies, bestDramaMovies }) => {
       title: t("home:compilations.subscribe"),
     },
   ];
+
+  useEffect(() => {
+    if (genresSlugs) dispatch(setSlugs({ genresSlugs, countriesSlugs }));
+  }, [dispatch, genresSlugs, countriesSlugs]);
 
   return (
     <Layout title={t("titles:home")}>
@@ -47,8 +62,13 @@ export const getStaticProps = async ({
 }): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
   const bestFantasyMovies = await getMoviesByGenre("fantasy");
   const bestDramaMovies = await getMoviesByGenre("drama");
+  const genresSlugs = await getGenresSlugs();
+  const countriesSlugs = await getCountriesSlugs();
+
   return {
     props: {
+      genresSlugs,
+      countriesSlugs,
       bestFantasyMovies,
       bestDramaMovies,
       ...(await serverSideTranslations(locale, [
@@ -60,7 +80,9 @@ export const getStaticProps = async ({
         "tooltips",
         "mobileMenu",
         "dropDownCategory",
+        "registration",
         "genres",
+        "countries",
       ])),
     },
   };

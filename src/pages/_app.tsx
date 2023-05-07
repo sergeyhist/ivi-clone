@@ -5,6 +5,7 @@ import { store } from "../store";
 import { appWithTranslation } from "next-i18next";
 import "../utils/i18n";
 import "/src/styles/global.sass";
+import { GoogleOAuthProvider } from "@react-oauth/google";
 import localFont from "next/font/local";
 
 // Font files can be colocated inside of `pages`
@@ -34,11 +35,13 @@ const iconfont = localFont({ src: "../assets/fonts/iconfont.woff", variable: "--
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <Provider store={store}>
-      <div className={`${iviSans.variable} ${iviIcons.variable} ${iconfont.variable}`}>
-        <Component {...pageProps} />
-      </div>
-    </Provider>
+    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID || "err"}>
+      <Provider store={store}>
+        <div className={`${iviSans.variable} ${iviIcons.variable} ${iconfont.variable}`}>
+          <Component {...pageProps} />
+        </div>
+      </Provider>
+    </GoogleOAuthProvider>
   );
 };
 

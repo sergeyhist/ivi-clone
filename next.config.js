@@ -7,6 +7,10 @@ const nextConfig = {
   images: {
     domains: ["avatars.mds.yandex.net", "www.avatars.mds.yandex.net"],
   },
+  env:{
+    REACT_APP_GOOGLE_AUTH_CLIENT_ID:"1048845826975-bf2oaake51l7n0s8mvp2sp2ci4rkb6kd.apps.googleusercontent.com",
+    REACT_APP_VK_AUTH_CLIENT_ID:"51636014"
+  }
 };
 
 module.exports = nextConfig;

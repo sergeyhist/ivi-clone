@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import windowSizeSlice from "./slices/windowSizeSlice";
 import modalsSlice from "./slices/modalsSlice";
+import slugsSlice from "/src/store/slices/slugsSlice";
 
 export const store = configureStore({
   reducer: {
     windowSize: windowSizeSlice,
     showModal: modalsSlice,
+    slugs: slugsSlice,
   },
 });
 
