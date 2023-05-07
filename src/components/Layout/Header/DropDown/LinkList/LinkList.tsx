@@ -46,7 +46,6 @@ const LinkList: FC<LinkListProps> = ({ selectedGenre }) => {
   });
 
   useEffect(() => {
-    console.log("action");
     setGenresList(localizeAndLimitList(genresSlugs, "genres", 20, t));
     setCountriesList(localizeAndLimitList(countriesSlugs, "countries", 4, t));
   }, []);
