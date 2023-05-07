@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction } from "react";
 import styles from "./Navigation.module.sass";
-import { DropDownType } from "../Header.utils";
+import { DropDownType } from "../../Header.utils";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
 

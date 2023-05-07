@@ -1,0 +1,577 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="139aac6e-b02d-4d10-a284-22a007084109" name="Changes" comment="feat: add links to genres/countries/years">
+      <change afterPath="$PROJECT_DIR$/src/api/getData.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Layout/Header/ActionLayout/ActionLayout.module.sass" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Layout/Header/ActionLayout/ActionLayout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Layout/Header/DropDown/LinkList/LinkList.utils.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Layout/Header/ModalContainer/ModalContainer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Layout/Header/NavigationLayout/NavigationLayout.module.sass" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/components/Layout/Header/NavigationLayout/NavigationLayout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/store/slices/slugsSlice.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/types/ICountry.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/locales/en/countries.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/en/countries.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/locales/en/dropDownCategory.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/en/dropDownCategory.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/locales/en/genres.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/en/genres.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/locales/ru/countries.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/ru/countries.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/locales/ru/dropDownCategory.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/ru/dropDownCategory.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/locales/ru/genres.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/locales/ru/genres.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Header/Actions/Actions.module.sass" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Header/ActionLayout/Actions/Actions.module.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Header/Actions/Actions.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Header/ActionLayout/Actions/Actions.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Header/DropDown/EntertainmentGenresDropDown/EntertainmentGenresDropDown.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Header/DropDown/EntertainmentGenresDropDown/EntertainmentGenresDropDown.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Header/DropDown/LinkList/LinkList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Header/DropDown/LinkList/LinkList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Header/DropDown/Links/Links.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Header/DropDown/Links/Links.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Header/Header.module.sass" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Header/Header.module.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Header/Header.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Header/Navigation/Navigation.module.sass" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Header/NavigationLayout/Navigation/Navigation.module.sass" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Layout/Header/Navigation/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Layout/Header/NavigationLayout/Navigation/Navigation.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/index.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/store/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/store/index.ts" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Sass File" />
+        <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectId" id="2OJjoNxEGfygMwil1rI2ytPvgWp" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Git.Branch.Popup.ShowAllRemotes": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "dart.analysis.tool.window.visible": "false",
+    "ignore.virus.scanning.warn.message": "true",
+    "javascript.nodejs.core.library.configured.version": "18.12.1",
+    "javascript.nodejs.core.library.typings.version": "18.16.3",
+    "last_opened_file_path": "D:/Work/ivi-clone/src/types",
+    "list.type.of.created.stylesheet": "Sass",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\alexgrist\\AppData\\Roaming\\npm\\node_modules\\prettier",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "settings.javascript.prettier",
+    "ts.external.directory.path": "D:\\Work\\ivi-clone\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Work\ivi-clone\src\types" />
+      <recent name="D:\Work\ivi-clone\public\locales\en" />
+      <recent name="D:\Work\ivi-clone\public\locales\ru" />
+      <recent name="D:\Work\ivi-clone\.storybook" />
+      <recent name="D:\Work\ivi-clone\src\stories" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Work\ivi-clone\src\components\Layout\Header\NavigationLayout" />
+      <recent name="D:\Work\ivi-clone\src\components\Layout\Header\ActionLayout" />
+      <recent name="D:\Work\ivi-clone\src\api" />
+      <recent name="D:\Work\ivi-clone\src\components\ModalWindows\AuthModal\ChatDialogue\PasswordInput" />
+      <recent name="D:\Work\ivi-clone\src\components\ModalWindows\AuthModal" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="139aac6e-b02d-4d10-a284-22a007084109" name="Changes" comment="" />
+      <created>1681285755053</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1681285755053</updated>
+      <workItem from="1681285757637" duration="21877000" />
+      <workItem from="1681368936566" duration="22318000" />
+      <workItem from="1681453725281" duration="16992000" />
+      <workItem from="1681471239302" duration="8805000" />
+      <workItem from="1681541590352" duration="14776000" />
+      <workItem from="1681640252193" duration="7923000" />
+      <workItem from="1681713329351" duration="14924000" />
+      <workItem from="1681736057363" duration="5922000" />
+      <workItem from="1681799047063" duration="20299000" />
+      <workItem from="1681827846122" duration="5201000" />
+      <workItem from="1681886330236" duration="12741000" />
+      <workItem from="1681905586792" duration="10045000" />
+      <workItem from="1681973125854" duration="15186000" />
+      <workItem from="1681994004120" duration="2120000" />
+      <workItem from="1682001313585" duration="7225000" />
+      <workItem from="1682058382156" duration="10454000" />
+      <workItem from="1682073259607" duration="816000" />
+      <workItem from="1682074257219" duration="1314000" />
+      <workItem from="1682075608106" duration="9952000" />
+      <workItem from="1682146977168" duration="5928000" />
+      <workItem from="1682153171976" duration="10327000" />
+      <workItem from="1682231957628" duration="6873000" />
+      <workItem from="1682250427189" duration="3042000" />
+      <workItem from="1682322213647" duration="17480000" />
+      <workItem from="1682403888931" duration="468000" />
+      <workItem from="1682404375520" duration="16921000" />
+      <workItem from="1682505448218" duration="11065000" />
+      <workItem from="1682576882447" duration="4469000" />
+      <workItem from="1682581770075" duration="9903000" />
+      <workItem from="1682594444778" duration="172000" />
+      <workItem from="1682594630433" duration="2567000" />
+      <workItem from="1682663765030" duration="645000" />
+      <workItem from="1682671756472" duration="1250000" />
+      <workItem from="1682673055738" duration="7709000" />
+      <workItem from="1682684929232" duration="636000" />
+      <workItem from="1682685611478" duration="425000" />
+      <workItem from="1682690532416" duration="1453000" />
+      <workItem from="1682692620583" duration="4000" />
+      <workItem from="1682693613825" duration="1285000" />
+      <workItem from="1682753050552" duration="9272000" />
+      <workItem from="1682773218549" duration="3804000" />
+      <workItem from="1682780709933" duration="3068000" />
+      <workItem from="1682837257567" duration="9092000" />
+      <workItem from="1682853869173" duration="1608000" />
+      <workItem from="1682924525847" duration="15271000" />
+      <workItem from="1682952744193" duration="20000" />
+      <workItem from="1683011800761" duration="24666000" />
+      <workItem from="1683042654040" duration="617000" />
+      <workItem from="1683052195930" duration="313000" />
+      <workItem from="1683095503469" duration="2541000" />
+      <workItem from="1683098102824" duration="15908000" />
+      <workItem from="1683117031488" duration="11858000" />
+      <workItem from="1683182266840" duration="26398000" />
+      <workItem from="1683212143157" duration="2950000" />
+      <workItem from="1683267772772" duration="9593000" />
+      <workItem from="1683286913279" duration="8971000" />
+      <workItem from="1683300281366" duration="14000" />
+      <workItem from="1683357160963" duration="116000" />
+      <workItem from="1683357351705" duration="18033000" />
+      <workItem from="1683444450268" duration="8173000" />
+      <workItem from="1683453128112" duration="119000" />
+      <workItem from="1683454346257" duration="6627000" />
+    </task>
+    <task id="LOCAL-00052" summary="fix: fix dropdown display">
+      <created>1682333954143</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1682333954143</updated>
+    </task>
+    <task id="LOCAL-00053" summary="feat: add creators tab modal">
+      <created>1682344163083</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1682344163083</updated>
+    </task>
+    <task id="LOCAL-00054" summary="feat: comments list modal">
+      <created>1682415484697</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1682415484698</updated>
+    </task>
+    <task id="LOCAL-00055" summary="feat: comments list modal">
+      <created>1682424428237</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1682424428237</updated>
+    </task>
+    <task id="LOCAL-00056" summary="feat: add movie card">
+      <created>1682514463904</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1682514463905</updated>
+    </task>
+    <task id="LOCAL-00057" summary="feat: add movie info modal to film page">
+      <created>1682517759828</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1682517759828</updated>
+    </task>
+    <task id="LOCAL-00058" summary="feat: add wrapper to slideshowWidget">
+      <created>1682517897926</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1682517897926</updated>
+    </task>
+    <task id="LOCAL-00059" summary="fix: fix style for dropdown and header">
+      <created>1682518296165</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1682518296165</updated>
+    </task>
+    <task id="LOCAL-00060" summary="refactor: add mixin to ModalInput.module.sass">
+      <created>1682518557482</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1682518557482</updated>
+    </task>
+    <task id="LOCAL-00061" summary="refactor: add type to getGenreLinks">
+      <created>1682519274972</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1682519274972</updated>
+    </task>
+    <task id="LOCAL-00062" summary="feat: add free subscribe button">
+      <created>1682579395078</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1682579395079</updated>
+    </task>
+    <task id="LOCAL-00063" summary="feat: titles class names">
+      <created>1682582767748</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1682582767749</updated>
+    </task>
+    <task id="LOCAL-00064" summary="feat: titles grid">
+      <created>1682586783674</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1682586783674</updated>
+    </task>
+    <task id="LOCAL-00065" summary="feat: add widget slider to dropdown">
+      <created>1682590797040</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1682590797040</updated>
+    </task>
+    <task id="LOCAL-00066" summary="refactor: add function to dispatch">
+      <created>1682591212740</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1682591212740</updated>
+    </task>
+    <task id="LOCAL-00067" summary="style: adaptive for header">
+      <created>1682594783287</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1682594783287</updated>
+    </task>
+    <task id="LOCAL-00068" summary="style: adaptive for header 2.0">
+      <created>1682594963444</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1682594963444</updated>
+    </task>
+    <task id="LOCAL-00069" summary="fix: fix mobileMenu link system">
+      <created>1682596595726</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1682596595726</updated>
+    </task>
+    <task id="LOCAL-00070" summary="feat: move tvJson to utils file">
+      <created>1682664334817</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1682664334817</updated>
+    </task>
+    <task id="LOCAL-00071" summary="feat: moved modals to new folder, add custom hook, add global variable for text color">
+      <created>1682675741146</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1682675741146</updated>
+    </task>
+    <task id="LOCAL-00072" summary="feat: add translation to movieInfo modal">
+      <created>1682678931788</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1682678931788</updated>
+    </task>
+    <task id="LOCAL-00073" summary="feat: init storybook feature">
+      <created>1682787326332</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1682787326333</updated>
+    </task>
+    <task id="LOCAL-00074" summary="feat: add some stories">
+      <created>1682849445398</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1682849445399</updated>
+    </task>
+    <task id="LOCAL-00075" summary="feat: stories config change">
+      <created>1682928360328</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1682928360328</updated>
+    </task>
+    <task id="LOCAL-00076" summary="feat: stories config change">
+      <created>1682936114333</created>
+      <option name="number" value="00076" />
+      <option name="presentableId" value="LOCAL-00076" />
+      <option name="project" value="LOCAL" />
+      <updated>1682936114333</updated>
+    </task>
+    <task id="LOCAL-00077" summary="feat: try to fix storybook config error">
+      <created>1683012125808</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1683012125809</updated>
+    </task>
+    <task id="LOCAL-00078" summary="feat: add, adaptive to movieInfoModal, add translation to genres">
+      <created>1683030375962</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1683030375962</updated>
+    </task>
+    <task id="LOCAL-00079" summary="fix: conflicts">
+      <created>1683030555316</created>
+      <option name="number" value="00079" />
+      <option name="presentableId" value="LOCAL-00079" />
+      <option name="project" value="LOCAL" />
+      <updated>1683030555316</updated>
+    </task>
+    <task id="LOCAL-00080" summary="feat: remove bootstrap, add axios">
+      <created>1683031515175</created>
+      <option name="number" value="00080" />
+      <option name="presentableId" value="LOCAL-00080" />
+      <option name="project" value="LOCAL" />
+      <updated>1683031515175</updated>
+    </task>
+    <task id="LOCAL-00081" summary="feat: remove bootstrap, add axios">
+      <created>1683031657146</created>
+      <option name="number" value="00081" />
+      <option name="presentableId" value="LOCAL-00081" />
+      <option name="project" value="LOCAL" />
+      <updated>1683031657146</updated>
+    </task>
+    <task id="LOCAL-00082" summary="feat: add genres translation">
+      <created>1683039066999</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1683039066999</updated>
+    </task>
+    <task id="LOCAL-00083" summary="fix: try to fix storybook">
+      <created>1683052233930</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1683052233930</updated>
+    </task>
+    <task id="LOCAL-00084" summary="feat: add hot banner slide">
+      <created>1683052473284</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1683052473284</updated>
+    </task>
+    <task id="LOCAL-00085" summary="feat: fix banner slide">
+      <created>1683095677650</created>
+      <option name="number" value="00085" />
+      <option name="presentableId" value="LOCAL-00085" />
+      <option name="project" value="LOCAL" />
+      <updated>1683095677651</updated>
+    </task>
+    <task id="LOCAL-00086" summary="feat: fix banner slide">
+      <created>1683095761550</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1683095761550</updated>
+    </task>
+    <task id="LOCAL-00087" summary="feat: add Switch language to header">
+      <created>1683111330843</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1683111330844</updated>
+    </task>
+    <task id="LOCAL-00088" summary="fix: change switch language position">
+      <created>1683112110087</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1683112110087</updated>
+    </task>
+    <task id="LOCAL-00089" summary="style: change switch color">
+      <created>1683112394945</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1683112394945</updated>
+    </task>
+    <task id="LOCAL-00090" summary="feat: delete footer locale buttons">
+      <created>1683112544340</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1683112544340</updated>
+    </task>
+    <task id="LOCAL-00091" summary="feat: add target blank to cert btn">
+      <created>1683112636192</created>
+      <option name="number" value="00091" />
+      <option name="presentableId" value="LOCAL-00091" />
+      <option name="project" value="LOCAL" />
+      <updated>1683112636192</updated>
+    </task>
+    <task id="LOCAL-00092" summary="refactor: add margin to locales">
+      <created>1683112852192</created>
+      <option name="number" value="00092" />
+      <option name="presentableId" value="LOCAL-00092" />
+      <option name="project" value="LOCAL" />
+      <updated>1683112852192</updated>
+    </task>
+    <task id="LOCAL-00093" summary="feat: split chatDialogue to smaller components">
+      <created>1683122802707</created>
+      <option name="number" value="00093" />
+      <option name="presentableId" value="LOCAL-00093" />
+      <option name="project" value="LOCAL" />
+      <updated>1683122802707</updated>
+    </task>
+    <task id="LOCAL-00094" summary="feat: add person page, add color variables">
+      <created>1683129171286</created>
+      <option name="number" value="00094" />
+      <option name="presentableId" value="LOCAL-00094" />
+      <option name="project" value="LOCAL" />
+      <updated>1683129171286</updated>
+    </task>
+    <task id="LOCAL-00095" summary="feat: add movies api">
+      <created>1683187757374</created>
+      <option name="number" value="00095" />
+      <option name="presentableId" value="LOCAL-00095" />
+      <option name="project" value="LOCAL" />
+      <updated>1683187757374</updated>
+    </task>
+    <task id="LOCAL-00096" summary="feat: add person page">
+      <created>1683196985229</created>
+      <option name="number" value="00096" />
+      <option name="presentableId" value="LOCAL-00096" />
+      <option name="project" value="LOCAL" />
+      <updated>1683196985229</updated>
+    </task>
+    <task id="LOCAL-00097" summary="feat: some person page improvements">
+      <created>1683210928948</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1683210928948</updated>
+    </task>
+    <task id="LOCAL-00098" summary="feat: add navigation links">
+      <created>1683214315956</created>
+      <option name="number" value="00098" />
+      <option name="presentableId" value="LOCAL-00098" />
+      <option name="project" value="LOCAL" />
+      <updated>1683214315956</updated>
+    </task>
+    <task id="LOCAL-00099" summary="fix: fix styles in navigation">
+      <created>1683214503621</created>
+      <option name="number" value="00099" />
+      <option name="presentableId" value="LOCAL-00099" />
+      <option name="project" value="LOCAL" />
+      <updated>1683214503621</updated>
+    </task>
+    <task id="LOCAL-00100" summary="feat: add google and vk auth, add adaptive to registration modal">
+      <created>1683299589542</created>
+      <option name="number" value="00100" />
+      <option name="presentableId" value="LOCAL-00100" />
+      <option name="project" value="LOCAL" />
+      <updated>1683299589542</updated>
+    </task>
+    <option name="localTasksCounter" value="101" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="feat: stories config change" />
+    <MESSAGE value="feat: try to fix storybook config error" />
+    <MESSAGE value="feat: add, adaptive to movieInfoModal, add translation to genres" />
+    <MESSAGE value="fix: confilcts" />
+    <MESSAGE value="fix: conflicts" />
+    <MESSAGE value="feat: remove bootstrap, add axios" />
+    <MESSAGE value="feat: add genres translation" />
+    <MESSAGE value="fix: try to fix storybook" />
+    <MESSAGE value="feat: add hot banner slide" />
+    <MESSAGE value="feat: fix banner slide" />
+    <MESSAGE value="feat: add Switch language to header" />
+    <MESSAGE value="fix: change switch language position" />
+    <MESSAGE value="style: change switch color" />
+    <MESSAGE value="feat: delete footer locale buttons" />
+    <MESSAGE value="feat: add target blank to cert btn" />
+    <MESSAGE value="refactor: add margin to locales" />
+    <MESSAGE value="feat: split chatDialogue to smaller components" />
+    <MESSAGE value="feat: add person page, add color variables" />
+    <MESSAGE value="feat: add movies api" />
+    <MESSAGE value="feat: add person page" />
+    <MESSAGE value="feat: some person page improvements" />
+    <MESSAGE value="feat: add navigation links" />
+    <MESSAGE value="fix: fix styles in navigation" />
+    <MESSAGE value="feat: add google and vk auth, add adaptive to registration modal" />
+    <MESSAGE value="feat: add links to genres/countries/years" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add links to genres/countries/years" />
+  </component>
+</project>

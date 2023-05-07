@@ -2,11 +2,6 @@
 @mixin dropDownActive
   transition: .4s
 
-@mixin headerLayout
-  display: flex
-  height: 100%
-  align-items: center
-
 .header
   position: relative
 
@@ -28,24 +23,6 @@
     &_active
       background: #1F1B2E
 
-  &__logo
-    cursor: pointer
-
-  &__action
-    &_layout
-      position: relative
-      @include headerLayout
-
-      .switch
-        position: absolute
-        right: 450px
-        bottom: 8px
-
-  &__navigation
-    @include headerLayout
-
-    &_layout
-      @include headerLayout
 
   &__dropdown
     position: relative

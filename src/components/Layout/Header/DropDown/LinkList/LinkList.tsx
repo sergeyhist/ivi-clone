@@ -1,55 +1,79 @@
-import { FC } from "react";
+import { FC, useEffect, useState } from "react";
 import Links from "../Links/Links";
 import styles from "./LinkList.module.sass";
 import { DropDownType } from "../../Header.utils";
 import { useTranslation } from "next-i18next";
+import { useAppSelector } from "/src/hooks/redux";
+import {
+  localizeAndLimitList,
+  makeLinksFromSlugs,
+  sortSlugs,
+} from "/src/components/Layout/Header/DropDown/LinkList/LinkList.utils";
 
 interface LinkListProps {
   selectedGenre: DropDownType;
 }
 
 const LinkList: FC<LinkListProps> = ({ selectedGenre }) => {
-  const { t } = useTranslation(["header", "dropDownCategory"]);
-  const countries: string[] = t(`dropDownCategory:${selectedGenre}.countries`, {
-    returnObjects: true,
-  });
+  const { t } = useTranslation([
+    "header",
+    "dropDownCategory",
+    "genres",
+    "countries",
+  ]);
+
+  const [genresList, setGenresList] = useState<string[]>();
+  const [countriesList, setCountriesList] = useState<string[]>();
+  const storedSlugs = useAppSelector((state) => state.slugs);
+
+  const order: DropDownType[] = ["movies", "series", "cartoons"];
   const years: string[] = t(`dropDownCategory:${selectedGenre}.years`, {
     returnObjects: true,
   });
-  const genres: string[] = t(`dropDownCategory:${selectedGenre}.genres`, {
-    returnObjects: true,
+
+  const countriesSlugs = sortSlugs(
+    [...storedSlugs.countriesSlugs],
+    order,
+    selectedGenre
+  );
+  const genresSlugs = sortSlugs(
+    [...storedSlugs.genresSlugs],
+    order,
+    selectedGenre
+  );
+
+  const genresHrefs = makeLinksFromSlugs(genresSlugs, "genres");
+  const countriesHrefs = makeLinksFromSlugs(countriesSlugs, "countries");
+
+  const yearsHrefs = years.map((year, i) => {
+    return `years=202${years.length - 1 - i}`;
   });
 
-  // useEffect(() => {
-  //   const getAllGenres = async (): Promise<void> => {
-  //     try {
-  //       const response = await axios.get<IGenre[]>(
-  //         "http://85.237.34.125:4000/genres"
-  //       );
-  //       setGenresList(
-  //         response.data
-  //           .map((genre: IGenre) => {
-  //             return t(`genres:${genre.slug}`);
-  //           })
-  //           .slice(0, 20)
-  //       );
-  //     } catch (err) {
-  //       console.log(err);
-  //     }
-  //   };
-  //   getAllGenres()
-  //   console.log("o");
-  //
-  // }, [genresList,setGenresList,t]);
+  useEffect(() => {
+    setGenresList(localizeAndLimitList(genresSlugs, "genres", 20, t));
+    setCountriesList(localizeAndLimitList(countriesSlugs, "countries", 4, t));
+  }, [genresSlugs, countriesSlugs, t]);
 
   return (
     <div className={styles.list}>
       <div>
-        <Links title={t("header:genreTitles.0")} links={genres} />
+        <Links
+          title={t("header:genreTitles.0")}
+          links={genresList || []}
+          hrefs={genresHrefs}
+        />
       </div>
       <div className={styles.list__container}>
-        <Links title={t("header:genreTitles.1")} links={countries} />
-        <Links title={t("header:genreTitles.2")} links={years} />
+        <Links
+          title={t("header:genreTitles.1")}
+          links={countriesList || []}
+          hrefs={countriesHrefs}
+        />
+        <Links
+          title={t("header:genreTitles.2")}
+          links={years}
+          hrefs={yearsHrefs}
+        />
       </div>
     </div>
   );

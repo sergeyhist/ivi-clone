@@ -1,0 +1,18 @@
+Index: package.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n    \"name\": \"ivi-clone\",\r\n    \"version\": \"0.1.0\",\r\n    \"private\": true,\r\n    \"scripts\": {\r\n        \"dev\": \"next dev\",\r\n        \"build\": \"next build\",\r\n        \"start\": \"next start\",\r\n        \"lint\": \"next lint\",\r\n        \"storybook\": \"storybook dev -p 6006 -s ./public\",\r\n        \"build-storybook\": \"storybook build public\",\r\n        \"start-storybook\": \"storybook -s ./public\"\r\n    },\r\n    \"dependencies\": {\r\n        \"@reduxjs/toolkit\": \"^1.9.3\",\r\n        \"@storybook/addon-docs\": \"^7.0.7\",\r\n        \"@storybook/theming\": \"^7.0.7\",\r\n        \"@tippyjs/react\": \"^4.2.6\",\r\n        \"@types/node\": \"18.15.11\",\r\n        \"@types/react\": \"18.0.34\",\r\n        \"@types/react-dom\": \"18.0.11\",\r\n        \"@types/react-transition-group\": \"^4.4.5\",\r\n        \"bootstrap\": \"^5.2.3\",\r\n        \"eslint\": \"8.22.0\",\r\n        \"eslint-config-next\": \"13.3.0\",\r\n        \"i18next\": \"^22.4.15\",\r\n        \"i18next-browser-languagedetector\": \"^7.0.1\",\r\n        \"i18next-http-backend\": \"^2.2.0\",\r\n        \"i18next-xhr-backend\": \"^3.2.2\",\r\n        \"next\": \"13.3.0\",\r\n        \"next-i18next\": \"^13.2.2\",\r\n        \"react\": \"18.2.0\",\r\n        \"react-dom\": \"18.2.0\",\r\n        \"react-i18next\": \"^12.2.2\",\r\n        \"react-icons\": \"^4.8.0\",\r\n        \"react-redux\": \"^8.0.5\",\r\n        \"react-transition-group\": \"^4.4.5\",\r\n        \"remove\": \"^0.1.5\",\r\n        \"storybook-dark-mode\": \"^3.0.0\",\r\n        \"swiper\": \"^9.2.0\",\r\n        \"tippy.js\": \"^6.3.7\",\r\n        \"typescript\": \"^5.0.4\",\r\n        \"use-debounce\": \"^9.0.4\"\r\n    },\r\n    \"devDependencies\": {\r\n        \"@storybook/addon-actions\": \"^7.0.7\",\r\n        \"@storybook/addon-essentials\": \"^7.0.7\",\r\n        \"@storybook/addon-interactions\": \"^7.0.7\",\r\n        \"@storybook/addon-links\": \"^7.0.7\",\r\n        \"@storybook/addon-styling\": \"^1.0.5\",\r\n        \"@storybook/blocks\": \"^7.0.7\",\r\n        \"@storybook/nextjs\": \"^7.0.7\",\r\n        \"@storybook/react\": \"^7.0.7\",\r\n        \"@storybook/testing-library\": \"^0.0.14-next.2\",\r\n        \"@types/react-redux\": \"^7.1.25\",\r\n        \"@typescript-eslint/eslint-plugin\": \"^5.58.0\",\r\n        \"@typescript-eslint/parser\": \"^5.58.0\",\r\n        \"eslint-plugin-storybook\": \"^0.6.11\",\r\n        \"sass\": \"^1.62.1\",\r\n        \"storybook\": \"^7.0.7\",\r\n        \"storybook-addon-i18n\": \"^5.1.13\",\r\n        \"storybook-react-i18next\": \"^2.0.1\"\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/package.json b/package.json
+--- a/package.json	
++++ b/package.json	
+@@ -20,6 +20,7 @@
+         "@types/react": "18.0.34",
+         "@types/react-dom": "18.0.11",
+         "@types/react-transition-group": "^4.4.5",
++        "axios": "^1.4.0",
+         "bootstrap": "^5.2.3",
+         "eslint": "8.22.0",
+         "eslint-config-next": "13.3.0",

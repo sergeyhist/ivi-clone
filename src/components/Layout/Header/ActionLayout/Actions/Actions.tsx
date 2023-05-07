@@ -4,7 +4,7 @@ import { BsSearch } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import styles from "./Actions.module.sass";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
-import { DropDownType } from "../Header.utils";
+import { DropDownType } from "../../Header.utils";
 import { useTranslation } from "next-i18next";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
 import { setShowModal } from "/src/store/slices/modalsSlice";
