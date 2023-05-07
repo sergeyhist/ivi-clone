@@ -17,15 +17,11 @@ export const localizeAndLimitList = (
   limit: number,
   t: TFunction
 ): string[] => {
-  if (list) {
     return list
       .map((slug) => {
         return t(`${prefix}:${slug}`);
       })
       .slice(0, limit);
-  } else {
-    return [];
-  }
 };
 
 export const makeLinksFromSlugs = (list:string[],referLink:string): string[] =>{
