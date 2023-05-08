@@ -1,11 +1,4 @@
-import {
-  Dispatch,
-  FC,
-  LegacyRef,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import { Dispatch, FC, LegacyRef, SetStateAction } from "react";
 import styles from "./ActionLayout.module.sass";
 import ToggleSwitch from "/src/UI/ToggleSwitch/ToggleSwitch";
 import Actions from "/src/components/Layout/Header/ActionLayout/Actions/Actions";
@@ -25,7 +18,7 @@ const ActionLayout: FC<ActionLayout> = ({
 }) => {
   const { locale, push, asPath } = useRouter();
 
-  const handleLocaleClick = (result: string) => {
+  const handleLocaleClick = (result: string): void => {
     push(asPath, undefined, { locale: result, scroll: false });
   };
 

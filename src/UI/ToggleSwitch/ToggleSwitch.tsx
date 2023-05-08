@@ -32,7 +32,7 @@ const ToggleSwitch: FC<ToggleSwitchProps> = ({
     setIsActive(true);
     debouncedCallback(toggleValue === "left" ? leftContent : rightContent);
     setTimeout(() => setIsActive(false), 600);
-  }, [toggleValue]);
+  }, [debouncedCallback, leftContent, rightContent, toggleValue]);
 
   return (
     <div
