@@ -22,16 +22,16 @@ const CreatorsTab: FC<CreatorsTabProps> = ({ persons }) => {
 
   return (
     <div className={styles.container}>
-      {directors.length && <Creators title={t("creators.directors")} persons={directors} />}
-      {actors.length && <Creators title={t("creators.actors")} persons={actors} />}
-      {scenarists.length && (
+      {directors.length !== 0 && <Creators title={t("creators.directors")} persons={directors} />}
+      {actors.length !== 0 && <Creators title={t("creators.actors")} persons={actors} />}
+      {scenarists.length !== 0 && (
         <Creators title={t("creators.scenarists")} persons={scenarists} />
       )}
-      {producers.length && <Creators title={t("creators.producers")} persons={producers} />}
-      {dubbing.length && <Creators title={t("creators.dubbing")} persons={dubbing} />}
-      {painters.length && <Creators title={t("creators.painters")} persons={painters} />}
-      {operators.length && <Creators title={t("creators.operators")} persons={operators} />}
-      {compositors.length && (
+      {producers.length !== 0 && <Creators title={t("creators.producers")} persons={producers} />}
+      {dubbing.length !== 0 && <Creators title={t("creators.dubbing")} persons={dubbing} />}
+      {painters.length !== 0 && <Creators title={t("creators.painters")} persons={painters} />}
+      {operators.length !== 0 && <Creators title={t("creators.operators")} persons={operators} />}
+      {compositors.length !== 0 && (
         <Creators title={t("creators.compositors")} persons={compositors} />
       )}
     </div>

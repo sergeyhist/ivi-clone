@@ -1,14 +1,15 @@
-import { FC, useRef, useState, MouseEvent } from "react";
+import {FC, useRef, useState, MouseEvent} from "react";
 import styles from "./Header.module.sass";
 import DropDown from "./DropDown/DropDown";
 import { CSSTransition } from "react-transition-group";
 import { DropDownType } from "./Header.utils";
-import { useAppSelector } from "/src/hooks/redux";
+import {useAppSelector} from "/src/hooks/redux";
 import ActionLayout from "/src/components/Layout/Header/ActionLayout/ActionLayout";
 import NavigationLayout from "/src/components/Layout/Header/NavigationLayout/NavigationLayout";
 import ModalContainer from "/src/components/Layout/Header/ModalContainer/ModalContainer";
 
 const Header: FC = () => {
+
   const [isDropdownActive, setIsDropdownActive] = useState(false);
   const [dropDownType, setDropDownType] = useState<DropDownType>("");
   const windowSizeWidth = useAppSelector((state) => state.windowSize.width);
@@ -21,6 +22,8 @@ const Header: FC = () => {
   const navigationRef = useRef<HTMLDivElement>(null);
   const actionRef = useRef<HTMLDivElement>(null);
 
+
+  
   const handleHeaderMouseOver = (e: MouseEvent): void => {
     if (
       !navigationRef.current?.contains(e.target as Node) &&
