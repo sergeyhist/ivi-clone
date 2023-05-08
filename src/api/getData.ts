@@ -25,33 +25,39 @@ export const getCountries = async (): Promise<ICountry[] | undefined> => {
   }
 };
 
-export const getGenresSlugs = async (): Promise<string[] | undefined> => {
+export const getGenresSlugs = async (
+  url: string
+): Promise<string[] | undefined> => {
   try {
-    const data = await getGenres();
+    const response = await axios.get(url);
+    const data = response.data as IGenre[];
     const slugs = data ? data.map((genre: IGenre) => genre.slug) : [];
 
     return slugs;
-  } catch (error) {
-    console.log(error);
+  } catch (e) {
+    console.log(e);
   }
 };
 
-export const getCountriesSlugs = async (): Promise<string[] | undefined> => {
+export const getCountriesSlugs = async (
+  url: string
+): Promise<string[] | undefined> => {
   try {
-    const data = await getCountries();
+    const response = await axios.get(url);
+    const data = response.data as ICountry[];
     const slugs = data ? data.map((country: ICountry) => country.slug) : [];
 
     return slugs;
-  } catch (error) {
-    console.log(error);
+  } catch (e) {
+    console.log(e);
   }
 };
 
-export const getActors = async (): Promise<IPerson[] | undefined> => {
+export const getActors = async (
+  url: string
+): Promise<IPerson[] | undefined> => {
   try {
-    const response = await axios.get(
-      `http://${ip}:4000/name/persons?film_role=actor`
-    );
+    const response = await axios.get(url);
 
     return response.data as IPerson[];
   } catch (error) {
@@ -59,11 +65,11 @@ export const getActors = async (): Promise<IPerson[] | undefined> => {
   }
 };
 
-export const getDirectors = async (): Promise<IPerson[] | undefined> => {
+export const getDirectors = async (
+  url: string
+): Promise<IPerson[] | undefined> => {
   try {
-    const response = await axios.get(
-      `http://${ip}:4000/name/persons?film_role=filmmaker`
-    );
+    const response = await axios.get(url);
 
     return response.data as IPerson[];
   } catch (error) {

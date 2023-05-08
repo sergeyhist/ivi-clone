@@ -3,13 +3,15 @@ import windowSizeSlice from "./slices/windowSizeSlice";
 import modalsSlice from "./slices/modalsSlice";
 import slugsSlice from "/src/store/slices/slugsSlice";
 import filtersSlice from "./slices/filtersSlice";
+import personsSlice from "/src/store/slices/personsSlice";
 
 export const store = configureStore({
   reducer: {
     windowSize: windowSizeSlice,
     showModal: modalsSlice,
     slugs: slugsSlice,
-    filters: filtersSlice
+    filters: filtersSlice,
+    persons: personsSlice
   },
 });
 

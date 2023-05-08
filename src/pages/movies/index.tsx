@@ -8,24 +8,11 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticPropsResult } from "next";
 import MoviesList from "/src/components/Catalog/MoviesList/MoviesList";
-import {
-  getActors,
-  getCountriesSlugs,
-  getDirectors,
-  getGenresSlugs,
-} from "/src/api/getData";
-import { IPerson } from "/src/types/IPerson";
+
 import { useAppSelector } from "/src/hooks/redux";
 import {getFiltersText} from "/src/utils/filters/getFiltersText";
 
-interface MoviesProps {
-  genres: string[];
-  countries: string[];
-  actors: IPerson[];
-  directors: IPerson[];
-}
-
-const Movies: FC<MoviesProps> = ({ genres, countries, actors, directors }) => {
+const Movies: FC = () => {
   const { t } = useTranslation(["titles", "sorting"]);
   const { filters } = useAppSelector((state) => state.filters);
 
@@ -41,10 +28,10 @@ const Movies: FC<MoviesProps> = ({ genres, countries, actors, directors }) => {
         </div>
         <Sorting />
         <Filters
-          countries={countries}
-          genres={genres}
-          actors={actors}
-          directors={directors}
+          countries={[]}
+          genres={[]}
+          actors={[]}
+          directors={[]}
         />
         <MoviesList />
       </div>
@@ -57,11 +44,6 @@ export const getStaticProps = async ({
 }: {
   locale: string;
 }): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
-  const genres = await getGenresSlugs();
-  const countries = await getCountriesSlugs();
-  const actors = await getActors();
-  const directors = await getDirectors();
-
   return {
     props: {
       ...(await serverSideTranslations(locale, [
@@ -79,10 +61,6 @@ export const getStaticProps = async ({
         "year",
         "registration"
       ])),
-      genres: genres,
-      countries: countries,
-      actors: actors,
-      directors: directors,
     },
   };
 };

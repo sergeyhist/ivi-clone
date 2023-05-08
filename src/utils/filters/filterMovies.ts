@@ -12,7 +12,7 @@ const filterMovies = (filters: IFilters, sorting: string) => {
   getFilteredMovies(filters, 1000)?.then((movies: IMovie[] | undefined) => {
     movies && movies.length > 0
       ? store.dispatch(setFilteredMovies(getSortedList(sorting, movies)))
-      : setFilteredMovies([]);
+      : store.dispatch(setFilteredMovies([]));
     store.dispatch(setIsMoviesLoading(false));
   });
 };

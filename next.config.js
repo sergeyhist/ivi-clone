@@ -15,7 +15,8 @@ const nextConfig = {
   },
   env:{
     REACT_APP_GOOGLE_AUTH_CLIENT_ID:"1048845826975-bf2oaake51l7n0s8mvp2sp2ci4rkb6kd.apps.googleusercontent.com",
-    REACT_APP_VK_AUTH_CLIENT_ID:"51636014"
+    REACT_APP_VK_AUTH_CLIENT_ID:"51636014",
+    SERVER_HOST:"http://85.237.34.125:4000"
   }
 };
 

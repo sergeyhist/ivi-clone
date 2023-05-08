@@ -42,6 +42,7 @@
         "sharp": "^0.32.1",
         "storybook-dark-mode": "^3.0.0",
         "swiper": "^9.2.0",
+        "swr": "^2.1.5",
         "tippy.js": "^6.3.7",
         "typescript": "^5.0.4",
         "use-debounce": "^9.0.4"

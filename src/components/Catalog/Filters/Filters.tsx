@@ -12,6 +12,7 @@ import { setQueryParams } from "/src/utils/query";
 import { IPerson } from "/src/types/IPerson";
 import { useAppSelector } from "/src/hooks/redux";
 import { changeHandler } from "/src/utils/filters/changeHandler";
+import {defaultFilters} from "/src/utils/filters/filtersVariables";
 
 interface FiltersProps {
   genres: string[];
@@ -32,8 +33,6 @@ const Filters: FC<FiltersProps> = ({
   const router = useRouter();
 
   const filtersState = useAppSelector((state) => state.filters);
-
-  const defaultFilters = useRef(filtersState.filters);
 
   return (
     <div className="container">
@@ -135,7 +134,7 @@ const Filters: FC<FiltersProps> = ({
           />
         </div>
         <ResetButton
-          clickCallback={() => setQueryParams(router, defaultFilters.current)}
+          clickCallback={() => setQueryParams(router, defaultFilters)}
         />
       </div>
     </div>
