@@ -37,7 +37,7 @@ const ActionLayout: FC<ActionLayout> = ({
         push(asPath, undefined, { locale: "ru", scroll: false });
       else push(asPath, undefined, { locale: "en", scroll: false });
     },
-    400
+    600
   );
 
   return (
