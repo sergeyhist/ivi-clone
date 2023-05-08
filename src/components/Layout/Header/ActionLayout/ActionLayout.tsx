@@ -12,6 +12,7 @@ import ToggleSwitch from "/src/UI/ToggleSwitch/ToggleSwitch";
 import Actions from "/src/components/Layout/Header/ActionLayout/Actions/Actions";
 import { useRouter } from "next/router";
 import { DropDownType } from "/src/components/Layout/Header/Header.utils";
+import { useDebouncedCallback } from "use-debounce";
 
 interface ActionLayout {
   actionRef?: LegacyRef<HTMLDivElement>;
@@ -30,12 +31,14 @@ const ActionLayout: FC<ActionLayout> = ({
   useEffect(() => {
     locale === "ru" ? setSelectedLanguage(true) : setSelectedLanguage(false);
   }, [setSelectedLanguage, locale]);
-  const handleLocaleClick = (e?: ChangeEvent<HTMLInputElement>): void => {
-    if (e && e.target.checked)
-      push(asPath, undefined, { locale: "ru", scroll: false });
-    else push(asPath, undefined, { locale: "en", scroll: false });
-    setSelectedLanguage((prevState) => !prevState);
-  };
+  const handleLocaleClick = useDebouncedCallback(
+    (e?: ChangeEvent<HTMLInputElement>) => {
+      if (e && e.target.checked)
+        push(asPath, undefined, { locale: "ru", scroll: false });
+      else push(asPath, undefined, { locale: "en", scroll: false });
+    },
+    400
+  );
 
   return (
     <div ref={actionRef} className={styles.container}>
@@ -45,7 +48,10 @@ const ActionLayout: FC<ActionLayout> = ({
         rightContent="RU"
         scale={"0.7"}
         isChecked={selectedLanguage}
-        clickCallback={handleLocaleClick}
+        clickCallback={(e) => {
+          handleLocaleClick(e);
+          setSelectedLanguage((prevState) => !prevState);
+        }}
       />
       <Actions
         setIsDropdownActive={setIsDropdownActive}

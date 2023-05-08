@@ -51,7 +51,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
   const handleSubmitForm = (e: FormEvent): void => {
     e.preventDefault();
     if(email && password){
-      createUser({email: email, password: password})
+      createUser({email: email, password: password});
     }
     else
       setIsEmailInputSuccess(true);
