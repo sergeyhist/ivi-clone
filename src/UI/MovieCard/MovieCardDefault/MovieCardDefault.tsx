@@ -8,14 +8,20 @@ import MovieCardRating from "../MovieCardsRating/MovieCardsRating";
 import MovieCardChart from "../MovieCardsChart/MovieCardsChart";
 import { useRouter } from "next/router";
 import { getBackendImage } from "/src/utils/getBackendImg";
+import { useTranslation } from "next-i18next";
 
 interface MovieCardDefaultProps {
   content: IMovie;
   type?: "default" | "related";
 }
 
-const MovieCardDefault: FC<MovieCardDefaultProps> = ({ content, type = "default" }) => {
-  const className = type == "related" ? styles.content_related : styles.content_default;
+const MovieCardDefault: FC<MovieCardDefaultProps> = ({
+  content,
+  type = "default",
+}) => {
+  const { t } = useTranslation("countries");
+  const className =
+    type == "related" ? styles.content_related : styles.content_default;
   const { locale } = useRouter();
   const getName = (movie: IMovie): string => {
     return String(movie["name_" + String(locale)]);
@@ -30,7 +36,9 @@ const MovieCardDefault: FC<MovieCardDefaultProps> = ({ content, type = "default"
             sizes="100%"
             className={styles.content__img}
             src={getBackendImage(content.img)}
-            alt=""
+            alt={content.name_en}
+            placeholder="blur"
+            blurDataURL="/images/placeholder.svg"
           />
           <div className={styles.content__inner}>
             {type == "default" && <MovieCardButtons />}
@@ -42,7 +50,9 @@ const MovieCardDefault: FC<MovieCardDefaultProps> = ({ content, type = "default"
             <div className={styles.information}>
               <MovieCardRating content={content} />
               <MovieCardChart content={content} />
-              <p className={styles.information__text}>{`${content.year} ${content.country}`}</p>
+              <p className={styles.information__text}>{`${content.year} ${t(
+                content.countries[0].slug
+              )}`}</p>
               <p className={styles.information__text}>{content.duration} минут</p>
             </div>
           </div>

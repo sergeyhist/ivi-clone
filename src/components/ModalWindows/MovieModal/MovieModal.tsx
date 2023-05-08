@@ -7,29 +7,38 @@ import CreatorsModalList from "./CreatorsTab/CreatorsTab";
 import CommentForm from "./CommentTab/CommentsTab";
 import useOverflowHidden from "/src/hooks/useOverflowHidden";
 import { useTranslation } from "next-i18next";
-import { mockMovie } from "/src/utils/movie";
 import { IComment } from "/src/types/IComment";
 import { IPerson } from "/src/types/IPerson";
 import createAppPortal from "/src/utils/createAppPortal";
 import { modalsSlice } from "/src/store/slices/modalsSlice";
+import { IMovie } from "/src/types/IMovie";
 
 interface MovieModalProps {
+  movie: IMovie;
   persons: IPerson[];
   comments: IComment[];
   movieTitle: string;
 }
 
-const MovieModal: FC<MovieModalProps> = ({ persons, comments, movieTitle }) => {
+const MovieModal: FC<MovieModalProps> = ({
+  persons,
+  comments,
+  movieTitle,
+  movie,
+}) => {
   const { t } = useTranslation("movieInfo");
   const dispatch = useAppDispatch();
   const { setShowMovieModal } = modalsSlice.actions;
   const { showMovieModal } = useAppSelector((state) => state.showModal);
   const screenWidth = useAppSelector((state) => state.windowSize.width);
-  const commentsTabClass = showMovieModal.defaultTab === "comments" ? styles.active : "";
+  const commentsTabClass =
+    showMovieModal.defaultTab === "comments" ? styles.active : "";
   const actorsTabClass = showMovieModal.defaultTab === "actors" ? styles.active : "";
 
   const closeClick = (): void => {
-    dispatch(setShowMovieModal({ isShow: false, defaultTab: showMovieModal.defaultTab }));
+    dispatch(
+      setShowMovieModal({ isShow: false, defaultTab: showMovieModal.defaultTab })
+    );
   };
 
   const setDefaultTab = (tab: "actors" | "comments"): void => {
@@ -78,7 +87,7 @@ const MovieModal: FC<MovieModalProps> = ({ persons, comments, movieTitle }) => {
               </div>
               {screenWidth > 880 && (
                 <div className={styles.card}>
-                  <MovieCard content={mockMovie} type="poster" />
+                  <MovieCard content={movie} type="poster" />
                 </div>
               )}
             </div>

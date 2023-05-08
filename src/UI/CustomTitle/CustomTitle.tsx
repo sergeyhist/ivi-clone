@@ -1,32 +1,32 @@
-import { FC } from "react";
+import { FC, ReactNode } from "react";
 import styles from "./CustomTitle.module.sass";
-import Link from "next/link";
 
 interface CustomTitleProps {
-  title: string;
-  type?: "default" | "link" | "underline";
-  href?: string;
+  children: ReactNode;
+  type?: "default" | "link" | "underline" | "custom";
   className?: string;
+  clickCallback?: void;
 }
 
 const CustomTitle: FC<CustomTitleProps> = ({
-  title,
+  children,
   type = "default",
-  href = "/",
   className = "",
 }) => {
   return (
     <div className={styles.wrapper}>
-      {type === "default" && <h2 className={`${styles.title} ${className}`}>{title}</h2>}
+      {type === "default" && (
+        <h2 className={`${styles.title} ${className}`}>{children}</h2>
+      )}
       {type === "link" && (
-        <Link href={href} className={styles.link}>
-          <h2 className={`${styles.title} ${styles.title_link} ${className}`}>{title}</h2>
-        </Link>
+        <h2 className={`${styles.title} ${styles.title_link} ${className}`}>
+          {children}
+        </h2>
       )}
       {type === "underline" && (
-        <Link href={href} className={styles.link}>
-          <h2 className={`${styles.title} ${styles.title_underline} ${className}`}>{title}</h2>
-        </Link>
+        <h2 className={`${styles.title} ${styles.title_underline} ${className}`}>
+          {children}
+        </h2>
       )}
     </div>
   );

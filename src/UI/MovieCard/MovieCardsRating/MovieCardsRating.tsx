@@ -15,7 +15,7 @@ const MovieCardsRating: FC<MovieCardsRatingProps> = ({ content }) => {
         </span>
         <span className={styles.grade__number}>,</span>
         <span className={`${styles.grade__number_float} ${styles.grade__number}`}>
-          {String(content.rating)[2]}
+          {String(content.rating)[2] || 0}
         </span>
       </div>
     </div>

@@ -4,8 +4,8 @@ export const getFormateNumber = (number: number): string => {
   return number.toLocaleString("ru-RU");
 };
 
-export const getMovieName = (movie: IMovie, locale: string | undefined = "en"): string => {
-  return String(movie["name_" + String(locale)]);
+export const getMovieName = (movie: IMovie, locale = "en"): string => {
+  return String(movie["name_" + locale]);
 };
 
 export const mockMovie: IMovie = {
@@ -15,7 +15,6 @@ export const mockMovie: IMovie = {
   description:
     "Пол Эджкомб — начальник блока смертников в тюрьме «Холодная гора», каждый из узников которого однажды проходит «зеленую милю» по пути к месту казни. Пол повидал много заключённых и надзирателей за время работы. Однако гигант Джон Коффи, обвинённый в страшном преступлении, стал одним из самых необычных обитателей блока.",
   year: 1999,
-  country: "США",
   rating: 9.1,
   assessments: 1328162,
   reviews: 475,
@@ -90,6 +89,13 @@ export const mockMovie: IMovie = {
     {
       language_id: "eb6cb36f-77bd-49eb-92fd-4cf6b0ec28c8",
       language: "Русские",
+    },
+  ],
+  countries: [
+    {
+      country_id: "274adf30-f80f-4843-b348-d5d13a7fa939",
+      country: "США",
+      slug: "usa",
     },
   ],
 };

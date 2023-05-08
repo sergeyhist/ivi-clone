@@ -3,12 +3,10 @@ import { FC } from "react";
 import { Provider } from "react-redux";
 import { store } from "../store";
 import { appWithTranslation } from "next-i18next";
-import "../utils/i18n";
 import "/src/styles/global.sass";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import localFont from "next/font/local";
 
-// Font files can be colocated inside of `pages`
 const iviSans = localFont({
   src: [
     {
@@ -29,15 +27,24 @@ const iviSans = localFont({
   ],
   variable: "--iviSans",
 });
-
-const iviIcons = localFont({ src: "../assets/fonts/ivi-icons.woff", variable: "--ivi-icons" });
-const iconfont = localFont({ src: "../assets/fonts/iconfont.woff", variable: "--iconfont" });
+const iviIcons = localFont({
+  src: "../assets/fonts/ivi-icons.woff",
+  variable: "--ivi-icons",
+});
+const iconfont = localFont({
+  src: "../assets/fonts/iconfont.woff",
+  variable: "--iconfont",
+});
 
 const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (
-    <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID || "err"}>
+    <GoogleOAuthProvider
+      clientId={process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID || "err"}
+    >
       <Provider store={store}>
-        <div className={`${iviSans.variable} ${iviIcons.variable} ${iconfont.variable}`}>
+        <div
+          className={`${iviSans.variable} ${iviIcons.variable} ${iconfont.variable}`}
+        >
           <Component {...pageProps} />
         </div>
       </Provider>

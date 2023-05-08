@@ -6,7 +6,7 @@ export interface IMovie {
   name_en: string;
   description: string;
   year: number;
-  country: string;
+  countries: ICountry[];
   rating: number;
   assessments: number;
   reviews: number;
@@ -36,4 +36,10 @@ export interface IQuality {
 export interface ILanguage {
   language_id: string;
   language: string;
+}
+
+export interface ICountry {
+  country_id: string;
+  country: string;
+  slug: string;
 }

@@ -13,11 +13,18 @@ interface HomeSlidersProps {
 }
 
 const HomeSliders: FC<HomeSlidersProps> = ({ compilations = [] }) => {
+  const sliders = compilations.filter(
+    (compilation) => compilation.movies.length !== 0
+  );
   return (
     <section className={styles.section}>
       <div className="container">
-        {compilations.map((compilation, index) => (
-          <MovieSlider key={index} title={compilation.title} slides={compilation.movies} />
+        {sliders?.map((compilation, index) => (
+          <MovieSlider
+            key={index}
+            title={compilation.title}
+            slides={compilation.movies}
+          />
         ))}
       </div>
     </section>

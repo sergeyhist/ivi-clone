@@ -1,6 +1,30 @@
+@use '/src/styles/vars'
 
 .wrapper
   display: flex
 
 .title
   font-size: 24px
+  color: vars.$whiteTextColor
+  line-height: 28px
+  font-weight: 700
+  text-transform: capitalize
+
+  &_link
+    &::after
+      content: "\e046"
+      display: inline-block
+      font-family: iconfont
+      font-weight: 400
+      font-style: normal
+      font-size: 16px
+      line-height: 16px
+      margin-left: 8px
+
+  &_underline
+    position: relative
+    box-shadow: 0 1px 0 rgb(255 255 255 / 16%), inset 0 0 0 rgb(255 255 255 / 16%)
+    cursor: pointer
+    transition: 0.3s
+    &:hover
+      box-shadow: 0 1px 0 #ffffff, inset 0 0 0 #ffffff
