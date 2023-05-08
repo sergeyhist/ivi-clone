@@ -1,7 +1,7 @@
 import axios from "axios";
 import {IPerson} from "/src/types/IPerson";
 
-const getPersonById = async (
+export const getPersonById = async (
   personId: string | string[] | undefined
 ): Promise<IPerson | undefined> => {
   try {
@@ -13,6 +13,3 @@ const getPersonById = async (
     console.log(err);
   }
 };
-
-
-export default {getPersonById };

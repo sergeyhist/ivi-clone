@@ -1,7 +1,7 @@
 import { FC, useEffect, useState } from "react";
 import styles from "./Filmography.module.sass";
 import { IMovie } from "/src/types/IMovie";
-import movieApi from "/src/api/movieApi";
+import {getMoviesById} from "/src/api/movieApi";
 import Image from "next/image";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import BreadCrumbs from "/src/UI/BreadCrumbs/BreadCrumbs";
@@ -22,7 +22,7 @@ const Filmography: FC<FilmographyProps> = ({ moviesId,firstName,lastName }) => {
   const router = useRouter();
 
   useEffect(() => {
-    movieApi.getMoviesById(moviesId).then((res) => setMovies(res));
+    getMoviesById(moviesId).then((res) => setMovies(res));
   }, [moviesId]);
 
   useEffect(() => {

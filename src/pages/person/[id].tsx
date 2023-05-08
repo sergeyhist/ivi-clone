@@ -3,14 +3,14 @@ import Layout from "/src/components/Layout/Layout";
 import { GetServerSidePropsResult } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PersonCard from "/src/components/Person/PersonCard/PersonCard";
-import { personData } from "/src/utils/person";
 import Filmography from "/src/components/Person/Filmography/Filmography";
 import { useRouter } from "next/router";
 import { IPerson } from "/src/types/IPerson";
-import personApi from "/src/api/personApi";
+import { getPersonById } from "/src/api/personApi";
+import { mockPersons } from "/src/utils/person";
 
 const Person: FC = () => {
-  const [person, setPerson] = useState<IPerson>();
+  const [person, setPerson] = useState<IPerson>(mockPersons[0]);
   const router = useRouter();
   const { id } = router.query;
   const firstName =
@@ -23,7 +23,9 @@ const Person: FC = () => {
       : person?.last_name_en;
 
   useEffect(() => {
-    personApi.getPersonById(id).then((res) => setPerson(res));
+    getPersonById(id).then((res) => {
+      if (res) setPerson(res);
+    });
   }, [id]);
 
   return (
@@ -31,12 +33,12 @@ const Person: FC = () => {
       <PersonCard
         firstName={firstName}
         lastName={lastName}
-        person={person || personData}
+        person={person || mockPersons[0]}
       />
       <Filmography
         firstName={firstName}
         lastName={lastName}
-        moviesId={person?.films.map((film) => film.film_id) || []}
+        moviesId={person.films.map((film) => film.film_id)}
       />
     </Layout>
   );
