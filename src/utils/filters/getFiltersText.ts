@@ -2,7 +2,8 @@ import { i18n } from "next-i18next";
 import { filterDefaults } from "./filtersVariables";
 import { IFilters } from "/src/types/IFilter";
 
-const isRating = (key: string) => ["rating", "assessments"].includes(key);
+const isRating = (key: string): boolean =>
+  ["rating", "assessments"].includes(key);
 
 const isArrayNotEmpty = (filters: IFilters, key: string): boolean =>
   (filters[key] as string[]).length > 0;
@@ -17,11 +18,9 @@ const getText = (filters: IFilters, key: string): string => {
 
   if (filters[key] && isRating(key)) {
     return (
-      i18n?.t(
+      (i18n?.t(
         `filters:${key === "rating" ? "ratingFrom" : "ratingCountFrom"}`
-      ) +
-      " " +
-      `${filters[key] as string}`
+      ) || "") + ` ${filters[key] as string}`
     );
   }
 
@@ -45,8 +44,17 @@ const updateTextArray = (filters: IFilters, key: string): string => {
   return i18n?.t(`filters:all.${key}`) || "";
 };
 
-export const getFiltersText = (filters: IFilters) => {
+export const getFiltersText = (
+  filters: IFilters,
+  actor: string | undefined,
+  director: string | undefined
+): string => {
   return Object.keys(filters)
-    .map((key: string) => updateTextArray(filters, key))
+    .map(
+      (key: string) =>
+        (key === "actor" && actor) ||
+        (key === "director" && director) ||
+        updateTextArray(filters, key)
+    )
     .join(", ");
 };

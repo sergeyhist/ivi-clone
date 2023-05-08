@@ -7,6 +7,6 @@ export const getSortOptions = (router: NextRouter): ISortingOption[] => {
     { slug: "assessments", text: i18n?.t("sorting:ratings-count") || "" },
     { slug: "rating", text: i18n?.t("sorting:rating") || "" },
     { slug: "year", text: i18n?.t("sorting:date") || "" },
-    { slug: `name_${router.locale}`, text: i18n?.t("sorting:abc") || "" },
+    { slug: `name_${router.locale || "ru"}`, text: i18n?.t("sorting:abc") || "" },
   ];
 };

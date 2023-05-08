@@ -7,7 +7,7 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
 import { setSortingMethod } from "/src/store/slices/filtersSlice";
-import {getSortOptions} from "./Sorting.utils";
+import { getSortOptions } from "./Sorting.utils";
 
 const Sorting: FC = () => {
   const { t } = useTranslation("sorting");
@@ -15,7 +15,7 @@ const Sorting: FC = () => {
 
   const sortOptions = getSortOptions(router);
 
-  const filtersState = useAppSelector((state) => state.filters);
+  const { sortingMethod } = useAppSelector((state) => state.filters);
   const dispatch = useAppDispatch();
 
   const titleRef = useRef<HTMLDivElement>(null);
@@ -28,8 +28,7 @@ const Sorting: FC = () => {
     : "";
 
   const titleValue =
-    sortOptions.find((option) => option.slug === filtersState.sortingMethod)
-      ?.text || "";
+    sortOptions.find((option) => option.slug === sortingMethod)?.text || "";
 
   const optionClickHandler = (slug: string): void => {
     dispatch(setSortingMethod(slug));
@@ -39,9 +38,9 @@ const Sorting: FC = () => {
   useCloseEvents([titleRef, dropdownRef], setIsDropdownActive);
 
   useEffect(() => {
-    filtersState.sortingMethod.includes("name_") &&
-      dispatch(setSortingMethod(`name_${router.locale}`));
-  }, [router.locale]);
+    sortingMethod.includes("name_") &&
+      dispatch(setSortingMethod(`name_${router.locale as string}`));
+  }, [dispatch, router.locale, sortingMethod]);
 
   return (
     <div className="container">
@@ -61,7 +60,7 @@ const Sorting: FC = () => {
           {sortOptions.map((option, i) => (
             <SortingOption
               key={i}
-              isActive={filtersState.sortingMethod === option.slug}
+              isActive={sortingMethod === option.slug}
               clickCallback={() => optionClickHandler(option.slug)}
             >
               {option.text}
