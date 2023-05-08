@@ -1,4 +1,4 @@
-import { FC, useRef } from "react";
+import { FC } from "react";
 import { useTranslation } from "next-i18next";
 import styles from "./Filters.module.sass";
 import { yearFilterItems } from "./Filters.utils";
@@ -9,30 +9,18 @@ import ResetButton from "./ResetButton/ResetButton";
 import SingleSelector from "./SingleSelector/SingleSelector";
 import { useRouter } from "next/router";
 import { setQueryParams } from "/src/utils/query";
-import { IPerson } from "/src/types/IPerson";
 import { useAppSelector } from "/src/hooks/redux";
 import { changeHandler } from "/src/utils/filters/changeHandler";
-import {defaultFilters} from "/src/utils/filters/filtersVariables";
-
-interface FiltersProps {
-  genres: string[];
-  countries: string[];
-  actors: IPerson[];
-  directors: IPerson[];
-}
+import { defaultFilters } from "/src/utils/filters/filtersVariables";
 
 const sortHandler = (a: string, b: string): 1 | -1 => (a > b ? 1 : -1);
 
-const Filters: FC<FiltersProps> = ({
-  genres,
-  countries,
-  actors,
-  directors,
-}) => {
+const Filters: FC = () => {
   const { t } = useTranslation("filters");
   const router = useRouter();
-
   const filtersState = useAppSelector((state) => state.filters);
+  const persons = useAppSelector((state) => state.persons);
+  const slugs = useAppSelector((state) => state.slugs);
 
   return (
     <div className="container">
@@ -40,7 +28,7 @@ const Filters: FC<FiltersProps> = ({
         <div className={styles.filters__top}>
           <MultiSelector
             title={t("genre")}
-            items={genres}
+            items={slugs.genresSlugs}
             filters={filtersState.filters}
             filtersType="genres"
             getFilter={(result) =>
@@ -52,7 +40,7 @@ const Filters: FC<FiltersProps> = ({
           />
           <MultiSelector
             title={t("country")}
-            items={countries.sort(sortHandler)}
+            items={[...slugs.countriesSlugs].sort(sortHandler)}
             filters={filtersState.filters}
             filtersType={"countries"}
             getFilter={(result) =>
@@ -110,7 +98,7 @@ const Filters: FC<FiltersProps> = ({
           />
           <PersonSelector
             type="actor"
-            list={actors}
+            list={persons.actors}
             filter={filtersState.filters.actor as string}
             getFilter={(result) =>
               setQueryParams(router, {
@@ -120,7 +108,7 @@ const Filters: FC<FiltersProps> = ({
           />
           <PersonSelector
             type="director"
-            list={directors}
+            list={persons.directors}
             filter={filtersState.filters.director as string}
             getFilter={(result) =>
               setQueryParams(router, {
