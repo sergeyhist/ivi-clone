@@ -1,13 +1,13 @@
 import { FC, useEffect, useState } from "react";
 import styles from "./Filmography.module.sass";
 import { IMovie } from "/src/types/IMovie";
-import {getMoviesById} from "/src/api/movieApi";
+import { getMoviesById } from "/src/api/movieApi";
 import Image from "next/image";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import BreadCrumbs from "/src/UI/BreadCrumbs/BreadCrumbs";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import useMovieDeclination from "/src/hooks/useMovieDeclination";
+import {getMovieDeclination} from "/src/utils/getMovieDeclination";
 
 interface FilmographyProps {
   firstName?: string;
@@ -15,11 +15,15 @@ interface FilmographyProps {
   moviesId: string[];
 }
 
-const Filmography: FC<FilmographyProps> = ({ moviesId,firstName,lastName }) => {
+const Filmography: FC<FilmographyProps> = ({
+  moviesId,
+  firstName,
+  lastName,
+}) => {
   const [movies, setMovies] = useState<IMovie[] | undefined>([]);
   const [moviesToShow, setMoviesToShow] = useState<IMovie[] | undefined>();
   const { t } = useTranslation("person");
-  const router = useRouter();
+  const { locale } = useRouter();
 
   useEffect(() => {
     getMoviesById(moviesId).then((res) => setMovies(res));
@@ -41,9 +45,10 @@ const Filmography: FC<FilmographyProps> = ({ moviesId,firstName,lastName }) => {
             {t("filmography")}
             <span>
               {movies &&
-                `${movies.length} ${
-                  useMovieDeclination(movies.length)
-                }`}
+                `${movies.length} ${getMovieDeclination(
+                  movies.length,
+                  locale
+                )}`}
             </span>
           </h2>
           <div className={styles.movies}>
@@ -66,7 +71,7 @@ const Filmography: FC<FilmographyProps> = ({ moviesId,firstName,lastName }) => {
                     <div className={styles.info}>
                       <div className={styles.year}>{movie.year}</div>
                       <div className={styles.name}>
-                        {router.locale === "ru" ? movie.name_ru : movie.name_en}
+                        {locale === "ru" ? movie.name_ru : movie.name_en}
                       </div>
                       <div className={styles.rating}>
                         {`${t("rating")} ${movie.rating}`}
@@ -82,12 +87,13 @@ const Filmography: FC<FilmographyProps> = ({ moviesId,firstName,lastName }) => {
           </div>
           {movies && moviesToShow && moviesToShow.length <= 8 && (
             <div className={styles.show__btn} onClick={handleShowMovies}>
-              {`${t("showButton")} ${movies.length - 8} ${useMovieDeclination(
-                movies.length
+              {`${t("showButton")} ${movies.length - 8} ${getMovieDeclination(
+                movies.length,
+                locale
               )} `}
             </div>
           )}
-          {/*<BreadCrumbs type="slash" currentTitle={(firstName && lastName) && `${firstName} ${lastName}`}/>*/}
+          <BreadCrumbs type="slash" currentTitle={(firstName && lastName) && `${firstName} ${lastName}`}/>
         </div>
       </div>
     </section>

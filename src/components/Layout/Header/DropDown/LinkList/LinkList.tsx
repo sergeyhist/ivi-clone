@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import Links from "../Links/Links";
 import styles from "./LinkList.module.sass";
 import { DropDownType } from "../../Header.utils";
@@ -16,9 +16,9 @@ interface LinkListProps {
 
 const LinkList: FC<LinkListProps> = ({ selectedGenre }) => {
   const { t } = useTranslation();
-
   const [genresList, setGenresList] = useState<string[]>();
   const [countriesList, setCountriesList] = useState<string[]>();
+  const previousSelectedGenre = useRef<DropDownType>("");
   const storedSlugs = useAppSelector((state) => state.slugs);
 
   const order: DropDownType[] = ["movies", "series", "cartoons"];
@@ -46,9 +46,12 @@ const LinkList: FC<LinkListProps> = ({ selectedGenre }) => {
   });
 
   useEffect(() => {
-    setGenresList(localizeAndLimitList(genresSlugs, "genres", 20, t));
-    setCountriesList(localizeAndLimitList(countriesSlugs, "countries", 4, t));
-  }, []);
+    if (selectedGenre !== previousSelectedGenre.current) {
+      setGenresList(localizeAndLimitList(genresSlugs, "genres", 20, t));
+      setCountriesList(localizeAndLimitList(countriesSlugs, "countries", 4, t));
+      previousSelectedGenre.current = selectedGenre;
+    }
+  }, [countriesSlugs, genresSlugs, selectedGenre, t]);
 
   return (
     <div className={styles.list}>
