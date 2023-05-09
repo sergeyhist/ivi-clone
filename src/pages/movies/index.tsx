@@ -2,15 +2,16 @@ import { FC } from "react";
 import Filters from "../../components/Catalog/Filters/Filters";
 import Layout from "/src/components/Layout/Layout";
 import Sorting from "../../components/Catalog/Sorting/Sorting";
-import styles from "/src/styles/pages/MoviesPage.module.sass";
 import BreadCrumbs from "../../UI/BreadCrumbs/BreadCrumbs";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticPropsResult } from "next";
 import MoviesList from "/src/components/Catalog/MoviesList/MoviesList";
-
 import { useAppSelector } from "/src/hooks/redux";
-import {getFiltersText} from "/src/utils/filters/getFiltersText";
+import { getFiltersText } from "/src/utils/filters/getFiltersText";
+import CustomTitle from "/src/UI/CustomTitle/CustomTitle";
+import FiltersInfo from "/src/components/Catalog/FiltersInfo/FiltersInfo";
+import MoviesLayout from "/src/components/Catalog/MoviesLayout/MoviesLayout";
 
 const Movies: FC = () => {
   const { t } = useTranslation(["titles", "sorting"]);
@@ -18,23 +19,14 @@ const Movies: FC = () => {
 
   return (
     <Layout title={t("titles:movies")}>
-      <div className={styles.page}>
+      <MoviesLayout>
         <BreadCrumbs type="slash" currentTitle={getFiltersText(filters)} />
-        <h1 className={styles.page__title + " container"}>
-          {t("titles:movies")}
-        </h1>
-        <div className={styles.page__info + " container"}>
-          {getFiltersText(filters)}
-        </div>
+        <CustomTitle title={t("titles:movies")} />
+        <FiltersInfo />
         <Sorting />
-        <Filters
-          countries={[]}
-          genres={[]}
-          actors={[]}
-          directors={[]}
-        />
+        <Filters />
         <MoviesList />
-      </div>
+      </MoviesLayout>
     </Layout>
   );
 };
@@ -59,7 +51,7 @@ export const getStaticProps = async ({
         "mobileMenu",
         "dropDownCategory",
         "year",
-        "registration"
+        "registration",
       ])),
     },
   };

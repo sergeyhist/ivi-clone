@@ -13,7 +13,7 @@ const PersonList = forwardRef<HTMLUListElement, PersonListProps>(
   ({ items, getPerson }, ref) => {
     const router = useRouter();
 
-    const clickHandler = (person: IPerson) => {
+    const clickHandler = (person: IPerson): void => {
       getPerson(`${person.first_name_en} ${person.last_name_en}`);
     };
 
@@ -48,5 +48,7 @@ const PersonList = forwardRef<HTMLUListElement, PersonListProps>(
     );
   }
 );
+
+PersonList.displayName = "PersonList";
 
 export default PersonList;

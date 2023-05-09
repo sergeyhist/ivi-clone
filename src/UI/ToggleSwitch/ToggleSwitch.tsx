@@ -1,13 +1,14 @@
-import { ChangeEvent, FC } from "react";
+import { FC, useEffect, useState } from "react";
+import { useDebouncedCallback } from "use-debounce";
 import styles from "./ToggleSwitch.module.sass";
 
 interface ToggleSwitchProps {
   className?: string;
   leftContent: string;
   rightContent: string;
-  clickCallback: (e?: ChangeEvent<HTMLInputElement>) => void;
+  clickCallback: (result: string) => void;
   scale?: string;
-  isChecked?: boolean;
+  defaultValue?: "left" | "right";
 }
 
 const ToggleSwitch: FC<ToggleSwitchProps> = ({
@@ -15,26 +16,39 @@ const ToggleSwitch: FC<ToggleSwitchProps> = ({
   leftContent,
   rightContent,
   clickCallback,
-  isChecked= false,
   scale = "0.8",
+  defaultValue,
 }) => {
+  const [isActive, setIsActive] = useState(false);
+  const [toggleValue, setToggleValue] = useState<string>(
+    defaultValue || "left"
+  );
+
+  const debouncedCallback = useDebouncedCallback(clickCallback, 200);
+
+  const activeToggle = isActive ? ` ${styles.toggle_active}` : "";
+
+  useEffect(() => {
+    setIsActive(true);
+    debouncedCallback(toggleValue === "left" ? leftContent : rightContent);
+    setTimeout(() => setIsActive(false), 600);
+  }, [debouncedCallback, leftContent, rightContent, toggleValue]);
+
   return (
     <div
-      className={`${styles.container} ${className}`}
+      onClick={() => {
+        setToggleValue(toggleValue === "left" ? "right" : "left");
+      }}
+      className={`${styles.toggle} ${className} ${activeToggle}`}
       style={{ scale: scale }}
     >
-      <input
-        className={styles.checkbox}
-        id={`react-switch-new`}
-        onChange={clickCallback}
-        checked={isChecked}
-        type="checkbox"
+      <div
+        className={`${styles.toggle__button} ${
+          styles[`toggle__button_${toggleValue}`]
+        }`}
       />
-      <label className={styles.label} htmlFor={`react-switch-new`}>
-        <span className={styles.button} />
-        <span className={styles.left__item}>{leftContent}</span>
-        <span className={styles.right__item}>{rightContent}</span>
-      </label>
+      <span className={styles.toggle__left}>{leftContent}</span>
+      <span className={styles.toggle__right}>{rightContent}</span>
     </div>
   );
 };

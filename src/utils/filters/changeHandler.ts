@@ -4,7 +4,7 @@ import {isFilterActive} from "./isFilterActive";
 export const changeHandler = (
   filter: string[] | string,
   slug: string,
-  replace: boolean = false
+  replace = false
 ): string[] => {
   let result: string[];
 

@@ -11,6 +11,7 @@ import {
 } from "/src/store/slices/filtersSlice";
 import { IMovie } from "/src/types/IMovie";
 import MovieCard from "/src/UI/MovieCard/MovieCard";
+import { compareFilters } from "/src/utils/filters/compareFilters";
 import filterMovies from "/src/utils/filters/filterMovies";
 import { listLimit } from "/src/utils/filters/filtersVariables";
 import { getFiltersFromRoute } from "/src/utils/filters/getFiltersFromRoute";
@@ -28,26 +29,29 @@ const MoviesList: FC = () => {
   } = useAppSelector((state) => state.filters);
   const dispatch = useAppDispatch();
 
-  const setPageRoute = (page: number) => {
+  const setPageRoute = (page: number): void => {
     setQueryParams(router, { page: page.toString() });
   };
 
   const debouncedFilter = useDebouncedCallback(() => {
     filterMovies(filters, sortingMethod);
-  }, 400);
+  }, 1000);
+
+  useEffect(() => {
+    const routeFilters = getFiltersFromRoute(router);
+
+    compareFilters(routeFilters, filters) && dispatch(setFilters(routeFilters));
+  }, [router, filters, dispatch]);
 
   useEffect(() => {
     dispatch(setIsMoviesLoading(true));
     debouncedFilter();
-  }, [sortingMethod]);
+  }, [dispatch, filters, sortingMethod, debouncedFilter]);
 
   useEffect(() => {
     router.query.page
       ? dispatch(setFilteredMoviesPage(Number(router.query.page)))
       : dispatch(setFilteredMoviesPage(1));
-    dispatch(
-      setFilters(getFiltersFromRoute(router, filters, () => debouncedFilter()))
-    );
   }, [router, dispatch]);
 
   return (

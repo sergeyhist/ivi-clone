@@ -1,12 +1,4 @@
-import {
-  ChangeEvent,
-  Dispatch,
-  FC,
-  LegacyRef,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import { Dispatch, FC, LegacyRef, SetStateAction } from "react";
 import styles from "./ActionLayout.module.sass";
 import ToggleSwitch from "/src/UI/ToggleSwitch/ToggleSwitch";
 import Actions from "/src/components/Layout/Header/ActionLayout/Actions/Actions";
@@ -25,16 +17,9 @@ const ActionLayout: FC<ActionLayout> = ({
   setDropDownType,
 }) => {
   const { locale, push, asPath } = useRouter();
-  const [selectedLanguage, setSelectedLanguage] = useState(false);
 
-  useEffect(() => {
-    locale === "ru" ? setSelectedLanguage(true) : setSelectedLanguage(false);
-  }, [setSelectedLanguage, locale]);
-  const handleLocaleClick = (e?: ChangeEvent<HTMLInputElement>): void => {
-    if (e && e.target.checked)
-      push(asPath, undefined, { locale: "ru", scroll: false });
-    else push(asPath, undefined, { locale: "en", scroll: false });
-    setSelectedLanguage((prevState) => !prevState);
+  const handleLocaleClick = (result: string): void => {
+    push(asPath, undefined, { locale: result, scroll: false });
   };
 
   return (
@@ -43,9 +28,11 @@ const ActionLayout: FC<ActionLayout> = ({
         className={styles.switch}
         leftContent="EN"
         rightContent="RU"
+        defaultValue={locale === "ru" ? "right" : "left"}
         scale={"0.7"}
-        isChecked={selectedLanguage}
-        clickCallback={handleLocaleClick}
+        clickCallback={(result) => {
+          handleLocaleClick(result.toLowerCase());
+        }}
       />
       <Actions
         setIsDropdownActive={setIsDropdownActive}
