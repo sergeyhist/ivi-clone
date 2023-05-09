@@ -1,9 +1,8 @@
-import { Suspense } from "react";
-import { initReactI18next, I18nextProvider } from "react-i18next";
-import BackEnd from "i18next-http-backend";
-import i18next from "i18next";
-import { useGlobals } from "@storybook/addons";
+import { I18nextProvider } from "react-i18next";
 import React from "react";
+import i18next, { changeLanguage } from "i18next";
+import { useGlobals } from "@storybook/addons";
+import i18n from "./i18n";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -30,29 +29,15 @@ export const globalTypes = {
 };
 
 export const decorators = [
-  (Story, Context) => {
+  (Story) => {
     const [{ locale }] = useGlobals();
 
-    i18next
-    .use(BackEnd)
-    .use(initReactI18next)
-    .init({
-      lng: locale,
-      fallbackLng: "en",
-      ns: "common",
-      defaultNS: "common",
-      backend: {
-        loadPath: "locales/{{lng}}/{{ns}}.json",
-      },
-      debug: true,
-    });
+    changeLanguage(locale);
 
     return (
-      <Suspense fallback="Loading...">
-        <I18nextProvider i18n={i18next}>
-          <Story />
-        </I18nextProvider>
-      </Suspense>
+      <I18nextProvider i18n={i18n || i18next}>
+        <Story />
+      </I18nextProvider>
     );
   },
 ];
