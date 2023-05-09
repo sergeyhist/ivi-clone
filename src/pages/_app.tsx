@@ -3,7 +3,6 @@ import { FC } from "react";
 import { Provider } from "react-redux";
 import { store } from "../store";
 import { appWithTranslation } from "next-i18next";
-import "../utils/i18n";
 import "/src/styles/global.sass";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import localFont from "next/font/local";
