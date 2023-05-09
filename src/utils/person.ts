@@ -1,11 +1,11 @@
 import { IPerson } from "/src/types/IPerson";
 
-export const getPersonFirstName = (person: IPerson, locale: string | undefined = "en"): string => {
-  return String(person["first_name_" + String(locale)]);
+export const getPersonFirstName = (person: IPerson, locale = "en"): string => {
+  return String(person["first_name_" + locale]);
 };
 
-export const getPersonLastName = (person: IPerson, locale: string | undefined = "en"): string => {
-  return String(person["last_name_" + String(locale)]);
+export const getPersonLastName = (person: IPerson, locale = "en"): string => {
+  return String(person["last_name_" + locale]);
 };
 
 export const getPersonRole = (person: IPerson): string => {
@@ -24,7 +24,7 @@ export const mockPersons: IPerson[] = [
       {
         film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
         film_role: "режиссер",
-        slug: "rezhisser",
+        slug: "filmmaker",
       },
     ],
     films: [
@@ -47,7 +47,7 @@ export const mockPersons: IPerson[] = [
       {
         film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
         film_role: "режиссер",
-        slug: "rezhisser",
+        slug: "filmmaker",
       },
     ],
     films: [
@@ -70,7 +70,7 @@ export const mockPersons: IPerson[] = [
       {
         film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
         film_role: "режиссер",
-        slug: "rezhisser",
+        slug: "filmmaker",
       },
     ],
     films: [
@@ -93,7 +93,7 @@ export const mockPersons: IPerson[] = [
       {
         film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
         film_role: "режиссер",
-        slug: "rezhisser",
+        slug: "filmmaker",
       },
     ],
     films: [
@@ -116,7 +116,7 @@ export const mockPersons: IPerson[] = [
       {
         film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
         film_role: "режиссер",
-        slug: "rezhisser",
+        slug: "filmmaker",
       },
     ],
     films: [
@@ -139,7 +139,7 @@ export const mockPersons: IPerson[] = [
       {
         film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
         film_role: "режиссер",
-        slug: "rezhisser",
+        slug: "filmmaker",
       },
     ],
     films: [
@@ -162,7 +162,7 @@ export const mockPersons: IPerson[] = [
       {
         film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
         film_role: "режиссер",
-        slug: "rezhisser",
+        slug: "filmmaker",
       },
     ],
     films: [
@@ -185,7 +185,7 @@ export const mockPersons: IPerson[] = [
       {
         film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
         film_role: "режиссер",
-        slug: "rezhisser",
+        slug: "filmmaker",
       },
     ],
     films: [
@@ -208,7 +208,7 @@ export const mockPersons: IPerson[] = [
       {
         film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
         film_role: "режиссер",
-        slug: "rezhisser",
+        slug: "filmmaker",
       },
     ],
     films: [
@@ -231,7 +231,7 @@ export const mockPersons: IPerson[] = [
       {
         film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
         film_role: "режиссер",
-        slug: "rezhisser",
+        slug: "filmmaker",
       },
     ],
     films: [
@@ -254,7 +254,7 @@ export const mockPersons: IPerson[] = [
       {
         film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
         film_role: "режиссер",
-        slug: "rezhisser",
+        slug: "filmmaker",
       },
     ],
     films: [
@@ -277,7 +277,7 @@ export const mockPersons: IPerson[] = [
       {
         film_role_id: "83188d46-8045-4236-876f-3480f2fbf2b3",
         film_role: "режиссер",
-        slug: "rezhisser",
+        slug: "filmmaker",
       },
     ],
     films: [

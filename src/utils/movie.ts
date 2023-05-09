@@ -1,4 +1,5 @@
 import { IMovie } from "/src/types/IMovie";
+import { TFunction } from "next-i18next";
 
 export const getFormateNumber = (number: number): string => {
   return number.toLocaleString("ru-RU");
@@ -6,6 +7,14 @@ export const getFormateNumber = (number: number): string => {
 
 export const getMovieName = (movie: IMovie, locale = "en"): string => {
   return String(movie["name_" + locale]);
+};
+
+export const getFormateDate = (date: Date, t: TFunction): string => {
+  const day = date.getDate();
+  const monthIndex = date.getMonth();
+  const year = date.getFullYear();
+
+  return `${day} ${t(`movie:months.${monthIndex}`)} ${year}`;
 };
 
 export const mockMovie: IMovie = {

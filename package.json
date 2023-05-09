@@ -8,8 +8,7 @@
         "start": "next start",
         "lint": "next lint",
         "storybook": "storybook dev -p 6006",
-        "build-storybook": "storybook build",
-        "start-storybook": "storybook -s ./public"
+        "build-storybook": "storybook build"
     },
     "dependencies": {
         "@react-oauth/google": "^0.11.0",

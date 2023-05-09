@@ -16,13 +16,27 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments }) => {
 
   const handleSubmitForm = (event: FormEvent): void => {
     event.preventDefault();
+    const date = new Date();
     const newComment: IComment = {
-      title: "Vegeta",
+      comment_id: "4d522235-7915-4122-8303-4bc79ea603a5",
+      title: "About film",
       text: inputText,
-      film_id: String(commentsState.length + 1),
-      parent_id: String(commentsState.length + 1),
-      user_id: commentsState.length + 1,
+      film_id: "eb5eb005-5818-4cee-9f7b-0fc6c1fae2cc",
+      createdAt: date.toISOString(),
+      updatedAt: date.toISOString(),
+      user_id: "f7b2bc15-ea49-453e-a924-c0c32b21cee0",
+      parent_id: null,
+      user: {
+        email: "admin@gmail.com",
+        profile: {
+          profile_id: "51ab6af9-0739-4384-8f52-f5cee6b7ca58",
+          first_name: "Victor",
+          last_name: "Barinov",
+        },
+      },
+      sub_comments: [],
     };
+
     setCommentsState([...commentsState, newComment]);
     setInputText("");
   };
@@ -38,7 +52,7 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments }) => {
         buttonText={t("commentsInput.submit")}
         placeholderText={t("commentsInput.placeholder")}
       />
-      <CommentsList comments={commentsState} />
+      <CommentsList action={setInputText} comments={commentsState} />
     </form>
   );
 };

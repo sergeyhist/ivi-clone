@@ -13,9 +13,9 @@ import { useRouter } from "next/router";
 import { IMovie } from "/src/types/IMovie";
 import { IComment } from "/src/types/IComment";
 import { IPerson } from "/src/types/IPerson";
-// import { mockMovie } from "/src/utils/movie";
-// import { mockPersons } from "/src/utils/person";
-// import { mockComments } from "/src/utils/comments";
+import { mockMovie } from "/src/utils/movie";
+import { mockPersons } from "/src/utils/person";
+import { mockComments } from "/src/utils/comments";
 import { getMovieName } from "/src/utils/movie";
 import { useTranslation } from "next-i18next";
 import {
@@ -41,9 +41,9 @@ const Movie: FC<MovieProps> = ({
 }) => {
   const { t } = useTranslation("common");
   const { locale } = useRouter();
-  const movie = serverMovie;
-  const persons = serverPersons;
-  const comments = serverComments;
+  const movie = mockMovie;
+  const persons = mockPersons;
+  const comments = mockComments;
 
   return (
     <>
