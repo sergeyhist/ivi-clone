@@ -21,11 +21,11 @@ const Home: FC<HomeProps> = ({ bestFantasyMovies, bestDramaMovies }) => {
   const { t } = useTranslation(["titles", "home"]);
   const compilations = [
     {
-      movies: [mockMovie],
+      movies: bestFantasyMovies.length ? bestFantasyMovies : [mockMovie],
       title: t("home:compilations.subscribe"),
     },
     {
-      movies: [mockMovie],
+      movies: bestDramaMovies.length ? bestDramaMovies : [mockMovie],
       title: t("home:compilations.subscribe"),
     },
   ];

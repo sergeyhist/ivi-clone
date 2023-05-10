@@ -41,9 +41,12 @@ const Movie: FC<MovieProps> = ({
 }) => {
   const { t } = useTranslation("common");
   const { locale } = useRouter();
-  const movie = mockMovie;
-  const persons = mockPersons;
-  const comments = mockComments;
+  const movie = serverMovie ? serverMovie : mockMovie;
+  const persons = serverPersons.length ? serverPersons : mockPersons;
+  const comments = serverComments.length ? serverComments : mockComments;
+  const relatedMovies = serverRelatedMovies.length
+    ? serverRelatedMovies
+    : [mockMovie];
 
   return (
     <>
@@ -52,7 +55,7 @@ const Movie: FC<MovieProps> = ({
           <BreadCrumbs mobileVersion={true} />
           <MovieInfo movie={movie} persons={persons} />
           <RelatedMovies
-            movies={serverRelatedMovies}
+            movies={relatedMovies}
             movieTitle={getMovieName(movie, locale)}
           />
           <CreatorsList persons={persons} />
