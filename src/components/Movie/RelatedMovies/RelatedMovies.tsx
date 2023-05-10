@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { mockMovie } from "/src/utils/movie";
 import MovieSlider from "/src/UI/MovieSlider/MovieSlider";
 import styles from "./RelatedMovies.module.sass";
 import { useTranslation } from "next-i18next";

@@ -1,12 +1,56 @@
 .container
   width: 100%
 
-  .comment
-    display: flex
-    justify-content: space-between
-    margin-bottom: 20px
+.comment
+  display: flex
+  justify-content: space-between
+  margin-bottom: 20px
 
-    .text
-      font-size: 15px
-      line-height: 22px
-      color: rgba(255, 255, 255, .72)
+.text
+  padding-left: 0
+  font-size: 15px
+  line-height: 22px
+  font-weight: 400
+  font-style: normal
+  color: #d9d7e0
+  margin-top: 4px
+  margin-bottom: 4px
+  width: 100%
+
+.top
+  display: flex
+  justify-content: space-between
+  &__content
+    display: flex
+
+  &__actions
+    display: flex
+
+.comment__add
+  cursor: pointer
+  height: 20px
+  margin-right: 16px
+  .top__icon
+    color: rgba(126, 121, 143, .72)
+    transition: .3s
+    stroke-width: 1.75%
+
+  &:hover
+    .top__icon
+      color: rgba(126, 121, 143, 0.99)
+
+.title
+  margin-right: 8px
+  font-weight: 700
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+  font-size: 13px
+  line-height: 16px
+  font-style: normal
+
+.date
+  white-space: nowrap
+  font-size: 13px
+  line-height: 16px
+  font-style: normal

@@ -6,7 +6,12 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { IPerson } from "/src/types/IPerson";
 import { getBackendImage } from "/src/utils/getBackendImg";
-import { getPersonFirstName, getPersonLastName, getPersonRole } from "/src/utils/person";
+import {
+  getPersonFirstName,
+  getPersonLastName,
+  getPersonRole,
+} from "/src/utils/person";
+import { declOfNum } from "/src/utils/declOfNum";
 
 interface CreatorProps {
   person: IPerson;
@@ -18,11 +23,19 @@ const Creator: FC<CreatorProps> = ({ person, type = "small", className = "" }) =
   const { t } = useTranslation("movie");
   const { locale } = useRouter();
   const creatorClassName = styles["creator_" + type];
+  const subTitleContent =
+    type === "small"
+      ? t("creators." + getPersonRole(person))
+      : declOfNum(person.films.length, [
+          t("movie-decl.0"),
+          t("movie-decl.1"),
+          t("movie-decl.2"),
+        ]);
 
   return (
     <Link
       className={`${styles.creator} ${creatorClassName} ${className}`}
-      href={"/persons/" + person.person_id}
+      href={"/person/" + person.person_id}
     >
       <div className={styles.wrapper}>
         <Image
@@ -38,7 +51,7 @@ const Creator: FC<CreatorProps> = ({ person, type = "small", className = "" }) =
       <div>
         <h4 className={styles.title}>{getPersonFirstName(person, locale)}</h4>
         <h4 className={styles.title}>{getPersonLastName(person, locale)}</h4>
-        <p className={styles.subtitle}>{t("creators." + getPersonRole(person))}</p>
+        <p className={styles.subtitle}>{subTitleContent}</p>
       </div>
     </Link>
   );

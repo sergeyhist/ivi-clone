@@ -1,7 +1,6 @@
 import { FC } from "react";
 import styles from "./MovieTrailer.module.sass";
 import Image from "next/image";
-import CustomButton from "/src/UI/CustomButton/CustomButton";
 import { IMovie } from "/src/types/IMovie";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";

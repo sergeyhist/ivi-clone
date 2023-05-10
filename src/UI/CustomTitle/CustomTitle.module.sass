@@ -1,6 +1,73 @@
+@use '/src/styles/vars'
 
 .wrapper
   display: flex
 
 .title
   font-size: 24px
+  color: vars.$whiteTextColor
+  line-height: 28px
+  font-weight: 700
+  position: relative
+
+  &_link
+    display: inline-block
+    &::after
+      content: "\e046"
+      display: inline-block
+      font-family: iconfont
+      font-weight: 400
+      font-style: normal
+      font-size: 16px
+      line-height: 16px
+      margin-left: 8px
+
+  &_underline
+    box-shadow: 0 1px 0 rgb(255 255 255 / 16%), inset 0 0 0 rgb(255 255 255 / 16%)
+    cursor: pointer
+    transition: 0.3s
+    &:hover
+      box-shadow: 0 1px 0 #ffffff, inset 0 0 0 #ffffff
+
+  &_large
+    font-size: 42px
+    line-height: 44px
+
+  &_medium
+    font-size: 40px
+    line-height: 44px
+
+  &_small
+    font-size: 20px
+    line-height: 20px
+    font-weight: 400
+
+@media (max-width: 880px)
+  .title
+    &_large
+      font-size: 56px
+      line-height: 56px
+
+@media (max-width: 600px)
+  .title
+    &_link
+      display: flex
+      justify-content: space-between
+      align-items: center
+      width: 100%
+
+    &_default
+      font-size: 20px
+      line-height: 24px
+
+    &_large
+      font-size: 32px
+      line-height: 32px
+
+    &_medium
+      font-size: 28px
+      line-height: 32px
+
+    &_small
+      font-size: 15px
+      line-height: 15px
