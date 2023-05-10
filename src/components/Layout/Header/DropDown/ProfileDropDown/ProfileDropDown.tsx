@@ -3,16 +3,16 @@ import styles from "./ProfileDropDown.module.sass";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import { cardsIcons, profileLinks } from "./ProfileDropDown.utils";
 import { useTranslation } from "next-i18next";
-import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
-import { setShowModal } from "/src/store/slices/modalsSlice";
+import {useAppDispatch, useAppSelector} from "/src/hooks/redux";
+import {setShowAuthModal} from "/src/store/slices/modalsSlice";
 
 const ProfileDropDown: FC = () => {
   const { t } = useTranslation("header");
-  const showModal = useAppSelector((state) => state.showModal);
+  const authState = useAppSelector(state => state.auth);
   const dispatch = useAppDispatch();
 
   const handleAuthClick = (): void => {
-    dispatch(setShowModal({ ...showModal, showAuthModal: true }));
+    dispatch(setShowAuthModal(true));
   };
 
   return (
@@ -35,9 +35,19 @@ const ProfileDropDown: FC = () => {
         })}
       </div>
       <div className={styles.profile__side}>
-        <CustomButton clickCallback={handleAuthClick} type="red">
-          <div>{t("profile.auth")}</div>
-        </CustomButton>
+        {authState.isLogged ?
+          <div>
+            <div>{authState.userEmail}</div>
+            <CustomButton type="red">
+              Logout
+            </CustomButton>
+          </div>
+          :
+          <CustomButton clickCallback={handleAuthClick} type="red">
+            <div>{t("profile.auth")}</div>
+          </CustomButton>
+        }
+
         <div className={styles.profile__side_links}>
           <a href="https://www.ivi.ru/profile/settings" target="_blank">
             {t("profile.settings.0")}

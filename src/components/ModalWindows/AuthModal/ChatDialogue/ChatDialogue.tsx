@@ -13,9 +13,12 @@ import ModalInput from "/src/UI/ModalInput/ModalInput";
 import { cssTransitionClassNames } from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDoalogue.utils";
 import ErrorMessage from "/src/components/ModalWindows/AuthModal/ChatDialogue/ErrorMessage/ErrorMessage";
 import EmailInput from "/src/components/ModalWindows/AuthModal/ChatDialogue/EmailInput/EmailInput";
-import { createUser } from "/src/api/userApi";
+import { createUser, login } from "/src/api/userApi";
 import { useTranslation } from "next-i18next";
 import ChatMessage from "/src/components/ModalWindows/AuthModal/ChatMessage/ChatMessage";
+import {useAppDispatch} from "/src/hooks/redux";
+import { setAuth } from "/src/store/slices/authSlice";
+import {setShowAuthModal} from "/src/store/slices/modalsSlice";
 
 interface ChatDialogueProps {
   setProgressBarWidth: Dispatch<SetStateAction<{ width: number }>>;
@@ -23,13 +26,18 @@ interface ChatDialogueProps {
   isEmailExist: boolean | undefined;
 }
 
-const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth,setIsEmailExist,isEmailExist }) => {
+const ChatDialogue: FC<ChatDialogueProps> = ({
+  setProgressBarWidth,
+  setIsEmailExist,
+  isEmailExist,
+}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showErrorMessage, setShowErrorMessage] = useState(false);
   const [showForm, setShowFrom] = useState(false);
   const [isEmailInputSuccess, setIsEmailInputSuccess] = useState(false);
   const { t } = useTranslation("registration");
+  const dispatch = useAppDispatch();
 
   const emailChangeRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
@@ -51,11 +59,16 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth,setIsEmailExi
 
   const handleSubmitForm = (e: FormEvent): void => {
     e.preventDefault();
+    console.log("action");
     if (email && password) {
-      if(isEmailExist){
-
-      }
-      createUser({ email: email, password: password });
+      console.log("action");
+      if (isEmailExist) {
+        login(email, password).then((res) =>
+          localStorage.setItem("token", JSON.stringify(res || ""))
+        );
+      } else createUser({ email: email, password: password });
+      dispatch(setAuth({ isLogged: true, userEmail: email }));
+      dispatch(setShowAuthModal(false));
     } else setIsEmailInputSuccess(true);
   };
 
@@ -112,7 +125,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth,setIsEmailExi
                 isEmailExist ? t("passwordMessage") : t("passwordHint.title")
               }
               subtitleText={
-                !isEmailExist ? (String(t("passwordHint.title"))) : undefined
+                !isEmailExist ? String(t("passwordHint.title")) : undefined
               }
             />
             <ModalInput

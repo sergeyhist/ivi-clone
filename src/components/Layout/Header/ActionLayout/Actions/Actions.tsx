@@ -7,7 +7,7 @@ import CustomButton from "/src/UI/CustomButton/CustomButton";
 import { DropDownType } from "../../Header.utils";
 import { useTranslation } from "next-i18next";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
-import { setShowModal } from "/src/store/slices/modalsSlice";
+import {setShowAuthModal,setShowSearchModal} from "/src/store/slices/modalsSlice";
 import { useRouter } from "next/router";
 import Link from "next/link";
 
@@ -22,16 +22,15 @@ const Actions: FC<ActionsProps> = ({
 }) => {
   const { t } = useTranslation("header");
   const windowSizeWidth = useAppSelector((state) => state.windowSize.width);
-  const showModal = useAppSelector((state) => state.showModal);
   const dispatch = useAppDispatch();
   const router = useRouter();
 
   const handleSearchClick = (): void => {
-    dispatch(setShowModal({ ...showModal, showSearchModal: true }));
+    dispatch(setShowSearchModal(true));
   };
 
   const handleProfileClick = (): void => {
-    dispatch(setShowModal({ ...showModal, showAuthModal: true }));
+    dispatch(setShowAuthModal(true));
   };
   return (
     <div className={styles.container}>

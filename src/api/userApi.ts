@@ -22,3 +22,26 @@ export const getUserByEmail = async (email: string): Promise<IUser | undefined>=
   }
 }
 
+export const login = async (email: string, password:string):Promise<string | undefined> =>{
+  try {
+    const data = JSON.stringify({
+      "email": email,
+      "password": password
+    });
+
+    const config = {
+      method: 'post',
+      maxBodyLength: Infinity,
+      url: `${String(process.env.SERVER_HOST)}/login`,
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data : data
+    };
+
+   const response = await axios.request(config);
+   return response.data as string;
+  }catch (err){
+    console.log(err);
+  }
+}
