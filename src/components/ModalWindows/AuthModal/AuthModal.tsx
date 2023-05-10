@@ -11,7 +11,7 @@ interface RegistrationModalProps {
 }
 
 const AuthModal: FC<RegistrationModalProps> = ({ closeCallback }) => {
-
+  const [isEmailExist,setIsEmailExist] = useState<boolean>();
   const [progressBarWidth, setProgressBarWidth] = useState({ width: 10 });
 
   useEffect(() => {
@@ -28,10 +28,11 @@ const AuthModal: FC<RegistrationModalProps> = ({ closeCallback }) => {
   return (
     <div className={styles.chat__container}>
       <ChatHeader
+        isEmailExist={isEmailExist}
         closeCallback={closeCallback}
         progressBarWidth={progressBarWidth}
       />
-      <ChatDialogue setProgressBarWidth={setProgressBarWidth} />
+      <ChatDialogue setIsEmailExist={setIsEmailExist} isEmailExist={isEmailExist} setProgressBarWidth={setProgressBarWidth} />
       <div className={styles.social_auth}>
         <GoogleLoginButton/>
         <VkLoginButton/>

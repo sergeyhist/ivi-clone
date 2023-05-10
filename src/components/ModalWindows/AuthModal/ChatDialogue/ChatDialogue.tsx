@@ -13,15 +13,17 @@ import ModalInput from "/src/UI/ModalInput/ModalInput";
 import { cssTransitionClassNames } from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDoalogue.utils";
 import ErrorMessage from "/src/components/ModalWindows/AuthModal/ChatDialogue/ErrorMessage/ErrorMessage";
 import EmailInput from "/src/components/ModalWindows/AuthModal/ChatDialogue/EmailInput/EmailInput";
-import {createUser} from "/src/api/userApi";
+import { createUser } from "/src/api/userApi";
 import { useTranslation } from "next-i18next";
 import ChatMessage from "/src/components/ModalWindows/AuthModal/ChatMessage/ChatMessage";
 
 interface ChatDialogueProps {
   setProgressBarWidth: Dispatch<SetStateAction<{ width: number }>>;
+  setIsEmailExist: Dispatch<SetStateAction<boolean | undefined>>;
+  isEmailExist: boolean | undefined;
 }
 
-const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
+const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth,setIsEmailExist,isEmailExist }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showErrorMessage, setShowErrorMessage] = useState(false);
@@ -50,6 +52,9 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
   const handleSubmitForm = (e: FormEvent): void => {
     e.preventDefault();
     if (email && password) {
+      if(isEmailExist){
+
+      }
       createUser({ email: email, password: password });
     } else setIsEmailInputSuccess(true);
   };
@@ -79,6 +84,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
           isEmailInputSuccess={isEmailInputSuccess}
           setEmail={setEmail}
           setIsEmailInputSuccess={setIsEmailInputSuccess}
+          setIsEmailExist={setIsEmailExist}
           setShowErrorMessage={setShowErrorMessage}
           showErrorMessage={showErrorMessage}
         />
@@ -101,14 +107,25 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
 
         {isEmailInputSuccess && (
           <>
-            <ChatMessage titleText={t("passwordMessage")}/>
+            <ChatMessage
+              titleText={
+                isEmailExist ? t("passwordMessage") : t("passwordHint.title")
+              }
+              subtitleText={
+                !isEmailExist ? (String(t("passwordHint.title"))) : undefined
+              }
+            />
             <ModalInput
               showErrorMessage={showErrorMessage}
               setIsValid={setShowErrorMessage}
               authData={password}
               showIcon={true}
               setAuthData={setPassword}
-              placeholderText={t("passwordPlaceholder")}
+              placeholderText={
+                isEmailExist
+                  ? t("passwordPlaceholder")
+                  : t("passwordPlaceholderCreate")
+              }
               buttonText={t("submit")}
               inputType="password"
             />

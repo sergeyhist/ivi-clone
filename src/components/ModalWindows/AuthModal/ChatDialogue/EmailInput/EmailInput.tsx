@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction, useRef } from "react";
+import { Dispatch, FC, SetStateAction, useRef} from "react";
 import { CSSTransition } from "react-transition-group";
 import {
   cssTransitionClassNames,
@@ -6,12 +6,14 @@ import {
 } from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDoalogue.utils";
 import ModalInput from "/src/UI/ModalInput/ModalInput";
 import PrivacyPolicy from "/src/components/ModalWindows/AuthModal/ChatDialogue/PrivacyPolicy/PrivacyPolicy";
-import {useTranslation} from "next-i18next";
+import { useTranslation } from "next-i18next";
 import styles from "./EmailInput.module.sass";
+import { getUserByEmail } from "/src/api/userApi";
 
 interface EmailInput {
   isEmailInputSuccess: boolean;
   setIsEmailInputSuccess: Dispatch<SetStateAction<boolean>>;
+  setIsEmailExist: Dispatch<SetStateAction<boolean | undefined>>;
   showErrorMessage: boolean;
   setShowErrorMessage: Dispatch<SetStateAction<boolean>>;
   email: string;
@@ -21,17 +23,20 @@ interface EmailInput {
 const EmailInput: FC<EmailInput> = ({
   isEmailInputSuccess,
   setIsEmailInputSuccess,
+  setIsEmailExist,
   showErrorMessage,
   setShowErrorMessage,
   email,
   setEmail,
 }) => {
   const { t } = useTranslation("registration");
-
   const emailInputRef = useRef<HTMLDivElement>(null);
 
-  const handleEmailSubmit = (): void => {
+  const handleEmailSubmit = async (): Promise<void> => {
     setShowErrorMessage(!validateEmail(email));
+    await getUserByEmail(email).then((res) => {
+      setIsEmailExist(res !== undefined);
+    });
     setIsEmailInputSuccess(validateEmail(email));
   };
 

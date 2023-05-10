@@ -9,10 +9,16 @@ export const createUser = async (userData: IUser):Promise<void>=>{
   }
 }
 
-export const getUserByEmail = async (email: string): Promise<void>=>{
+export const getUserByEmail = async (email: string): Promise<IUser | undefined>=>{
   try{
-    await axios.get(`${String(process.env.SERVER_HOST)}/users/${email}`)
+   const response =  await axios.get<IUser>(`${String(process.env.SERVER_HOST)}/users/${email}`,{
+     headers:{
+       Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZjdiMmJjMTUtZWE0OS00NTNlLWE5MjQtYzBjMzJiMjFjZWUwIiwiZW1haWwiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6W3sicm9sZV9pZCI6ImFiMjBhYjU5LThhMjYtNDUwYy04MWYwLTliNWNiZTQ2YjNlNCIsInZhbHVlIjoiYWRtaW4iLCJkZXNjcmlwdGlvbiI6ItCQ0LTQvNC40L3QuNGB0YLRgNCw0YLQvtGAIn1dLCJpYXQiOjE2ODM3MTAyMjAsImV4cCI6MTY4Mzc5NjYyMH0.uy12G3Srn7tIhEFp3e0_kpK-jjc_e_qIz8bzygEe16k',
+     }
+   });
+   return response.data
   }catch (err){
     console.log(err);
   }
 }
+

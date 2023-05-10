@@ -1,5 +1,7 @@
 {
   "title": "Вход или регистрация",
+  "titleRegistration": "Новый пользователь",
+  "titleLogin": "Здравствуйте",
   "hintMessage": {
     "title": "Войдите или зарегистрируйтесь",
     "subtitle": "чтобы пользоваться сервисом на любом устройстве"
@@ -7,6 +9,11 @@
   "passwordMessage": "Введите пароль чтобы войти",
   "emailPlaceholder": "Через email",
   "passwordPlaceholder": "Введите пароль",
+  "passwordPlaceholderCreate": "Придумайте пароль",
+  "passwordHint": {
+    "title": "Придумайте пароль для входа",
+    "subtitle": "Установите пароль для входа через email, минимум 6 символов"
+  },
   "submit": "Продолжить",
   "errorMessage": {
     "title": "Ошибка",

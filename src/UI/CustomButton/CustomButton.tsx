@@ -5,7 +5,7 @@ import styles from "./CustomButton.module.sass";
 interface CustomButtonProps {
   className?: string;
   children: ReactNode;
-  clickCallback?: () => void;
+  clickCallback?: () => void | Promise<void>;
   type?: "purple" | "red" | "promo" | "icon" | "dark" | "frame";
   style?: CSSProperties;
   preventDefault?: boolean;

@@ -6,18 +6,21 @@ import { useTranslation } from "next-i18next";
 interface ChatHeaderProps {
   closeCallback: () => void;
   progressBarWidth: { width: number };
+  isEmailExist: boolean | undefined;
 }
 
 const ChatHeader: FC<ChatHeaderProps> = ({
   closeCallback,
   progressBarWidth,
+  isEmailExist,
 }) => {
   const { t } = useTranslation("registration");
+  const headerTitle = isEmailExist === undefined ? t("title") : isEmailExist ? t("titleLogin") : t("titleRegistration");
 
   return (
     <div className={styles.header__container}>
       <div className={styles.header__content}>
-        <h2 className={styles.header__title}>{t("title")}</h2>
+        <h2 className={styles.header__title}>{headerTitle}</h2>
         <button
           onClick={closeCallback}
           className={styles.header__button}

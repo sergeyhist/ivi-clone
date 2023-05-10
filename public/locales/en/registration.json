@@ -1,5 +1,7 @@
 {
   "title": "Login or Registration",
+  "titleRegistration": "New User",
+  "titleLogin": "Hi",
   "hintMessage": {
     "title": "Log in or Sign up",
     "subtitle": "to use the service on any device"
@@ -7,6 +9,11 @@
   "passwordMessage": "Enter password to login",
   "emailPlaceholder": "Via email",
   "passwordPlaceholder": "Enter password",
+  "passwordPlaceholderCreate": "Create a password",
+  "passwordHint": {
+    "title": "Create a password for log in",
+    "subtitle": "Set a password to log in via email, minimum 6 characters"
+  },
   "submit": "Continue",
   "errorMessage": {
     "title": "Error",
