@@ -6,7 +6,7 @@ export const getRoutes = (path: string): string[] => {
   catalogs.forEach((path) => {
     prevPath += path + "/";
     if (prevPath.match(/\[id\]/)) return;
-    if (prevPath.match(/persons/)) return;
+    if (prevPath.match(/person/)) return;
     routes.push(prevPath);
   });
 
