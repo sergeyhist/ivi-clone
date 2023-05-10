@@ -13,7 +13,7 @@ const NotFound: FC<NotFoundProps> = ({ title }) => {
 
   return (
     <section className={styles.section + " container"}>
-      <CustomTitle className={styles.title}>{title}</CustomTitle>
+      <CustomTitle className={styles.title} title={title}/>
       <Link href={"/"} className={styles.link}>
         {t("not_found.link")}
       </Link>

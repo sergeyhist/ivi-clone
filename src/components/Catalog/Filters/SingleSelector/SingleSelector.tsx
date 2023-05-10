@@ -28,7 +28,7 @@ const SingleSelector: FC<SingleSelectorProps> = ({
     ? ` ${styles.selector__dropdown_active}`
     : "";
 
-  useCloseEvents([titleRef, dropdownRef], setIsDropdownActive);
+  useCloseEvents([titleRef, dropdownRef], () => setIsDropdownActive(false));
 
   return (
     <div className={styles.selector + " unselectable"}>

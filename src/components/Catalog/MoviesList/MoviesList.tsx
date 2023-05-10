@@ -16,9 +16,11 @@ import filterMovies from "/src/utils/filters/filterMovies";
 import { listLimit } from "/src/utils/filters/filtersVariables";
 import { getFiltersFromRoute } from "/src/utils/filters/getFiltersFromRoute";
 import { setQueryParams } from "/src/utils/query";
+import { useTranslation } from "next-i18next";
 
 const MoviesList: FC = () => {
   const router = useRouter();
+  const { t } = useTranslation();
 
   const {
     filteredMovies,
@@ -54,34 +56,38 @@ const MoviesList: FC = () => {
       : dispatch(setFilteredMoviesPage(1));
   }, [router, dispatch]);
 
-  return (
-    <div className="container">
-      {filteredMovies.length > 0 && (
-        <>
-          <div
-            className={`${styles.list} ${
-              isMoviesLoading ? styles.list_loading : ""
-            }`}
-          >
-            {filteredMovies
-              .slice(0, listLimit * filteredMoviesPage)
-              .map((movie: IMovie, i) => (
-                <div key={i} className={styles.list__movie}>
-                  <MovieCard content={movie} />
-                </div>
-              ))}
-          </div>
-          {listLimit * filteredMoviesPage < filteredMovies.length && (
-            <MoreButton
-              clickCallback={() => {
-                setPageRoute(filteredMoviesPage + 1);
-              }}
-            />
-          )}
-        </>
-      )}
-    </div>
-  );
+  if (isMoviesLoading) {
+    return <h2 className={styles.list__text}>{t("filters:loading")}</h2>;
+  }
+
+  if (filteredMovies.length > 0) {
+    return (
+      <div>
+        <div
+          className={`${styles.list} ${
+            isMoviesLoading ? styles.list_loading : ""
+          }`}
+        >
+          {filteredMovies
+            .slice(0, listLimit * filteredMoviesPage)
+            .map((movie: IMovie, i) => (
+              <div key={i} className={styles.list__movie}>
+                <MovieCard content={movie} />
+              </div>
+            ))}
+        </div>
+        {listLimit * filteredMoviesPage < filteredMovies.length && (
+          <MoreButton
+            clickCallback={() => {
+              setPageRoute(filteredMoviesPage + 1);
+            }}
+          />
+        )}
+      </div>
+    );
+  }
+
+  return <h2 className={styles.list__text}>{t("filters:movienotfound")}</h2>;
 };
 
 export default MoviesList;

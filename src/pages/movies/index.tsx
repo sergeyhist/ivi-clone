@@ -19,8 +19,8 @@ const Movies: FC = () => {
 
   return (
     <Layout title={t("titles:movies")}>
+      <BreadCrumbs type="slash" currentTitle={getFiltersText(filters)} />
       <MoviesLayout>
-        <BreadCrumbs type="slash" currentTitle={getFiltersText(filters)} />
         <CustomTitle title={t("titles:movies")} />
         <FiltersInfo />
         <Sorting />
