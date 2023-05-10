@@ -1,4 +1,4 @@
-import { FC} from "react";
+import { FC } from "react";
 import BannerSlider from "../components/Home/BannerSlider/BannerSlider";
 import Layout from "../components/Layout/Layout";
 import PromoButtons from "../components/Home/PromoButtons/PromoButtons";
@@ -10,24 +10,22 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticPropsResult } from "next";
 import { getMoviesByGenre } from "../api/movieApi";
 import { IMovie } from "../types/IMovie";
+import { mockMovie } from "../utils/movie";
 
 interface HomeProps {
   bestFantasyMovies: IMovie[];
   bestDramaMovies: IMovie[];
 }
 
-const Home: FC<HomeProps> = ({
-  bestFantasyMovies,
-  bestDramaMovies,
-}) => {
+const Home: FC<HomeProps> = ({ bestFantasyMovies, bestDramaMovies }) => {
   const { t } = useTranslation(["titles", "home"]);
   const compilations = [
     {
-      movies: bestFantasyMovies,
+      movies: bestFantasyMovies.length ? bestFantasyMovies : [mockMovie],
       title: t("home:compilations.subscribe"),
     },
     {
-      movies: bestDramaMovies,
+      movies: bestDramaMovies.length ? bestDramaMovies : [mockMovie],
       title: t("home:compilations.subscribe"),
     },
   ];

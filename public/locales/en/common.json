@@ -10,5 +10,10 @@
     "estimate": "Already watched, rate",
     "block": "Don't like this"
   },
-  "more": "Show more"
+  "more": "Show more",
+  "not_found": {
+    "title": "Page not found",
+    "content": "This page does not exist",
+    "link": "Go back to the home page ?"
+  }
 }
