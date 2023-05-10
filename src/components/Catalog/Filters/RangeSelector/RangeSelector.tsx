@@ -22,25 +22,25 @@ const RangeSelector: FC<RangeSelectorProps> = ({
 
   const debouncedGetFilter = useDebouncedCallback((value: string) => {
     getFilter(value);
-  }, 200);
+  }, 100);
 
-  const [rangeValue, setRangeValue] = useState("");
+  const [rangeValue, setRangeValue] = useState<string>();
 
   useEffect(() => {
-    filter.length === 0 && setRangeValue("0");
-  }, [filter, setRangeValue]);
+    filter.length > 0 && !rangeValue && setRangeValue(filter)
+  }, [filter, rangeValue, setRangeValue]);
 
   return (
     <div className={styles.selector + " unselectable"}>
       <span className={styles.selector__title}>{title}</span>
       <span className={styles.selector__value}>
         {t("from")}
-        <span>{` ${rangeValue}`}</span>
+        <span>{` ${rangeValue || "0"}`}</span>
       </span>
       <input
         className={styles.selector__input}
         type="range"
-        value={rangeValue}
+        value={rangeValue || "0"}
         onChange={(e) => {
           setRangeValue(e.target.value);
           debouncedGetFilter(e.target.value);

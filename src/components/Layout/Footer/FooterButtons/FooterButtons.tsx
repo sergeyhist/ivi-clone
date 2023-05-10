@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { FC, useRef, useState } from "react";
 import { useTranslation } from "next-i18next";
 import { BsTelephone } from "react-icons/bs";
 import { HiOutlineMail } from "react-icons/hi";
@@ -6,6 +6,7 @@ import { CSSTransition } from "react-transition-group";
 import styles from "./FooterButtons.module.sass";
 import PhonesList from "./PhonesList/PhonesList";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
+import useCloseEvents from "/src/hooks/useCloseEvents";
 
 const FooterButtons: FC = () => {
   const { t } = useTranslation("footer");
@@ -15,25 +16,7 @@ const FooterButtons: FC = () => {
   const listRef = useRef<HTMLDivElement>(null);
   const phoneRef = useRef<HTMLDivElement>(null);
 
-  const clickHandler = (e: MouseEvent): void => {
-    !listRef.current?.contains(e.target as Node) &&
-      !phoneRef.current?.contains(e.target as Node) &&
-      setIsListActive(false);
-  };
-
-  const keydownHandler = (e: KeyboardEvent): void => {
-    e.key === "Escape" && setIsListActive(false);
-  };
-
-  useEffect(() => {
-    document.addEventListener("click", clickHandler);
-    document.addEventListener("keydown", keydownHandler);
-
-    return () => {
-      document.removeEventListener("click", clickHandler);
-      document.removeEventListener("keydown", keydownHandler);
-    };
-  }, []);
+  useCloseEvents([listRef, phoneRef], () => setIsListActive(false));
 
   return (
     <div className={styles.btns}>

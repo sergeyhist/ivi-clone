@@ -13,7 +13,7 @@ const FiltersInfo: FC = () => {
   const director = personFinder("director", filters, persons.directors);
 
   return (
-    <div className={styles.page__info + " container"}>
+    <div className={styles.info}>
       {getFiltersText(
         filters,
         actor ? getPersonName(actor, locale) : undefined,

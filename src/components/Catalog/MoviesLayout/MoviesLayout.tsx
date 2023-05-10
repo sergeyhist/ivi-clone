@@ -6,6 +6,6 @@ interface MoviesLayoutProps {
 }
 
 const MoviesLayout: FC<MoviesLayoutProps> = ({ children }) => {
-  return <div className={styles.layout}>{children}</div>;
+  return <div className={styles.layout + ' container'}>{children}</div>;
 };
 export default MoviesLayout;

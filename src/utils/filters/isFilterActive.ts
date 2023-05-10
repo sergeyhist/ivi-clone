@@ -1,10 +1,6 @@
 export const isFilterActive = (
-  filter: string | string[] | undefined,
+  filter: string | string[],
   slug: string
 ): boolean => {
-  return typeof filter === "string"
-    ? filter === slug
-    : filter
-    ? filter.includes(slug)
-    : false;
+  return typeof filter === "string" ? filter === slug : filter.includes(slug);
 };

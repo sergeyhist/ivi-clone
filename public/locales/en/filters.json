@@ -20,5 +20,10 @@
     "assessments": "Any ratings count",
     "actor": "All actors",
     "director": "All directors"
-  }
+  },
+  "search": "Searching...",
+  "loading": "Loading...",
+  "actornotfound": "Actors not found",
+  "directornotfound": "Directors not found",
+  "movienotfound": "Movies not found"
 }

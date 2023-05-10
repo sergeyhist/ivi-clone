@@ -5,7 +5,7 @@ import { IFilters } from "/src/types/IFilter";
 import FilterTitle from "../FilterTitle/FilterTitle";
 import FilterSlider from "./FilterSlider/FilterSlider";
 import useCloseEvents from "/src/hooks/useCloseEvents";
-import {isFilterActive} from "/src/utils/filters/isFilterActive";
+import { isFilterActive } from "/src/utils/filters/isFilterActive";
 
 interface MultiSelectorProps {
   title: string;
@@ -30,14 +30,14 @@ const MultiSelector: FC<MultiSelectorProps> = ({
   const [isDropdownActive, setIsDropdownActive] = useState(false);
 
   const clickHandler = (slug: string): void => {
-    getFilter(slug)
+    getFilter(slug);
   };
 
   const activeDropdown = isDropdownActive
     ? ` ${styles.filter__dropdown_active}`
     : "";
 
-  useCloseEvents([titleRef, dropdownRef], setIsDropdownActive);
+  useCloseEvents([titleRef, dropdownRef], () => setIsDropdownActive(false));
 
   return (
     <div className={styles.filter + " unselectable"}>
