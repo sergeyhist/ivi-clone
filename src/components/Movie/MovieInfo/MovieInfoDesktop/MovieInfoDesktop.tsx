@@ -36,9 +36,11 @@ const MovieInfoDesktop: FC<MovieInfoDesktopProps> = ({ movie, persons }) => {
             </div>
           </div>
           <div className={styles.content}>
-            <CustomTitle className={styles.title} type="large">
-              {getMovieName(movie, locale)} ({movie.year})
-            </CustomTitle>
+            <CustomTitle
+              className={styles.title}
+              type="large"
+              title={`${getMovieName(movie, locale)} (${movie.year})`}
+            />
 
             <MovieParams movie={movie} />
             <MovieMedallions movie={movie} persons={persons} />

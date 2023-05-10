@@ -1,15 +1,15 @@
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 import styles from "./CustomTitle.module.sass";
 
 interface CustomTitleProps {
-  children: ReactNode;
+  title: string;
   type?: "default" | "link" | "underline" | "large" | "medium" | "small";
   className?: string;
   clickCallback?: void;
 }
 
 const CustomTitle: FC<CustomTitleProps> = ({
-  children,
+  title,
   type = "default",
   className = "",
 }) => {
@@ -17,7 +17,7 @@ const CustomTitle: FC<CustomTitleProps> = ({
 
   return (
     <div className={styles.wrapper}>
-      <h1 className={`${styles.title} ${typeClassName} ${className}`}>{children}</h1>
+      <h1 className={`${styles.title} ${typeClassName} ${className}`}>{title}</h1>
     </div>
   );
 };

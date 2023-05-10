@@ -25,7 +25,7 @@ const MovieSlider: FC<HomeSliderProps> = ({
     <div className={styles.wrapper}>
       {title && categoryRoute && (
         <Link href={categoryRoute} className={styles.title}>
-          <CustomTitle type="link">{title}</CustomTitle>
+          <CustomTitle type="link" title={title} />
         </Link>
       )}
 
