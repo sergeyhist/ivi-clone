@@ -8,3 +8,11 @@ export const createUser = async (userData: IUser):Promise<void>=>{
     console.log(err);
   }
 }
+
+export const getUserByEmail = async (email: string): Promise<void>=>{
+  try{
+    await axios.get(`${String(process.env.SERVER_HOST)}/users/${email}`)
+  }catch (err){
+    console.log(err);
+  }
+}

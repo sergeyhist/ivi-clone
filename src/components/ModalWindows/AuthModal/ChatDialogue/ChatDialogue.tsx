@@ -10,13 +10,12 @@ import {
 import styles from "./ChatDialogue.module.sass";
 import { CSSTransition } from "react-transition-group";
 import ModalInput from "/src/UI/ModalInput/ModalInput";
-import {
-  cssTransitionClassNames
-} from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDoalogue.utils";
+import { cssTransitionClassNames } from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDoalogue.utils";
 import ErrorMessage from "/src/components/ModalWindows/AuthModal/ChatDialogue/ErrorMessage/ErrorMessage";
 import EmailInput from "/src/components/ModalWindows/AuthModal/ChatDialogue/EmailInput/EmailInput";
-import {createUser} from "/src/api/createUser";
-import {useTranslation} from "next-i18next";
+import {createUser} from "/src/api/userApi";
+import { useTranslation } from "next-i18next";
+import ChatMessage from "/src/components/ModalWindows/AuthModal/ChatMessage/ChatMessage";
 
 interface ChatDialogueProps {
   setProgressBarWidth: Dispatch<SetStateAction<{ width: number }>>;
@@ -50,11 +49,9 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
 
   const handleSubmitForm = (e: FormEvent): void => {
     e.preventDefault();
-    if(email && password){
-      createUser({email: email, password: password});
-    }
-    else
-      setIsEmailInputSuccess(true);
+    if (email && password) {
+      createUser({ email: email, password: password });
+    } else setIsEmailInputSuccess(true);
   };
 
   return (
@@ -71,16 +68,12 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
         onSubmit={handleSubmitForm}
         className={styles.chat__form}
       >
-        <div className={styles.chat__message}>
-          <h3 className={styles.chat__message__title}>
-            {t("hintMessage.title")}
-          </h3>
-          {!isEmailInputSuccess && (
-            <p className={styles.chat__message__text}>
-              {t("hintMessage.subtitle")}
-            </p>
-          )}
-        </div>
+        <ChatMessage
+          titleText={t("hintMessage.title")}
+          subtitleText={
+            (!isEmailInputSuccess && t("hintMessage.subtitle")) || undefined
+          }
+        />
         <EmailInput
           email={email}
           isEmailInputSuccess={isEmailInputSuccess}
@@ -108,11 +101,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
 
         {isEmailInputSuccess && (
           <>
-            <div className={styles.chat__message}>
-              <h3 className={styles.chat__message__title}>
-                {t("passwordMessage")}
-              </h3>
-            </div>
+            <ChatMessage titleText={t("passwordMessage")}/>
             <ModalInput
               showErrorMessage={showErrorMessage}
               setIsValid={setShowErrorMessage}
@@ -125,7 +114,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({ setProgressBarWidth }) => {
             />
           </>
         )}
-        <ErrorMessage showErrorMessage={showErrorMessage}/>
+        <ErrorMessage showErrorMessage={showErrorMessage} />
       </form>
     </CSSTransition>
   );

@@ -25,25 +25,12 @@
     padding-right: 100px
 
   &__message
-    @include chatMessage
-    border-radius: 16px 16px 16px 0
-    background-color: #312b45
-
     &_sent
       @include chatMessage
       @include chatMessageTitle
       margin-right: -200px
       background-color: #1f1b2e
       border-radius: 16px 16px 0 16px
-
-    &__title
-      @include chatMessageTitle
-
-    &__text
-      color: vars.$secondaryColor
-      font-size: 13px
-      line-height: 16px
-      margin-top: 10px
 
 .error
   &-enter
@@ -116,9 +103,4 @@
     &__form
       align-items: flex-start
       width: 100%
-    &__message
-      width: 100%
-      min-width: unset
-      max-height: unset
-
 
