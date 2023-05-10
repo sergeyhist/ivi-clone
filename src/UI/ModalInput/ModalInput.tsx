@@ -87,8 +87,6 @@ const ModalInput: FC<ModalInputProps> = ({
   }, [setIsPasswordInputSelected]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    console.log("handleInputChange");
-
     const { value } = e.target;
 
     value !== "" ? setIsButtonDisabled(false) : setIsButtonDisabled(true);
