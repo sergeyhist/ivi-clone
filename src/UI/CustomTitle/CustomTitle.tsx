@@ -5,7 +5,6 @@ interface CustomTitleProps {
   title: string;
   type?: "default" | "link" | "underline" | "large" | "medium" | "small";
   className?: string;
-  clickCallback?: void;
 }
 
 const CustomTitle: FC<CustomTitleProps> = ({
