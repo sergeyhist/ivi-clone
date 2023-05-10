@@ -6,6 +6,7 @@ import Link from "next/link";
 import MovieCard from "../MovieCard/MovieCard";
 import { breakpoints } from "./MovieSlider.utils";
 import { IMovie } from "/src/types/IMovie";
+import CustomTitle from "../CustomTitle/CustomTitle";
 
 interface HomeSliderProps {
   slides: IMovie[];
@@ -24,7 +25,7 @@ const MovieSlider: FC<HomeSliderProps> = ({
     <div className={styles.wrapper}>
       {title && categoryRoute && (
         <Link href={categoryRoute} className={styles.title}>
-          {title} <i className={styles.icon}></i>
+          <CustomTitle type="link">{title}</CustomTitle>
         </Link>
       )}
 
