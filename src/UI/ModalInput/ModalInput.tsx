@@ -50,21 +50,21 @@ const ModalInput: FC<ModalInputProps> = ({
       setIsButtonDisabled(false);
       setIsInputActive(true);
       inputRef.current?.focus();
-      if(inputType === "password")
-        setIsPasswordInputSelected(true);
+      if (inputType === "password") setIsPasswordInputSelected(true);
     }
     return () => {
       setShowPassword(false);
     };
-  }, []);
+  }, [inputType, authData]);
 
   useEffect(() => {
     if (showPassword && inputRef.current && inputType === "password") {
       inputRef.current.type = "text";
     } else {
-      if (inputRef.current && inputType === "password") inputRef.current.type = "password";
+      if (inputRef.current && inputType === "password")
+        inputRef.current.type = "password";
     }
-  }, [showPassword,isPasswordInputSelected]);
+  }, [showPassword, isPasswordInputSelected, inputType]);
 
   useEffect(() => {
     const handleInputBlur = (): void => {
@@ -74,10 +74,7 @@ const ModalInput: FC<ModalInputProps> = ({
     };
 
     const handleClickOutside = (e: MouseEvent): void => {
-      if (
-        contentRef.current &&
-        !contentRef.current.contains(e.target as Node)
-      ) {
+      if (contentRef.current && !contentRef.current.contains(e.target as Node)) {
         handleInputBlur();
       }
     };
@@ -90,13 +87,14 @@ const ModalInput: FC<ModalInputProps> = ({
   }, [setIsPasswordInputSelected]);
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    console.log("handleInputChange");
+
     const { value } = e.target;
 
     value !== "" ? setIsButtonDisabled(false) : setIsButtonDisabled(true);
     setAuthData && setAuthData(value);
     setIsValid && setIsValid(false);
-    if (setIsPasswordInputSelected && value !== "")
-      setIsPasswordInputSelected(true);
+    if (setIsPasswordInputSelected && value !== "") setIsPasswordInputSelected(true);
   };
 
   const handleInputClick = (): void => {
@@ -128,9 +126,7 @@ const ModalInput: FC<ModalInputProps> = ({
             type={inputType}
             ref={inputRef}
             value={authData}
-            className={`${styles.input} ${
-              isInputActive ? styles.input_active : ""
-            }`}
+            className={`${styles.input} ${isInputActive ? styles.input_active : ""}`}
             onChange={handleInputChange}
           />
           {inputType === "password" && (

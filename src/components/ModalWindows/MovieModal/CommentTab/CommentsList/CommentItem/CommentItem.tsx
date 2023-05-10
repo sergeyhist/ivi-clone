@@ -9,15 +9,22 @@ import { BiCommentAdd } from "react-icons/bi";
 interface CommentItemProps {
   comment: IComment;
   level: number;
-  action: Dispatch<SetStateAction<string>>;
+  setInputText: Dispatch<SetStateAction<string>>;
+  setReplyFor: Dispatch<SetStateAction<IComment | undefined>>;
 }
 
-const CommentItem: FC<CommentItemProps> = ({ comment, level, action }) => {
+const CommentItem: FC<CommentItemProps> = ({
+  comment,
+  level,
+  setInputText,
+  setReplyFor,
+}) => {
   const { t } = useTranslation("movie");
   const indentation = level * 8;
 
   const clickHandler = (): void => {
-    action("@" + comment.user.profile.first_name + ": ");
+    setInputText("@" + comment.user.profile.first_name + ": ");
+    setReplyFor(comment);
   };
 
   return (
@@ -36,7 +43,12 @@ const CommentItem: FC<CommentItemProps> = ({ comment, level, action }) => {
           </p>
         </div>
         <div className={styles.top__actions}>
-          <button onClick={clickHandler} className={styles.comment__add}>
+          <button
+            type="button"
+            onClick={clickHandler}
+            className={styles.comment__add}
+            data-id={comment.comment_id}
+          >
             <BiCommentAdd fontWeight={700} size={20} className={styles.top__icon} />
           </button>
           <Votes />
@@ -52,10 +64,11 @@ const CommentItem: FC<CommentItemProps> = ({ comment, level, action }) => {
         <div className={styles.replies}>
           {comment.sub_comments.map((sub_comment, index) => (
             <CommentItem
-              action={action}
+              setInputText={setInputText}
               comment={sub_comment}
               key={index}
               level={level + 1}
+              setReplyFor={setReplyFor}
             />
           ))}
         </div>

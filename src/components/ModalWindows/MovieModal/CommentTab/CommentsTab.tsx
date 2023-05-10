@@ -12,13 +12,26 @@ interface CommentsTabProps {
 const CommentsTab: FC<CommentsTabProps> = ({ comments }) => {
   const [commentsState, setCommentsState] = useState<IComment[]>(comments);
   const [inputText, setInputText] = useState("");
+  const [replyFor, setReplyFor] = useState<IComment | undefined>(undefined);
   const { t } = useTranslation("movieInfo");
+
+  const findSubComment = (
+    comments: IComment[],
+    id: string | boolean
+  ): IComment | void => {
+    for (const comment of comments) {
+      if (comment.comment_id === id) {
+        return comment;
+      }
+      return findSubComment(comment.sub_comments, id);
+    }
+  };
 
   const handleSubmitForm = (event: FormEvent): void => {
     event.preventDefault();
     const date = new Date();
     const newComment: IComment = {
-      comment_id: "4d522235-7915-4122-8303-4bc79ea603a5",
+      comment_id: String(Math.round(Math.random() * 1000000)),
       title: "About film",
       text: inputText,
       film_id: "eb5eb005-5818-4cee-9f7b-0fc6c1fae2cc",
@@ -37,6 +50,17 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments }) => {
       sub_comments: [],
     };
 
+    if (
+      replyFor &&
+      !inputText.indexOf("@" + String(replyFor.user.profile.first_name))
+    ) {
+      const comment = findSubComment(comments, String(replyFor?.comment_id));
+      if (comment) comment.sub_comments.push(newComment);
+      setCommentsState(commentsState);
+      setInputText("");
+      return;
+    }
+
     setCommentsState([...commentsState, newComment]);
     setInputText("");
   };
@@ -52,7 +76,11 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments }) => {
         buttonText={t("commentsInput.submit")}
         placeholderText={t("commentsInput.placeholder")}
       />
-      <CommentsList action={setInputText} comments={commentsState} />
+      <CommentsList
+        setInputText={setInputText}
+        setReplyFor={setReplyFor}
+        comments={commentsState}
+      />
     </form>
   );
 };
