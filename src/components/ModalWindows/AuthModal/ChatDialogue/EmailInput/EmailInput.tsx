@@ -41,7 +41,7 @@ const EmailInput: FC<EmailInput> = ({
     if(isEmailInputSuccess)
       getUserByEmail(email).then((res) => {
         setIsEmailExist(res !== undefined);
-        dispatch(setAuth({isLogged:false,userEmail:email}))
+        dispatch(setAuth({isLogged:false,userEmail:email}));
       });
   },[dispatch, email, isEmailInputSuccess, setIsEmailExist])
 

@@ -51,6 +51,8 @@ const ChatDialogue: FC<ChatDialogueProps> = ({
 
   const handleEmailChangeClick = (): void => {
     setIsEmailInputSuccess(false);
+    dispatch(setAuth({isLogged:false,userEmail:""}));
+    setIsEmailExist(undefined);
     setProgressBarWidth({ width: 10 });
   };
 
@@ -122,7 +124,6 @@ const ChatDialogue: FC<ChatDialogueProps> = ({
             />
           </div>
         </CSSTransition>
-
         <CSSTransition
           classNames={cssTransitionClassNames}
           nodeRef={emailChangeRef}

@@ -43,7 +43,7 @@ const Actions: FC<ActionsProps> = ({
   };
 
   const handleProfileClick = (): void => {
-    dispatch(setShowAuthModal(true));
+    if (!authState.isLogged) dispatch(setShowAuthModal(true));
   };
   return (
     <div className={styles.container}>
@@ -107,9 +107,9 @@ const Actions: FC<ActionsProps> = ({
         <BiUser />
       </div>
       {authState.isLogged && (
-          <CustomButton type="red" clickCallback={handleLogout}>
-            <FiLogOut />
-          </CustomButton>
+        <CustomButton type="red" clickCallback={handleLogout}>
+          <FiLogOut />
+        </CustomButton>
       )}
     </div>
   );

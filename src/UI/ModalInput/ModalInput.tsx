@@ -127,6 +127,7 @@ const ModalInput: FC<ModalInputProps> = ({
             className={`${styles.input} ${isInputActive ? styles.input_active : ""}`}
             onChange={handleInputChange}
             autoComplete={"on"}
+            required
           />
           {inputType === "password" && (
             <div
