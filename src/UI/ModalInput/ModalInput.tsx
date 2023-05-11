@@ -19,7 +19,7 @@ interface ModalInputProps {
   placeholderText: string;
   buttonText: string;
   showErrorMessage?: boolean;
-  clickCallback?: () => void | Promise<void>;
+  clickCallback?: () => void;
   preventDefault?: boolean;
   className?: string;
 }

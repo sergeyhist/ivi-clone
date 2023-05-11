@@ -5,6 +5,7 @@ import ChatMessage from "/src/components/ModalWindows/AuthModal/ChatMessage/Chat
 import ModalInput from "/src/UI/ModalInput/ModalInput";
 import { useTranslation } from "next-i18next";
 import styles from "./PasswordInput.module.sass";
+import {toast} from "react-toastify";
 
 interface PasswordInputProps {
   isEmailInputSuccess: boolean;
@@ -25,6 +26,21 @@ const PasswordInput: FC<PasswordInputProps> = ({
 }) => {
   const { t } = useTranslation("registration");
   const passwordInputRef = useRef<HTMLDivElement>(null);
+
+  const isPasswordValid = password.length < 4 || password.length > 16;
+
+  const handlePasswordSubmit = (): void =>{
+    if(isPasswordValid){
+      toast("Пароль должен быть от 4 до 16 символов", {
+        position: "top-center",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        theme: "dark",
+      });
+    }
+  }
 
   return (
     <CSSTransition
@@ -49,6 +65,8 @@ const PasswordInput: FC<PasswordInputProps> = ({
           authData={password}
           showIcon={true}
           setAuthData={setPassword}
+          clickCallback={handlePasswordSubmit}
+          preventDefault={isPasswordValid}
           placeholderText={
             isEmailExist
               ? t("passwordPlaceholder")
