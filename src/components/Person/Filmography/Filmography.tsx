@@ -87,8 +87,8 @@ const Filmography: FC<FilmographyProps> = ({ moviesId }) => {
           </div>
           {movies && moviesToShow && moviesToShow.length <= 8 && (
             <div className={styles.show__btn} onClick={handleShowMovies}>
-              {`${t("showButton")} ${movies.length - 8} ${getMovieDeclination(
-                movies.length,
+              {`${t("showButton")} ${getMovieDeclination(
+                movies.length - 8,
                 locale
               )} `}
             </div>
