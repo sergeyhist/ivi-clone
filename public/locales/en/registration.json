@@ -2,6 +2,7 @@
   "title": "Login or Registration",
   "titleRegistration": "New User",
   "titleLogin": "Hi",
+  "toastMessage": "You are successfully logged in.",
   "hintMessage": {
     "title": "Log in or Sign up",
     "subtitle": "to use the service on any device"

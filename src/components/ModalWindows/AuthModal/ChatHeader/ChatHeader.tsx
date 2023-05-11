@@ -2,6 +2,7 @@ import { FC } from "react";
 import styles from "./ChatHeader.module.sass";
 import ProgressBar from "/src/UI/ProgressBar/ProgressBar";
 import { useTranslation } from "next-i18next";
+import { useAppSelector } from "/src/hooks/redux";
 
 interface ChatHeaderProps {
   closeCallback: () => void;
@@ -15,12 +16,21 @@ const ChatHeader: FC<ChatHeaderProps> = ({
   isEmailExist,
 }) => {
   const { t } = useTranslation("registration");
-  const headerTitle = isEmailExist === undefined ? t("title") : isEmailExist ? t("titleLogin") : t("titleRegistration");
+  const userEmail = useAppSelector((state) => state.auth.userEmail);
+  const headerTitle =
+    isEmailExist === undefined
+      ? t("title")
+      : isEmailExist
+      ? t("titleLogin")
+      : t("titleRegistration");
 
   return (
     <div className={styles.header__container}>
       <div className={styles.header__content}>
-        <h2 className={styles.header__title}>{headerTitle}</h2>
+        <div className={styles.header__text}>
+          <h2 className={styles.header__title}>{headerTitle}</h2>
+          <span>{userEmail}</span>
+        </div>
         <button
           onClick={closeCallback}
           className={styles.header__button}

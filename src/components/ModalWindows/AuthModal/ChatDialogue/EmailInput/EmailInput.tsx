@@ -1,7 +1,7 @@
-import { Dispatch, FC, SetStateAction, useRef} from "react";
+import {Dispatch, FC, SetStateAction, useEffect, useRef} from "react";
 import { CSSTransition } from "react-transition-group";
 import {
-  cssTransitionClassNames,
+  cssTransitionEmailClassNames,
   validateEmail,
 } from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDoalogue.utils";
 import ModalInput from "/src/UI/ModalInput/ModalInput";
@@ -9,6 +9,10 @@ import PrivacyPolicy from "/src/components/ModalWindows/AuthModal/ChatDialogue/P
 import { useTranslation } from "next-i18next";
 import styles from "./EmailInput.module.sass";
 import { getUserByEmail } from "/src/api/userApi";
+import GoogleLoginButton from "/src/components/ModalWindows/AuthModal/GoogleLoginButton/GoogleLoginButton";
+import VkLoginButton from "/src/components/ModalWindows/AuthModal/VkLoginButton/VkLoginButton";
+import {useAppDispatch} from "/src/hooks/redux";
+import {setAuth} from "/src/store/slices/authSlice";
 
 interface EmailInput {
   isEmailInputSuccess: boolean;
@@ -30,19 +34,25 @@ const EmailInput: FC<EmailInput> = ({
   setEmail,
 }) => {
   const { t } = useTranslation("registration");
+  const dispatch = useAppDispatch();
   const emailInputRef = useRef<HTMLDivElement>(null);
 
-  const handleEmailSubmit = async (): Promise<void> => {
+  useEffect(()=>{
+    if(isEmailInputSuccess)
+      getUserByEmail(email).then((res) => {
+        setIsEmailExist(res !== undefined);
+        dispatch(setAuth({isLogged:false,userEmail:email}))
+      });
+  },[dispatch, email, isEmailInputSuccess, setIsEmailExist])
+
+  const handleEmailSubmit = (): void => {
     setShowErrorMessage(!validateEmail(email));
-    await getUserByEmail(email).then((res) => {
-      setIsEmailExist(res !== undefined);
-    });
     setIsEmailInputSuccess(validateEmail(email));
   };
 
   return (
     <CSSTransition
-      classNames={cssTransitionClassNames}
+      classNames={cssTransitionEmailClassNames}
       nodeRef={emailInputRef}
       in={!isEmailInputSuccess}
       timeout={1}
@@ -61,6 +71,10 @@ const EmailInput: FC<EmailInput> = ({
           buttonText={t("submit")}
           inputType="email"
         />
+        <div className={styles.social_auth}>
+          <GoogleLoginButton/>
+          <VkLoginButton/>
+        </div>
         <PrivacyPolicy />
       </div>
     </CSSTransition>

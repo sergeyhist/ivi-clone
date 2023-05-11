@@ -40,7 +40,7 @@
     &-active
       opacity: 1
       transform: translateY(0%)
-      transition: .3s
+      transition: all .3s
 
   &-exit
     opacity: 1
@@ -49,8 +49,28 @@
     &-active
       opacity: 0
       transform: translateY(100%)
+      transition: all .3s
 
-      transition: .3s
+
+.email
+  &-enter
+    opacity: 0
+    transform: translateY(200%)
+
+    &-active
+      opacity: 1
+      transform: translateY(0%)
+      transition: all .3s
+
+  &-exit
+    opacity: 1
+    transform: translateY(0%)
+
+    &-active
+      opacity: 0
+      transform: translateY(200%)
+      transition: all .3s
+
 
 .email__container
   display: flex
@@ -83,22 +103,26 @@
 
 @media (max-width: 750px)
 
-    .email__container
-      width: 100%
-      .change__email
-        width: 40px
-        height: 40px
+  .email__container
+    width: 100%
 
-    .chat
-      &__form
-        padding: 20px
-      &__message
-        &_sent
-          min-width: unset
-          margin-right: 0
-          width: 100%
+    .change__email
+      width: 40px
+      height: 40px
+
+  .chat
+    &__form
+      padding: 20px
+
+    &__message
+      &_sent
+        min-width: unset
+        margin-right: 0
+        width: 100%
 
 @media (max-width: 600px)
+  .email
+    width: 100%
   .chat
     &__form
       align-items: flex-start

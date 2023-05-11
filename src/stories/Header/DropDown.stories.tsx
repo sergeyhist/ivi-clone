@@ -1,34 +1,41 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import "/src/styles/_config.sass";
-import "/src/styles/global.sass";
-import "/src/styles/_vars.sass";
 import { Provider } from "react-redux";
 import { store } from "/src/store"
-import ProfileDropDown from "/src/components/Layout/Header/DropDown/ProfileDropDown/ProfileDropDown";
+import DropDown from "/src/components/Layout/Header/DropDown/DropDown";
 
-const meta: Meta<typeof ProfileDropDown> = {
+const meta: Meta<typeof DropDown> = {
   title: "Header/DropDown",
   tags: ["autodocs"],
   decorators: [
     (Story) => (
       <Provider store = {store}>
-        <Story />
+        <div style={{width: "1240px", position:"relative", zIndex:"2"}}>
+          <Story style={{width: "1240px"}} />
+        </div>
       </Provider>
     ),
   ],
   argTypes: {},
-  component: ProfileDropDown,
+  component: DropDown,
 };
 
 export default meta;
-type Story = StoryObj<typeof ProfileDropDown>;
+type Story = StoryObj<typeof DropDown>;
 
 export const EntertaimentDropDown: Story = {
   args: {
+    dropDownType: "movies"
   },
 };
 
 export const TvDropDown: Story = {
   args: {
+    dropDownType: "tv"
+  },
+};
+
+export const ProfileDropDown: Story = {
+  args: {
+    dropDownType: "profile"
   },
 };

@@ -91,7 +91,9 @@
       "Settings",
       "Help"
     ],
-    "auth": "Login or Sign Up"
+    "auth": "Login or Sign Up",
+    "logout": "Logout",
+    "logoutMessage": "You logged out."
   },
   "notification": "Only important messages appear here",
   "search": "Search",

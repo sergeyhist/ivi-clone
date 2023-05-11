@@ -6,6 +6,8 @@ import { appWithTranslation } from "next-i18next";
 import "/src/styles/global.sass";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import localFont from "next/font/local";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 const iviSans = localFont({
   src: [
@@ -46,6 +48,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
           className={`${iviSans.variable} ${iviIcons.variable} ${iconfont.variable}`}
         >
           <Component {...pageProps} />
+          <ToastContainer/>
         </div>
       </Provider>
     </GoogleOAuthProvider>

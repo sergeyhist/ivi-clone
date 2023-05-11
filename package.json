@@ -32,6 +32,7 @@
     "react-icons": "^4.8.0",
     "react-redux": "^8.0.5",
     "react-social-icons": "^5.15.0",
+    "react-toastify": "^9.1.2",
     "react-transition-group": "^4.4.5",
     "remove": "^0.1.5",
     "sharp": "^0.32.1",
@@ -42,7 +43,6 @@
     "use-debounce": "^9.0.4"
   },
   "devDependencies": {
-    "@storybook/addon-docs": "^7.0.9",
     "@storybook/addon-essentials": "^7.0.9",
     "@storybook/addon-interactions": "^7.0.9",
     "@storybook/addon-links": "^7.0.9",
