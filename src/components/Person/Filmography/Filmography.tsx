@@ -4,26 +4,19 @@ import { IMovie } from "/src/types/IMovie";
 import { getMoviesById } from "/src/api/movieApi";
 import Image from "next/image";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
-import BreadCrumbs from "/src/UI/BreadCrumbs/BreadCrumbs";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import {getMovieDeclination} from "/src/utils/getMovieDeclination";
+import { getMovieDeclination } from "/src/utils/getMovieDeclination";
 
 interface FilmographyProps {
-  firstName?: string;
-  lastName?: string;
   moviesId: string[];
 }
 
-const Filmography: FC<FilmographyProps> = ({
-  moviesId,
-  firstName,
-  lastName,
-}) => {
+const Filmography: FC<FilmographyProps> = ({ moviesId }) => {
   const [movies, setMovies] = useState<IMovie[] | undefined>([]);
   const [moviesToShow, setMoviesToShow] = useState<IMovie[] | undefined>();
   const { t } = useTranslation("person");
-  const { locale } = useRouter();
+  const { locale, push } = useRouter();
 
   useEffect(() => {
     getMoviesById(moviesId).then((res) => setMovies(res));
@@ -37,6 +30,10 @@ const Filmography: FC<FilmographyProps> = ({
     setMoviesToShow(movies);
   };
 
+  const movieClick = (id: string): void => {
+    push(`/movies/${id}`);
+  };
+
   return (
     <section className={styles.section}>
       <div className={styles.container}>
@@ -45,7 +42,7 @@ const Filmography: FC<FilmographyProps> = ({
             {t("filmography")}
             <span>
               {movies &&
-                `${movies.length} ${getMovieDeclination(
+                `${getMovieDeclination(
                   movies.length,
                   locale
                 )}`}
@@ -77,7 +74,10 @@ const Filmography: FC<FilmographyProps> = ({
                         {`${t("rating")} ${movie.rating}`}
                       </div>
                     </div>
-                    <CustomButton className={styles.btn}>
+                    <CustomButton
+                      className={styles.btn}
+                      clickCallback={() => movieClick(movie.film_id)}
+                    >
                       {t("movieButton")}
                     </CustomButton>
                   </div>
@@ -87,13 +87,12 @@ const Filmography: FC<FilmographyProps> = ({
           </div>
           {movies && moviesToShow && moviesToShow.length <= 8 && (
             <div className={styles.show__btn} onClick={handleShowMovies}>
-              {`${t("showButton")} ${movies.length - 8} ${getMovieDeclination(
-                movies.length,
+              {`${t("showButton")} ${getMovieDeclination(
+                movies.length - 8,
                 locale
               )} `}
             </div>
           )}
-          <BreadCrumbs type="slash" currentTitle={(firstName && lastName) && `${firstName} ${lastName}`}/>
         </div>
       </div>
     </section>

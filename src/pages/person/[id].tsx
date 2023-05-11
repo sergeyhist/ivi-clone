@@ -8,37 +8,40 @@ import { useRouter } from "next/router";
 import { IPerson } from "/src/types/IPerson";
 import { getPersonById } from "/src/api/personApi";
 import { mockPersons } from "/src/utils/person";
+import BreadCrumbs from "/src/UI/BreadCrumbs/BreadCrumbs";
+import BackButton from "/src/components/Person/BackButton/BackButton";
+import PersonLayout from "/src/components/Person/PersonLayout/PersonLayout";
 
 const Person: FC = () => {
-  const [person, setPerson] = useState<IPerson>(mockPersons[0]);
-  const router = useRouter();
-  const { id } = router.query;
+  const [person, setPerson] = useState<IPerson>();
+  const { locale, query } = useRouter();
+
   const firstName =
-    person && router.locale === "ru"
-      ? person.first_name_ru
-      : person?.first_name_en;
-  const lastName =
-    person && router.locale === "ru"
-      ? person.last_name_ru
-      : person?.last_name_en;
+    person && (person[`first_name_${locale || "ru"}`] as string);
+  const lastName = person && (person[`last_name_${locale || "ru"}`] as string);
 
   useEffect(() => {
-    getPersonById(id).then((res) => {
-      if (res) setPerson(res);
-    });
-  }, [id]);
+    getPersonById(query.id).then((res) => setPerson(res));
+  }, [query]);
 
   return (
     <Layout title={"person"}>
-      <PersonCard
-        firstName={firstName}
-        lastName={lastName}
-        person={person || mockPersons[0]}
-      />
-      <Filmography
-        firstName={firstName}
-        lastName={lastName}
-        moviesId={person.films.map((film) => film.film_id)}
+      <PersonLayout>
+        <BackButton />
+        {person && (
+          <>
+            <PersonCard
+              firstName={firstName}
+              lastName={lastName}
+              person={person || mockPersons[0]}
+            />
+            <Filmography moviesId={person.films.map((film) => film.film_id)} />
+          </>
+        )}
+      </PersonLayout>
+      <BreadCrumbs
+        type="slash"
+        currentTitle={firstName && lastName && `${firstName} ${lastName}`}
       />
     </Layout>
   );
@@ -56,7 +59,9 @@ export const getServerSideProps = async ({
         "mobileMenu",
         "dropDownCategory",
         "person",
-        "breadcrumbs",
+        "common",
+        "genres",
+        "countries",
       ])),
     },
   };

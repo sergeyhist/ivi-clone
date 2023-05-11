@@ -1,0 +1,27 @@
+@use "src/styles/vars"
+
+.button
+  position: relative
+  display: flex
+  font-size: 15px
+  align-items: center
+  color: vars.$whiteTextColor
+  gap: 20px
+  align-self: flex-start
+  margin-left: 30px
+  margin-top: 32px
+  line-height: 20px
+  font-weight: 500
+  cursor: pointer
+
+  &:before
+    position: absolute
+    left: -24px
+    content: "\E040"
+    font-size: 20px
+    font-family: iconfont, sans-serif
+    transition: .1s
+
+  &:hover
+    &:before
+      font-size: 23px
