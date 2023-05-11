@@ -42,7 +42,7 @@ const Filmography: FC<FilmographyProps> = ({ moviesId }) => {
             {t("filmography")}
             <span>
               {movies &&
-                `${movies.length} ${getMovieDeclination(
+                `${getMovieDeclination(
                   movies.length,
                   locale
                 )}`}
