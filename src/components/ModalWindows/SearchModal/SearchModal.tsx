@@ -1,13 +1,9 @@
-import {
-  FC,
-  KeyboardEvent,
-  MouseEvent,
-  useRef,
-  useState,
-} from "react";
+import { FC, KeyboardEvent, MouseEvent, useRef, useState } from "react";
 import SearchCloseButton from "./SearchCloseButton/SearchCloseButton";
 import styles from "./SearchModal.module.sass";
 import SearchString from "./SearchString/SearchString";
+import useOverflowHidden from "/src/hooks/useOverflowHidden";
+import { useAppSelector } from "/src/hooks/redux";
 
 interface SearchModalProps {
   closeCallback: () => void;
@@ -21,6 +17,8 @@ export interface ISearchStates {
 }
 
 const SearchModal: FC<SearchModalProps> = ({ closeCallback }) => {
+  const { showSearchModal } = useAppSelector((state) => state.showModal);
+
   const stringRef = useRef<HTMLDivElement>(null);
 
   const [searchQuery, setSearchQuery] = useState("");
@@ -52,6 +50,8 @@ const SearchModal: FC<SearchModalProps> = ({ closeCallback }) => {
       });
     }
   };
+
+  useOverflowHidden(showSearchModal);
 
   return (
     <div

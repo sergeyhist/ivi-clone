@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import Layout from "/src/components/Layout/Layout";
 import { GetServerSidePropsResult } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -7,37 +7,30 @@ import Filmography from "/src/components/Person/Filmography/Filmography";
 import { useRouter } from "next/router";
 import { IPerson } from "/src/types/IPerson";
 import { getPersonById } from "/src/api/personApi";
-import { mockPersons } from "/src/utils/person";
 import BreadCrumbs from "/src/UI/BreadCrumbs/BreadCrumbs";
 import BackButton from "/src/components/Person/BackButton/BackButton";
 import PersonLayout from "/src/components/Person/PersonLayout/PersonLayout";
+import { getMoviesById } from "/src/api/movieApi";
+import { IMovie } from "/src/types/IMovie";
 
-const Person: FC = () => {
-  const [person, setPerson] = useState<IPerson>();
-  const { locale, query } = useRouter();
+interface PersonProps {
+  person: IPerson;
+  movies: IMovie[];
+}
+
+const Person: FC<PersonProps> = ({ person, movies }) => {
+  const { locale } = useRouter();
 
   const firstName =
     person && (person[`first_name_${locale || "ru"}`] as string);
   const lastName = person && (person[`last_name_${locale || "ru"}`] as string);
 
-  useEffect(() => {
-    getPersonById(query.id).then((res) => setPerson(res));
-  }, [query]);
-
   return (
     <Layout title={"person"}>
       <PersonLayout>
         <BackButton />
-        {person && (
-          <>
-            <PersonCard
-              firstName={firstName}
-              lastName={lastName}
-              person={person || mockPersons[0]}
-            />
-            <Filmography moviesId={person.films.map((film) => film.film_id)} />
-          </>
-        )}
+        <PersonCard firstName={firstName} lastName={lastName} person={person} />
+        <Filmography movies={movies} />
       </PersonLayout>
       <BreadCrumbs
         type="slash"
@@ -48,11 +41,20 @@ const Person: FC = () => {
 };
 export const getServerSideProps = async ({
   locale,
+  params,
 }: {
   locale: string;
+  params: { id: string };
 }): Promise<GetServerSidePropsResult<Record<string, unknown>>> => {
+  const person = await getPersonById(params.id);
+  const movies = await getMoviesById(
+    person?.films.map((film) => film.film_id) || []
+  );
+
   return {
     props: {
+      person,
+      movies,
       ...(await serverSideTranslations(locale, [
         "footer",
         "header",
@@ -66,4 +68,5 @@ export const getServerSideProps = async ({
     },
   };
 };
+
 export default Person;
