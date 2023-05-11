@@ -4,15 +4,16 @@ import CustomButton from "/src/UI/CustomButton/CustomButton";
 import { cardsIcons, profileLinks } from "./ProfileDropDown.utils";
 import { useTranslation } from "next-i18next";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
-import { setShowModal } from "/src/store/slices/modalsSlice";
+import { setShowAuthModal } from "/src/store/slices/modalsSlice";
+import Link from "next/link";
 
 const ProfileDropDown: FC = () => {
   const { t } = useTranslation("header");
-  const showModal = useAppSelector((state) => state.showModal);
+  const authState = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
 
   const handleAuthClick = (): void => {
-    dispatch(setShowModal({ ...showModal, showAuthModal: true }));
+    dispatch(setShowAuthModal(true));
   };
 
   return (
@@ -20,7 +21,7 @@ const ProfileDropDown: FC = () => {
       <div className={styles.profile__main}>
         {profileLinks.map((link, i) => {
           return (
-            <a
+            <Link
               className={styles.profile__main_card}
               href={link}
               target="_blank"
@@ -30,21 +31,28 @@ const ProfileDropDown: FC = () => {
               <div className={styles.card__text}>
                 {t(`profile.cardsText.${i}`)}
               </div>
-            </a>
+            </Link>
           );
         })}
       </div>
       <div className={styles.profile__side}>
-        <CustomButton clickCallback={handleAuthClick} type="red">
-          <div>{t("profile.auth")}</div>
-        </CustomButton>
+        {authState.isLogged ? (
+          <div className={styles.profile__side_logs}>
+            <div>{authState.userEmail}</div>
+          </div>
+        ) : (
+          <CustomButton clickCallback={handleAuthClick} type="red">
+            <div>{t("profile.auth")}</div>
+          </CustomButton>
+        )}
+
         <div className={styles.profile__side_links}>
-          <a href="https://www.ivi.ru/profile/settings" target="_blank">
+          <Link href="https://www.ivi.ru/profile/settings" target="_blank">
             {t("profile.settings.0")}
-          </a>
-          <a href="https://ask.ivi.ru/" target="_blank">
+          </Link>
+          <Link href="https://ask.ivi.ru/" target="_blank">
             {t("profile.settings.1")}
-          </a>
+          </Link>
         </div>
       </div>
     </div>

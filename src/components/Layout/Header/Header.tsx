@@ -7,6 +7,7 @@ import { useAppSelector } from "/src/hooks/redux";
 import ActionLayout from "/src/components/Layout/Header/ActionLayout/ActionLayout";
 import NavigationLayout from "/src/components/Layout/Header/NavigationLayout/NavigationLayout";
 import ModalContainer from "/src/components/Layout/Header/ModalContainer/ModalContainer";
+import { ToastContainer } from "react-toastify";
 
 const Header: FC = () => {
   const [isDropdownActive, setIsDropdownActive] = useState(false);
@@ -66,6 +67,7 @@ const Header: FC = () => {
           <DropDown dropDownType={dropDownType} />
         </div>
       </CSSTransition>
+      <ToastContainer />
     </header>
   );
 };

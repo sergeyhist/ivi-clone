@@ -47,7 +47,6 @@ const MovieModal: FC<MovieModalProps> = ({
     );
   };
 
-
   const setDefaultTab = (tab: "actors" | "comments"): void => {
     dispatch(setShowMovieModal({ isShow: true, defaultTab: tab }));
   };
