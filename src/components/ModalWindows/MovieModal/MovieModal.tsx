@@ -1,4 +1,4 @@
-import { FC, ReactNode, memo } from "react";
+import { FC, ReactNode, memo, useRef } from "react";
 import styles from "./MovieModal.module.sass";
 import MovieCard from "/src/UI/MovieCard/MovieCard";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
@@ -12,6 +12,7 @@ import { IPerson } from "/src/types/IPerson";
 import createAppPortal from "/src/utils/createAppPortal";
 import { modalsSlice } from "/src/store/slices/modalsSlice";
 import { IMovie } from "/src/types/IMovie";
+import useCloseEvents from "/src/hooks/useCloseEvents";
 
 interface MovieModalProps {
   movie: IMovie;
@@ -33,13 +34,19 @@ const MovieModal: FC<MovieModalProps> = ({
   const screenWidth = useAppSelector((state) => state.windowSize.width);
   const commentsTabClass =
     showMovieModal.defaultTab === "comments" ? styles.active : "";
-  const actorsTabClass = showMovieModal.defaultTab === "actors" ? styles.active : "";
+  const actorsTabClass =
+    showMovieModal.defaultTab === "actors" ? styles.active : "";
+  const modalRef = useRef<HTMLDivElement>(null);
 
-  const closeClick = (): void => {
+  const closeHandler = (): void => {
     dispatch(
-      setShowMovieModal({ isShow: false, defaultTab: showMovieModal.defaultTab })
+      setShowMovieModal({
+        isShow: false,
+        defaultTab: showMovieModal.defaultTab,
+      })
     );
   };
+
 
   const setDefaultTab = (tab: "actors" | "comments"): void => {
     dispatch(setShowMovieModal({ isShow: true, defaultTab: tab }));
@@ -54,19 +61,23 @@ const MovieModal: FC<MovieModalProps> = ({
     }
   };
 
-  useOverflowHidden();
+  useCloseEvents([modalRef], closeHandler);
+
+  useOverflowHidden(showMovieModal.isShow);
 
   return createAppPortal(
     <>
       {showMovieModal.isShow && (
-        <div className={styles.modal}>
-          <div className={styles.back} onClick={closeClick}>
+        <div ref={modalRef} className={styles.modal}>
+          <div onClick={closeHandler} className={styles.back}>
             {t("backLink")}
           </div>
           <div className={"container"}>
             <div className={styles.row}>
               <div className={styles.content}>
-                <h2 className={styles.title}>{`${movieTitle} ${t("title")}`}</h2>
+                <h2 className={styles.title}>{`${movieTitle} ${t(
+                  "title"
+                )}`}</h2>
                 <ul className={styles.tabs__list}>
                   <li
                     className={`${styles.tabs__item} ${actorsTabClass}`}

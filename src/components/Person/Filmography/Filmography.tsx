@@ -1,7 +1,6 @@
 import { FC, useEffect, useState } from "react";
 import styles from "./Filmography.module.sass";
 import { IMovie } from "/src/types/IMovie";
-import { getMoviesById } from "/src/api/movieApi";
 import Image from "next/image";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import { useTranslation } from "next-i18next";
@@ -9,18 +8,13 @@ import { useRouter } from "next/router";
 import { getMovieDeclination } from "/src/utils/getMovieDeclination";
 
 interface FilmographyProps {
-  moviesId: string[];
+  movies: IMovie[];
 }
 
-const Filmography: FC<FilmographyProps> = ({ moviesId }) => {
-  const [movies, setMovies] = useState<IMovie[] | undefined>([]);
+const Filmography: FC<FilmographyProps> = ({ movies }) => {
   const [moviesToShow, setMoviesToShow] = useState<IMovie[] | undefined>();
   const { t } = useTranslation("person");
   const { locale, push } = useRouter();
-
-  useEffect(() => {
-    getMoviesById(moviesId).then((res) => setMovies(res));
-  }, [moviesId]);
 
   useEffect(() => {
     setMoviesToShow(movies?.slice(0, 8));
@@ -41,11 +35,7 @@ const Filmography: FC<FilmographyProps> = ({ moviesId }) => {
           <h2 className={styles.title}>
             {t("filmography")}
             <span>
-              {movies &&
-                `${getMovieDeclination(
-                  movies.length,
-                  locale
-                )}`}
+              {movies && `${getMovieDeclination(movies.length, locale)}`}
             </span>
           </h2>
           <div className={styles.movies}>
