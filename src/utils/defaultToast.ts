@@ -2,7 +2,7 @@ import {Id, toast} from "react-toastify";
 import {DefaultTFuncReturn, TFuncReturn} from "i18next";
 
 export const notify = (
-  t: TFuncReturn<"registration", string, DefaultTFuncReturn, undefined>
+  t: TFuncReturn<"registration", string, DefaultTFuncReturn>
 ): Id =>
   toast(t, {
     position: "top-center",

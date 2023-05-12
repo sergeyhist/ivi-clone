@@ -1,13 +1,16 @@
 import type { AppProps } from "next/app";
-import { FC } from "react";
+import {FC, useEffect} from "react";
 import { Provider } from "react-redux";
 import { store } from "../store";
 import { appWithTranslation } from "next-i18next";
-import "/src/styles/global.sass";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import localFont from "next/font/local";
-import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "/src/styles/global.sass";
+import "nprogress/nprogress.css";
+import NProgress from "nprogress";
+import nProgress from "nprogress";
 
 const iviSans = localFont({
   src: [
@@ -38,7 +41,23 @@ const iconfont = localFont({
   variable: "--iconfont",
 });
 
-const App: FC<AppProps> = ({ Component, pageProps }) => {
+const App: FC<AppProps> = ({ Component, pageProps, router }) => {
+
+  useEffect(()=>{
+    const handleRouteStart = ():nProgress.NProgress => NProgress.start();
+    const handleRouteDone = (): nProgress.NProgress => NProgress.done();
+
+    router.events.on("routeChangeStart", handleRouteStart);
+    router.events.on("routeChangeComplete", handleRouteDone);
+    router.events.on("routeChangeError", handleRouteDone);
+
+    return () => {
+      router.events.off("routeChangeStart", handleRouteStart);
+      router.events.off("routeChangeComplete", handleRouteDone);
+      router.events.off("routeChangeError", handleRouteDone);
+    };
+  },[])
+
   return (
     <GoogleOAuthProvider
       clientId={process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID || "err"}
