@@ -1,8 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
-import "/src/styles/_config.sass";
-import "/src/styles/global.sass";
-import "/src/styles/_vars.sass";
 
 const meta: Meta<typeof CustomButton> = {
   title: "UI/CustomButton",
