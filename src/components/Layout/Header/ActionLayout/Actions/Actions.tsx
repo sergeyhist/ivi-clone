@@ -39,7 +39,7 @@ const Actions: FC<ActionsProps> = ({
   const handleLogout = (): void => {
     localStorage.removeItem("token");
     dispatch(setAuth({ userEmail: "", isLogged: false }));
-    notify(t("profile.logoutMessage"));
+    notify(t("profile.logoutMessage"), 'logout');
   };
 
   const handleProfileClick = (): void => {

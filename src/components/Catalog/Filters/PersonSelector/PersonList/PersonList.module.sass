@@ -1,3 +1,4 @@
+@use '/src/styles/vars'
 @use '/src/styles/mixins'
 
 .list
@@ -16,11 +17,15 @@
     grid-template-columns: 30px 1fr
     gap: 15px
     cursor: pointer
-    padding: 8px 16px
+    padding: 12px 16px 12px 20px
     align-items: center
 
-    &:hover
-      background: rgba(255, 255, 255, .3)
+    &:hover, &_active
+      background: rgba(255, 255, 255, .1)
+
+    &_active
+      border-left: 4px solid vars.$accent
+      padding-left: 16px
 
   &__image
     width: 30px
