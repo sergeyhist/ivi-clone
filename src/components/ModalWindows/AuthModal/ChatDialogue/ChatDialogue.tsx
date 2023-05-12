@@ -15,6 +15,7 @@ import { setAuth } from "/src/store/slices/authSlice";
 import { setShowAuthModal } from "/src/store/slices/modalsSlice";
 import { notify } from "/src/utils/defaultToast";
 import PasswordInput from "/src/components/ModalWindows/AuthModal/ChatDialogue/PasswordInput/PasswordInput";
+import {Id} from "react-toastify";
 
 interface ChatDialogueProps {
   setProgressBarWidth: Dispatch<SetStateAction<{ width: number }>>;
@@ -38,6 +39,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({
   const emailChangeRef = useRef<HTMLDivElement>(null);
   const emailInputRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  const toastRef = useRef<Id>(null);
 
   useEffect(() => {
     setShowFrom(true);
@@ -66,7 +68,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({
       }
       dispatch(setAuth({ isLogged: true, userEmail: email }));
       dispatch(setShowAuthModal(false));
-      notify(t("toastMessage"));
+      notify(t("toastMessage"),toastRef,(result)=>{toastRef.current=result});
     } else setIsEmailInputSuccess(true);
   };
 

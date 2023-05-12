@@ -56,7 +56,7 @@ const App: FC<AppProps> = ({ Component, pageProps, router }) => {
       router.events.off("routeChangeComplete", handleRouteDone);
       router.events.off("routeChangeError", handleRouteDone);
     };
-  },[])
+  },[router.events])
 
   return (
     <GoogleOAuthProvider
