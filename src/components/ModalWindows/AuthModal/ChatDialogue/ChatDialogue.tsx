@@ -15,7 +15,6 @@ import { setAuth } from "/src/store/slices/authSlice";
 import { setShowAuthModal } from "/src/store/slices/modalsSlice";
 import { notify } from "/src/utils/defaultToast";
 import PasswordInput from "/src/components/ModalWindows/AuthModal/ChatDialogue/PasswordInput/PasswordInput";
-import {Id} from "react-toastify";
 
 interface ChatDialogueProps {
   setProgressBarWidth: Dispatch<SetStateAction<{ width: number }>>;

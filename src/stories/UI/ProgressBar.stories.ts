@@ -1,7 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import "/src/styles/_config.sass";
-import "/src/styles/global.sass";
-import "/src/styles/_vars.sass";
 import ProgressBar from "/src/UI/ProgressBar/ProgressBar";
 
 const meta: Meta<typeof ProgressBar> = {
