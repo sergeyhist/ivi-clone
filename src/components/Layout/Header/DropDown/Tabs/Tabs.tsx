@@ -2,6 +2,8 @@ import { FC } from "react";
 import styles from "./Tabs.module.sass";
 import { DropDownType } from "../../Header.utils";
 import { useTranslation } from "next-i18next";
+import Link from "next/link";
+import {getTabsHrefs} from "/src/components/Layout/Header/DropDown/Tabs/Tabs.utils";
 
 interface TabsProps {
   selectedGenre: DropDownType;
@@ -17,9 +19,11 @@ const Tabs: FC<TabsProps> = ({ selectedGenre }) => {
     <div className={styles.tabs__container}>
       {translatedTabs.map((tab, i) => {
         return (
-          <div key={i} className={styles.tabs__item}>
-            {tab}
-          </div>
+          <Link key={i} href={getTabsHrefs(selectedGenre)[i]} target="_blank">
+            <div className={styles.tabs__item}>
+              {tab}
+            </div>
+          </Link>
         );
       })}
     </div>

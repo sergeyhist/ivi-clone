@@ -1,7 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import "/src/styles/_config.sass";
-import "/src/styles/global.sass";
-import "/src/styles/_vars.sass";
 import ModalInput from "/src/UI/ModalInput/ModalInput";
 
 const meta: Meta<typeof ModalInput> = {
@@ -42,6 +39,13 @@ const meta: Meta<typeof ModalInput> = {
       description: "(optional) A state setter function that sets the validity of the authentication data, based on some validation criteria."
     }
   },
+    decorators: [
+      (Story) => (
+        <div style={{ width: "300px" }}>
+  <Story />
+  </div>
+),
+],
   component: ModalInput,
 };
 

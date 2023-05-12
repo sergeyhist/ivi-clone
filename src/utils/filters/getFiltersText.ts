@@ -46,8 +46,8 @@ const updateTextArray = (filters: IFilters, key: string): string => {
 
 export const getFiltersText = (
   filters: IFilters,
-  actor: string | undefined,
-  director: string | undefined
+  actor: string | undefined = undefined,
+  director: string | undefined = undefined
 ): string => {
   return Object.keys(filters)
     .map(

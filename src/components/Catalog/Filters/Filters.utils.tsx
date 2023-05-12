@@ -1,14 +1,22 @@
 import { ReactNode } from "react";
+import { BiGhost } from "react-icons/bi";
+import { BsJournalRichtext } from "react-icons/bs";
+import { FaRedhat } from "react-icons/fa";
 import {
   GiBolterGun,
   GiChargedArrow,
   GiDramaMasks,
   GiGhostAlly,
+  GiHatchets,
+  GiLovers,
+  GiMusicalNotes,
   GiWinchesterRifle,
 } from "react-icons/gi";
 import { MdTheaterComedy } from "react-icons/md";
 import { RiTreasureMapLine } from "react-icons/ri";
 import { SwiperOptions } from "swiper";
+import { TbRating18Plus } from "react-icons/tb";
+import { MdSportsBasketball } from "react-icons/md";
 
 export const sliderBreakpoints: { [width: number]: SwiperOptions } = {
   0: { slidesPerView: 1, slidesPerGroup: 1 },
@@ -28,6 +36,14 @@ export const genreIcons: { [key: string]: ReactNode } = {
   vestern: <GiWinchesterRifle size={32} />,
   priklyucheniya: <RiTreasureMapLine size={32} />,
   anime: <GiChargedArrow size={32} />,
+  melodrama: <GiLovers size={32} />,
+  sport: <MdSportsBasketball size={32} />,
+  musical: <GiMusicalNotes size={32} />,
+  biography: <BsJournalRichtext size={32} />,
+  adults: <TbRating18Plus size={32} />,
+  filmnoir: <FaRedhat size={32} />,
+  criminal: <GiHatchets size={32} />,
+  horror: <BiGhost size={32} />,
 };
 
 export const yearFilterItems: string[] = [

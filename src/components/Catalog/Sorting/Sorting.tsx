@@ -35,7 +35,7 @@ const Sorting: FC = () => {
     setIsDropdownActive(false);
   };
 
-  useCloseEvents([titleRef, dropdownRef], setIsDropdownActive);
+  // useCloseEvents([titleRef, dropdownRef], () => setIsDropdownActive(false));
 
   useEffect(() => {
     sortingMethod.includes("name_") &&
@@ -43,30 +43,28 @@ const Sorting: FC = () => {
   }, [dispatch, router.locale, sortingMethod]);
 
   return (
-    <div className="container">
-      <div className={styles.sorting + " unselectable"}>
-        <div ref={titleRef}>
-          <SortingTitle
-            value={titleValue}
-            isDropdownActive={isDropdownActive}
-            setIsDropdownActive={setIsDropdownActive}
-          />
-        </div>
-        <div
-          ref={dropdownRef}
-          className={styles.sorting__dropdown + activeDropdown}
-        >
-          <div className={styles.sorting__description}>{t("desc")}</div>
-          {sortOptions.map((option, i) => (
-            <SortingOption
-              key={i}
-              isActive={sortingMethod === option.slug}
-              clickCallback={() => optionClickHandler(option.slug)}
-            >
-              {option.text}
-            </SortingOption>
-          ))}
-        </div>
+    <div className={styles.sorting + " unselectable"}>
+      <div ref={titleRef}>
+        <SortingTitle
+          value={titleValue}
+          isDropdownActive={isDropdownActive}
+          setIsDropdownActive={setIsDropdownActive}
+        />
+      </div>
+      <div
+        ref={dropdownRef}
+        className={styles.sorting__dropdown + activeDropdown}
+      >
+        <div className={styles.sorting__description}>{t("desc")}</div>
+        {sortOptions.map((option, i) => (
+          <SortingOption
+            key={i}
+            isActive={sortingMethod === option.slug}
+            clickCallback={() => optionClickHandler(option.slug)}
+          >
+            {option.text}
+          </SortingOption>
+        ))}
       </div>
     </div>
   );

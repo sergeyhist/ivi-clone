@@ -23,14 +23,17 @@
 
 .button
   &_prev, &_next
+    i
       &:after
         font-size: 18px
+  &_next
+    margin-right: 0
 
 .slider
   &__shadow
     &_left
       @include shadowMixin
-      left: -0px
+      left: 0
       background-image: linear-gradient(270deg, rgba(31, 27, 46, 0), #1f1b2e)
 
     &_right

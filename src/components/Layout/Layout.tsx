@@ -16,6 +16,8 @@ import {
 } from "/src/api/getData";
 import { setSlugs } from "/src/store/slices/slugsSlice";
 import { setPersons } from "/src/store/slices/personsSlice";
+import { ToastContainer } from "react-toastify";
+import { iviSans, iviIcons, iconFont } from "/src/utils/fonts";
 
 interface LayoutProps {
   title: string;
@@ -73,13 +75,18 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
 
   return (
     <>
+      <ToastContainer />
       <Head>
         <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.png" />
       </Head>
       <Header />
-      <main>{children}</main>
+      <main
+        className={`${iviSans.className} ${iviSans.variable} ${iviIcons.variable} ${iconFont.variable}`}
+      >
+        {children}
+      </main>
       {windowSizeWidth < 1160 && <MobileMenu />}
       <Footer />
     </>

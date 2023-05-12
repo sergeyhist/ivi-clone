@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import Layout from "/src/components/Layout/Layout";
 import { GetServerSidePropsResult } from "next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -7,58 +7,66 @@ import Filmography from "/src/components/Person/Filmography/Filmography";
 import { useRouter } from "next/router";
 import { IPerson } from "/src/types/IPerson";
 import { getPersonById } from "/src/api/personApi";
-import { mockPersons } from "/src/utils/person";
+import BreadCrumbs from "/src/UI/BreadCrumbs/BreadCrumbs";
+import BackButton from "/src/components/Person/BackButton/BackButton";
+import PersonLayout from "/src/components/Person/PersonLayout/PersonLayout";
+import { getMoviesById } from "/src/api/movieApi";
+import { IMovie } from "/src/types/IMovie";
 
-const Person: FC = () => {
-  const [person, setPerson] = useState<IPerson>(mockPersons[0]);
-  const router = useRouter();
-  const { id } = router.query;
+interface PersonProps {
+  person: IPerson;
+  movies: IMovie[];
+}
+
+const Person: FC<PersonProps> = ({ person, movies }) => {
+  const { locale } = useRouter();
+
   const firstName =
-    person && router.locale === "ru"
-      ? person.first_name_ru
-      : person?.first_name_en;
-  const lastName =
-    person && router.locale === "ru"
-      ? person.last_name_ru
-      : person?.last_name_en;
-
-  useEffect(() => {
-    getPersonById(id).then((res) => {
-      if (res) setPerson(res);
-    });
-  }, [id]);
+    person && (person[`first_name_${locale || "ru"}`] as string);
+  const lastName = person && (person[`last_name_${locale || "ru"}`] as string);
 
   return (
     <Layout title={"person"}>
-      <PersonCard
-        firstName={firstName}
-        lastName={lastName}
-        person={person || mockPersons[0]}
-      />
-      <Filmography
-        firstName={firstName}
-        lastName={lastName}
-        moviesId={person.films.map((film) => film.film_id)}
+      <PersonLayout>
+        <BackButton />
+        <PersonCard firstName={firstName} lastName={lastName} person={person} />
+        <Filmography movies={movies} />
+      </PersonLayout>
+      <BreadCrumbs
+        type="slash"
+        currentTitle={firstName && lastName && `${firstName} ${lastName}`}
       />
     </Layout>
   );
 };
 export const getServerSideProps = async ({
   locale,
+  params,
 }: {
   locale: string;
+  params: { id: string };
 }): Promise<GetServerSidePropsResult<Record<string, unknown>>> => {
+  const person = await getPersonById(params.id);
+  const movies = await getMoviesById(
+    person?.films.map((film) => film.film_id) || []
+  );
+
   return {
     props: {
+      person,
+      movies,
       ...(await serverSideTranslations(locale, [
         "footer",
         "header",
         "mobileMenu",
         "dropDownCategory",
         "person",
-        "breadcrumbs",
+        "common",
+        "genres",
+        "countries",
       ])),
     },
   };
 };
+
 export default Person;

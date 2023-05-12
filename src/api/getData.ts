@@ -3,35 +3,13 @@ import { ICountry } from "../types/ICountry";
 import { IGenre } from "../types/IGenre";
 import { IPerson } from "../types/IPerson";
 
-const ip = "85.237.34.125";
-
-export const getGenres = async (): Promise<IGenre[] | undefined> => {
-  try {
-    const response = await axios.get(`http://${ip}:4000/genres`);
-
-    return response.data as IGenre[];
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const getCountries = async (): Promise<ICountry[] | undefined> => {
-  try {
-    const response = await axios.get(`http://${ip}:4000/countries`);
-
-    return response.data as ICountry[];
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 export const getGenresSlugs = async (
   url: string
 ): Promise<string[] | undefined> => {
   try {
     const response = await axios.get(url);
     const data = response.data as IGenre[];
-    const slugs = data ? data.map((genre: IGenre) => genre.slug) : [];
+    const slugs = data ? data.map((genre: IGenre) => genre.slug.toLowerCase()) : [];
 
     return slugs;
   } catch (e) {
@@ -45,7 +23,7 @@ export const getCountriesSlugs = async (
   try {
     const response = await axios.get(url);
     const data = response.data as ICountry[];
-    const slugs = data ? data.map((country: ICountry) => country.slug) : [];
+    const slugs = data ? data.map((country: ICountry) => country.slug.toLowerCase()) : [];
 
     return slugs;
   } catch (e) {

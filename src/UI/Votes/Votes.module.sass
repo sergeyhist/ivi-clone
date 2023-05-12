@@ -1,5 +1,5 @@
 @mixin iconFont
-  font-family: iconfont
+  font-family: var(--iconfont)
   color: rgba(126, 121, 143, .72)
   font-size: 16px
   line-height: 16px
@@ -12,6 +12,7 @@
     &:before
       content: "\E3A4"
       @include iconFont
+      font-family: var(--iconfont)
 
   .count
     color: #73a32f
@@ -23,6 +24,7 @@
     &:before
       content: "\E39C"
       @include iconFont
+      font-family: var(--iconfont)
 
   .like, .dislike
     cursor: pointer

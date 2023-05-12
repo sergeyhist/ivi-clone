@@ -4,6 +4,7 @@ import modalsSlice from "./slices/modalsSlice";
 import slugsSlice from "/src/store/slices/slugsSlice";
 import filtersSlice from "./slices/filtersSlice";
 import personsSlice from "/src/store/slices/personsSlice";
+import authSlice from "/src/store/slices/authSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
     showModal: modalsSlice,
     slugs: slugsSlice,
     filters: filtersSlice,
-    persons: personsSlice
+    persons: personsSlice,
+    auth: authSlice,
   },
 });
 

@@ -1,33 +1,20 @@
 import { FC, useEffect, useState } from "react";
 import styles from "./Filmography.module.sass";
 import { IMovie } from "/src/types/IMovie";
-import { getMoviesById } from "/src/api/movieApi";
 import Image from "next/image";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
-import BreadCrumbs from "/src/UI/BreadCrumbs/BreadCrumbs";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import {getMovieDeclination} from "/src/utils/getMovieDeclination";
+import { getMovieDeclination } from "/src/utils/getMovieDeclination";
 
 interface FilmographyProps {
-  firstName?: string;
-  lastName?: string;
-  moviesId: string[];
+  movies: IMovie[];
 }
 
-const Filmography: FC<FilmographyProps> = ({
-  moviesId,
-  firstName,
-  lastName,
-}) => {
-  const [movies, setMovies] = useState<IMovie[] | undefined>([]);
+const Filmography: FC<FilmographyProps> = ({ movies }) => {
   const [moviesToShow, setMoviesToShow] = useState<IMovie[] | undefined>();
   const { t } = useTranslation("person");
-  const { locale } = useRouter();
-
-  useEffect(() => {
-    getMoviesById(moviesId).then((res) => setMovies(res));
-  }, [moviesId]);
+  const { locale, push } = useRouter();
 
   useEffect(() => {
     setMoviesToShow(movies?.slice(0, 8));
@@ -37,6 +24,10 @@ const Filmography: FC<FilmographyProps> = ({
     setMoviesToShow(movies);
   };
 
+  const movieClick = (id: string): void => {
+    push(`/movies/${id}`);
+  };
+
   return (
     <section className={styles.section}>
       <div className={styles.container}>
@@ -44,11 +35,7 @@ const Filmography: FC<FilmographyProps> = ({
           <h2 className={styles.title}>
             {t("filmography")}
             <span>
-              {movies &&
-                `${movies.length} ${getMovieDeclination(
-                  movies.length,
-                  locale
-                )}`}
+              {movies && `${getMovieDeclination(movies.length, locale)}`}
             </span>
           </h2>
           <div className={styles.movies}>
@@ -77,7 +64,10 @@ const Filmography: FC<FilmographyProps> = ({
                         {`${t("rating")} ${movie.rating}`}
                       </div>
                     </div>
-                    <CustomButton className={styles.btn}>
+                    <CustomButton
+                      className={styles.btn}
+                      clickCallback={() => movieClick(movie.film_id)}
+                    >
                       {t("movieButton")}
                     </CustomButton>
                   </div>
@@ -87,13 +77,12 @@ const Filmography: FC<FilmographyProps> = ({
           </div>
           {movies && moviesToShow && moviesToShow.length <= 8 && (
             <div className={styles.show__btn} onClick={handleShowMovies}>
-              {`${t("showButton")} ${movies.length - 8} ${getMovieDeclination(
-                movies.length,
+              {`${t("showButton")} ${getMovieDeclination(
+                movies.length - 8,
                 locale
               )} `}
             </div>
           )}
-          <BreadCrumbs type="slash" currentTitle={(firstName && lastName) && `${firstName} ${lastName}`}/>
         </div>
       </div>
     </section>

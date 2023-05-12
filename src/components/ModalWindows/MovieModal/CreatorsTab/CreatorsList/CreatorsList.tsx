@@ -29,7 +29,7 @@ const CreatorsList: FC<CreatorsListProps> = ({ persons, title }) => {
       <h2 className={styles.creators__title}>{title}</h2>
       <div className={styles.creators__list}>
         {creatorsToShow.map((person, i) => (
-          <Creator className={styles.creator} key={i} person={person} type="large" />
+          <Creator className={styles.creator} key={i} person={person} type="modal" />
         ))}
         {persons.length > 16 && !showAllCreators && (
           <CustomButton

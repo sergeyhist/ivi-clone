@@ -1,0 +1,34 @@
+@use "/src/styles/vars"
+@use "/src/styles/mixins"
+
+@mixin chatMessage
+  margin-top: 20px
+  padding: 16px
+  min-width: 420px
+  max-height: 72px
+
+@mixin chatMessageTitle
+  color: vars.$whiteTextColor
+  font-size: 15px
+  line-height: 20px
+  font-weight: 700
+  font-style: normal
+  @include mixins.ellipsis
+
+.container
+  @include chatMessage
+  border-radius: 16px 16px 16px 0
+  background-color: #312b45
+  .title
+    @include chatMessageTitle
+  .text
+    color: vars.$secondaryColor
+    font-size: 13px
+    line-height: 16px
+    margin-top: 10px
+
+@media (max-width: 600px)
+  .container
+    width: 100%
+    min-width: unset
+    max-height: unset

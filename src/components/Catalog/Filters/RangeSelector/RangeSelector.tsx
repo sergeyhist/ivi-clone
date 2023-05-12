@@ -2,12 +2,14 @@ import { FC, useEffect, useState } from "react";
 import { useTranslation } from "next-i18next";
 import styles from "./RangeSelector.module.sass";
 import { useDebouncedCallback } from "use-debounce";
+import { useRouter } from "next/router";
 
 interface RangeSelectorProps {
   title: string;
   max: number;
   step: number;
   filter: string;
+  filterType: string;
   getFilter: (filter: string) => void;
 }
 
@@ -16,19 +18,21 @@ const RangeSelector: FC<RangeSelectorProps> = ({
   max,
   step,
   filter,
+  filterType,
   getFilter,
 }) => {
   const { t } = useTranslation("filters");
+  const {query} = useRouter();
 
   const debouncedGetFilter = useDebouncedCallback((value: string) => {
     getFilter(value);
-  }, 200);
+  }, 100);
 
-  const [rangeValue, setRangeValue] = useState("");
+  const [rangeValue, setRangeValue] = useState<string>("0");
 
   useEffect(() => {
-    filter.length === 0 && setRangeValue("0");
-  }, [filter, setRangeValue]);
+    !query[filterType] ? setRangeValue("0") : setRangeValue(filter);
+  }, [query, filter, filterType, setRangeValue])
 
   return (
     <div className={styles.selector + " unselectable"}>

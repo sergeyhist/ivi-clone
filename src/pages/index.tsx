@@ -65,6 +65,7 @@ export const getStaticProps = async ({
         "registration",
         "genres",
         "countries",
+        "movie",
       ])),
     },
   };

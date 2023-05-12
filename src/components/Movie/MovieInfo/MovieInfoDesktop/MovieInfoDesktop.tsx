@@ -6,8 +6,6 @@ import MovieTrailerButtons from "../MovieInfoComponents/MovieButtons/MovieButton
 import MovieMedallions from "../MovieInfoComponents/MovieMedallions/MovieMedallions";
 import MovieRating from "../MovieInfoComponents/MovieRating/MovieRating";
 import MovieDescription from "../MovieInfoComponents/MovieDescription/MovieDescription";
-import MovieOption from "../MovieInfoComponents/MovieOption/MovieOption";
-import MovieBadge from "../MovieInfoComponents/MovieBadge/MovieBadge";
 import MovieOptions from "../MovieInfoComponents/MovieOptions/MovieOptions";
 import TextDropDown from "/src/UI/TextDropDown/TextDropDown";
 import { IMovie } from "/src/types/IMovie";
@@ -51,35 +49,7 @@ const MovieInfoDesktop: FC<MovieInfoDesktopProps> = ({ movie, persons }) => {
               }}
             >
               <MovieDescription descriptionHTML={movie.description} />
-              <MovieOptions>
-                <MovieOption className={styles.option} title={t("details.langs")}>
-                  {movie.languagesAudio.map((lang) => (
-                    <span className={styles.option__span} key={lang.language_id}>
-                      {lang.language}
-                    </span>
-                  ))}
-                </MovieOption>
-                <MovieOption
-                  className={styles.option}
-                  title={t("details.subtitles")}
-                >
-                  {movie.languagesSubtitle.map((lang) => (
-                    <span className={styles.option__span} key={lang.language_id}>
-                      {lang.language}
-                    </span>
-                  ))}
-                </MovieOption>
-                <MovieOption className={styles.option} title={t("details.quality")}>
-                  {movie.qualities.map((quality) => (
-                    <MovieBadge
-                      className={styles.option__span}
-                      key={quality.quality_id}
-                    >
-                      {quality.quality}
-                    </MovieBadge>
-                  ))}
-                </MovieOption>
-              </MovieOptions>
+              <MovieOptions movie={movie} />
             </TextDropDown>
             <MovieRating grade={movie.rating} grades={movie.assessments} />
           </div>

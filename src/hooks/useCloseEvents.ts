@@ -1,13 +1,8 @@
-import {
-  Dispatch,
-  RefObject,
-  SetStateAction,
-  useEffect,
-} from "react";
+import { RefObject, useEffect } from "react";
 
 const useCloseEvents = (
   refs: RefObject<HTMLElement>[],
-  action: Dispatch<SetStateAction<boolean>>
+  callback: () => void
 ): void => {
   useEffect(() => {
     const clickHandler = (e: MouseEvent): void => {
@@ -15,11 +10,11 @@ const useCloseEvents = (
         (result, ref) =>
           ref.current?.contains(e.target as Node) ? (result = false) : result,
         true
-      ) && action(false);
+      ) && callback();
     };
 
     const keydownHandler = (e: KeyboardEvent): void => {
-      e.key === "Escape" && action(false);
+      e.key === "Escape" && callback();
     };
 
     document.addEventListener("mousedown", clickHandler);
@@ -29,7 +24,7 @@ const useCloseEvents = (
       document.removeEventListener("mousedown", clickHandler);
       document.removeEventListener("keydown", keydownHandler);
     };
-  }, [refs, action]);
+  }, [refs, callback]);
 };
 
 export default useCloseEvents;

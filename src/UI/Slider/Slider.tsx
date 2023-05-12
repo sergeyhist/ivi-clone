@@ -10,18 +10,21 @@ interface SliderProps {
   children: ReactNode;
   swiperClassName?: string;
   wrapperClassName?: string;
-  breakpoints: SwiperOptions["breakpoints"];
+  breakpoints?: SwiperOptions["breakpoints"];
   prevClassName?: string;
   nextClassName?: string;
   loop?: boolean;
   centeredSlides?: boolean;
   autoplay?: boolean | AutoplayOptions;
   simulateTouch?: boolean;
+  slidesPerView?: "auto" | number;
+  type?: "default" | "always-with-buttons";
 }
 
 const Slider: FC<SliderProps> = ({
   children,
   breakpoints,
+  slidesPerView,
   swiperClassName = "",
   wrapperClassName = "",
   prevClassName = "",
@@ -30,9 +33,21 @@ const Slider: FC<SliderProps> = ({
   centeredSlides = false,
   autoplay = false,
   simulateTouch = true,
+  type = "default",
 }) => {
   const [show, setShow] = useState({ prev: false, next: true });
   const swiperRef = useRef<SwiperRef>(null);
+
+  const swiperHandler = (event: swiperType): void => {
+    setShow({
+      prev: !event.isBeginning,
+      next: !event.isEnd,
+    });
+  };
+
+  const swiperInitHandler = (event: swiperType): void => {
+    type === "always-with-buttons" ? undefined : swiperHandler(event);
+  };
 
   const nextCallback = (): void => {
     swiperRef.current?.swiper.slideNext();
@@ -47,24 +62,15 @@ const Slider: FC<SliderProps> = ({
       <Swiper
         modules={[Autoplay]}
         ref={swiperRef}
-        onSlideChange={(event: swiperType) => {
-          setShow({
-            prev: !event.isBeginning,
-            next: !event.isEnd,
-          });
-        }}
-        onSwiper={(event: swiperType) => {
-          setShow({
-            prev: !event.isBeginning,
-            next: !event.isEnd,
-          });
-        }}
+        onSlideChange={swiperInitHandler}
+        onSwiper={swiperHandler}
         className={`${styles.swiper} ${swiperClassName}`}
         breakpoints={breakpoints}
         loop={loop}
         centeredSlides={centeredSlides}
         autoplay={autoplay}
         simulateTouch={simulateTouch}
+        slidesPerView={slidesPerView}
       >
         {children}
       </Swiper>

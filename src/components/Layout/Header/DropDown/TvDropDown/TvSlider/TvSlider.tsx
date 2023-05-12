@@ -5,6 +5,7 @@ import Image from "next/image";
 import ITVSlide from "/src/types/ITVSlide";
 import Slider from "/src/UI/Slider/Slider";
 import { tvSlideBreakpoints } from "../TvDropDown.utils";
+import Link from "next/link";
 
 interface TvSliderProps {
   slides: ITVSlide[];
@@ -20,7 +21,7 @@ const TvSlider: FC<TvSliderProps> = ({ slides }) => {
     >
       {slides.map((slide) => (
         <SwiperSlide key={slide.id}>
-          <a className={styles.link} href={slide.link} target="_blank">
+          <Link className={styles.link} href={slide.link} target="_blank">
             <Image
               className={styles.channels__slider_item + " unselectable"}
               src={slide.imageUrl}
@@ -28,7 +29,7 @@ const TvSlider: FC<TvSliderProps> = ({ slides }) => {
               width={88}
               height={58}
             />
-          </a>
+          </Link>
         </SwiperSlide>
       ))}
       <div className={styles.slider__shadow_left}></div>

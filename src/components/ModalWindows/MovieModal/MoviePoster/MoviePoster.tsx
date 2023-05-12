@@ -1,15 +1,15 @@
 import { FC } from "react";
-import styles from "./MovieCardPoster.module.sass";
+import styles from "./MoviePoster.module.sass";
 import Link from "next/link";
 import Image from "next/image";
 import { IMovie } from "/src/types/IMovie";
 import { useTranslation } from "next-i18next";
 
-interface MovieCardPosterProps {
+interface MoviePosterProps {
   content: IMovie;
 }
 
-const MovieCardPoster: FC<MovieCardPosterProps> = ({ content }) => {
+const MoviePoster: FC<MoviePosterProps> = ({ content }) => {
   const { t } = useTranslation("countries");
   const img = content.img ? `https:${content.img}` : "/images/film1.jpeg";
 
@@ -22,7 +22,7 @@ const MovieCardPoster: FC<MovieCardPosterProps> = ({ content }) => {
             width={153}
             className={styles.content__img}
             src={img}
-            alt=""
+            alt={content.name_en}
           />
         </div>
       </Link>
@@ -52,4 +52,4 @@ const MovieCardPoster: FC<MovieCardPosterProps> = ({ content }) => {
   );
 };
 
-export default MovieCardPoster;
+export default MoviePoster;

@@ -7,8 +7,6 @@ import MovieTrailerButtons from "../MovieInfoComponents/MovieButtons/MovieButton
 import MovieMedallions from "../MovieInfoComponents/MovieMedallions/MovieMedallions";
 import MovieDescription from "../MovieInfoComponents/MovieDescription/MovieDescription";
 import MovieRating from "../MovieInfoComponents/MovieRating/MovieRating";
-import MovieOption from "../MovieInfoComponents/MovieOption/MovieOption";
-import MovieBadge from "../MovieInfoComponents/MovieBadge/MovieBadge";
 import MovieOptions from "../MovieInfoComponents/MovieOptions/MovieOptions";
 import TextDropDown from "/src/UI/TextDropDown/TextDropDown";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
@@ -53,25 +51,7 @@ const MovieInfoMobile: FC<MovieInfoMobileProps> = ({ movie, persons }) => {
               <MovieDescription descriptionHTML={movie.description} />
             </TextDropDown>
             <MovieRating grade={movie.rating} grades={movie.assessments} />
-            <MovieOptions>
-              <MovieOption className={styles.option} title={t("details.langs")}>
-                {movie.languagesAudio.map((lang) => (
-                  <span key={lang.language_id}>{lang.language}</span>
-                ))}
-              </MovieOption>
-              <MovieOption className={styles.option} title={t("details.subtitles")}>
-                {movie.languagesSubtitle.map((lang) => (
-                  <span key={lang.language_id}>{lang.language}</span>
-                ))}
-              </MovieOption>
-              <MovieOption className={styles.option} title={t("details.quality")}>
-                {movie.qualities.map((quality) => (
-                  <MovieBadge key={quality.quality_id} className={styles.badge}>
-                    {quality.quality}
-                  </MovieBadge>
-                ))}
-              </MovieOption>
-            </MovieOptions>
+            <MovieOptions movie={movie} />
           </div>
           <div className={styles.mobile__buttons}>
             <MovieTrailerButtons />

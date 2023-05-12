@@ -15,8 +15,21 @@
 
 .slide
     overflow: visible
-    width: 10%
+    width: calc( 24px/5 + 100%/5 )
     margin-right: 24px
 
 .swiper
-    padding: 20px
+    padding: 24px 12px
+    margin: 0 -12px
+
+@media (max-width: 1180px)
+    .slide
+        width: calc( 24px/4 + 100%/4 )
+
+@media (max-width: 880px)
+    .slide
+        width: calc( 24px/3 + 100%/3 )
+
+@media (max-width: 600px)
+    .slide
+        width: calc( 24px/2 + 100%/2 )

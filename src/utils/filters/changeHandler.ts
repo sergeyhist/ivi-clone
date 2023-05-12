@@ -1,5 +1,5 @@
-import {filterDefaults} from "./filtersVariables";
-import {isFilterActive} from "./isFilterActive";
+import { filterDefaults } from "./filtersVariables";
+import { isFilterActive } from "./isFilterActive";
 
 export const changeHandler = (
   filter: string[] | string,
@@ -10,9 +10,7 @@ export const changeHandler = (
 
   if (isFilterActive(filter, slug) || filterDefaults.includes(slug)) {
     result =
-      typeof filter !== "string"
-        ? filter.filter((item) => item !== slug)
-        : (filter = []);
+      typeof filter !== "string" ? filter.filter((item) => item !== slug) : [];
   } else {
     result = replace
       ? [slug]

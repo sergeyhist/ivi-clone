@@ -3,16 +3,16 @@ import styles from "./AuthModal.module.sass";
 import ChatHeader from "/src/components/ModalWindows/AuthModal/ChatHeader/ChatHeader";
 import ChatDialogue from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDialogue";
 import useOverflowHidden from "/src/hooks/useOverflowHidden";
-import VkLoginButton from "/src/components/ModalWindows/AuthModal/VkLoginButton/VkLoginButton";
-import GoogleLoginButton from "/src/components/ModalWindows/AuthModal/GoogleLoginButton/GoogleLoginButton";
+import {useAppSelector} from "/src/hooks/redux";
 
 interface RegistrationModalProps {
   closeCallback: () => void;
 }
 
 const AuthModal: FC<RegistrationModalProps> = ({ closeCallback }) => {
-
+  const [isEmailExist, setIsEmailExist] = useState<boolean>();
   const [progressBarWidth, setProgressBarWidth] = useState({ width: 10 });
+  const { showAuthModal } = useAppSelector((state) => state.showModal);
 
   useEffect(() => {
     const keydownHandler = (e: KeyboardEvent): void => {
@@ -23,19 +23,20 @@ const AuthModal: FC<RegistrationModalProps> = ({ closeCallback }) => {
     return () => document.removeEventListener("keydown", keydownHandler);
   }, [closeCallback]);
 
-  useOverflowHidden();
+  useOverflowHidden(showAuthModal);
 
   return (
     <div className={styles.chat__container}>
       <ChatHeader
+        isEmailExist={isEmailExist}
         closeCallback={closeCallback}
         progressBarWidth={progressBarWidth}
       />
-      <ChatDialogue setProgressBarWidth={setProgressBarWidth} />
-      <div className={styles.social_auth}>
-        <GoogleLoginButton/>
-        <VkLoginButton/>
-      </div>
+      <ChatDialogue
+        setIsEmailExist={setIsEmailExist}
+        isEmailExist={isEmailExist}
+        setProgressBarWidth={setProgressBarWidth}
+      />
     </div>
   );
 };

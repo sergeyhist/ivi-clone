@@ -34,3 +34,36 @@ export const makeLinksFromSlugs = (
     return `${referLink}=${slug}`;
   });
 };
+
+export const getCountriesLinksByCategory = (
+  category: DropDownType
+): string[] => {
+  switch (category) {
+    case "movies":
+      return moviesCountriesHrefs;
+    case "series":
+      return seriesCountriesHrefs;
+  }
+  return cartoonsCountriesHrefs;
+};
+
+const moviesCountriesHrefs = [
+  "countries=russia",
+  "countries=usa",
+  "countries=ussr",
+];
+
+const seriesCountriesHrefs = [
+  "countries=russia",
+  "countries=france&countries=usa&countries=canada&countries=britain",
+  "countries=usa",
+  "countries=southkorea",
+  "countries=turkey",
+];
+
+const cartoonsCountriesHrefs = [
+  "countries=ussr",
+  "countries=russia",
+  "countries=usa",
+  "countries=france&countries=usa&countries=canada&countries=britain",
+];

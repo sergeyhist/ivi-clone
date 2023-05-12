@@ -3,7 +3,7 @@ import styles from "./ErrorMessage.module.sass";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { CSSTransition } from "react-transition-group";
 import { cssTransitionClassNames } from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDoalogue.utils";
-import {useTranslation} from "next-i18next";
+import { useTranslation } from "next-i18next";
 
 interface ErrorMessageProps {
   showErrorMessage: boolean;
@@ -29,7 +29,9 @@ const ErrorMessage: FC<ErrorMessageProps> = ({ showErrorMessage }) => {
           </div>
           <div>
             <h3 className={styles.error__title}>{t("errorMessage.title")}</h3>
-            <div className={styles.error__text}>{t("errorMessage.subtitle")}</div>
+            <div className={styles.error__text}>
+              {t("errorMessage.subtitle")}
+            </div>
           </div>
         </div>
       </div>

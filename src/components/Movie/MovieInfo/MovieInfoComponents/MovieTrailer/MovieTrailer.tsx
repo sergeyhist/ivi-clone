@@ -4,6 +4,7 @@ import Image from "next/image";
 import { IMovie } from "/src/types/IMovie";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
+import { FaPlay } from "react-icons/fa";
 
 interface MovieTrailerProps {
   movie: IMovie;
@@ -39,8 +40,10 @@ const MovieTrailer: FC<MovieTrailerProps> = ({ movie }) => {
           <Link
             target="__blank"
             href={movie.trailers[0].trailer}
-            className={styles.trailer__button}
-          />
+            className={styles.play}
+          >
+            <FaPlay size={30} className={styles.play__icon} />
+          </Link>
         </div>
         <p className={styles.trailer__age}></p>
       </div>

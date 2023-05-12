@@ -6,6 +6,7 @@
     position: absolute
     margin-top: 4px
     opacity: 0
+    transform: scaleY(0)
     visibility: hidden
     background-color: #312b45
     border-radius: 4px
@@ -13,8 +14,9 @@
     z-index: 1
     padding: 20px
     max-width: 180%
-    transition: .3s
+    transition: .2s
     pointer-events: none
+    transform-origin: top
 
     &_center
       left: -40%
@@ -27,6 +29,7 @@
 
     &_active
       opacity: 1
+      transform: scaleY(1)
       visibility: visible
       pointer-events: auto 
 

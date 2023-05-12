@@ -24,7 +24,11 @@ const TopTen: FC = () => {
           {t("top.title")}
         </h2>
 
-        <Slider swiperClassName={styles.swiper} breakpoints={breakpoints}>
+        <Slider
+          swiperClassName={styles.swiper}
+          breakpoints={breakpoints}
+          slidesPerView={"auto"}
+        >
           {slides.map((slide) => (
             <SwiperSlide className={styles.slide} key={slide.id}>
               <TopTenSlide

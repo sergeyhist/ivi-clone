@@ -1,5 +1,4 @@
 import { FC } from "react";
-import Layout from "../components/Layout/Layout";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticPropsResult } from "next";

@@ -43,7 +43,7 @@
 
   &__icon::after
     content: '\E033'
-    font-family: ivi-icons
+    font-family: var(--ivi-icons)
     font-weight: 400
     font-style: normal
     font-size: 16px
@@ -66,21 +66,19 @@
     bottom: 16px
     left: 16px
 
-  &__button
-    background-color: vars.$accent
-    width: 88px
-    height: 88px
-    display: flex
-    align-items: center
-    justify-content: center
-    border-radius: 100%
-    cursor: pointer
+.play
+  background-color: vars.$accent
+  width: 88px
+  height: 88px
+  display: flex
+  align-items: center
+  justify-content: center
+  border-radius: 100%
+  cursor: pointer
 
-    &::after
-      content: "\E2CF"
-      font-family: iconfont
-      font-size: 40px
-      color: vars.$whiteTextColor
+  &__icon
+    color: vars.$whiteTextColor
+    margin-left: 4px
 
 .button
   opacity: 0.8
