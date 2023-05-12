@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { getBackendImage } from "/src/utils/getBackendImg";
 import { IPerson } from "/src/types/IPerson";
 import { getPersonLastName, getPersonFirstName } from "/src/utils/person";
+import Link from "next/link";
 
 interface MovieMedallionsProps {
   movie: IMovie;
@@ -28,7 +29,10 @@ const MovieMedallions: FC<MovieMedallionsProps> = ({ movie, persons }) => {
       </li>
       {persons?.map((person, index) => (
         <li key={index} className={styles.medallion}>
-          <div className={styles.medallion__wrapper}>
+          <Link
+            href={"/person/" + person.person_id}
+            className={styles.medallion__wrapper}
+          >
             <Image
               className={styles.medallion__avatar}
               height={44}
@@ -36,9 +40,13 @@ const MovieMedallions: FC<MovieMedallionsProps> = ({ movie, persons }) => {
               src={getBackendImage(person.img)}
               alt={person.first_name_en}
             />
-          </div>
-          <h4 className={styles.medallion__title}>{getPersonFirstName(person, locale)}</h4>
-          <h4 className={styles.medallion__title}>{getPersonLastName(person, locale)}</h4>
+          </Link>
+          <h4 className={styles.medallion__title}>
+            {getPersonFirstName(person, locale)}
+          </h4>
+          <h4 className={styles.medallion__title}>
+            {getPersonLastName(person, locale)}
+          </h4>
         </li>
       ))}
     </ul>

@@ -1,15 +1,15 @@
 import { FC } from "react";
 import styles from "./MovieInfoMobile.module.sass";
-import MovieTitle from "../MovieTitle/MovieTitle";
-import MovieParams from "../MovieParams/MovieParams";
-import MovieTrailer from "../MovieTrailer/MovieTrailer";
-import MovieTrailerButtons from "../MovieButtons/MovieButtons";
-import MovieMedallions from "../MovieMedallions/MovieMedallions";
-import MovieDescription from "../MovieDescription/MovieDescription";
-import MovieRating from "../MovieRating/MovieRating";
-import MovieOption from "../MovieOption/MovieOption";
-import MovieBadge from "../MovieBadge/MovieBadge";
-import MovieOptions from "../MovieOptions/MovieOptions";
+import MovieTitle from "../MovieInfoComponents/MovieTitle/MovieTitle";
+import MovieParams from "../MovieInfoComponents/MovieParams/MovieParams";
+import MovieTrailer from "../MovieInfoComponents/MovieTrailer/MovieTrailer";
+import MovieTrailerButtons from "../MovieInfoComponents/MovieButtons/MovieButtons";
+import MovieMedallions from "../MovieInfoComponents/MovieMedallions/MovieMedallions";
+import MovieDescription from "../MovieInfoComponents/MovieDescription/MovieDescription";
+import MovieRating from "../MovieInfoComponents/MovieRating/MovieRating";
+import MovieOption from "../MovieInfoComponents/MovieOption/MovieOption";
+import MovieBadge from "../MovieInfoComponents/MovieBadge/MovieBadge";
+import MovieOptions from "../MovieInfoComponents/MovieOptions/MovieOptions";
 import TextDropDown from "/src/UI/TextDropDown/TextDropDown";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import { IMovie } from "/src/types/IMovie";
@@ -39,7 +39,9 @@ const MovieInfoMobile: FC<MovieInfoMobileProps> = ({ movie, persons }) => {
           <div className={styles.mobile__content}>
             <MovieMedallions movie={movie} persons={persons} />
             <CustomButton type="dark" className={styles.button}>
-              <i className={`${styles.button__icon} ${styles.button__icon_film}`}></i>
+              <i
+                className={`${styles.button__icon} ${styles.button__icon_film}`}
+              ></i>
               <p className={styles.button__text}>{t("trailer.free")}</p>
             </CustomButton>
             <TextDropDown

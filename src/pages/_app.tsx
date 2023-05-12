@@ -1,9 +1,9 @@
+import "/src/styles/global.sass";
 import type { AppProps } from "next/app";
 import { FC } from "react";
 import { Provider } from "react-redux";
 import { store } from "../store";
 import { appWithTranslation } from "next-i18next";
-import "/src/styles/global.sass";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import localFont from "next/font/local";
 
@@ -26,12 +26,13 @@ const iviSans = localFont({
     },
   ],
   variable: "--iviSans",
+  declarations: [{ prop: "ascent-override", value: "90%" }],
 });
 const iviIcons = localFont({
   src: "../assets/fonts/ivi-icons.woff",
   variable: "--ivi-icons",
 });
-const iconfont = localFont({
+const iconFont = localFont({
   src: "../assets/fonts/iconfont.woff",
   variable: "--iconfont",
 });
@@ -43,7 +44,7 @@ const App: FC<AppProps> = ({ Component, pageProps }) => {
     >
       <Provider store={store}>
         <div
-          className={`${iviSans.variable} ${iviIcons.variable} ${iconfont.variable}`}
+          className={`${iviSans.className} ${iviIcons.variable} ${iconFont.variable}`}
         >
           <Component {...pageProps} />
         </div>

@@ -26,7 +26,7 @@ const MovieModal: FC<MovieModalProps> = ({
   movieTitle,
   movie,
 }) => {
-  const { t } = useTranslation("movieInfo");
+  const { t } = useTranslation("movie");
   const dispatch = useAppDispatch();
   const { setShowMovieModal } = modalsSlice.actions;
   const { showMovieModal } = useAppSelector((state) => state.showModal);
@@ -61,12 +61,12 @@ const MovieModal: FC<MovieModalProps> = ({
       {showMovieModal.isShow && (
         <div className={styles.modal}>
           <div className={styles.back} onClick={closeClick}>
-            {t("backLink")}
+            {t("modal.backLink")}
           </div>
           <div className={"container"}>
             <div className={styles.row}>
               <div className={styles.content}>
-                <h2 className={styles.title}>{`${movieTitle} ${t("title")}`}</h2>
+                <h2 className={styles.title}>{movieTitle}</h2>
                 <ul className={styles.tabs__list}>
                   <li
                     className={`${styles.tabs__item} ${actorsTabClass}`}

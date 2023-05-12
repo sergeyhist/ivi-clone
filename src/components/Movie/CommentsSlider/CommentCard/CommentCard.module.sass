@@ -53,29 +53,13 @@
     font-weight: 400
     font-style: normal
 
-.vote
+.votes
   position: absolute
   right: 20px
   bottom: 20px
   display: flex
   align-items: center
   z-index: 1
-
-  &__value
-    font-size: 15px
-    line-height: 20px
-    font-weight: 700
-    font-style: normal
-    padding: 0 8px
-    &_positive
-      color: #73a32f
-
-  &__like, &__dislike
-    cursor: pointer
-    transition: .3s
-    &:hover
-      .icon::after
-        color: vars.$whiteTextColor
 
 .icon
   &::after

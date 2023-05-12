@@ -26,7 +26,7 @@ const TopTen: FC = () => {
 
         <Slider swiperClassName={styles.swiper} breakpoints={breakpoints}>
           {slides.map((slide) => (
-            <SwiperSlide className="unselectable" key={slide.id}>
+            <SwiperSlide className={styles.slide} key={slide.id}>
               <TopTenSlide
                 mainImgUrl={slide.mainImgUrl}
                 logoImgUrl={slide.logoImgUrl}
