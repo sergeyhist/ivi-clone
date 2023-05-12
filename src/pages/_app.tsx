@@ -1,5 +1,5 @@
 import type { AppProps } from "next/app";
-import {FC, useEffect} from "react";
+import { memo, FC, useEffect } from "react";
 import { Provider } from "react-redux";
 import { store } from "../store";
 import { appWithTranslation } from "next-i18next";
@@ -41,9 +41,8 @@ const iconfont = localFont({
 });
 
 const App: FC<AppProps> = ({ Component, pageProps, router }) => {
-
-  useEffect(()=>{
-    const handleRouteStart = ():nProgress.NProgress => NProgress.start();
+  useEffect(() => {
+    const handleRouteStart = (): nProgress.NProgress => NProgress.start();
     const handleRouteDone = (): nProgress.NProgress => NProgress.done();
 
     router.events.on("routeChangeStart", handleRouteStart);
@@ -55,7 +54,7 @@ const App: FC<AppProps> = ({ Component, pageProps, router }) => {
       router.events.off("routeChangeComplete", handleRouteDone);
       router.events.off("routeChangeError", handleRouteDone);
     };
-  },[router.events])
+  }, [router.events]);
 
   return (
     <GoogleOAuthProvider
@@ -72,4 +71,4 @@ const App: FC<AppProps> = ({ Component, pageProps, router }) => {
   );
 };
 
-export default appWithTranslation(App);
+export default memo(appWithTranslation(App));

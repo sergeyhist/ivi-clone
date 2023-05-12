@@ -29,6 +29,7 @@ const PersonSelector: FC<PersonSelectorProps> = ({
   const [inputValue, setInputValue] = useState("");
   const [results, setResults] = useState<IPerson[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [isDropdownActive, setIsDropdownActive] = useState(false);
 
   const dropdownRef = useRef<HTMLUListElement>(null);
   const inputRef = useRef<HTMLDivElement>(null);
@@ -41,24 +42,27 @@ const PersonSelector: FC<PersonSelectorProps> = ({
   const getPerson = (result: string): void => {
     const resultSlug = result.replace(/ /g, "_").toLowerCase();
 
-    if (filter !== resultSlug) {
-      setInputValue(result);
-      getFilter(resultSlug);
-    }
+    setInputValue(result);
+    getFilter(resultSlug);
+    setIsDropdownActive(false);
   };
 
   const resetHandler = (): void => {
-    inputValue && setInputValue("");
-    inputValue && query[type] && getFilter("");
+    if (inputValue) {
+      setIsDropdownActive(false);
+      setInputValue("");
+      query[type] && getFilter("");
+    }
   };
 
   const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
     setInputValue(e.target.value);
     e.target.value.length > 1 && setIsLoading(true);
+    setIsDropdownActive(e.target.value.length > 1);
     debouncedSearch(e.target.value);
   };
 
-  useCloseEvents([dropdownRef, inputRef], resetHandler);
+  useCloseEvents([dropdownRef, inputRef], () => setIsDropdownActive(false));
 
   return (
     <div className={styles.selector}>
@@ -74,10 +78,10 @@ const PersonSelector: FC<PersonSelectorProps> = ({
         </button>
       </div>
       <CSSTransition
-        in={inputValue.length > 1}
+        in={isDropdownActive}
         nodeRef={dropdownRef}
         unmountOnExit
-        timeout={400}
+        timeout={200}
         classNames={{
           enter: styles["dropdown-enter"],
           enterActive: styles["dropdown-enter-active"],
@@ -87,11 +91,11 @@ const PersonSelector: FC<PersonSelectorProps> = ({
       >
         <PersonList
           type={type}
-          inputValue={inputValue}
           isLoading={isLoading}
-          ref={dropdownRef}
           items={results}
+          filter={filter}
           getPerson={getPerson}
+          ref={dropdownRef}
         />
       </CSSTransition>
     </div>

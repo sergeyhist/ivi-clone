@@ -35,7 +35,7 @@ const Sorting: FC = () => {
     setIsDropdownActive(false);
   };
 
-  // useCloseEvents([titleRef, dropdownRef], () => setIsDropdownActive(false));
+  useCloseEvents([titleRef, dropdownRef], () => setIsDropdownActive(false));
 
   useEffect(() => {
     sortingMethod.includes("name_") &&

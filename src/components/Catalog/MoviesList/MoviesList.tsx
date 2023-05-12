@@ -17,6 +17,7 @@ import { listLimit } from "/src/utils/filters/filtersVariables";
 import { getFiltersFromRoute } from "/src/utils/filters/getFiltersFromRoute";
 import { setQueryParams } from "/src/utils/query";
 import { useTranslation } from "next-i18next";
+import { PropagateLoader } from "react-spinners";
 
 const MoviesList: FC = () => {
   const router = useRouter();
@@ -57,7 +58,11 @@ const MoviesList: FC = () => {
   }, [router, dispatch]);
 
   if (isMoviesLoading) {
-    return <h2 className={styles.list__text}>{t("filters:loading")}</h2>;
+    return (
+      <div className={styles.list__loader}>
+        <PropagateLoader color="#312b45" />
+      </div>
+    );
   }
 
   if (filteredMovies.length > 0) {

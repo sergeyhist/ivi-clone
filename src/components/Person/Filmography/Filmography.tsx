@@ -29,63 +29,57 @@ const Filmography: FC<FilmographyProps> = ({ movies }) => {
   };
 
   return (
-    <section className={styles.section}>
-      <div className={styles.container}>
-        <div className={styles.content}>
-          <h2 className={styles.title}>
-            {t("filmography")}
-            <span>
-              {movies && `${getMovieDeclination(movies.length, locale)}`}
-            </span>
-          </h2>
-          <div className={styles.movies}>
-            {moviesToShow?.map((movie, i) => {
-              return (
-                <div className={styles.movie__item} key={i}>
-                  <div className={styles.img}>
-                    <Image
-                      fill
-                      sizes="100%"
-                      src={
-                        movie.img
-                          ? "https:" + movie.img
-                          : "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/eac905d6-a5b8-4ce4-aff2-0c565a923fa7/360"
-                      }
-                      alt={movie.name_en}
-                    />
+    <div className={styles.content}>
+      <h2 className={styles.title}>
+        {t("filmography")}
+        <span>{movies && `${getMovieDeclination(movies.length, locale)}`}</span>
+      </h2>
+      <div className={styles.movies}>
+        {moviesToShow?.map((movie, i) => {
+          return (
+            <div className={styles.movie__item} key={i}>
+              <div className={styles.img}>
+                <Image
+                  fill
+                  sizes="100%"
+                  src={
+                    movie.img
+                      ? "https:" + movie.img
+                      : "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/eac905d6-a5b8-4ce4-aff2-0c565a923fa7/360"
+                  }
+                  alt={movie.name_en}
+                />
+              </div>
+              <div className={styles.movie__poster}>
+                <div className={styles.info}>
+                  <div className={styles.year}>{movie.year}</div>
+                  <div className={styles.name}>
+                    {locale === "ru" ? movie.name_ru : movie.name_en}
                   </div>
-                  <div className={styles.movie__poster}>
-                    <div className={styles.info}>
-                      <div className={styles.year}>{movie.year}</div>
-                      <div className={styles.name}>
-                        {locale === "ru" ? movie.name_ru : movie.name_en}
-                      </div>
-                      <div className={styles.rating}>
-                        {`${t("rating")} ${movie.rating}`}
-                      </div>
-                    </div>
-                    <CustomButton
-                      className={styles.btn}
-                      clickCallback={() => movieClick(movie.film_id)}
-                    >
-                      {t("movieButton")}
-                    </CustomButton>
+                  <div className={styles.rating}>
+                    {`${t("rating")} ${movie.rating}`}
                   </div>
                 </div>
-              );
-            })}
-          </div>
-          {movies && moviesToShow && moviesToShow.length <= 8 && (
-            <div className={styles.show__btn} onClick={handleShowMovies}>
-              {`${t("showButton")} ${getMovieDeclination(
-                movies.length - 8,
-                locale
-              )} `}
+                <CustomButton
+                  className={styles.btn}
+                  clickCallback={() => movieClick(movie.film_id)}
+                >
+                  {t("movieButton")}
+                </CustomButton>
+              </div>
             </div>
-          )}
-        </div>
+          );
+        })}
       </div>
-    </section>
+      {movies && moviesToShow && moviesToShow.length <= 8 && (
+        <div className={styles.show__btn} onClick={handleShowMovies}>
+          {`${t("showButton")} ${getMovieDeclination(
+            movies.length - 8,
+            locale
+          )} `}
+        </div>
+      )}
+    </div>
   );
 };
 

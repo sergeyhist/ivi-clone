@@ -17,6 +17,7 @@ import { RiTreasureMapLine } from "react-icons/ri";
 import { SwiperOptions } from "swiper";
 import { TbRating18Plus } from "react-icons/tb";
 import { MdSportsBasketball } from "react-icons/md";
+import { IFilters } from "/src/types/IFilter";
 
 export const sliderBreakpoints: { [width: number]: SwiperOptions } = {
   0: { slidesPerView: 1, slidesPerGroup: 1 },
@@ -67,3 +68,11 @@ export const yearFilterItems: string[] = [
   "1980-1990",
   "0-1990",
 ];
+
+export const getResetfilters = (
+  filters: IFilters
+): { [key: string]: string | string[] } => {
+  return Object.keys(filters).reduce((result, key) => {
+    return filters[key].length > 0 ? { ...result, [key]: [] } : result;
+  }, {});
+};
