@@ -14,7 +14,6 @@
     background-color: #312b45
     height: 56px
     border-radius: 4px
-    padding: 8px 16px
 
     & > input
       font-weight: 500
@@ -22,6 +21,8 @@
       background: transparent
       @include mixins.ellipsis
       width: 80%
+      height: 100%
+      padding: 8px 16px
 
     & > input::placeholder
       color: rgba(255, 255, 255, .6)
@@ -49,7 +50,7 @@
       opacity: 1
       transform: scaleY(1)
       visibility: visible
-      transition: .3s linear
+      transition: .4s linear
 
   &-exit
     opacity: 1
@@ -62,4 +63,4 @@
       opacity: 0
       transform: scaleY(0)
       visibility: hidden
-      transition: .3s linear
+      transition: .4s linear

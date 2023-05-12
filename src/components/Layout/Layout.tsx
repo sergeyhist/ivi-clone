@@ -11,6 +11,7 @@ import useSWR from "swr";
 import {getActors, getCountriesSlugs, getDirectors, getGenresSlugs} from "/src/api/getData";
 import {setSlugs} from "/src/store/slices/slugsSlice";
 import {setPersons} from "/src/store/slices/personsSlice";
+import { ToastContainer } from "react-toastify";
 
 interface LayoutProps {
   title: string;
@@ -49,6 +50,7 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
 
   return (
     <>
+      <ToastContainer/>
       <Head>
         <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />

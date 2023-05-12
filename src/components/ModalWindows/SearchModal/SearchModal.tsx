@@ -4,6 +4,7 @@ import styles from "./SearchModal.module.sass";
 import SearchString from "./SearchString/SearchString";
 import useOverflowHidden from "/src/hooks/useOverflowHidden";
 import { useAppSelector } from "/src/hooks/redux";
+import useCloseEvents from "/src/hooks/useCloseEvents";
 
 interface SearchModalProps {
   closeCallback: () => void;
@@ -20,6 +21,7 @@ const SearchModal: FC<SearchModalProps> = ({ closeCallback }) => {
   const { showSearchModal } = useAppSelector((state) => state.showModal);
 
   const stringRef = useRef<HTMLDivElement>(null);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [searchStates, setSearchStates] = useState<ISearchStates>({
@@ -30,7 +32,6 @@ const SearchModal: FC<SearchModalProps> = ({ closeCallback }) => {
   });
 
   const keydownHandler = (e: KeyboardEvent): void => {
-    e.key === "Escape" && closeCallback();
     e.key === "Enter" &&
       window.open(
         `https://www.ivi.ru/?ivi_search=${encodeURIComponent(searchQuery)}`
@@ -51,10 +52,14 @@ const SearchModal: FC<SearchModalProps> = ({ closeCallback }) => {
     }
   };
 
+  useCloseEvents([modalRef], () => {
+    closeCallback();
+  });
   useOverflowHidden(showSearchModal);
 
   return (
     <div
+      ref={modalRef}
       onKeyDown={keydownHandler}
       onClick={clickHandler}
       className={styles.search}

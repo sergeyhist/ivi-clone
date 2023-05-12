@@ -39,7 +39,6 @@ const ChatDialogue: FC<ChatDialogueProps> = ({
   const emailChangeRef = useRef<HTMLDivElement>(null);
   const emailInputRef = useRef<HTMLDivElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
-  const toastRef = useRef<Id>(null);
 
   useEffect(() => {
     setShowFrom(true);
@@ -68,7 +67,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({
       }
       dispatch(setAuth({ isLogged: true, userEmail: email }));
       dispatch(setShowAuthModal(false));
-      notify(t("toastMessage"),toastRef,(result)=>{toastRef.current=result});
+      notify(t("toastMessage"), 'login');
     } else setIsEmailInputSuccess(true);
   };
 

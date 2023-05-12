@@ -67,6 +67,7 @@ const Filters: FC = () => {
           max={9}
           step={0.1}
           filter={filters.rating as string}
+          filterType="rating"
           getFilter={(result) =>
             setQueryParams(router, {
               rating: changeHandler(filters.rating, result, true),
@@ -78,6 +79,7 @@ const Filters: FC = () => {
           max={1000000}
           step={10000}
           filter={filters.assessments as string}
+          filterType=""
           getFilter={(result) =>
             setQueryParams(router, {
               assessments: changeHandler(filters.assessments, result, true),

@@ -5,7 +5,6 @@ import { store } from "../store";
 import { appWithTranslation } from "next-i18next";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import localFont from "next/font/local";
-import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "/src/styles/global.sass";
 import "nprogress/nprogress.css";
@@ -67,7 +66,6 @@ const App: FC<AppProps> = ({ Component, pageProps, router }) => {
           className={`${iviSans.variable} ${iviIcons.variable} ${iconfont.variable}`}
         >
           <Component {...pageProps} />
-          <ToastContainer/>
         </div>
       </Provider>
     </GoogleOAuthProvider>

@@ -23,7 +23,7 @@ const PersonList = forwardRef<HTMLUListElement, PersonListProps>(
     };
 
     const isNotFound =
-      !isLoading && items.length === 0 && inputValue.length > 1;
+      !isLoading && items.length === 0;
 
     return (
       <ul ref={ref} className={styles.list}>

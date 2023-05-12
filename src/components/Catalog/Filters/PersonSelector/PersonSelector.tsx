@@ -8,6 +8,7 @@ import { CSSTransition } from "react-transition-group";
 import { IoClose } from "react-icons/io5";
 import { getPersons } from "./PersonSelector.utils";
 import useCloseEvents from "/src/hooks/useCloseEvents";
+import { useRouter } from "next/router";
 
 interface PersonSelectorProps {
   type: string;
@@ -23,11 +24,14 @@ const PersonSelector: FC<PersonSelectorProps> = ({
   getFilter,
 }) => {
   const { t } = useTranslation("filters");
+  const { query } = useRouter();
 
+  const [inputValue, setInputValue] = useState("");
   const [results, setResults] = useState<IPerson[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+
   const dropdownRef = useRef<HTMLUListElement>(null);
-  const inputRef = useRef<HTMLInputElement>(null);
+  const inputRef = useRef<HTMLDivElement>(null);
 
   const debouncedSearch = useDebouncedCallback((query: string) => {
     setResults(getPersons(list, query));
@@ -38,30 +42,29 @@ const PersonSelector: FC<PersonSelectorProps> = ({
     const resultSlug = result.replace(/ /g, "_").toLowerCase();
 
     if (filter !== resultSlug) {
-      inputRef.current && (inputRef.current.value = result);
+      setInputValue(result);
       getFilter(resultSlug);
-      setResults([]);
     }
   };
 
   const resetHandler = (): void => {
-    inputRef.current && (inputRef.current.value = "");
-    setResults([]);
-    getFilter("");
+    inputValue && setInputValue("");
+    inputValue && query[type] && getFilter("");
   };
 
   const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
+    setInputValue(e.target.value);
     e.target.value.length > 1 && setIsLoading(true);
     debouncedSearch(e.target.value);
   };
 
-  useCloseEvents([dropdownRef, inputRef], () => setResults([]));
+  useCloseEvents([dropdownRef, inputRef], resetHandler);
 
   return (
     <div className={styles.selector}>
-      <div className={styles.selector__input}>
+      <div ref={inputRef} className={styles.selector__input}>
         <input
-          ref={inputRef}
+          value={inputValue}
           onChange={inputChangeHandler}
           type="text"
           placeholder={t(`person.${type}`) || ""}
@@ -71,10 +74,10 @@ const PersonSelector: FC<PersonSelectorProps> = ({
         </button>
       </div>
       <CSSTransition
-        in={inputRef.current ? inputRef.current.value.length > 1 : false}
+        in={inputValue.length > 1}
         nodeRef={dropdownRef}
         unmountOnExit
-        timeout={300}
+        timeout={400}
         classNames={{
           enter: styles["dropdown-enter"],
           enterActive: styles["dropdown-enter-active"],
@@ -84,7 +87,7 @@ const PersonSelector: FC<PersonSelectorProps> = ({
       >
         <PersonList
           type={type}
-          inputValue={inputRef.current?.value || ""}
+          inputValue={inputValue}
           isLoading={isLoading}
           ref={dropdownRef}
           items={results}

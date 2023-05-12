@@ -27,12 +27,12 @@ const PasswordInput: FC<PasswordInputProps> = ({
 }) => {
   const { t } = useTranslation("registration");
   const passwordInputRef = useRef<HTMLDivElement>(null);
-  const toastRef = useRef<Id>("");
+  const toastRef = useRef(true);
   const isPasswordValid = password.length < 4 || password.length > 16;
 
   const handlePasswordSubmit = (): void =>{
     if(isPasswordValid){
-      notify("Пароль должен быть от 4 до 16 символов",toastRef,(result)=>{toastRef.current=result});
+      notify("Пароль должен быть от 4 до 16 символов", "pass");
     }
   }
 
