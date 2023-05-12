@@ -16,6 +16,7 @@ interface LinkListProps {
 }
 
 const LinkList: FC<LinkListProps> = ({ selectedGenre }) => {
+  console.log(selectedGenre);
   const { t } = useTranslation();
   const [genresList, setGenresList] = useState<string[]>();
   const previousSelectedGenre = useRef<DropDownType>("");

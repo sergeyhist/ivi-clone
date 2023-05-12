@@ -1,6 +1,6 @@
 import "/src/styles/global.sass";
 import type { AppProps } from "next/app";
-import { FC, useEffect } from "react";
+import { memo, FC, useEffect } from "react";
 import { Provider } from "react-redux";
 import { store } from "../store";
 import { appWithTranslation } from "next-i18next";
@@ -38,4 +38,4 @@ const App: FC<AppProps> = ({ Component, pageProps, router }) => {
   );
 };
 
-export default appWithTranslation(App);
+export default memo(appWithTranslation(App));

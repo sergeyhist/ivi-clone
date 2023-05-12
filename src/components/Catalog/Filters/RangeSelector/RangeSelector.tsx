@@ -22,17 +22,17 @@ const RangeSelector: FC<RangeSelectorProps> = ({
   getFilter,
 }) => {
   const { t } = useTranslation("filters");
-  const {query} = useRouter();
+  const { query } = useRouter();
 
   const debouncedGetFilter = useDebouncedCallback((value: string) => {
     getFilter(value);
-  }, 100);
+  }, 300);
 
   const [rangeValue, setRangeValue] = useState<string>("0");
 
   useEffect(() => {
     !query[filterType] ? setRangeValue("0") : setRangeValue(filter);
-  }, [query, filter, filterType, setRangeValue])
+  }, [query, filter, filterType, setRangeValue]);
 
   return (
     <div className={styles.selector + " unselectable"}>

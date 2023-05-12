@@ -7,23 +7,27 @@ import { useTranslation } from "next-i18next";
 
 interface PersonListProps {
   type: string;
-  inputValue: string;
   isLoading: boolean;
   items: IPerson[];
+  filter: string;
   getPerson: (person: string) => void;
 }
 
 const PersonList = forwardRef<HTMLUListElement, PersonListProps>(
-  ({ type, inputValue, isLoading, items, getPerson }, ref) => {
+  ({ type, isLoading, items, filter, getPerson }, ref) => {
     const router = useRouter();
     const { t } = useTranslation();
 
-    const clickHandler = (person: IPerson): void => {
-      getPerson(`${person.first_name_en} ${person.last_name_en}`);
-    };
+    const getPersonName = (person: IPerson): string =>
+      `${person.first_name_en} ${person.last_name_en}`;
 
-    const isNotFound =
-      !isLoading && items.length === 0;
+    const getPersonSlug = (person: IPerson): string =>
+      getPersonName(person).replace(/ /g, "_").toLowerCase();
+
+    const personActive = (slug: string): string =>
+      slug === filter ? ` ${styles.list__item_active}` : "";
+
+    const isNotFound = !isLoading && items.length === 0;
 
     return (
       <ul ref={ref} className={styles.list}>
@@ -40,9 +44,14 @@ const PersonList = forwardRef<HTMLUListElement, PersonListProps>(
           items.map((item, i) => (
             <li
               onClick={() => {
-                clickHandler(item);
+                getPersonSlug(item) !== filter &&
+                  getPerson(getPersonName(item));
               }}
-              className={styles.list__item + " unselectable"}
+              className={
+                styles.list__item +
+                personActive(getPersonSlug(item)) +
+                " unselectable"
+              }
               key={i}
             >
               <div className={styles.list__image}>

@@ -5,7 +5,6 @@ import ChatMessage from "/src/components/ModalWindows/AuthModal/ChatMessage/Chat
 import ModalInput from "/src/UI/ModalInput/ModalInput";
 import { useTranslation } from "next-i18next";
 import styles from "./PasswordInput.module.sass";
-import {Id, toast} from "react-toastify";
 import {notify} from "/src/utils/defaultToast";
 
 interface PasswordInputProps {
@@ -27,7 +26,6 @@ const PasswordInput: FC<PasswordInputProps> = ({
 }) => {
   const { t } = useTranslation("registration");
   const passwordInputRef = useRef<HTMLDivElement>(null);
-  const toastRef = useRef(true);
   const isPasswordValid = password.length < 4 || password.length > 16;
 
   const handlePasswordSubmit = (): void =>{
