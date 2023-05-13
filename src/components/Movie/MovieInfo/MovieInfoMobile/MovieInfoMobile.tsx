@@ -9,7 +9,6 @@ import MovieDescription from "../MovieInfoComponents/MovieDescription/MovieDescr
 import MovieRating from "../MovieInfoComponents/MovieRating/MovieRating";
 import MovieOptions from "../MovieInfoComponents/MovieOptions/MovieOptions";
 import TextDropDown from "/src/UI/TextDropDown/TextDropDown";
-import CustomButton from "/src/UI/CustomButton/CustomButton";
 import { IMovie } from "/src/types/IMovie";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
@@ -32,16 +31,10 @@ const MovieInfoMobile: FC<MovieInfoMobileProps> = ({ movie, persons }) => {
           year={movie.year}
         />
         <MovieParams movie={movie} />
-        <MovieTrailer movie={movie} />
+        <MovieTrailer />
         <div className={styles.mobile__row}>
           <div className={styles.mobile__content}>
             <MovieMedallions movie={movie} persons={persons} />
-            <CustomButton type="dark" className={styles.button}>
-              <i
-                className={`${styles.button__icon} ${styles.button__icon_film}`}
-              ></i>
-              <p className={styles.button__text}>{t("trailer.free")}</p>
-            </CustomButton>
             <TextDropDown
               toggleTitles={{
                 defaultTitle: t("details.show"),

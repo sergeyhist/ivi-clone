@@ -29,7 +29,7 @@ const MovieInfoDesktop: FC<MovieInfoDesktopProps> = ({ movie, persons }) => {
         <div className={styles.desktop__row}>
           <div className={styles.trailer}>
             <div className={styles.trailer__sticky}>
-              <MovieTrailer movie={movie} />
+              <MovieTrailer />
               <MovieTrailerButtons />
             </div>
           </div>

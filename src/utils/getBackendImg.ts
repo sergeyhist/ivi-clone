@@ -5,5 +5,5 @@ export const getBackendImage = (img: string): string => {
   if (img) {
     return `https:${img}`;
   }
-  return "/images/creators/unnamed.png";
+  return "/images/undefined.svg";
 };

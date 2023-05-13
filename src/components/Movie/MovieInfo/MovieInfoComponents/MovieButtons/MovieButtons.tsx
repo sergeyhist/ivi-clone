@@ -10,29 +10,16 @@ const MovieButtons: FC = () => {
     <div className={styles.buttons}>
       <div className={styles.buttons__content}>
         <CustomButton type="dark" className={styles.button}>
-          <i
-            className={`${styles.button__icon} ${styles.button__icon_play}`}
-          ></i>
+          <i className={`${styles.button__icon} ${styles.button__icon_play}`}></i>
           <p className={styles.button__text}>{t("trailer.name")}</p>
         </CustomButton>
         <CustomButton type="dark" className={styles.button}>
-          <i
-            className={`${styles.button__icon} ${styles.button__icon_save}`}
-          ></i>
+          <i className={`${styles.button__icon} ${styles.button__icon_save}`}></i>
         </CustomButton>
         <CustomButton type="dark" className={styles.button}>
           <i
             className={`${styles.button__icon} ${styles.button__icon_download}`}
           ></i>
-        </CustomButton>
-        <CustomButton
-          type="dark"
-          className={`${styles.button} ${styles.button_desktop}`}
-        >
-          <i
-            className={`${styles.button__icon} ${styles.button__icon_film}`}
-          ></i>
-          <p className={styles.button__text}>{t("trailer.free")}</p>
         </CustomButton>
       </div>
     </div>

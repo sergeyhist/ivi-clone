@@ -9,7 +9,7 @@ interface WatchAllDevicesProps {
   movieTitle: string;
 }
 
-const WatchAllDevices: FC<WatchAllDevicesProps> = ({ imageUrl, movieTitle }) => {
+const WatchAllDevices: FC<WatchAllDevicesProps> = ({ movieTitle }) => {
   const { t } = useTranslation("movie");
 
   return (
@@ -42,24 +42,26 @@ const WatchAllDevices: FC<WatchAllDevicesProps> = ({ imageUrl, movieTitle }) => 
               alt="Устройства для просмотра Иви"
               loading="eager"
             />
-            <Image
-              className={styles.poster__tv}
-              src={"https:" + imageUrl}
+            <video
+              autoPlay={true}
+              muted={true}
+              loop={true}
               width={337}
               height={192}
-              alt={movieTitle}
-              placeholder="blur"
-              blurDataURL="/images/placeholder.svg"
-            />
-            <Image
+              className={styles.poster__tv}
+            >
+              <source src="/video/trailer2.mp4" type="video/mp4" />
+            </video>
+            <video
+              autoPlay={true}
+              muted={true}
+              loop={true}
+              width={337}
+              height={192}
               className={styles.poster__tablet}
-              src={"https:" + imageUrl}
-              width={188}
-              height={102}
-              alt={movieTitle}
-              placeholder="blur"
-              blurDataURL="/images/placeholder.svg"
-            />
+            >
+              <source src="/video/trailer2.mp4" type="video/mp4" />
+            </video>
           </div>
         </div>
       </div>

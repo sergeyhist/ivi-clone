@@ -1,50 +1,64 @@
-import { FC } from "react";
+import { FC, useRef, useState } from "react";
 import styles from "./MovieTrailer.module.sass";
-import Image from "next/image";
-import { IMovie } from "/src/types/IMovie";
-import { useTranslation } from "next-i18next";
-import Link from "next/link";
 import { FaPlay } from "react-icons/fa";
+import { FaPause } from "react-icons/fa";
 
-interface MovieTrailerProps {
-  movie: IMovie;
-}
+const MovieTrailer: FC = () => {
+  const video = useRef<HTMLVideoElement>(null);
+  const [isPlay, setPlay] = useState<boolean>(false);
 
-const MovieTrailer: FC<MovieTrailerProps> = ({ movie }) => {
-  const { t } = useTranslation("movie");
+  const clickFullScreen = (): void => {
+    video.current?.requestFullscreen();
+  };
+
+  const clickPlay = (): void => {
+    video.current?.play();
+    setPlay(true);
+  };
+
+  const clickPause = (): void => {
+    video.current?.pause();
+    setPlay(false);
+  };
+
+  const stateHandler = (): void => {
+    if (video.current?.paused) {
+      setPlay(false);
+      return;
+    }
+    setPlay(true);
+  };
 
   return (
     <div className={styles.trailer}>
-      <Image
-        src={"https:" + movie.img}
+      <video
+        onPlay={stateHandler}
+        onPause={stateHandler}
+        ref={video}
+        muted={true}
         className={styles.trailer__img}
-        width={858}
-        height={483}
-        alt="trailer-img"
-        placeholder="blur"
-        blurDataURL="/images/placeholder.svg"
-      />
+      >
+        <source src="/video/trailer2.mp4" type="video/mp4" />
+      </video>
+
       <div className={styles.trailer__over}>
-        <button className={styles.trailer__player}>
+        <button onClick={clickFullScreen} className={styles.trailer__player}>
           <i className={styles.trailer__icon}></i>
-          {t("trailer.expand")}
         </button>
+
         <div className={styles.trailer__center}>
-          {/* <CustomButton className={styles.button} type="red">
-            <div className={styles.button__content}>
-              <p className={styles.button__title}>{t("trailer.watch")}</p>
-              <p className={styles.button__subtitle}>{t("trailer.subscription")}</p>
-            </div>
-          </CustomButton>
-          <p className={styles.trailer__text}>{t("trailer.promo")}</p> */}
-          <Link
-            target="__blank"
-            href={movie.trailers[0].trailer}
-            className={styles.play}
-          >
-            <FaPlay size={30} className={styles.play__icon} />
-          </Link>
+          {!isPlay && (
+            <button onClick={clickPlay} className={styles.play}>
+              <FaPlay size={30} className={styles.play__icon} />
+            </button>
+          )}
+          {isPlay && (
+            <button onClick={clickPause} className={styles.pause}>
+              <FaPause size={30} className={styles.pause__icon} />
+            </button>
+          )}
         </div>
+
         <p className={styles.trailer__age}></p>
       </div>
     </div>
