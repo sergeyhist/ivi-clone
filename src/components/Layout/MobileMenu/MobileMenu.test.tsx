@@ -1,11 +1,25 @@
-import {fireEvent, render, screen} from "@testing-library/react";
+import {fireEvent, render} from "@testing-library/react";
 import MobileMenu from "/src/components/Layout/MobileMenu/MobileMenu";
 import {Provider} from "react-redux";
-import { store } from "/src/store";
-import userEvent from "@testing-library/user-event";
-import Layout from "/src/components/Layout/Layout";
-import Movie from "/src/pages/movies/[id]";
+import {configureStore} from "@reduxjs/toolkit";
+import filtersSlice from "/src/store/slices/filtersSlice";
+import windowSizeSlice from "/src/store/slices/windowSizeSlice";
+import modalsSlice from "/src/store/slices/modalsSlice";
+import slugsSlice from "/src/store/slices/slugsSlice";
+import personsSlice from "/src/store/slices/personsSlice";
+import authSlice from "/src/store/slices/authSlice";
 
+const store = configureStore({
+  reducer: {
+    windowSize: windowSizeSlice,
+    showModal: modalsSlice,
+    slugs: slugsSlice,
+    filters: filtersSlice,
+    persons: personsSlice,
+    auth: authSlice,
+  },
+});
+jest.mock('next/router', () => require('next-router-mock'));
 describe("MobileMenu",()=>{
   it("renders without errors", () => {
     const { getByTestId } = render(
@@ -24,6 +38,6 @@ describe("MobileMenu",()=>{
     );
     const searchModalLink = getByTestId("mobile-menu-link-2");
     fireEvent.click(searchModalLink);
-    expect(screen.getByTestId("search-modal")).toBeInTheDocument();
+    expect(store.getState().showModal.showSearchModal).toBeTruthy();
   })
 })
