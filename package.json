@@ -9,7 +9,7 @@
     "lint": "next lint",
     "storybook": "storybook dev -p 6006 -s ../public",
     "build-storybook": "storybook build",
-    "test": "jest",
+    "test": "jest --watch",
     "coverage": "jest --coverage"
   },
   "dependencies": {
