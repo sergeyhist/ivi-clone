@@ -13,10 +13,10 @@ import { useRouter } from "next/router";
 import { IMovie } from "/src/types/IMovie";
 import { IComment } from "/src/types/IComment";
 import { IPerson } from "/src/types/IPerson";
-import { mockMovie } from "/src/utils/movie";
+import { mockMovie } from "../../utils/movie/movie";
 import { mockPersons } from "/src/utils/person";
 import { mockComments } from "/src/utils/comments";
-import { getMovieName } from "/src/utils/movie";
+import { getMovieName } from "../../utils/movie/movie";
 import { useTranslation } from "next-i18next";
 import {
   getMovie,

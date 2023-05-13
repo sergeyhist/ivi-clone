@@ -12,7 +12,7 @@ import { IMovie } from "/src/types/IMovie";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { IPerson } from "/src/types/IPerson";
-import { getMovieName } from "/src/utils/movie";
+import { getMovieName } from "../../../../utils/movie/movie";
 import CustomTitle from "/src/UI/CustomTitle/CustomTitle";
 
 interface MovieInfoDesktopProps {
