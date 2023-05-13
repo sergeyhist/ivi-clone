@@ -6,6 +6,7 @@ import TvLinks from "./TvLinks/TvLinks";
 import TvSlider from "./TvSlider/TvSlider";
 import SideWidget from "../SideWidget/SideWidget";
 import { useTranslation } from "next-i18next";
+import Link from "next/link";
 
 const TvDropDown: FC = () => {
   const { t } = useTranslation("header");
@@ -14,11 +15,11 @@ const TvDropDown: FC = () => {
     <>
       <div className={styles.tv__left_content}>
         <TvLinks />
-        <a href="https://www.ivi.ru/tvplus/tv-schedule-today" target="_blank">
+        <Link href="https://www.ivi.ru/tvplus/tv-schedule-today" target="_blank">
           <CustomButton className={styles.tv__links_button}>
             {t("tv.program")}
           </CustomButton>
-        </a>
+        </Link>
       </div>
       <div className={styles.channels__container}>
         <div className={styles.channels__slider_row}>

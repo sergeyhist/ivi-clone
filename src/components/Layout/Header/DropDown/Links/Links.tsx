@@ -1,6 +1,7 @@
 import { FC } from "react";
 import styles from "./Links.module.sass";
 import Link from "next/link";
+import {DropDownType} from "/src/components/Layout/Header/Header.utils";
 
 interface LinkProps {
   links: string[];

@@ -21,7 +21,7 @@ const MobileMenu: FC = () => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="mobile-menu-container">
       <div className={styles.content}>
         {iconsClassNames.map((iconClass, i) => {
           return (
@@ -33,6 +33,7 @@ const MobileMenu: FC = () => {
               key={i}
               href={tabsLinks[i]}
               target={(i !== (0 || 1) && "_blank") || undefined}
+              data-testid={`mobile-menu-link-${i}`}
             >
               <div
                 className={`${styles.glow__image} ${

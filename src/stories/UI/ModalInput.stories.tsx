@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import ModalInput from "/src/UI/ModalInput/ModalInput";
+import "/src/styles/global.sass";
 
 const meta: Meta<typeof ModalInput> = {
   title: "UI/ModalInput",

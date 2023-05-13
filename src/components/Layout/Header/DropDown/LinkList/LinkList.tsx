@@ -16,23 +16,22 @@ interface LinkListProps {
 }
 
 const LinkList: FC<LinkListProps> = ({ selectedGenre }) => {
-  console.log(selectedGenre);
-  const { t } = useTranslation();
+  const { t } = useTranslation("dropDownCategory");
   const [genresList, setGenresList] = useState<string[]>();
   const previousSelectedGenre = useRef<DropDownType>("");
   const storedSlugs = useAppSelector((state) => state.slugs);
 
   const order: DropDownType[] = ["movies", "series", "cartoons"];
 
-  const genres: string[] = t(`dropDownCategory:${selectedGenre}.genres`, {
+  const genres: string[] = t(`${selectedGenre}.genres`, {
     returnObjects: true,
   });
 
-  const countries: string[] = t(`dropDownCategory:${selectedGenre}.countries`, {
+  const countries: string[] = t(`${selectedGenre}.countries`, {
     returnObjects: true,
   });
 
-  const years: string[] = t(`dropDownCategory:${selectedGenre}.years`, {
+  const years: string[] = t(`${selectedGenre}.years`, {
     returnObjects: true,
   });
 
@@ -60,7 +59,7 @@ const LinkList: FC<LinkListProps> = ({ selectedGenre }) => {
       <div>
         <Links
           title={t("header:genreTitles.0")}
-          links={genresList || genres}
+          links={genresList?.length ? genresList : genres}
           hrefs={genresHrefs}
         />
       </div>

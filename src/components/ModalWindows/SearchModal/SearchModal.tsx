@@ -63,6 +63,7 @@ const SearchModal: FC<SearchModalProps> = ({ closeCallback }) => {
       onKeyDown={keydownHandler}
       onClick={clickHandler}
       className={styles.search}
+      data-testid="search-modal"
     >
       <SearchCloseButton clickCallback={closeCallback} />
       <div className={styles.search__container}>

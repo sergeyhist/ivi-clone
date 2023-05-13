@@ -1,6 +1,8 @@
 import { DropDownType } from "/src/components/Layout/Header/Header.utils";
 import { TFunction } from "i18next";
 
+export type linksSection = "genres" | "countries" | "years";
+
 export const sortSlugs = (
   list: string[],
   order: DropDownType[],
