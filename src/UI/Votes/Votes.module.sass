@@ -1,0 +1,35 @@
+@mixin iconFont
+  font-family: var(--iconfont)
+  color: rgba(126, 121, 143, .72)
+  font-size: 16px
+  line-height: 16px
+
+.container
+  display: flex
+  gap: 8px
+
+  .like
+    &:before
+      content: "\E3A4"
+      @include iconFont
+      font-family: var(--iconfont)
+
+  .count
+    color: #73a32f
+    font-size: 15px
+    line-height: 20px
+    font-weight: 700
+
+  .dislike
+    &:before
+      content: "\E39C"
+      @include iconFont
+      font-family: var(--iconfont)
+
+  .like, .dislike
+    cursor: pointer
+    height: 20px
+
+    &:hover
+      &:before
+        color: rgba(126, 121, 143, .99)

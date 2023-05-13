@@ -6,4 +6,5 @@ export default interface IBannerSlide {
   title?: string;
   description: string;
   buttonText: string;
+  route: string;
 }

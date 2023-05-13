@@ -1,6 +1,5 @@
-import { FC, ReactNode, memo, useRef } from "react";
+import { FC, ReactNode, memo, useRef, useEffect } from "react";
 import styles from "./MovieModal.module.sass";
-import MovieCard from "/src/UI/MovieCard/MovieCard";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
 import { InfoTabs } from "/src/types/InfoTabs";
 import CreatorsModalList from "./CreatorsTab/CreatorsTab";
@@ -13,6 +12,8 @@ import createAppPortal from "/src/utils/createAppPortal";
 import { modalsSlice } from "/src/store/slices/modalsSlice";
 import { IMovie } from "/src/types/IMovie";
 import useCloseEvents from "/src/hooks/useCloseEvents";
+import MoviePoster from "./MoviePoster/MoviePoster";
+import { iviSans, iviIcons, iconFont } from "/src/utils/fonts";
 
 interface MovieModalProps {
   movie: IMovie;
@@ -27,16 +28,21 @@ const MovieModal: FC<MovieModalProps> = ({
   movieTitle,
   movie,
 }) => {
-  const { t } = useTranslation("movieInfo");
+  const { t } = useTranslation("movie");
   const dispatch = useAppDispatch();
   const { setShowMovieModal } = modalsSlice.actions;
   const { showMovieModal } = useAppSelector((state) => state.showModal);
   const screenWidth = useAppSelector((state) => state.windowSize.width);
   const commentsTabClass =
     showMovieModal.defaultTab === "comments" ? styles.active : "";
-  const actorsTabClass =
-    showMovieModal.defaultTab === "actors" ? styles.active : "";
+  const actorsTabClass = showMovieModal.defaultTab === "actors" ? styles.active : "";
   const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    return () => {
+      dispatch(setShowMovieModal({ isShow: false, defaultTab: "actors" }));
+    };
+  }, [dispatch, setShowMovieModal]);
 
   const closeHandler = (): void => {
     dispatch(
@@ -67,28 +73,29 @@ const MovieModal: FC<MovieModalProps> = ({
   return createAppPortal(
     <>
       {showMovieModal.isShow && (
-        <div ref={modalRef} className={styles.modal}>
-          <div onClick={closeHandler} className={styles.back}>
-            {t("backLink")}
+        <div
+          ref={modalRef}
+          className={`${styles.modal} ${iviSans.className} ${iviIcons.variable} ${iconFont.variable}`}
+        >
+          <div className={styles.back} onClick={closeHandler}>
+            {t("modal.backLink")}
           </div>
           <div className={"container"}>
             <div className={styles.row}>
               <div className={styles.content}>
-                <h2 className={styles.title}>{`${movieTitle} ${t(
-                  "title"
-                )}`}</h2>
+                <h2 className={styles.title}>{movieTitle}</h2>
                 <ul className={styles.tabs__list}>
                   <li
                     className={`${styles.tabs__item} ${actorsTabClass}`}
                     onClick={() => setDefaultTab("actors")}
                   >
-                    {t("tabs.0")}
+                    {t("modal.tabs.0")}
                   </li>
                   <li
                     className={`${styles.tabs__item} ${commentsTabClass}`}
                     onClick={() => setDefaultTab("comments")}
                   >
-                    {t("tabs.1")}
+                    {t("modal.tabs.1")}
                   </li>
                 </ul>
                 <div className={styles.tabs__content}>
@@ -97,7 +104,7 @@ const MovieModal: FC<MovieModalProps> = ({
               </div>
               {screenWidth > 880 && (
                 <div className={styles.card}>
-                  <MovieCard content={movie} type="poster" />
+                  <MoviePoster content={movie} />
                 </div>
               )}
             </div>

@@ -13,7 +13,7 @@ interface CreatorsListProps {
 const CreatorsList: FC<CreatorsListProps> = ({ persons, title }) => {
   const [showAllCreators, setShowAllCreators] = useState(false);
   const [creatorsToShow, setCreatorsToShow] = useState<IPerson[]>(persons);
-  const { t } = useTranslation("movieInfo");
+  const { t } = useTranslation("movie");
 
   useEffect(() => {
     if (creatorsToShow.length > 16 && !showAllCreators)
@@ -29,7 +29,7 @@ const CreatorsList: FC<CreatorsListProps> = ({ persons, title }) => {
       <h2 className={styles.creators__title}>{title}</h2>
       <div className={styles.creators__list}>
         {creatorsToShow.map((person, i) => (
-          <Creator className={styles.creator} key={i} person={person} type="large" />
+          <Creator className={styles.creator} key={i} person={person} type="modal" />
         ))}
         {persons.length > 16 && !showAllCreators && (
           <CustomButton
@@ -37,7 +37,7 @@ const CreatorsList: FC<CreatorsListProps> = ({ persons, title }) => {
             clickCallback={() => setShowAllCreators(true)}
             type="frame"
           >
-            {t("showButton")}
+            {t("modal.showButton")}
           </CustomButton>
         )}
       </div>

@@ -57,7 +57,7 @@ export const getMovieComments = async (film_id: string): Promise<IComment[]> => 
 export const getMoviesByGenre = async (genre_slug: string): Promise<IMovie[]> => {
   try {
     const response = await axios.get<IMovie[]>(
-      `http://85.237.34.125:4000/filter/films?genres=${genre_slug}&limit=20`
+      `http://85.237.34.125:4000/filter/films?genres=${genre_slug}&limit=10`
     );
     return response.data;
   } catch (error) {

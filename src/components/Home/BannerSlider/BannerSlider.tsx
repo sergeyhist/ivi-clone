@@ -19,7 +19,7 @@ const BannerSlider: FC = () => {
           }}
           loop={true}
           centeredSlides={true}
-          autoplay={{ delay: 5000 }}
+          autoplay={{ delay: 15000 }}
           prevClassName={styles.swiper__prev}
           nextClassName={styles.swiper__next}
         >

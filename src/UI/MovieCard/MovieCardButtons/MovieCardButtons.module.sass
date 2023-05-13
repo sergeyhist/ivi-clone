@@ -1,0 +1,41 @@
+@use "src/styles/vars"
+
+.buttons
+  display: flex
+  flex-direction: column
+  position: absolute
+  top: 20px
+  right: 10%
+  z-index: 4
+
+  &__button
+    margin-bottom: 10px
+    display: flex
+    height: 20px
+    align-items: center
+    justify-content: center
+    background: none
+    cursor: pointer
+
+.icon
+  display: block
+  height: 20px
+  &::after
+    font-family: var(--ivi-icons)
+    font-style: normal
+    font-size: 18px
+    color: vars.$whiteTextColor
+    line-height: 20px
+
+  &_save::after
+    content: '\E02D'
+
+  &_similar::after
+    content: '\E05B'
+
+  &_estimate::after
+    font-family: var(--iconfont)
+    content: "\E311"
+
+  &_block::after
+    content: '\E023'

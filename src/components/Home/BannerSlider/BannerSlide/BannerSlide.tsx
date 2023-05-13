@@ -14,9 +14,13 @@ const BannerSlide: FC<BannerSlideProps> = ({ slide }) => {
   const swiperSlide = useSwiperSlide();
 
   return (
-    <Link className={styles.link} href={"/"}>
+    <Link className={styles.link} href={slide.route}>
       <article
-        className={swiperSlide.isActive ? styles.slide : `${styles.slide} ${styles.slide_hidden}`}
+        className={
+          swiperSlide.isActive
+            ? styles.slide
+            : `${styles.slide} ${styles.slide_hidden}`
+        }
       >
         <Image
           width={1216}

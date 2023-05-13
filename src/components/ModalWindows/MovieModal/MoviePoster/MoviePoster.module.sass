@@ -1,0 +1,123 @@
+@use "/src/styles/vars"
+
+.link
+  display: block
+
+.content
+  position: relative
+
+  &__link
+    display: block
+
+  &__link_validate
+    display: block
+
+  &__filter:hover
+    transform: scale(1.05) translateY(0)
+
+  &__img
+    width: 100%
+    height: auto
+
+  &__filter
+    position: relative
+    transform-origin: 50% 100%
+    border-radius: 8px
+    overflow: hidden
+    transition: .2s
+    display: flex
+    justify-content: center
+    align-items: center
+    transform: scale(1.0001)
+
+  &__bottom
+    margin-top: 8px
+
+.information
+  margin-top: 14px
+  &__row
+    display: flex
+    align-items: center
+
+  &__text
+    font-size: 13px
+    margin-top: 8px
+    color: vars.$secondaryColor
+    line-height: 16px
+    display: flex
+    align-items: center
+
+.age
+  width: 24px
+  height: 16px
+  background-image: url(/images/age16.svg)
+  position: absolute
+  right: 4px
+  bottom: 4px
+  z-index: 1
+
+.grade
+  margin-right: 8px
+  &__number
+    font-size: 20px
+    line-height: 24px
+    height: 24px
+    color: vars.$whiteTextColor
+    &_int
+      font-size: 24px
+
+.rating
+  width: 20px
+  &__bar
+    margin-bottom: 2px
+    &:last-child
+      margin-bottom: 0
+
+.chart
+  margin-bottom: 12px
+  &__name
+    font-size: 13px
+    color: vars.$secondaryColor
+    text-transform: lowercase
+    margin-bottom: 4px
+
+  .chart__bar
+    width: 100%
+    height: 4px
+    background-color: rgba(165,161,178,.32)
+    border-radius: 2px
+    overflow: hidden
+
+.icon
+  &::after
+    font-family: var(--ivi-icons)
+    font-weight: 400
+    font-style: normal
+    font-size: 16px
+    margin-right: 8px
+    line-height: 16px
+  &_time::after
+    content: '\E054'
+    color: vars.$accent
+
+.rating
+  display: flex
+  align-items: center
+
+  &__bars
+    width: 20px
+
+  &__bar
+    margin-bottom: 2px
+    &:last-child
+      margin-bottom: 0
+
+.grade
+  margin-right: 8px
+  &__number
+    font-size: 20px
+    line-height: 24px
+    height: 24px
+    color: vars.$whiteTextColor
+    &_int
+      font-size: 24px

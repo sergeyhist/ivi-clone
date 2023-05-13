@@ -15,9 +15,7 @@ const CustomTitle: FC<CustomTitleProps> = ({
   const typeClassName = styles["title_" + type];
 
   return (
-    <div className={styles.wrapper}>
-      <h1 className={`${styles.title} ${typeClassName} ${className}`}>{title}</h1>
-    </div>
+    <h1 className={`${styles.title} ${typeClassName} ${className}`}>{title}</h1>
   );
 };
 

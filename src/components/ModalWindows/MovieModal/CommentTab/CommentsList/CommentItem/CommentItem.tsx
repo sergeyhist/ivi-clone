@@ -1,7 +1,7 @@
 import { FC, Dispatch, SetStateAction } from "react";
 import { IComment } from "/src/types/IComment";
 import styles from "./CommentItem.module.sass";
-import Votes from "./Votes/Votes";
+import Votes from "/src/UI/Votes/Votes";
 import { getFormateDate } from "/src/utils/movie";
 import { useTranslation } from "next-i18next";
 import { BiCommentAdd } from "react-icons/bi";
@@ -28,14 +28,13 @@ const CommentItem: FC<CommentItemProps> = ({
   };
 
   return (
-    <div className={styles.container}>
+    <div
+      style={{ transform: `translate(${indentation}px, 0)` }}
+      className={styles.container}
+    >
       <div className={styles.top}>
         <div className={styles.top__content}>
-          <h4
-            onClick={clickHandler}
-            className={styles.title}
-            style={{ paddingLeft: `${indentation}px` }}
-          >
+          <h4 onClick={clickHandler} className={styles.title}>
             {comment.user.profile.first_name} {comment.user.profile.last_name}
           </h4>
           <p className={styles.date}>
@@ -56,9 +55,7 @@ const CommentItem: FC<CommentItemProps> = ({
       </div>
 
       <div className={styles.comment}>
-        <div className={styles.text} style={{ paddingLeft: `${indentation}px` }}>
-          {comment.text}
-        </div>
+        <div className={styles.text}>{comment.text}</div>
       </div>
       {comment.sub_comments.length !== 0 && (
         <div className={styles.replies}>

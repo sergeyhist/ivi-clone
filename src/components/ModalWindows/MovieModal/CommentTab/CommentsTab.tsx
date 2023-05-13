@@ -15,18 +15,6 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments }) => {
   const [replyFor, setReplyFor] = useState<IComment | undefined>(undefined);
   const { t } = useTranslation("movieInfo");
 
-  const findSubComment = (
-    comments: IComment[],
-    id: string | boolean
-  ): IComment | void => {
-    for (const comment of comments) {
-      if (comment.comment_id === id) {
-        return comment;
-      }
-      return findSubComment(comment.sub_comments, id);
-    }
-  };
-
   const handleSubmitForm = (event: FormEvent): void => {
     event.preventDefault();
     const date = new Date();
@@ -54,8 +42,7 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments }) => {
       replyFor &&
       !inputText.indexOf("@" + String(replyFor.user.profile.first_name))
     ) {
-      const comment = findSubComment(comments, String(replyFor?.comment_id));
-      if (comment) comment.sub_comments.push(newComment);
+      replyFor.sub_comments.push(newComment);
       setCommentsState(commentsState);
       setInputText("");
       return;

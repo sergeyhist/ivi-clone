@@ -8,10 +8,16 @@ import { useAppSelector } from "/src/hooks/redux";
 import { useDebouncedCallback } from "use-debounce";
 import MobileMenu from "./MobileMenu/MobileMenu";
 import useSWR from "swr";
-import {getActors, getCountriesSlugs, getDirectors, getGenresSlugs} from "/src/api/getData";
-import {setSlugs} from "/src/store/slices/slugsSlice";
-import {setPersons} from "/src/store/slices/personsSlice";
+import {
+  getActors,
+  getCountriesSlugs,
+  getDirectors,
+  getGenresSlugs,
+} from "/src/api/getData";
+import { setSlugs } from "/src/store/slices/slugsSlice";
+import { setPersons } from "/src/store/slices/personsSlice";
 import { ToastContainer } from "react-toastify";
+import { iviSans, iviIcons, iconFont } from "/src/utils/fonts";
 
 interface LayoutProps {
   title: string;
@@ -19,10 +25,22 @@ interface LayoutProps {
 }
 
 const Layout: FC<LayoutProps> = ({ title, children }) => {
-  const genresSlugs = useSWR(`${String(process.env.SERVER_HOST)}/genres`,getGenresSlugs);
-  const countriesSlugs = useSWR(`${String(process.env.SERVER_HOST)}/countries`,getCountriesSlugs);
-  const actors = useSWR(`${String(process.env.SERVER_HOST)}/name/persons?film_role=actor`,getActors);
-  const directors = useSWR(`${String(process.env.SERVER_HOST)}/name/persons?film_role=filmmaker`,getDirectors);
+  const genresSlugs = useSWR(
+    `${String(process.env.SERVER_HOST)}/genres`,
+    getGenresSlugs
+  );
+  const countriesSlugs = useSWR(
+    `${String(process.env.SERVER_HOST)}/countries`,
+    getCountriesSlugs
+  );
+  const actors = useSWR(
+    `${String(process.env.SERVER_HOST)}/name/persons?film_role=actor`,
+    getActors
+  );
+  const directors = useSWR(
+    `${String(process.env.SERVER_HOST)}/name/persons?film_role=filmmaker`,
+    getDirectors
+  );
 
   const windowSizeWidth = useAppSelector((state) => state.windowSize.width);
   const dispatch = useDispatch();
@@ -36,10 +54,17 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
     );
   }, 200);
 
-  useEffect(()=>{
-    dispatch(setSlugs({genresSlugs: genresSlugs.data || [],countriesSlugs: countriesSlugs.data || []}));
-    dispatch(setPersons({actors: actors.data || [], directors: directors.data || []}));
-  },[actors.data, countriesSlugs.data, directors.data, dispatch, genresSlugs.data])
+  useEffect(() => {
+    dispatch(
+      setSlugs({
+        genresSlugs: genresSlugs.data || [],
+        countriesSlugs: countriesSlugs.data || [],
+      })
+    );
+    dispatch(
+      setPersons({ actors: actors.data || [], directors: directors.data || [] })
+    );
+  }, [actors.data, countriesSlugs.data, directors.data, dispatch, genresSlugs.data]);
 
   useEffect(() => {
     debouncedResize();
@@ -50,14 +75,18 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
 
   return (
     <>
-      <ToastContainer/>
+      <ToastContainer />
       <Head>
         <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.png" />
       </Head>
       <Header />
-      <main>{children}</main>
+      <main
+        className={`${iviSans.className} ${iviSans.variable} ${iviIcons.variable} ${iconFont.variable}`}
+      >
+        {children}
+      </main>
       {windowSizeWidth < 1160 && <MobileMenu />}
       <Footer />
     </>

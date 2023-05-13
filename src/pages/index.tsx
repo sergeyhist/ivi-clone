@@ -13,20 +13,20 @@ import { IMovie } from "../types/IMovie";
 import { mockMovie } from "../utils/movie";
 
 interface HomeProps {
-  bestFantasyMovies: IMovie[];
-  bestDramaMovies: IMovie[];
+  bestMilitants: IMovie[];
+  bestComedies: IMovie[];
 }
 
-const Home: FC<HomeProps> = ({ bestFantasyMovies, bestDramaMovies }) => {
+const Home: FC<HomeProps> = ({ bestMilitants, bestComedies }) => {
   const { t } = useTranslation(["titles", "home"]);
   const compilations = [
     {
-      movies: bestFantasyMovies.length ? bestFantasyMovies : [mockMovie],
-      title: t("home:compilations.subscribe"),
+      movies: bestMilitants.length ? bestMilitants : [mockMovie],
+      title: t("home:compilations.militants"),
     },
     {
-      movies: bestDramaMovies.length ? bestDramaMovies : [mockMovie],
-      title: t("home:compilations.subscribe"),
+      movies: bestComedies.length ? bestComedies : [mockMovie],
+      title: t("home:compilations.comedies"),
     },
   ];
 
@@ -46,13 +46,13 @@ export const getStaticProps = async ({
 }: {
   locale: string;
 }): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
-  const bestFantasyMovies = await getMoviesByGenre("fantasy");
-  const bestDramaMovies = await getMoviesByGenre("drama");
+  const bestMilitants = await getMoviesByGenre("militant");
+  const bestComedies = await getMoviesByGenre("comedy");
 
   return {
     props: {
-      bestFantasyMovies,
-      bestDramaMovies,
+      bestMilitants,
+      bestComedies,
       ...(await serverSideTranslations(locale, [
         "common",
         "titles",
@@ -65,6 +65,7 @@ export const getStaticProps = async ({
         "registration",
         "genres",
         "countries",
+        "movie",
       ])),
     },
   };

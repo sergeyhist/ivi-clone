@@ -15,16 +15,16 @@ import { declOfNum } from "/src/utils/declOfNum";
 
 interface CreatorProps {
   person: IPerson;
-  type?: "small" | "large";
+  type?: "default" | "modal";
   className?: string;
 }
 
-const Creator: FC<CreatorProps> = ({ person, type = "small", className = "" }) => {
+const Creator: FC<CreatorProps> = ({ person, type = "default", className = "" }) => {
   const { t } = useTranslation("movie");
   const { locale } = useRouter();
   const creatorClassName = styles["creator_" + type];
   const subTitleContent =
-    type === "small"
+    type !== "modal"
       ? t("creators." + getPersonRole(person))
       : declOfNum(person.films.length, [
           t("movie-decl.0"),

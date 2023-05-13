@@ -2,7 +2,8 @@
   "rating": {
     "title": "Kinopoisk rating",
     "estimate": "Estimate",
-    "grades": "amount grades"
+    "grades": "amount grades",
+    "name": "rating"
   },
   "medallions": {
     "rating": "Kinopoisk",
@@ -63,8 +64,13 @@
   },
   "movie-decl": [
     "movie",
-    "movie",
+    "movies",
     "movies"
+  ],
+  "minute-decl": [
+    "minute",
+    "minutes",
+    "minutes"
   ],
   "months": [
     "January",
@@ -79,5 +85,17 @@
     "October",
     "November",
     "December"
-  ]
+  ],
+  "modal": {
+    "backLink": "Back to movie",
+    "tabs": [
+      "Creators",
+      "Reviews"
+    ],
+    "commentsInput": {
+      "placeholder": "Write a review",
+      "submit": "Sew"
+    },
+    "showButton": "Show more"
+  }
 }

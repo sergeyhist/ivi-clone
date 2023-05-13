@@ -1,14 +1,12 @@
 import { FC } from "react";
 import styles from "./MovieInfoDesktop.module.sass";
-import MovieParams from "../MovieParams/MovieParams";
-import MovieTrailer from "../MovieTrailer/MovieTrailer";
-import MovieTrailerButtons from "../MovieButtons/MovieButtons";
-import MovieMedallions from "../MovieMedallions/MovieMedallions";
-import MovieRating from "../MovieRating/MovieRating";
-import MovieDescription from "../MovieDescription/MovieDescription";
-import MovieOption from "../MovieOption/MovieOption";
-import MovieBadge from "../MovieBadge/MovieBadge";
-import MovieOptions from "../MovieOptions/MovieOptions";
+import MovieParams from "../MovieInfoComponents/MovieParams/MovieParams";
+import MovieTrailer from "../MovieInfoComponents/MovieTrailer/MovieTrailer";
+import MovieTrailerButtons from "../MovieInfoComponents/MovieButtons/MovieButtons";
+import MovieMedallions from "../MovieInfoComponents/MovieMedallions/MovieMedallions";
+import MovieRating from "../MovieInfoComponents/MovieRating/MovieRating";
+import MovieDescription from "../MovieInfoComponents/MovieDescription/MovieDescription";
+import MovieOptions from "../MovieInfoComponents/MovieOptions/MovieOptions";
 import TextDropDown from "/src/UI/TextDropDown/TextDropDown";
 import { IMovie } from "/src/types/IMovie";
 import { useRouter } from "next/router";
@@ -31,7 +29,7 @@ const MovieInfoDesktop: FC<MovieInfoDesktopProps> = ({ movie, persons }) => {
         <div className={styles.desktop__row}>
           <div className={styles.trailer}>
             <div className={styles.trailer__sticky}>
-              <MovieTrailer movie={movie} />
+              <MovieTrailer />
               <MovieTrailerButtons />
             </div>
           </div>
@@ -51,35 +49,7 @@ const MovieInfoDesktop: FC<MovieInfoDesktopProps> = ({ movie, persons }) => {
               }}
             >
               <MovieDescription descriptionHTML={movie.description} />
-              <MovieOptions>
-                <MovieOption className={styles.option} title={t("details.langs")}>
-                  {movie.languagesAudio.map((lang) => (
-                    <span className={styles.option__span} key={lang.language_id}>
-                      {lang.language}
-                    </span>
-                  ))}
-                </MovieOption>
-                <MovieOption
-                  className={styles.option}
-                  title={t("details.subtitles")}
-                >
-                  {movie.languagesSubtitle.map((lang) => (
-                    <span className={styles.option__span} key={lang.language_id}>
-                      {lang.language}
-                    </span>
-                  ))}
-                </MovieOption>
-                <MovieOption className={styles.option} title={t("details.quality")}>
-                  {movie.qualities.map((quality) => (
-                    <MovieBadge
-                      className={styles.option__span}
-                      key={quality.quality_id}
-                    >
-                      {quality.quality}
-                    </MovieBadge>
-                  ))}
-                </MovieOption>
-              </MovieOptions>
+              <MovieOptions movie={movie} />
             </TextDropDown>
             <MovieRating grade={movie.rating} grades={movie.assessments} />
           </div>

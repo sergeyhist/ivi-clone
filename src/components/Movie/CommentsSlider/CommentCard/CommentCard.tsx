@@ -3,6 +3,7 @@ import styles from "./CommentCard.module.sass";
 import { IComment } from "/src/types/IComment";
 import { getFormateDate } from "/src/utils/movie";
 import { useTranslation } from "next-i18next";
+import Votes from "/src/UI/Votes/Votes";
 
 interface CommentsCardProps {
   comment: IComment;
@@ -23,17 +24,7 @@ const CommentsCard: FC<CommentsCardProps> = ({ comment, onClick }) => {
           {getFormateDate(new Date(comment.createdAt), t)}
         </p>
       </button>
-      <div className={styles.vote}>
-        <button className={styles.vote__like}>
-          <i className={`${styles.icon} ${styles.icon_like}`}></i>
-        </button>
-        <span className={`${styles.vote__value} ${styles.vote__value_positive}`}>
-          64
-        </span>
-        <button className={styles.vote__dislike}>
-          <i className={`${styles.icon} ${styles.icon_dislike}`}></i>
-        </button>
-      </div>
+      <Votes ClassName={styles.votes} />
     </article>
   );
 };

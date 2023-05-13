@@ -11,7 +11,12 @@ interface TopTenSlideProps {
   route: string;
 }
 
-const TopTenSlide: FC<TopTenSlideProps> = ({ mainImgUrl, logoImgUrl, numberImgUrl, route }) => {
+const TopTenSlide: FC<TopTenSlideProps> = ({
+  mainImgUrl,
+  logoImgUrl,
+  numberImgUrl,
+  route,
+}) => {
   return (
     <Link className={styles.link} href={route}>
       <article className={styles.slide}>
@@ -22,8 +27,8 @@ const TopTenSlide: FC<TopTenSlideProps> = ({ mainImgUrl, logoImgUrl, numberImgUr
             alt="movieImg"
             placeholder="blur"
             blurDataURL="/images/placeholder.svg"
-            fill={true}
-            sizes="width: 100vw"
+            width={304}
+            height={620}
           />
         </div>
         <Image
