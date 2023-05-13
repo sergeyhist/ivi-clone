@@ -1,5 +1,4 @@
 import { mockMovie, getMovieName } from "./movie";
-import "@testing-library/jest-dom";
 
 describe("movie getMovieName test", () => {
   it("Should display name_ru", () => {
