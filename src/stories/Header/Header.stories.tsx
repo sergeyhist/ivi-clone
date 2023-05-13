@@ -3,6 +3,10 @@ import { Provider } from "react-redux";
 import { store } from "/src/store"
 import DropDown from "/src/components/Layout/Header/DropDown/DropDown";
 import {setWindowSize} from "/src/store/slices/windowSizeSlice";
+import "/src/styles/global.sass";
+import "/src/styles/_config.sass";
+import "/src/styles/_vars.sass";
+import "/src/styles/_mixins.sass";
 import Header from "/src/components/Layout/Header/Header";
 
 const meta: Meta<typeof Header> = {
