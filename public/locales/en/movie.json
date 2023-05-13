@@ -2,7 +2,8 @@
   "rating": {
     "title": "Kinopoisk rating",
     "estimate": "Estimate",
-    "grades": "amount grades"
+    "grades": "amount grades",
+    "name": "rating"
   },
   "medallions": {
     "rating": "Kinopoisk",

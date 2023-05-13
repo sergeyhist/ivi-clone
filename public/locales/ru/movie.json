@@ -2,7 +2,8 @@
   "rating": {
     "title": "Рейтинг Кинопоиска",
     "estimate": "Оценить",
-    "grades": "оценок"
+    "grades": "оценок",
+    "name": "рейтинг"
   },
   "medallions": {
     "rating": "Рейтинг",

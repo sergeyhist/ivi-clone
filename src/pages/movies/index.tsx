@@ -52,6 +52,7 @@ export const getStaticProps = async ({
         "dropDownCategory",
         "year",
         "registration",
+        "movie",
       ])),
     },
   };
