@@ -10,7 +10,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticPropsResult } from "next";
 import { getMoviesByGenre } from "../api/movieApi";
 import { IMovie } from "../types/IMovie";
-import { mockMovie } from "../utils/movie";
+import { mockMovie } from "../utils/movie/movie";
 
 interface HomeProps {
   bestMilitants: IMovie[];

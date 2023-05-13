@@ -23,5 +23,8 @@
         "allowExpressions": true
       }
     ]
-  }
+  },
+  "ignorePatterns": [
+    "**/*.js"
+  ]
 }

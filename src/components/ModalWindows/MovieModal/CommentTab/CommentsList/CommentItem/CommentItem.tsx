@@ -2,7 +2,7 @@ import { FC, Dispatch, SetStateAction } from "react";
 import { IComment } from "/src/types/IComment";
 import styles from "./CommentItem.module.sass";
 import Votes from "/src/UI/Votes/Votes";
-import { getFormateDate } from "/src/utils/movie";
+import { getFormateDate } from "../../../../../../utils/movie/movie";
 import { useTranslation } from "next-i18next";
 import { BiCommentAdd } from "react-icons/bi";
 
