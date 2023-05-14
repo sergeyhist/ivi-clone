@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import { getBackendImage } from "/src/utils/getBackendImg";
 import { useTranslation } from "next-i18next";
 import { declOfNum } from "/src/utils/declOfNum";
+import { getAgeImg } from "/src/utils/movie/movie";
 
 interface MovieCardDefaultProps {
   content: IMovie;
@@ -63,7 +64,15 @@ const MovieCardDefault: FC<MovieCardDefaultProps> = ({
               </p>
             </div>
           </div>
-          <div className={styles.age}></div>
+          <div className={styles.age}>
+            <Image
+              className={styles.age__img}
+              height={16}
+              width={24}
+              src={getAgeImg(content.age_limit)}
+              alt={"age"}
+            />
+          </div>
         </div>
         <div className={styles.content__bottom}>
           <h4 className={styles.content__title}>{getName(content)}</h4>

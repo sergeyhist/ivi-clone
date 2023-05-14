@@ -4,32 +4,35 @@ import CustomButton from "/src/UI/CustomButton/CustomButton";
 const meta: Meta<typeof CustomButton> = {
   title: "UI/CustomButton",
   component: CustomButton,
-  tags: ['autodocs'],
-  argTypes:{
-    className:{
-      description: "(optional) A string representing the CSS class name(s) to be applied to the component."
+  tags: ["autodocs"],
+  argTypes: {
+    className: {
+      description:
+        "(optional) A string representing the CSS class name(s) to be applied to the component.",
     },
-    children:{
-      description:"Inner content of CustomButton"
+    children: {
+      description: "Inner content of CustomButton",
     },
-    clickCallback:{
-      description:"(optional) A callback function that is called when the button is clicked."
+    clickCallback: {
+      description:
+        "(optional) A callback function that is called when the button is clicked.",
     },
-    type:{
-      description:"A string that represents the type of input element."
+    type: {
+      description: "A string that represents the type of input element.",
     },
-    style:{
-      description:"Optional css styles"
+    style: {
+      description: "Optional css styles",
     },
-    preventDefault:{
-      description:"(optional) A boolean that indicates whether to prevent the default form submission behavior."
-    }
+    preventDefault: {
+      description:
+        "(optional) A boolean that indicates whether to prevent the default form submission behavior.",
+    },
   },
   decorators: [
     (Story) => (
-      <div style={{ width: "200px" }}>
+      <main style={{ width: "200px" }}>
         <Story />
-      </div>
+      </main>
     ),
   ],
   parameters: {
@@ -46,34 +49,34 @@ export const RedButton: Story = {
   args: {
     children: "Button",
     type: "red",
-    style: {width: "  100%"}
+    style: { width: "  100%" },
   },
 };
 
 export const GradientButton: Story = {
   args: {
     ...RedButton.args,
-    type: "purple"
+    type: "purple",
   },
 };
 
 export const DarkButton: Story = {
   args: {
     ...RedButton.args,
-    type: "dark"
+    type: "dark",
   },
 };
 
 export const PromoButton: Story = {
   args: {
     ...RedButton.args,
-    type: "promo"
+    type: "promo",
   },
 };
 
 export const FrameButton: Story = {
   args: {
     ...RedButton.args,
-    type: "frame"
+    type: "frame",
   },
 };
