@@ -16,10 +16,11 @@ import MoviesLayout from "/src/components/Catalog/MoviesLayout/MoviesLayout";
 const Movies: FC = () => {
   const { t } = useTranslation(["titles", "sorting"]);
   const { filters } = useAppSelector((state) => state.filters);
+  const { width } = useAppSelector((state) => state.windowSize);
 
   return (
     <Layout title={t("titles:movies")}>
-      <BreadCrumbs type="slash" currentTitle={getFiltersText(filters)} />
+      {width > 520 && <BreadCrumbs type="slash" currentTitle={getFiltersText(filters)} />}
       <MoviesLayout>
         <CustomTitle title={t("titles:movies")} />
         <FiltersInfo />

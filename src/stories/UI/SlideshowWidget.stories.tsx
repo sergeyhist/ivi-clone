@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import SlideshowWidget from "/src/UI/SlideshowWidget/SlideshowWidget";
 import { slideshowItems } from "/src/utils/slideshowItems";
+import "/src/styles/global.sass";
 
 const meta: Meta<typeof SlideshowWidget> = {
   title: "UI/SlideshowWidget",

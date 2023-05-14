@@ -18,6 +18,7 @@ import { setSlugs } from "/src/store/slices/slugsSlice";
 import { setPersons } from "/src/store/slices/personsSlice";
 import { ToastContainer } from "react-toastify";
 import { iviSans, iviIcons, iconFont } from "/src/utils/fonts";
+import ProgressBar from "/src/UI/ProgressBar/ProgressBar";
 
 interface LayoutProps {
   title: string;
@@ -52,7 +53,7 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
         height: window.innerHeight,
       })
     );
-  }, 200);
+  }, 100);
 
   useEffect(() => {
     dispatch(
@@ -64,7 +65,13 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
     dispatch(
       setPersons({ actors: actors.data || [], directors: directors.data || [] })
     );
-  }, [actors.data, countriesSlugs.data, directors.data, dispatch, genresSlugs.data]);
+  }, [
+    actors.data,
+    countriesSlugs.data,
+    directors.data,
+    dispatch,
+    genresSlugs.data,
+  ]);
 
   useEffect(() => {
     debouncedResize();
@@ -76,6 +83,7 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
   return (
     <>
       <ToastContainer />
+      <ProgressBar value={0} isFixed={true} type="loading" />
       <Head>
         <title>{title}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
+import "/src/styles/global.sass";
 
 const meta: Meta<typeof CustomButton> = {
   title: "UI/CustomButton",
@@ -37,6 +38,7 @@ const meta: Meta<typeof CustomButton> = {
   ],
   parameters: {
     backgrounds: {
+      default: "dark",
       values: [{ name: "dark", value: "#100e19" }],
     },
   },

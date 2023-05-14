@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import ToggleSwitch from "/src/UI/ToggleSwitch/ToggleSwitch";
+import "/src/styles/global.sass";
 
 const meta: Meta<typeof ToggleSwitch> = {
   title: "UI/ToggleSwitch",

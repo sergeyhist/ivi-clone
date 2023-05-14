@@ -1,6 +1,6 @@
 import "/src/styles/global.sass";
 import type { AppProps } from "next/app";
-import { memo, FC, useEffect } from "react";
+import { FC } from "react";
 import { Provider } from "react-redux";
 import { store } from "../store";
 import { appWithTranslation } from "next-i18next";
@@ -8,25 +8,8 @@ import { GoogleOAuthProvider } from "@react-oauth/google";
 import "react-toastify/dist/ReactToastify.css";
 import "/src/styles/global.sass";
 import "nprogress/nprogress.css";
-import NProgress from "nprogress";
-import nProgress from "nprogress";
 
-const App: FC<AppProps> = ({ Component, pageProps, router }) => {
-  useEffect(() => {
-    const handleRouteStart = (): nProgress.NProgress => NProgress.start();
-    const handleRouteDone = (): nProgress.NProgress => NProgress.done();
-
-    router.events.on("routeChangeStart", handleRouteStart);
-    router.events.on("routeChangeComplete", handleRouteDone);
-    router.events.on("routeChangeError", handleRouteDone);
-
-    return () => {
-      router.events.off("routeChangeStart", handleRouteStart);
-      router.events.off("routeChangeComplete", handleRouteDone);
-      router.events.off("routeChangeError", handleRouteDone);
-    };
-  }, [router.events]);
-
+const App: FC<AppProps> = ({ Component, pageProps }) => {
   return (
     <GoogleOAuthProvider
       clientId={process.env.REACT_APP_GOOGLE_AUTH_CLIENT_ID || "err"}
@@ -38,4 +21,4 @@ const App: FC<AppProps> = ({ Component, pageProps, router }) => {
   );
 };
 
-export default memo(appWithTranslation(App));
+export default appWithTranslation(App);

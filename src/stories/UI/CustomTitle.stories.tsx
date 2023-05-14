@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import CustomTitle from "/src/UI/CustomTitle/CustomTitle";
+import "/src/styles/global.sass";
 
 const meta: Meta<typeof CustomTitle> = {
   title: "UI/CustomTitle",
