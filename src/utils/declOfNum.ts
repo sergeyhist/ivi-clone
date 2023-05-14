@@ -5,8 +5,7 @@
  */
 
 export const declOfNum = (number: number, text_forms: string[]): string => {
-  number = Math.abs(number) % 100;
-  const remainder: number = number % 10;
+  const remainder: number = (Math.abs(number) % 100) % 10;
   if (number > 10 && number < 20) {
     return `${number} ${text_forms[2]}`;
   }

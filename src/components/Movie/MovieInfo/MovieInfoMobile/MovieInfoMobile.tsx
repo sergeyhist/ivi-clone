@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import styles from "./MovieInfoMobile.module.sass";
 import MovieTitle from "../MovieInfoComponents/MovieTitle/MovieTitle";
 import MovieParams from "../MovieInfoComponents/MovieParams/MovieParams";
@@ -22,6 +22,7 @@ interface MovieInfoMobileProps {
 const MovieInfoMobile: FC<MovieInfoMobileProps> = ({ movie, persons }) => {
   const { t } = useTranslation("movie");
   const { locale } = useRouter();
+  const [textHeight, setTextHeight] = useState<number>(100);
 
   return (
     <section className={styles.mobile}>
@@ -40,8 +41,12 @@ const MovieInfoMobile: FC<MovieInfoMobileProps> = ({ movie, persons }) => {
                 defaultTitle: t("details.show"),
                 activeTitle: t("details.hide"),
               }}
+              textHeight={textHeight}
             >
-              <MovieDescription descriptionHTML={movie.description} />
+              <MovieDescription
+                setTextHeight={setTextHeight}
+                description={movie.description}
+              />
             </TextDropDown>
             <MovieRating grade={movie.rating} grades={movie.assessments} />
             <MovieOptions movie={movie} />

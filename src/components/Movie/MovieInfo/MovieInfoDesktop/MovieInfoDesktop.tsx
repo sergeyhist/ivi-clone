@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import styles from "./MovieInfoDesktop.module.sass";
 import MovieParams from "../MovieInfoComponents/MovieParams/MovieParams";
 import MovieTrailer from "../MovieInfoComponents/MovieTrailer/MovieTrailer";
@@ -23,6 +23,8 @@ interface MovieInfoDesktopProps {
 const MovieInfoDesktop: FC<MovieInfoDesktopProps> = ({ movie, persons }) => {
   const { t } = useTranslation("movie");
   const { locale } = useRouter();
+  const [textHeight, setTextHeight] = useState<number>(100);
+
   return (
     <section className={styles.desktop}>
       <div className="container">
@@ -43,12 +45,16 @@ const MovieInfoDesktop: FC<MovieInfoDesktopProps> = ({ movie, persons }) => {
             <MovieParams movie={movie} />
             <MovieMedallions movie={movie} persons={persons} />
             <TextDropDown
+              textHeight={textHeight}
               toggleTitles={{
                 defaultTitle: t("details.show"),
                 activeTitle: t("details.hide"),
               }}
             >
-              <MovieDescription descriptionHTML={movie.description} />
+              <MovieDescription
+                setTextHeight={setTextHeight}
+                description={movie.description}
+              />
               <MovieOptions movie={movie} />
             </TextDropDown>
             <MovieRating grade={movie.rating} grades={movie.assessments} />

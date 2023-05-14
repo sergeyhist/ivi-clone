@@ -11,6 +11,7 @@ interface DropDownProps {
   dropDownClassName?: string;
   toggleClassName?: string;
   toggleTitles?: IToggleTitles;
+  textHeight?: number;
 }
 
 const TextDropDown: FC<DropDownProps> = ({
@@ -21,6 +22,7 @@ const TextDropDown: FC<DropDownProps> = ({
     defaultTitle: "Показать детали",
     activeTitle: "Свернуть детали",
   },
+  textHeight,
 }) => {
   const dropDown = useRef<HTMLDivElement>(null);
   const [showDropDown, setShowDropDown] = useState(false);
@@ -28,7 +30,9 @@ const TextDropDown: FC<DropDownProps> = ({
   const dropDownClass = showDropDown
     ? `${styles.dropdown} ${styles.dropdown_active}`
     : `${styles.dropdown}`;
-  const dropDownContent = showDropDown ? toggleTitles.activeTitle : toggleTitles.defaultTitle;
+  const dropDownContent = showDropDown
+    ? toggleTitles.activeTitle
+    : toggleTitles.defaultTitle;
 
   const toggleDropDown = (): void => {
     setShowDropDown(!showDropDown);
@@ -39,12 +43,12 @@ const TextDropDown: FC<DropDownProps> = ({
       setToggle(true);
       return;
     }
-    if (Number(dropDown.current?.clientHeight) > 100) {
+    if (textHeight && textHeight > 100) {
       setToggle(true);
       return;
     }
     setToggle(false);
-  }, [children]);
+  }, [children, textHeight]);
 
   return (
     <div className={styles.content}>
@@ -54,6 +58,7 @@ const TextDropDown: FC<DropDownProps> = ({
       <div className={styles.toggle}>
         {toggle && (
           <button
+            type="button"
             onClick={toggleDropDown}
             className={`${styles.toggle__button} ${toggleClassName}`}
           >
