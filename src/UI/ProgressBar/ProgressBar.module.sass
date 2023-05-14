@@ -1,9 +1,22 @@
+@keyframes start
+  from
+    opacity: 0
+  to
+    opacity: .9
+
 .bar
   width: 100%
   height: 2px
   background-color: rgba(165,161,178,.32)
   border-radius: 1px
   transition: .3s
+
+  &_fixed
+    position: fixed
+    top: 0
+    z-index: 11
+    animation: start .4s 1 linear
+    opacity: .9
 
 .value
   height: 100%

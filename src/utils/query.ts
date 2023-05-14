@@ -4,8 +4,9 @@ export const setQueryParams = (
   router: NextRouter,
   params: { [key: string]: string | string[] }
 ): void => {
-  router.replace(
+  router.isReady && router.push(
     {
+      pathname: router.pathname,
       query: {
         ...router.query,
         ...params,
@@ -14,7 +15,6 @@ export const setQueryParams = (
     undefined,
     {
       scroll: false,
-      shallow: true,
     }
   );
 };
