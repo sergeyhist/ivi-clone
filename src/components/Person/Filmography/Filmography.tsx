@@ -6,6 +6,7 @@ import CustomButton from "/src/UI/CustomButton/CustomButton";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { getMovieDeclination } from "/src/utils/getMovieDeclination";
+import { getBackendImage } from "/src/utils/getBackendImg";
 
 interface FilmographyProps {
   movies: IMovie[];
@@ -42,11 +43,7 @@ const Filmography: FC<FilmographyProps> = ({ movies }) => {
                 <Image
                   fill
                   sizes="100%"
-                  src={
-                    movie.img
-                      ? "https:" + movie.img
-                      : "https://avatars.mds.yandex.net/get-kinopoisk-image/4303601/eac905d6-a5b8-4ce4-aff2-0c565a923fa7/360"
-                  }
+                  src={getBackendImage(movie.img)}
                   alt={movie.name_en}
                 />
               </div>

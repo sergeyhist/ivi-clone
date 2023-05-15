@@ -8,8 +8,18 @@ import {setWindowSize} from "/src/store/slices/windowSizeSlice";
 const meta: Meta<typeof Footer> = {
   title: "Footer/Footer",
   decorators: [
-    (Story) => {
-      store.dispatch(setWindowSize({ width: 1980, height: 1020 }));
+    (Story, context) => {
+      if (context.name.includes("Mobile")) {
+        store.dispatch(setWindowSize({ width: 320, height: 1020 }));
+        return (
+          <Provider store={store}>
+            <div style={{ width: "100vw", height: "500px", marginInline:"auto" }}>
+              <Story />
+            </div>
+          </Provider>
+        );
+      } else {
+        store.dispatch(setWindowSize({ width: 1980, height: 1020 }));
         return (
           <Provider store={store}>
             <div style={{ width: "100vw", height: "500px", marginInline:"auto"  }}>
@@ -17,6 +27,7 @@ const meta: Meta<typeof Footer> = {
             </div>
           </Provider>
         );
+      }
     },
   ],
   component: Footer,
@@ -25,5 +36,7 @@ const meta: Meta<typeof Footer> = {
 export default meta;
 type Story = StoryObj<typeof Footer>;
 
-export const FirstStory: Story = {};
+export const DesktopFooter: Story = {};
+
+export const MobileFooter: Story = {};
 

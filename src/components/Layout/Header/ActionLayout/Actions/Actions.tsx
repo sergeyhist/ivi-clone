@@ -45,8 +45,9 @@ const Actions: FC<ActionsProps> = ({
   const handleProfileClick = (): void => {
     if (!authState.isLogged) dispatch(setShowAuthModal(true));
   };
+
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="actions-container">
       {router.pathname !== "/" ? (
         <Link href="https://www.ivi.ru/subscribe" target="_blank">
           <div
@@ -74,6 +75,7 @@ const Actions: FC<ActionsProps> = ({
           className={styles.search}
           onMouseEnter={() => setIsDropdownActive(false)}
           onClick={handleSearchClick}
+          data-testid={"search-link"}
         >
           <div className={styles.icon}>
             <BsSearch />
@@ -107,9 +109,11 @@ const Actions: FC<ActionsProps> = ({
         <BiUser />
       </div>
       {authState.isLogged && (
-        <CustomButton type="red" clickCallback={handleLogout}>
-          <FiLogOut />
-        </CustomButton>
+        <div data-testid="logout-button">
+          <CustomButton type="red" clickCallback={handleLogout} >
+            <FiLogOut />
+          </CustomButton>
+        </div>
       )}
     </div>
   );

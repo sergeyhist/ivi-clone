@@ -9,6 +9,7 @@ interface CustomButtonProps {
   type?: "purple" | "red" | "promo" | "icon" | "dark" | "frame";
   style?: CSSProperties;
   preventDefault?: boolean;
+  dataTestId?: string;
 }
 
 const CustomButton: FC<CustomButtonProps> = ({
@@ -18,6 +19,7 @@ const CustomButton: FC<CustomButtonProps> = ({
   type,
   style,
   preventDefault,
+  dataTestId,
 }) => {
   const typeSelector = type
     ? ` ${styles.btn} ${styles[`btn_${type}`]}`
