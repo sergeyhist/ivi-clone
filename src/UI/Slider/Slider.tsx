@@ -48,7 +48,9 @@ const Slider: FC<SliderProps> = ({
   };
 
   const swiperInitHandler = (event: swiperType): void => {
-    type === "always-with-buttons" ? undefined : swiperHandler(event);
+    type === "always-with-buttons"
+      ? setShow({ prev: false, next: true })
+      : swiperHandler(event);
   };
 
   const nextCallback = (): void => {
@@ -60,12 +62,15 @@ const Slider: FC<SliderProps> = ({
   };
 
   return (
-    <div className={`${styles.wrapper} ${wrapperClassName}`} data-testid={dataTestId}>
+    <div
+      className={`${styles.wrapper} ${wrapperClassName}`}
+      data-testid={dataTestId}
+    >
       <Swiper
         modules={[Autoplay]}
         ref={swiperRef}
-        onSlideChange={swiperInitHandler}
-        onSwiper={swiperHandler}
+        onSlideChange={swiperHandler}
+        onSwiper={swiperInitHandler}
         className={`${styles.swiper} ${swiperClassName}`}
         breakpoints={breakpoints}
         loop={loop}
