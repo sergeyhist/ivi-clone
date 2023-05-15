@@ -24,7 +24,7 @@ const CommentsCard: FC<CommentsCardProps> = ({ comment, onClick }) => {
           {getFormateDate(new Date(comment.createdAt), t)}
         </p>
       </button>
-      <Votes ClassName={styles.votes} />
+      <Votes className={styles.votes} />
     </article>
   );
 };
