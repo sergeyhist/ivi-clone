@@ -6,10 +6,10 @@ import { IMovie } from "/src/types/IMovie";
 import MovieCardButtons from "./MovieCardButtons/MovieCardButtons";
 import MovieCardRating from "./MovieCardsRating/MovieCardsRating";
 import MovieCardChart from "./MovieCardsChart/MovieCardsChart";
-import { useRouter } from "next/router";
 import { getBackendImage } from "/src/utils/getBackendImg";
 import { useTranslation } from "next-i18next";
 import { declOfNum } from "/src/utils/declOfNum";
+import { getAgeImg, getMovieCounty, getMovieName } from "/src/utils/movie/movie";
 
 interface MovieCardDefaultProps {
   content: IMovie;
@@ -21,12 +21,7 @@ const MovieCardDefault: FC<MovieCardDefaultProps> = ({
   type = "default",
 }) => {
   const { t } = useTranslation(["countries", "movie"]);
-  const className =
-    type == "related" ? styles.content_related : styles.content_default;
-  const { locale } = useRouter();
-  const getName = (movie: IMovie): string => {
-    return String(movie["name_" + String(locale)]);
-  };
+  const className = styles[`content_${type}`];
 
   return (
     <article className={`${styles.content} ${className}`}>
@@ -52,7 +47,7 @@ const MovieCardDefault: FC<MovieCardDefaultProps> = ({
               <MovieCardRating content={content} />
               <MovieCardChart content={content} />
               <p className={styles.information__text}>{`${content.year} ${t(
-                content.countries[0].slug
+                getMovieCounty(content)
               )}`}</p>
               <p className={styles.information__text}>
                 {declOfNum(content.duration, [
@@ -63,10 +58,18 @@ const MovieCardDefault: FC<MovieCardDefaultProps> = ({
               </p>
             </div>
           </div>
-          <div className={styles.age}></div>
+          <div className={styles.age}>
+            <Image
+              className={styles.age__img}
+              height={16}
+              width={24}
+              src={getAgeImg(content.age_limit)}
+              alt={"age"}
+            />
+          </div>
         </div>
         <div className={styles.content__bottom}>
-          <h4 className={styles.content__title}>{getName(content)}</h4>
+          <h4 className={styles.content__title}>{getMovieName(content)}</h4>
         </div>
       </Link>
     </article>

@@ -27,8 +27,27 @@
     "promo": "Discover the opportunity to watch movies online for free in excellent quality with the Ivy cinema!"
   },
   "compilations": {
-    "militants": "Best militants",
-    "comedies": "Best comedies"
+    "militants": {
+      "title": "Best Action Movies",
+      "description": ""
+    },
+    "comedies": {
+      "title": "Best Comedies",
+      "description": "Do you like to watch online comedies starring Eddie Murphy, Jim Carrey or Adam Sandler? Do you think the best movies are comedies that make you laugh and smile?"
+    },
+    "military": {
+      "title": "Military films",
+      "description": "The best war films will tell you about the events that you were lucky enough NOT to be a witness to."
+    },
+    "drama": {
+      "title": "Best Dramas",
+      "description": "Are you not a fan of films with endless fights, frenzied chases and shooting, but do you prefer a truly heartfelt movie?"
+    },
+    "detectives": {
+      "title": "Best Detectives",
+      "description": "The best detective films attract viewers with a seemingly mundane plot and setting. There may not be fancy special effects."
+    },
+    "view": "View Collection"
   },
   "top": {
     "title": "per week"

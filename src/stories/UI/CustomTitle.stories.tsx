@@ -15,24 +15,21 @@ const meta: Meta<typeof CustomTitle> = {
         "This can be one of the following options: " +
         '"default", "link", "underline", "large", "medium", or "small". By default, this is set to "default".',
     },
-    className:{
-      description:"(optional): a string that represents additional CSS classes to be applied to the component."
-    }
+    className: {
+      description:
+        "(optional): a string that represents additional CSS classes to be applied to the component.",
+    },
   },
-  parameters:{
+  parameters: {
     backgrounds: {
-      default: 'twitter',
+      default: "dark",
       values: [
         {
-          name: 'twitter',
-          value: '#00aced',
-        },
-        {
-          name: 'facebook',
-          value: '#3b5998',
+          name: "dark",
+          value: "#100e19",
         },
       ],
-    }
+    },
   },
   component: CustomTitle,
 };

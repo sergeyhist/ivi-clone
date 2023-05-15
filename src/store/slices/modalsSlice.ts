@@ -39,5 +39,10 @@ export const modalsSlice = createSlice({
   },
 });
 
-export const { setShowModal,setShowMovieModal,setShowAuthModal,setShowSearchModal } = modalsSlice.actions;
+export const {
+  setShowModal,
+  setShowMovieModal,
+  setShowAuthModal,
+  setShowSearchModal,
+} = modalsSlice.actions;
 export default modalsSlice.reducer;

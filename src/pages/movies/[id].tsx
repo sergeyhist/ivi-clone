@@ -113,6 +113,7 @@ export const getServerSideProps = async ({
         "movieInfo",
         "mobileMenu",
         "countries",
+        "genres",
       ])),
     },
   };

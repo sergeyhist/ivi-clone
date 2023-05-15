@@ -58,7 +58,9 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
   }, [dispatch, debouncedResize]);
 
   return (
-    <>
+    <div
+      className={`${iviSans.className} ${iviSans.variable} ${iviIcons.variable} ${iconFont.variable}`}
+    >
       <ToastContainer />
       <ProgressBar value={0} isFixed={true} type="loading" />
       <Head>
@@ -67,14 +69,10 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <Header />
-      <main
-        className={`${iviSans.className} ${iviSans.variable} ${iviIcons.variable} ${iconFont.variable}`}
-      >
-        {children}
-      </main>
+      <main>{children}</main>
       {windowSizeWidth < 1160 && <MobileMenu />}
       <Footer />
-    </>
+    </div>
   );
 };
 

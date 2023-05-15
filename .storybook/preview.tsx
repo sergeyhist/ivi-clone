@@ -3,6 +3,7 @@ import React from "react";
 import i18next, { changeLanguage } from "i18next";
 import { useGlobals } from "@storybook/addons";
 import i18n from "./i18n";
+import { iviSans, iviIcons, iconFont } from "../src/utils/fonts";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
@@ -36,7 +37,11 @@ export const decorators = [
 
     return (
       <I18nextProvider i18n={i18n || i18next}>
-        <Story />
+        <main
+          className={`${iviSans.className} ${iviIcons.variable} ${iconFont.variable}`}
+        >
+          <Story />
+        </main>
       </I18nextProvider>
     );
   },

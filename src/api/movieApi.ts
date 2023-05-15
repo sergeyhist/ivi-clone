@@ -7,7 +7,9 @@ export const getMoviesById = async (
   filmsId: string[]
 ): Promise<IMovie[] | undefined> => {
   try {
-    const response = await axios.get("http://85.237.34.125:4000/id/films", {
+    if (!process.env.SERVER_HOST)
+      throw new Error("process.env.SERVER_HOST undefined");
+    const response = await axios.get(`${process.env.SERVER_HOST}/id/films`, {
       params: {
         films: filmsId,
       },
@@ -20,8 +22,10 @@ export const getMoviesById = async (
 
 export const getMovie = async (film_id: string): Promise<IMovie | null> => {
   try {
+    if (!process.env.SERVER_HOST)
+      throw new Error("process.env.SERVER_HOST undefined");
     const response = await axios.get<IMovie>(
-      `http://85.237.34.125:4000/films/${film_id}`
+      `${process.env.SERVER_HOST}/films/${film_id}`
     );
     return response.data;
   } catch (error) {
@@ -32,8 +36,10 @@ export const getMovie = async (film_id: string): Promise<IMovie | null> => {
 
 export const getMoviePersons = async (film_id: string): Promise<IPerson[]> => {
   try {
+    if (!process.env.SERVER_HOST)
+      throw new Error("process.env.SERVER_HOST undefined");
     const response = await axios.get<IPerson[]>(
-      `http://85.237.34.125:4000/persons/films/${film_id}`
+      `${process.env.SERVER_HOST}/persons/films/${film_id}`
     );
     return response.data;
   } catch (error) {
@@ -44,8 +50,10 @@ export const getMoviePersons = async (film_id: string): Promise<IPerson[]> => {
 
 export const getMovieComments = async (film_id: string): Promise<IComment[]> => {
   try {
+    if (!process.env.SERVER_HOST)
+      throw new Error("process.env.SERVER_HOST undefined");
     const response = await axios.get<IComment[]>(
-      `http://85.237.34.125:4000/comments/films/${film_id}`
+      `${process.env.SERVER_HOST}/comments/films/${film_id}`
     );
     return response.data;
   } catch (error) {
@@ -56,8 +64,10 @@ export const getMovieComments = async (film_id: string): Promise<IComment[]> => 
 
 export const getMoviesByGenre = async (genre_slug: string): Promise<IMovie[]> => {
   try {
+    if (!process.env.SERVER_HOST)
+      throw new Error("process.env.SERVER_HOST undefined");
     const response = await axios.get<IMovie[]>(
-      `http://85.237.34.125:4000/filter/films?genres=${genre_slug}&limit=10`
+      `${process.env.SERVER_HOST}/filter/films?genres=${genre_slug}&limit=10`
     );
     return response.data;
   } catch (error) {

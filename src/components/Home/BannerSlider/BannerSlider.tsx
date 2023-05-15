@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { SwiperSlide } from "swiper/react";
-import { slides, slidesPerView } from "./BannerSlider.utils";
+import { slides, breakpoints } from "./BannerSlider.utils";
 import BannerSlide from "./BannerSlide/BannerSlide";
 import styles from "./BannerSlider.module.sass";
 import Slider from "/src/UI/Slider/Slider";
@@ -11,12 +11,7 @@ const BannerSlider: FC = () => {
       <div className={"container"}>
         <Slider
           swiperClassName={styles.swiper}
-          breakpoints={{
-            0: {
-              slidesPerView: slidesPerView,
-              spaceBetween: 16,
-            },
-          }}
+          breakpoints={breakpoints}
           loop={true}
           centeredSlides={true}
           autoplay={{ delay: 15000 }}

@@ -1,10 +1,12 @@
-import { FC, Dispatch, SetStateAction } from "react";
+import { FC, Dispatch, SetStateAction, useRef, useEffect, useState } from "react";
 import { IComment } from "/src/types/IComment";
 import styles from "./CommentItem.module.sass";
 import Votes from "/src/UI/Votes/Votes";
-import { getFormateDate } from "../../../../../../utils/movie/movie";
+import { getFormateDate } from "/src/utils/movie/movie";
 import { useTranslation } from "next-i18next";
 import { BiCommentAdd } from "react-icons/bi";
+import TextDropDown from "/src/UI/TextDropDown/TextDropDown";
+import { useAppSelector } from "/src/hooks/redux";
 
 interface CommentItemProps {
   comment: IComment;
@@ -21,11 +23,18 @@ const CommentItem: FC<CommentItemProps> = ({
 }) => {
   const { t } = useTranslation("movie");
   const indentation = level * 8;
+  const textRef = useRef<HTMLParagraphElement>(null);
+  const [textHeight, setTextHeight] = useState<number>(100);
+  const windowSize = useAppSelector((state) => state.windowSize);
 
   const clickHandler = (): void => {
     setInputText("@" + comment.user.profile.first_name + ": ");
     setReplyFor(comment);
   };
+
+  useEffect(() => {
+    setTextHeight(Number(textRef.current?.scrollHeight));
+  }, [windowSize.width]);
 
   return (
     <div
@@ -55,7 +64,17 @@ const CommentItem: FC<CommentItemProps> = ({
       </div>
 
       <div className={styles.comment}>
-        <div className={styles.text}>{comment.text}</div>
+        <TextDropDown
+          toggleTitles={{
+            defaultTitle: t("details.show"),
+            activeTitle: t("details.hide"),
+          }}
+          textHeight={textHeight}
+        >
+          <p ref={textRef} className={styles.text}>
+            {comment.text}
+          </p>
+        </TextDropDown>
       </div>
       {comment.sub_comments.length !== 0 && (
         <div className={styles.replies}>

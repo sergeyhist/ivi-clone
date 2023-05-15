@@ -17,6 +17,27 @@ export const getFormateDate = (date: Date, t: TFunction): string => {
   return `${day} ${t(`movie:months.${monthIndex}`)} ${year}`;
 };
 
+export const getAgeImg = (age: number): string => {
+  switch (age) {
+    case 0:
+      return "/images/age0.svg";
+    case 6:
+      return "/images/age6.svg";
+    case 12:
+      return "/images/age12.svg";
+    case 16:
+      return "/images/age16.svg";
+    case 18:
+      return "/images/age18.svg";
+    default:
+      return "/images/age16.svg";
+  }
+};
+
+export const getMovieCounty = (movie: IMovie): string => {
+  return movie.countries[0].slug || "";
+};
+
 export const mockMovie: IMovie = {
   film_id: "984fdb2d-da0c-4e04-926a-f72f103c4ccb",
   name_ru: "Зеленая миля",

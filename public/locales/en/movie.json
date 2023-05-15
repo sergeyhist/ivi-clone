@@ -42,7 +42,7 @@
   },
   "comments": {
     "comments": "Comments",
-    "leave": "Leave a comment"
+    "leave": "Write a comment"
   },
   "creators": {
     "filmmaker": "Director",
@@ -97,5 +97,6 @@
       "submit": "Sew"
     },
     "showButton": "Show more"
-  }
+  },
+  "year": "year"
 }

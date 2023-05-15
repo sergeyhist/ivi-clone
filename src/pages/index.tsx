@@ -22,11 +22,11 @@ const Home: FC<HomeProps> = ({ bestMilitants, bestComedies }) => {
   const compilations = [
     {
       movies: bestMilitants.length ? bestMilitants : [mockMovie],
-      title: t("home:compilations.militants"),
+      title: t("home:compilations.militants.title"),
     },
     {
       movies: bestComedies.length ? bestComedies : [mockMovie],
-      title: t("home:compilations.comedies"),
+      title: t("home:compilations.comedies.title"),
     },
   ];
 
