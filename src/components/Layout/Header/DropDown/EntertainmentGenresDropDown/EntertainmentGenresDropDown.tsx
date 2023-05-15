@@ -14,7 +14,7 @@ const EntertainmentGenresDropDown: FC<EntertainmentGenresDropDownProps> = ({
 }) => {
   return (
     <>
-      <div className={styles.dropdown}>
+      <div className={styles.dropdown} data-testid="ent-dropdown">
         <LinkList selectedGenre={selectedGenre} />
         <Tabs selectedGenre={selectedGenre} />
       </div>

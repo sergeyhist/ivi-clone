@@ -16,7 +16,7 @@ const Navigation: FC<NavigationProps> = ({
   const { t } = useTranslation("header");
 
   return (
-    <nav className={styles.nav}>
+    <nav className={styles.nav} data-testid="navigation">
       <ul className={styles.nav__list}>
         <Link
           className={styles.nav__item}

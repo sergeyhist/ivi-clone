@@ -21,7 +21,7 @@ const TvDropDown: FC = () => {
           </CustomButton>
         </Link>
       </div>
-      <div className={styles.channels__container}>
+      <div className={styles.channels__container} data-testid="channels-container">
         <div className={styles.channels__slider_row}>
           <h2 className={styles.channels__slider_title}>
             {t("tv.channels.0")}

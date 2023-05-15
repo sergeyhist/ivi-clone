@@ -21,7 +21,7 @@ const WidgetBottom: FC<WidgetBottomProps> = ({ isBottomActive }) => {
   };
 
   return (
-    <div className={styles.bottom + activeBottom}>
+    <div className={styles.bottom + activeBottom} data-testid="widget-bottom">
       <div className={styles.bottom__fade} />
       <BottomInfo />
       <div className={styles.bottom__subscribe + activeSubscribe}>
@@ -29,6 +29,7 @@ const WidgetBottom: FC<WidgetBottomProps> = ({ isBottomActive }) => {
           clickCallback={openSubscription}
           className={styles.bottom__button}
           type="red"
+          dataTestId="buy-button"
         >
           {t("headerWidget.widgetBuyButton")}
         </CustomButton>

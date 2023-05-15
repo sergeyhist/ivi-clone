@@ -20,7 +20,7 @@ const NavigationLayout: FC<NavigationLayoutProps> = ({
   const windowSizeWidth = useAppSelector((state) => state.windowSize.width);
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="navigation-layout">
       <Link href="/" className={styles.logo}>
         <Image
           src="/images/iviLogo.svg"

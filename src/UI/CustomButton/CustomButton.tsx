@@ -33,6 +33,7 @@ const CustomButton: FC<CustomButtonProps> = ({
       }}
       style={style}
       className={typeSelector + ` ${className}` + " unselectable"}
+      data-testid={dataTestId}
     >
       <div className={styles.btn__content}>{children}</div>
     </button>

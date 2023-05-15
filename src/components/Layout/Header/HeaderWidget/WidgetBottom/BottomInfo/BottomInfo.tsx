@@ -6,7 +6,7 @@ const BottomInfo: FC = () => {
   const { t } = useTranslation("header");
 
   return (
-    <div className={styles.info}>
+    <div className={styles.info} data-testid="bottom-info">
       <div className={styles.info__logo} />
       <span className={styles.info__title}>
         {t("headerWidget.widgetTitle")}

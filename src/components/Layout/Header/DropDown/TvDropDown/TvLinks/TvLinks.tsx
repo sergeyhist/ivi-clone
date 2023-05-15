@@ -7,7 +7,7 @@ const TvLinks: FC = () => {
   const { t } = useTranslation("header");
 
   return (
-    <div className={styles.tv__links}>
+    <div className={styles.tv__links} data-testid="tv-links">
       <h2 className={styles.tv__links_title}>{t("tv.links.0")}</h2>
       <ul className={styles.tv__links_list}>
         {tvLinks.links.map((link, i) => {

@@ -2,7 +2,7 @@ import { Dispatch, FC, LegacyRef, SetStateAction } from "react";
 import styles from "./ActionLayout.module.sass";
 import ToggleSwitch from "/src/UI/ToggleSwitch/ToggleSwitch";
 import Actions from "/src/components/Layout/Header/ActionLayout/Actions/Actions";
-import { useRouter } from "next/router";
+import {NextRouter, useRouter} from "next/router";
 import { DropDownType } from "/src/components/Layout/Header/Header.utils";
 
 interface ActionLayout {
@@ -23,7 +23,7 @@ const ActionLayout: FC<ActionLayout> = ({
   };
 
   return (
-    <div ref={actionRef} className={styles.container}>
+    <div ref={actionRef} className={styles.container} data-testid='actionLayout-container'>
       <ToggleSwitch
         className={styles.switch}
         leftContent="EN"
@@ -33,6 +33,7 @@ const ActionLayout: FC<ActionLayout> = ({
         clickCallback={(result) => {
           handleLocaleClick(result.toLowerCase());
         }}
+        dataTestId="toggle-switch"
       />
       <Actions
         setIsDropdownActive={setIsDropdownActive}

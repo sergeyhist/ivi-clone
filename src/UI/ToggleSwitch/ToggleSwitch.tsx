@@ -9,6 +9,7 @@ interface ToggleSwitchProps {
   clickCallback: (result: string) => void;
   scale?: string;
   defaultValue?: "left" | "right";
+  dataTestId?: string;
 }
 
 const ToggleSwitch: FC<ToggleSwitchProps> = ({
@@ -18,6 +19,7 @@ const ToggleSwitch: FC<ToggleSwitchProps> = ({
   clickCallback,
   scale = "0.8",
   defaultValue,
+  dataTestId,
 }) => {
   const [isActive, setIsActive] = useState(false);
   const [toggleValue, setToggleValue] = useState<string>(
@@ -41,6 +43,7 @@ const ToggleSwitch: FC<ToggleSwitchProps> = ({
       }}
       className={`${styles.toggle} ${className} ${activeToggle}`}
       style={{ scale: scale }}
+      data-testid={dataTestId}
     >
       <div
         className={`${styles.toggle__button} ${

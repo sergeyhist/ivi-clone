@@ -9,7 +9,7 @@ const SideWidget: FC = () => {
   const { t } = useTranslation("header");
 
   return (
-    <div className={styles.widget}>
+    <div className={styles.widget} data-testid="side-widget">
       <HeaderWidget />
       <a href="https://www.ivi.ru/pages/tvsmart/" target="_blank">
         <CustomButton className={styles.button}>
