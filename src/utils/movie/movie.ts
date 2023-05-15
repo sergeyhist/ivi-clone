@@ -34,6 +34,10 @@ export const getAgeImg = (age: number): string => {
   }
 };
 
+export const getMovieCounty = (movie: IMovie): string => {
+  return movie.countries[0].slug || "";
+};
+
 export const mockMovie: IMovie = {
   film_id: "984fdb2d-da0c-4e04-926a-f72f103c4ccb",
   name_ru: "Зеленая миля",

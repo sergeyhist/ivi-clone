@@ -22,15 +22,11 @@ const meta: Meta<typeof CustomTitle> = {
   },
   parameters: {
     backgrounds: {
-      default: "twitter",
+      default: "dark",
       values: [
         {
-          name: "twitter",
-          value: "#00aced",
-        },
-        {
-          name: "facebook",
-          value: "#3b5998",
+          name: "dark",
+          value: "#100e19",
         },
       ],
     },
