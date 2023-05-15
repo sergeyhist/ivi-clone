@@ -5,6 +5,7 @@ import { modalsSlice } from "/src/store/slices/modalsSlice";
 import { useTranslation } from "next-i18next";
 import { IPerson } from "/src/types/IPerson";
 import Creator from "/src/UI/Creator/Creator";
+import CustomTitle from "/src/UI/CustomTitle/CustomTitle";
 
 interface CreatorsListProps {
   persons: IPerson[];
@@ -13,7 +14,7 @@ interface CreatorsListProps {
 const CreatorsList: FC<CreatorsListProps> = ({ persons }) => {
   const { setShowMovieModal } = modalsSlice.actions;
   const dispatch = useAppDispatch();
-  const { t } = useTranslation("creators");
+  const { t } = useTranslation("movie");
 
   const firstTenCreators = persons.slice(0, 10);
 
@@ -24,13 +25,14 @@ const CreatorsList: FC<CreatorsListProps> = ({ persons }) => {
   return (
     <section className="container">
       <div className={styles.container}>
+        <CustomTitle className={styles.title} title={t("creators.title")} />
         <div className={styles.creators}>
           {firstTenCreators.map((person, i) => {
             return <Creator className={styles.creator} key={i} person={person} />;
           })}
 
           <button className={styles.button} onClick={clickHandler}>
-            {t("moreButton")}
+            {t("creators.more")}
           </button>
         </div>
       </div>

@@ -45,6 +45,8 @@
     "leave": "Write a comment"
   },
   "creators": {
+    "title": "Actors and creators",
+    "more": "More",
     "filmmaker": "Director",
     "actor": "Actor",
     "scenario": "Scenery",

@@ -10,6 +10,7 @@ import { getBackendImage } from "/src/utils/getBackendImg";
 import { useTranslation } from "next-i18next";
 import { declOfNum } from "/src/utils/declOfNum";
 import { getAgeImg, getMovieCounty, getMovieName } from "/src/utils/movie/movie";
+import { useRouter } from "next/router";
 
 interface MovieCardDefaultProps {
   content: IMovie;
@@ -21,6 +22,7 @@ const MovieCardDefault: FC<MovieCardDefaultProps> = ({
   type = "default",
 }) => {
   const { t } = useTranslation(["countries", "movie"]);
+  const { locale } = useRouter();
   const className = styles[`content_${type}`];
 
   return (
@@ -69,7 +71,7 @@ const MovieCardDefault: FC<MovieCardDefaultProps> = ({
           </div>
         </div>
         <div className={styles.content__bottom}>
-          <h4 className={styles.content__title}>{getMovieName(content)}</h4>
+          <h4 className={styles.content__title}>{getMovieName(content, locale)}</h4>
         </div>
       </Link>
     </article>
