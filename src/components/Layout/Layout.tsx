@@ -8,14 +8,8 @@ import { useAppSelector } from "/src/hooks/redux";
 import { useDebouncedCallback } from "use-debounce";
 import MobileMenu from "./MobileMenu/MobileMenu";
 import useSWR from "swr";
-import {
-  getActors,
-  getCountriesSlugs,
-  getDirectors,
-  getGenresSlugs,
-} from "/src/api/getData";
+import { getCountriesSlugs, getGenresSlugs } from "/src/api/getData";
 import { setSlugs } from "/src/store/slices/slugsSlice";
-import { setPersons } from "/src/store/slices/personsSlice";
 import { ToastContainer } from "react-toastify";
 import { iviSans, iviIcons, iconFont } from "/src/utils/fonts";
 import ProgressBar from "/src/UI/ProgressBar/ProgressBar";
@@ -33,14 +27,6 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
   const countriesSlugs = useSWR(
     `${String(process.env.SERVER_HOST)}/countries`,
     getCountriesSlugs
-  );
-  const actors = useSWR(
-    `${String(process.env.SERVER_HOST)}/name/persons?film_role=actor`,
-    getActors
-  );
-  const directors = useSWR(
-    `${String(process.env.SERVER_HOST)}/name/persons?film_role=filmmaker`,
-    getDirectors
   );
 
   const windowSizeWidth = useAppSelector((state) => state.windowSize.width);
@@ -62,16 +48,7 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
         countriesSlugs: countriesSlugs.data || [],
       })
     );
-    dispatch(
-      setPersons({ actors: actors.data || [], directors: directors.data || [] })
-    );
-  }, [
-    actors.data,
-    countriesSlugs.data,
-    directors.data,
-    dispatch,
-    genresSlugs.data,
-  ]);
+  }, [countriesSlugs.data, dispatch, genresSlugs.data]);
 
   useEffect(() => {
     debouncedResize();
