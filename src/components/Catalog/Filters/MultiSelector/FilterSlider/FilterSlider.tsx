@@ -27,6 +27,7 @@ const FilterSlider: FC<FilterSliderProps> = ({
       breakpoints={sliderBreakpoints}
       prevClassName={styles.prev}
       nextClassName={styles.next}
+      type="always-with-buttons"
     >
       {items.map((item, i) => (
         <SwiperSlide key={i}>
