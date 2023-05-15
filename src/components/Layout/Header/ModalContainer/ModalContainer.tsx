@@ -1,4 +1,4 @@
-import { FC } from "react";
+import {FC, Fragment} from "react";
 import createAppPortal from "/src/utils/createAppPortal";
 import AuthModal from "/src/components/ModalWindows/AuthModal/AuthModal";
 import { setShowModal } from "/src/store/slices/modalsSlice";
@@ -10,7 +10,7 @@ const ModalContainer: FC = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <>
+    <Fragment data-testid="modal-container">
       {showModal.showAuthModal &&
         createAppPortal(
           <AuthModal
@@ -27,7 +27,7 @@ const ModalContainer: FC = () => {
             }
           />
         )}
-    </>
+    </Fragment>
   );
 };
 

@@ -18,6 +18,7 @@ const TvSlider: FC<TvSliderProps> = ({ slides }) => {
       swiperClassName={styles.channels__slider}
       prevClassName={styles.button_prev}
       nextClassName={styles.button_next}
+      dataTestId={"tv-slider"}
     >
       {slides.map((slide) => (
         <SwiperSlide key={slide.id}>

@@ -1,13 +1,12 @@
-import {fireEvent, screen, render} from "@testing-library/react";
+import { fireEvent, screen, render } from "@testing-library/react";
 import MobileMenu from "/src/components/Layout/MobileMenu/MobileMenu";
-import {Provider} from "react-redux";
-import {store} from "/src/store";
-import {beforeEach} from "node:test";
+import { Provider } from "react-redux";
+import { store } from "/src/store";
 
-jest.mock('next/router', () => require('next-router-mock'));
+jest.mock("next/router", () => require("next-router-mock"));
 
-describe("MobileMenu",()=>{
-  beforeEach(()=>{
+describe("MobileMenu", () => {
+  beforeEach(() => {
     render(
       <Provider store={store}>
         <MobileMenu />
@@ -23,5 +22,5 @@ describe("MobileMenu",()=>{
     const searchModalLink = screen.getByTestId("mobile-menu-link-2");
     fireEvent.click(searchModalLink);
     expect(store.getState().showModal.showSearchModal).toBeTruthy();
-  })
-})
+  });
+});

@@ -17,7 +17,7 @@ const ProfileDropDown: FC = () => {
   };
 
   return (
-    <div className={styles.profile__dropdown_container}>
+    <div className={styles.profile__dropdown_container} data-testid="profile-dropdown">
       <div className={styles.profile__main}>
         {profileLinks.map((link, i) => {
           return (
@@ -37,11 +37,11 @@ const ProfileDropDown: FC = () => {
       </div>
       <div className={styles.profile__side}>
         {authState.isLogged ? (
-          <div className={styles.profile__side_logs}>
+          <div className={styles.profile__side_logs} data-testid="user-email">
             <div>{authState.userEmail}</div>
           </div>
         ) : (
-          <CustomButton clickCallback={handleAuthClick} type="red">
+          <CustomButton clickCallback={handleAuthClick} type="red" dataTestId="auth-btn">
             <div>{t("profile.auth")}</div>
           </CustomButton>
         )}

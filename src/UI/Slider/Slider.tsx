@@ -19,6 +19,7 @@ interface SliderProps {
   simulateTouch?: boolean;
   slidesPerView?: "auto" | number;
   type?: "default" | "always-with-buttons";
+  dataTestId?: string;
 }
 
 const Slider: FC<SliderProps> = ({
@@ -34,6 +35,7 @@ const Slider: FC<SliderProps> = ({
   autoplay = false,
   simulateTouch = true,
   type = "default",
+  dataTestId,
 }) => {
   const [show, setShow] = useState({ prev: false, next: true });
   const swiperRef = useRef<SwiperRef>(null);
@@ -58,7 +60,7 @@ const Slider: FC<SliderProps> = ({
   };
 
   return (
-    <div className={`${styles.wrapper} ${wrapperClassName}`}>
+    <div className={`${styles.wrapper} ${wrapperClassName}`} data-testid={dataTestId}>
       <Swiper
         modules={[Autoplay]}
         ref={swiperRef}

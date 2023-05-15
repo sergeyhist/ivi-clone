@@ -1,6 +1,6 @@
 import {DropDownType} from "/src/components/Layout/Header/Header.utils";
 
-const moviesTabsHrefs = [
+export const moviesTabsHrefs = [
   "https://www.ivi.ru/new/movie-new",
   "https://www.ivi.ru/collections",
   "https://www.ivi.ru/movies/all?ivi_rating_10_gte=7&sort=ivi&rating_part=main&rating_model=ready",
@@ -15,7 +15,7 @@ const moviesTabsHrefs = [
   "https://www.ivi.ru/collections/ivi-originals",
 ];
 
-const seriesTabsHrefs = [
+export const seriesTabsHrefs = [
   "https://www.ivi.ru/new/series-new",
   "https://www.ivi.ru/series/all?ivi_rating_10_gte=7&sort=ivi&rating_part=main&rating_model=ready",
   "https://www.ivi.ru/collections/series-hd",
@@ -24,7 +24,7 @@ const seriesTabsHrefs = [
   "https://www.ivi.ru/collections/series-paramount-play",
 ];
 
-const cartoonsTabsHrefs = [
+export const cartoonsTabsHrefs = [
   "https://www.ivi.ru/new/animation-new",
   "https://www.ivi.ru/collections/cartoons-hd",
   "https://www.ivi.ru/collections/animation-paramount-play/page2",
@@ -41,4 +41,12 @@ export const getTabsHrefs = (genre: DropDownType): string[] =>{
     default:
       return cartoonsTabsHrefs;
   }
-}
+};
+
+export const mockTabs = [
+  "New items",
+  "Cartoons in HD",
+  "Cartoons Paramount Play / Nickelodeon",
+  "Cartoons DreamWorks",
+  "Cartoons СТС Kids"
+]

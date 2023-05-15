@@ -11,7 +11,7 @@ const SubscriptionDropdown: FC = () => {
   const { t } = useTranslation("header");
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="subscription-dropdown">
       <div className={styles.content__left}>
         <div className={styles.header}>
           <h2 className={styles.title}>{t("subscriptionTitles.header.0")}</h2>

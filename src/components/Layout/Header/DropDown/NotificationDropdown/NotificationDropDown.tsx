@@ -7,7 +7,7 @@ const NotificationDropDown: FC = () => {
   const { t } = useTranslation("header");
 
   return (
-    <div className={styles.dropdown__notification}>
+    <div className={styles.dropdown__notification} data-testid="notification-dropdown">
       <MdOutlineNotificationsActive
         className={styles.dropdown__notification_icon}
       />

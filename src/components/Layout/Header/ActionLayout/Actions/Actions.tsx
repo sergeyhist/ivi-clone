@@ -49,12 +49,13 @@ const Actions: FC<ActionsProps> = ({
   return (
     <div className={styles.container} data-testid="actions-container">
       {router.pathname !== "/" ? (
-        <Link href="https://www.ivi.ru/subscribe" target="_blank">
+        <Link href="https://www.ivi.ru/subscribe" target="_blank" data-testid="subscription-link">
           <div
             onMouseEnter={() => {
               setDropDownType("subscription");
               setIsDropdownActive(true);
             }}
+            data-testid='subscription-content'
           >
             <CustomButton className={styles.subscription__button} type="red">
               {t("freeSubscription")}
@@ -65,6 +66,7 @@ const Actions: FC<ActionsProps> = ({
         <div
           className={styles.purple__button}
           onMouseEnter={() => setIsDropdownActive(false)}
+          data-testid="subscription-button"
         >
           <CustomButton type="purple">{t("subscription")}</CustomButton>
         </div>
@@ -94,6 +96,7 @@ const Actions: FC<ActionsProps> = ({
             setDropDownType("notification");
             setIsDropdownActive(true);
           }}
+          data-testid="notification-button"
         >
           <AiOutlineBell />
         </div>
@@ -105,15 +108,14 @@ const Actions: FC<ActionsProps> = ({
           setDropDownType("profile");
           setIsDropdownActive(true);
         }}
+        data-testid="auth-button"
       >
         <BiUser />
       </div>
       {authState.isLogged && (
-        <div data-testid="logout-button">
-          <CustomButton type="red" clickCallback={handleLogout} >
+          <CustomButton type="red" clickCallback={handleLogout} dataTestId={"logout-button"}>
             <FiLogOut />
           </CustomButton>
-        </div>
       )}
     </div>
   );
