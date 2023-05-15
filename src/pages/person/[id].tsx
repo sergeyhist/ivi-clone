@@ -6,12 +6,12 @@ import PersonCard from "/src/components/Person/PersonCard/PersonCard";
 import Filmography from "/src/components/Person/Filmography/Filmography";
 import { useRouter } from "next/router";
 import { IPerson } from "/src/types/IPerson";
-import { getPersonById } from "/src/api/personApi";
 import BreadCrumbs from "/src/UI/BreadCrumbs/BreadCrumbs";
 import BackButton from "/src/components/Person/BackButton/BackButton";
 import PersonLayout from "/src/components/Person/PersonLayout/PersonLayout";
 import { getMoviesById } from "/src/api/movieApi";
 import { IMovie } from "/src/types/IMovie";
+import { getPersonById } from "/src/api/persons";
 
 interface PersonProps {
   person: IPerson;

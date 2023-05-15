@@ -2,6 +2,7 @@ import { FC } from "react";
 import { IPerson } from "/src/types/IPerson";
 import Image from "next/image";
 import styles from "./PersonCard.module.sass";
+import { getBackendImage } from "/src/utils/getBackendImg";
 
 interface PersonCardProps {
   firstName?: string;
@@ -16,11 +17,7 @@ const PersonCard: FC<PersonCardProps> = ({ person, firstName, lastName }) => {
         <Image
           fill
           sizes="100%"
-          src={
-            person.img.includes("yastatic.net")
-              ? person.img
-              : "https://" + person.img
-          }
+          src={getBackendImage(person.img)}
           alt={person.last_name_en}
         />
       </div>

@@ -11,6 +11,7 @@ import { setQueryParams } from "/src/utils/query";
 import { useAppSelector } from "/src/hooks/redux";
 import { changeHandler } from "/src/utils/filters/changeHandler";
 import { useRouter } from "next/router";
+import { useGetActors, useGetDirectors } from "/src/api/persons";
 
 const sortHandler = (a: string, b: string): 1 | -1 => (a > b ? 1 : -1);
 
@@ -19,8 +20,10 @@ const Filters: FC = () => {
   const router = useRouter();
 
   const { filters } = useAppSelector((state) => state.filters);
-  const persons = useAppSelector((state) => state.persons);
   const slugs = useAppSelector((state) => state.slugs);
+
+  const actors = useGetActors();
+  const directors = useGetDirectors();
 
   const resetHandler = (): void => {
     const resetFilters = getResetfilters(filters);
@@ -95,7 +98,7 @@ const Filters: FC = () => {
         />
         <PersonSelector
           type="actor"
-          list={persons.actors}
+          list={actors.data || []}
           filter={filters.actor as string}
           getFilter={(result) =>
             setQueryParams(router, {
@@ -105,7 +108,7 @@ const Filters: FC = () => {
         />
         <PersonSelector
           type="director"
-          list={persons.directors}
+          list={directors.data || []}
           filter={filters.director as string}
           getFilter={(result) =>
             setQueryParams(router, {
