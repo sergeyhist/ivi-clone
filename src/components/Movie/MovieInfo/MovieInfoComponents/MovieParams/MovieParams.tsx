@@ -4,19 +4,28 @@ import Badge from "../MovieBadge/MovieBadge";
 import Link from "next/link";
 import { IMovie } from "/src/types/IMovie";
 import { useTranslation } from "next-i18next";
+import { declOfNum } from "/src/utils/declOfNum";
 
 interface MovieParamsProps {
   movie: IMovie;
 }
 
 const MovieParams: FC<MovieParamsProps> = ({ movie }) => {
-  const { t } = useTranslation("movie");
+  const { t } = useTranslation(["movie", "genres"]);
 
   return (
     <div className={styles.params}>
       <ul className={styles.list}>
-        <li className={styles.list__item}>{movie.year} год</li>
-        <li className={styles.list__item}>{movie.duration} минут</li>
+        <li className={styles.list__item}>
+          {movie.year} {t("year")}
+        </li>
+        <li className={styles.list__item}>
+          {declOfNum(movie.duration, [
+            t("minute-decl.0"),
+            t("minute-decl.1"),
+            t("minute-decl.2"),
+          ])}
+        </li>
         <li className={styles.list__item}>{movie.age_limit}+</li>
       </ul>
       <ul className={styles.list}>
@@ -26,7 +35,7 @@ const MovieParams: FC<MovieParamsProps> = ({ movie }) => {
             className={`${styles.list__item} ${styles.list__item_dot}`}
           >
             <Link href={"/movies/" + genre.slug} className={styles.list__link}>
-              {genre.genre_ru}
+              {t("genres:" + genre.slug)}
             </Link>
           </li>
         ))}

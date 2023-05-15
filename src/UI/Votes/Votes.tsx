@@ -1,4 +1,4 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import styles from "./Votes.module.sass";
 
 interface VotesProps {
@@ -6,11 +6,25 @@ interface VotesProps {
 }
 
 const Votes: FC<VotesProps> = ({ ClassName = "" }) => {
+  const [likes, setLikes] = useState<number>(12);
+
+  const likeHandler = (): void => {
+    setLikes(likes + 1);
+  };
+
+  const dislikeHandler = (): void => {
+    setLikes(likes - 1);
+  };
+
   return (
     <div className={`${styles.container} ${ClassName}`}>
-      <div className={styles.like}></div>
-      <div className={styles.count}>12</div>
-      <div className={styles.dislike}></div>
+      <button onClick={likeHandler} type="button" className={styles.like}></button>
+      <div className={styles.count}>{likes}</div>
+      <button
+        onClick={dislikeHandler}
+        type="button"
+        className={styles.dislike}
+      ></button>
     </div>
   );
 };

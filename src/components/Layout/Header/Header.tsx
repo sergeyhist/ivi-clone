@@ -7,16 +7,13 @@ import { useAppSelector } from "/src/hooks/redux";
 import ActionLayout from "/src/components/Layout/Header/ActionLayout/ActionLayout";
 import NavigationLayout from "/src/components/Layout/Header/NavigationLayout/NavigationLayout";
 import ModalContainer from "/src/components/Layout/Header/ModalContainer/ModalContainer";
-import { iviSans, iviIcons, iconFont } from "/src/utils/fonts";
 
 const Header: FC = () => {
   const [isDropdownActive, setIsDropdownActive] = useState(false);
   const [dropDownType, setDropDownType] = useState<DropDownType>("");
   const windowSizeWidth = useAppSelector((state) => state.windowSize.width);
   const headerContentClassName =
-    isDropdownActive && windowSizeWidth > 1160
-      ? styles.header__content_active
-      : "";
+    isDropdownActive && windowSizeWidth > 1160 ? styles.header__content_active : "";
 
   const refDropDown = useRef<HTMLDivElement>(null);
   const navigationRef = useRef<HTMLDivElement>(null);
@@ -34,7 +31,7 @@ const Header: FC = () => {
 
   return (
     <header
-      className={`${styles.header} ${iviSans.className} ${iviSans.variable} ${iviIcons.variable} ${iconFont.variable} container`}
+      className={"container"}
       onMouseOver={handleHeaderMouseOver}
       onMouseLeave={() => setIsDropdownActive(false)}
     >
