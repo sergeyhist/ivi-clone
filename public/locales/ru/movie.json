@@ -28,7 +28,8 @@
   "params": {
     "quality": "FullHD",
     "lang": "Рус",
-    "subtitle": "Рус"
+    "subtitle": "Рус",
+    "year": "год"
   },
   "devices": {
     "watch": "Смотреть",
@@ -99,6 +100,5 @@
       "submit": "Отправить"
     },
     "showButton": "Показать ещё"
-  },
-  "year": "year"
+  }
 }

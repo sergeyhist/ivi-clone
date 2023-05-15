@@ -28,7 +28,8 @@
   "params": {
     "quality": "FullHD",
     "lang": "Eng",
-    "subtitle": "Eng"
+    "subtitle": "Eng",
+    "year": "year"
   },
   "devices": {
     "watch": "Watch",
@@ -99,6 +100,5 @@
       "submit": "Sew"
     },
     "showButton": "Show more"
-  },
-  "year": "year"
+  }
 }

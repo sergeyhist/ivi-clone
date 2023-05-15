@@ -17,7 +17,7 @@ const MovieParams: FC<MovieParamsProps> = ({ movie }) => {
     <div className={styles.params}>
       <ul className={styles.list}>
         <li className={styles.list__item}>
-          {movie.year} {t("year")}
+          {movie.year} {t("params.year")}
         </li>
         <li className={styles.list__item}>
           {declOfNum(movie.duration, [
