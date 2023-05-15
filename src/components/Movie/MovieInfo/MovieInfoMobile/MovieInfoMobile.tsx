@@ -32,7 +32,7 @@ const MovieInfoMobile: FC<MovieInfoMobileProps> = ({ movie, persons }) => {
           year={movie.year}
         />
         <MovieParams movie={movie} />
-        <MovieTrailer />
+        <MovieTrailer movie={movie} />
         <div className={styles.mobile__row}>
           <div className={styles.mobile__content}>
             <MovieMedallions movie={movie} persons={persons} />

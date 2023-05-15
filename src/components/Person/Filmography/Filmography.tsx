@@ -45,6 +45,8 @@ const Filmography: FC<FilmographyProps> = ({ movies }) => {
                   sizes="100%"
                   src={getBackendImage(movie.img)}
                   alt={movie.name_en}
+                  placeholder="blur"
+                  blurDataURL="/images/placeholder.svg"
                 />
               </div>
               <div className={styles.movie__poster}>
@@ -70,10 +72,7 @@ const Filmography: FC<FilmographyProps> = ({ movies }) => {
       </div>
       {movies && moviesToShow && moviesToShow.length <= 8 && (
         <div className={styles.show__btn} onClick={handleShowMovies}>
-          {`${t("showButton")} ${getMovieDeclination(
-            movies.length - 8,
-            locale
-          )} `}
+          {`${t("showButton")} ${getMovieDeclination(movies.length - 8, locale)} `}
         </div>
       )}
     </div>

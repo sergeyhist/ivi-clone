@@ -25,7 +25,13 @@ const CreatorsList: FC<CreatorsListProps> = ({ persons }) => {
   return (
     <section className="container">
       <div className={styles.container}>
-        <CustomTitle className={styles.title} title={t("creators.title")} />
+        <button onClick={clickHandler} type="button">
+          <CustomTitle
+            type="underline"
+            className={styles.title}
+            title={t("creators.title")}
+          />
+        </button>
         <div className={styles.creators}>
           {firstTenCreators.map((person, i) => {
             return <Creator className={styles.creator} key={i} person={person} />;

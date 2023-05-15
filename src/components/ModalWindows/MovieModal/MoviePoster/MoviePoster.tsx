@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { IMovie } from "/src/types/IMovie";
 import { useTranslation } from "next-i18next";
+import { declOfNum } from "/src/utils/declOfNum";
 
 interface MoviePosterProps {
   content: IMovie;
@@ -45,7 +46,11 @@ const MoviePoster: FC<MoviePosterProps> = ({ content }) => {
         )}`}</p>
         <p className={styles.information__text}>
           <i className={`${styles.icon} ${styles.icon_time}`}></i>
-          {content.duration}
+          {declOfNum(content.duration, [
+            t("movie:minute-decl.0"),
+            t("movie:minute-decl.1"),
+            t("movie:minute-decl.2"),
+          ])}
         </p>
       </div>
     </article>

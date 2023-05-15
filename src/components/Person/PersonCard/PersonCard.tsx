@@ -19,6 +19,8 @@ const PersonCard: FC<PersonCardProps> = ({ person, firstName, lastName }) => {
           sizes="100%"
           src={getBackendImage(person.img)}
           alt={person.last_name_en}
+          placeholder="blur"
+          blurDataURL="/images/placeholder.svg"
         />
       </div>
       <h1 className={styles.title}>

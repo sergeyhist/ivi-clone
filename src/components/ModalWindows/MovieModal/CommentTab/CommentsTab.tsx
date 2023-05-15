@@ -13,7 +13,7 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments }) => {
   const [commentsState, setCommentsState] = useState<IComment[]>(comments);
   const [inputText, setInputText] = useState("");
   const [replyFor, setReplyFor] = useState<IComment | undefined>(undefined);
-  const { t } = useTranslation("movieInfo");
+  const { t } = useTranslation("movie");
 
   const handleSubmitForm = (event: FormEvent): void => {
     event.preventDefault();
@@ -60,8 +60,8 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments }) => {
         setAuthData={setInputText}
         inputType="text"
         showIcon={false}
-        buttonText={t("commentsInput.submit")}
-        placeholderText={t("commentsInput.placeholder")}
+        buttonText={t("modal.commentsInput.submit")}
+        placeholderText={t("modal.commentsInput.placeholder")}
       />
       <CommentsList
         setInputText={setInputText}

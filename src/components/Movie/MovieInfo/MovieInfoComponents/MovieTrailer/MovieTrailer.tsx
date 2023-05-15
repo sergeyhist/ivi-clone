@@ -2,8 +2,15 @@ import { FC, useRef, useState } from "react";
 import styles from "./MovieTrailer.module.sass";
 import { FaPlay } from "react-icons/fa";
 import { FaPause } from "react-icons/fa";
+import { IMovie } from "/src/types/IMovie";
+import { getAgeImg } from "/src/utils/movie/movie";
+import Image from "next/image";
 
-const MovieTrailer: FC = () => {
+interface MovieTrailerProps {
+  movie: IMovie;
+}
+
+const MovieTrailer: FC<MovieTrailerProps> = ({ movie }) => {
   const video = useRef<HTMLVideoElement>(null);
   const [isPlay, setPlay] = useState<boolean>(false);
 
@@ -59,7 +66,15 @@ const MovieTrailer: FC = () => {
           )}
         </div>
 
-        <p className={styles.trailer__age}></p>
+        <div className={styles.age}>
+          <Image
+            className={styles.age__img}
+            height={16}
+            width={24}
+            src={getAgeImg(movie.age_limit)}
+            alt={"age"}
+          />
+        </div>
       </div>
     </div>
   );
