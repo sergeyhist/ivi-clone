@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import MovieCard from "/src/UI/MovieCard/MovieCard";
 import { mockMovie } from "/src/utils/movie/movie";
+import MovieCard from "/src/UI/MovieCard/MovieCard";
 import "/src/styles/global.sass";
 
 const meta: Meta<typeof MovieCard> = {
