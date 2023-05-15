@@ -4,8 +4,13 @@ import Navigation from "/src/components/Layout/Header/NavigationLayout/Navigatio
 const setIsDropdownActive =jest.fn();
 const setDropDownType =jest.fn();
 describe("Navigation", () => {
-  it("should renders without errors", () => {
+  beforeEach(()=>{
     render(<Navigation setIsDropdownActive={setIsDropdownActive} setDropDownType={setDropDownType}/>);
+  })
+  it("should renders without errors", () => {
     expect(screen.getByTestId("navigation")).toBeInTheDocument();
   });
+  it("should set IsDropdownActive to false after mouse enter",()=>{
+
+  })
 });

@@ -22,6 +22,7 @@ const Navigation: FC<NavigationProps> = ({
           className={styles.nav__item}
           onMouseEnter={() => setIsDropdownActive(false)}
           href="/"
+          data-testid=""
         >
           <li>{t("navigation.0")}</li>
         </Link>

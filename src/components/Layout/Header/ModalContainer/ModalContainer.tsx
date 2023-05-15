@@ -10,7 +10,7 @@ const ModalContainer: FC = () => {
   const dispatch = useAppDispatch();
 
   return (
-    <Fragment data-testid="modal-container">
+    <Fragment>
       {showModal.showAuthModal &&
         createAppPortal(
           <AuthModal
