@@ -2,7 +2,7 @@ import { FC, useRef } from "react";
 import styles from "./ErrorMessage.module.sass";
 import { RiErrorWarningLine } from "react-icons/ri";
 import { CSSTransition } from "react-transition-group";
-import { cssTransitionClassNames } from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDoalogue.utils";
+import { cssTransitionClassNames } from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDialogue.utils";
 import { useTranslation } from "next-i18next";
 
 interface ErrorMessageProps {

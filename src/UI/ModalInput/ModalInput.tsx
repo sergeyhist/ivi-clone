@@ -103,18 +103,20 @@ const ModalInput: FC<ModalInputProps> = ({
   };
 
   return (
-    <div className={`${styles.input__container} ${className ? className : ""}`}>
+    <div className={`${styles.input__container} ${className ? className : ""}`} data-testid="input-container">
       <div
         ref={contentRef}
         className={`${styles.input__content} ${
           showErrorMessage ? styles.input__error : ""
         }`}
         onClick={handleInputClick}
+        data-testid="input-content"
       >
         <div
           className={`${styles.input__placeholder} ${
             isInputActive ? styles.placeholder_active : ""
           }`}
+          data-testid="placeholder"
         >
           {placeholderText}
         </div>
@@ -128,6 +130,7 @@ const ModalInput: FC<ModalInputProps> = ({
             onChange={handleInputChange}
             autoComplete={"on"}
             required
+            data-testid="modal-input"
           />
           {inputType === "password" && (
             <div
@@ -138,6 +141,7 @@ const ModalInput: FC<ModalInputProps> = ({
                 e.preventDefault();
                 setShowPassword((prevState) => !prevState);
               }}
+              data-testid="show-icon"
             ></div>
           )}
         </div>
@@ -149,6 +153,7 @@ const ModalInput: FC<ModalInputProps> = ({
           isButtonDisabled ? styles.button_disabled : ""
         }`}
         type="red"
+        dataTestId="custom-button"
       >
         {buttonText}
       </CustomButton>

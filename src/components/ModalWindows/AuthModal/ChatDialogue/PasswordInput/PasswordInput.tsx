@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
-import { cssTransitionClassNames } from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDoalogue.utils";
+import { cssTransitionClassNames } from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDialogue.utils";
 import ChatMessage from "/src/components/ModalWindows/AuthModal/ChatMessage/ChatMessage";
 import ModalInput from "/src/UI/ModalInput/ModalInput";
 import { useTranslation } from "next-i18next";
