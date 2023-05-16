@@ -49,9 +49,10 @@ const ToggleSwitch: FC<ToggleSwitchProps> = ({
         className={`${styles.toggle__button} ${
           styles[`toggle__button_${toggleValue}`]
         }`}
+        data-testid="toggle-button"
       />
-      <span className={styles.toggle__left}>{leftContent}</span>
-      <span className={styles.toggle__right}>{rightContent}</span>
+      <span className={styles.toggle__left} data-testid="toggle-left">{leftContent}</span>
+      <span className={styles.toggle__right} data-testid="toggle-right">{rightContent}</span>
     </div>
   );
 };

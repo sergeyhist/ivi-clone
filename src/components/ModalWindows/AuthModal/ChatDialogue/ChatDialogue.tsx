@@ -4,7 +4,7 @@ import { CSSTransition } from "react-transition-group";
 import {
   cssTransitionClassNames,
   cssTransitionEmailClassNames,
-} from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDoalogue.utils";
+} from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDialogue.utils";
 import ErrorMessage from "/src/components/ModalWindows/AuthModal/ChatDialogue/ErrorMessage/ErrorMessage";
 import EmailInput from "/src/components/ModalWindows/AuthModal/ChatDialogue/EmailInput/EmailInput";
 import { createUser, login } from "/src/api/userApi";

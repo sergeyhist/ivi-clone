@@ -17,18 +17,21 @@ const ChatHeader: FC<ChatHeaderProps> = ({
 }) => {
   const { t } = useTranslation("registration");
   const userEmail = useAppSelector((state) => state.auth.userEmail);
-  const headerTitle =
-    isEmailExist === undefined
-      ? t("title")
-      : isEmailExist
-      ? t("titleLogin")
-      : t("titleRegistration");
+  const getHeaderTitle = (): string => {
+    if (isEmailExist === undefined) {
+      return t("title");
+    } else if (isEmailExist) {
+      return t("titleLogin");
+    } else {
+      return t("titleRegistration");
+    }
+  };
 
   return (
     <div className={styles.header__container}>
       <div className={styles.header__content}>
         <div className={styles.header__text}>
-          <h2 className={styles.header__title}>{headerTitle}</h2>
+          <h2 className={styles.header__title}>{getHeaderTitle()}</h2>
           <span>{userEmail}</span>
         </div>
         <button

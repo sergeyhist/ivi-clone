@@ -3,14 +3,12 @@ import { CSSTransition } from "react-transition-group";
 import {
   cssTransitionEmailClassNames,
   validateEmail,
-} from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDoalogue.utils";
+} from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDialogue.utils";
 import ModalInput from "/src/UI/ModalInput/ModalInput";
 import PrivacyPolicy from "/src/components/ModalWindows/AuthModal/ChatDialogue/PrivacyPolicy/PrivacyPolicy";
 import { useTranslation } from "next-i18next";
 import styles from "./EmailInput.module.sass";
 import { getUserByEmail } from "/src/api/userApi";
-import GoogleLoginButton from "/src/components/ModalWindows/AuthModal/GoogleLoginButton/GoogleLoginButton";
-import VkLoginButton from "/src/components/ModalWindows/AuthModal/VkLoginButton/VkLoginButton";
 import {useAppDispatch} from "/src/hooks/redux";
 import {setAuth} from "/src/store/slices/authSlice";
 
@@ -71,10 +69,6 @@ const EmailInput: FC<EmailInput> = ({
           buttonText={t("submit")}
           inputType="email"
         />
-        <div className={styles.social_auth}>
-          <GoogleLoginButton/>
-          <VkLoginButton/>
-        </div>
         <PrivacyPolicy />
       </div>
     </CSSTransition>
