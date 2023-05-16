@@ -12,7 +12,7 @@ import { MdDevices, MdPhoneInTalk } from "react-icons/md";
 import ButtonContent from "./ButtonContent/ButtonContent";
 import { BsApple } from "react-icons/bs";
 
-export const bottomRightLinks: Array<ILink> = [
+export const bottomRightLinks: ILink[] = [
   {
     url: "https://vk.com/iviru?crc=fa4448c13e06e69ba9e814e8743c7e2e",
     content: <FaVk />,
@@ -41,7 +41,7 @@ export const bottomRightLinks: Array<ILink> = [
   },
 ];
 
-export const bottomLeftLinks: Array<ILink> = [
+export const bottomLeftLinks: ILink[] = [
   {
     url: "https://go.onelink.me/app/devicesiOS",
     content: (

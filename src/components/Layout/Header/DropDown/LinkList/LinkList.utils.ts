@@ -8,11 +8,9 @@ export const sortSlugs = (
   order: DropDownType[],
   selectedGenre: DropDownType
 ): string[] => {
-  if (list)
     return [...list].sort((a, b) =>
       a[order.indexOf(selectedGenre)] > b[order.indexOf(selectedGenre)] ? 1 : -1
     );
-  return [];
 };
 
 export const localizeAndLimitList = (
@@ -49,13 +47,67 @@ export const getCountriesLinksByCategory = (
   return cartoonsCountriesHrefs;
 };
 
-const moviesCountriesHrefs = [
+export const mockGenresSlugs=[
+  "drama",
+  "fantasy",
+  "history",
+  "adventure",
+  "comedy",
+  "melodrama",
+  "militant",
+  "fiction",
+  "thriller",
+  "military",
+  "western",
+  "family",
+  "filmnoir",
+  "music",
+  "horror",
+  "detective",
+  "documentary",
+  "sport",
+  "shortfilm",
+  "adults"
+]
+
+export const mockGenres = [
+  "Drama",
+  "Fantasy",
+  "History",
+  "Adventure",
+  "Comedy",
+  "Melodrama",
+  "Militant",
+  "Fiction",
+  "Thriller",
+  "Military",
+  "Western",
+  "Family",
+  "Film noir",
+  "Music",
+  "Horror",
+  "Detective",
+  "Documentary",
+  "Sport",
+  "Short Film",
+  "For Adults",
+];
+
+export const mockCountries = ["Russian", "American", "Soviet movie"];
+export const mockYears = [
+  "Movies of 2023",
+  "Movies of 2022",
+  "Movies of 2021",
+  "Movies of 2020",
+];
+
+export const moviesCountriesHrefs = [
   "countries=russia",
   "countries=usa",
   "countries=ussr",
 ];
 
-const seriesCountriesHrefs = [
+export const seriesCountriesHrefs = [
   "countries=russia",
   "countries=france&countries=usa&countries=canada&countries=britain",
   "countries=usa",
@@ -63,7 +115,7 @@ const seriesCountriesHrefs = [
   "countries=turkey",
 ];
 
-const cartoonsCountriesHrefs = [
+export const cartoonsCountriesHrefs = [
   "countries=ussr",
   "countries=russia",
   "countries=usa",

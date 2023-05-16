@@ -2,16 +2,11 @@ import { FC } from "react";
 import styles from "./FooterBottom.module.sass";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import { bottomLeftLinks, bottomRightLinks } from "./FooterBottom.utils";
-import { useRouter } from "next/router";
 import ILink from "/src/types/ILink";
 
 const FooterBottom: FC = () => {
-  const router = useRouter();
-
   const linkTypeHandler = (link: ILink): void => {
-    link.target && link.target === "_blank"
-      ? window.open(link.url)
-      : router.push(link.url);
+    link.target && window.open(link.url)
   };
 
   return (
@@ -37,6 +32,7 @@ const FooterBottom: FC = () => {
             clickCallback={() => {
               linkTypeHandler(link);
             }}
+            dataTestId={`link-${i}`}
           >
             {link.content}
           </CustomButton>

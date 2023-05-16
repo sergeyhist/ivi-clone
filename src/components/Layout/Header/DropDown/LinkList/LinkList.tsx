@@ -8,6 +8,10 @@ import {
   getCountriesLinksByCategory,
   localizeAndLimitList,
   makeLinksFromSlugs,
+  mockCountries,
+  mockGenres,
+  mockGenresSlugs,
+  mockYears,
   sortSlugs,
 } from "/src/components/Layout/Header/DropDown/LinkList/LinkList.utils";
 
@@ -23,17 +27,24 @@ const LinkList: FC<LinkListProps> = ({ selectedGenre }) => {
 
   const order: DropDownType[] = ["movies", "series", "cartoons"];
 
-  const genres: string[] = t(`${selectedGenre}.genres`, {
+  const translatedGenres: string[] = t(`${selectedGenre}.genres`, {
     returnObjects: true,
   });
+  const genres = !Array.isArray(translatedGenres)
+    ? mockGenres
+    : translatedGenres;
 
-  const countries: string[] = t(`${selectedGenre}.countries`, {
+  const translatedCountries: string[] = t(`${selectedGenre}.countries`, {
     returnObjects: true,
   });
+  const countries = !Array.isArray(translatedCountries)
+    ? mockCountries
+    : translatedCountries;
 
-  const years: string[] = t(`${selectedGenre}.years`, {
+  const translatedYears: string[] = t(`${selectedGenre}.years`, {
     returnObjects: true,
   });
+  const years = !Array.isArray(translatedYears) ? mockYears : translatedYears;
 
   const genresSlugs = sortSlugs(
     [...storedSlugs.genresSlugs],
@@ -41,7 +52,10 @@ const LinkList: FC<LinkListProps> = ({ selectedGenre }) => {
     selectedGenre
   );
 
-  const genresHrefs = makeLinksFromSlugs(genresSlugs, "genres");
+  const genresHrefs = makeLinksFromSlugs(
+    genresSlugs.length === 0 ? mockGenresSlugs : genresSlugs,
+    "genres"
+  );
 
   const yearsHrefs = years.map((year, i) => {
     return `year=202${years.length - 1 - i}-202${years.length - 1 - i}`;

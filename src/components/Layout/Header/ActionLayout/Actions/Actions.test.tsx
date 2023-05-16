@@ -11,7 +11,7 @@ const setDropDownType = jest.fn();
 const setIsDropdownActive = jest.fn();
 
 describe("Actions", () => {
-  test("renders without errors", () => {
+  it("renders without errors", () => {
     render(
       <Provider store={store}>
         <Actions
@@ -22,7 +22,7 @@ describe("Actions", () => {
     );
     expect(screen.getByTestId("actions-container")).toBeInTheDocument();
   });
-  test("should render search button when windowSizeWidth is greater than 1159", () => {
+  it("should render search button when windowSizeWidth is greater than 1159", () => {
     render(
       <Provider store={store}>
         <Actions
@@ -34,7 +34,7 @@ describe("Actions", () => {
     expect(screen.getByTestId("search-link")).toBeInTheDocument();
   });
 
-  test("should change showSearchModal store state to true", () => {
+  it("should change showSearchModal store state to true", () => {
     render(
       <Provider store={store}>
         <Actions
@@ -50,7 +50,7 @@ describe("Actions", () => {
     expect(setIsDropdownActive).toHaveBeenCalledWith(false);
   });
 
-  test("should render logout button when authState.isLogged is true", () => {
+  it("should render logout button when authState.isLogged is true", () => {
     store.dispatch(setAuth({ isLogged: true, userEmail: "email" }));
     render(
       <Provider store={store}>
@@ -64,7 +64,7 @@ describe("Actions", () => {
     expect(screen.getByTestId("logout-button")).toBeInTheDocument();
   });
 
-  test("should change setAuth store state to false", () => {
+  it("should change setAuth store state to false", () => {
     store.dispatch(setAuth({ isLogged: true, userEmail: "email" }));
     render(
       <Provider store={store}>
@@ -79,7 +79,7 @@ describe("Actions", () => {
     expect(store.getState().auth.isLogged).toBeFalsy();
   });
 
-  test("should change showAuthModal store state to true", () => {
+  it("should change showAuthModal store state to true", () => {
     render(
       <Provider store={store}>
         <Actions
@@ -97,7 +97,7 @@ describe("Actions", () => {
     expect(setIsDropdownActive).toHaveBeenCalledWith(true);
   });
 
-  test("should render subscription link when router.pathname is not '/'", () => {
+  it("should render subscription link when router.pathname is not '/'", () => {
     render(
       <Provider store={store}>
         <Actions
@@ -123,7 +123,7 @@ describe("Actions", () => {
     expect(setIsDropdownActive).toHaveBeenCalledWith(true);
   });
 
-  test("should render subscription button when router.pathname is '/'", () => {
+  it("should render subscription button when router.pathname is '/'", () => {
     const useRouter = jest.spyOn(require("next/router"), "useRouter");
     useRouter.mockImplementation(() => ({
       pathname: "/",
@@ -146,7 +146,7 @@ describe("Actions", () => {
     expect(setIsDropdownActive).toHaveBeenCalledWith(false);
   });
 
-  test("should render notification button", () => {
+  it("should render notification button", () => {
     render(
       <Provider store={store}>
         <Actions

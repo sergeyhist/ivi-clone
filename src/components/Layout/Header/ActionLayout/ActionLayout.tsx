@@ -2,7 +2,7 @@ import { Dispatch, FC, LegacyRef, SetStateAction } from "react";
 import styles from "./ActionLayout.module.sass";
 import ToggleSwitch from "/src/UI/ToggleSwitch/ToggleSwitch";
 import Actions from "/src/components/Layout/Header/ActionLayout/Actions/Actions";
-import {NextRouter, useRouter} from "next/router";
+import {useRouter} from "next/router";
 import { DropDownType } from "/src/components/Layout/Header/Header.utils";
 
 interface ActionLayout {
@@ -19,6 +19,7 @@ const ActionLayout: FC<ActionLayout> = ({
   const { locale, push, asPath } = useRouter();
 
   const handleLocaleClick = (result: string): void => {
+    console.log("act");
     push(asPath, undefined, { locale: result, scroll: false });
   };
 

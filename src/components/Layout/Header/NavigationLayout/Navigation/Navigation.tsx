@@ -22,7 +22,7 @@ const Navigation: FC<NavigationProps> = ({
           className={styles.nav__item}
           onMouseEnter={() => setIsDropdownActive(false)}
           href="/"
-          data-testid=""
+          data-testid="nav-item-1"
         >
           <li>{t("navigation.0")}</li>
         </Link>
@@ -31,6 +31,7 @@ const Navigation: FC<NavigationProps> = ({
           onMouseEnter={() => setIsDropdownActive(false)}
           href="https://www.ivi.ru/new"
           target="_blank"
+          data-testid="nav-item-2"
         >
           <li>{t("navigation.1")}</li>
         </Link>
@@ -42,6 +43,7 @@ const Navigation: FC<NavigationProps> = ({
             setDropDownType("movies");
           }}
           href="/movies"
+          data-testid="nav-item-3"
         >
           <li>{t("navigation.2")}</li>
         </Link>
@@ -53,6 +55,7 @@ const Navigation: FC<NavigationProps> = ({
           }}
           href="https://www.ivi.ru/series"
           target="_blank"
+          data-testid="nav-item-4"
         >
           <li>{t("navigation.3")}</li>
         </Link>
@@ -64,6 +67,7 @@ const Navigation: FC<NavigationProps> = ({
           }}
           href="https://www.ivi.ru/animation"
           target="_blank"
+          data-testid="nav-item-5"
         >
           <li>{t("navigation.4")}</li>
         </Link>
@@ -75,6 +79,7 @@ const Navigation: FC<NavigationProps> = ({
           }}
           href="https://www.ivi.ru/tvplus"
           target="_blank"
+          data-testid="nav-item-6"
         >
           <li>TV+</li>
         </Link>

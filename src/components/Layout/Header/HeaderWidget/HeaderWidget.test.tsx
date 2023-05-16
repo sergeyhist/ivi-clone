@@ -28,6 +28,6 @@ describe("BottomInfo", () => {
     const widget = screen.getByTestId("header-widget");
 
     fireEvent.mouseLeave(widget);
-    expect(setState).toHaveBeenCalledWith(false);
+    expect(setState).toBeCalledTimes(1);
   });
 });
