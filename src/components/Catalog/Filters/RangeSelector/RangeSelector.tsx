@@ -3,14 +3,16 @@ import { useTranslation } from "next-i18next";
 import styles from "./RangeSelector.module.sass";
 import { useDebouncedCallback } from "use-debounce";
 import { useRouter } from "next/router";
+import { setQueryParams } from "/src/utils/query";
+import { changeHandler } from "/src/utils/filters/changeHandler";
+import { IFilterType } from "/src/types/IFilter";
 
 interface RangeSelectorProps {
   title: string;
   max: number;
   step: number;
   filter: string;
-  filterType: string;
-  getFilter: (filter: string) => void;
+  filterType: IFilterType;
 }
 
 const RangeSelector: FC<RangeSelectorProps> = ({
@@ -19,24 +21,25 @@ const RangeSelector: FC<RangeSelectorProps> = ({
   step,
   filter,
   filterType,
-  getFilter,
 }) => {
   const { t } = useTranslation("filters");
-  const { query } = useRouter();
+  const router = useRouter();
 
   const debouncedGetFilter = useDebouncedCallback((value: string) => {
-    getFilter(value);
+    setQueryParams(router, {
+      [filterType]: changeHandler(filter, value, true),
+    });
   }, 300);
 
   const [rangeValue, setRangeValue] = useState<string>("0");
 
   useEffect(() => {
-    !query[filterType] ? setRangeValue("0") : setRangeValue(filter);
-  }, [query, filter, filterType, setRangeValue]);
+    filter.length > 0 ? setRangeValue(filter) : setRangeValue("0");
+  }, [filter, filterType, setRangeValue]);
 
   return (
     <div className={styles.selector + " unselectable"}>
-      <span className={styles.selector__title}>{title}</span>
+      <span className={styles.selector__title}>{t(title)}</span>
       <span className={styles.selector__value}>
         {t("from")}
         <span>{` ${rangeValue}`}</span>

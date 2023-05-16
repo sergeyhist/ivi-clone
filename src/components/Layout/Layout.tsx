@@ -7,12 +7,12 @@ import { setWindowSize } from "/src/store/slices/windowSizeSlice";
 import { useAppSelector } from "/src/hooks/redux";
 import { useDebouncedCallback } from "use-debounce";
 import MobileMenu from "./MobileMenu/MobileMenu";
-import useSWR from "swr";
-import { getCountriesSlugs, getGenresSlugs } from "/src/api/getData";
 import { setSlugs } from "/src/store/slices/slugsSlice";
 import { ToastContainer } from "react-toastify";
 import { iviSans, iviIcons, iconFont } from "/src/utils/fonts";
 import ProgressBar from "/src/UI/ProgressBar/ProgressBar";
+import { useCountriesSlugs } from "/src/api/countries";
+import { useGenresSlugs } from "/src/api/genres";
 
 interface LayoutProps {
   title: string;
@@ -20,14 +20,8 @@ interface LayoutProps {
 }
 
 const Layout: FC<LayoutProps> = ({ title, children }) => {
-  const genresSlugs = useSWR(
-    `${String(process.env.SERVER_HOST)}/genres`,
-    getGenresSlugs
-  );
-  const countriesSlugs = useSWR(
-    `${String(process.env.SERVER_HOST)}/countries`,
-    getCountriesSlugs
-  );
+  const genresSlugs = useGenresSlugs();
+  const countriesSlugs = useCountriesSlugs();
 
   const windowSizeWidth = useAppSelector((state) => state.windowSize.width);
   const dispatch = useDispatch();

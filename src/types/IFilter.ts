@@ -8,3 +8,12 @@ export interface IFilters {
   actor: string[] | string;
   director: string[] | string;
 }
+
+export type IFilterType =
+  | "genres"
+  | "countries"
+  | "year"
+  | "rating"
+  | "assessments"
+  | "actor"
+  | "director";

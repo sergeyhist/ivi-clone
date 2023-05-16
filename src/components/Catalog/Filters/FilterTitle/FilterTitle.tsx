@@ -1,14 +1,12 @@
 import { Dispatch, FC, SetStateAction } from "react";
 import { useTranslation } from "next-i18next";
 import styles from "./FilterTitle.module.sass";
-import { IFilters } from "/src/types/IFilter";
 
 interface FilterTitleProps {
   text: string;
   isDropdownActive: boolean;
   setIsDropdownActive: Dispatch<SetStateAction<boolean>>;
-  filter?: string;
-  filters?: IFilters;
+  filters?: string[] | string;
   filtersType: string;
 }
 
@@ -16,7 +14,6 @@ const FilterTitle: FC<FilterTitleProps> = ({
   text,
   isDropdownActive,
   setIsDropdownActive,
-  filter,
   filters,
   filtersType,
 }) => {
@@ -26,8 +23,7 @@ const FilterTitle: FC<FilterTitleProps> = ({
   const activeArrow = isDropdownActive ? ` ${styles.title__arrow_active}` : "";
 
   const isFilterActive =
-    (filter && filter.length !== 0) ||
-    (filters && filters[filtersType].length > 0);
+    filters && filters.length > 0;
 
   return (
     <div
@@ -40,12 +36,12 @@ const FilterTitle: FC<FilterTitleProps> = ({
         {text}
         {isFilterActive && (
           <span className={styles.title__filters}>
-            {filter
-              ? t(`${filtersType}:${filter}`)
-              : filters &&
-                (filters[filtersType] as string[])
-                  .map((filter) => t(`${filtersType}:${filter}`))
-                  .join(", ")}
+            {filters &&
+              typeof filters === "string" &&
+              t(`${filtersType}:${filters}`)}
+            {filters &&
+              typeof filters !== "string" &&
+              filters.map((filter) => t(`${filtersType}:${filter}`)).join(", ")}
           </span>
         )}
       </div>

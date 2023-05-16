@@ -3,22 +3,28 @@ import FilterTitle from "../FilterTitle/FilterTitle";
 import ListItem from "./ListItem/ListItem";
 import styles from "./SingleSelector.module.sass";
 import useCloseEvents from "/src/hooks/useCloseEvents";
+import { useTranslation } from "next-i18next";
+import { setQueryParams } from "/src/utils/query";
+import { changeHandler } from "/src/utils/filters/changeHandler";
+import { useRouter } from "next/router";
+import { IFilterType } from "/src/types/IFilter";
 
 interface SingleSelectorProps {
   title: string;
   items: string[];
   filter: string;
-  filtersType: string;
-  getFilter: (filter: string) => void;
+  filterType: IFilterType;
 }
 
 const SingleSelector: FC<SingleSelectorProps> = ({
   title,
   items,
   filter,
-  filtersType,
-  getFilter,
+  filterType,
 }) => {
+  const { t } = useTranslation(filterType);
+  const router = useRouter();
+
   const titleRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -28,17 +34,23 @@ const SingleSelector: FC<SingleSelectorProps> = ({
     ? ` ${styles.selector__dropdown_active}`
     : "";
 
+  const clickHandler = (slug: string): void => {
+    setQueryParams(router, {
+      [filterType]: changeHandler(filter, slug),
+    });
+  };
+
   useCloseEvents([titleRef, dropdownRef], () => setIsDropdownActive(false));
 
   return (
     <div className={styles.selector + " unselectable"}>
       <div ref={titleRef}>
         <FilterTitle
-          text={title}
+          text={t(`filters:${title}`)}
           isDropdownActive={isDropdownActive}
           setIsDropdownActive={setIsDropdownActive}
-          filter={filter}
-          filtersType={filtersType}
+          filters={filter}
+          filtersType={filterType}
         />
       </div>
       <div
@@ -50,9 +62,9 @@ const SingleSelector: FC<SingleSelectorProps> = ({
             <ListItem
               key={i}
               slug={item}
-              text={`${filtersType}:${item}`}
+              text={t(item)}
               isActive={filter === item || (i === 0 && filter.length === 0)}
-              clickCallback={() => getFilter(item)}
+              clickCallback={() => clickHandler(item)}
             />
           ))}
         </ul>
