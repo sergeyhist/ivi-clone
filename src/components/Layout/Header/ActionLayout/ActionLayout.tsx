@@ -19,7 +19,6 @@ const ActionLayout: FC<ActionLayout> = ({
   const { locale, push, asPath } = useRouter();
 
   const handleLocaleClick = (result: string): void => {
-    console.log("act");
     push(asPath, undefined, { locale: result, scroll: false });
   };
 
