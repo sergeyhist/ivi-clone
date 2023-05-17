@@ -46,7 +46,7 @@ const Sorting: FC = () => {
     <div className={styles.sorting + " unselectable"}>
       <div ref={titleRef}>
         <SortingTitle
-          value={titleValue}
+          value={t(titleValue)}
           isDropdownActive={isDropdownActive}
           setIsDropdownActive={setIsDropdownActive}
         />
@@ -62,7 +62,7 @@ const Sorting: FC = () => {
             isActive={sortingMethod === option.slug}
             clickCallback={() => optionClickHandler(option.slug)}
           >
-            {option.text}
+            {t(option.text)}
           </SortingOption>
         ))}
       </div>

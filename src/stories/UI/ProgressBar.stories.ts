@@ -15,6 +15,13 @@ const meta: Meta<typeof ProgressBar> = {
       description:
         "(optional) A string representing the CSS class name(s) to be applied to the component.",
     },
+    isFixed: {
+      description:
+        "(optional) Set fixed position of the progress (Top of the screen)",
+    },
+    type: {
+      description: "(optional) Type of the progress bar",
+    },
   },
   component: ProgressBar,
 };

@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, useRef, useState } from "react";
+import { ChangeEvent, FC, useEffect, useRef, useState } from "react";
 import { useTranslation } from "next-i18next";
 import styles from "./PersonSelector.module.sass";
 import { IPerson } from "/src/types/IPerson";
@@ -6,25 +6,23 @@ import { useDebouncedCallback } from "use-debounce";
 import PersonList from "./PersonList/PersonList";
 import { CSSTransition } from "react-transition-group";
 import { IoClose } from "react-icons/io5";
-import { getPersons } from "./PersonSelector.utils";
+import { getPersonNameBySlug, getPersons } from "./PersonSelector.utils";
 import useCloseEvents from "/src/hooks/useCloseEvents";
 import { useRouter } from "next/router";
+import { setQueryParams } from "/src/utils/query";
+import { changeHandler } from "/src/utils/filters/changeHandler";
+import { IFilterType } from "/src/types/IFilter";
 
 interface PersonSelectorProps {
-  type: string;
+  type: IFilterType;
   list: IPerson[];
   filter: string;
-  getFilter: (filter: string) => void;
 }
 
-const PersonSelector: FC<PersonSelectorProps> = ({
-  type,
-  list,
-  filter,
-  getFilter,
-}) => {
+const PersonSelector: FC<PersonSelectorProps> = ({ type, list, filter }) => {
   const { t } = useTranslation("filters");
-  const { query } = useRouter();
+  const router = useRouter();
+  const { locale } = router;
 
   const [inputValue, setInputValue] = useState("");
   const [results, setResults] = useState<IPerson[]>([]);
@@ -39,11 +37,14 @@ const PersonSelector: FC<PersonSelectorProps> = ({
     setIsLoading(false);
   }, 500);
 
-  const getPerson = (result: string): void => {
-    const resultSlug = result.replace(/ /g, "_").toLowerCase();
+  const getFilter = (slug: string): void => {
+    setQueryParams(router, {
+      [type]: changeHandler(filter, slug, true),
+    });
+  };
 
-    setInputValue(result);
-    getFilter(resultSlug);
+  const getPerson = (result: string): void => {
+    getFilter(result);
     setIsDropdownActive(false);
   };
 
@@ -51,7 +52,7 @@ const PersonSelector: FC<PersonSelectorProps> = ({
     if (inputValue) {
       setIsDropdownActive(false);
       setInputValue("");
-      query[type] && getFilter("");
+      filter.length > 0 && getFilter("");
     }
   };
 
@@ -61,6 +62,11 @@ const PersonSelector: FC<PersonSelectorProps> = ({
     setIsDropdownActive(e.target.value.length > 1);
     debouncedSearch(e.target.value);
   };
+
+  useEffect(() => {
+    filter.length > 0 &&
+      setInputValue(getPersonNameBySlug(list, filter, locale || "ru"));
+  }, [filter, list, locale]);
 
   useCloseEvents([dropdownRef, inputRef], () => setIsDropdownActive(false));
 

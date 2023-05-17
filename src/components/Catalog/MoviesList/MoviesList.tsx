@@ -6,15 +6,12 @@ import styles from "./MoviesList.module.sass";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
 import {
   setFilteredMoviesPage,
-  setFilters,
   setIsMoviesLoading,
 } from "/src/store/slices/filtersSlice";
 import { IMovie } from "/src/types/IMovie";
 import MovieCard from "/src/UI/MovieCard/MovieCard";
-import { compareFilters } from "/src/utils/filters/compareFilters";
 import filterMovies from "/src/utils/filters/filterMovies";
 import { listLimit } from "/src/utils/filters/filtersVariables";
-import { getFiltersFromRoute } from "/src/utils/filters/getFiltersFromRoute";
 import { setQueryParams } from "/src/utils/query";
 import { useTranslation } from "next-i18next";
 import { PropagateLoader } from "react-spinners";
@@ -39,12 +36,6 @@ const MoviesList: FC = () => {
   const debouncedFilter = useDebouncedCallback(() => {
     filterMovies(filters, sortingMethod);
   }, 1000);
-
-  useEffect(() => {
-    const routeFilters = getFiltersFromRoute(router);
-
-    compareFilters(routeFilters, filters) && dispatch(setFilters(routeFilters));
-  }, [router, filters, dispatch]);
 
   useEffect(() => {
     dispatch(setIsMoviesLoading(true));

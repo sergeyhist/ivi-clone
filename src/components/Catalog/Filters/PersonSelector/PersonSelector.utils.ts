@@ -31,3 +31,21 @@ export const getPersons = (list: IPerson[], query: string): IPerson[] => {
     return list.filter((person) => searchHandler(person, query));
   }
 };
+
+export const getPersonNameBySlug = (
+  list: IPerson[],
+  slug: string,
+  locale: string
+): string => {
+  const person = slug.length > 0 && list.find(
+    (person) =>
+      person.first_name_en.toLowerCase() === slug.split("_")[0] &&
+      person.last_name_en.toLowerCase() === slug.split("_")[1]
+  );
+
+  return person
+    ? `${String(person[`first_name_${locale}`])} ${String(
+        person[`last_name_${locale}`]
+      )}`
+    : "";
+};

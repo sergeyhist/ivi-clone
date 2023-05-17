@@ -18,17 +18,6 @@ const meta: Meta<typeof MovieCard> = {
         '"default" or "related". By default, this is set to "default".',
     },
   },
-  parameters: {
-    backgrounds: {
-      default: "dark",
-      values: [
-        {
-          name: "dark",
-          value: "#100e19",
-        },
-      ],
-    },
-  },
   decorators: [
     (Story) => (
       <main style={{ width: "200px" }}>

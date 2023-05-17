@@ -31,12 +31,6 @@ const meta: Meta<typeof PersonCard> = {
         "(optional) string value that represents the last name of the person to be displayed on the card. If not provided, the last name will not be displayed.",
     },
   },
-  parameters: {
-    backgrounds: {
-      default: "dark",
-      values: [{ name: "dark", value: "#100e19" }],
-    },
-  },
   component: PersonCard,
 };
 

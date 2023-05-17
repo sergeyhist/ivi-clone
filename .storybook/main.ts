@@ -5,7 +5,7 @@ const config: StorybookConfig = {
   addons: [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@storybook/addon-interactions",
+    "@storybook/addon-interactions"
   ],
   framework: {
     name: "@storybook/nextjs",
@@ -29,5 +29,9 @@ const config: StorybookConfig = {
       config.resolve.fallback = { ...config.resolve.fallback, fs: false };
     return config;
   },
+  env: (config) => ({
+    ...config,
+    SERVER_HOST: "http://85.237.34.125:4000",
+  }),
 };
 export default config;

@@ -25,8 +25,7 @@ export const sliderBreakpoints: { [width: number]: SwiperOptions } = {
   460: { slidesPerView: 3 },
   590: { slidesPerView: 4 },
   700: { slidesPerView: 5 },
-  960: { slidesPerView: 4 },
-  1160: { slidesPerView: 5, slidesPerGroup: 2, spaceBetween: 12 },
+  960: { slidesPerView: 4, slidesPerGroup: 2, spaceBetween: 12 },
 };
 
 export const genreIcons: { [key: string]: ReactNode } = {

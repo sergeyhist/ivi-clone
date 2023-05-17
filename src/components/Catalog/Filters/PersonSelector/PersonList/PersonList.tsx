@@ -18,11 +18,10 @@ const PersonList = forwardRef<HTMLUListElement, PersonListProps>(
     const router = useRouter();
     const { t } = useTranslation();
 
-    const getPersonName = (person: IPerson): string =>
-      `${person.first_name_en} ${person.last_name_en}`;
-
     const getPersonSlug = (person: IPerson): string =>
-      getPersonName(person).replace(/ /g, "_").toLowerCase();
+      `${person.first_name_en} ${person.last_name_en}`
+        .replace(/ /g, "_")
+        .toLowerCase();
 
     const personActive = (slug: string): string =>
       slug === filter ? ` ${styles.list__item_active}` : "";
@@ -45,7 +44,7 @@ const PersonList = forwardRef<HTMLUListElement, PersonListProps>(
             <li
               onClick={() => {
                 getPersonSlug(item) !== filter &&
-                  getPerson(getPersonName(item));
+                  getPerson(getPersonSlug(item));
               }}
               className={
                 styles.list__item +
