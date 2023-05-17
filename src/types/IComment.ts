@@ -2,6 +2,7 @@ export interface IComment {
   comment_id: string;
   title: string;
   text: string;
+  like: string;
   film_id: string;
   createdAt: string;
   updatedAt: string;

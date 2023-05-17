@@ -17,12 +17,16 @@ interface MovieMedallionsProps {
 const MovieMedallions: FC<MovieMedallionsProps> = ({ movie, persons }) => {
   const { t } = useTranslation("movie");
   const { locale } = useRouter();
+  const gradeClassName = movie.rating > 6 ? styles.medallion__grade_fine : "";
+  const rating = String(movie.rating);
 
   return (
     <ul className={styles.medallions}>
       <li className={styles.medallion}>
         <div className={styles.medallion__wrapper}>
-          <p className={styles.medallion__grade}>{movie.rating}</p>
+          <p className={`${styles.medallion__grade} ${gradeClassName}`}>
+            {rating[0]},{rating[2] || "0"}
+          </p>
         </div>
         <h4 className={styles.medallion__title}>{t("medallions.rating")}</h4>
         <h4 className={styles.medallion__title}>{t("medallions.ivi")}</h4>

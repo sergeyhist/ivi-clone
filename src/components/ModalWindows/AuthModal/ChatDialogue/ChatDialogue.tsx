@@ -1,4 +1,12 @@
-import { Dispatch, FC, FormEvent, SetStateAction, useEffect, useRef, useState } from "react";
+import {
+  Dispatch,
+  FC,
+  FormEvent,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import styles from "./ChatDialogue.module.sass";
 import { CSSTransition } from "react-transition-group";
 import {
@@ -51,7 +59,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({
 
   const handleEmailChangeClick = (): void => {
     setIsEmailInputSuccess(false);
-    dispatch(setAuth({isLogged:false,userEmail:""}));
+    dispatch(setAuth({ isLogged: false, userEmail: "" }));
     setIsEmailExist(undefined);
     setProgressBarWidth({ width: 10 });
   };
@@ -66,23 +74,20 @@ const ChatDialogue: FC<ChatDialogueProps> = ({
       }
       dispatch(setAuth({ isLogged: true, userEmail: email }));
       dispatch(setShowAuthModal(false));
-      notify(t("toastMessage"), 'login');
+      notify(t("toastMessage"), "login");
     } else setIsEmailInputSuccess(true);
   };
 
-  const handleLogin = async (
-    email: string,
-    password: string
-  ): Promise<void> => {
+  const handleLogin = async (email: string, password: string): Promise<void> => {
     const token = await login(email, password);
-    localStorage.setItem("token", JSON.stringify(token ?? ""));
+    localStorage.setItem("token", token?.token ?? "");
   };
 
   const handleCreateUser = async (
     email: string,
     password: string
   ): Promise<void> => {
-    await createUser({ email, password });
+    await createUser(email, password);
   };
 
   return (

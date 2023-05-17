@@ -112,6 +112,7 @@ export const getServerSideProps = async ({
         "mobileMenu",
         "countries",
         "genres",
+        "registration",
       ])),
     },
   };

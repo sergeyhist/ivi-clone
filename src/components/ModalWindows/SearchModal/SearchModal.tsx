@@ -5,6 +5,7 @@ import SearchString from "./SearchString/SearchString";
 import useOverflowHidden from "/src/hooks/useOverflowHidden";
 import { useAppSelector } from "/src/hooks/redux";
 import useCloseEvents from "/src/hooks/useCloseEvents";
+import { iviSans, iviIcons, iconFont } from "/src/utils/fonts";
 
 interface SearchModalProps {
   closeCallback: () => void;
@@ -39,10 +40,7 @@ const SearchModal: FC<SearchModalProps> = ({ closeCallback }) => {
   };
 
   const clickHandler = (e: MouseEvent): void => {
-    if (
-      !stringRef.current?.contains(e.target as Node) &&
-      searchQuery.length === 0
-    ) {
+    if (!stringRef.current?.contains(e.target as Node) && searchQuery.length === 0) {
       setSearchStates({
         ...searchStates,
         stringActive: false,
@@ -62,7 +60,7 @@ const SearchModal: FC<SearchModalProps> = ({ closeCallback }) => {
       ref={modalRef}
       onKeyDown={keydownHandler}
       onClick={clickHandler}
-      className={styles.search}
+      className={`${styles.search} ${iviSans.className} ${iviIcons.variable} ${iconFont.variable}`}
       data-testid="search-modal"
     >
       <SearchCloseButton clickCallback={closeCallback} />

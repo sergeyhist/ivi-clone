@@ -15,7 +15,6 @@
   font-style: normal
   @include mixins.ellipsis
 
-
 .chat
   &__form
     display: flex
@@ -51,7 +50,6 @@
       transform: translateY(100%)
       transition: all .3s
 
-
 .email
   &-enter
     opacity: 0
@@ -70,7 +68,6 @@
       opacity: 0
       transform: translateY(200%)
       transition: all .3s
-
 
 .email__container
   display: flex
@@ -98,7 +95,7 @@
     top: 25%
     left: 30%
     content: "\E0D6"
-    font-family: iconfont, sans-serif
+    font-family: var(--iconfont)
     color: vars.$whiteTextColor
 
 @media (max-width: 750px)
@@ -127,4 +124,3 @@
     &__form
       align-items: flex-start
       width: 100%
-

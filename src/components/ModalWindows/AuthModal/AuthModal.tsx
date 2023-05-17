@@ -3,7 +3,8 @@ import styles from "./AuthModal.module.sass";
 import ChatHeader from "/src/components/ModalWindows/AuthModal/ChatHeader/ChatHeader";
 import ChatDialogue from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDialogue";
 import useOverflowHidden from "/src/hooks/useOverflowHidden";
-import {useAppSelector} from "/src/hooks/redux";
+import { useAppSelector } from "/src/hooks/redux";
+import { iviSans, iviIcons, iconFont } from "/src/utils/fonts";
 
 interface RegistrationModalProps {
   closeCallback: () => void;
@@ -26,7 +27,9 @@ const AuthModal: FC<RegistrationModalProps> = ({ closeCallback }) => {
   useOverflowHidden(showAuthModal);
 
   return (
-    <div className={styles.chat__container}>
+    <div
+      className={`${styles.chat__container} ${iviSans.className} ${iviIcons.variable} ${iconFont.variable}`}
+    >
       <ChatHeader
         isEmailExist={isEmailExist}
         closeCallback={closeCallback}
@@ -42,4 +45,3 @@ const AuthModal: FC<RegistrationModalProps> = ({ closeCallback }) => {
 };
 
 export default AuthModal;
-

@@ -16,15 +16,13 @@ const CommentsCard: FC<CommentsCardProps> = ({ comment, onClick }) => {
   return (
     <article className={styles.comment}>
       <button onClick={onClick} className={styles.comment__button}>
-        <p className={styles.comment__author}>
-          {comment.user.profile.first_name} {comment.user.profile.last_name}
-        </p>
+        <p className={styles.comment__author}>{comment.user.email}</p>
         <p className={styles.comment__content}>{comment.text}</p>
         <p className={styles.comment__date}>
           {getFormateDate(new Date(comment.createdAt), t)}
         </p>
       </button>
-      <Votes className={styles.votes} />
+      <Votes like={Number(comment.like)} className={styles.votes} />
     </article>
   );
 };

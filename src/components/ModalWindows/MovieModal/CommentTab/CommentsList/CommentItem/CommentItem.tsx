@@ -28,7 +28,7 @@ const CommentItem: FC<CommentItemProps> = ({
   const windowSize = useAppSelector((state) => state.windowSize);
 
   const clickHandler = (): void => {
-    setInputText("@" + comment.user.profile.first_name + ": ");
+    setInputText("@" + comment.user.email + ": ");
     setReplyFor(comment);
   };
 
@@ -44,7 +44,7 @@ const CommentItem: FC<CommentItemProps> = ({
       <div className={styles.top}>
         <div className={styles.top__content}>
           <h4 onClick={clickHandler} className={styles.title}>
-            {comment.user.profile.first_name} {comment.user.profile.last_name}
+            {comment.user.email}
           </h4>
           <p className={styles.date}>
             {getFormateDate(new Date(comment.createdAt), t)}
@@ -59,7 +59,7 @@ const CommentItem: FC<CommentItemProps> = ({
           >
             <BiCommentAdd fontWeight={700} size={20} className={styles.top__icon} />
           </button>
-          <Votes />
+          <Votes like={Number(comment.like)} />
         </div>
       </div>
 
