@@ -4,6 +4,7 @@ import { store } from "/src/store";
 import Actions from "/src/components/Layout/Header/ActionLayout/Actions/Actions";
 import { setWindowSize } from "/src/store/slices/windowSizeSlice";
 import { setAuth } from "/src/store/slices/authSlice";
+import {renderWithProviders} from "/src/utils/test-utils";
 
 jest.mock("next/router", () => require("next-router-mock"));
 store.dispatch(setWindowSize({ width: 1960, height: 1200 }));
@@ -12,37 +13,25 @@ const setIsDropdownActive = jest.fn();
 
 describe("Actions", () => {
   it("renders without errors", () => {
-    render(
-      <Provider store={store}>
-        <Actions
-          setDropDownType={setDropDownType}
-          setIsDropdownActive={setIsDropdownActive}
-        />
-      </Provider>
-    );
+    renderWithProviders(<Actions
+      setDropDownType={setDropDownType}
+      setIsDropdownActive={setIsDropdownActive}
+    />)
     expect(screen.getByTestId("actions-container")).toBeInTheDocument();
   });
   it("should render search button when windowSizeWidth is greater than 1159", () => {
-    render(
-      <Provider store={store}>
-        <Actions
-          setDropDownType={setDropDownType}
-          setIsDropdownActive={setIsDropdownActive}
-        />
-      </Provider>
-    );
+    renderWithProviders(<Actions
+      setDropDownType={setDropDownType}
+      setIsDropdownActive={setIsDropdownActive}
+    />)
     expect(screen.getByTestId("search-link")).toBeInTheDocument();
   });
 
   it("should change showSearchModal store state to true", () => {
-    render(
-      <Provider store={store}>
-        <Actions
-          setDropDownType={setDropDownType}
-          setIsDropdownActive={setIsDropdownActive}
-        />
-      </Provider>
-    );
+    renderWithProviders(<Actions
+      setDropDownType={setDropDownType}
+      setIsDropdownActive={setIsDropdownActive}
+    />)
     const searchLink = screen.getByTestId("search-link");
     fireEvent.click(searchLink);
     expect(store.getState().showModal.showSearchModal).toBeTruthy();
@@ -52,42 +41,30 @@ describe("Actions", () => {
 
   it("should render logout button when authState.isLogged is true", () => {
     store.dispatch(setAuth({ isLogged: true, userEmail: "email" }));
-    render(
-      <Provider store={store}>
-        <Actions
-          setDropDownType={setDropDownType}
-          setIsDropdownActive={setIsDropdownActive}
-        />
-      </Provider>
-    );
+    renderWithProviders(<Actions
+      setDropDownType={setDropDownType}
+      setIsDropdownActive={setIsDropdownActive}
+    />)
 
     expect(screen.getByTestId("logout-button")).toBeInTheDocument();
   });
 
   it("should change setAuth store state to false", () => {
     store.dispatch(setAuth({ isLogged: true, userEmail: "email" }));
-    render(
-      <Provider store={store}>
-        <Actions
-          setDropDownType={setDropDownType}
-          setIsDropdownActive={setIsDropdownActive}
-        />
-      </Provider>
-    );
+    renderWithProviders(<Actions
+      setDropDownType={setDropDownType}
+      setIsDropdownActive={setIsDropdownActive}
+    />)
 
     fireEvent.click(screen.getByTestId("logout-button"));
     expect(store.getState().auth.isLogged).toBeFalsy();
   });
 
   it("should change showAuthModal store state to true", () => {
-    render(
-      <Provider store={store}>
-        <Actions
-          setDropDownType={setDropDownType}
-          setIsDropdownActive={setIsDropdownActive}
-        />
-      </Provider>
-    );
+    renderWithProviders(<Actions
+      setDropDownType={setDropDownType}
+      setIsDropdownActive={setIsDropdownActive}
+    />)
     const authButton = screen.getByTestId("auth-button");
 
     fireEvent.click(authButton);
@@ -98,14 +75,10 @@ describe("Actions", () => {
   });
 
   it("should render subscription link when router.pathname is not '/'", () => {
-    render(
-      <Provider store={store}>
-        <Actions
-          setDropDownType={setDropDownType}
-          setIsDropdownActive={setIsDropdownActive}
-        />
-      </Provider>
-    );
+    renderWithProviders(<Actions
+      setDropDownType={setDropDownType}
+      setIsDropdownActive={setIsDropdownActive}
+    />)
 
     const linkSubscription = screen.getByTestId("subscription-link");
     expect(linkSubscription).toBeInTheDocument();
@@ -128,14 +101,10 @@ describe("Actions", () => {
     useRouter.mockImplementation(() => ({
       pathname: "/",
     }));
-    render(
-      <Provider store={store}>
-        <Actions
-          setDropDownType={setDropDownType}
-          setIsDropdownActive={setIsDropdownActive}
-        />
-      </Provider>
-    );
+    renderWithProviders(<Actions
+      setDropDownType={setDropDownType}
+      setIsDropdownActive={setIsDropdownActive}
+    />)
 
     const buttonElement = screen.getByTestId("subscription-button");
 
@@ -147,14 +116,10 @@ describe("Actions", () => {
   });
 
   it("should render notification button", () => {
-    render(
-      <Provider store={store}>
-        <Actions
-          setDropDownType={setDropDownType}
-          setIsDropdownActive={setIsDropdownActive}
-        />
-      </Provider>
-    );
+    renderWithProviders(<Actions
+      setDropDownType={setDropDownType}
+      setIsDropdownActive={setIsDropdownActive}
+    />)
 
     const notificationButton = screen.getByTestId("notification-button");
     expect(notificationButton).toBeInTheDocument();

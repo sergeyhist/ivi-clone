@@ -8,14 +8,8 @@ import ActionLayout from "/src/components/Layout/Header/ActionLayout/ActionLayou
 import NavigationLayout from "/src/components/Layout/Header/NavigationLayout/NavigationLayout";
 import ModalContainer from "/src/components/Layout/Header/ModalContainer/ModalContainer";
 
-interface HeaderProps {
-  activeHeader?: boolean;
-}
-
-const Header: FC<HeaderProps> = ({ activeHeader }) => {
-  const [isDropdownActive, setIsDropdownActive] = useState(
-    activeHeader || false
-  );
+const Header: FC = () => {
+  const [isDropdownActive, setIsDropdownActive] = useState(false);
   const [dropDownType, setDropDownType] = useState<DropDownType>("");
   const windowSizeWidth = useAppSelector((state) => state.windowSize.width);
   const headerContentClassName =

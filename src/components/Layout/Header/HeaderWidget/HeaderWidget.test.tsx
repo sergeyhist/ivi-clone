@@ -7,6 +7,7 @@ describe("BottomInfo", () => {
     render(<HeaderWidget />);
     expect(screen.getByTestId("header-widget")).toBeInTheDocument();
   });
+
   it("sets isBottomActive to true on mouse over", () => {
     const setState = jest.fn();
     jest

@@ -8,6 +8,7 @@
     "subtitle": "to use the service on any device"
   },
   "passwordMessage": "Enter password to login",
+  "passwordErrorMessage": "Password must be 4 to 16 characters",
   "emailPlaceholder": "Via email",
   "passwordPlaceholder": "Enter password",
   "passwordPlaceholderCreate": "Create a password",

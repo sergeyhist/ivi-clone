@@ -1,17 +1,13 @@
-import { fireEvent, screen, render } from "@testing-library/react";
+import { fireEvent, screen } from "@testing-library/react";
 import MobileMenu from "/src/components/Layout/MobileMenu/MobileMenu";
-import { Provider } from "react-redux";
 import { store } from "/src/store";
+import { renderWithProviders } from "/src/utils/test-utils";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
 describe("MobileMenu", () => {
   beforeEach(() => {
-    render(
-      <Provider store={store}>
-        <MobileMenu />
-      </Provider>
-    );
+    renderWithProviders(<MobileMenu />);
   });
 
   test("renders without errors", () => {

@@ -7,6 +7,7 @@ describe("WidgetBottom", () => {
     render(<WidgetBottom isBottomActive={true} />);
     expect(screen.getByTestId("bottom-info")).toBeInTheDocument();
   });
+
   it("should open subscription link on button click", () => {
     window.open = jest.fn();
     render(<WidgetBottom isBottomActive={true} />);
@@ -18,6 +19,7 @@ describe("WidgetBottom", () => {
       "https://www.ivi.ru/profile/subscription"
     );
   });
+
   it("should apply active class when isBottomActive prop is true", () => {
     const isBottomActive = true;
     const expectedClassName = `${styles.bottom} ${styles.bottom_active}`;

@@ -8,6 +8,7 @@
     "subtitle": "чтобы пользоваться сервисом на любом устройстве"
   },
   "passwordMessage": "Введите пароль чтобы войти",
+  "passwordErrorMessage": "Пароль должен быть от 4 до 16 символов",
   "emailPlaceholder": "Через email",
   "passwordPlaceholder": "Введите пароль",
   "passwordPlaceholderCreate": "Придумайте пароль",

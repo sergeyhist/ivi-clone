@@ -1,35 +1,25 @@
-import {fireEvent, render, screen} from "@testing-library/react";
+import { fireEvent,screen } from "@testing-library/react";
 import ProfileDropDown from "/src/components/Layout/Header/DropDown/ProfileDropDown/ProfileDropDown";
 import { store } from "/src/store";
-import {Provider} from "react-redux";
-import {setAuth} from "/src/store/slices/authSlice";
+import { setAuth } from "/src/store/slices/authSlice";
+import { renderWithProviders } from "/src/utils/test-utils";
 
 describe("ProfileDropDown", () => {
   it("should render without errors", () => {
-    render(
-      <Provider store={store}>
-        <ProfileDropDown />
-      </Provider>
-    );
+    renderWithProviders(<ProfileDropDown />);
     expect(screen.getByTestId("profile-dropdown")).toBeInTheDocument();
   });
-  it("should change showAuthModal state to true",()=>{
-    render(
-      <Provider store={store}>
-        <ProfileDropDown />
-      </Provider>
-    );
+
+  it("should change showAuthModal state to true", () => {
+    renderWithProviders(<ProfileDropDown />);
     fireEvent.click(screen.getByTestId("auth-btn"));
     expect(store.getState().showModal.showAuthModal).toBeTruthy();
-  })
-  it("should render user email after set authState to true",()=>{
-    store.dispatch(setAuth({isLogged:true,userEmail:'test'}))
+  });
 
-    render(
-      <Provider store={store}>
-        <ProfileDropDown />
-      </Provider>
-    );
+  it("should render user email after set authState to true", () => {
+    store.dispatch(setAuth({ isLogged: true, userEmail: "test" }));
+
+    renderWithProviders(<ProfileDropDown />);
     expect(screen.getByTestId("user-email")).toBeInTheDocument();
-  })
+  });
 });

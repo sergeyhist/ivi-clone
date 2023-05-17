@@ -30,7 +30,7 @@ const PasswordInput: FC<PasswordInputProps> = ({
 
   const handlePasswordSubmit = (): void =>{
     if(isPasswordValid){
-      notify("Пароль должен быть от 4 до 16 символов", "pass");
+      notify(t("passwordErrorMessage"), "pass");
     }
   }
 
