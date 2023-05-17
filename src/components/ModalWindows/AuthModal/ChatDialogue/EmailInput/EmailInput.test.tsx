@@ -23,7 +23,6 @@ const mockSetAuth = jest.fn();
 
 describe("EmailInput",()=>{
   jest.mock("../ChatDialogue.utils", () => ({
-
     validateEmail: mockValidateEmail,
   }));
   jest.mock("../../../../../store/slices/authSlice", () => ({
@@ -43,16 +42,17 @@ describe("EmailInput",()=>{
   const setIsEmailInputSuccess = jest.fn();
   const setIsEmailExist = jest.fn();
   const setShowErrorMessage = jest.fn();
+  const setEmail = jest.fn();
 
   it("should renders without errors",()=>{
     const props = {
       isEmailInputSuccess: false,
-      setIsEmailInputSuccess: jest.fn(),
-      setIsEmailExist: jest.fn(),
+      setIsEmailInputSuccess,
+      setIsEmailExist,
       showErrorMessage: false,
-      setShowErrorMessage: jest.fn(),
+      setShowErrorMessage,
       email: "",
-      setEmail: jest.fn()
+      setEmail
     }
     const {container} = render(<Provider store={store}><EmailInput {...props}/></Provider>  )
     expect(container).toBeDefined();
@@ -61,12 +61,12 @@ describe("EmailInput",()=>{
   it("handles email submission with valid email", () => {
     const props = {
       isEmailInputSuccess: false,
-      setIsEmailInputSuccess: jest.fn(),
-      setIsEmailExist: jest.fn(),
+      setIsEmailInputSuccess,
+      setIsEmailExist,
       showErrorMessage: false,
-      setShowErrorMessage: jest.fn(),
+      setShowErrorMessage,
       email: "test@example.com",
-      setEmail: jest.fn(),
+      setEmail,
     };
 
     mockValidateEmail.mockReturnValue(true);
