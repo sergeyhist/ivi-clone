@@ -33,7 +33,11 @@ const meta: Meta<typeof Filters> = {
 
       return (
         <div
-          style={{ width: "100%", maxWidth: "1200px", marginInline: "auto" }}
+          style={{
+            width: "100%",
+            maxWidth: "1200px",
+            marginInline: "auto",
+          }}
         >
           <Story />
         </div>

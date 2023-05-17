@@ -7,7 +7,8 @@ import { countriesListSlugs } from "/src/utils/mocks/countries";
 import MultiSelector from "/src/components/Catalog/Filters/MultiSelector/MultiSelector";
 
 const meta: Meta<typeof MultiSelector> = {
-  title: "Filters/Types of Filters",
+  title: "Filters/Multi Selector",
+  tags: ["autodocs"],
   argTypes: {
     title: {
       description: "Title of the component",
@@ -19,19 +20,13 @@ const meta: Meta<typeof MultiSelector> = {
       description: "List of activated filters",
     },
     filtersType: {
-      description: "Type of the filter. Uses as a key for translations and query params",
+      description:
+        "Type of the filter. Uses as a key for translations and query params",
     },
     dropdownPosition: {
       description:
         "Position of the dropdown for screens with width more than 960px",
     },
-  },
-  args: {
-    title: "genre",
-    items: genresListSlugs,
-    filters: ["anime", "melodrama"],
-    filtersType: "genres",
-    dropdownPosition: "left",
   },
   decorators: [
     (Story) => {
@@ -45,17 +40,19 @@ const meta: Meta<typeof MultiSelector> = {
       );
 
       return (
-        <div
-          style={{
-            width: "100%",
-            maxWidth: "600px",
-            padding: "16px",
-            background: "#1f1b2e",
-            position: "relative",
-            marginInline: "auto",
-          }}
-        >
-          <Story />
+        <div style={{ height: "550px" }}>
+          <div
+            style={{
+              width: "100%",
+              maxWidth: "600px",
+              padding: "16px",
+              background: "#1f1b2e",
+              position: "relative",
+              marginInline: "auto",
+            }}
+          >
+            <Story />
+          </div>
         </div>
       );
     },
@@ -66,4 +63,22 @@ const meta: Meta<typeof MultiSelector> = {
 export default meta;
 type Story = StoryObj<typeof MultiSelector>;
 
-export const Multi_Selector: Story = {};
+export const GenresFilter: Story = {
+  args: {
+    title: "genre",
+    items: genresListSlugs,
+    filters: ["anime", "melodrama"],
+    filtersType: "genres",
+    dropdownPosition: "left",
+  },
+};
+
+export const CountriesFilter: Story = {
+  args: {
+    title: "country",
+    items: countriesListSlugs,
+    filters: ["usa", "japan"],
+    filtersType: "countries",
+    dropdownPosition: "center",
+  },
+};

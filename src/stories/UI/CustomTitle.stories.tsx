@@ -20,17 +20,6 @@ const meta: Meta<typeof CustomTitle> = {
         "(optional): a string that represents additional CSS classes to be applied to the component.",
     },
   },
-  parameters: {
-    backgrounds: {
-      default: "dark",
-      values: [
-        {
-          name: "dark",
-          value: "#100e19",
-        },
-      ],
-    },
-  },
   component: CustomTitle,
 };
 

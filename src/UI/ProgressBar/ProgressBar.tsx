@@ -7,14 +7,14 @@ interface ProgressBarProps {
   value: number;
   className?: string;
   isFixed?: boolean;
-  type?: "loading";
+  type?: "default" | "loading";
 }
 
 const ProgressBar: FC<ProgressBarProps> = ({
   value,
   className = "",
   isFixed = false,
-  type,
+  type = "default",
 }) => {
   const router = useRouter();
 

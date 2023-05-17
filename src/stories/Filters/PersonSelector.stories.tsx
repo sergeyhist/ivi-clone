@@ -2,7 +2,7 @@ import PersonSelector from "/src/components/Catalog/Filters/PersonSelector/Perso
 import { actorsList } from "/src/utils/mocks/actors";
 
 const meta: Meta<typeof PersonSelector> = {
-  title: "Filters/Types of Filters",
+  title: "Filters/Person Selector",
   argTypes: {
     type: {
       description: "Type of the filter. Uses as a key for translations and query params",
@@ -25,7 +25,7 @@ const meta: Meta<typeof PersonSelector> = {
         <div
           style={{
             width: "100%",
-            maxWidth: "800px",
+            maxWidth: "600px",
             padding: "16px",
             background: "#1f1b2e",
             position: "relative",

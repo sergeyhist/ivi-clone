@@ -6,11 +6,7 @@ const meta: Meta<typeof Footer> = {
   title: "Footer/Footer",
   decorators: [
     (Story) => {
-      return (
-        <div style={{ width: "100%" }}>
-          <Story />
-        </div>
-      );
+      return <Story />;
     },
   ],
   component: Footer,

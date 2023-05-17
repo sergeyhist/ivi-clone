@@ -36,12 +36,6 @@ const meta: Meta<typeof CustomButton> = {
       </main>
     ),
   ],
-  parameters: {
-    backgrounds: {
-      default: "dark",
-      values: [{ name: "dark", value: "#100e19" }],
-    },
-  },
 };
 
 export default meta;

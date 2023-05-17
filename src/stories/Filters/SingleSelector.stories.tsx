@@ -1,11 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import "/src/styles/global.sass";
-import { useAppDispatch } from "/src/hooks/redux";
 import SingleSelector from "/src/components/Catalog/Filters/SingleSelector/SingleSelector";
 import { yearFilterItems } from "/src/components/Catalog/Filters/Filters.utils";
 
 const meta: Meta<typeof SingleSelector> = {
-  title: "Filters/Types of Filters",
+  title: "Filters/Single Selector",
   argTypes: {
     title: {
       description: "Title of the component",
@@ -17,7 +16,8 @@ const meta: Meta<typeof SingleSelector> = {
       description: "Activated filter",
     },
     filterType: {
-      description: "Type of the filter. Uses as a key for translations and query params",
+      description:
+        "Type of the filter. Uses as a key for translations and query params",
     },
   },
   args: {
@@ -32,7 +32,7 @@ const meta: Meta<typeof SingleSelector> = {
         <div
           style={{
             width: "100%",
-            maxWidth: "800px",
+            maxWidth: "600px",
             padding: "16px",
             background: "#1f1b2e",
             position: "relative",

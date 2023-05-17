@@ -1,7 +1,8 @@
 import RangeSelector from "/src/components/Catalog/Filters/RangeSelector/RangeSelector";
 
 const meta: Meta<typeof RangeSelector> = {
-  title: "Filters/Types of Filters",
+  title: "Filters/Range Selector",
+  tags: ["autodocs"],
   argTypes: {
     title: {
       description: "Title of the component",
@@ -10,21 +11,15 @@ const meta: Meta<typeof RangeSelector> = {
       description: "Activated filter",
     },
     filterType: {
-      description: "Type of the filter. Uses as a key for translations and query params",
+      description:
+        "Type of the filter. Uses as a key for translations and query params",
     },
     max: {
-      description: "Max value of the range input"
+      description: "Max value of the range input",
     },
     step: {
-      description: "Step of the range input"
-    }
-  },
-  args: {
-    title: "rating",
-    filter: "8",
-    filterType: "rating",
-    max: 9,
-    step: 0.1,
+      description: "Step of the range input",
+    },
   },
   decorators: [
     (Story) => {
@@ -32,7 +27,7 @@ const meta: Meta<typeof RangeSelector> = {
         <div
           style={{
             width: "100%",
-            maxWidth: "800px",
+            maxWidth: "600px",
             padding: "16px",
             background: "#1f1b2e",
             position: "relative",
@@ -50,4 +45,22 @@ const meta: Meta<typeof RangeSelector> = {
 export default meta;
 type Story = StoryObj<typeof RangeSelector>;
 
-export const Range_Selector: Story = {};
+export const RatingFilter: Story = {
+  args: {
+    title: "rating",
+    filter: "8",
+    filterType: "rating",
+    max: 9,
+    step: 0.1,
+  },
+};
+
+export const AssessmentsFilter: Story = {
+  args: {
+    title: "ratingCount",
+    filter: "500000",
+    filterType: "assessments",
+    max: 1000000,
+    step: 10000,
+  },
+};
