@@ -15,6 +15,15 @@ export const parameters = {
     method: "alphabetical",
     order: ["Components", "Icons", "Others"],
   },
+  backgrounds: {
+    default: "dark",
+    values: [
+      {
+        name: "dark",
+        value: "#100e19",
+      },
+    ],
+  },
 };
 
 export const globalTypes = {
