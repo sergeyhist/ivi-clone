@@ -3,10 +3,11 @@ import styles from "./Votes.module.sass";
 
 interface VotesProps {
   className?: string;
+  like: number;
 }
 
-const Votes: FC<VotesProps> = ({ className = "" }) => {
-  const [likes, setLikes] = useState<number>(12);
+const Votes: FC<VotesProps> = ({ like, className = "" }) => {
+  const [likes, setLikes] = useState<number>(like);
 
   const likeHandler = (): void => {
     setLikes(likes + 1);

@@ -10,11 +10,15 @@ interface RatingProps {
 
 const MovieRating: FC<RatingProps> = ({ grade, grades }) => {
   const { t } = useTranslation("movie");
+  const gradeClassName = grade > 6 ? styles.rating__grade_fine : "";
+  const rating = String(grade);
 
   return (
     <div className={styles.rating}>
       <button className={styles.rating__button}>
-        <p className={styles.rating__grade}>{grade}</p>
+        <p className={`${styles.rating__grade} ${gradeClassName}`}>
+          {rating[0]},{rating[2] || "0"}
+        </p>
         <div className={styles.rating__column}>
           <p className={styles.rating__title}>{t("rating.title")}</p>
           <p className={styles.rating__grades}>

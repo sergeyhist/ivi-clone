@@ -1,11 +1,11 @@
 import axios from "axios";
 import { IUser } from "/src/types/IUser";
 
-export const createUser = async (userData: IUser): Promise<void> => {
+export const createUser = async (email: string, password: string): Promise<void> => {
   try {
     const data = JSON.stringify({
-      email: userData.email,
-      password: userData.password,
+      email: email,
+      password: password,
     });
 
     const config = {
@@ -23,9 +23,7 @@ export const createUser = async (userData: IUser): Promise<void> => {
   }
 };
 
-export const getUserByEmail = async (
-  email: string
-): Promise<IUser | undefined> => {
+export const getUserByEmail = async (email: string): Promise<IUser | undefined> => {
   try {
     const response = await axios.get<IUser>(
       `${String(process.env.SERVER_HOST)}/users/${email}`
@@ -36,8 +34,8 @@ export const getUserByEmail = async (
   }
 };
 
-interface LoginResponse{
-  token:string;
+interface LoginResponse {
+  token: string;
 }
 
 export const login = async (

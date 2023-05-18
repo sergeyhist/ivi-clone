@@ -4,6 +4,11 @@ import ModalInput from "/src/UI/ModalInput/ModalInput";
 import styles from "./CommentsTab.module.sass";
 import CommentsList from "./CommentsList/CommentsList";
 import { useTranslation } from "next-i18next";
+import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
+import { setShowAuthModal } from "/src/store/slices/modalsSlice";
+import { getUserByEmail } from "/src/api/userApi";
+import { createComment } from "/src/api/comments";
+import { useRouter } from "next/router";
 
 interface CommentsTabProps {
   comments: IComment[];
@@ -14,61 +19,69 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments }) => {
   const [inputText, setInputText] = useState("");
   const [replyFor, setReplyFor] = useState<IComment | undefined>(undefined);
   const { t } = useTranslation("movie");
+  const { userEmail, isLogged } = useAppSelector((state) => state.auth);
+  const dispatch = useAppDispatch();
+  const { query } = useRouter();
 
   const handleSubmitForm = (event: FormEvent): void => {
     event.preventDefault();
-    const date = new Date();
-    const newComment: IComment = {
-      comment_id: String(Math.round(Math.random() * 1000000)),
-      title: "About film",
-      text: inputText,
-      film_id: "eb5eb005-5818-4cee-9f7b-0fc6c1fae2cc",
-      createdAt: date.toISOString(),
-      updatedAt: date.toISOString(),
-      user_id: "f7b2bc15-ea49-453e-a924-c0c32b21cee0",
-      parent_id: null,
-      user: {
-        email: "admin@gmail.com",
-        profile: {
-          profile_id: "51ab6af9-0739-4384-8f52-f5cee6b7ca58",
-          first_name: "Victor",
-          last_name: "Barinov",
-        },
-      },
-      sub_comments: [],
-    };
 
-    if (
-      replyFor &&
-      !inputText.indexOf("@" + String(replyFor.user.profile.first_name))
-    ) {
-      replyFor.sub_comments.push(newComment);
-      setCommentsState(commentsState);
-      setInputText("");
+    if (!isLogged) {
+      dispatch(setShowAuthModal(true));
       return;
     }
 
-    setCommentsState([...commentsState, newComment]);
-    setInputText("");
+    getUserByEmail(userEmail).then((user) => {
+      if (!user) return;
+
+      if (replyFor && !inputText.indexOf("@" + String(replyFor.user.email))) {
+        createComment(
+          String(query.id),
+          user.user_id,
+          inputText,
+          replyFor.comment_id,
+          String(localStorage.getItem("token"))
+        ).then((res) => {
+          if (!res) return;
+          replyFor.sub_comments.push(res);
+          setCommentsState(commentsState);
+          setInputText("");
+        });
+      } else {
+        createComment(
+          String(query.id),
+          user.user_id,
+          inputText,
+          null,
+          String(localStorage.getItem("token"))
+        ).then((res) => {
+          if (!res) return;
+          setCommentsState([...commentsState, res]);
+          setInputText("");
+        });
+      }
+    });
   };
 
   return (
-    <form onSubmit={handleSubmitForm}>
-      <ModalInput
-        className={styles.input}
-        authData={inputText}
-        setAuthData={setInputText}
-        inputType="text"
-        showIcon={false}
-        buttonText={t("modal.commentsInput.submit")}
-        placeholderText={t("modal.commentsInput.placeholder")}
-      />
+    <>
+      <form onSubmit={handleSubmitForm}>
+        <ModalInput
+          className={styles.input}
+          authData={inputText}
+          setAuthData={setInputText}
+          inputType="text"
+          showIcon={false}
+          buttonText={t("modal.commentsInput.submit")}
+          placeholderText={t("modal.commentsInput.placeholder")}
+        />
+      </form>
       <CommentsList
         setInputText={setInputText}
         setReplyFor={setReplyFor}
         comments={commentsState}
       />
-    </form>
+    </>
   );
 };
 

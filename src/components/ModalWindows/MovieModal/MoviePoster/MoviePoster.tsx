@@ -5,6 +5,7 @@ import Image from "next/image";
 import { IMovie } from "/src/types/IMovie";
 import { useTranslation } from "next-i18next";
 import { declOfNum } from "/src/utils/declOfNum";
+import { getBackendImage } from "/src/utils/getBackendImg";
 
 interface MoviePosterProps {
   content: IMovie;
@@ -12,7 +13,6 @@ interface MoviePosterProps {
 
 const MoviePoster: FC<MoviePosterProps> = ({ content }) => {
   const { t } = useTranslation("countries");
-  const img = content.img ? `https:${content.img}` : "/images/film1.jpeg";
 
   return (
     <article className={styles.content}>
@@ -22,7 +22,7 @@ const MoviePoster: FC<MoviePosterProps> = ({ content }) => {
             height={234}
             width={153}
             className={styles.content__img}
-            src={img}
+            src={getBackendImage(content.img)}
             alt={content.name_en}
           />
         </div>

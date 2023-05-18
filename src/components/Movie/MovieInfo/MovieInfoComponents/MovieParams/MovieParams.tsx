@@ -34,7 +34,10 @@ const MovieParams: FC<MovieParamsProps> = ({ movie }) => {
             key={genre.genre_id}
             className={`${styles.list__item} ${styles.list__item_dot}`}
           >
-            <Link href={"/movies/" + genre.slug} className={styles.list__link}>
+            <Link
+              href={"/movies?genres=" + genre.slug}
+              className={styles.list__link}
+            >
               {t("genres:" + genre.slug)}
             </Link>
           </li>
