@@ -1,9 +1,17 @@
-import { FC, ReactNode, memo, useRef, useEffect } from "react";
+import {
+  FC,
+  ReactNode,
+  memo,
+  useRef,
+  useEffect,
+  Dispatch,
+  SetStateAction,
+} from "react";
 import styles from "./MovieModal.module.sass";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
 import { InfoTabs } from "/src/types/InfoTabs";
-import CreatorsModalList from "./CreatorsTab/CreatorsTab";
-import CommentForm from "./CommentTab/CommentsTab";
+import CreatorsTab from "./CreatorsTab/CreatorsTab";
+import CommentsTab from "./CommentTab/CommentsTab";
 import useOverflowHidden from "/src/hooks/useOverflowHidden";
 import { useTranslation } from "next-i18next";
 import { IComment } from "/src/types/IComment";
@@ -20,6 +28,7 @@ interface MovieModalProps {
   persons: IPerson[];
   comments: IComment[];
   movieTitle: string;
+  setCommentsState: Dispatch<SetStateAction<IComment[]>>;
 }
 
 const MovieModal: FC<MovieModalProps> = ({
@@ -27,6 +36,7 @@ const MovieModal: FC<MovieModalProps> = ({
   comments,
   movieTitle,
   movie,
+  setCommentsState,
 }) => {
   const { t } = useTranslation("movie");
   const dispatch = useAppDispatch();
@@ -60,9 +70,11 @@ const MovieModal: FC<MovieModalProps> = ({
   const getSelectedTab = (tab: InfoTabs): ReactNode => {
     switch (tab) {
       case "actors":
-        return <CreatorsModalList persons={persons} />;
+        return <CreatorsTab persons={persons} />;
       case "comments":
-        return <CommentForm comments={comments} />;
+        return (
+          <CommentsTab setCommentsState={setCommentsState} comments={comments} />
+        );
     }
   };
 

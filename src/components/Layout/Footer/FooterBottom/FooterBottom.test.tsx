@@ -1,12 +1,16 @@
-import {fireEvent, render} from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import FooterBottom from "/src/components/Layout/Footer/FooterBottom/FooterBottom";
-import { useRouter } from "next/router";
-import {bottomLeftLinks, bottomRightLinks} from "/src/components/Layout/Footer/FooterBottom/FooterBottom.utils";
-jest.mock('next/router', () => require('next-router-mock'));
+import {
+  bottomLeftLinks,
+  bottomRightLinks,
+} from "/src/components/Layout/Footer/FooterBottom/FooterBottom.utils";
 
-describe("FooterBottom",()=>{
-  it("should renders without errors",()=>{
-    const {container} = render(<FooterBottom/>);
+jest.mock("next/router", () => require("next-router-mock"));
+window.open = jest.fn();
+
+describe("FooterBottom", () => {
+  it("should renders without errors", () => {
+    const { container } = render(<FooterBottom />);
     expect(container).toBeDefined();
   });
   it("navigates to the link URL", () => {
@@ -23,4 +27,4 @@ describe("FooterBottom",()=>{
 
     expect(openSpy).toHaveBeenCalledWith(bottomRightLinks[0].url);
   });
-})
+});

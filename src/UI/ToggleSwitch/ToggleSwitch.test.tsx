@@ -1,12 +1,15 @@
-import { fireEvent, render } from "@testing-library/react";
+import { act, fireEvent, render } from "@testing-library/react";
 import ToggleSwitch from "/src/UI/ToggleSwitch/ToggleSwitch";
 import React from "react";
+
+jest.mock("next/router", () => require("next-router-mock"));
 
 describe("ToggleSwitch", () => {
   const leftContent = "left";
   const rightContent = "right";
   const clickCallback = jest.fn();
   const dataTestId = "toggle-switch";
+
   it("should renders without errors", () => {
     const { container, getByTestId } = render(
       <ToggleSwitch
@@ -24,9 +27,7 @@ describe("ToggleSwitch", () => {
     expect(switchToggle).toHaveClass("test");
   });
   it("should render with default values and toggle to the right when clicked", () => {
-    const setStateMock = jest.fn();
-    const useStateMock = (useState) => [useState, setStateMock];
-    jest.spyOn(React, "useState").mockImplementation(useStateMock);
+    jest.useFakeTimers();
     const { getByTestId } = render(
       <ToggleSwitch
         leftContent={leftContent}
@@ -41,6 +42,8 @@ describe("ToggleSwitch", () => {
     const toggleLeft = getByTestId("toggle-left");
     const toggleRight = getByTestId("toggle-right");
 
+    act(() => jest.runAllTimers());
+
     expect(toggleSwitch).toBeInTheDocument();
     expect(toggleSwitch).toHaveClass("toggle");
     expect(toggleButton).toHaveClass("toggle__button_left");
@@ -48,7 +51,9 @@ describe("ToggleSwitch", () => {
     expect(toggleRight).toHaveTextContent(rightContent);
 
     fireEvent.click(toggleSwitch);
+    expect(toggleButton).toHaveClass('toggle__button_right');
 
-    expect(setStateMock).toHaveBeenCalledTimes(2);
+    fireEvent.click(toggleSwitch);
+    expect(toggleButton).toHaveClass('toggle__button_left');
   });
 });

@@ -9,7 +9,7 @@ interface FooterListProps {
 
 const FooterList: FC<FooterListProps> = ({ items }) => {
   return (
-    <ul className={styles.list}>
+    <ul data-testid="footer-list" className={styles.list}>
       {items.map((item, i) => (
         <li key={i} className={styles.list__item}>
           <FooterLink {...item} />

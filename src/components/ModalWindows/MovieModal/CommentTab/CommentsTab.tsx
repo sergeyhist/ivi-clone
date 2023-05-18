@@ -1,4 +1,4 @@
-import { FC, FormEvent, useState } from "react";
+import { FC, FormEvent, useState, Dispatch, SetStateAction } from "react";
 import { IComment } from "/src/types/IComment";
 import ModalInput from "/src/UI/ModalInput/ModalInput";
 import styles from "./CommentsTab.module.sass";
@@ -12,10 +12,10 @@ import { useRouter } from "next/router";
 
 interface CommentsTabProps {
   comments: IComment[];
+  setCommentsState: Dispatch<SetStateAction<IComment[]>>;
 }
 
-const CommentsTab: FC<CommentsTabProps> = ({ comments }) => {
-  const [commentsState, setCommentsState] = useState<IComment[]>(comments);
+const CommentsTab: FC<CommentsTabProps> = ({ comments, setCommentsState }) => {
   const [inputText, setInputText] = useState("");
   const [replyFor, setReplyFor] = useState<IComment | undefined>(undefined);
   const { t } = useTranslation("movie");
@@ -43,8 +43,8 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments }) => {
           String(localStorage.getItem("token"))
         ).then((res) => {
           if (!res) return;
-          replyFor.sub_comments.push(res);
-          setCommentsState(commentsState);
+          replyFor.sub_comments.unshift(res);
+          setCommentsState(comments);
           setInputText("");
         });
       } else {
@@ -56,7 +56,7 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments }) => {
           String(localStorage.getItem("token"))
         ).then((res) => {
           if (!res) return;
-          setCommentsState([...commentsState, res]);
+          setCommentsState([res, ...comments]);
           setInputText("");
         });
       }
@@ -79,7 +79,7 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments }) => {
       <CommentsList
         setInputText={setInputText}
         setReplyFor={setReplyFor}
-        comments={commentsState}
+        comments={comments}
       />
     </>
   );

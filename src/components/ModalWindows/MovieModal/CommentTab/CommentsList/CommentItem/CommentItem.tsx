@@ -22,7 +22,7 @@ const CommentItem: FC<CommentItemProps> = ({
   setReplyFor,
 }) => {
   const { t } = useTranslation("movie");
-  const indentation = level * 8;
+  const indentation = level * 16 < 64 ? level * 16 : level;
   const textRef = useRef<HTMLParagraphElement>(null);
   const [textHeight, setTextHeight] = useState<number>(100);
   const windowSize = useAppSelector((state) => state.windowSize);
@@ -37,19 +37,14 @@ const CommentItem: FC<CommentItemProps> = ({
   }, [windowSize.width]);
 
   return (
-    <div
-      style={{ transform: `translate(${indentation}px, 0)` }}
-      className={styles.container}
-    >
-      <div className={styles.top}>
-        <div className={styles.top__content}>
-          <h4 onClick={clickHandler} className={styles.title}>
-            {comment.user.email}
-          </h4>
-          <p className={styles.date}>
-            {getFormateDate(new Date(comment.createdAt), t)}
-          </p>
-        </div>
+    <div className={styles.container}>
+      <div style={{ paddingLeft: `${indentation - 16}px` }} className={styles.top}>
+        <h4 onClick={clickHandler} className={styles.title}>
+          {comment.user.email}
+        </h4>
+        <p className={styles.date}>
+          {getFormateDate(new Date(comment.createdAt), t)}
+        </p>
         <div className={styles.top__actions}>
           <button
             type="button"
@@ -63,7 +58,10 @@ const CommentItem: FC<CommentItemProps> = ({
         </div>
       </div>
 
-      <div className={styles.comment}>
+      <div
+        style={{ paddingLeft: `${indentation - 16}px` }}
+        className={styles.comment}
+      >
         <TextDropDown
           toggleTitles={{
             defaultTitle: t("details.show"),

@@ -31,9 +31,6 @@ export const createComment = async (
       data: data,
     };
 
-    console.log(config);
-    console.log(config.headers);
-
     const response = await axios.request<IComment>(config);
     return response.data;
   } catch (error) {

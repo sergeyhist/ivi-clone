@@ -19,8 +19,9 @@ const FooterButtons: FC = () => {
   useCloseEvents([listRef, phoneRef], () => setIsListActive(false));
 
   return (
-    <div className={styles.btns}>
+    <div data-testid="footer-buttons" className={styles.btns}>
       <CustomButton
+        dataTestId="chat"
         style={{ width: "196px" }}
         clickCallback={() => {
           window.open("https://www.ivi.ru/profile");
@@ -30,6 +31,7 @@ const FooterButtons: FC = () => {
       </CustomButton>
       <div className={styles.btns__wrapper}>
         <CustomButton
+          dataTestId="support"
           type="icon"
           clickCallback={() => {
             window.open("mailto:support@ivi.ru");
@@ -39,6 +41,7 @@ const FooterButtons: FC = () => {
         </CustomButton>
         <div ref={phoneRef}>
           <CustomButton
+            dataTestId="phones"
             type="icon"
             clickCallback={() => {
               setIsListActive((curr) => !curr);
@@ -60,7 +63,7 @@ const FooterButtons: FC = () => {
           exitActive: styles["list-exit-active"],
         }}
       >
-        <div ref={listRef}>
+        <div data-testid="phones-dropdown" ref={listRef}>
           <PhonesList />
         </div>
       </CSSTransition>

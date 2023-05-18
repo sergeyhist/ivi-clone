@@ -1,3 +1,4 @@
+import type { Meta, StoryObj } from "@storybook/react";
 import RangeSelector from "/src/components/Catalog/Filters/RangeSelector/RangeSelector";
 
 const meta: Meta<typeof RangeSelector> = {

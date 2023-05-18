@@ -1,4 +1,4 @@
-import { FC, memo } from "react";
+import { FC, memo, useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import MovieInfo from "../../components/Movie/MovieInfo/MovieInfo";
 import BreadCrumbs from "../../UI/BreadCrumbs/BreadCrumbs";
@@ -13,9 +13,6 @@ import { useRouter } from "next/router";
 import { IMovie } from "/src/types/IMovie";
 import { IComment } from "/src/types/IComment";
 import { IPerson } from "/src/types/IPerson";
-import { mockMovie } from "../../utils/movie/movie";
-import { mockPersons } from "/src/utils/person";
-import { mockComments } from "/src/utils/comments";
 import { getMovieName } from "../../utils/movie/movie";
 import { useTranslation } from "next-i18next";
 import {
@@ -27,26 +24,21 @@ import {
 import NotFound from "/src/components/NotFound/NotFound";
 
 interface MovieProps {
-  serverMovie: IMovie;
-  serverPersons: IPerson[];
-  serverComments: IComment[];
-  serverRelatedMovies: IMovie[];
+  movie: IMovie;
+  persons: IPerson[];
+  comments: IComment[];
+  relatedMovies: IMovie[];
 }
 
 const Movie: FC<MovieProps> = ({
-  serverMovie,
-  serverPersons = [],
-  serverComments = [],
-  serverRelatedMovies = [],
+  movie,
+  persons = [],
+  comments = [],
+  relatedMovies = [],
 }) => {
   const { t } = useTranslation("common");
   const { locale } = useRouter();
-  const movie = serverMovie ? serverMovie : mockMovie;
-  const persons = serverPersons.length ? serverPersons : mockPersons;
-  const comments = serverComments.length ? serverComments : mockComments;
-  const relatedMovies = serverRelatedMovies.length
-    ? serverRelatedMovies
-    : [mockMovie];
+  const [commentsState, setCommentsState] = useState<IComment[]>(comments);
 
   return (
     <>
@@ -63,12 +55,13 @@ const Movie: FC<MovieProps> = ({
             movieTitle={getMovieName(movie, locale)}
             imageUrl={movie.img}
           />
-          <CommentsSlider comments={comments} />
+          <CommentsSlider comments={commentsState} />
           <BreadCrumbs currentTitle={getMovieName(movie, locale)} />
           <MovieModal
             movie={movie}
             movieTitle={getMovieName(movie, locale)}
-            comments={comments}
+            comments={commentsState}
+            setCommentsState={setCommentsState}
             persons={persons}
           />
         </Layout>
@@ -89,19 +82,17 @@ export const getServerSideProps = async ({
   locale: string;
   params: { id: string };
 }): Promise<GetServerSidePropsResult<Record<string, unknown>>> => {
-  const serverMovie = await getMovie(String(params.id));
-  const serverPersons = await getMoviePersons(String(params.id));
-  const serverComments = await getMovieComments(String(params.id));
-  const serverRelatedMovies = await getMoviesByGenre(
-    serverMovie?.genres[0].slug || "drama"
-  );
+  const movie = await getMovie(String(params.id));
+  const persons = await getMoviePersons(String(params.id));
+  const comments = await getMovieComments(String(params.id));
+  const relatedMovies = await getMoviesByGenre(movie?.genres[0].slug || "drama");
 
   return {
     props: {
-      serverMovie,
-      serverPersons,
-      serverComments,
-      serverRelatedMovies,
+      movie,
+      persons,
+      comments,
+      relatedMovies,
       ...(await serverSideTranslations(locale, [
         "common",
         "footer",

@@ -52,8 +52,8 @@ const PersonSelector: FC<PersonSelectorProps> = ({ type, list, filter }) => {
     if (inputValue) {
       setIsDropdownActive(false);
       setInputValue("");
-      filter.length > 0 && getFilter("");
     }
+    filter.length > 0 && getFilter("");
   };
 
   const inputChangeHandler = (e: ChangeEvent<HTMLInputElement>): void => {
@@ -64,8 +64,9 @@ const PersonSelector: FC<PersonSelectorProps> = ({ type, list, filter }) => {
   };
 
   useEffect(() => {
-    filter.length > 0 &&
-      setInputValue(getPersonNameBySlug(list, filter, locale || "ru"));
+    filter.length > 0
+      ? setInputValue(getPersonNameBySlug(list, filter, locale || "ru"))
+      : setInputValue("");
   }, [filter, list, locale]);
 
   useCloseEvents([dropdownRef, inputRef], () => setIsDropdownActive(false));
