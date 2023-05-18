@@ -20,7 +20,7 @@ export const getMoviesById = async (
   }
 };
 
-export const getMovie = async (film_id: string): Promise<IMovie | null> => {
+export const getMovie = async (film_id: string): Promise<IMovie | undefined> => {
   try {
     if (!process.env.SERVER_HOST)
       throw new Error("process.env.SERVER_HOST undefined");
@@ -30,7 +30,6 @@ export const getMovie = async (film_id: string): Promise<IMovie | null> => {
     return response.data;
   } catch (error) {
     console.error(error);
-    return null;
   }
 };
 

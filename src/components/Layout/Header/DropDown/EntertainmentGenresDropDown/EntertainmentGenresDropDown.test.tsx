@@ -1,19 +1,12 @@
-import { fireEvent, render, screen } from "@testing-library/react";
-import { store } from "/src/store";
-import EntertainmentGenresDropDown
-  from "/src/components/Layout/Header/DropDown/EntertainmentGenresDropDown/EntertainmentGenresDropDown";
-import {Provider} from "react-redux";
-
-
+import { screen } from "@testing-library/react";
+import EntertainmentGenresDropDown from "/src/components/Layout/Header/DropDown/EntertainmentGenresDropDown/EntertainmentGenresDropDown";
+import { renderWithProviders } from "/src/utils/test-utils";
 
 describe("EntertainmentGenresDropDown", () => {
   it("should render without errors", () => {
-    render(
-      <Provider store={store}>
-        <EntertainmentGenresDropDown selectedGenre={"movies"} />
-      </Provider>
+    renderWithProviders(
+      <EntertainmentGenresDropDown selectedGenre={"movies"} />
     );
     expect(screen.getByTestId("ent-dropdown")).toBeInTheDocument();
   });
-
 });

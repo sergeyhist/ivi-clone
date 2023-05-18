@@ -3,7 +3,7 @@ import TvDropDown from "/src/components/Layout/Header/DropDown/TvDropDown/TvDrop
 
 describe("TvDropDown", () => {
   it("should renders without errors", () => {
-    render(<TvDropDown/>);
+    render(<TvDropDown />);
     expect(screen.getByTestId("channels-container")).toBeInTheDocument();
   });
 });

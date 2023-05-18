@@ -34,10 +34,14 @@ export const getUserByEmail = async (email: string): Promise<IUser | undefined> 
   }
 };
 
+interface LoginResponse {
+  token: string;
+}
+
 export const login = async (
   email: string,
   password: string
-): Promise<{ token: string } | undefined> => {
+): Promise<LoginResponse | undefined> => {
   try {
     const data = JSON.stringify({
       email: email,
@@ -55,7 +59,7 @@ export const login = async (
     };
 
     const response = await axios.request(config);
-    return response.data as { token: string };
+    return response.data;
   } catch (err) {
     console.log(err);
   }

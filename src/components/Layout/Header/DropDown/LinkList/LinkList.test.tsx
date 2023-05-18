@@ -1,6 +1,4 @@
-import { render, screen } from "@testing-library/react";
-import { store } from "/src/store";
-import { Provider } from "react-redux";
+import { screen } from "@testing-library/react";
 import LinkList from "/src/components/Layout/Header/DropDown/LinkList/LinkList";
 import {
   cartoonsCountriesHrefs,
@@ -11,6 +9,7 @@ import {
   sortSlugs,
 } from "/src/components/Layout/Header/DropDown/LinkList/LinkList.utils";
 import { DropDownType } from "/src/components/Layout/Header/Header.utils";
+import { renderWithProviders } from "/src/utils/test-utils";
 
 describe("LinkList", () => {
   const list = ["zeta", "alpha", "gamma"];
@@ -28,11 +27,7 @@ describe("LinkList", () => {
   };
 
   it("should render the genre links", () => {
-    render(
-      <Provider store={store}>
-        <LinkList selectedGenre="movies" />
-      </Provider>
-    );
+    renderWithProviders(<LinkList selectedGenre="movies" />);
 
     const genreLinks = screen.getAllByRole("link");
     expect(genreLinks).toHaveLength(27);

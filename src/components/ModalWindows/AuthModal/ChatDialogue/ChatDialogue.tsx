@@ -79,8 +79,9 @@ const ChatDialogue: FC<ChatDialogueProps> = ({
   };
 
   const handleLogin = async (email: string, password: string): Promise<void> => {
-    const token = await login(email, password);
-    localStorage.setItem("token", token?.token ?? "");
+    const loginResponse = await login(email, password);
+    localStorage.setItem("token", loginResponse?.token ?? "");
+    localStorage.setItem("email", email);
   };
 
   const handleCreateUser = async (

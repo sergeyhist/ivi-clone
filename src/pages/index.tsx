@@ -1,4 +1,4 @@
-import { FC } from "react";
+import {FC, useEffect} from "react";
 import BannerSlider from "../components/Home/BannerSlider/BannerSlider";
 import Layout from "../components/Layout/Layout";
 import PromoButtons from "../components/Home/PromoButtons/PromoButtons";
@@ -11,6 +11,8 @@ import { GetStaticPropsResult } from "next";
 import { getMoviesByGenre } from "../api/movieApi";
 import { IMovie } from "../types/IMovie";
 import { mockMovie } from "../utils/movie/movie";
+import {useAppDispatch} from "/src/hooks/redux";
+import {setAuth} from "/src/store/slices/authSlice";
 
 interface HomeProps {
   bestMilitants: IMovie[];
@@ -19,6 +21,7 @@ interface HomeProps {
 
 const Home: FC<HomeProps> = ({ bestMilitants, bestComedies }) => {
   const { t } = useTranslation(["titles", "home"]);
+  const dispatch = useAppDispatch();
   const compilations = [
     {
       movies: bestMilitants.length ? bestMilitants : [mockMovie],
@@ -29,6 +32,12 @@ const Home: FC<HomeProps> = ({ bestMilitants, bestComedies }) => {
       title: t("home:compilations.comedies.title"),
     },
   ];
+
+  useEffect(()=>{
+    if(localStorage.getItem("email")){
+      dispatch(setAuth({userEmail: localStorage.getItem("email") || "", isLogged: true}))
+    }
+  },[dispatch])
 
   return (
     <Layout title={t("titles:home")}>

@@ -15,6 +15,7 @@ describe("Navigation", () => {
   it("should renders without errors", () => {
     expect(screen.getByTestId("navigation")).toBeInTheDocument();
   });
+
   it("should set IsDropdownActive to false after mouse enter", () => {
     const firstNavLink = screen.getByTestId("nav-item-1");
     const secondNavLink = screen.getByTestId("nav-item-2");
@@ -23,6 +24,7 @@ describe("Navigation", () => {
     fireEvent.mouseEnter(secondNavLink);
     expect(setIsDropdownActive).toHaveBeenCalledWith(false);
   });
+
   it("should set IsDropdownActive to true after mouse enter", () => {
     const thirdNavLink = screen.getByTestId("nav-item-3");
     const fourthNavLink = screen.getByTestId("nav-item-4");
