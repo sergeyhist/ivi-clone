@@ -66,6 +66,7 @@ const PasswordInput: FC<PasswordInputProps> = ({
           }
           buttonText={t("submit")}
           inputType="password"
+          dataTestId="password-input"
         />
       </div>
     </CSSTransition>

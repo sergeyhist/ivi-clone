@@ -1,6 +1,5 @@
 import {fireEvent, render, screen} from "@testing-library/react";
 import PasswordInput from "/src/components/ModalWindows/AuthModal/ChatDialogue/PasswordInput/PasswordInput";
-import '../../../../../utils/defaultToast';
 import toastify from 'react-toastify'
 
 jest.mock('react-toastify');
@@ -31,7 +30,7 @@ describe("PasswordInput", () => {
       password={"pas"}
       setPassword={setPassword}
     />);
-    const submitButton = screen.getByTestId('custom-button');
+    const submitButton = screen.getByTestId('password-input-button');
     fireEvent.click(submitButton);
     expect(mockToast).toHaveBeenCalled()
   });
@@ -45,7 +44,7 @@ describe("PasswordInput", () => {
       password={"longstringchaeeeeeeee"}
       setPassword={setPassword}
     />);
-    const submitButton = screen.getByTestId('custom-button');
+    const submitButton = screen.getByTestId('password-input-button');
     fireEvent.click(submitButton);
     expect(mockToast).toHaveBeenCalled();
   });

@@ -25,6 +25,7 @@ describe("ModalInput", () => {
         buttonText="Submit"
         setAuthData={setAuthData}
         setIsValid={setIsValid}
+        dataTestId="modal-input"
       />
     );
     const inputElement = getByTestId("modal-input") as HTMLInputElement;
@@ -39,6 +40,7 @@ describe("ModalInput", () => {
         inputType="password"
         placeholderText="Enter your name"
         buttonText="Submit"
+        dataTestId="modal-input"
       />
     );
     const input = getByTestId("modal-input");
@@ -55,6 +57,7 @@ describe("ModalInput", () => {
         inputType="password"
         placeholderText="Enter your name"
         buttonText="Submit"
+        dataTestId="modal-input"
       />
     );
     const input = getByTestId("modal-input");
@@ -97,6 +100,7 @@ describe("ModalInput", () => {
         inputType="password"
         placeholderText="Enter your password"
         buttonText="Submit"
+        dataTestId="modal-input"
       />
     );
 
@@ -134,6 +138,7 @@ describe("ModalInput", () => {
         inputType="password"
         placeholderText="Enter your password"
         buttonText="Submit"
+        dataTestId="modal-input"
       />
     );
     const input = getByTestId("modal-input");
@@ -156,6 +161,7 @@ describe("ModalInput", () => {
         inputType="password"
         placeholderText="Enter your password"
         buttonText="Submit"
+        dataTestId="modal-input"
       />
     );
     const input = getByTestId("modal-input");

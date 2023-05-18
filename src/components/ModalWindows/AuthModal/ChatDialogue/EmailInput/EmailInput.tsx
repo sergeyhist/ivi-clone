@@ -68,6 +68,7 @@ const EmailInput: FC<EmailInput> = ({
           placeholderText={t("emailPlaceholder")}
           buttonText={t("submit")}
           inputType="email"
+          dataTestId="email-input"
         />
         <PrivacyPolicy />
       </div>

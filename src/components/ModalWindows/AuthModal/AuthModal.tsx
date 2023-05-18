@@ -27,7 +27,7 @@ const AuthModal: FC<RegistrationModalProps> = ({ closeCallback }) => {
   useOverflowHidden(showAuthModal);
 
   return (
-    <div className={styles.chat__container}>
+    <div className={styles.chat__container} data-testid="modal-container">
       <ChatHeader
         isEmailExist={isEmailExist}
         closeCallback={closeCallback}

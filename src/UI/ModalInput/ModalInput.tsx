@@ -22,6 +22,7 @@ interface ModalInputProps {
   clickCallback?: () => void;
   preventDefault?: boolean;
   className?: string;
+  dataTestId?: string;
 }
 
 const ModalInput: FC<ModalInputProps> = ({
@@ -36,6 +37,7 @@ const ModalInput: FC<ModalInputProps> = ({
   preventDefault,
   showIcon = false,
   className,
+  dataTestId,
 }) => {
   const [isInputActive, setIsInputActive] = useState(false);
   const [isButtonDisabled, setIsButtonDisabled] = useState(true);
@@ -130,7 +132,7 @@ const ModalInput: FC<ModalInputProps> = ({
             onChange={handleInputChange}
             autoComplete={"on"}
             required
-            data-testid="modal-input"
+            data-testid={dataTestId}
           />
           {inputType === "password" && (
             <div
@@ -153,7 +155,7 @@ const ModalInput: FC<ModalInputProps> = ({
           isButtonDisabled ? styles.button_disabled : ""
         }`}
         type="red"
-        dataTestId="custom-button"
+        dataTestId={dataTestId  ? `${dataTestId}-button` : 'custom-button'}
       >
         {buttonText}
       </CustomButton>
