@@ -23,11 +23,9 @@
 
 .top
   display: flex
-  justify-content: space-between
-  &__content
-    display: flex
 
   &__actions
+    margin-left: auto
     display: flex
 
 .comment__add
@@ -58,3 +56,9 @@
   font-size: 13px
   line-height: 16px
   font-style: normal
+
+@media ( max-width: 600px )
+  .date
+    display: none
+  .text
+    padding-right: 0
