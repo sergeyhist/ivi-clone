@@ -5,6 +5,7 @@ import ChatDialogue from "/src/components/ModalWindows/AuthModal/ChatDialogue/Ch
 import useOverflowHidden from "/src/hooks/useOverflowHidden";
 import { useAppSelector } from "/src/hooks/redux";
 import { iviSans, iviIcons, iconFont } from "/src/utils/fonts";
+import Link from "next/link";
 
 interface RegistrationModalProps {
   closeCallback: () => void;
@@ -40,6 +41,12 @@ const AuthModal: FC<RegistrationModalProps> = ({ closeCallback }) => {
         isEmailExist={isEmailExist}
         setProgressBarWidth={setProgressBarWidth}
       />
+      <div>
+        <Link href={`${String(process.env.SERVER_HOST)}/google/login/callback`}>
+          Google
+        </Link>
+        <Link href={`${String(process.env.SERVER_HOST)}/vk/login`}>VK</Link>
+      </div>
     </div>
   );
 };
