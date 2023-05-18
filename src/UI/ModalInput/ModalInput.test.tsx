@@ -142,7 +142,7 @@ describe("ModalInput", () => {
       />
     );
     const input = getByTestId("modal-input");
-    const button = getByTestId("custom-button");
+    const button = getByTestId("modal-input-button");
 
     expect(button).toHaveClass("button_disabled");
     expect(input).toHaveValue("");

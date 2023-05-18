@@ -130,3 +130,4 @@ describe("Actions", () => {
     expect(setIsDropdownActive).toHaveBeenCalledWith(true);
   });
 });
+

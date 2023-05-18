@@ -34,7 +34,7 @@ const Person: FC<PersonProps> = ({ person, movies }) => {
       </PersonLayout>
       <BreadCrumbs
         type="slash"
-        currentTitle={firstName && lastName && `${firstName} ${lastName}`}
+        currentTitle={`${firstName} ${lastName}`}
       />
     </Layout>
   );

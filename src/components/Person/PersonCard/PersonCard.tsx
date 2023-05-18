@@ -5,8 +5,8 @@ import styles from "./PersonCard.module.sass";
 import { getBackendImage } from "/src/utils/getBackendImg";
 
 interface PersonCardProps {
-  firstName?: string;
-  lastName?: string;
+  firstName: string;
+  lastName: string;
   person: IPerson;
 }
 
@@ -24,7 +24,7 @@ const PersonCard: FC<PersonCardProps> = ({ person, firstName, lastName }) => {
         />
       </div>
       <h1 className={styles.title}>
-        {firstName && lastName && `${firstName} ${lastName}`}
+        {`${firstName} ${lastName}`}
       </h1>
     </div>
   );

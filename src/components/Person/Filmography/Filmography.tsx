@@ -13,12 +13,12 @@ interface FilmographyProps {
 }
 
 const Filmography: FC<FilmographyProps> = ({ movies }) => {
-  const [moviesToShow, setMoviesToShow] = useState<IMovie[] | undefined>();
+  const [moviesToShow, setMoviesToShow] = useState<IMovie[]>([]);
   const { t } = useTranslation("person");
   const { locale, push } = useRouter();
 
   useEffect(() => {
-    setMoviesToShow(movies?.slice(0, 8));
+    setMoviesToShow(movies.slice(0, 8));
   }, [movies]);
 
   const handleShowMovies = (): void => {
@@ -36,7 +36,7 @@ const Filmography: FC<FilmographyProps> = ({ movies }) => {
         <span>{movies && `${getMovieDeclination(movies.length, locale)}`}</span>
       </h2>
       <div className={styles.movies}>
-        {moviesToShow?.map((movie, i) => {
+        {moviesToShow.map((movie, i) => {
           return (
             <div className={styles.movie__item} key={i}>
               <div className={styles.img}>
@@ -71,7 +71,7 @@ const Filmography: FC<FilmographyProps> = ({ movies }) => {
         })}
       </div>
       {movies && moviesToShow && moviesToShow.length <= 8 && (
-        <div className={styles.show__btn} onClick={handleShowMovies}>
+        <div className={styles.show__btn} onClick={handleShowMovies} data-testid="show-movies">
           {`${t("showButton")} ${getMovieDeclination(movies.length - 8, locale)} `}
         </div>
       )}

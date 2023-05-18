@@ -6,12 +6,12 @@ import Header from "../Header";
 jest.mock("next/router", () => require("next-router-mock"));
 
 describe("ActionLayout", () => {
-  test("should renders without errors", () => {
+  it("should renders without errors", () => {
     renderWithProviders(<Header />);
     expect(screen.getByTestId("actionLayout-container")).toBeInTheDocument();
   });
 
-  test("calls router.push with the correct arguments", () => {
+  it("calls router.push with the correct arguments", () => {
     jest.useFakeTimers();
     const push = jest.spyOn(mockRouter, "push");
 
