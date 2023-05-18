@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer copyright render with width less than 1160px 1`] = `
+<aside
+  class="copyright"
+  data-testid="copyright"
+>
+  <span>
+    HBO ® and related service marks are the property of Home Box Office, Inc
+  </span>
+</aside>
+`;
+
+exports[`Footer copyright render with width more than 1159px 1`] = `
+<aside
+  class="copyright"
+  data-testid="copyright"
+>
+  <span>
+    <span>
+      © 
+      2023
+       ООО «
+      copyright
+      »
+      <br />
+    </span>
+    HBO ® and related service marks are the property of Home Box Office, Inc
+  </span>
+</aside>
+`;

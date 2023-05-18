@@ -11,7 +11,7 @@ const FooterCopyright: FC = () => {
   const { t } = useTranslation("footer");
 
   return (
-    <aside className={styles.copyright}>
+    <aside data-testid="copyright" className={styles.copyright}>
       <span>
         {windowSize.width > 1159 && (
           <span>

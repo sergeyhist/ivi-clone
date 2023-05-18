@@ -1,3 +1,4 @@
+import type { Meta, StoryObj } from "@storybook/react";
 import Sorting from "/src/components/Catalog/Sorting/Sorting";
 
 const meta: Meta<typeof Sorting> = {

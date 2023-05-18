@@ -1,3 +1,4 @@
+import type { Meta, StoryObj } from "@storybook/react";
 import PersonSelector from "/src/components/Catalog/Filters/PersonSelector/PersonSelector";
 import { actorsList } from "/src/utils/mocks/actors";
 
