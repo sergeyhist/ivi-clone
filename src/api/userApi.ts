@@ -35,7 +35,7 @@ export const getUserByEmail = async (email: string): Promise<IUser | undefined> 
 };
 
 interface LoginResponse {
-  token: string;
+  accessToken: string;
 }
 
 export const login = async (

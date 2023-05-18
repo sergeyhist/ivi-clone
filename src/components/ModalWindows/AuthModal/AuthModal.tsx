@@ -30,6 +30,7 @@ const AuthModal: FC<RegistrationModalProps> = ({ closeCallback }) => {
   return (
     <div
       className={`${styles.chat__container} ${iviSans.className} ${iviIcons.variable} ${iconFont.variable}`}
+      data-testid="modal-container"
     >
       <ChatHeader
         isEmailExist={isEmailExist}

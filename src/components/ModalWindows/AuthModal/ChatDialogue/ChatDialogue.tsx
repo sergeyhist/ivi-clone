@@ -80,7 +80,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({
 
   const handleLogin = async (email: string, password: string): Promise<void> => {
     const loginResponse = await login(email, password);
-    localStorage.setItem("token", loginResponse?.token ?? "");
+    localStorage.setItem("token", loginResponse?.accessToken ?? "");
     localStorage.setItem("email", email);
   };
 
