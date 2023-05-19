@@ -22,11 +22,6 @@ export const modalsSlice = createSlice({
   name: "modals",
   initialState,
   reducers: {
-    setShowModal: (state, action: PayloadAction<ModalStates>) => {
-      state.showAuthModal = action.payload.showAuthModal;
-      state.showSearchModal = action.payload.showSearchModal;
-      state.showMovieModal = action.payload.showMovieModal;
-    },
     setShowMovieModal: (state, action: PayloadAction<IMovieModal>) => {
       state.showMovieModal = action.payload;
     },
@@ -40,7 +35,6 @@ export const modalsSlice = createSlice({
 });
 
 export const {
-  setShowModal,
   setShowMovieModal,
   setShowAuthModal,
   setShowSearchModal,
