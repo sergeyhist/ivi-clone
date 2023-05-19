@@ -1,4 +1,4 @@
-import {Dispatch, FC, SetStateAction, useEffect, useRef} from "react";
+import { Dispatch, FC, SetStateAction, useEffect, useRef } from "react";
 import { CSSTransition } from "react-transition-group";
 import {
   cssTransitionEmailClassNames,
@@ -9,8 +9,8 @@ import PrivacyPolicy from "/src/components/ModalWindows/AuthModal/ChatDialogue/P
 import { useTranslation } from "next-i18next";
 import styles from "./EmailInput.module.sass";
 import { getUserByEmail } from "/src/api/userApi";
-import {useAppDispatch} from "/src/hooks/redux";
-import {setAuth} from "/src/store/slices/authSlice";
+import { useAppDispatch } from "/src/hooks/redux";
+import { setAuth } from "/src/store/slices/authSlice";
 
 interface EmailInput {
   isEmailInputSuccess: boolean;
@@ -35,13 +35,13 @@ const EmailInput: FC<EmailInput> = ({
   const dispatch = useAppDispatch();
   const emailInputRef = useRef<HTMLDivElement>(null);
 
-  useEffect(()=>{
-    if(isEmailInputSuccess)
+  useEffect(() => {
+    if (isEmailInputSuccess)
       getUserByEmail(email).then((res) => {
         setIsEmailExist(res !== undefined);
-        dispatch(setAuth({isLogged:false,userEmail:email}));
+        dispatch(setAuth({ isLogged: false, userEmail: email }));
       });
-  },[dispatch, email, isEmailInputSuccess, setIsEmailExist])
+  }, [dispatch, email, isEmailInputSuccess, setIsEmailExist]);
 
   const handleEmailSubmit = (): void => {
     setShowErrorMessage(!validateEmail(email));

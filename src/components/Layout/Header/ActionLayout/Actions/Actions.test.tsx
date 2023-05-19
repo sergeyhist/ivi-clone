@@ -1,44 +1,65 @@
-import { fireEvent, screen } from "@testing-library/react";
-import { store } from "/src/store";
+import { act, fireEvent, RenderResult, screen } from "@testing-library/react";
+import { RootState } from "/src/store";
 import Actions from "/src/components/Layout/Header/ActionLayout/Actions/Actions";
 import { setWindowSize } from "/src/store/slices/windowSizeSlice";
 import { setAuth } from "/src/store/slices/authSlice";
 import { renderWithProviders } from "/src/utils/test-utils";
 import mockRouter from "next-router-mock";
+import { ToolkitStore } from "@reduxjs/toolkit/src/configureStore";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
-store.dispatch(setWindowSize({ width: 1960, height: 1200 }));
 const setDropDownType = jest.fn();
 const setIsDropdownActive = jest.fn();
 
+describe("Actions desktop", () => {
+  beforeEach(() => {
+    const { store } = renderWithProviders(
+      <Actions
+        setDropDownType={setDropDownType}
+        setIsDropdownActive={setIsDropdownActive}
+      />
+    );
+    act(() => {
+      store.dispatch(setWindowSize({ width: 1600, height: 100 }));
+      store.dispatch(setAuth({ isLogged: true, userEmail: "email" }));
+    });
+  });
+  it("renders without errors", () => {
+    expect(screen.getByTestId("actions-container")).toBeInTheDocument();
+  });
+  it("should render search button when windowSizeWidth is greater than 1159", () => {
+    expect(screen.getByTestId("search-link")).toBeInTheDocument();
+  });
+  it("should render logout button when authState.isLogged is true", () => {
+    expect(screen.getByTestId("logout-button")).toBeInTheDocument();
+  });
+});
+
 describe("Actions", () => {
-  const renderComponent = (): void => {
+  const renderComponent = (): {
+    store: ToolkitStore<RootState>;
+    component: RenderResult;
+  } =>
     renderWithProviders(
       <Actions
         setDropDownType={setDropDownType}
         setIsDropdownActive={setIsDropdownActive}
       />
     );
-  }
 
   afterEach(() => {
     jest.clearAllMocks();
-  })
-
-
-  it("renders without errors", () => {
-    renderComponent();
-    expect(screen.getByTestId("actions-container")).toBeInTheDocument();
-  });
-
-  it("should render search button when windowSizeWidth is greater than 1159", () => {
-    renderComponent();
-    expect(screen.getByTestId("search-link")).toBeInTheDocument();
   });
 
   it("should change showSearchModal store state to true", () => {
-    renderComponent();
+    const { store } = renderWithProviders(
+      <Actions
+        setDropDownType={setDropDownType}
+        setIsDropdownActive={setIsDropdownActive}
+      />
+    );
+    act(() => store.dispatch(setWindowSize({ width: 1600, height: 100 })));
     const searchLink = screen.getByTestId("search-link");
     fireEvent.click(searchLink);
     expect(store.getState().showModal.showSearchModal).toBeTruthy();
@@ -46,25 +67,15 @@ describe("Actions", () => {
     expect(setIsDropdownActive).toHaveBeenCalledWith(false);
   });
 
-  it("should render logout button when authState.isLogged is true", () => {
-    store.dispatch(setAuth({ isLogged: true, userEmail: "email" }));
-
-    renderComponent();
-
-    expect(screen.getByTestId("logout-button")).toBeInTheDocument();
-  });
-
   it("should change setAuth store state to false", () => {
-    store.dispatch(setAuth({ isLogged: true, userEmail: "email" }));
-    
-    renderComponent();
-
+    const { store } = renderComponent();
+    act(() => store.dispatch(setAuth({ isLogged: true, userEmail: "email" })));
     fireEvent.click(screen.getByTestId("logout-button"));
     expect(store.getState().auth.isLogged).toBeFalsy();
   });
 
   it("should change showAuthModal store state to true", () => {
-    renderComponent();
+    const { store } = renderComponent();
     const authButton = screen.getByTestId("auth-button");
 
     fireEvent.click(authButton);

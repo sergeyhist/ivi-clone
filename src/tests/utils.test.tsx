@@ -2,6 +2,8 @@ import {getMovieDeclination} from "/src/utils/getMovieDeclination";
 import {notify} from "/src/utils/defaultToast";
 import toastify from "react-toastify";
 import {getPersonFirstName, getPersonLastName, getPersonRole, mockPersons} from "/src/utils/person";
+import {getBackendImage} from "/src/utils/getBackendImg";
+import {declOfNum} from "/src/utils/declOfNum";
 
 describe("getMovieDeclination",()=>{
   it("should return the correct declination for 'ru' locale", () => {
@@ -87,4 +89,28 @@ describe("person utils",()=>{
     const role = getPersonRole(mockPersons[0]);
     expect(role).toBe(mockPersons[0].filmRoles[0].slug);
   });
+});
+
+describe("getBackEndImage",()=>{
+  it("should return original image if protocol has http or https",()=>{
+    const httpLink = "http://example.com";
+    const httpsLink = "https://example.com";
+    expect(getBackendImage(httpLink)).toBe(httpLink);
+    expect(getBackendImage(httpsLink)).toBe(httpsLink);
+  });
+  it("should return original image with https protocol if link doesn't have http or https",()=>{
+    expect(getBackendImage("example.com")).toBe("https:example.com");
+  });
+  it("should return undefined.svg if img parameter is empty",()=>{
+    expect(getBackendImage("")).toBe("/images/undefined.svg");
+  })
+});
+
+describe("declOfNum",()=>{
+  it("should return correct word form",()=>{
+    expect(declOfNum(15,["movie","movies","movies"])).toBe("15 movies");
+    expect(declOfNum(3,["фильм","фильма","фильмов"])).toBe("3 фильма");
+    expect(declOfNum(1,["car","cars","cars"])).toBe("1 car");
+    expect(declOfNum(912,["house","houses","houses"])).toBe("912 houses");
+  })
 })

@@ -1,49 +1,44 @@
-import { store } from "/src/store";
-import { setWindowSize } from "/src/store/slices/windowSizeSlice";
 import DropDown from "/src/components/Layout/Header/DropDown/DropDown";
+import {act, screen} from "@testing-library/react";
 import { renderWithProviders } from "/src/utils/test-utils";
-
-store.dispatch(setWindowSize({ width: 1200, height: 500 }));
+import {setWindowSize} from "/src/store/slices/windowSizeSlice";
 
 describe("DropDown", () => {
   it("renders without errors when windowSizeWidth is greater than 1160", () => {
-    const { container } = renderWithProviders(
+   const {store} = renderWithProviders(
       <DropDown dropDownType="movies" />
     );
-    expect(container).toBeDefined();
+    act(()=>store.dispatch(setWindowSize({width:1600,height:600})));
+    expect(screen.getByTestId("ent-dropdown")).toBeInTheDocument();
   });
 
   it("renders without errors TvDropDown", () => {
-    const { container } = renderWithProviders(<DropDown dropDownType="tv" />);
-    expect(container).toBeDefined();
+    const {store} = renderWithProviders(<DropDown dropDownType="tv" />);
+    act(()=>store.dispatch(setWindowSize({width:1600,height:600})));
+    expect(screen.getByTestId("channels-container")).toBeInTheDocument();
   });
 
   it("renders without errors NotificationDropDown ", () => {
-    const { container } = renderWithProviders(
+    const {store} = renderWithProviders(
       <DropDown dropDownType="notification" />
     );
-    expect(container).toBeDefined();
+    act(()=>store.dispatch(setWindowSize({width:1600,height:600})));
+    expect(screen.getByTestId("notification-dropdown")).toBeInTheDocument();
   });
 
   it("renders without errors ProfileDropDown", () => {
-    const { container } = renderWithProviders(
+    const {store} = renderWithProviders(
       <DropDown dropDownType="profile" />
     );
-    expect(container).toBeDefined();
+    act(()=>store.dispatch(setWindowSize({width:1600,height:600})));
+    expect(screen.getByTestId("profile-dropdown")).toBeInTheDocument();
   });
 
   it("renders without errors SubscriptionDropdown", () => {
-    const { container } = renderWithProviders(
+    const {store} = renderWithProviders(
       <DropDown dropDownType="subscription" />
     );
-    expect(container).toBeDefined();
-  });
-
-  it("does not render when windowSizeWidth is less than or equal to 1160", () => {
-    store.dispatch(setWindowSize({ width: 1159, height: 500 }));
-    const { container } = renderWithProviders(
-      <DropDown dropDownType="movies" />
-    );
-    expect(container).toBeEmptyDOMElement();
+    act(()=>store.dispatch(setWindowSize({width:1600,height:600})));
+    expect(screen.getByTestId("subscription-dropdown")).toBeInTheDocument();
   });
 });

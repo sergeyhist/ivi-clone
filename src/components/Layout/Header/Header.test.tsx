@@ -1,6 +1,5 @@
-import { fireEvent, screen } from "@testing-library/react";
+import { act, fireEvent, screen } from "@testing-library/react";
 import styles from "./Header.module.sass";
-import { store } from "/src/store";
 import Header from "/src/components/Layout/Header/Header";
 import { setWindowSize } from "/src/store/slices/windowSizeSlice";
 import React from "react";
@@ -28,8 +27,8 @@ describe("Actions", () => {
   });
 
   it("should set headerContentClassName to active when dropdown is active and window width is greater than 1160", () => {
-    store.dispatch(setWindowSize({ width: 1960, height: 1200 }));
-    renderWithProviders(<Header />);
+    const { store } = renderWithProviders(<Header />);
+    act(() => store.dispatch(setWindowSize({ width: 1960, height: 1200 })));
     const headerContent = screen.getByTestId("header-content");
     const tv = screen.getByText("TV+");
     fireEvent.mouseOver(tv);

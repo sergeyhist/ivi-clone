@@ -142,6 +142,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({
               <div
                 className={styles.change__email}
                 onClick={handleEmailChangeClick}
+                data-testid="email-change"
               ></div>
             </div>
             <div className={styles.chat__message_sent}>{email}</div>

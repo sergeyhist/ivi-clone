@@ -6,15 +6,15 @@ jest.mock("next/router", () => require("next-router-mock"));
 
 describe("AuthModal", () => {
   it("should renders without errors", () => {
-    const { container } = renderWithProviders(
+    const { component: {getByTestId} } = renderWithProviders(
       <AuthModal closeCallback={jest.fn()} />
     );
-    expect(container).toBeDefined();
+    expect(getByTestId("modal-container")).toBeDefined();
   });
 
   it('should close the modal when "Escape" key is pressed', () => {
     const closeCallbackMock = jest.fn();
-    const { getByTestId } = renderWithProviders(
+    const {component: {getByTestId} } = renderWithProviders(
       <AuthModal closeCallback={closeCallbackMock} />
     );
 

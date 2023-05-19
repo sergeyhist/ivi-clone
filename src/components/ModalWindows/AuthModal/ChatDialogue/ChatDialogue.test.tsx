@@ -2,7 +2,7 @@ import ChatDialogue from "/src/components/ModalWindows/AuthModal/ChatDialogue/Ch
 import {renderWithProviders} from "/src/utils/test-utils";
 import {fireEvent} from "@testing-library/react";
 
-jest.mock("../../../../api/userApi");
+jest.mock("axios");
 
 
 describe("ChatDialogue",()=>{
@@ -10,13 +10,13 @@ describe("ChatDialogue",()=>{
   const setIsEmailExist = jest.fn();
   
   it("should renders without errors",()=>{
-    const {container} = renderWithProviders(<ChatDialogue setProgressBarWidth={setProgressBarWidth} setIsEmailExist={setIsEmailExist} isEmailExist={false}/>);
+    const {component:{ container}} = renderWithProviders(<ChatDialogue setProgressBarWidth={setProgressBarWidth} setIsEmailExist={setIsEmailExist} isEmailExist={false}/>);
     expect(container).toBeDefined();
     expect(setProgressBarWidth).not.toHaveBeenCalled();
   });
   
   it("should update the email state when the email input changes",()=>{
-    const { getByTestId } = renderWithProviders(
+    const {component:{ getByTestId} } = renderWithProviders(
       <ChatDialogue
         setProgressBarWidth={setProgressBarWidth}
         setIsEmailExist={setIsEmailExist}
@@ -26,33 +26,43 @@ describe("ChatDialogue",()=>{
     const emailInput = getByTestId("email-input");
     fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
     expect(emailInput.value).toBe('test@example.com');
+    fireEvent.click(getByTestId("email-input-button"));
+    expect(setProgressBarWidth).toHaveBeenCalledWith({width: 50});
+
   });
-  
-  // it('should call the handleFormSubmit function when the form is submitted', () => {
-  //   const mockLogin= jest.spyOn(userApi,"login");
-  //   const mockCreateUser = jest.spyOn(userApi,"createUser");
-  //   const { getByLabelText, getByText, getByTestId } = renderWithProviders(
-  //     <ChatDialogue
-  //       setProgressBarWidth={setProgressBarWidth}
-  //       setIsEmailExist={setIsEmailExist}
-  //       isEmailExist={false}
-  //     />
-  //   );
-  //
-  //   const emailInput = getByTestId("email-input");
-  //   const emailSubmitButton = getByTestId('email-input-button');
-  //
-  //   fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
-  //   fireEvent.click(emailSubmitButton);
-  //
-  //
-  //   const passwordInput = getByTestId('password-input');
-  //   const passwordSubmitButton = getByTestId("password-input-button")
-  //
-  //   fireEvent.change(passwordInput, { target: { value: 'password123' } });
-  //   fireEvent.click(passwordSubmitButton);
-  //
-  //   // Проверяем, что функция handleFormSubmit была вызвана
-  //   expect(setProgressBarWidth).toHaveBeenCalled();
-  // });
+  it("should change state after click",()=>{
+    const {store ,component:{ getByTestId} } = renderWithProviders(
+      <ChatDialogue
+        setProgressBarWidth={setProgressBarWidth}
+        setIsEmailExist={setIsEmailExist}
+        isEmailExist={false}
+      />
+    );
+    const emailInput = getByTestId("email-input");
+    fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
+    fireEvent.click(getByTestId("email-input-button"));
+    fireEvent.click(getByTestId("email-change"));
+    expect(setProgressBarWidth).toHaveBeenCalledWith({width: 10});
+    expect(setIsEmailExist).toHaveBeenCalledWith(undefined);
+    expect(store.getState().auth).toEqual({ isLogged: false, userEmail: "" })
+  })
+  it('should',()=>{
+    jest.spyOn(localStorage,"setItem");
+    const {store ,component:{ getByTestId} } = renderWithProviders(
+      <ChatDialogue
+        setProgressBarWidth={setProgressBarWidth}
+        setIsEmailExist={setIsEmailExist}
+        isEmailExist={false}
+      />
+    );
+    const emailInput = getByTestId("email-input");
+    fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
+    fireEvent.click(getByTestId("email-input-button"));
+    const passwordInput = getByTestId("password-input");
+
+    fireEvent.change(passwordInput,{target: {value: "password"}});
+    fireEvent.click(getByTestId("password-input-button"));
+    expect(store.getState().auth).toEqual({ isLogged: true, userEmail: "test@example.com" });
+    expect(store.getState().showModal.showAuthModal).toBe(false);
+  })
 })

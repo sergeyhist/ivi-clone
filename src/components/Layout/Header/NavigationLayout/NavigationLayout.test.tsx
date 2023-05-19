@@ -1,6 +1,5 @@
-import { screen } from "@testing-library/react";
+import {act, screen} from "@testing-library/react";
 import NavigationLayout from "/src/components/Layout/Header/NavigationLayout/NavigationLayout";
-import { store } from "/src/store";
 import { setWindowSize } from "/src/store/slices/windowSizeSlice";
 import { renderWithProviders } from "/src/utils/test-utils";
 
@@ -19,13 +18,13 @@ describe("NavigationLayout", () => {
   });
 
   it("should renders navigation if window size more than 1159px", () => {
-    store.dispatch(setWindowSize({ width: 1200, height: 500 }));
-    renderWithProviders(
+    const {store} =renderWithProviders(
       <NavigationLayout
         setIsDropdownActive={setIsDropdownActive}
         setDropDownType={setDropDownType}
       />
     );
+    act(()=>store.dispatch(setWindowSize({ width: 1200, height: 500 })));
     expect(screen.getByTestId("navigation")).toBeInTheDocument();
   });
 });

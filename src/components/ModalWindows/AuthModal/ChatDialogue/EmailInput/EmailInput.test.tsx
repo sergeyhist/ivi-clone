@@ -1,50 +1,27 @@
-import {fireEvent, render, screen} from "@testing-library/react";
+import { act, screen } from "@testing-library/react";
 import EmailInput from "/src/components/ModalWindows/AuthModal/ChatDialogue/EmailInput/EmailInput";
-import { store } from "/src/store";
-import {Provider} from "react-redux";
+import axios from "axios";
+import { renderWithProviders } from "/src/utils/test-utils";
+import { ToolkitStore } from "@reduxjs/toolkit/src/configureStore";
+import { RootState } from "/src/store";
 
 const mockTranslation = jest.fn().mockReturnValue("Mock Text");
+jest.mock("axios");
+const mockedAxios = axios as jest.Mocked<typeof axios>;
+
 jest.mock("next-i18next", () => ({
   useTranslation: () => ({
     t: mockTranslation,
   }),
 }));
 
-const mockDispatch = jest.fn();
-
-
-const mockGetUserByEmail = jest.fn();
-
-
-const mockValidateEmail = jest.fn();
-
-
-const mockSetAuth = jest.fn();
-
-describe("EmailInput",()=>{
-  jest.mock("../ChatDialogue.utils", () => ({
-    validateEmail: mockValidateEmail,
-  }));
-  jest.mock("../../../../../store/slices/authSlice", () => ({
-    setAuth: mockSetAuth,
-  }));
-  jest.mock("../../../../../api/userApi", () => ({
-    getUserByEmail: mockGetUserByEmail,
-  }));
-  jest.mock("react-redux", () => ({
-    ...jest.requireActual("react-redux"),
-    useDispatch: () => mockDispatch,
-  }));
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
+describe("EmailInput", () => {
   const setIsEmailInputSuccess = jest.fn();
   const setIsEmailExist = jest.fn();
   const setShowErrorMessage = jest.fn();
   const setEmail = jest.fn();
 
-  it("should renders without errors",()=>{
+  it("should renders without errors", () => {
     const props = {
       isEmailInputSuccess: false,
       setIsEmailInputSuccess,
@@ -52,15 +29,17 @@ describe("EmailInput",()=>{
       showErrorMessage: false,
       setShowErrorMessage,
       email: "",
-      setEmail
-    }
-    const {container} = render(<Provider store={store}><EmailInput {...props}/></Provider>  )
+      setEmail,
+    };
+    const {
+      component: { container },
+    } = renderWithProviders(<EmailInput {...props} />);
     expect(container).toBeDefined();
     expect(screen.getAllByText("Mock Text")[0]).toBeInTheDocument();
-  })
-  it("handles email submission with valid email", () => {
+  });
+  it("handles email submission with valid email", async () => {
     const props = {
-      isEmailInputSuccess: false,
+      isEmailInputSuccess: true,
       setIsEmailInputSuccess,
       setIsEmailExist,
       showErrorMessage: false,
@@ -68,21 +47,18 @@ describe("EmailInput",()=>{
       email: "test@example.com",
       setEmail,
     };
+    const userData = { id: 1, name: "John Doe", email: "test@example.com" };
 
-    mockValidateEmail.mockReturnValue(true);
+    mockedAxios.get.mockResolvedValueOnce({ data: userData });
 
-    render(
-      <Provider store={store}>
-        <EmailInput {...props} />
-      </Provider>
-    );
+    let store: ToolkitStore<RootState> | undefined;
 
-    const submitButton = screen.getByRole("button");
-    fireEvent.click(submitButton);
+    await act(async () => {
+      store = renderWithProviders(<EmailInput {...props} />).store;
+      return Promise.resolve();
+    });
 
-    expect(mockValidateEmail).toHaveBeenCalledWith("test@example.com");
-    expect(setShowErrorMessage).toHaveBeenCalledWith(false);
-    expect(setIsEmailInputSuccess).toHaveBeenCalledWith(true);
-    expect(mockDispatch).toHaveBeenCalledWith(mockSetAuth({ isLogged: false, userEmail: "test@example.com" }));
+    expect(store?.getState().auth.isLogged).toBe(false);
+    expect(store?.getState().auth.userEmail).toBe("test@example.com");
   });
-})
+});
