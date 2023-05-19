@@ -9,7 +9,7 @@ import { IPerson } from "/src/types/IPerson";
 import BreadCrumbs from "/src/UI/BreadCrumbs/BreadCrumbs";
 import BackButton from "/src/components/Person/BackButton/BackButton";
 import PersonLayout from "/src/components/Person/PersonLayout/PersonLayout";
-import { getMoviesById } from "/src/api/movieApi";
+import { getMoviesById } from "/src/api/movie";
 import { IMovie } from "/src/types/IMovie";
 import { getPersonById } from "/src/api/persons";
 

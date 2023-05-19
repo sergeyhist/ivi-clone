@@ -8,7 +8,7 @@ import HomeSliders from "../components/Home/HomeSliders/HomeSliders";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticPropsResult } from "next";
-import { getMoviesByGenre } from "../api/movieApi";
+import { getMoviesByGenre } from "../api/movie";
 import { IMovie } from "../types/IMovie";
 import { mockMovie } from "../utils/movie";
 

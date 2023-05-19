@@ -20,7 +20,7 @@ import {
   getMoviePersons,
   getMovieComments,
   getMoviesByGenre,
-} from "/src/api/movieApi";
+} from "/src/api/movie";
 import NotFound from "/src/components/NotFound/NotFound";
 
 interface MovieProps {

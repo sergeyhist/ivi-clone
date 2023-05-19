@@ -2,7 +2,7 @@ import ChatDialogue from "/src/components/ModalWindows/AuthModal/ChatDialogue/Ch
 import { renderWithProviders } from "/src/utils/test-utils";
 import { fireEvent } from "@testing-library/react";
 import axios from "axios";
-import {LoginResponse} from "/src/api/userApi";
+import {LoginResponse} from "/src/api/user";
 
 jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;

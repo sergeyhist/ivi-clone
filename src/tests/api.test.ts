@@ -4,7 +4,7 @@ import {
   getUserByEmail,
   login,
   LoginResponse,
-} from "/src/api/userApi";
+} from "/src/api/user";
 
 jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;
