@@ -1,7 +1,7 @@
 import { FC, MouseEventHandler } from "react";
 import styles from "./CommentCard.module.sass";
 import { IComment } from "/src/types/IComment";
-import { getFormateDate } from "../../../../utils/movie/movie";
+import { getFormateDate } from "../../../../utils/movie";
 import { useTranslation } from "next-i18next";
 import Votes from "/src/UI/Votes/Votes";
 

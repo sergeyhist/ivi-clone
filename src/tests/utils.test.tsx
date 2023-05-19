@@ -1,11 +1,23 @@
-import {getMovieDeclination} from "/src/utils/getMovieDeclination";
-import {notify} from "/src/utils/defaultToast";
+import { getMovieDeclination } from "/src/utils/getMovieDeclination";
+import { notify } from "/src/utils/defaultToast";
 import toastify from "react-toastify";
-import {getPersonFirstName, getPersonLastName, getPersonRole, mockPersons} from "/src/utils/person";
-import {getBackendImage} from "/src/utils/getBackendImg";
-import {declOfNum} from "/src/utils/declOfNum";
+import {
+  getPersonFirstName,
+  getPersonLastName,
+  getPersonRole,
+  mockPerson,
+} from "/src/utils/person";
+import {
+  mockMovie,
+  getMovieName,
+  getMovieCounty,
+  getFormateNumber,
+  getFormateDate,
+  getAgeImg,
+} from "../utils/movie";
+import { TFunction } from "next-i18next";
 
-describe("getMovieDeclination",()=>{
+describe("getMovieDeclination", () => {
   it("should return the correct declination for 'ru' locale", () => {
     const movies = 5;
     const locale = "ru";
@@ -34,10 +46,10 @@ describe("getMovieDeclination",()=>{
     expect(result).toBe(`${movies} movie`);
   });
 });
-jest.mock('react-toastify');
+jest.mock("react-toastify");
 
 describe("notify", () => {
-  const mockToast = jest.spyOn(toastify,'toast');
+  const mockToast = jest.spyOn(toastify, "toast");
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -70,47 +82,55 @@ describe("notify", () => {
   });
 });
 
-describe("person utils",()=>{
+describe("person utils", () => {
   it("should return the first name of the person in the specified locale", () => {
-    const firstNameEn = getPersonFirstName(mockPersons[0]);
-    expect(firstNameEn).toBe(mockPersons[0].first_name_en);
+    const firstNameEn = getPersonFirstName(mockPerson);
+    expect(firstNameEn).toBe(mockPerson.first_name_en);
 
-    const firstNameRu = getPersonFirstName(mockPersons[0], "ru");
-    expect(firstNameRu).toBe(mockPersons[0].first_name_ru);
+    const firstNameRu = getPersonFirstName(mockPerson, "ru");
+    expect(firstNameRu).toBe(mockPerson.first_name_ru);
   });
   it("should return the last name of the person in the specified locale", () => {
-    const lastNameEn = getPersonLastName(mockPersons[0]);
-    expect(lastNameEn).toBe(mockPersons[0].last_name_en);
+    const lastNameEn = getPersonLastName(mockPerson);
+    expect(lastNameEn).toBe(mockPerson.last_name_en);
 
-    const lastNameRu = getPersonLastName(mockPersons[0], "ru");
-    expect(lastNameRu).toBe(mockPersons[0].last_name_ru);
+    const lastNameRu = getPersonLastName(mockPerson, "ru");
+    expect(lastNameRu).toBe(mockPerson.last_name_ru);
   });
   it("should return the slug of the first film role of the person", () => {
-    const role = getPersonRole(mockPersons[0]);
-    expect(role).toBe(mockPersons[0].filmRoles[0].slug);
+    const role = getPersonRole(mockPerson);
+    expect(role).toBe(mockPerson.filmRoles[0].slug);
   });
 });
 
-describe("getBackEndImage",()=>{
-  it("should return original image if protocol has http or https",()=>{
-    const httpLink = "http://example.com";
-    const httpsLink = "https://example.com";
-    expect(getBackendImage(httpLink)).toBe(httpLink);
-    expect(getBackendImage(httpsLink)).toBe(httpsLink);
+describe("movie utils", () => {
+  it("should return en name", () => {
+    const locale = "en";
+    expect(getMovieName(mockMovie, locale)).toEqual(mockMovie.name_en);
   });
-  it("should return original image with https protocol if link doesn't have http or https",()=>{
-    expect(getBackendImage("example.com")).toBe("https:example.com");
+  it("should return ru name", () => {
+    const locale = "ru";
+    expect(getMovieName(mockMovie, locale)).toEqual(mockMovie.name_ru);
   });
-  it("should return undefined.svg if img parameter is empty",()=>{
-    expect(getBackendImage("")).toBe("/images/undefined.svg");
-  })
+  it("should return formate number", () => {
+    expect(getFormateNumber(1555).charCodeAt(1)).toEqual(160);
+  });
+  it("should return format movie date", () => {
+    expect(getMovieCounty(mockMovie)).toEqual("usa");
+  });
+  it("should return age img", () => {
+    expect(getAgeImg(16)).toEqual("/images/age16.svg");
+    expect(getAgeImg(18)).toEqual("/images/age18.svg");
+    expect(getAgeImg(12)).toEqual("/images/age12.svg");
+    expect(getAgeImg(6)).toEqual("/images/age6.svg");
+    expect(getAgeImg(0)).toEqual("/images/age0.svg");
+    expect(getAgeImg(14)).toEqual("/images/age16.svg");
+  });
+  it("should return format date", () => {
+    const t = (srt: string): string => srt;
+    const date = new Date("2023-05-08T07:38:01.507Z");
+    expect(getFormateDate(date, t as TFunction)).toMatch(/movie:months.4/);
+    expect(getFormateDate(date, t as TFunction)).toMatch(/2023/);
+    expect(getFormateDate(date, t as TFunction)).toMatch(/8/);
+  });
 });
-
-describe("declOfNum",()=>{
-  it("should return correct word form",()=>{
-    expect(declOfNum(15,["movie","movies","movies"])).toBe("15 movies");
-    expect(declOfNum(3,["фильм","фильма","фильмов"])).toBe("3 фильма");
-    expect(declOfNum(1,["car","cars","cars"])).toBe("1 car");
-    expect(declOfNum(912,["house","houses","houses"])).toBe("912 houses");
-  })
-})

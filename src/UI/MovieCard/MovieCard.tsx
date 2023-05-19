@@ -9,7 +9,7 @@ import MovieCardChart from "./MovieCardsChart/MovieCardsChart";
 import { getBackendImage } from "/src/utils/getBackendImg";
 import { useTranslation } from "next-i18next";
 import { declOfNum } from "/src/utils/declOfNum";
-import { getAgeImg, getMovieCounty, getMovieName } from "/src/utils/movie/movie";
+import { getAgeImg, getMovieCounty, getMovieName } from "../../utils/movie";
 import { useRouter } from "next/router";
 
 interface MovieCardDefaultProps {
@@ -17,16 +17,13 @@ interface MovieCardDefaultProps {
   type?: "default" | "related";
 }
 
-const MovieCardDefault: FC<MovieCardDefaultProps> = ({
-  content,
-  type = "default",
-}) => {
+const MovieCard: FC<MovieCardDefaultProps> = ({ content, type = "default" }) => {
   const { t } = useTranslation(["countries", "movie"]);
   const { locale } = useRouter();
   const className = styles[`content_${type}`];
 
   return (
-    <article className={`${styles.content} ${className}`}>
+    <article data-testid="movie-card" className={`${styles.content} ${className}`}>
       <Link className={styles.content__link} href={"/movies/" + content.film_id}>
         <div className={styles.content__filter}>
           <Image
@@ -37,6 +34,7 @@ const MovieCardDefault: FC<MovieCardDefaultProps> = ({
             alt={content.name_en}
             placeholder="blur"
             blurDataURL="/images/placeholder.svg"
+            data-testid="movie-card-image"
           />
           <div className={styles.content__inner}>
             {type == "default" && <MovieCardButtons />}
@@ -67,6 +65,7 @@ const MovieCardDefault: FC<MovieCardDefaultProps> = ({
               width={24}
               src={getAgeImg(content.age_limit)}
               alt={"age"}
+              data-testid="movie-card-age"
             />
           </div>
         </div>
@@ -78,4 +77,4 @@ const MovieCardDefault: FC<MovieCardDefaultProps> = ({
   );
 };
 
-export default MovieCardDefault;
+export default MovieCard;

@@ -1,7 +1,7 @@
 import { FC } from "react";
 import styles from "./MovieRating.module.sass";
 import { useTranslation } from "next-i18next";
-import { getFormateNumber } from "../../../../../utils/movie/movie";
+import { getFormateNumber } from "../../../../../utils/movie";
 
 interface RatingProps {
   grade: number;

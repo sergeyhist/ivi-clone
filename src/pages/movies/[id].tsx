@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 import { IMovie } from "/src/types/IMovie";
 import { IComment } from "/src/types/IComment";
 import { IPerson } from "/src/types/IPerson";
-import { getMovieName } from "../../utils/movie/movie";
+import { getMovieName } from "../../utils/movie";
 import { useTranslation } from "next-i18next";
 import {
   getMovie,

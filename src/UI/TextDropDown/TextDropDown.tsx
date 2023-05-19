@@ -58,6 +58,7 @@ const TextDropDown: FC<DropDownProps> = ({
       <div className={styles.toggle}>
         {toggle && (
           <button
+            data-testid="toggle-dropdown"
             type="button"
             onClick={toggleDropDown}
             className={`${styles.toggle__button} ${toggleClassName}`}
