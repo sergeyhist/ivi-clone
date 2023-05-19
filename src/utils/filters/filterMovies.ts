@@ -1,5 +1,5 @@
 import getSortedList from "./getSortedList";
-import { getFilteredMovies } from "/src/api/filters";
+import { getFilteredMovies } from "/src/api/movieApi";
 import { store } from "/src/store";
 import {
   setFilteredMovies,
