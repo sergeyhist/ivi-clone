@@ -8,7 +8,7 @@ const nextConfig = {
     domains: ["avatars.mds.yandex.net", "www.avatars.mds.yandex.net"],
   },
   env: {
-    SERVER_HOST: "http://gachibass.online:4000/",
+    SERVER_HOST: "http://gachibass.online:4000",
   },
 };
 

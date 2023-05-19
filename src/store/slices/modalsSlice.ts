@@ -1,12 +1,12 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { InfoTabs } from "/src/types/InfoTabs";
 
-interface IMovieModal {
+export interface IMovieModal {
   isShow: boolean;
   defaultTab: InfoTabs;
 }
 
-interface ModalStates {
+export interface ModalStates {
   showSearchModal: boolean;
   showAuthModal: boolean;
   showMovieModal: IMovieModal;

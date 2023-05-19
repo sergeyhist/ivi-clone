@@ -2,6 +2,7 @@ import axios from "axios";
 import { IMovie } from "../types/IMovie";
 import { IComment } from "../types/IComment";
 import { IPerson } from "../types/IPerson";
+import { IFilters } from "../types/IFilter";
 
 export const getMoviesById = async (
   filmsId: string[]
@@ -20,7 +21,9 @@ export const getMoviesById = async (
   }
 };
 
-export const getMovie = async (film_id: string): Promise<IMovie | undefined> => {
+export const getMovie = async (
+  film_id: string
+): Promise<IMovie | undefined> => {
   try {
     if (!process.env.SERVER_HOST)
       throw new Error("process.env.SERVER_HOST undefined");
@@ -47,7 +50,9 @@ export const getMoviePersons = async (film_id: string): Promise<IPerson[]> => {
   }
 };
 
-export const getMovieComments = async (film_id: string): Promise<IComment[]> => {
+export const getMovieComments = async (
+  film_id: string
+): Promise<IComment[]> => {
   try {
     if (!process.env.SERVER_HOST)
       throw new Error("process.env.SERVER_HOST undefined");
@@ -61,7 +66,9 @@ export const getMovieComments = async (film_id: string): Promise<IComment[]> => 
   }
 };
 
-export const getMoviesByGenre = async (genre_slug: string): Promise<IMovie[]> => {
+export const getMoviesByGenre = async (
+  genre_slug: string
+): Promise<IMovie[]> => {
   try {
     if (!process.env.SERVER_HOST)
       throw new Error("process.env.SERVER_HOST undefined");
@@ -72,5 +79,46 @@ export const getMoviesByGenre = async (genre_slug: string): Promise<IMovie[]> =>
   } catch (error) {
     console.error(error);
     return [];
+  }
+};
+
+export const getFilteredMovies = async (
+  filters: IFilters,
+  limit: number
+): Promise<IMovie[] | undefined> => {
+  try {
+    const response = await axios.get(
+      `${String(process.env.SERVER_HOST)}/filter/films`,
+      {
+        params: {
+          genres: filters.genres,
+          countries: filters.countries,
+          rating: filters.rating === "0" ? undefined : filters.rating,
+          assessments:
+            filters.assessments === "0" ? undefined : filters.assessments,
+          year_min:
+            filters.year.length > 0
+              ? (filters.year as string).split("-")[0]
+              : undefined,
+          year_max:
+            filters.year.length > 0
+              ? (filters.year as string).split("-")[1]
+              : undefined,
+          actor:
+            filters.actor.length > 0
+              ? (filters.actor as string).split("_")
+              : undefined,
+          filmmaker:
+            filters.director.length > 0
+              ? (filters.director as string).split("_")
+              : undefined,
+          limit: limit,
+        },
+      }
+    );
+
+    return response.data as IMovie[];
+  } catch (error) {
+    console.log(error);
   }
 };

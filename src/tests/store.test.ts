@@ -3,16 +3,12 @@ import { defaultFilters } from "/src/utils/filters/filtersVariables";
 import {
   filtersSlice,
   FiltersState,
-  setFilteredMovies,
-  setFilteredMoviesPage,
-  setFilters,
-  setIsMoviesLoading,
-  setSortingMethod,
 } from "/src/store/slices/filtersSlice";
 import { mockMovie } from "/src/utils/movie";
 import { IFilters } from "/src/types/IFilter";
 import { IMovie } from "/src/types/IMovie";
 import getSortedList from "/src/utils/filters/getSortedList";
+import {IMovieModal, modalsSlice, ModalStates} from "/src/store/slices/modalsSlice";
 
 describe("authSlice", () => {
   it("should return the correct state", () => {
@@ -90,5 +86,47 @@ describe("filtersSlice", () => {
     const newState = filtersSlice.reducer(initialState, action);
 
     expect(newState.isMoviesLoading).toEqual(isLoading);
+  });
+});
+
+describe('modalsSlice', () => {
+  let initialState: ModalStates;
+
+  beforeEach(() => {
+    initialState = {
+      showAuthModal: false,
+      showSearchModal: false,
+      showMovieModal: { isShow: false, defaultTab: 'actors' },
+    };
+  });
+
+  it('should handle setShowMovieModal', () => {
+    const movieModal: IMovieModal = {
+      isShow: true,
+      defaultTab: 'actors',
+    };
+
+    const action = modalsSlice.actions.setShowMovieModal(movieModal);
+    const newState = modalsSlice.reducer(initialState, action);
+
+    expect(newState.showMovieModal).toEqual(movieModal);
+  });
+
+  it('should handle setShowSearchModal', () => {
+    const showSearchModal = true;
+
+    const action = modalsSlice.actions.setShowSearchModal(showSearchModal);
+    const newState = modalsSlice.reducer(initialState, action);
+
+    expect(newState.showSearchModal).toEqual(showSearchModal);
+  });
+
+  it('should handle setShowAuthModal', () => {
+    const showAuthModal = true;
+
+    const action = modalsSlice.actions.setShowAuthModal(showAuthModal);
+    const newState = modalsSlice.reducer(initialState, action);
+
+    expect(newState.showAuthModal).toEqual(showAuthModal);
   });
 });
