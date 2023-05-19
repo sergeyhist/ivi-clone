@@ -8,7 +8,7 @@ import ModalInput from "/src/UI/ModalInput/ModalInput";
 import PrivacyPolicy from "/src/components/ModalWindows/AuthModal/ChatDialogue/PrivacyPolicy/PrivacyPolicy";
 import { useTranslation } from "next-i18next";
 import styles from "./EmailInput.module.sass";
-import { getUserByEmail } from "/src/api/userApi";
+import { getUserByEmail } from "/src/api/user";
 import { useAppDispatch } from "/src/hooks/redux";
 import { setAuth } from "/src/store/slices/authSlice";
 

@@ -15,7 +15,7 @@ import {
 } from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDialogue.utils";
 import ErrorMessage from "/src/components/ModalWindows/AuthModal/ChatDialogue/ErrorMessage/ErrorMessage";
 import EmailInput from "/src/components/ModalWindows/AuthModal/ChatDialogue/EmailInput/EmailInput";
-import { createUser, login } from "/src/api/userApi";
+import { createUser, login } from "/src/api/user";
 import { useTranslation } from "next-i18next";
 import ChatMessage from "/src/components/ModalWindows/AuthModal/ChatMessage/ChatMessage";
 import { useAppDispatch } from "/src/hooks/redux";

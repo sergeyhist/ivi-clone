@@ -5,13 +5,15 @@ import { IFilters } from "/src/types/IFilter";
 import getSortedList from "/src/utils/filters/getSortedList";
 import { defaultFilters } from "/src/utils/filters/filtersVariables";
 
-const initialState: {
+export interface FiltersState  {
   filters: IFilters;
   filteredMovies: IMovie[];
   filteredMoviesPage: number;
   sortingMethod: string;
   isMoviesLoading: boolean;
-} = {
+}
+
+const initialState: FiltersState= {
   filters: defaultFilters,
   filteredMovies: [],
   filteredMoviesPage: 1,
@@ -19,7 +21,7 @@ const initialState: {
   isMoviesLoading: false,
 };
 
-export const localeSlice = createSlice({
+export const filtersSlice = createSlice({
   name: "locale",
   initialState,
   reducers: {
@@ -47,5 +49,5 @@ export const {
   setFilteredMoviesPage,
   setSortingMethod,
   setIsMoviesLoading,
-} = localeSlice.actions;
-export default localeSlice.reducer;
+} = filtersSlice.actions;
+export default filtersSlice.reducer;

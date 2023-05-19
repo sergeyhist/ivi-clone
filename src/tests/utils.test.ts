@@ -1,6 +1,6 @@
 import { getMovieDeclination } from "/src/utils/getMovieDeclination";
 import { notify } from "/src/utils/defaultToast";
-import toastify from "react-toastify";
+import toastify, {toast} from "react-toastify";
 import {
   getPersonFirstName,
   getPersonLastName,
@@ -16,6 +16,8 @@ import {
   getAgeImg,
 } from "../utils/movie";
 import { TFunction } from "next-i18next";
+import { declOfNum } from "/src/utils/declOfNum";
+import { getBackendImage } from "/src/utils/getBackendImg";
 
 describe("getMovieDeclination", () => {
   it("should return the correct declination for 'ru' locale", () => {
@@ -49,7 +51,7 @@ describe("getMovieDeclination", () => {
 jest.mock("react-toastify");
 
 describe("notify", () => {
-  const mockToast = jest.spyOn(toastify, "toast");
+  const mockToast = jest.spyOn(toastify, "toast") as jest.MockedFunction<typeof toast>;
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -112,7 +114,7 @@ describe("movie utils", () => {
     const locale = "ru";
     expect(getMovieName(mockMovie, locale)).toEqual(mockMovie.name_ru);
   });
-  it("should return formate number", () => {
+  it("should return formatted number", () => {
     expect(getFormateNumber(1555).charCodeAt(1)).toEqual(160);
   });
   it("should return format movie date", () => {
@@ -132,5 +134,29 @@ describe("movie utils", () => {
     expect(getFormateDate(date, t as TFunction)).toMatch(/movie:months.4/);
     expect(getFormateDate(date, t as TFunction)).toMatch(/2023/);
     expect(getFormateDate(date, t as TFunction)).toMatch(/8/);
+  });
+});
+
+describe("declOfNum", () => {
+  it("should return a correct text form", () => {
+    expect(declOfNum(15, ["фильм", "фильма", "фильмов"])).toBe("15 фильмов");
+    expect(declOfNum(4, ["movie", "movies", "movies"])).toBe("4 movies");
+    expect(declOfNum(1, ["car", "cars", "cars"])).toBe("1 car");
+    expect(declOfNum(443, ["house", "houses", "houses"])).toBe("443 houses");
+  });
+});
+
+describe("getBackendImg", () => {
+  it("should return original img if protocol includes http or https", () => {
+    const link = "http://example.com";
+    const linkHttps = "https://example.com";
+    expect(getBackendImage(link)).toBe(link);
+    expect(getBackendImage(linkHttps)).toBe(linkHttps);
+  });
+  it("should return image with https if link doesn't have any protocol", () => {
+    expect(getBackendImage("//example.jp")).toBe("https://example.jp");
+  });
+  it("should return undefined.scg if img is an empty string", () => {
+    expect(getBackendImage("")).toBe("/images/undefined.svg");
   });
 });

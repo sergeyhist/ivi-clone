@@ -6,7 +6,7 @@ const initialState: UserAuth ={
   userEmail: "",
 }
 
-interface UserAuth{
+export interface UserAuth{
   isLogged: boolean;
   userEmail: string;
 }

@@ -13,6 +13,7 @@ import { iviSans, iviIcons, iconFont } from "/src/utils/fonts";
 import ProgressBar from "/src/UI/ProgressBar/ProgressBar";
 import { useCountriesSlugs } from "/src/api/countries";
 import { useGenresSlugs } from "/src/api/genres";
+import {setAuth} from "/src/store/slices/authSlice";
 
 interface LayoutProps {
   title: string;
@@ -34,6 +35,14 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
       })
     );
   }, 100);
+
+  useEffect(() => {
+    if (localStorage.getItem("email")) {
+      dispatch(
+        setAuth({ userEmail: localStorage.getItem("email") || "", isLogged: true })
+      );
+    }
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(
