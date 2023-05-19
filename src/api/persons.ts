@@ -7,7 +7,7 @@ export const getPersonById = async (
 ): Promise<IPerson | undefined> => {
   try {
     const response = await axios.get(
-      `http://85.237.34.125:4000/persons/${personId as string}`
+      `${String(process.env.SERVER_HOST)}/persons/${personId as string}`
     );
     return response.data as IPerson;
   } catch (err) {

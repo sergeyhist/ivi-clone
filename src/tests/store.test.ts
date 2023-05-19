@@ -1,14 +1,18 @@
 import authSlice, { setAuth, UserAuth } from "/src/store/slices/authSlice";
 import { defaultFilters } from "/src/utils/filters/filtersVariables";
-import {
-  filtersSlice,
-  FiltersState,
-} from "/src/store/slices/filtersSlice";
+import { filtersSlice, FiltersState } from "/src/store/slices/filtersSlice";
 import { mockMovie } from "/src/utils/movie";
 import { IFilters } from "/src/types/IFilter";
 import { IMovie } from "/src/types/IMovie";
 import getSortedList from "/src/utils/filters/getSortedList";
-import {IMovieModal, modalsSlice, ModalStates} from "/src/store/slices/modalsSlice";
+import {
+  IMovieModal,
+  modalsSlice,
+  ModalStates,
+} from "/src/store/slices/modalsSlice";
+import { slugsSlice, SlugsState } from "/src/store/slices/slugsSlice";
+import IWindowSize from "/src/types/IWindowSize";
+import { windowSizeSlice } from "/src/store/slices/windowSizeSlice";
 
 describe("authSlice", () => {
   it("should return the correct state", () => {
@@ -89,21 +93,21 @@ describe("filtersSlice", () => {
   });
 });
 
-describe('modalsSlice', () => {
+describe("modalsSlice", () => {
   let initialState: ModalStates;
 
   beforeEach(() => {
     initialState = {
       showAuthModal: false,
       showSearchModal: false,
-      showMovieModal: { isShow: false, defaultTab: 'actors' },
+      showMovieModal: { isShow: false, defaultTab: "actors" },
     };
   });
 
-  it('should handle setShowMovieModal', () => {
+  it("should handle setShowMovieModal", () => {
     const movieModal: IMovieModal = {
       isShow: true,
-      defaultTab: 'actors',
+      defaultTab: "actors",
     };
 
     const action = modalsSlice.actions.setShowMovieModal(movieModal);
@@ -112,7 +116,7 @@ describe('modalsSlice', () => {
     expect(newState.showMovieModal).toEqual(movieModal);
   });
 
-  it('should handle setShowSearchModal', () => {
+  it("should handle setShowSearchModal", () => {
     const showSearchModal = true;
 
     const action = modalsSlice.actions.setShowSearchModal(showSearchModal);
@@ -121,12 +125,54 @@ describe('modalsSlice', () => {
     expect(newState.showSearchModal).toEqual(showSearchModal);
   });
 
-  it('should handle setShowAuthModal', () => {
+  it("should handle setShowAuthModal", () => {
     const showAuthModal = true;
 
     const action = modalsSlice.actions.setShowAuthModal(showAuthModal);
     const newState = modalsSlice.reducer(initialState, action);
 
     expect(newState.showAuthModal).toEqual(showAuthModal);
+  });
+});
+
+describe("slugsSlice", () => {
+  let initialState: SlugsState;
+
+  beforeEach(() => {
+    initialState = {
+      genresSlugs: [],
+      countriesSlugs: [],
+    };
+  });
+
+  it("should handle setSlugs", () => {
+    const newSlugs: SlugsState = {
+      genresSlugs: ["action", "comedy", "drama"],
+      countriesSlugs: ["usa", "uk", "france"],
+    };
+
+    const action = slugsSlice.actions.setSlugs(newSlugs);
+    const newState = slugsSlice.reducer(initialState, action);
+
+    expect(newState.genresSlugs).toEqual(newSlugs.genresSlugs);
+    expect(newState.countriesSlugs).toEqual(newSlugs.countriesSlugs);
+  });
+});
+
+describe("windowSizeSlice", () => {
+  let initialState: IWindowSize;
+
+  beforeEach(() => {
+    initialState = { width: 0, height: 0 };
+  });
+
+  it("should handle setWindowSize", () => {
+    const newWindowSize: IWindowSize = { width: 800, height: 600 };
+
+    const action = windowSizeSlice.actions.setWindowSize(newWindowSize);
+    const newState = windowSizeSlice.reducer(initialState, action);
+
+    expect(newState.width).toEqual(newWindowSize.width);
+    expect(newState.height).toEqual(newWindowSize.height);
   });
 });
