@@ -29,7 +29,10 @@ const ProgressBar: FC<ProgressBarProps> = ({
   }
 
   return (
-    <div className={`${styles.bar} ${className}` + fixedBar}>
+    <div
+      data-testid="progress-bar"
+      className={`${styles.bar} ${className}` + fixedBar}
+    >
       <div
         style={{
           width: `${type === "loading" ? loadingProgress : value}%`,

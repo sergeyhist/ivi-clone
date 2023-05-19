@@ -35,7 +35,7 @@ export const getAgeImg = (age: number): string => {
 };
 
 export const getMovieCounty = (movie: IMovie): string => {
-  return movie.countries[0].slug || "";
+  return movie.countries[0].slug;
 };
 
 export const mockMovie: IMovie = {

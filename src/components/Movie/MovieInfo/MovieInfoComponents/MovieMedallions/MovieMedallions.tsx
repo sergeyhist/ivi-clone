@@ -6,7 +6,7 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { getBackendImage } from "/src/utils/getBackendImg";
 import { IPerson } from "/src/types/IPerson";
-import { getPersonLastName, getPersonFirstName } from "/src/utils/person";
+import { getPersonLastName, getPersonFirstName } from "../../../../../utils/person";
 import Link from "next/link";
 
 interface MovieMedallionsProps {

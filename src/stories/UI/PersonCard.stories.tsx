@@ -3,7 +3,7 @@ import { Provider } from "react-redux";
 import { store } from "/src/store";
 import "/src/styles/global.sass";
 import PersonCard from "/src/components/Person/PersonCard/PersonCard";
-import { mockPersons } from "/src/utils/person";
+import { mockPersons } from "../../utils/person";
 
 const meta: Meta<typeof PersonCard> = {
   title: "UI/PersonCard",
@@ -44,4 +44,3 @@ export const FirstStory: Story = {
     person: mockPersons[0],
   },
 };
-

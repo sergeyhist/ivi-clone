@@ -3,7 +3,7 @@ import styles from "./MovieTrailer.module.sass";
 import { FaPlay } from "react-icons/fa";
 import { FaPause } from "react-icons/fa";
 import { IMovie } from "/src/types/IMovie";
-import { getAgeImg } from "/src/utils/movie/movie";
+import { getAgeImg } from "../../../../../utils/movie";
 import Image from "next/image";
 
 interface MovieTrailerProps {

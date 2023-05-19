@@ -10,7 +10,7 @@ import {
   getPersonFirstName,
   getPersonLastName,
   getPersonRole,
-} from "/src/utils/person";
+} from "../../utils/person";
 import { declOfNum } from "/src/utils/declOfNum";
 
 interface CreatorProps {
