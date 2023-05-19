@@ -10,7 +10,7 @@ interface MovieCoverProps {
   persons: IPerson[] | undefined;
 }
 
-const MovieCover: FC<MovieCoverProps> = ({ movie, persons }) => {
+const MovieInfo: FC<MovieCoverProps> = ({ movie, persons }) => {
   const windowSize = useAppSelector((state) => state.windowSize);
   const [isMobile, setMobile] = useState<boolean>(false);
 
@@ -23,7 +23,7 @@ const MovieCover: FC<MovieCoverProps> = ({ movie, persons }) => {
     }
   }, [isMobile, windowSize.width]);
 
-  const MovieCover = useMemo(() => {
+  const MovieInfoVersion = useMemo(() => {
     return isMobile ? (
       <MovieCoverMobile movie={movie} persons={persons} />
     ) : (
@@ -31,7 +31,7 @@ const MovieCover: FC<MovieCoverProps> = ({ movie, persons }) => {
     );
   }, [isMobile, movie, persons]);
 
-  return <>{MovieCover}</>;
+  return <>{MovieInfoVersion}</>;
 };
 
-export default MovieCover;
+export default MovieInfo;

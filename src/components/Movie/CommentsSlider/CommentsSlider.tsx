@@ -24,7 +24,7 @@ const CommentsSlider: FC<CommentsSliderProps> = ({ comments }) => {
   };
 
   return (
-    <section className={styles.section}>
+    <section data-testid="comments-slider" className={styles.section}>
       <div className="container">
         <div className={styles.section__row}>
           <h4 onClick={clickHandler} className={styles.title}>
@@ -57,6 +57,7 @@ const CommentsSlider: FC<CommentsSliderProps> = ({ comments }) => {
           type="frame"
           className={`${styles.button} ${styles.button_mobile}`}
           clickCallback={clickHandler}
+          dataTestId="open-comments-modal"
         >
           {t("comments.leave")}
         </CustomButton>

@@ -25,10 +25,13 @@ const BreadCrumbs: FC<BreadCrumbsProps> = ({
     : `${styles.section}`;
 
   return (
-    <section className={sectionClassName}>
+    <section data-testid="breadcrumbs" className={sectionClassName}>
       <div className="container">
         <nav className={styles.nav}>
-          <ul className={`${styles.list} ${listClassName}`}>
+          <ul
+            data-testid="breadcrumbs-list"
+            className={`${styles.list} ${listClassName}`}
+          >
             {routes.map((route, index) => (
               <li key={index} className={styles.list__item}>
                 <Link className={styles.list__link} href={route}>

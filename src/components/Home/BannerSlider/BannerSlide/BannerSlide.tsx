@@ -6,6 +6,7 @@ import CustomButton from "/src/UI/CustomButton/CustomButton";
 import styles from "./BannerSlide.module.sass";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
+import { getClassName } from "./BannerSlide.utils";
 
 interface BannerSlideProps {
   slide: IBannerSlide;
@@ -14,13 +15,11 @@ interface BannerSlideProps {
 const BannerSlide: FC<BannerSlideProps> = ({ slide }) => {
   const { t } = useTranslation("home");
   const swiperSlide = useSwiperSlide();
-  const slideClassName = swiperSlide.isActive
-    ? styles.slide
-    : `${styles.slide} ${styles.slide_hidden}`;
+  const slideClassName = getClassName(swiperSlide.isActive);
 
   return (
     <Link className={styles.link} href={slide.route}>
-      <article className={slideClassName}>
+      <article data-testid="banner-slide" className={slideClassName}>
         <Image
           width={1216}
           height={524}
@@ -30,15 +29,15 @@ const BannerSlide: FC<BannerSlideProps> = ({ slide }) => {
           placeholder="blur"
           blurDataURL="/images/placeholder.svg"
         />
-
         <Image
           width={1216}
           height={1358}
           className={styles.slide__img_mobile}
           src={slide.mobileBannerUrl}
           alt="mobileBanner"
+          placeholder="blur"
+          blurDataURL="/images/placeholder.svg"
         />
-
         <div className={styles.promo}>
           {slide.logoUrl && (
             <Image

@@ -13,7 +13,7 @@ const TopTen: FC = () => {
   const { locale } = useRouter();
 
   return (
-    <section className={styles.section}>
+    <section data-testid="topten-slider" className={styles.section}>
       <div className="container">
         <h2 className={styles.section__title}>
           {locale === "ru" && (

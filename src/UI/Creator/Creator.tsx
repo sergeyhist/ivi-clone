@@ -36,6 +36,7 @@ const Creator: FC<CreatorProps> = ({ person, type = "default", className = "" })
     <Link
       className={`${styles.creator} ${creatorClassName} ${className}`}
       href={"/person/" + person.person_id}
+      data-testid="creator"
     >
       <div className={styles.wrapper}>
         <Image

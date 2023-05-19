@@ -14,6 +14,7 @@ describe("Votes", () => {
     const like = screen.getByTestId("like");
     const dislike = screen.getByTestId("dislike");
     fireEvent.click(like);
+    expect(screen.getByTestId("likes")).toHaveTextContent("22");
     fireEvent.click(dislike);
     expect(screen.getByTestId("likes")).toHaveTextContent("21");
   });

@@ -23,7 +23,7 @@ const CreatorsList: FC<CreatorsListProps> = ({ persons }) => {
   };
 
   return (
-    <section className="container">
+    <section data-testid="creators-list" className="container">
       <div className={styles.container}>
         <button onClick={clickHandler} type="button">
           <CustomTitle
@@ -37,7 +37,11 @@ const CreatorsList: FC<CreatorsListProps> = ({ persons }) => {
             return <Creator className={styles.creator} key={i} person={person} />;
           })}
 
-          <button className={styles.button} onClick={clickHandler}>
+          <button
+            data-testid="open-creators-modal"
+            className={styles.button}
+            onClick={clickHandler}
+          >
             {t("creators.more")}
           </button>
         </div>
