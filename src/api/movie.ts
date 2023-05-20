@@ -154,7 +154,7 @@ export const updateMovie = async (
       data: data,
     };
 
-    const response = await axios.request<IComment>(config);
+    const response = await axios.request<IMovie>(config);
     return response.data as unknown as IMovie;
   } catch (error) {
     console.error(error);

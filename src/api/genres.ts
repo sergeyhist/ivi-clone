@@ -25,3 +25,36 @@ export const getGenres = async (key = "/genres?limit=100"): Promise<IGenre[]> =>
     return [];
   }
 };
+
+export const updateGenre = async (
+  token: string,
+  genre_id: string,
+  genre_en: string,
+  genre_ru: string
+): Promise<IGenre | undefined> => {
+  try {
+    if (!process.env.SERVER_HOST)
+      throw new Error("process.env.SERVER_HOST undefined");
+
+    const data = JSON.stringify({
+      genre_ru: genre_ru,
+      genre_en: genre_en,
+    });
+
+    const config = {
+      method: "patch",
+      maxBodyLength: Infinity,
+      url: `${process.env.SERVER_HOST}/genres/${genre_id}`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      data: data,
+    };
+
+    const response = await axios.request<IGenre>(config);
+    return response.data as unknown as IGenre;
+  } catch (error) {
+    console.error(error);
+  }
+};
