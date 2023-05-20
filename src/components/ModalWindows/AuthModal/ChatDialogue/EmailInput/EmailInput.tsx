@@ -50,9 +50,9 @@ const EmailInput: FC<EmailInput> = ({
 
   const handleLinkClick = (social: string): void =>{
     if(social === "google")
-      push(`${String(process.env.SERVER_HOST)}/google/login`);
+      window.open(`${String(process.env.SERVER_HOST)}/google/login`,"_self");
     else
-      push(`${String(process.env.SERVER_HOST)}/vk/login`);
+      window.open(`${String(process.env.SERVER_HOST)}/vk/login`,"_self");
   }
 
   const handleEmailSubmit = (): void => {
