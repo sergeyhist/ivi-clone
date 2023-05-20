@@ -15,7 +15,11 @@ const SortingOption: FC<SortingOptionProps> = ({
   const activeOption = isActive ? ` ${styles.option_active}` : "";
 
   return (
-    <div className={styles.option + activeOption} onClick={clickCallback}>
+    <div
+      data-testid="sorting-option"
+      className={styles.option + activeOption}
+      onClick={clickCallback}
+    >
       {children}
     </div>
   );

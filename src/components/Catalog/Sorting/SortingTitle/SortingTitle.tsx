@@ -21,7 +21,7 @@ const SortingTitle: FC<SortingTitleProps> = ({
       className={styles.title}
     >
       <MdOutlineSort size={16} className={styles.title__icon} />
-      {value}
+      <span data-testid="sorting-title">{value}</span>
       <span className={styles.title__arrow + activeArrow} />
     </div>
   );

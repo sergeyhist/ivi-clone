@@ -12,6 +12,7 @@ import { getSortOptions } from "./Sorting.utils";
 const Sorting: FC = () => {
   const { t } = useTranslation("sorting");
   const router = useRouter();
+  const { locale } = router;
 
   const sortOptions = getSortOptions(router);
 
@@ -39,12 +40,12 @@ const Sorting: FC = () => {
 
   useEffect(() => {
     sortingMethod.includes("name_") &&
-      dispatch(setSortingMethod(`name_${router.locale as string}`));
-  }, [dispatch, router.locale, sortingMethod]);
+      dispatch(setSortingMethod(`name_${locale || "ru"}`));
+  }, [dispatch, locale, sortingMethod]);
 
   return (
-    <div className={styles.sorting + " unselectable"}>
-      <div ref={titleRef}>
+    <div data-testid="sorting" className={styles.sorting + " unselectable"}>
+      <div data-testid="title" ref={titleRef}>
         <SortingTitle
           value={t(titleValue)}
           isDropdownActive={isDropdownActive}
@@ -52,6 +53,7 @@ const Sorting: FC = () => {
         />
       </div>
       <div
+        data-testid="sorting-dropdown"
         ref={dropdownRef}
         className={styles.sorting__dropdown + activeDropdown}
       >
