@@ -7,7 +7,6 @@ import { getMovieName } from "/src/utils/movie";
 import { useRouter } from "next/router";
 import ModalInput from "/src/UI/ModalInput/ModalInput";
 import { updateMovie } from "/src/api/movie";
-import { response } from "express";
 
 interface AdminMovieProps {
   movie: IMovie;
