@@ -11,6 +11,10 @@ import styles from "./EmailInput.module.sass";
 import { getUserByEmail } from "/src/api/user";
 import { useAppDispatch } from "/src/hooks/redux";
 import { setAuth } from "/src/store/slices/authSlice";
+import Link from "next/link";
+import CustomButton from "/src/UI/CustomButton/CustomButton";
+import {BsGoogle} from "react-icons/bs";
+import {FaVk} from "react-icons/fa";
 
 interface EmailInput {
   isEmailInputSuccess: boolean;
@@ -70,6 +74,24 @@ const EmailInput: FC<EmailInput> = ({
           inputType="email"
           dataTestId="email-input"
         />
+        <div className={styles.socials}>
+          <Link className={styles.socials__link} href={`${String(process.env.SERVER_HOST)}/google/login`}>
+            <CustomButton className={styles.socials__btn} type="icon">
+              <div className={styles.icon__container}>
+                <BsGoogle/>
+                <p>{t("googleButton")}</p>
+              </div>
+            </CustomButton>
+          </Link>
+          <Link className={styles.socials__link} href={`${String(process.env.SERVER_HOST)}/vk/login`}>
+            <CustomButton className={styles.socials__btn} type="icon">
+              <div className={styles.icon__container}>
+                <FaVk/>
+                <p>{t("vkButton")}</p>
+              </div>
+            </CustomButton>
+          </Link>
+        </div>
         <PrivacyPolicy />
       </div>
     </CSSTransition>

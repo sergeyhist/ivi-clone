@@ -7,6 +7,8 @@
     "title": "Log in or Sign up",
     "subtitle": "to use the service on any device"
   },
+  "googleButton": "Sing Up / Log in with Google",
+  "vkButton": "Sing Up / Log in with Vk",
   "passwordMessage": "Enter password to login",
   "passwordErrorMessage": "Password must be 4 to 16 characters",
   "emailPlaceholder": "Via email",

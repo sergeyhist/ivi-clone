@@ -42,12 +42,6 @@ const AuthModal: FC<RegistrationModalProps> = ({ closeCallback }) => {
         isEmailExist={isEmailExist}
         setProgressBarWidth={setProgressBarWidth}
       />
-      <div>
-        <Link href={`${String(process.env.SERVER_HOST)}/google/login/callback`}>
-          Google
-        </Link>
-        <Link href={`${String(process.env.SERVER_HOST)}/vk/login`}>VK</Link>
-      </div>
     </div>
   );
 };
