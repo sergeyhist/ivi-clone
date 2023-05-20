@@ -16,4 +16,15 @@ describe("MobileMenu", () => {
     fireEvent.click(searchModalLink);
     expect(store.getState().showModal.showSearchModal).toBeTruthy();
   });
+  it("should contain proper class names after click",()=>{
+    renderWithProviders(<MobileMenu />);
+    const thirdLink = screen.getByTestId("mobile-menu-link-3");
+    const glowImage = screen.getByTestId("glow-image");
+    const icon = screen.getByTestId("icon");
+    const caption = screen.getByTestId("caption");
+    fireEvent.click(thirdLink);
+    expect(glowImage).toHaveClass("styles.active");
+    expect(icon).toHaveClass("styles.item_selected ");
+    expect(caption).toHaveClass("styles.item_selected");
+  })
 });

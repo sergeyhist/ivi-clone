@@ -2,20 +2,19 @@ import { FC, useState, MouseEvent } from "react";
 import styles from "./MobileMenu.module.sass";
 import { iconsClassNames, tabsLinks } from "./MobileMenu.utils";
 import { useTranslation } from "next-i18next";
-import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
-import { setShowModal } from "/src/store/slices/modalsSlice";
+import { useAppDispatch } from "/src/hooks/redux";
 import Link from "next/link";
+import { setShowSearchModal } from "/src/store/slices/modalsSlice";
 
 const MobileMenu: FC = () => {
   const { t } = useTranslation("mobileMenu");
   const [activeTab, setActiveTab] = useState<number | null>(null);
-  const showModal = useAppSelector((state) => state.showModal);
   const dispatch = useAppDispatch();
 
   const handleTabClick = (e: MouseEvent, index: number): void => {
     if (index === 2) {
       e.preventDefault();
-      dispatch(setShowModal({ ...showModal, showSearchModal: true }));
+      dispatch(setShowSearchModal(true));
     }
     setActiveTab(index);
   };
@@ -39,16 +38,19 @@ const MobileMenu: FC = () => {
                 className={`${styles.glow__image} ${
                   activeTab === i ? styles.active : ""
                 }`}
+                data-testid="glow-image"
               ></div>
               <div
                 className={`${iconClass} ${styles.icon} ${
                   activeTab === i ? styles.item_selected : ""
                 }`}
+                data-testid="icon"
               ></div>
               <div
                 className={`${styles.content__item__caption} ${
                   activeTab === i ? styles.item_selected : ""
                 }`}
+                data-testid="caption"
               >
                 {t(`links.${i}`)}
               </div>
