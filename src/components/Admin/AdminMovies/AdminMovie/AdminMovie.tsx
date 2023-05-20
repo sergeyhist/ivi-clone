@@ -25,10 +25,12 @@ const AdminMovie: FC<AdminMovieProps> = ({ movie }) => {
     updateMovie(
       String(localStorage.getItem("token")),
       movie.film_id,
-      inputTextEn,
-      inputTextRu
+      inputTextEn || movie.name_en,
+      inputTextRu || movie.name_ru
     ).then((response) => {
       console.log(response);
+      setInputTextRu("");
+      setInputTextEn("");
     });
   };
 
