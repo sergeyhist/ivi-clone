@@ -3,7 +3,7 @@ import {
   createUser,
   getUserByEmail,
   login,
-  LoginResponse,
+  ResponseWithToken,
 } from "/src/api/user";
 
 jest.mock("axios");
@@ -45,7 +45,7 @@ describe("userApi", () => {
   });
 
   it("should return the login response when successful", async () => {
-    const mockResponse: LoginResponse = {
+    const mockResponse: ResponseWithToken = {
       accessToken: "some-token",
     };
     const email = "test@example.com";

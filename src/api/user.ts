@@ -68,7 +68,9 @@ export const login = async (
 
 export const logout = async ():Promise<void> =>{
   try {
-    await axios.delete(`${String(process.env.SERVER_HOST)}/logout`);
+    await axios.delete(`${String(process.env.SERVER_HOST)}/logout`,{
+      withCredentials: true
+    });
   }catch (err){
     console.log(err);
   }
@@ -76,7 +78,9 @@ export const logout = async ():Promise<void> =>{
 
 export const refreshAccessToken = async (): Promise<ResponseWithToken | undefined> => {
   try {
-    const response = await axios.post(`${String(process.env.SERVER_HOST)}/logout`);
+    const response = await axios.post(`${String(process.env.SERVER_HOST)}/refresh`,{
+      withCredentials: true
+    });
 
     return response.data;
   }catch (err){

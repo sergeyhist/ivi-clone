@@ -1,15 +1,21 @@
-import { FC, useState, MouseEvent } from "react";
+import {FC, useState, MouseEvent, useEffect} from "react";
 import styles from "./MobileMenu.module.sass";
-import { iconsClassNames, tabsLinks } from "./MobileMenu.utils";
+import {getLinkIndex, iconsClassNames, tabsLinks} from "./MobileMenu.utils";
 import { useTranslation } from "next-i18next";
 import { useAppDispatch } from "/src/hooks/redux";
 import Link from "next/link";
 import { setShowSearchModal } from "/src/store/slices/modalsSlice";
+import {useRouter} from "next/router";
 
 const MobileMenu: FC = () => {
   const { t } = useTranslation("mobileMenu");
+  const router = useRouter();
   const [activeTab, setActiveTab] = useState<number | null>(null);
   const dispatch = useAppDispatch();
+
+  useEffect(()=>{
+      setActiveTab(getLinkIndex(router.pathname));
+  },[router.pathname]);
 
   const handleTabClick = (e: MouseEvent, index: number): void => {
     if (index === 2) {
