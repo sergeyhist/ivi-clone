@@ -5,9 +5,7 @@ import { IGenre } from "../types/IGenre";
 const getGenresSlugs = async (url: string): Promise<string[]> => {
   const response = await axios.get(url);
   const data = response.data as IGenre[];
-  const slugs = data
-    ? data.map((genre: IGenre) => genre.slug.toLowerCase())
-    : [];
+  const slugs = data ? data.map((genre: IGenre) => genre.slug.toLowerCase()) : [];
 
   return slugs;
 };
@@ -16,3 +14,14 @@ export const useGenresSlugs = (): SWRResponse<string[]> => {
   return useSWR(`${String(process.env.SERVER_HOST)}/genres`, getGenresSlugs);
 };
 
+export const getGenres = async (key = "/genres?limit=100"): Promise<IGenre[]> => {
+  try {
+    if (!process.env.SERVER_HOST)
+      throw new Error("process.env.SERVER_HOST undefined");
+    const response = await axios.get<IGenre[]>(process.env.SERVER_HOST + key);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};

@@ -21,9 +21,7 @@ export const getMoviesById = async (
   }
 };
 
-export const getMovie = async (
-  film_id: string
-): Promise<IMovie | undefined> => {
+export const getMovie = async (film_id: string): Promise<IMovie | undefined> => {
   try {
     if (!process.env.SERVER_HOST)
       throw new Error("process.env.SERVER_HOST undefined");
@@ -33,6 +31,20 @@ export const getMovie = async (
     return response.data;
   } catch (error) {
     console.error(error);
+  }
+};
+
+export const getMovies = async (): Promise<IMovie[]> => {
+  try {
+    if (!process.env.SERVER_HOST)
+      throw new Error("process.env.SERVER_HOST undefined");
+    const response = await axios.get<IMovie[]>(
+      `${process.env.SERVER_HOST}/films?limit=100`
+    );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return [];
   }
 };
 
@@ -50,9 +62,7 @@ export const getMoviePersons = async (film_id: string): Promise<IPerson[]> => {
   }
 };
 
-export const getMovieComments = async (
-  film_id: string
-): Promise<IComment[]> => {
+export const getMovieComments = async (film_id: string): Promise<IComment[]> => {
   try {
     if (!process.env.SERVER_HOST)
       throw new Error("process.env.SERVER_HOST undefined");
@@ -66,9 +76,7 @@ export const getMovieComments = async (
   }
 };
 
-export const getMoviesByGenre = async (
-  genre_slug: string
-): Promise<IMovie[]> => {
+export const getMoviesByGenre = async (genre_slug: string): Promise<IMovie[]> => {
   try {
     if (!process.env.SERVER_HOST)
       throw new Error("process.env.SERVER_HOST undefined");
@@ -94,8 +102,7 @@ export const getFilteredMovies = async (
           genres: filters.genres,
           countries: filters.countries,
           rating: filters.rating === "0" ? undefined : filters.rating,
-          assessments:
-            filters.assessments === "0" ? undefined : filters.assessments,
+          assessments: filters.assessments === "0" ? undefined : filters.assessments,
           year_min:
             filters.year.length > 0
               ? (filters.year as string).split("-")[0]
