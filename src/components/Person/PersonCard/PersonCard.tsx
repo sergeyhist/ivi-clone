@@ -12,7 +12,7 @@ interface PersonCardProps {
 
 const PersonCard: FC<PersonCardProps> = ({ person, firstName, lastName }) => {
   return (
-    <div className={styles.content}>
+    <div className={styles.content} data-testid="person-card">
       <div className={styles.img}>
         <Image
           fill

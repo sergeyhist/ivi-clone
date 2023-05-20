@@ -5,7 +5,6 @@ import ChatDialogue from "/src/components/ModalWindows/AuthModal/ChatDialogue/Ch
 import useOverflowHidden from "/src/hooks/useOverflowHidden";
 import { useAppSelector } from "/src/hooks/redux";
 import { iviSans, iviIcons, iconFont } from "/src/utils/fonts";
-import Link from "next/link";
 
 interface RegistrationModalProps {
   closeCallback: () => void;

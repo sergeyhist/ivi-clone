@@ -11,10 +11,10 @@ import styles from "./EmailInput.module.sass";
 import { getUserByEmail } from "/src/api/user";
 import { useAppDispatch } from "/src/hooks/redux";
 import { setAuth } from "/src/store/slices/authSlice";
-import Link from "next/link";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import {BsGoogle} from "react-icons/bs";
 import {FaVk} from "react-icons/fa";
+import {useRouter} from "next/router";
 
 interface EmailInput {
   isEmailInputSuccess: boolean;
@@ -36,6 +36,7 @@ const EmailInput: FC<EmailInput> = ({
   setEmail,
 }) => {
   const { t } = useTranslation("registration");
+  const { push } = useRouter();
   const dispatch = useAppDispatch();
   const emailInputRef = useRef<HTMLDivElement>(null);
 
@@ -47,7 +48,15 @@ const EmailInput: FC<EmailInput> = ({
       });
   }, [dispatch, email, isEmailInputSuccess, setIsEmailExist]);
 
+  const handleLinkClick = (social: string): void =>{
+    if(social === "google")
+      push(`${String(process.env.SERVER_HOST)}/google/login`);
+    else
+      push(`${String(process.env.SERVER_HOST)}/vk/login`);
+  }
+
   const handleEmailSubmit = (): void => {
+    console.log("act");
     setShowErrorMessage(!validateEmail(email));
     setIsEmailInputSuccess(validateEmail(email));
   };
@@ -75,22 +84,18 @@ const EmailInput: FC<EmailInput> = ({
           dataTestId="email-input"
         />
         <div className={styles.socials}>
-          <Link className={styles.socials__link} href={`${String(process.env.SERVER_HOST)}/google/login`}>
-            <CustomButton className={styles.socials__btn} type="icon">
+            <CustomButton className={styles.socials__btn} preventDefault={true} type="icon" clickCallback={()=>{handleLinkClick("google")}}>
               <div className={styles.icon__container}>
                 <BsGoogle/>
-                <p>{t("googleButton")}</p>
+                <p className={styles.text}>{t("googleButton")}</p>
               </div>
             </CustomButton>
-          </Link>
-          <Link className={styles.socials__link} href={`${String(process.env.SERVER_HOST)}/vk/login`}>
-            <CustomButton className={styles.socials__btn} type="icon">
+            <CustomButton className={styles.socials__btn} preventDefault={true} type="icon" clickCallback={()=>{handleLinkClick("vk")}}>
               <div className={styles.icon__container}>
                 <FaVk/>
-                <p>{t("vkButton")}</p>
+                <p className={styles.text}>{t("vkButton")}</p>
               </div>
             </CustomButton>
-          </Link>
         </div>
         <PrivacyPolicy />
       </div>

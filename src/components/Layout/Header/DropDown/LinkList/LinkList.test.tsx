@@ -17,7 +17,8 @@ describe("LinkList", () => {
   const selectedGenre = "movies";
   const prefix = "nav";
   const limit = 2;
-  const t = (key: string) => {
+
+  const t = (key: string): string => {
     const translations = {
       "nav:home": "Home",
       "nav:about": "About",
