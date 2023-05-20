@@ -105,7 +105,10 @@ const ModalInput: FC<ModalInputProps> = ({
   };
 
   return (
-    <div className={`${styles.input__container} ${className ? className : ""}`} data-testid="input-container">
+    <div
+      className={`${styles.input__container} ${className ? className : ""}`}
+      data-testid="input-container"
+    >
       <div
         ref={contentRef}
         className={`${styles.input__content} ${
@@ -131,7 +134,6 @@ const ModalInput: FC<ModalInputProps> = ({
             className={`${styles.input} ${isInputActive ? styles.input_active : ""}`}
             onChange={handleInputChange}
             autoComplete={"on"}
-            required
             data-testid={dataTestId}
           />
           {inputType === "password" && (
@@ -155,7 +157,7 @@ const ModalInput: FC<ModalInputProps> = ({
           isButtonDisabled ? styles.button_disabled : ""
         }`}
         type="red"
-        dataTestId={dataTestId  ? `${dataTestId}-button` : 'custom-button'}
+        dataTestId={dataTestId ? `${dataTestId}-button` : "custom-button"}
       >
         {buttonText}
       </CustomButton>

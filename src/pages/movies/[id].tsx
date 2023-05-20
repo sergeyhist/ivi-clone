@@ -16,7 +16,7 @@ import { IPerson } from "/src/types/IPerson";
 import { getMovieName } from "../../utils/movie";
 import { useTranslation } from "next-i18next";
 import {
-  getMovie,
+  getMovieById,
   getMoviePersons,
   getMovieComments,
   getMoviesByGenre,
@@ -82,7 +82,7 @@ export const getServerSideProps = async ({
   locale: string;
   params: { id: string };
 }): Promise<GetServerSidePropsResult<Record<string, unknown>>> => {
-  const movie = await getMovie(String(params.id));
+  const movie = await getMovieById(String(params.id));
   const persons = await getMoviePersons(String(params.id));
   const comments = await getMovieComments(String(params.id));
   const relatedMovies = await getMoviesByGenre(movie?.genres[0].slug || "drama");

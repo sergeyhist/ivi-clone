@@ -21,7 +21,7 @@ export const getMoviesById = async (
   }
 };
 
-export const getMovie = async (film_id: string): Promise<IMovie | undefined> => {
+export const getMovieById = async (film_id: string): Promise<IMovie | undefined> => {
   try {
     if (!process.env.SERVER_HOST)
       throw new Error("process.env.SERVER_HOST undefined");
@@ -31,18 +31,6 @@ export const getMovie = async (film_id: string): Promise<IMovie | undefined> => 
     return response.data;
   } catch (error) {
     console.error(error);
-  }
-};
-
-export const getMovies = async (key = "/films?limit=100"): Promise<IMovie[]> => {
-  try {
-    if (!process.env.SERVER_HOST)
-      throw new Error("process.env.SERVER_HOST undefined");
-    const response = await axios.get<IMovie[]>(process.env.SERVER_HOST + key);
-    return response.data;
-  } catch (error) {
-    console.error(error);
-    return [];
   }
 };
 
@@ -88,6 +76,18 @@ export const getMoviesByGenre = async (genre_slug: string): Promise<IMovie[]> =>
   }
 };
 
+export const getMovies = async (key = "/films?limit=100"): Promise<IMovie[]> => {
+  try {
+    if (!process.env.SERVER_HOST)
+      throw new Error("process.env.SERVER_HOST undefined");
+    const response = await axios.get<IMovie[]>(process.env.SERVER_HOST + key);
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
 export const getFilteredMovies = async (
   filters: IFilters,
   limit: number
@@ -125,5 +125,38 @@ export const getFilteredMovies = async (
     return response.data as IMovie[];
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const updateMovie = async (
+  token: string,
+  film_id: string,
+  name_en: string,
+  name_ru: string
+): Promise<IMovie | undefined> => {
+  try {
+    if (!process.env.SERVER_HOST)
+      throw new Error("process.env.SERVER_HOST undefined");
+
+    const data = JSON.stringify({
+      name_ru: name_ru,
+      name_en: name_en,
+    });
+
+    const config = {
+      method: "patch",
+      maxBodyLength: Infinity,
+      url: `${process.env.SERVER_HOST}/films/${film_id}`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      data: data,
+    };
+
+    const response = await axios.request<IComment>(config);
+    return response.data as unknown as IMovie;
+  } catch (error) {
+    console.error(error);
   }
 };

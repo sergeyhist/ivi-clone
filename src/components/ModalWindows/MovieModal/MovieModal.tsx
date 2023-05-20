@@ -82,7 +82,6 @@ const MovieModal: FC<MovieModalProps> = ({
 
   useOverflowHidden(showMovieModal.isShow);
 
-  console.log(showMovieModal, showMovieModal.isShow);
   return createAppPortal(
     <>
       {showMovieModal.isShow && (
