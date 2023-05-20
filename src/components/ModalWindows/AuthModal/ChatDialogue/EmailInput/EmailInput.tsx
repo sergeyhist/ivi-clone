@@ -14,7 +14,6 @@ import { setAuth } from "/src/store/slices/authSlice";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
 import {BsGoogle} from "react-icons/bs";
 import {FaVk} from "react-icons/fa";
-import {useRouter} from "next/router";
 
 interface EmailInput {
   isEmailInputSuccess: boolean;
@@ -36,7 +35,6 @@ const EmailInput: FC<EmailInput> = ({
   setEmail,
 }) => {
   const { t } = useTranslation("registration");
-  const { push } = useRouter();
   const dispatch = useAppDispatch();
   const emailInputRef = useRef<HTMLDivElement>(null);
 
@@ -50,13 +48,12 @@ const EmailInput: FC<EmailInput> = ({
 
   const handleLinkClick = (social: string): void =>{
     if(social === "google")
-      push(`${String(process.env.SERVER_HOST)}/google/login`);
+      window.open(`${String(process.env.SERVER_HOST)}/google/login`,"_self");
     else
-      push(`${String(process.env.SERVER_HOST)}/vk/login`);
+      window.open(`${String(process.env.SERVER_HOST)}/vk/login`,"_self");
   }
 
   const handleEmailSubmit = (): void => {
-    console.log("act");
     setShowErrorMessage(!validateEmail(email));
     setIsEmailInputSuccess(validateEmail(email));
   };

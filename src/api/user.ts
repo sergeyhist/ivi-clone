@@ -34,14 +34,14 @@ export const getUserByEmail = async (email: string): Promise<IUser | undefined> 
   }
 };
 
-export interface LoginResponse {
+export interface ResponseWithToken {
   accessToken: string;
 }
 
 export const login = async (
   email: string,
   password: string
-): Promise<LoginResponse | undefined> => {
+): Promise<ResponseWithToken | undefined> => {
   try {
     const data = JSON.stringify({
       email: email,
@@ -65,3 +65,25 @@ export const login = async (
     console.log(err);
   }
 };
+
+export const logout = async ():Promise<void> =>{
+  try {
+    await axios.delete(`${String(process.env.SERVER_HOST)}/logout`,{
+      withCredentials: true
+    });
+  }catch (err){
+    console.log(err);
+  }
+}
+
+export const refreshAccessToken = async (): Promise<ResponseWithToken | undefined> => {
+  try {
+    const response = await axios.post(`${String(process.env.SERVER_HOST)}/refresh`,{
+      withCredentials: true
+    });
+
+    return response.data;
+  }catch (err){
+    console.log(err);
+  }
+}

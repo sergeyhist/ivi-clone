@@ -11,7 +11,6 @@ import { GetStaticPropsResult } from "next";
 import { getMoviesByGenre } from "../api/movie";
 import { IMovie } from "../types/IMovie";
 import { mockMovie } from "../utils/movie";
-import {useRouter} from "next/router";
 
 interface HomeProps {
   bestMilitants: IMovie[];
@@ -20,9 +19,7 @@ interface HomeProps {
 
 const Home: FC<HomeProps> = ({ bestMilitants, bestComedies }) => {
   const { t } = useTranslation(["titles", "home"]);
-  const router = useRouter();
-  const { result } = router.query;
-  console.log(result);
+
   const compilations = [
     {
       movies: bestMilitants.length ? bestMilitants : [mockMovie],
