@@ -1,0 +1,10 @@
+{
+  "tabs": {
+    "movies": "Movies",
+    "genres": "Genres"
+  },
+  "name": "Name",
+  "name_ru": "Name (Russian)",
+  "name_en": "Name (English)",
+  "update": "Update"
+}

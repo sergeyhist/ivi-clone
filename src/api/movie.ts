@@ -21,9 +21,7 @@ export const getMoviesById = async (
   }
 };
 
-export const getMovie = async (
-  film_id: string
-): Promise<IMovie | undefined> => {
+export const getMovieById = async (film_id: string): Promise<IMovie | undefined> => {
   try {
     if (!process.env.SERVER_HOST)
       throw new Error("process.env.SERVER_HOST undefined");
@@ -50,9 +48,7 @@ export const getMoviePersons = async (film_id: string): Promise<IPerson[]> => {
   }
 };
 
-export const getMovieComments = async (
-  film_id: string
-): Promise<IComment[]> => {
+export const getMovieComments = async (film_id: string): Promise<IComment[]> => {
   try {
     if (!process.env.SERVER_HOST)
       throw new Error("process.env.SERVER_HOST undefined");
@@ -66,15 +62,25 @@ export const getMovieComments = async (
   }
 };
 
-export const getMoviesByGenre = async (
-  genre_slug: string
-): Promise<IMovie[]> => {
+export const getMoviesByGenre = async (genre_slug: string): Promise<IMovie[]> => {
   try {
     if (!process.env.SERVER_HOST)
       throw new Error("process.env.SERVER_HOST undefined");
     const response = await axios.get<IMovie[]>(
       `${process.env.SERVER_HOST}/filter/films?genres=${genre_slug}&limit=10`
     );
+    return response.data;
+  } catch (error) {
+    console.error(error);
+    return [];
+  }
+};
+
+export const getMovies = async (key = "/films?limit=100"): Promise<IMovie[]> => {
+  try {
+    if (!process.env.SERVER_HOST)
+      throw new Error("process.env.SERVER_HOST undefined");
+    const response = await axios.get<IMovie[]>(process.env.SERVER_HOST + key);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -94,8 +100,7 @@ export const getFilteredMovies = async (
           genres: filters.genres,
           countries: filters.countries,
           rating: filters.rating === "0" ? undefined : filters.rating,
-          assessments:
-            filters.assessments === "0" ? undefined : filters.assessments,
+          assessments: filters.assessments === "0" ? undefined : filters.assessments,
           year_min:
             filters.year.length > 0
               ? (filters.year as string).split("-")[0]
@@ -120,5 +125,38 @@ export const getFilteredMovies = async (
     return response.data as IMovie[];
   } catch (error) {
     console.log(error);
+  }
+};
+
+export const updateMovie = async (
+  token: string,
+  film_id: string,
+  name_en: string,
+  name_ru: string
+): Promise<IMovie | undefined> => {
+  try {
+    if (!process.env.SERVER_HOST)
+      throw new Error("process.env.SERVER_HOST undefined");
+
+    const data = JSON.stringify({
+      name_ru: name_ru,
+      name_en: name_en,
+    });
+
+    const config = {
+      method: "patch",
+      maxBodyLength: Infinity,
+      url: `${process.env.SERVER_HOST}/films/${film_id}`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      data: data,
+    };
+
+    const response = await axios.request<IComment>(config);
+    return response.data as unknown as IMovie;
+  } catch (error) {
+    console.error(error);
   }
 };
