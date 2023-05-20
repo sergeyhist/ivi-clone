@@ -16,6 +16,7 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { setAuth } from "/src/store/slices/authSlice";
 import { notify } from "/src/utils/defaultToast";
+import {logout} from "/src/api/user";
 
 interface ActionsProps {
   setDropDownType: Dispatch<SetStateAction<DropDownType>>;
@@ -40,6 +41,7 @@ const Actions: FC<ActionsProps> = ({
     localStorage.removeItem("token");
     localStorage.removeItem("email");
     dispatch(setAuth({ userEmail: "", isLogged: false }));
+    logout();
     notify(t("profile.logoutMessage"), 'logout');
   };
 
