@@ -8,7 +8,7 @@ import { useTranslation } from "next-i18next";
 const CinemaDetails: FC = () => {
   const { t } = useTranslation("home");
   return (
-    <section className={styles.section}>
+    <section data-testid="cinema-details" className={styles.section}>
       <div className="container">
         <div className={styles.section__container}>
           <h2 className={styles.section__title}>{t("details.title")}</h2>

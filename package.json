@@ -10,7 +10,8 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "test": "jest --watch",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "coverage-watch": "jest --coverage --watch"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",

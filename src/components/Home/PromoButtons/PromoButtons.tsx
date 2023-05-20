@@ -9,7 +9,7 @@ const PromoButtons: FC = () => {
   const { t } = useTranslation("home");
 
   return (
-    <section className={styles.section}>
+    <section data-testid="promo-buttons" className={styles.section}>
       <div className="container">
         <div className={styles.row}>
           <Link className={styles.link} href={"/"}>

@@ -7,7 +7,7 @@ import Slider from "/src/UI/Slider/Slider";
 
 const BannerSlider: FC = () => {
   return (
-    <section className={styles.section}>
+    <section data-testid="banner-slider" className={styles.section}>
       <div className={"container"}>
         <Slider
           swiperClassName={styles.swiper}

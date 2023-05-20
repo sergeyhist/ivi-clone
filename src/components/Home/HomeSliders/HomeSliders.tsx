@@ -12,12 +12,12 @@ interface HomeSlidersProps {
   compilations: ICompilations[];
 }
 
-const HomeSliders: FC<HomeSlidersProps> = ({ compilations = [] }) => {
+const HomeSliders: FC<HomeSlidersProps> = ({ compilations }) => {
   const sliders = compilations.filter(
     (compilation) => compilation.movies.length !== 0
   );
   return (
-    <section className={styles.section}>
+    <section data-testid="home-compilations" className={styles.section}>
       <div className="container">
         {sliders?.map((compilation, index) => (
           <MovieSlider

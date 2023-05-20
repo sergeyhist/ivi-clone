@@ -9,7 +9,7 @@ interface RelatedMoviesProps {
   movies: IMovie[];
 }
 
-const RelatedMovies: FC<RelatedMoviesProps> = ({ movieTitle, movies = [] }) => {
+const RelatedMovies: FC<RelatedMoviesProps> = ({ movieTitle, movies }) => {
   const { t } = useTranslation("movie");
 
   return (

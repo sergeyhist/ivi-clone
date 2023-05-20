@@ -22,7 +22,7 @@ const MovieSlider: FC<HomeSliderProps> = ({
   slideType = "default",
 }) => {
   return (
-    <div className={styles.wrapper}>
+    <div data-testid="movie-slider" className={styles.wrapper}>
       {title && categoryRoute && (
         <Link href={categoryRoute} className={styles.title}>
           <CustomTitle type="link" title={title} />
