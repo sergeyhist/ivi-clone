@@ -13,7 +13,7 @@ const Admin: FC = () => {
 
   return (
     <Layout title={t("titles:admin")}>
-      <AdminTabs setSelectedTab={setSelectedTab} />
+      <AdminTabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       {selectedTab === "movies" && <AdminMovies />}
       {selectedTab === "genres" && <AdminGenres />}
     </Layout>

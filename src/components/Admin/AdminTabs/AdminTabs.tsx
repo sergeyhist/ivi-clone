@@ -6,9 +6,10 @@ import CustomTitle from "/src/UI/CustomTitle/CustomTitle";
 
 interface AdminTabsProps {
   setSelectedTab: Dispatch<SetStateAction<"movies" | "genres">>;
+  selectedTab: "movies" | "genres";
 }
 
-const AdminTabs: FC<AdminTabsProps> = ({ setSelectedTab }) => {
+const AdminTabs: FC<AdminTabsProps> = ({ setSelectedTab, selectedTab }) => {
   const { t } = useTranslation(["titles", "admin"]);
 
   return (
@@ -23,7 +24,13 @@ const AdminTabs: FC<AdminTabsProps> = ({ setSelectedTab }) => {
                 }}
                 className={styles.tab}
               >
-                <CustomTitle title={t("admin:tabs.movies")} type="link" />
+                <CustomTitle
+                  className={
+                    selectedTab === "movies" ? styles.title_active : styles.title
+                  }
+                  title={t("admin:tabs.movies")}
+                  type="link"
+                />
               </button>
             </li>
             <li className={styles.nav__item}>
@@ -33,7 +40,13 @@ const AdminTabs: FC<AdminTabsProps> = ({ setSelectedTab }) => {
                 }}
                 className={styles.tab}
               >
-                <CustomTitle title={t("admin:tabs.genres")} type="link" />
+                <CustomTitle
+                  className={
+                    selectedTab === "genres" ? styles.title_active : styles.title
+                  }
+                  title={t("admin:tabs.genres")}
+                  type="link"
+                />
               </button>
             </li>
           </ul>

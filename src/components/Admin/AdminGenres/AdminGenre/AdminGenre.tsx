@@ -12,10 +12,14 @@ interface AdminGenreProps {
 const AdminGenre: FC<AdminGenreProps> = ({ genre }) => {
   const { t } = useTranslation("admin");
 
+  const submitHandler = (): void => {
+    //
+  };
+
   return (
     <article className={styles.movie}>
       <CustomTitle className={styles.movie__title} title={genre.genre_ru} />
-      <form className={styles.form} action="">
+      <form className={styles.form} onSubmit={submitHandler}>
         <CustomTitle className={styles.form__title} type="small" title={t("name")} />
         <ModalInput
           className={styles.input}

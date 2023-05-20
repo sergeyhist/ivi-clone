@@ -34,13 +34,11 @@ export const getMovie = async (film_id: string): Promise<IMovie | undefined> => 
   }
 };
 
-export const getMovies = async (): Promise<IMovie[]> => {
+export const getMovies = async (key = "/films?limit=100"): Promise<IMovie[]> => {
   try {
     if (!process.env.SERVER_HOST)
       throw new Error("process.env.SERVER_HOST undefined");
-    const response = await axios.get<IMovie[]>(
-      `${process.env.SERVER_HOST}/films?limit=100`
-    );
+    const response = await axios.get<IMovie[]>(process.env.SERVER_HOST + key);
     return response.data;
   } catch (error) {
     console.error(error);
