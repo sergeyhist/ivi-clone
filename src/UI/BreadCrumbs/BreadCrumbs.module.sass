@@ -15,6 +15,9 @@
     display: flex
     align-items: center
     max-width: 300px
+    overflow: hidden
+    white-space: nowrap
+    text-overflow: ellipsis
 
   &__item:not(:first-child)::before
     content: ''
@@ -65,7 +68,7 @@
 
     &::after
       content: '\E008'
-      font-family: ivi-icons
+      font-family: var(--ivi-icons)
       font-weight: 400
       font-size: 20px
       line-height: 20px
