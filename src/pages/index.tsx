@@ -1,4 +1,4 @@
-import { FC } from "react";
+import {FC, useEffect} from "react";
 import BannerSlider from "../components/Home/BannerSlider/BannerSlider";
 import Layout from "../components/Layout/Layout";
 import PromoButtons from "../components/Home/PromoButtons/PromoButtons";
@@ -19,6 +19,9 @@ interface HomeProps {
 
 const Home: FC<HomeProps> = ({ bestMilitants, bestComedies }) => {
   const { t } = useTranslation(["titles", "home"]);
+
+  useEffect(()=>{
+    console.log("home");},[])
 
   const compilations = [
     {

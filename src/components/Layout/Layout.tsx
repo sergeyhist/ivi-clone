@@ -15,6 +15,7 @@ import { useCountriesSlugs } from "/src/api/countries";
 import { useGenresSlugs } from "/src/api/genres";
 import { setAuth } from "/src/store/slices/authSlice";
 import { refreshAccessToken } from "/src/api/user";
+import {useAppInterceptors} from "/src/hooks/useAppInterceptors";
 
 interface LayoutProps {
   title: string;
@@ -27,6 +28,8 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
 
   const windowSizeWidth = useAppSelector((state) => state.windowSize.width);
   const dispatch = useDispatch();
+
+  useAppInterceptors();
 
   const debouncedResize = useDebouncedCallback((): void => {
     dispatch(
@@ -42,16 +45,16 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
   };
 
   useEffect(() => {
+    console.log("1");
     if (localStorage.getItem("email")) {
-      getRefreshToken();
-      if(localStorage.getItem("token")){
+      getRefreshToken().then(() =>
         dispatch(
           setAuth({
             userEmail: localStorage.getItem("email") || "",
             isLogged: true,
           })
-        );
-      }
+        )
+      );
     }
   }, []);
 
