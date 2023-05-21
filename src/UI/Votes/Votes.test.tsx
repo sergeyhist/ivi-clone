@@ -8,6 +8,7 @@ jest.mock("next/router", () => require("next-router-mock"));
 describe("Votes", () => {
   it("should renders without errors", () => {
     renderWithProviders(<Votes like={21} />);
+    expect(screen.getByTestId("votes")).toBeInTheDocument();
   });
   it("should work events", () => {
     renderWithProviders(<Votes like={21} />);

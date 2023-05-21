@@ -12,7 +12,7 @@ interface MoviePosterProps {
 }
 
 const MoviePoster: FC<MoviePosterProps> = ({ content }) => {
-  const { t } = useTranslation("countries");
+  const { t } = useTranslation(["countries", "movie"]);
 
   return (
     <article className={styles.content}>

@@ -8,12 +8,13 @@ jest.mock("next/router", () => require("next-router-mock"));
 describe("Slider", () => {
   it("should renders without errors", () => {
     renderWithProviders(
-      <Slider>
+      <Slider dataTestId="slider">
         <div></div>
       </Slider>
     );
+    expect(screen.getByTestId("slider")).toBeInTheDocument();
   });
-  it("should works events", () => {
+  it("should works events without errors", () => {
     renderWithProviders(
       <Slider>
         <div></div>
@@ -26,9 +27,10 @@ describe("Slider", () => {
   });
   it("should renders without errors with always-with-buttons type", () => {
     renderWithProviders(
-      <Slider type="always-with-buttons">
+      <Slider dataTestId="slider" type="always-with-buttons">
         <div></div>
       </Slider>
     );
+    expect(screen.getByTestId("slider")).toBeInTheDocument();
   });
 });

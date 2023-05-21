@@ -12,8 +12,8 @@ const NotFound: FC<NotFoundProps> = ({ title }) => {
   const { t } = useTranslation("common");
 
   return (
-    <section className={styles.section + " container"}>
-      <CustomTitle className={styles.title} title={title}/>
+    <section data-testid="not-found" className={styles.section + " container"}>
+      <CustomTitle className={styles.title} title={title} />
       <Link href={"/"} className={styles.link}>
         {t("not_found.link")}
       </Link>
