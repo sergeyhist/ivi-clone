@@ -11,12 +11,13 @@ import {
 import { IMovie } from "/src/types/IMovie";
 import MovieCard from "/src/UI/MovieCard/MovieCard";
 import filterMovies from "/src/utils/filters/filterMovies";
-import { listLimit } from "/src/utils/filters/filtersVariables";
 import { setQueryParams } from "/src/utils/query";
 import { useTranslation } from "next-i18next";
 import { PropagateLoader } from "react-spinners";
 
 const MoviesList: FC = () => {
+  let listLimit = 0;
+
   const router = useRouter();
   const { t } = useTranslation();
 
@@ -27,6 +28,7 @@ const MoviesList: FC = () => {
     sortingMethod,
     isMoviesLoading,
   } = useAppSelector((state) => state.filters);
+  const { width } = useAppSelector((state) => state.windowSize);
   const dispatch = useAppDispatch();
 
   const setPageRoute = (page: number): void => {
@@ -36,6 +38,12 @@ const MoviesList: FC = () => {
   const debouncedFilter = useDebouncedCallback(() => {
     filterMovies(filters, sortingMethod);
   }, 1000);
+
+  listLimit !== 7 * 3 && width > 1160 && (listLimit = 7 * 3);
+  listLimit !== 6 * 3 && width > 1060 && width < 1160 && (listLimit = 6 * 3);
+  listLimit !== 5 * 3 && width > 890 && width < 1060 && (listLimit = 5 * 3);
+  listLimit !== 4 * 3 && width > 540 && width < 890 && (listLimit = 4 * 3);
+  listLimit !== 2 * 4 && width < 540 && (listLimit = 2 * 4);
 
   useEffect(() => {
     dispatch(setIsMoviesLoading(true));
