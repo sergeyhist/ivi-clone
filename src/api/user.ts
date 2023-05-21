@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, {AxiosError} from "axios";
 import { IUser } from "/src/types/IUser";
 
 export const createUser = async (email: string, password: string): Promise<void> => {
@@ -54,6 +54,7 @@ export const login = async (
       url: `${String(process.env.SERVER_HOST)}/login`,
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": true
       },
       withCredentials: true,
       data: data,
@@ -92,17 +93,12 @@ export const refreshAccessToken = async (): Promise<ResponseWithToken | undefine
     };
 
     const response = await axios.request(config);
-    if(response.status === 201){
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
-      const token = response.data.accessToken as string;
-      console.log(token);
-      localStorage.setItem("token", token);
-    } else if (response.status === 401){
-      localStorage.removeItem("token");
-    }
 
     return response.data;
   }catch (err){
-    console.log(err);
+    if(err instanceof AxiosError){
+      console.log(err.response?.status);
+    }
+    throw err;
   }
 }
