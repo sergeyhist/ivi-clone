@@ -65,7 +65,7 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments, setCommentsState }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmitForm}>
+      <form data-testid="comments-form" onSubmit={handleSubmitForm}>
         <ModalInput
           className={styles.input}
           authData={inputText}

@@ -30,11 +30,11 @@ export const sliderBreakpoints: { [width: number]: SwiperOptions } = {
 
 export const genreIcons: { [key: string]: ReactNode } = {
   drama: <GiDramaMasks size={32} />,
-  komediya: <MdTheaterComedy size={32} />,
-  boevik: <GiBolterGun size={32} />,
-  triller: <GiGhostAlly size={32} />,
-  vestern: <GiWinchesterRifle size={32} />,
-  priklyucheniya: <RiTreasureMapLine size={32} />,
+  comedy: <MdTheaterComedy size={32} />,
+  action: <GiBolterGun size={32} />,
+  thriller: <GiGhostAlly size={32} />,
+  western: <GiWinchesterRifle size={32} />,
+  adventure: <RiTreasureMapLine size={32} />,
   anime: <GiChargedArrow size={32} />,
   melodrama: <GiLovers size={32} />,
   sport: <MdSportsBasketball size={32} />,

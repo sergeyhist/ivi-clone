@@ -12,6 +12,7 @@ describe("TextDropDown", () => {
         <p>Lorem ipsum dolor sit amet.</p>
       </TextDropDown>
     );
+    expect(screen.getByTestId("text-dropdown")).toBeInTheDocument();
   });
   it("should work toggle", () => {
     renderWithProviders(
@@ -20,7 +21,10 @@ describe("TextDropDown", () => {
       </TextDropDown>
     );
     const toggle = screen.getByTestId("toggle-dropdown");
+    const dropDown = screen.getByTestId("text-dropdown");
+    expect(dropDown).not.toHaveClass("dropdown_active");
     fireEvent.click(toggle);
+    expect(dropDown).toHaveClass("dropdown_active");
   });
   it("should render toggle", () => {
     renderWithProviders(

@@ -1,14 +1,37 @@
+@use '/src/styles/vars'
+
 .section
   padding: 24px 0
 
-.nav
-  &__list
-    display: flex
+.tabs
+  display: flex
+  border-bottom: 2px solid rgba(255, 255, 255, .2)
   &__item
     margin-right: 42px
 
 .tab
+  position: relative
   cursor: pointer
+  color: vars.$whiteTextColor
+  opacity: .72
+  font-size: 22px
+  line-height: 20px
+  font-weight: 500
+  transition: .3s
+  padding: 10px 0
+
+  &:hover
+    opacity: 1
+
+  &_active
+    opacity: 1
+
+    &:before
+      content: ""
+      position: absolute
+      bottom: -2px
+      width: 100%
+      border-bottom: 3px solid #ea003d
 
 .title
   opacity: 0.7

@@ -1,4 +1,4 @@
-import { FC, memo, useState } from "react";
+import { FC, memo, useEffect, useState } from "react";
 import Layout from "../../components/Layout/Layout";
 import MovieInfo from "../../components/Movie/MovieInfo/MovieInfo";
 import BreadCrumbs from "../../UI/BreadCrumbs/BreadCrumbs";
@@ -39,6 +39,10 @@ const Movie: FC<MovieProps> = ({
   const { t } = useTranslation("common");
   const { locale } = useRouter();
   const [commentsState, setCommentsState] = useState<IComment[]>(comments);
+
+  useEffect(() => {
+    setCommentsState(comments);
+  }, [comments]);
 
   return (
     <>

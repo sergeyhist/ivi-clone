@@ -15,42 +15,36 @@ const AdminTabs: FC<AdminTabsProps> = ({ setSelectedTab, selectedTab }) => {
   return (
     <section className={styles.section}>
       <Container>
-        <nav className={styles.nav}>
-          <ul className={styles.nav__list}>
-            <li className={styles.nav__item}>
-              <button
-                onClick={() => {
-                  setSelectedTab("movies");
-                }}
-                className={styles.tab}
-              >
-                <CustomTitle
-                  className={
-                    selectedTab === "movies" ? styles.title_active : styles.title
-                  }
-                  title={t("admin:tabs.movies")}
-                  type="link"
-                />
-              </button>
-            </li>
-            <li className={styles.nav__item}>
-              <button
-                onClick={() => {
-                  setSelectedTab("genres");
-                }}
-                className={styles.tab}
-              >
-                <CustomTitle
-                  className={
-                    selectedTab === "genres" ? styles.title_active : styles.title
-                  }
-                  title={t("admin:tabs.genres")}
-                  type="link"
-                />
-              </button>
-            </li>
-          </ul>
-        </nav>
+        <ul className={styles.tabs}>
+          <li className={styles.tabs__item}>
+            <button
+              onClick={() => {
+                setSelectedTab("movies");
+              }}
+              className={
+                selectedTab === "movies"
+                  ? `${styles.tab} ${styles.tab_active}`
+                  : styles.tab
+              }
+            >
+              {t("admin:tabs.movies")}
+            </button>
+          </li>
+          <li className={styles.tabs__item}>
+            <button
+              onClick={() => {
+                setSelectedTab("genres");
+              }}
+              className={
+                selectedTab === "genres"
+                  ? `${styles.tab} ${styles.tab_active}`
+                  : styles.tab
+              }
+            >
+              {t("admin:tabs.genres")}
+            </button>
+          </li>
+        </ul>
       </Container>
     </section>
   );

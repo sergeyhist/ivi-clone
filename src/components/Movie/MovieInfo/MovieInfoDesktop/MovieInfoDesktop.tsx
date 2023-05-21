@@ -26,7 +26,7 @@ const MovieInfoDesktop: FC<MovieInfoDesktopProps> = ({ movie, persons }) => {
   const [textHeight, setTextHeight] = useState<number>(100);
 
   return (
-    <section className={styles.desktop}>
+    <section data-testid="movie-info-desktop" className={styles.desktop}>
       <div className="container">
         <div className={styles.desktop__row}>
           <div className={styles.trailer}>

@@ -18,7 +18,7 @@ const Votes: FC<VotesProps> = ({ like, className = "" }) => {
   };
 
   return (
-    <div className={`${styles.container} ${className}`}>
+    <div data-testid="votes" className={`${styles.container} ${className}`}>
       <button
         data-testid="like"
         onClick={likeHandler}

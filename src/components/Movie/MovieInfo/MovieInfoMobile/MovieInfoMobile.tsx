@@ -1,6 +1,5 @@
 import { FC, useState } from "react";
 import styles from "./MovieInfoMobile.module.sass";
-import MovieTitle from "../MovieInfoComponents/MovieTitle/MovieTitle";
 import MovieParams from "../MovieInfoComponents/MovieParams/MovieParams";
 import MovieTrailer from "../MovieInfoComponents/MovieTrailer/MovieTrailer";
 import MovieTrailerButtons from "../MovieInfoComponents/MovieButtons/MovieButtons";
@@ -13,6 +12,8 @@ import { IMovie } from "/src/types/IMovie";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import { IPerson } from "/src/types/IPerson";
+import CustomTitle from "/src/UI/CustomTitle/CustomTitle";
+import { getMovieName } from "/src/utils/movie";
 
 interface MovieInfoMobileProps {
   movie: IMovie;
@@ -25,11 +26,12 @@ const MovieInfoMobile: FC<MovieInfoMobileProps> = ({ movie, persons }) => {
   const [textHeight, setTextHeight] = useState<number>(100);
 
   return (
-    <section className={styles.mobile}>
+    <section data-testid="movie-info-mobile" className={styles.mobile}>
       <div className="container">
-        <MovieTitle
-          title={locale === "ru" ? movie.name_ru : movie.name_en}
-          year={movie.year}
+        <CustomTitle
+          className={styles.mobile__title}
+          type="large"
+          title={`${getMovieName(movie, locale)} (${movie.year})`}
         />
         <MovieParams movie={movie} />
         <MovieTrailer movie={movie} />

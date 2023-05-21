@@ -52,7 +52,11 @@ const TextDropDown: FC<DropDownProps> = ({
 
   return (
     <div className={styles.content}>
-      <div ref={dropDown} className={`${dropDownClass} ${dropDownClassName}`}>
+      <div
+        data-testid="text-dropdown"
+        ref={dropDown}
+        className={`${dropDownClass} ${dropDownClassName}`}
+      >
         {children}
       </div>
       <div className={styles.toggle}>
