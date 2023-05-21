@@ -56,13 +56,13 @@
     "painter": "Painter",
     "operator": "Operator",
     "composer": "Compositor",
-    "directors": "directors",
-    "actors": "actors",
+    "directors": "Directors",
+    "actors": "Actors",
     "scenarists": "Scriptwriters",
-    "producers": "producers",
-    "dubbing": "dubbing",
+    "producers": "Producers",
+    "dubbing": "Dubbing",
     "painters": "Artists",
-    "operators": "operators",
+    "operators": "Operators",
     "compositors": "Composers"
   },
   "movie-decl": [

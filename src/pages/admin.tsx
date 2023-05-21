@@ -8,7 +8,7 @@ import AdminMovies from "../components/Admin/AdminMovies/AdminMovies";
 import AdminGenres from "../components/Admin/AdminGenres/AdminGenres";
 
 const Admin: FC = () => {
-  const { t } = useTranslation(["titles", "admin"]);
+  const { t } = useTranslation("titles");
   const [selectedTab, setSelectedTab] = useState<"movies" | "genres">("movies");
 
   return (

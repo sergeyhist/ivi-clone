@@ -6,5 +6,7 @@
   "name": "Name",
   "name_ru": "Name (Russian)",
   "name_en": "Name (English)",
-  "update": "Update"
+  "update": "Update",
+  "search": "Search by name...",
+  "find": "Find"
 }
