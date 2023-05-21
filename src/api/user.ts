@@ -93,6 +93,7 @@ export const refreshAccessToken = async (): Promise<ResponseWithToken | undefine
 
     const response = await axios.request(config);
     if(response.status === 201){
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
       const token = response.data.accessToken as string;
       console.log(token);
       localStorage.setItem("token", token);
