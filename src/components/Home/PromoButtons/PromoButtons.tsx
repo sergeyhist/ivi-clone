@@ -4,13 +4,14 @@ import CustomButton from "/src/UI/CustomButton/CustomButton";
 import styles from "./PromoButtons.module.sass";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
+import Container from "/src/UI/Container/Container";
 
 const PromoButtons: FC = () => {
   const { t } = useTranslation("home");
 
   return (
     <section data-testid="promo-buttons" className={styles.section}>
-      <div className="container">
+      <Container>
         <div className={styles.row}>
           <Link className={styles.link} href={"/"}>
             <CustomButton
@@ -39,7 +40,7 @@ const PromoButtons: FC = () => {
             {t("buttons.activate")}
           </CustomButton>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

@@ -2,6 +2,7 @@ import { FC } from "react";
 import MovieSlider from "/src/UI/MovieSlider/MovieSlider";
 import styles from "./HomeSliders.module.sass";
 import { IMovie } from "/src/types/IMovie";
+import Container from "/src/UI/Container/Container";
 
 interface ICompilations {
   movies: IMovie[];
@@ -18,7 +19,7 @@ const HomeSliders: FC<HomeSlidersProps> = ({ compilations }) => {
   );
   return (
     <section data-testid="home-compilations" className={styles.section}>
-      <div className="container">
+      <Container>
         {sliders?.map((compilation, index) => (
           <MovieSlider
             key={index}
@@ -26,7 +27,7 @@ const HomeSliders: FC<HomeSlidersProps> = ({ compilations }) => {
             slides={compilation.movies}
           />
         ))}
-      </div>
+      </Container>
     </section>
   );
 };

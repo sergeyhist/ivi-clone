@@ -44,7 +44,7 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
   useEffect(() => {
     if (localStorage.getItem("email")) {
       getRefreshToken();
-      if(localStorage.getItem("token")){
+      if (localStorage.getItem("token")) {
         dispatch(
           setAuth({
             userEmail: localStorage.getItem("email") || "",
@@ -53,7 +53,7 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
         );
       }
     }
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(

@@ -22,26 +22,30 @@ const MovieSlider: FC<HomeSliderProps> = ({
   slideType = "default",
 }) => {
   return (
-    <div data-testid="movie-slider" className={styles.wrapper}>
-      {title && categoryRoute && (
-        <Link href={categoryRoute} className={styles.title}>
-          <CustomTitle type="link" title={title} />
-        </Link>
-      )}
+    <>
+      {slides.length !== 0 && (
+        <div data-testid="movie-slider" className={styles.wrapper}>
+          {title && categoryRoute && (
+            <Link href={categoryRoute} className={styles.title}>
+              <CustomTitle type="link" title={title} />
+            </Link>
+          )}
 
-      <Slider
-        swiperClassName={styles.swiper}
-        prevClassName={styles.prev}
-        nextClassName={styles.next}
-        breakpoints={breakpoints}
-      >
-        {slides.map((slide, index) => (
-          <SwiperSlide className="unselectable" key={index}>
-            <MovieCard type={slideType} content={slide} />
-          </SwiperSlide>
-        ))}
-      </Slider>
-    </div>
+          <Slider
+            swiperClassName={styles.swiper}
+            prevClassName={styles.prev}
+            nextClassName={styles.next}
+            breakpoints={breakpoints}
+          >
+            {slides.map((slide, index) => (
+              <SwiperSlide className="unselectable" key={index}>
+                <MovieCard type={slideType} content={slide} />
+              </SwiperSlide>
+            ))}
+          </Slider>
+        </div>
+      )}
+    </>
   );
 };
 

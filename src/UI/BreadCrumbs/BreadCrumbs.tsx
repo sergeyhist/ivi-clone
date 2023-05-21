@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { getRoutes, getPrevRoute } from "./BreadCrumbs.utils";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
+import Container from "../Container/Container";
 
 interface BreadCrumbsProps {
   type?: "dots" | "slash";
@@ -26,7 +27,7 @@ const BreadCrumbs: FC<BreadCrumbsProps> = ({
 
   return (
     <section data-testid="breadcrumbs" className={sectionClassName}>
-      <div className="container">
+      <Container>
         <nav className={styles.nav}>
           <ul
             data-testid="breadcrumbs-list"
@@ -54,7 +55,7 @@ const BreadCrumbs: FC<BreadCrumbsProps> = ({
             ></Link>
           </div>
         )}
-      </div>
+      </Container>
     </section>
   );
 };

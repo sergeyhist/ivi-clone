@@ -14,6 +14,7 @@ import { useTranslation } from "next-i18next";
 import { IPerson } from "/src/types/IPerson";
 import CustomTitle from "/src/UI/CustomTitle/CustomTitle";
 import { getMovieName } from "/src/utils/movie";
+import Container from "/src/UI/Container/Container";
 
 interface MovieInfoMobileProps {
   movie: IMovie;
@@ -27,7 +28,7 @@ const MovieInfoMobile: FC<MovieInfoMobileProps> = ({ movie, persons }) => {
 
   return (
     <section data-testid="movie-info-mobile" className={styles.mobile}>
-      <div className="container">
+      <Container>
         <CustomTitle
           className={styles.mobile__title}
           type="large"
@@ -57,7 +58,7 @@ const MovieInfoMobile: FC<MovieInfoMobileProps> = ({ movie, persons }) => {
             <MovieTrailerButtons />
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

@@ -8,25 +8,25 @@ import HomeSliders from "../components/Home/HomeSliders/HomeSliders";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticPropsResult } from "next";
-import { getMoviesByGenre } from "../api/movie";
+import { getMoviesByGenre, getMovies } from "../api/movie";
 import { IMovie } from "../types/IMovie";
-import { mockMovie } from "../utils/movie";
 
 interface HomeProps {
   bestMilitants: IMovie[];
   bestComedies: IMovie[];
+  topTenMovies: IMovie[];
 }
 
-const Home: FC<HomeProps> = ({ bestMilitants, bestComedies }) => {
+const Home: FC<HomeProps> = ({ bestMilitants, bestComedies, topTenMovies }) => {
   const { t } = useTranslation(["titles", "home"]);
 
   const compilations = [
     {
-      movies: bestMilitants.length ? bestMilitants : [mockMovie],
+      movies: bestMilitants,
       title: t("home:compilations.militants.title"),
     },
     {
-      movies: bestComedies.length ? bestComedies : [mockMovie],
+      movies: bestComedies,
       title: t("home:compilations.comedies.title"),
     },
   ];
@@ -35,7 +35,7 @@ const Home: FC<HomeProps> = ({ bestMilitants, bestComedies }) => {
     <Layout title={t("titles:home")}>
       <BannerSlider />
       <PromoButtons />
-      <TopTen />
+      <TopTen topTenMovies={topTenMovies} />
       <CinemaDetails />
       <HomeSliders compilations={compilations} />
     </Layout>
@@ -49,11 +49,15 @@ export const getStaticProps = async ({
 }): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
   const bestMilitants = await getMoviesByGenre("militant");
   const bestComedies = await getMoviesByGenre("comedy");
+  const topTenMovies = await getMovies(
+    "/filter/films?year_min=1998&year_max=2023&rating=7.3&assessments=3000&limit=10"
+  );
 
   return {
     props: {
       bestMilitants,
       bestComedies,
+      topTenMovies,
       ...(await serverSideTranslations(locale, [
         "common",
         "titles",

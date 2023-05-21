@@ -14,6 +14,7 @@ import { useTranslation } from "next-i18next";
 import { IPerson } from "/src/types/IPerson";
 import { getMovieName } from "../../../../utils/movie";
 import CustomTitle from "/src/UI/CustomTitle/CustomTitle";
+import Container from "/src/UI/Container/Container";
 
 interface MovieInfoDesktopProps {
   movie: IMovie;
@@ -27,7 +28,7 @@ const MovieInfoDesktop: FC<MovieInfoDesktopProps> = ({ movie, persons }) => {
 
   return (
     <section data-testid="movie-info-desktop" className={styles.desktop}>
-      <div className="container">
+      <Container>
         <div className={styles.desktop__row}>
           <div className={styles.trailer}>
             <div className={styles.trailer__sticky}>
@@ -60,7 +61,7 @@ const MovieInfoDesktop: FC<MovieInfoDesktopProps> = ({ movie, persons }) => {
             <MovieRating grade={movie.rating} grades={movie.assessments} />
           </div>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

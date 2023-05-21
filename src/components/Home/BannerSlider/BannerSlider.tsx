@@ -4,11 +4,12 @@ import { slides, breakpoints } from "./BannerSlider.utils";
 import BannerSlide from "./BannerSlide/BannerSlide";
 import styles from "./BannerSlider.module.sass";
 import Slider from "/src/UI/Slider/Slider";
+import Container from "/src/UI/Container/Container";
 
 const BannerSlider: FC = () => {
   return (
     <section data-testid="banner-slider" className={styles.section}>
-      <div className={"container"}>
+      <Container>
         <Slider
           swiperClassName={styles.swiper}
           breakpoints={breakpoints}
@@ -24,7 +25,7 @@ const BannerSlider: FC = () => {
             </SwiperSlide>
           ))}
         </Slider>
-      </div>
+      </Container>
     </section>
   );
 };

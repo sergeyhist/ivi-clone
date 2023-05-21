@@ -22,6 +22,7 @@ import { IMovie } from "/src/types/IMovie";
 import useCloseEvents from "/src/hooks/useCloseEvents";
 import MoviePoster from "./MoviePoster/MoviePoster";
 import { iviSans, iviIcons, iconFont } from "/src/utils/fonts";
+import Container from "/src/UI/Container/Container";
 
 interface MovieModalProps {
   movie: IMovie;
@@ -96,7 +97,7 @@ const MovieModal: FC<MovieModalProps> = ({
           >
             {t("modal.backLink")}
           </div>
-          <div className={"container"}>
+          <Container>
             <div className={styles.row}>
               <div className={styles.content}>
                 <h2 className={styles.title}>{movieTitle}</h2>
@@ -126,7 +127,7 @@ const MovieModal: FC<MovieModalProps> = ({
                 </div>
               )}
             </div>
-          </div>
+          </Container>
         </div>
       )}
     </>
