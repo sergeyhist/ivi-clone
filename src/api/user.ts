@@ -55,6 +55,7 @@ export const login = async (
       headers: {
         "Content-Type": "application/json",
       },
+      withCredentials: true,
       data: data,
     };
 
@@ -68,8 +69,10 @@ export const login = async (
 
 export const logout = async ():Promise<void> =>{
   try {
+    axios.defaults.withCredentials = true
     await axios.delete(`${String(process.env.SERVER_HOST)}/logout`,{
-      withCredentials: true
+      withCredentials: true,
+      headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'}
     });
   }catch (err){
     console.log(err);
@@ -78,9 +81,24 @@ export const logout = async ():Promise<void> =>{
 
 export const refreshAccessToken = async (): Promise<ResponseWithToken | undefined> => {
   try {
-    const response = await axios.post(`${String(process.env.SERVER_HOST)}/refresh`,{
-      withCredentials: true
-    });
+    const config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: `${String(process.env.SERVER_HOST)}/refresh`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    };
+
+    const response = await axios.request(config);
+    if(response.status === 201){
+      const token = response.data.accessToken as string;
+      console.log(token);
+      localStorage.setItem("token", token);
+    } else if (response.status === 401){
+      localStorage.removeItem("token");
+    }
 
     return response.data;
   }catch (err){

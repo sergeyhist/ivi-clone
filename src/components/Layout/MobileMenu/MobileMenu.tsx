@@ -37,7 +37,7 @@ const MobileMenu: FC = () => {
               }}
               key={i}
               href={tabsLinks[i]}
-              target={(i !== (0 || 1) && "_blank") || undefined}
+              target={i !== 0 && i !== 1 ? "_blank" : undefined}
               data-testid={`mobile-menu-link-${i}`}
             >
               <div
