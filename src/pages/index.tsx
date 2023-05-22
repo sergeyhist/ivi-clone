@@ -1,4 +1,4 @@
-import {FC, useEffect} from "react";
+import { FC } from "react";
 import BannerSlider from "../components/Home/BannerSlider/BannerSlider";
 import Layout from "../components/Layout/Layout";
 import PromoButtons from "../components/Home/PromoButtons/PromoButtons";
@@ -50,7 +50,7 @@ export const getStaticProps = async ({
   const bestMilitants = await getMoviesByGenre("militant");
   const bestComedies = await getMoviesByGenre("comedy");
   const topTenMovies = await getMovies(
-    "/filter/films?year_min=1998&year_max=2023&rating=7.3&assessments=3000&limit=10"
+    "/filter/films?year_min=1998&year_max=2023&rating=8&assessments=3000&limit=10"
   );
 
   return {
