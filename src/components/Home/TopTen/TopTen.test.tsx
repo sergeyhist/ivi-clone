@@ -2,12 +2,13 @@ import React from "react";
 import TopTen from "./TopTen";
 import { renderWithProviders } from "/src/utils/test-utils";
 import { screen } from "@testing-library/react";
+import { mockMovie } from "/src/utils/movie";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
 describe("BannerSlider", () => {
   it("should renders without errors", () => {
-    renderWithProviders(<TopTen />);
+    renderWithProviders(<TopTen topTenMovies={[mockMovie]} />);
     expect(screen.getByTestId("topten-slider")).toBeInTheDocument();
   });
 });
