@@ -8,7 +8,6 @@ import { defaultFilters } from "/src/utils/filters/filtersVariables";
 export interface FiltersState  {
   filters: IFilters;
   filteredMovies: IMovie[];
-  filteredMoviesPage: number;
   sortingMethod: string;
   isMoviesLoading: boolean;
 }
@@ -16,7 +15,6 @@ export interface FiltersState  {
 const initialState: FiltersState= {
   filters: defaultFilters,
   filteredMovies: [],
-  filteredMoviesPage: 1,
   sortingMethod: "assessments",
   isMoviesLoading: false,
 };
@@ -31,9 +29,6 @@ export const filtersSlice = createSlice({
     setFilteredMovies: (state, action: PayloadAction<IMovie[]>) => {
       state.filteredMovies = getSortedList(state.sortingMethod, action.payload);
     },
-    setFilteredMoviesPage: (state, action: PayloadAction<number>) => {
-      state.filteredMoviesPage = action.payload;
-    },
     setSortingMethod: (state, action: PayloadAction<string>) => {
       state.sortingMethod = action.payload;
     },
@@ -46,7 +41,6 @@ export const filtersSlice = createSlice({
 export const {
   setFilters,
   setFilteredMovies,
-  setFilteredMoviesPage,
   setSortingMethod,
   setIsMoviesLoading,
 } = filtersSlice.actions;
