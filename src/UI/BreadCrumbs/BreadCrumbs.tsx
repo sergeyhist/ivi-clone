@@ -4,17 +4,20 @@ import { useRouter } from "next/router";
 import { getRoutes, getPrevRoute } from "./BreadCrumbs.utils";
 import Link from "next/link";
 import { useTranslation } from "next-i18next";
+import Container from "../Container/Container";
 
 interface BreadCrumbsProps {
   type?: "dots" | "slash";
   currentTitle?: string;
   mobileVersion?: boolean;
+  customRoutes?: string[];
 }
 
 const BreadCrumbs: FC<BreadCrumbsProps> = ({
   type = "dots",
   currentTitle,
   mobileVersion = false,
+  customRoutes,
 }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
@@ -26,19 +29,28 @@ const BreadCrumbs: FC<BreadCrumbsProps> = ({
 
   return (
     <section data-testid="breadcrumbs" className={sectionClassName}>
-      <div className="container">
+      <Container>
         <nav className={styles.nav}>
           <ul
             data-testid="breadcrumbs-list"
             className={`${styles.list} ${listClassName}`}
           >
-            {routes.map((route, index) => (
-              <li key={index} className={styles.list__item}>
-                <Link className={styles.list__link} href={route}>
-                  {t(`breadcrumbs.${route}`)}
-                </Link>
-              </li>
-            ))}
+            {customRoutes &&
+              customRoutes.map((route, index) => (
+                <li key={index} className={styles.list__item}>
+                  <Link className={styles.list__link} href={route}>
+                    {t(`breadcrumbs.${route}`)}
+                  </Link>
+                </li>
+              ))}
+            {!customRoutes &&
+              routes.map((route, index) => (
+                <li key={index} className={styles.list__item}>
+                  <Link className={styles.list__link} href={route}>
+                    {t(`breadcrumbs.${route}`)}
+                  </Link>
+                </li>
+              ))}
             {currentTitle && (
               <li className={styles.list__item}>
                 <span className={styles.list__current}>{currentTitle}</span>
@@ -54,7 +66,7 @@ const BreadCrumbs: FC<BreadCrumbsProps> = ({
             ></Link>
           </div>
         )}
-      </div>
+      </Container>
     </section>
   );
 };

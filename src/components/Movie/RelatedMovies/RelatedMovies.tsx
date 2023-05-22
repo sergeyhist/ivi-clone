@@ -3,6 +3,7 @@ import MovieSlider from "/src/UI/MovieSlider/MovieSlider";
 import styles from "./RelatedMovies.module.sass";
 import { useTranslation } from "next-i18next";
 import { IMovie } from "/src/types/IMovie";
+import Container from "/src/UI/Container/Container";
 
 interface RelatedMoviesProps {
   movieTitle: string;
@@ -14,13 +15,13 @@ const RelatedMovies: FC<RelatedMoviesProps> = ({ movieTitle, movies }) => {
 
   return (
     <section className={styles.section}>
-      <div className="container">
+      <Container>
         <MovieSlider
           title={`${t("related.with")} ${movieTitle} ${t("related.watch")}`}
           slideType="related"
           slides={movies}
         />
-      </div>
+      </Container>
     </section>
   );
 };

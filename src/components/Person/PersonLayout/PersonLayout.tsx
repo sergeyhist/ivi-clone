@@ -1,12 +1,17 @@
 import { FC, ReactNode } from "react";
 import styles from "./PersonLayout.module.sass";
+import Container from "/src/UI/Container/Container";
 
 interface PersonLayoutProps {
   children: ReactNode;
 }
 
 const PersonLayout: FC<PersonLayoutProps> = ({ children }) => {
-  return <div className={styles.layout + " container"}>{children}</div>;
+  return (
+    <Container>
+      <div className={styles.layout}>{children}</div>
+    </Container>
+  );
 };
 
 export default PersonLayout;

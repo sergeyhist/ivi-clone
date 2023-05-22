@@ -9,6 +9,7 @@ import { useAppDispatch } from "/src/hooks/redux";
 import { modalsSlice } from "/src/store/slices/modalsSlice";
 import { useTranslation } from "next-i18next";
 import { IComment } from "/src/types/IComment";
+import Container from "/src/UI/Container/Container";
 
 interface CommentsSliderProps {
   comments: IComment[];
@@ -25,7 +26,7 @@ const CommentsSlider: FC<CommentsSliderProps> = ({ comments }) => {
 
   return (
     <section data-testid="comments-slider" className={styles.section}>
-      <div className="container">
+      <Container>
         <div className={styles.section__row}>
           <h4 onClick={clickHandler} className={styles.title}>
             {t("comments.comments")}
@@ -61,7 +62,7 @@ const CommentsSlider: FC<CommentsSliderProps> = ({ comments }) => {
         >
           {t("comments.leave")}
         </CustomButton>
-      </div>
+      </Container>
     </section>
   );
 };

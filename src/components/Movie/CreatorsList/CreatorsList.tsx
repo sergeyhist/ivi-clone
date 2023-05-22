@@ -6,6 +6,7 @@ import { useTranslation } from "next-i18next";
 import { IPerson } from "/src/types/IPerson";
 import Creator from "/src/UI/Creator/Creator";
 import CustomTitle from "/src/UI/CustomTitle/CustomTitle";
+import Container from "/src/UI/Container/Container";
 
 interface CreatorsListProps {
   persons: IPerson[];
@@ -23,8 +24,8 @@ const CreatorsList: FC<CreatorsListProps> = ({ persons }) => {
   };
 
   return (
-    <section data-testid="creators-list" className="container">
-      <div className={styles.container}>
+    <section data-testid="creators-list" className={styles.section}>
+      <Container>
         <button onClick={clickHandler} type="button">
           <CustomTitle
             type="underline"
@@ -45,7 +46,7 @@ const CreatorsList: FC<CreatorsListProps> = ({ persons }) => {
             {t("creators.more")}
           </button>
         </div>
-      </div>
+      </Container>
     </section>
   );
 };

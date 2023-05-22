@@ -1,20 +1,26 @@
 import { FC } from "react";
 import { SwiperSlide } from "swiper/react";
-import { slides, breakpoints } from "./TopTen.utils";
+import { breakpoints } from "./TopTen.utils";
 import TopTenSlide from "./TopTenSlide/TopTenSlide";
 import styles from "./TopTen.module.sass";
 import Slider from "/src/UI/Slider/Slider";
 import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import Container from "/src/UI/Container/Container";
+import { IMovie } from "/src/types/IMovie";
 
-const TopTen: FC = () => {
+interface TopTenProps {
+  topTenMovies: IMovie[];
+}
+
+const TopTen: FC<TopTenProps> = ({ topTenMovies }) => {
   const { t } = useTranslation("home");
   const { locale } = useRouter();
 
   return (
     <section data-testid="topten-slider" className={styles.section}>
-      <div className="container">
+      <Container>
         <h2 className={styles.section__title}>
           {locale === "ru" && (
             <Image
@@ -33,19 +39,17 @@ const TopTen: FC = () => {
           breakpoints={breakpoints}
           slidesPerView={"auto"}
         >
-          {slides.map((slide) => (
-            <SwiperSlide className={styles.slide} key={slide.id}>
+          {topTenMovies.map((movie, index) => (
+            <SwiperSlide className={styles.slide} key={index}>
               <TopTenSlide
-                mainImgUrl={slide.mainImgUrl}
-                logoImgUrl={slide.logoImgUrl}
-                numberImgUrl={slide.numberImgUrl}
-                route={slide.route}
-                id={slide.id}
+                image={movie.img}
+                number={index + 1}
+                route={"/movies/" + movie.film_id}
               />
             </SwiperSlide>
           ))}
         </Slider>
-      </div>
+      </Container>
     </section>
   );
 };

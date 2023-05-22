@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import styles from "./ToggleSwitch.module.sass";
 
@@ -22,25 +22,21 @@ const ToggleSwitch: FC<ToggleSwitchProps> = ({
   dataTestId,
 }) => {
   const [isActive, setIsActive] = useState(false);
-  const [toggleValue, setToggleValue] = useState<string>(
-    defaultValue || "left"
-  );
+  const [toggleValue, setToggleValue] = useState<string>(defaultValue || "left");
 
   const debouncedCallback = useDebouncedCallback(clickCallback, 200);
-
   const activeToggle = isActive ? ` ${styles.toggle_active}` : "";
 
-  useEffect(() => {
+  const clickHandler = (): void => {
+    setToggleValue(toggleValue === "left" ? "right" : "left");
     setIsActive(true);
-    debouncedCallback(toggleValue === "left" ? leftContent : rightContent);
+    debouncedCallback(toggleValue === "right" ? leftContent : rightContent);
     setTimeout(() => setIsActive(false), 600);
-  }, [debouncedCallback, leftContent, rightContent, toggleValue]);
+  };
 
   return (
     <div
-      onClick={() => {
-        setToggleValue(toggleValue === "left" ? "right" : "left");
-      }}
+      onClick={clickHandler}
       className={`${styles.toggle} ${className} ${activeToggle}`}
       style={{ scale: scale }}
       data-testid={dataTestId}
@@ -51,8 +47,12 @@ const ToggleSwitch: FC<ToggleSwitchProps> = ({
         }`}
         data-testid="toggle-button"
       />
-      <span className={styles.toggle__left} data-testid="toggle-left">{leftContent}</span>
-      <span className={styles.toggle__right} data-testid="toggle-right">{rightContent}</span>
+      <span className={styles.toggle__left} data-testid="toggle-left">
+        {leftContent}
+      </span>
+      <span className={styles.toggle__right} data-testid="toggle-right">
+        {rightContent}
+      </span>
     </div>
   );
 };

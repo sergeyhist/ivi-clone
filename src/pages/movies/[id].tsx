@@ -71,8 +71,12 @@ const Movie: FC<MovieProps> = ({
         </Layout>
       )}
       {!movie && (
-        <Layout title={t("common:not_found.title")}>
-          <NotFound title={t("common:not_found.content")} />
+        <Layout title={t("movie:not_found.title")}>
+          <NotFound
+            contentText={t("movie:not_found.content")}
+            linkText={t("movie:not_found.link")}
+            linkRoute="/movies"
+          />
         </Layout>
       )}
     </>
@@ -89,7 +93,9 @@ export const getServerSideProps = async ({
   const movie = await getMovieById(String(params.id));
   const persons = await getMoviePersons(String(params.id));
   const comments = await getMovieComments(String(params.id));
-  const relatedMovies = await getMoviesByGenre(movie?.genres[0].slug || "drama");
+  const relatedMovies = await getMoviesByGenre(
+    movie && movie.genres[0] ? movie.genres[0].slug : "drama"
+  );
 
   return {
     props: {

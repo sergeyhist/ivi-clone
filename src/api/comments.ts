@@ -28,6 +28,7 @@ export const createComment = async (
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      withCredentials: true,
       data: data,
     };
 

@@ -3,15 +3,19 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticPropsResult } from "next";
 import NotFound from "../components/NotFound/NotFound";
-import Container from "../UI/Container/Container";
+import Layout from "../components/Layout/Layout";
 
 const Home: FC = () => {
   const { t } = useTranslation("common");
 
   return (
-    <Container>
-      <NotFound title={t("common:not_found.content")} />
-    </Container>
+    <Layout title={t("common:not_found.title")}>
+      <NotFound
+        contentText={t("common:not_found.content")}
+        linkText={t("common:not_found.link")}
+        linkRoute="/"
+      />
+    </Layout>
   );
 };
 

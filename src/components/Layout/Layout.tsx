@@ -21,7 +21,7 @@ import {
 } from "/src/api/user";
 import { useAppInterceptors } from "/src/hooks/useAppInterceptors";
 import { removeAuthData, setAuthData } from "/src/utils/localStorage";
-import {deleteCookiesByNames, getCookieByName} from "/src/utils/cookies";
+import { deleteCookiesByNames } from "/src/utils/cookies";
 
 interface LayoutProps {
   title: string;
@@ -51,27 +51,20 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
   };
 
   useEffect(() => {
-    // const userData = getCookieByName("userData");
-    // if((userData !== null)){
-    //   const decodedCoockie= decodeURIComponent(userData);
-    // }
-
     isUserAuthorized().then((res) => {
       if (res === true) {
-        getRefreshToken()
-          .then((res) => {
-            setAuthData(res?.email, res?.accessToken);
-            dispatch(
-              setAuth({
-                userEmail: localStorage.getItem("email") || "",
-                isLogged: true,
-              })
-            );
-          });
-      }else if(res === false){
-        console.log(res);
+        getRefreshToken().then((res) => {
+          setAuthData(res?.email, res?.accessToken);
+          dispatch(
+            setAuth({
+              userEmail: localStorage.getItem("email") || "",
+              isLogged: true,
+            })
+          );
+        });
+      } else if (res === false) {
         removeAuthData();
-        deleteCookiesByNames(["accessToken","refreshToken","userData"]);
+        deleteCookiesByNames(["accessToken", "refreshToken", "userData"]);
       }
     });
   }, [dispatch]);
