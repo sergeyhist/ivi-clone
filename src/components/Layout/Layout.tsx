@@ -68,11 +68,6 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
                 isLogged: true,
               })
             );
-          })
-          .catch(() => {
-            removeAuthData();
-            console.log(String(res) + "refresh");
-            //deleteCookiesByNames(["accessToken","refreshToken","userData"]);
           });
       }else if(res === false){
         console.log(res);
