@@ -17,6 +17,8 @@ import Link from "next/link";
 import { setAuth } from "/src/store/slices/authSlice";
 import { notify } from "/src/utils/defaultToast";
 import {logout} from "/src/api/user";
+import {removeAuthData} from "/src/utils/localStorage";
+import {deleteCookiesByNames} from "/src/utils/cookies";
 
 interface ActionsProps {
   setDropDownType: Dispatch<SetStateAction<DropDownType>>;
@@ -38,8 +40,8 @@ const Actions: FC<ActionsProps> = ({
   };
 
   const handleLogout = (): void => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("email");
+    removeAuthData();
+    deleteCookiesByNames(["accessToken","refreshToken","userData"]);
     dispatch(setAuth({ userEmail: "", isLogged: false }));
     logout();
     notify(t("profile.logoutMessage"), 'logout');
