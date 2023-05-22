@@ -60,6 +60,7 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
       if (res === true) {
         getRefreshToken()
           .then((res) => {
+            console.log(res);
             setAuthData(res?.email, res?.accessToken);
             dispatch(
               setAuth({
@@ -70,9 +71,11 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
           })
           .catch(() => {
             removeAuthData();
+            console.log(String(res) + "refresh");
             //deleteCookiesByNames(["accessToken","refreshToken","userData"]);
           });
       }else if(res === false){
+        console.log(res);
         removeAuthData();
         //deleteCookiesByNames(["accessToken","refreshToken","userData"]);
       }
