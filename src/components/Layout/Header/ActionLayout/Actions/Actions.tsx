@@ -41,9 +41,9 @@ const Actions: FC<ActionsProps> = ({
 
   const handleLogout = (): void => {
     removeAuthData();
-    deleteCookiesByNames(["accessToken","refreshToken","userData"]);
     dispatch(setAuth({ userEmail: "", isLogged: false }));
     logout();
+    deleteCookiesByNames(["accessToken","refreshToken","userData"]);
     notify(t("profile.logoutMessage"), 'logout');
   };
 
