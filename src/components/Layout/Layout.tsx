@@ -70,11 +70,11 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
           })
           .catch(() => {
             removeAuthData();
-            deleteCookiesByNames(["accessToken","refreshToken","userData"]);
+            //deleteCookiesByNames(["accessToken","refreshToken","userData"]);
           });
       }else if(res === false){
         removeAuthData();
-        deleteCookiesByNames(["accessToken","refreshToken","userData"]);
+        //deleteCookiesByNames(["accessToken","refreshToken","userData"]);
       }
     });
   }, [dispatch]);
