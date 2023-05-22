@@ -10,12 +10,14 @@ interface BreadCrumbsProps {
   type?: "dots" | "slash";
   currentTitle?: string;
   mobileVersion?: boolean;
+  customRoutes?: string[];
 }
 
 const BreadCrumbs: FC<BreadCrumbsProps> = ({
   type = "dots",
   currentTitle,
   mobileVersion = false,
+  customRoutes,
 }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
@@ -33,13 +35,22 @@ const BreadCrumbs: FC<BreadCrumbsProps> = ({
             data-testid="breadcrumbs-list"
             className={`${styles.list} ${listClassName}`}
           >
-            {routes.map((route, index) => (
-              <li key={index} className={styles.list__item}>
-                <Link className={styles.list__link} href={route}>
-                  {t(`breadcrumbs.${route}`)}
-                </Link>
-              </li>
-            ))}
+            {customRoutes &&
+              customRoutes.map((route, index) => (
+                <li key={index} className={styles.list__item}>
+                  <Link className={styles.list__link} href={route}>
+                    {t(`breadcrumbs.${route}`)}
+                  </Link>
+                </li>
+              ))}
+            {!customRoutes &&
+              routes.map((route, index) => (
+                <li key={index} className={styles.list__item}>
+                  <Link className={styles.list__link} href={route}>
+                    {t(`breadcrumbs.${route}`)}
+                  </Link>
+                </li>
+              ))}
             {currentTitle && (
               <li className={styles.list__item}>
                 <span className={styles.list__current}>{currentTitle}</span>

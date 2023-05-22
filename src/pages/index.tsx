@@ -20,9 +20,6 @@ interface HomeProps {
 const Home: FC<HomeProps> = ({ bestMilitants, bestComedies, topTenMovies }) => {
   const { t } = useTranslation(["titles", "home"]);
 
-  useEffect(()=>{
-    console.log("home");},[])
-
   const compilations = [
     {
       movies: bestMilitants,

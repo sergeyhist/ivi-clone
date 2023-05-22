@@ -2,7 +2,6 @@ import { Dispatch, FC, SetStateAction } from "react";
 import { useTranslation } from "next-i18next";
 import styles from "./AdminTabs.module.sass";
 import Container from "/src/UI/Container/Container";
-import CustomTitle from "/src/UI/CustomTitle/CustomTitle";
 
 interface AdminTabsProps {
   setSelectedTab: Dispatch<SetStateAction<"movies" | "genres">>;
