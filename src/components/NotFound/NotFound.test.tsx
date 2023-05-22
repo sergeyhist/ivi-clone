@@ -7,7 +7,9 @@ jest.mock("next/router", () => require("next-router-mock"));
 
 describe("BannerSlider", () => {
   it("should render without errors", () => {
-    renderWithProviders(<NotFound title="title" />);
+    renderWithProviders(
+      <NotFound linkRoute="/" linkText="link" contentText="title" />
+    );
     expect(screen.getByTestId("not-found")).toBeInTheDocument();
   });
 });
