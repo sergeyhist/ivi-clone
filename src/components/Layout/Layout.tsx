@@ -45,7 +45,8 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
   };
 
   useEffect(() => {
-    console.log("1");
+    console.log(document.cookie);
+
     if (localStorage.getItem("email")) {
       getRefreshToken().then(() =>
         dispatch(
@@ -54,7 +55,7 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
             isLogged: true,
           })
         )
-      );
+      ).catch(()=> localStorage.removeItem("email"));
     }
   }, []);
 

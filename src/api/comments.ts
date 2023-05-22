@@ -6,7 +6,6 @@ export const createComment = async (
   user_id: string,
   text: string,
   parent_id: null | string,
-  token: string
 ): Promise<IComment | undefined> => {
   try {
     if (!process.env.SERVER_HOST)
@@ -26,7 +25,6 @@ export const createComment = async (
       url: `${process.env.SERVER_HOST}/comments`,
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
       },
       data: data,
     };

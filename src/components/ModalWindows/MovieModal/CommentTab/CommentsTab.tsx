@@ -40,7 +40,6 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments, setCommentsState }) => {
           user.user_id,
           inputText,
           replyFor.comment_id,
-          String(localStorage.getItem("token"))
         ).then((res) => {
           if (!res) return;
           replyFor.sub_comments.unshift(res);
@@ -53,7 +52,6 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments, setCommentsState }) => {
           user.user_id,
           inputText,
           null,
-          String(localStorage.getItem("token"))
         ).then((res) => {
           if (!res) return;
           setCommentsState([res, ...comments]);
