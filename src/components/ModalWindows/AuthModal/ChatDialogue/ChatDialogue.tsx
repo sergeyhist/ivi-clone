@@ -15,7 +15,7 @@ import {
 } from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDialogue.utils";
 import ErrorMessage from "/src/components/ModalWindows/AuthModal/ChatDialogue/ErrorMessage/ErrorMessage";
 import EmailInput from "/src/components/ModalWindows/AuthModal/ChatDialogue/EmailInput/EmailInput";
-import {createUser, login, refreshAccessToken} from "/src/api/user";
+import {createUser, login } from "/src/api/user";
 import { useTranslation } from "next-i18next";
 import ChatMessage from "/src/components/ModalWindows/AuthModal/ChatMessage/ChatMessage";
 import { useAppDispatch } from "/src/hooks/redux";
@@ -23,6 +23,7 @@ import { setAuth } from "/src/store/slices/authSlice";
 import { setShowAuthModal } from "/src/store/slices/modalsSlice";
 import { notify } from "/src/utils/defaultToast";
 import PasswordInput from "/src/components/ModalWindows/AuthModal/ChatDialogue/PasswordInput/PasswordInput";
+import {setAuthData} from "/src/utils/localStorage";
 
 interface ChatDialogueProps {
   setProgressBarWidth: Dispatch<SetStateAction<{ width: number }>>;
@@ -79,9 +80,8 @@ const ChatDialogue: FC<ChatDialogueProps> = ({
   };
 
   const handleLogin = async (email: string, password: string): Promise<void> => {
-    await login(email, password);
-
-    localStorage.setItem("email", email);
+    const loginResponse = await login(email, password);
+    setAuthData(email,loginResponse?.accessToken);
   };
 
   const handleCreateUser = async (
@@ -89,6 +89,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({
     password: string
   ): Promise<void> => {
     await createUser(email, password);
+    handleLogin(email,password);
   };
 
   return (

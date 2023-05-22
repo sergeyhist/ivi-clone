@@ -14,8 +14,14 @@ import ProgressBar from "/src/UI/ProgressBar/ProgressBar";
 import { useCountriesSlugs } from "/src/api/countries";
 import { useGenresSlugs } from "/src/api/genres";
 import { setAuth } from "/src/store/slices/authSlice";
-import { refreshAccessToken } from "/src/api/user";
-import {useAppInterceptors} from "/src/hooks/useAppInterceptors";
+import {
+  isUserAuthorized,
+  refreshAccessToken,
+  RefreshResponse,
+} from "/src/api/user";
+import { useAppInterceptors } from "/src/hooks/useAppInterceptors";
+import { removeAuthData, setAuthData } from "/src/utils/localStorage";
+import {getCookieByName} from "/src/utils/coockies";
 
 interface LayoutProps {
   title: string;
@@ -40,24 +46,32 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
     );
   }, 100);
 
-  const getRefreshToken = async (): Promise<void> => {
-    await refreshAccessToken();
+  const getRefreshToken = async (): Promise<RefreshResponse | undefined> => {
+    return await refreshAccessToken();
   };
 
   useEffect(() => {
-    console.log(document.cookie);
-
-    if (localStorage.getItem("email")) {
-      getRefreshToken().then(() =>
-        dispatch(
-          setAuth({
-            userEmail: localStorage.getItem("email") || "",
-            isLogged: true,
+    console.log(getCookieByName("accessToken"));
+    isUserAuthorized().then((res) => {
+      if (res === true) {
+        getRefreshToken()
+          .then((res) => {
+            setAuthData(res?.email, res?.accessToken);
+            dispatch(
+              setAuth({
+                userEmail: localStorage.getItem("email") || "",
+                isLogged: true,
+              })
+            );
           })
-        )
-      ).catch(()=> localStorage.removeItem("email"));
-    }
-  }, []);
+          .catch(() => {
+            removeAuthData();
+          });
+      }else if(res === false){
+        removeAuthData();
+      }
+    });
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch(

@@ -1,7 +1,10 @@
-import axios, {AxiosError} from "axios";
+import axios from "axios";
 import { IUser } from "/src/types/IUser";
 
-export const createUser = async (email: string, password: string): Promise<void> => {
+export const createUser = async (
+  email: string,
+  password: string
+): Promise<void> => {
   try {
     const data = JSON.stringify({
       email: email,
@@ -23,7 +26,9 @@ export const createUser = async (email: string, password: string): Promise<void>
   }
 };
 
-export const getUserByEmail = async (email: string): Promise<IUser | undefined> => {
+export const getUserByEmail = async (
+  email: string
+): Promise<IUser | undefined> => {
   try {
     const response = await axios.get<IUser>(
       `${String(process.env.SERVER_HOST)}/users/${email}`
@@ -54,7 +59,7 @@ export const login = async (
       url: `${String(process.env.SERVER_HOST)}/login`,
       headers: {
         "Content-Type": "application/json",
-        "Access-Control-Allow-Credentials": true
+        "Access-Control-Allow-Credentials": true,
       },
       withCredentials: true,
       data: data,
@@ -68,19 +73,28 @@ export const login = async (
   }
 };
 
-export const logout = async ():Promise<void> =>{
+export const logout = async (): Promise<void> => {
   try {
-    axios.defaults.withCredentials = true
-    await axios.delete(`${String(process.env.SERVER_HOST)}/logout`,{
+    axios.defaults.withCredentials = true;
+    await axios.delete(`${String(process.env.SERVER_HOST)}/logout`, {
       withCredentials: true,
-      headers: {'Access-Control-Allow-Origin': '*', 'Content-Type': 'application/json'}
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
     });
-  }catch (err){
+  } catch (err) {
     console.log(err);
   }
+};
+
+export interface RefreshResponse extends ResponseWithToken {
+  email: string;
 }
 
-export const refreshAccessToken = async (): Promise<ResponseWithToken | undefined> => {
+export const refreshAccessToken = async (): Promise<
+  RefreshResponse | undefined
+> => {
   try {
     const config = {
       method: "post",
@@ -95,10 +109,17 @@ export const refreshAccessToken = async (): Promise<ResponseWithToken | undefine
     const response = await axios.request(config);
 
     return response.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const isUserAuthorized = async (): Promise<boolean | undefined>=>{
+  try {
+      const response = await axios.get(`${String(process.env.SERVER_HOST)}/isauth`);
+
+      return response.data;
   }catch (err){
-    if(err instanceof AxiosError){
-      console.log(err.response?.status);
-    }
-    throw err;
+    console.log(err);
   }
 }
