@@ -116,7 +116,7 @@ export const refreshAccessToken = async (): Promise<
 
 export const isUserAuthorized = async (): Promise<boolean | undefined>=>{
   try {
-      const response = await axios.get(`${String(process.env.SERVER_HOST)}/isauth`);
+      const response = await axios.get(`${String(process.env.SERVER_HOST)}/isauth`,{withCredentials:true});
 
       return response.data;
   }catch (err){
