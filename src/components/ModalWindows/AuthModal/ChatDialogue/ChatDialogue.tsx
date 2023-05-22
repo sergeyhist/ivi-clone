@@ -15,15 +15,15 @@ import {
 } from "/src/components/ModalWindows/AuthModal/ChatDialogue/ChatDialogue.utils";
 import ErrorMessage from "/src/components/ModalWindows/AuthModal/ChatDialogue/ErrorMessage/ErrorMessage";
 import EmailInput from "/src/components/ModalWindows/AuthModal/ChatDialogue/EmailInput/EmailInput";
-import {createUser, login } from "/src/api/user";
+import { createUser, getUserByEmail, login } from "/src/api/user";
 import { useTranslation } from "next-i18next";
 import ChatMessage from "/src/components/ModalWindows/AuthModal/ChatMessage/ChatMessage";
 import { useAppDispatch } from "/src/hooks/redux";
-import { setAuth } from "/src/store/slices/authSlice";
+import { setAuth, setRole } from "/src/store/slices/authSlice";
 import { setShowAuthModal } from "/src/store/slices/modalsSlice";
 import { notify } from "/src/utils/defaultToast";
 import PasswordInput from "/src/components/ModalWindows/AuthModal/ChatDialogue/PasswordInput/PasswordInput";
-import {setAuthData} from "/src/utils/localStorage";
+import { setAuthData } from "/src/utils/localStorage";
 
 interface ChatDialogueProps {
   setProgressBarWidth: Dispatch<SetStateAction<{ width: number }>>;
@@ -79,9 +79,17 @@ const ChatDialogue: FC<ChatDialogueProps> = ({
     } else setIsEmailInputSuccess(true);
   };
 
-  const handleLogin = async (email: string, password: string): Promise<void> => {
+  const handleLogin = async (
+    email: string,
+    password: string
+  ): Promise<void> => {
     const loginResponse = await login(email, password);
-    setAuthData(email,loginResponse?.accessToken);
+    const userData = await getUserByEmail(email);
+    if (userData)
+      dispatch(
+        setRole(userData.roles.length > 0 ? userData.roles[0].value : "")
+      );
+    setAuthData(email, loginResponse?.accessToken);
   };
 
   const handleCreateUser = async (
@@ -89,7 +97,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({
     password: string
   ): Promise<void> => {
     await createUser(email, password);
-    handleLogin(email,password);
+    handleLogin(email, password);
   };
 
   return (

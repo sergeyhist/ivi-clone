@@ -38,6 +38,9 @@ const meta: Meta<typeof ModalInput> = {
     },
     setIsValid: {
       description: "(optional) A state setter function that sets the validity of the authentication data, based on some validation criteria."
+    },
+    isFocused:{
+      description: "(optional) A state which indicates whether the input will have focus"
     }
   },
     decorators: [

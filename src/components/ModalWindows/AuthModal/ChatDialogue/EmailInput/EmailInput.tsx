@@ -77,6 +77,7 @@ const EmailInput: FC<EmailInput> = ({
           setAuthData={setEmail}
           placeholderText={t("emailPlaceholder")}
           buttonText={t("submit")}
+          isFocused={true}
           inputType="email"
           dataTestId="email-input"
         />
