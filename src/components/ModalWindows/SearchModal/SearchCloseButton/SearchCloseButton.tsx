@@ -10,8 +10,8 @@ const SearchCloseButton: FC<SearchCloseButtonProps> = ({clickCallback}) => {
     <button
         onClick={clickCallback}
         className={styles.close}
+        data-testid="close-search-btn"
       >
-        Закрыть окно
       </button>
   )
 }

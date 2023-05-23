@@ -21,6 +21,7 @@ interface ModalInputProps {
   showErrorMessage?: boolean;
   clickCallback?: () => void;
   preventDefault?: boolean;
+  isFocused?: boolean;
   className?: string;
   dataTestId?: string;
 }
@@ -36,6 +37,7 @@ const ModalInput: FC<ModalInputProps> = ({
   clickCallback,
   preventDefault,
   showIcon = false,
+  isFocused = false,
   className,
   dataTestId,
 }) => {
@@ -46,6 +48,13 @@ const ModalInput: FC<ModalInputProps> = ({
 
   const inputRef = useRef<HTMLInputElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isFocused) {
+      inputRef.current?.focus();
+      setIsInputActive(true);
+    }
+  }, [isFocused]);
 
   useEffect(() => {
     if (inputRef.current?.value !== "") {
@@ -76,7 +85,10 @@ const ModalInput: FC<ModalInputProps> = ({
     };
 
     const handleClickOutside = (e: MouseEvent): void => {
-      if (contentRef.current && !contentRef.current.contains(e.target as Node)) {
+      if (
+        contentRef.current &&
+        !contentRef.current.contains(e.target as Node)
+      ) {
         handleInputBlur();
       }
     };
@@ -94,7 +106,8 @@ const ModalInput: FC<ModalInputProps> = ({
     value !== "" ? setIsButtonDisabled(false) : setIsButtonDisabled(true);
     setAuthData && setAuthData(value);
     setIsValid && setIsValid(false);
-    if (setIsPasswordInputSelected && value !== "") setIsPasswordInputSelected(true);
+    if (setIsPasswordInputSelected && value !== "")
+      setIsPasswordInputSelected(true);
   };
 
   const handleInputClick = (): void => {
@@ -131,7 +144,9 @@ const ModalInput: FC<ModalInputProps> = ({
             type={inputType}
             ref={inputRef}
             value={authData}
-            className={`${styles.input} ${isInputActive ? styles.input_active : ""}`}
+            className={`${styles.input} ${
+              isInputActive ? styles.input_active : ""
+            }`}
             onChange={handleInputChange}
             autoComplete={"on"}
             data-testid={dataTestId}

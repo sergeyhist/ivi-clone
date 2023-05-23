@@ -1,6 +1,6 @@
 import { getMovieDeclination } from "/src/utils/getMovieDeclination";
 import { notify } from "/src/utils/defaultToast";
-import toastify, {toast} from "react-toastify";
+import toastify, { toast } from "react-toastify";
 import {
   getPersonFirstName,
   getPersonLastName,
@@ -18,6 +18,9 @@ import {
 import { TFunction } from "next-i18next";
 import { declOfNum } from "/src/utils/declOfNum";
 import { getBackendImage } from "/src/utils/getBackendImg";
+import { setAuthData } from "/src/utils/localStorage";
+import { getCookieByName } from "/src/utils/cookies";
+import createAppPortal from "/src/utils/createAppPortal";
 
 describe("getMovieDeclination", () => {
   it("should return the correct declination for 'ru' locale", () => {
@@ -51,7 +54,9 @@ describe("getMovieDeclination", () => {
 jest.mock("react-toastify");
 
 describe("notify", () => {
-  const mockToast = jest.spyOn(toastify, "toast") as jest.MockedFunction<typeof toast>;
+  const mockToast = jest.spyOn(toastify, "toast") as jest.MockedFunction<
+    typeof toast
+  >;
   beforeEach(() => {
     jest.clearAllMocks();
   });
@@ -158,5 +163,75 @@ describe("getBackendImg", () => {
   });
   it("should return undefined.scg if img is an empty string", () => {
     expect(getBackendImage("")).toBe("/images/undefined.svg");
+  });
+});
+
+describe("localStorage", () => {
+  const email = "test@example.com";
+  const token = "testToken";
+
+  it("should save data to localstorage", () => {
+    setAuthData(email, token);
+
+    expect(localStorage.getItem("email")).toBe(email);
+    expect(localStorage.getItem("token")).toBe(token);
+  });
+  it("should save empty data if arguments haven't passed", () => {
+    setAuthData();
+
+    expect(localStorage.getItem("email")).toBe("");
+    expect(localStorage.getItem("token")).toBe("");
+  });
+  it("should save only email to localStorage", () => {
+    setAuthData(email);
+
+    expect(localStorage.getItem("email")).toBe(email);
+    expect(localStorage.getItem("token")).toBe("");
+  });
+  test("should save only token to localStorage", () => {
+    setAuthData(undefined, token);
+
+    expect(localStorage.getItem("email")).toBe("");
+    expect(localStorage.getItem("token")).toBe(token);
+  });
+});
+
+describe("cookies", () => {
+  it("should return proper cookie", () => {
+    document.cookie = "cookie1=value1";
+    document.cookie = "cookie2=value2";
+
+    const result = getCookieByName("cookie2");
+
+    expect(result).toBe("value2");
+  });
+  it("should return null if can not find cookie", () => {
+    document.cookie = "cookie1=value1";
+    document.cookie = "cookie2=value2";
+
+    const result = getCookieByName("cookie3");
+
+    expect(result).toBeNull();
+  });
+});
+
+describe("createAppPortal", () => {
+  it("createAppPortal returns a ReactPortal when documentRoot is found", () => {
+    const node = <div>Test</div>;
+    const documentRoot = document.createElement("div");
+    documentRoot.setAttribute("id", "__next");
+    document.getElementById = jest.fn(() => documentRoot);
+
+    const result = createAppPortal(node);
+
+    expect(result).not.toBeNull();
+  });
+  it("createAppPortal returns null when documentRoot is not found", () => {
+    const node = <div>Test</div>;
+    document.getElementById = jest.fn(() => null);
+
+    const result = createAppPortal(node);
+
+    expect(result).toBeNull();
   });
 });

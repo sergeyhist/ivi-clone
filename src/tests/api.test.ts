@@ -63,7 +63,9 @@ describe("userApi", () => {
       url: `${String(process.env.SERVER_HOST)}/login`,
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": true,
       },
+      withCredentials: true,
       data: JSON.stringify({
         email,
         password,
@@ -87,7 +89,9 @@ describe("userApi", () => {
       url: `${String(process.env.SERVER_HOST)}/login`,
       headers: {
         "Content-Type": "application/json",
+        "Access-Control-Allow-Credentials": true,
       },
+      "withCredentials": true,
       data: JSON.stringify({
         email,
         password,

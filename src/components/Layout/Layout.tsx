@@ -9,12 +9,13 @@ import { useDebouncedCallback } from "use-debounce";
 import MobileMenu from "./MobileMenu/MobileMenu";
 import { setSlugs } from "/src/store/slices/slugsSlice";
 import { ToastContainer } from "react-toastify";
-import { iviSans, iviIcons, iconFont } from "/src/utils/fonts";
+import { iconFont, iviIcons, iviSans } from "/src/utils/fonts";
 import ProgressBar from "/src/UI/ProgressBar/ProgressBar";
 import { useCountriesSlugs } from "/src/api/countries";
 import { useGenresSlugs } from "/src/api/genres";
-import { setAuth } from "/src/store/slices/authSlice";
+import { setAuth, setRole } from "/src/store/slices/authSlice";
 import {
+  getUserByEmail,
   isUserAuthorized,
   refreshAccessToken,
   RefreshResponse,
@@ -22,6 +23,7 @@ import {
 import { useAppInterceptors } from "/src/hooks/useAppInterceptors";
 import { removeAuthData, setAuthData } from "/src/utils/localStorage";
 import { deleteCookiesByNames } from "/src/utils/cookies";
+import { IUser } from "/src/types/IUser";
 
 interface LayoutProps {
   title: string;
@@ -50,11 +52,18 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
     return await refreshAccessToken();
   };
 
+  const getUserData = async (email: string): Promise<IUser | undefined> => {
+    return await getUserByEmail(email);
+  };
+
   useEffect(() => {
     isUserAuthorized().then((res) => {
       if (res === true) {
         getRefreshToken().then((res) => {
           setAuthData(res?.email, res?.accessToken);
+          getUserData(res?.email || "").then((res) =>
+            dispatch(setRole(res?.roles[0].value))
+          );
           dispatch(
             setAuth({
               userEmail: localStorage.getItem("email") || "",
