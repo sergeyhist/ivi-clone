@@ -1,4 +1,6 @@
-export const mockMovies = [
+import { IMovie } from "/src/types/IMovie";
+
+export const mockMovies: IMovie[] = [
   {
     film_id: "eb5eb005-5818-4cee-9f7b-0fc6c1fae2cc",
     name_ru: "Зеленая миля",

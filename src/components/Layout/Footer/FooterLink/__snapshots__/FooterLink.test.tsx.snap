@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer link should renders without errors 1`] = `
+<div>
+  <a
+    class="link"
+    href="https://corp.ivi.ru/?_gl=1*15hvcv0*_ga*MTYyOTgwODIxOC4xNjgxMjEzNzAx*_ga_GETQ4387MJ*MTY4MTI5Mzg5My4zLjEuMTY4MTI5OTQ0Ny42MC4wLjA."
+    target="_blank"
+  >
+    about.links.0
+  </a>
+</div>
+`;

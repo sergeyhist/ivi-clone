@@ -4,7 +4,10 @@ import { useDebouncedCallback } from "use-debounce";
 import MoreButton from "./MoreButton/MoreButton";
 import styles from "./MoviesList.module.sass";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
-import { setIsMoviesLoading } from "/src/store/slices/filtersSlice";
+import {
+  setFilteredMovies,
+  setIsMoviesLoading,
+} from "/src/store/slices/filtersSlice";
 import { IMovie } from "/src/types/IMovie";
 import MovieCard from "/src/UI/MovieCard/MovieCard";
 import filterMovies from "/src/utils/filters/filterMovies";
@@ -14,6 +17,7 @@ import { PropagateLoader } from "react-spinners";
 
 const MoviesList: FC = () => {
   const router = useRouter();
+  const { query } = router;
   const { t } = useTranslation();
   const { filteredMovies, filters, sortingMethod, isMoviesLoading } =
     useAppSelector((state) => state.filters);
@@ -24,21 +28,23 @@ const MoviesList: FC = () => {
   const [listLimit, setListLimit] = useState(0);
 
   const debouncedFilter = useDebouncedCallback(() => {
-    filterMovies(filters, sortingMethod);
+    filterMovies(filters, sortingMethod).then((movies) => {
+      dispatch(setFilteredMovies(movies));
+      dispatch(setIsMoviesLoading(false));
+    });
   }, 1000);
 
   useEffect(() => {
+    setPage(0);
     dispatch(setIsMoviesLoading(true));
-    setPage(1);
     debouncedFilter();
   }, [dispatch, filters, sortingMethod, debouncedFilter]);
 
   useEffect(() => {
-    (Number(router.query.page) || 0) < page ||
-    (page === 1 && router.query.page !== "1")
-      ? setQueryParams(router, { page: page.toString() })
-      : setPage(Number(router.query.page));
-  }, [router, page, dispatch]);
+    query.page
+      ? query.page !== page.toString() && setPage(Number(query.page))
+      : setPage(1);
+  }, [query, page]);
 
   useEffect(() => {
     width > 1160 && setListLimit(7 * 3);
@@ -51,7 +57,7 @@ const MoviesList: FC = () => {
 
   if (isMoviesLoading) {
     return (
-      <div className={styles.list__loader}>
+      <div data-testid="movies-loading" className={styles.list__loader}>
         <PropagateLoader color="#312b45" />
       </div>
     );
@@ -59,26 +65,34 @@ const MoviesList: FC = () => {
 
   if (filteredMovies.length > 0) {
     return (
-      <div>
-        <div
-          className={`${styles.list} ${
-            isMoviesLoading ? styles.list_loading : ""
-          }`}
-        >
+      <div data-testid="movies-list">
+        <div className={`${styles.list}`}>
           {filteredMovies.slice(0, listLimit * page).map((movie: IMovie, i) => (
-            <div key={i} className={styles.list__movie}>
+            <div
+              data-testid="movies-item"
+              key={i}
+              className={styles.list__movie}
+            >
               <MovieCard content={movie} />
             </div>
           ))}
         </div>
         {listLimit * page < filteredMovies.length && (
-          <MoreButton clickCallback={() => setPage(page + 1)} />
+          <MoreButton
+            clickCallback={() =>
+              setQueryParams(router, { page: String(page + 1) })
+            }
+          />
         )}
       </div>
     );
   }
 
-  return <h2 className={styles.list__text}>{t("filters:movienotfound")}</h2>;
+  return (
+    <h2 data-testid="movies-notfound" className={styles.list__text}>
+      {t("filters:movienotfound")}
+    </h2>
+  );
 };
 
 export default MoviesList;

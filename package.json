@@ -11,7 +11,8 @@
     "build-storybook": "storybook build",
     "test": "jest --watch",
     "coverage": "jest --coverage",
-    "coverage-watch": "jest --coverage --watch"
+    "coverage-watch": "jest --coverage --watch",
+    "snapshot-update": "jest --updateSnapshot"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
@@ -56,7 +57,6 @@
     "@storybook/testing-library": "^0.0.14-next.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
-    "@types/nprogress": "^0.2.0",
     "@types/react-redux": "^7.1.25",
     "@typescript-eslint/eslint-plugin": "^5.58.0",
     "@typescript-eslint/parser": "^5.58.0",
