@@ -2,7 +2,7 @@ import ChatDialogue from "/src/components/ModalWindows/AuthModal/ChatDialogue/Ch
 import { renderWithProviders } from "/src/utils/test-utils";
 import { fireEvent } from "@testing-library/react";
 import axios from "axios";
-import {LoginResponse} from "/src/api/user";
+import { ResponseWithToken } from "/src/api/user";
 
 jest.mock("axios");
 const mockedAxios = axios as jest.Mocked<typeof axios>;
@@ -10,6 +10,9 @@ const mockedAxios = axios as jest.Mocked<typeof axios>;
 describe("ChatDialogue", () => {
   const setProgressBarWidth = jest.fn();
   const setIsEmailExist = jest.fn();
+  afterEach(()=>{
+    jest.clearAllMocks();
+  })
 
   it("should renders without errors", () => {
     const {
@@ -72,13 +75,18 @@ describe("ChatDialogue", () => {
       />
     );
     const email = "test@example.com";
-    const mockResponse: LoginResponse ={
+    const mockResponse: ResponseWithToken = {
       accessToken: "some-token",
     };
-    const userData = { id: 1, name: "John Doe", email };
+    const userData = {
+      id: 1,
+      email,
+      name: "John Doe",
+      roles: [{ value: "role" }],
+    };
 
-    mockedAxios.get.mockResolvedValueOnce({ data: userData });
     mockedAxios.request.mockResolvedValueOnce({ data: mockResponse });
+    mockedAxios.get.mockResolvedValueOnce({ data: userData });
 
     const emailInput = getByTestId("email-input");
     fireEvent.change(emailInput, { target: { value: email } });
@@ -87,6 +95,7 @@ describe("ChatDialogue", () => {
 
     fireEvent.change(passwordInput, { target: { value: "password" } });
     fireEvent.click(getByTestId("password-input-button"));
+    expect(mockedAxios.get).toHaveBeenCalledTimes(1);
     expect(mockedAxios.request).toHaveBeenCalledTimes(1);
     expect(store.getState().auth).toEqual({
       isLogged: true,
@@ -94,23 +103,38 @@ describe("ChatDialogue", () => {
     });
     expect(store.getState().showModal.showAuthModal).toBe(false);
   });
-  it("should create user",()=>{
+  it("should create user", () => {
     const {
       component: { getByTestId },
     } = renderWithProviders(
       <ChatDialogue
         setProgressBarWidth={setProgressBarWidth}
         setIsEmailExist={setIsEmailExist}
-        isEmailExist={true}
+        isEmailExist={false}
       />
     );
     const email = "test@example.com";
+    const password = "password";
     const emailInput = getByTestId("email-input");
     fireEvent.change(emailInput, { target: { value: email } });
     fireEvent.click(getByTestId("email-input-button"));
     const passwordInput = getByTestId("password-input");
 
-    fireEvent.change(passwordInput, { target: { value: "password" } });
+    fireEvent.change(passwordInput, { target: { value: password } });
     fireEvent.click(getByTestId("password-input-button"));
-  })
+    const config = {
+      method: "post",
+      maxBodyLength: Infinity,
+      url: `${String(process.env.SERVER_HOST)}/signup`,
+      headers: {
+        "Content-Type": "application/json",
+      },
+      data: JSON.stringify({
+        email,
+        password,
+      }),
+    };
+    expect(mockedAxios.request).toHaveBeenCalledTimes(1);
+    expect(mockedAxios.request).toHaveBeenCalledWith(config);
+  });
 });

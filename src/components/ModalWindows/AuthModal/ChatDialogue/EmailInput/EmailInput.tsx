@@ -82,13 +82,13 @@ const EmailInput: FC<EmailInput> = ({
           dataTestId="email-input"
         />
         <div className={styles.socials}>
-            <CustomButton className={styles.socials__btn} preventDefault={true} type="icon" clickCallback={()=>{handleLinkClick("google")}}>
+            <CustomButton className={styles.socials__btn} preventDefault={true} type="icon" clickCallback={()=>{handleLinkClick("google")}} dataTestId="google-link">
               <div className={styles.icon__container}>
                 <BsGoogle/>
                 <p className={styles.text}>{t("googleButton")}</p>
               </div>
             </CustomButton>
-            <CustomButton className={styles.socials__btn} preventDefault={true} type="icon" clickCallback={()=>{handleLinkClick("vk")}}>
+            <CustomButton className={styles.socials__btn} preventDefault={true} type="icon" clickCallback={()=>{handleLinkClick("vk")}} dataTestId="vk-link">
               <div className={styles.icon__container}>
                 <FaVk/>
                 <p className={styles.text}>{t("vkButton")}</p>

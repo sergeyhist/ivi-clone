@@ -2,7 +2,7 @@ import React from "react";
 import CreatorsList from "./CreatorsList";
 import { renderWithProviders } from "/src/utils/test-utils";
 import { fireEvent, screen } from "@testing-library/react";
-import { mockPerson } from "/src/utils/person";
+import { mockPerson } from "/src/utils/mocks/person";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
