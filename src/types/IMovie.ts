@@ -36,6 +36,7 @@ export interface IQuality {
 export interface ILanguage {
   language_id: string;
   language: string;
+  slug: string;
 }
 
 export interface ICountry {
