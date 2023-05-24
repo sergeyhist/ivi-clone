@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Movies layout component layout rendered correctly 1`] = `
+<div>
+  <div
+    class="container"
+    data-testid="container"
+  >
+    <div
+      class="layout"
+    >
+      test
+    </div>
+  </div>
+</div>
+`;

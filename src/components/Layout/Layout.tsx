@@ -9,15 +9,15 @@ import { useDebouncedCallback } from "use-debounce";
 import MobileMenu from "./MobileMenu/MobileMenu";
 import { setSlugs } from "/src/store/slices/slugsSlice";
 import { ToastContainer } from "react-toastify";
-import { iviSans, iviIcons, iconFont } from "/src/utils/fonts";
+import { iconFont, iviIcons, iviSans } from "/src/utils/fonts";
 import ProgressBar from "/src/UI/ProgressBar/ProgressBar";
 import { useCountriesSlugs } from "/src/api/countries";
 import { useGenresSlugs } from "/src/api/genres";
-import { setAuth } from "/src/store/slices/authSlice";
+import { setAuth, setRole } from "/src/store/slices/authSlice";
 import {
+  getUserByEmail,
   isUserAuthorized,
   refreshAccessToken,
-  RefreshResponse,
 } from "/src/api/user";
 import { useAppInterceptors } from "/src/hooks/useAppInterceptors";
 import { removeAuthData, setAuthData } from "/src/utils/localStorage";
@@ -37,7 +37,7 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
 
   useAppInterceptors();
 
-  const debouncedResize = useDebouncedCallback((): void => {
+  const debouncedResize = useDebouncedCallback(()=> {
     dispatch(
       setWindowSize({
         width: window.innerWidth,
@@ -46,15 +46,16 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
     );
   }, 100);
 
-  const getRefreshToken = async (): Promise<RefreshResponse | undefined> => {
-    return await refreshAccessToken();
-  };
-
   useEffect(() => {
     isUserAuthorized().then((res) => {
       if (res === true) {
-        getRefreshToken().then((res) => {
+        console.log(res);
+
+        refreshAccessToken().then((res) => {
           setAuthData(res?.email, res?.accessToken);
+          getUserByEmail(res?.email || "").then((res) =>
+            dispatch(setRole(res?.roles[0].value))
+          );
           dispatch(
             setAuth({
               userEmail: localStorage.getItem("email") || "",
@@ -88,6 +89,7 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
   return (
     <div
       className={`${iviSans.className} ${iviSans.variable} ${iviIcons.variable} ${iconFont.variable}`}
+      data-testid="layout"
     >
       <ToastContainer />
       <ProgressBar value={0} isFixed={true} type="loading" />

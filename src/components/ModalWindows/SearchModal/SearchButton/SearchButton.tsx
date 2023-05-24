@@ -31,6 +31,7 @@ const SearchButton: FC<SearchButtonProps> = ({
     <button
       onClick={clickHandler}
       className={styles.btn + buttonHoverClassName + buttonActiveClassName}
+      data-testid="search-button"
     >
       {searchQuery.length > 0 ? <IoClose size={25} /> : <IoSearch size={20} />}
     </button>

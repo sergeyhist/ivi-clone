@@ -32,7 +32,6 @@ describe("filtersSlice", () => {
     initialState = {
       filters: defaultFilters,
       filteredMovies: [],
-      filteredMoviesPage: 1,
       sortingMethod: "assessments",
       isMoviesLoading: false,
     };
@@ -64,14 +63,6 @@ describe("filtersSlice", () => {
     const newState = filtersSlice.reducer(initialState, action);
 
     expect(newState.filteredMovies).toEqual(expectedFilteredMovies);
-  });
-  it("should handle setFilteredMoviesPage", () => {
-    const page = 2;
-
-    const action = filtersSlice.actions.setFilteredMoviesPage(page);
-    const newState = filtersSlice.reducer(initialState, action);
-
-    expect(newState.filteredMoviesPage).toEqual(page);
   });
 
   it("should handle setSortingMethod", () => {

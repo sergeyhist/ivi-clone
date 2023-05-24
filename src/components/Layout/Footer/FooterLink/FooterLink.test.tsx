@@ -4,9 +4,9 @@ import FooterLink from "./FooterLink";
 
 describe("Footer link", () => {
   test("should renders without errors", () => {
-    const { container } = renderWithProviders(
+    const render = renderWithProviders(
       <FooterLink {...topLeftLinks[0]} />
     );
-    expect(container).toBeDefined();
+    expect(render.component.container).toMatchSnapshot();
   });
 });

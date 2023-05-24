@@ -9,6 +9,7 @@ const initialState: UserAuth ={
 export interface UserAuth{
   isLogged: boolean;
   userEmail: string;
+  role?: string;
 }
 
 export const authSlice = createSlice({
@@ -18,9 +19,13 @@ export const authSlice = createSlice({
     setAuth: (state, action: PayloadAction<UserAuth>) => {
       state.isLogged = action.payload.isLogged;
       state.userEmail = action.payload.userEmail;
+      state.role = action.payload.role;
     },
+    setRole:(state,action:PayloadAction<string | undefined>)=>{
+      state.role = action.payload;
+    }
   },
 });
 
-export const {setAuth} = authSlice.actions;
+export const {setAuth,setRole} = authSlice.actions;
 export default authSlice.reducer;

@@ -26,7 +26,8 @@ const SearchInput: FC<SearchInputProps> = ({
       onChange={changeCallback}
       className={styles.input}
       type="text"
-    ></input>
+      data-testid="search-input"
+    />
   );
 };
 

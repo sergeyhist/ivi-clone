@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer cert should renders without errors 1`] = `
+<div>
+  <div
+    class="cert"
+  >
+    <a
+      class="cert__link"
+      href="https://www.ivi.ru/cert"
+      target="_blank"
+    >
+      cert
+    </a>
+  </div>
+</div>
+`;

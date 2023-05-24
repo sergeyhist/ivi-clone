@@ -37,6 +37,7 @@ const ChatHeader: FC<ChatHeaderProps> = ({
         <button
           onClick={closeCallback}
           className={styles.header__button}
+          data-testid="close-auth-btn"
         ></button>
       </div>
       <ProgressBar

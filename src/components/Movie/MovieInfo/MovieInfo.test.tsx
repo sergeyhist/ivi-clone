@@ -1,12 +1,12 @@
 import React from "react";
 import MovieInfo from "./MovieInfo";
-import { mockPerson } from "/src/utils/person";
 import { mockMovie } from "/src/utils/movie";
 import { act, screen } from "@testing-library/react";
 import { store } from "/src/store";
 import { setWindowSize } from "/src/store/slices/windowSizeSlice";
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
+import { mockPerson } from "/src/utils/mocks/person";
 
 jest.mock("next/router", () => require("next-router-mock"));
 

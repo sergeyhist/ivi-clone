@@ -1,4 +1,4 @@
-import { act, screen } from "@testing-library/react";
+import {act, fireEvent, screen} from "@testing-library/react";
 import EmailInput from "/src/components/ModalWindows/AuthModal/ChatDialogue/EmailInput/EmailInput";
 import axios from "axios";
 import { renderWithProviders } from "/src/utils/test-utils";
@@ -37,7 +37,7 @@ describe("EmailInput", () => {
     expect(container).toBeDefined();
     expect(screen.getAllByText("Mock Text")[0]).toBeInTheDocument();
   });
-  it("handles email submission with valid email", async () => {
+  it("handles email sending with valid email", async () => {
     const props = {
       isEmailInputSuccess: true,
       setIsEmailInputSuccess,
@@ -60,5 +60,44 @@ describe("EmailInput", () => {
 
     expect(store?.getState().auth.isLogged).toBe(false);
     expect(store?.getState().auth.userEmail).toBe("test@example.com");
+  });
+  it('should call window.open with the correct URL for "google" social', () => {
+    const props = {
+      isEmailInputSuccess: false,
+      setIsEmailInputSuccess,
+      setIsEmailExist,
+      showErrorMessage: false,
+      setShowErrorMessage,
+      email: "",
+      setEmail,
+    };
+    renderWithProviders(<EmailInput {...props} />);
+    window.open = jest.fn();
+    const googleLink = screen.getByTestId("google-link");
+    fireEvent.click(googleLink);
+    expect(window.open).toHaveBeenCalledWith(
+      `${String(process.env.SERVER_HOST)}/google/login`,
+      '_self'
+    );
+  });
+  it('should call window.open with the correct URL for "vk" social', () => {
+    const props = {
+      isEmailInputSuccess: false,
+      setIsEmailInputSuccess,
+      setIsEmailExist,
+      showErrorMessage: false,
+      setShowErrorMessage,
+      email: "",
+      setEmail,
+    };
+    renderWithProviders(<EmailInput {...props} />);
+    window.open = jest.fn();
+    const vkLink= screen.getByTestId("vk-link");
+
+    fireEvent.click(vkLink);
+    expect(window.open).toHaveBeenCalledWith(
+      `${String(process.env.SERVER_HOST)}/vk/login`,
+      '_self'
+    );
   });
 });

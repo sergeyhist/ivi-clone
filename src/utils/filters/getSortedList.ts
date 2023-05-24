@@ -7,9 +7,13 @@ const getSortedList = (listKey: string, list: IMovie[]): IMovie[] => {
   const numSort = (a: IMovie, b: IMovie): number =>
     Number(b[listKey]) - Number(a[listKey]);
 
-  return list.length > 0 && isNaN(list[0][listKey] as number)
-    ? list.sort(strSort)
-    : list.sort(numSort);
+  if (list.length > 0) {
+    return isNaN(list[0][listKey] as number)
+      ? [...list].sort(strSort)
+      : [...list].sort(numSort);
+  } else {
+    return list;
+  }
 };
 
 export default getSortedList;

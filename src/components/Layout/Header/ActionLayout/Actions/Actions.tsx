@@ -16,9 +16,9 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import { setAuth } from "/src/store/slices/authSlice";
 import { notify } from "/src/utils/defaultToast";
-import {logout} from "/src/api/user";
-import {removeAuthData} from "/src/utils/localStorage";
-import {deleteCookiesByNames} from "/src/utils/cookies";
+import { logout } from "/src/api/user";
+import { removeAuthData } from "/src/utils/localStorage";
+import { deleteCookiesByNames } from "/src/utils/cookies";
 
 interface ActionsProps {
   setDropDownType: Dispatch<SetStateAction<DropDownType>>;
@@ -41,10 +41,10 @@ const Actions: FC<ActionsProps> = ({
 
   const handleLogout = (): void => {
     removeAuthData();
-    dispatch(setAuth({ userEmail: "", isLogged: false }));
+    dispatch(setAuth({ userEmail: "", isLogged: false, role: "" }));
     logout();
-    deleteCookiesByNames(["accessToken","refreshToken","userData"]);
-    notify(t("profile.logoutMessage"), 'logout');
+    deleteCookiesByNames(["accessToken", "refreshToken", "userData"]);
+    notify(t("profile.logoutMessage"), "logout");
   };
 
   const handleProfileClick = (): void => {
@@ -54,13 +54,17 @@ const Actions: FC<ActionsProps> = ({
   return (
     <div className={styles.container} data-testid="actions-container">
       {router.pathname !== "/" ? (
-        <Link href="https://www.ivi.ru/subscribe" target="_blank" data-testid="subscription-link">
+        <Link
+          href="https://www.ivi.ru/subscribe"
+          target="_blank"
+          data-testid="subscription-link"
+        >
           <div
             onMouseEnter={() => {
               setDropDownType("subscription");
               setIsDropdownActive(true);
             }}
-            data-testid='subscription-content'
+            data-testid="subscription-content"
           >
             <CustomButton className={styles.subscription__button} type="red">
               {t("freeSubscription")}
@@ -118,9 +122,13 @@ const Actions: FC<ActionsProps> = ({
         <BiUser />
       </div>
       {authState.isLogged && (
-          <CustomButton type="red" clickCallback={handleLogout} dataTestId={"logout-button"}>
-            <FiLogOut />
-          </CustomButton>
+        <CustomButton
+          type="red"
+          clickCallback={handleLogout}
+          dataTestId={"logout-button"}
+        >
+          <FiLogOut />
+        </CustomButton>
       )}
     </div>
   );

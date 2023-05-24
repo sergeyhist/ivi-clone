@@ -10,6 +10,7 @@ const MoreButton: FC<MoreButtonProps> = ({ clickCallback }) => {
   const { t } = useTranslation();
   return (
     <button
+      data-testid="more-button"
       onClick={() => clickCallback()}
       className={styles.button + " container"}
     >

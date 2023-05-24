@@ -43,6 +43,7 @@ const SearchString: FC<SearchStringProps> = ({
       }}
       onClick={setStringAndInputActive}
       className={styles.string + stringActiveClassName}
+      data-testid="search-string"
     >
       <SearchInput
         searchQuery={searchQuery}

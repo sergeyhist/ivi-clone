@@ -16,7 +16,7 @@ const WidgetBottom: FC<WidgetBottomProps> = ({ isBottomActive }) => {
     ? ` ${styles.bottom__subscribe_active}`
     : "";
 
-  const openSubscription = (): void => {
+  const handleSubscriptionClick = (): void => {
     window.open("https://www.ivi.ru/profile/subscription");
   };
 
@@ -26,7 +26,7 @@ const WidgetBottom: FC<WidgetBottomProps> = ({ isBottomActive }) => {
       <BottomInfo />
       <div className={styles.bottom__subscribe + activeSubscribe}>
         <CustomButton
-          clickCallback={openSubscription}
+          clickCallback={handleSubscriptionClick}
           className={styles.bottom__button}
           type="red"
           dataTestId="buy-button"

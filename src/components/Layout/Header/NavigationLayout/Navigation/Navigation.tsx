@@ -3,7 +3,6 @@ import styles from "./Navigation.module.sass";
 import { DropDownType } from "../../Header.utils";
 import { useTranslation } from "next-i18next";
 import Link from "next/link";
-import {refreshAccessToken, ResponseWithToken} from "/src/api/user";
 
 interface NavigationProps {
   setIsDropdownActive: Dispatch<SetStateAction<boolean>>;

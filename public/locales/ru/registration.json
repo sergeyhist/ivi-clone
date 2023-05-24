@@ -8,7 +8,7 @@
     "subtitle": "чтобы пользоваться сервисом на любом устройстве"
   },
   "googleButton": "Регистрация / Вход через Google",
-  "vkButton": "Регистрация / Вход через Vk",
+  "vkButton": "Регистрация / Вход через VK",
   "passwordMessage": "Введите пароль чтобы войти",
   "passwordErrorMessage": "Пароль должен быть от 4 до 16 символов",
   "emailPlaceholder": "Через email",

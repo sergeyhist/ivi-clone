@@ -15,7 +15,7 @@ const FiltersInfo: FC = () => {
   const director = directors.data && personFinder("director", filters, directors.data);
 
   return (
-    <div className={styles.info}>
+    <div data-testid="filters-info" className={styles.info}>
       {getFiltersText(
         filters,
         actor ? getPersonName(actor, locale) : undefined,
