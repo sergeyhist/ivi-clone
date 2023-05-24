@@ -25,6 +25,7 @@ const MoviesList: FC = () => {
   const dispatch = useAppDispatch();
 
   const [page, setPage] = useState(1);
+  const [isPageLoading, setIsPageLoading] = useState(false);
   const [listLimit, setListLimit] = useState(0);
 
   const debouncedFilter = useDebouncedCallback(() => {
@@ -44,6 +45,7 @@ const MoviesList: FC = () => {
     query.page
       ? query.page !== page.toString() && setPage(Number(query.page))
       : setPage(1);
+    setIsPageLoading(false);
   }, [query, page]);
 
   useEffect(() => {
@@ -77,11 +79,17 @@ const MoviesList: FC = () => {
             </div>
           ))}
         </div>
+        {isPageLoading && (
+          <div className={styles.list__page}>
+            <PropagateLoader color="#312b45" />
+          </div>
+        )}
         {listLimit * page < filteredMovies.length && (
           <MoreButton
-            clickCallback={() =>
-              setQueryParams(router, { page: String(page + 1) })
-            }
+            clickCallback={() => {
+              setIsPageLoading(true);
+              setQueryParams(router, { page: String(page + 1) });
+            }}
           />
         )}
       </div>
