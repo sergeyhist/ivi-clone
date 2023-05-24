@@ -18,12 +18,10 @@ import {
   getUserByEmail,
   isUserAuthorized,
   refreshAccessToken,
-  RefreshResponse,
 } from "/src/api/user";
 import { useAppInterceptors } from "/src/hooks/useAppInterceptors";
 import { removeAuthData, setAuthData } from "/src/utils/localStorage";
 import { deleteCookiesByNames } from "/src/utils/cookies";
-import { IUser } from "/src/types/IUser";
 
 interface LayoutProps {
   title: string;
@@ -39,7 +37,7 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
 
   useAppInterceptors();
 
-  const debouncedResize = useDebouncedCallback((): void => {
+  const debouncedResize = useDebouncedCallback(()=> {
     dispatch(
       setWindowSize({
         width: window.innerWidth,
@@ -48,20 +46,14 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
     );
   }, 100);
 
-  const getRefreshToken = async (): Promise<RefreshResponse | undefined> => {
-    return await refreshAccessToken();
-  };
-
-  const getUserData = async (email: string): Promise<IUser | undefined> => {
-    return await getUserByEmail(email);
-  };
-
   useEffect(() => {
     isUserAuthorized().then((res) => {
       if (res === true) {
-        getRefreshToken().then((res) => {
+        console.log(res);
+
+        refreshAccessToken().then((res) => {
           setAuthData(res?.email, res?.accessToken);
-          getUserData(res?.email || "").then((res) =>
+          getUserByEmail(res?.email || "").then((res) =>
             dispatch(setRole(res?.roles[0].value))
           );
           dispatch(
@@ -97,6 +89,7 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
   return (
     <div
       className={`${iviSans.className} ${iviSans.variable} ${iviIcons.variable} ${iconFont.variable}`}
+      data-testid="layout"
     >
       <ToastContainer />
       <ProgressBar value={0} isFixed={true} type="loading" />

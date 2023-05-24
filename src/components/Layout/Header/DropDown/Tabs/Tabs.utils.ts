@@ -1,4 +1,4 @@
-import {DropDownType} from "/src/components/Layout/Header/Header.utils";
+import { DropDownType } from "/src/components/Layout/Header/Header.utils";
 
 export const moviesTabsHrefs = [
   "https://www.ivi.ru/new/movie-new",
@@ -32,7 +32,7 @@ export const cartoonsTabsHrefs = [
   "https://www.ivi.ru/collections/ctc-kids",
 ];
 
-export const getTabsHrefs = (genre: DropDownType): string[] =>{
+export const getTabsHrefs = (genre: DropDownType): string[] => {
   switch (genre) {
     case "movies":
       return moviesTabsHrefs;
@@ -42,11 +42,3 @@ export const getTabsHrefs = (genre: DropDownType): string[] =>{
       return cartoonsTabsHrefs;
   }
 };
-
-export const mockTabs = [
-  "New items",
-  "Cartoons in HD",
-  "Cartoons Paramount Play / Nickelodeon",
-  "Cartoons DreamWorks",
-  "Cartoons СТС Kids"
-]

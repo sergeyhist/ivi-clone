@@ -5,7 +5,6 @@ import {
   getPersonFirstName,
   getPersonLastName,
   getPersonRole,
-  mockPerson,
 } from "/src/utils/person";
 import {
   mockMovie,
@@ -21,6 +20,7 @@ import { getBackendImage } from "/src/utils/getBackendImg";
 import { setAuthData } from "/src/utils/localStorage";
 import { getCookieByName } from "/src/utils/cookies";
 import createAppPortal from "/src/utils/createAppPortal";
+import {mockPerson} from "/src/utils/mocks/person";
 
 describe("getMovieDeclination", () => {
   it("should return the correct declination for 'ru' locale", () => {

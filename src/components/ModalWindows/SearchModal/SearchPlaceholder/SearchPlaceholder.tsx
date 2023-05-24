@@ -12,7 +12,7 @@ const SearchPlaceholder: FC<SearchPlaceholderProps> = ({ searchStates }) => {
     : "";
 
   return (
-    <div className={styles.placeholder + placeholderActiveClassName}>
+    <div className={styles.placeholder + placeholderActiveClassName} data-testid="search-placeholder">
       Фильмы, персоны, жанры
     </div>
   );

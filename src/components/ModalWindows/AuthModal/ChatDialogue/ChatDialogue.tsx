@@ -85,10 +85,12 @@ const ChatDialogue: FC<ChatDialogueProps> = ({
   ): Promise<void> => {
     const loginResponse = await login(email, password);
     const userData = await getUserByEmail(email);
-    if (userData)
+    if (userData) {
       dispatch(
         setRole(userData.roles.length > 0 ? userData.roles[0].value : "")
       );
+    }
+
     setAuthData(email, loginResponse?.accessToken);
   };
 
@@ -97,7 +99,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({
     password: string
   ): Promise<void> => {
     await createUser(email, password);
-    handleLogin(email, password);
+    await handleLogin(email, password);
   };
 
   return (

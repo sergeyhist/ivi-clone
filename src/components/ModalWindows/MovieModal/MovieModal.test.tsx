@@ -3,11 +3,11 @@ import MovieModal from "./MovieModal";
 import { act, fireEvent } from "@testing-library/react";
 import { store } from "/src/store";
 import { mockMovie } from "/src/utils/movie";
-import { mockPerson } from "/src/utils/person";
 import { mockComment } from "/src/utils/comments";
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import { setShowMovieModal } from "/src/store/slices/modalsSlice";
+import { mockPerson } from "/src/utils/mocks/person";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
@@ -46,7 +46,9 @@ describe("BannerSlider", () => {
       </Provider>
     );
     act(() =>
-      store.dispatch(setShowMovieModal({ isShow: true, defaultTab: "comments" }))
+      store.dispatch(
+        setShowMovieModal({ isShow: true, defaultTab: "comments" })
+      )
     );
     const actorsTabButton = screen.getByTestId("actors-tab");
     const commentsTabButton = screen.getByTestId("comments-tab");
