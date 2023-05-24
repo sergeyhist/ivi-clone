@@ -109,16 +109,19 @@ export const mockMovie: IMovie = {
     {
       language_id: "9f5fff21-1e2b-4a5e-b8e3-6c01a5eb62fa",
       language: " Английский",
+      slug: "test"
     },
     {
       language_id: "c9c3ec33-637c-4dd0-ac6a-b3ba4b25ccf5",
       language: "Русский",
+      slug: "test"
     },
   ],
   languagesSubtitle: [
     {
       language_id: "eb6cb36f-77bd-49eb-92fd-4cf6b0ec28c8",
       language: "Русские",
+      slug: "test"
     },
   ],
   countries: [
