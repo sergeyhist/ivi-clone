@@ -10,6 +10,7 @@ describe("BreadCrumbs", () => {
   it("should renders without errors", () => {
     renderWithProviders(<BreadCrumbs />);
     expect(screen.getByTestId("breadcrumbs")).toBeInTheDocument();
+    expect(screen.getAllByTestId("default-route").length).toBe(1);
   });
   it("should renders with mobile version", () => {
     renderWithProviders(<BreadCrumbs mobileVersion />);
@@ -18,6 +19,10 @@ describe("BreadCrumbs", () => {
   it("should renders with slash type", () => {
     renderWithProviders(<BreadCrumbs type="slash" />);
     expect(screen.getByTestId("breadcrumbs-list")).toHaveClass("list_slash");
+  });
+  it("should renders with custom routes", () => {
+    renderWithProviders(<BreadCrumbs customRoutes={["/", "/movies"]} />);
+    expect(screen.getAllByTestId("custom-route").length).toBe(2);
   });
 });
 

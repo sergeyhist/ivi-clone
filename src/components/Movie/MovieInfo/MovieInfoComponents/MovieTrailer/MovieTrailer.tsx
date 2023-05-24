@@ -3,7 +3,7 @@ import styles from "./MovieTrailer.module.sass";
 import { FaPlay } from "react-icons/fa";
 import { FaPause } from "react-icons/fa";
 import { IMovie } from "/src/types/IMovie";
-import { getAgeImg } from "../../../../../utils/movie";
+import { getAgeImg } from "/src/utils/movie";
 import Image from "next/image";
 
 interface MovieTrailerProps {
@@ -13,6 +13,8 @@ interface MovieTrailerProps {
 const MovieTrailer: FC<MovieTrailerProps> = ({ movie }) => {
   const video = useRef<HTMLVideoElement>(null);
   const [isPlay, setPlay] = useState<boolean>(false);
+
+  console.log(video);
 
   const clickFullScreen = (): void => {
     video.current?.requestFullscreen();
@@ -37,8 +39,9 @@ const MovieTrailer: FC<MovieTrailerProps> = ({ movie }) => {
   };
 
   return (
-    <div className={styles.trailer}>
+    <div data-testid="trailer" className={styles.trailer}>
       <video
+        data-testid="video"
         onPlay={stateHandler}
         onPause={stateHandler}
         ref={video}
@@ -49,18 +52,30 @@ const MovieTrailer: FC<MovieTrailerProps> = ({ movie }) => {
       </video>
 
       <div className={styles.trailer__over}>
-        <button onClick={clickFullScreen} className={styles.trailer__player}>
+        <button
+          data-testid="full-screen-button"
+          onClick={clickFullScreen}
+          className={styles.trailer__player}
+        >
           <i className={styles.trailer__icon}></i>
         </button>
 
         <div className={styles.trailer__center}>
           {!isPlay && (
-            <button onClick={clickPlay} className={styles.play}>
+            <button
+              data-testid="play-button"
+              onClick={clickPlay}
+              className={styles.play}
+            >
               <FaPlay size={30} className={styles.play__icon} />
             </button>
           )}
           {isPlay && (
-            <button onClick={clickPause} className={styles.pause}>
+            <button
+              data-testid="pause-button"
+              onClick={clickPause}
+              className={styles.pause}
+            >
               <FaPause size={30} className={styles.pause__icon} />
             </button>
           )}

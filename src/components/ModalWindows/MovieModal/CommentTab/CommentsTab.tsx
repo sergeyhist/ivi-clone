@@ -64,7 +64,7 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments, setCommentsState }) => {
   };
 
   return (
-    <>
+    <div data-testid="comments-tab">
       <form data-testid="comments-form" onSubmit={handleSubmitForm}>
         <ModalInput
           className={styles.input}
@@ -81,7 +81,7 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments, setCommentsState }) => {
         setReplyFor={setReplyFor}
         comments={comments}
       />
-    </>
+    </div>
   );
 };
 

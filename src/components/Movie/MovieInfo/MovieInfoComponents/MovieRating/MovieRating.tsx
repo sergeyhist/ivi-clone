@@ -14,9 +14,12 @@ const MovieRating: FC<RatingProps> = ({ grade, grades }) => {
   const rating = String(grade);
 
   return (
-    <div className={styles.rating}>
+    <div data-testid="movie-rating" className={styles.rating}>
       <button className={styles.rating__button}>
-        <p className={`${styles.rating__grade} ${gradeClassName}`}>
+        <p
+          data-testid="movie-rating-grade"
+          className={`${styles.rating__grade} ${gradeClassName}`}
+        >
           {rating[0]},{rating[2] || "0"}
         </p>
         <div className={styles.rating__column}>
