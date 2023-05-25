@@ -6,18 +6,33 @@ import { GetStaticPropsResult } from "next";
 import AdminTabs from "../components/Admin/AdminTabs/AdminTabs";
 import AdminMovies from "../components/Admin/AdminMovies/AdminMovies";
 import AdminGenres from "../components/Admin/AdminGenres/AdminGenres";
+import { useAppSelector } from "../hooks/redux";
+import NotFound from "../components/NotFound/NotFound";
 
 const Admin: FC = () => {
-  const { t } = useTranslation("titles");
+  const { t } = useTranslation(["titles", "admin"]);
   const [selectedTab, setSelectedTab] = useState<"movies" | "genres">("movies");
+  const { role } = useAppSelector((state) => state.auth);
 
-  return (
-    <Layout title={t("titles:admin")}>
-      <AdminTabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
-      {selectedTab === "movies" && <AdminMovies />}
-      {selectedTab === "genres" && <AdminGenres />}
-    </Layout>
-  );
+  if (role === "admin") {
+    return (
+      <Layout title={t("titles:admin")}>
+        <AdminTabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+        {selectedTab === "movies" && <AdminMovies />}
+        {selectedTab === "genres" && <AdminGenres />}
+      </Layout>
+    );
+  } else {
+    return (
+      <Layout title={t("admin:access_denied.title")}>
+        <NotFound
+          contentText={t("admin:access_denied.content")}
+          linkText={t("admin:access_denied.link")}
+          linkRoute="/"
+        />
+      </Layout>
+    );
+  }
 };
 
 export const getStaticProps = async ({

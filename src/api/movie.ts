@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import { IMovie } from "../types/IMovie";
 import { IComment } from "../types/IComment";
 import { IPerson } from "../types/IPerson";
@@ -92,6 +92,30 @@ export const getMovies = async (key = "/films?limit=100"): Promise<IMovie[]> => 
 
 export const useGetMovies = (key: string): SWRResponse<IMovie[]> => {
   return useSWR(key, getMovies);
+};
+
+export const deleteMovieById = async (
+  film_id: string,
+  token: string
+): Promise<AxiosResponse | null> => {
+  try {
+    if (!process.env.SERVER_HOST)
+      throw new Error("process.env.SERVER_HOST undefined");
+    const config = {
+      method: "delete",
+      maxBodyLength: Infinity,
+      url: `${process.env.SERVER_HOST}/films/${film_id}`,
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const response = await axios.request(config);
+    return response;
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
 };
 
 export const getFilteredMovies = async (

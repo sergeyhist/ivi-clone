@@ -6,7 +6,7 @@ import { IMovie } from "/src/types/IMovie";
 import { getMovieName } from "/src/utils/movie";
 import { useRouter } from "next/router";
 import ModalInput from "/src/UI/ModalInput/ModalInput";
-import { updateMovie } from "/src/api/movie";
+import { updateMovie, deleteMovieById } from "/src/api/movie";
 import Image from "next/image";
 import { getBackendImage } from "/src/utils/getBackendImg";
 
@@ -19,10 +19,10 @@ const AdminMovie: FC<AdminMovieProps> = ({ movie }) => {
   const { locale } = useRouter();
   const [inputTextRu, setInputTextRu] = useState<string>("");
   const [inputTextEn, setInputTextEn] = useState<string>("");
+  const [isDelete, setDelete] = useState<boolean>(false);
 
-  const submitHandler = (event: FormEvent): void => {
+  const handleFormSubmit = (event: FormEvent): void => {
     event.preventDefault();
-    console.log(inputTextRu, inputTextEn);
 
     updateMovie(
       String(localStorage.getItem("token")),
@@ -35,47 +35,72 @@ const AdminMovie: FC<AdminMovieProps> = ({ movie }) => {
     });
   };
 
+  const deleteClick = (): void => {
+    deleteMovieById(movie.film_id, String(localStorage.getItem("token"))).then(
+      () => {
+        setDelete(true);
+      }
+    );
+  };
+
   return (
-    <article data-testid="admin-movie" className={styles.movie}>
-      <CustomTitle title={getMovieName(movie, locale)} />
-      <div className={styles.movie__row}>
-        <form
-          data-testid="admin-movie-form"
-          className={styles.form}
-          onSubmit={submitHandler}
-        >
-          <CustomTitle
-            className={styles.form__title}
-            type="small"
-            title={t("name")}
-          />
-          <ModalInput
-            className={styles.input}
-            authData={inputTextRu}
-            setAuthData={setInputTextRu}
-            inputType="text"
-            buttonText={t("update")}
-            placeholderText={t("name_ru")}
-          />
-          <ModalInput
-            className={styles.input}
-            authData={inputTextEn}
-            setAuthData={setInputTextEn}
-            inputType="text"
-            buttonText={t("update")}
-            placeholderText={t("name_en")}
-          />
-        </form>
-        <div className={styles.poster}>
-          <Image
-            className={styles.poster__img}
-            src={getBackendImage(movie.img)}
-            fill
-            alt={movie.name_en}
-          />
-        </div>
-      </div>
-    </article>
+    <>
+      {!isDelete && (
+        <article data-testid="admin-movie" className={styles.movie}>
+          <div className={styles.movie__row}>
+            <CustomTitle title={getMovieName(movie, locale)} />
+            <button
+              onClick={deleteClick}
+              className={styles.movie__delete}
+              type="button"
+              data-testid="delete-button"
+            >
+              {t("delete")}
+            </button>
+          </div>
+          <div className={styles.movie__row}>
+            <form
+              data-testid="admin-movie-form"
+              className={styles.form}
+              onSubmit={handleFormSubmit}
+            >
+              <CustomTitle
+                className={styles.form__title}
+                type="small"
+                title={t("name")}
+              />
+              <ModalInput
+                className={styles.input}
+                authData={inputTextRu}
+                setAuthData={setInputTextRu}
+                inputType="text"
+                buttonText={t("update")}
+                placeholderText={t("name_ru")}
+              />
+              <ModalInput
+                className={styles.input}
+                authData={inputTextEn}
+                setAuthData={setInputTextEn}
+                inputType="text"
+                buttonText={t("update")}
+                placeholderText={t("name_en")}
+              />
+            </form>
+            <div className={styles.poster}>
+              <Image
+                className={styles.poster__img}
+                src={getBackendImage(movie.img)}
+                fill={true}
+                sizes="100%"
+                alt={movie.name_en}
+                placeholder="blur"
+                blurDataURL="/images/placeholder.svg"
+              />
+            </div>
+          </div>
+        </article>
+      )}
+    </>
   );
 };
 

@@ -15,9 +15,8 @@ const AdminGenre: FC<AdminGenreProps> = ({ genre }) => {
   const [inputTextRu, setInputTextRu] = useState<string>("");
   const [inputTextEn, setInputTextEn] = useState<string>("");
 
-  const submitHandler = (event: FormEvent): void => {
+  const handleFormSubmit = (event: FormEvent): void => {
     event.preventDefault();
-    console.log(inputTextRu, inputTextEn);
 
     updateGenre(
       String(localStorage.getItem("token")),
@@ -36,7 +35,7 @@ const AdminGenre: FC<AdminGenreProps> = ({ genre }) => {
       <form
         data-testid="admin-genre-form"
         className={styles.form}
-        onSubmit={submitHandler}
+        onSubmit={handleFormSubmit}
       >
         <CustomTitle className={styles.form__title} type="small" title={t("name")} />
         <ModalInput

@@ -1,3 +1,5 @@
+@use "/src/styles/vars"
+
 .movie
   padding: 24px 0
   &:not(:last-child)
@@ -5,6 +7,18 @@
 
   &__row
     display: flex
+
+  &__delete
+    color: vars.$whiteTextColor
+    margin-left: auto
+    opacity: .72
+    padding-bottom: 16px
+    display: flex
+    align-items: center
+    cursor: pointer
+    transition: .3s
+    &:hover
+      opacity: 1
 
 .poster
   aspect-ratio: 2/3
