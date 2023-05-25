@@ -105,11 +105,7 @@ describe("filterMovies function", () => {
     jest.useFakeTimers();
     const spy = jest.spyOn(filterMovies, "default");
     (filterMovies.default as jest.Mock).mockResolvedValue(mockMovies);
-
-    act(() => {
-      renderWithProviders(<MoviesList />);
-    });
-
+    renderWithProviders(<MoviesList />);
     jest.runAllTimers();
     await waitFor(() => expect(spy).toHaveBeenCalled());
     await waitFor(() =>

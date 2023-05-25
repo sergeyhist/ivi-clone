@@ -68,6 +68,9 @@ export const yearFilterItems: string[] = [
   "0-1990",
 ];
 
+export const sortHandler = (arr: string[]): string[] =>
+  [...arr].sort((a, b) => (a > b ? 1 : -1));
+
 export const getResetfilters = (
   filters: IFilters
 ): { [key: string]: string | string[] } => {

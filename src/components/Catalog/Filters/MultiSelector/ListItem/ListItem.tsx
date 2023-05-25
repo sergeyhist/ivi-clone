@@ -12,7 +12,7 @@ const ListItem: FC<ListItemProps> = ({ text, isActive, clickCallback }) => {
   const activeCheckbox = isActive ? ` ${styles.item__checkbox_active}` : "";
 
   return (
-    <li onClick={clickCallback} className={styles.item + activeItem}>
+    <li data-testid="list-item" onClick={clickCallback} className={styles.item + activeItem}>
       {text}
       <span className={styles.item__checkbox + activeCheckbox}></span>
     </li>

@@ -22,6 +22,7 @@ const SliderContent: FC<SliderContentProps> = ({
 
   return (
     <div
+      data-testid="slider-content"
       onClick={clickCallback}
       className={styles.content + activeClassName + onlyTextClassName}
     >

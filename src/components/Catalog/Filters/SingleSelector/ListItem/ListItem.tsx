@@ -8,17 +8,16 @@ interface ListItemProps {
   clickCallback: () => void;
 }
 
-const ListItem: FC<ListItemProps> = ({
-  text,
-  isActive,
-  clickCallback,
-}) => {
-
+const ListItem: FC<ListItemProps> = ({ text, isActive, clickCallback }) => {
   const activeItem = isActive ? ` ${styles.item_active}` : "";
   const activeCheckbox = isActive ? ` ${styles.item__checkbox_active}` : "";
 
   return (
-    <li onClick={clickCallback} className={styles.item + activeItem}>
+    <li
+      data-testid="list-item"
+      onClick={clickCallback}
+      className={styles.item + activeItem}
+    >
       {text}
       <div className={styles.item__checkbox + activeCheckbox}>
         <div className={styles.item__point}></div>

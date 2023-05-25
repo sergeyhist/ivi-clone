@@ -1,6 +1,6 @@
 import { FC, useEffect } from "react";
 import styles from "./Filters.module.sass";
-import { getResetfilters, yearFilterItems } from "./Filters.utils";
+import { getResetfilters, sortHandler, yearFilterItems } from "./Filters.utils";
 import MultiSelector from "./MultiSelector/MultiSelector";
 import PersonSelector from "./PersonSelector/PersonSelector";
 import RangeSelector from "./RangeSelector/RangeSelector";
@@ -13,8 +13,6 @@ import { useGetActors, useGetDirectors } from "/src/api/persons";
 import { getFiltersFromRoute } from "/src/utils/filters/getFiltersFromRoute";
 import { compareFilters } from "/src/utils/filters/compareFilters";
 import { setFilters } from "/src/store/slices/filtersSlice";
-
-const sortHandler = (a: string, b: string): 1 | -1 => (a > b ? 1 : -1);
 
 const Filters: FC = () => {
   const router = useRouter();
@@ -40,7 +38,7 @@ const Filters: FC = () => {
   }, [router, filters, dispatch]);
 
   return (
-    <div className={styles.filters}>
+    <div data-testid="filters" className={styles.filters}>
       <div className={styles.filters__top}>
         <MultiSelector
           title={"genre"}
@@ -51,7 +49,7 @@ const Filters: FC = () => {
         />
         <MultiSelector
           title={"country"}
-          items={[...slugs.countriesSlugs].sort(sortHandler)}
+          items={sortHandler([...slugs.countriesSlugs])}
           filters={filters.countries as string[]}
           filtersType={"countries"}
           dropdownPosition="center"

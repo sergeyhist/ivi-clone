@@ -36,24 +36,28 @@ const SingleSelector: FC<SingleSelectorProps> = ({
 
   const clickHandler = (slug: string): void => {
     setQueryParams(router, {
-      [filterType]: changeHandler(filter, slug),
+      [filterType]: changeHandler(filter, slug, true),
     });
   };
 
   useCloseEvents([titleRef, dropdownRef], () => setIsDropdownActive(false));
 
   return (
-    <div className={styles.selector + " unselectable"}>
+    <div
+      data-testid="single-selector"
+      className={styles.selector + " unselectable"}
+    >
       <div ref={titleRef}>
         <FilterTitle
           text={t(`filters:${title}`)}
-          isDropdownActive={isDropdownActive}
-          setIsDropdownActive={setIsDropdownActive}
+          isActive={isDropdownActive}
+          clickCallback={() => setIsDropdownActive((curr) => !curr)}
           filters={filter}
           filtersType={filterType}
         />
       </div>
       <div
+        data-testid="single-selector-dropdown"
         ref={dropdownRef}
         className={styles.selector__dropdown + activeDropdown}
       >

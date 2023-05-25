@@ -12,19 +12,15 @@ const isFilterNotDefault = (filters: IFilters, key: string): boolean =>
   !filterDefaults.includes(filters[key] as string);
 
 const getText = (filters: IFilters, key: string): string => {
-  if (filters[key] && !isRating(key)) {
-    return i18n?.t(`${key}:${filters[key] as string}`) || "";
-  }
-
-  if (filters[key] && isRating(key)) {
+  if (!isRating(key)) {
+    return i18n?.t(`${key}:${filters[key] as string}`) || "key";
+  } else {
+    const translateType = key === "rating" ? "ratingFrom" : "ratingCountFrom";
     return (
-      (i18n?.t(
-        `filters:${key === "rating" ? "ratingFrom" : "ratingCountFrom"}`
-      ) || "") + ` ${filters[key] as string}`
+      (i18n?.t(`filters:${translateType}`) || "key") +
+      ` ${filters[key] as string}`
     );
   }
-
-  return filters[key] as string;
 };
 
 const arrayToString = (filters: IFilters, key: string): string =>
@@ -41,7 +37,7 @@ const updateTextArray = (filters: IFilters, key: string): string => {
     return arrayToString(filters, key);
   }
 
-  return i18n?.t(`filters:all.${key}`) || "";
+  return i18n?.t(`filters:all.${key}`) || "all";
 };
 
 export const getFiltersText = (
