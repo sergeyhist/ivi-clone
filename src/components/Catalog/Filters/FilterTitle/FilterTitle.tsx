@@ -1,41 +1,42 @@
-import { Dispatch, FC, SetStateAction } from "react";
+import { FC } from "react";
 import { useTranslation } from "next-i18next";
 import styles from "./FilterTitle.module.sass";
 
 interface FilterTitleProps {
   text: string;
-  isDropdownActive: boolean;
-  setIsDropdownActive: Dispatch<SetStateAction<boolean>>;
+  isActive: boolean;
   filters?: string[] | string;
   filtersType: string;
+  clickCallback: () => void;
 }
 
 const FilterTitle: FC<FilterTitleProps> = ({
   text,
-  isDropdownActive,
-  setIsDropdownActive,
+  isActive,
   filters,
   filtersType,
+  clickCallback,
 }) => {
   const { t } = useTranslation("filters");
 
-  const activeTitle = isDropdownActive ? ` ${styles.title_active}` : "";
-  const activeArrow = isDropdownActive ? ` ${styles.title__arrow_active}` : "";
+  const activeTitle = isActive ? ` ${styles.title_active}` : "";
+  const activeArrow = isActive ? ` ${styles.title__arrow_active}` : "";
 
-  const isFilterActive =
-    filters && filters.length > 0;
+  const isFilterActive = filters && filters.length > 0;
 
   return (
     <div
-      onClick={() => {
-        setIsDropdownActive((curr) => !curr);
-      }}
+      data-testid="filter-title"
+      onClick={() => clickCallback()}
       className={styles.title + activeTitle}
     >
       <div className={styles.title__text}>
         {text}
         {isFilterActive && (
-          <span className={styles.title__filters}>
+          <span
+            data-testid="filter-title-active"
+            className={styles.title__filters}
+          >
             {filters &&
               typeof filters === "string" &&
               t(`${filtersType}:${filters}`)}
@@ -45,7 +46,10 @@ const FilterTitle: FC<FilterTitleProps> = ({
           </span>
         )}
       </div>
-      <span className={styles.title__arrow + activeArrow} />
+      <span
+        data-testid="filter-title-arrow"
+        className={styles.title__arrow + activeArrow}
+      />
     </div>
   );
 };

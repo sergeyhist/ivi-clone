@@ -4,6 +4,7 @@ import { forwardRef } from "react";
 import styles from "./PersonList.module.sass";
 import { IPerson } from "/src/types/IPerson";
 import { useTranslation } from "next-i18next";
+import { getBackendImage } from "/src/utils/getBackendImg";
 
 interface PersonListProps {
   type: string;
@@ -29,7 +30,7 @@ const PersonList = forwardRef<HTMLUListElement, PersonListProps>(
     const isNotFound = !isLoading && items.length === 0;
 
     return (
-      <ul ref={ref} className={styles.list}>
+      <ul data-testid="person-list" ref={ref} className={styles.list}>
         {isLoading && (
           <span className={styles.list__text}>{t("filters:search")}</span>
         )}
@@ -42,6 +43,7 @@ const PersonList = forwardRef<HTMLUListElement, PersonListProps>(
           items.length > 0 &&
           items.map((item, i) => (
             <li
+              data-testid="list-item"
               onClick={() => {
                 getPersonSlug(item) !== filter &&
                   getPerson(getPersonSlug(item));
@@ -57,9 +59,7 @@ const PersonList = forwardRef<HTMLUListElement, PersonListProps>(
                 <Image
                   fill
                   sizes="100%"
-                  src={
-                    item.img.includes("https") ? item.img : "https:" + item.img
-                  }
+                  src={getBackendImage(item.img)}
                   alt="Person"
                 />
               </div>

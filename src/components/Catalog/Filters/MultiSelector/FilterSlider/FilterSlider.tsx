@@ -21,6 +21,7 @@ const FilterSlider: FC<FilterSliderProps> = ({
 }) => {
   return (
     <Slider
+      dataTestId="filter-slider"
       wrapperClassName={styles.slider}
       swiperClassName={styles.swiper}
       breakpoints={sliderBreakpoints}

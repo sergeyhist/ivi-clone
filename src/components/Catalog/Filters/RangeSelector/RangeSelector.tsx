@@ -38,13 +38,17 @@ const RangeSelector: FC<RangeSelectorProps> = ({
   }, [filter, filterType, setRangeValue]);
 
   return (
-    <div className={styles.selector + " unselectable"}>
+    <div
+      data-testid="range-selector"
+      className={styles.selector + " unselectable"}
+    >
       <span className={styles.selector__title}>{t(title)}</span>
       <span className={styles.selector__value}>
         {t("from")}
         <span>{` ${rangeValue}`}</span>
       </span>
       <input
+        data-testid="range-input"
         className={styles.selector__input}
         type="range"
         value={rangeValue}
