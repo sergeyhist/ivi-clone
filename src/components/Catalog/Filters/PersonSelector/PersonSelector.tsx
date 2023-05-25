@@ -72,15 +72,20 @@ const PersonSelector: FC<PersonSelectorProps> = ({ type, list, filter }) => {
   useCloseEvents([dropdownRef, inputRef], () => setIsDropdownActive(false));
 
   return (
-    <div className={styles.selector}>
+    <div data-testid="person-selector" className={styles.selector}>
       <div ref={inputRef} className={styles.selector__input}>
         <input
+          data-testid="selector-input"
           value={inputValue}
           onChange={inputChangeHandler}
           type="text"
-          placeholder={t(`person.${type}`) || ""}
+          placeholder={String(t(`person.${type}`))}
         />
-        <button onClick={resetHandler} className={styles.selector__reset}>
+        <button
+          data-testid="reset-button"
+          onClick={resetHandler}
+          className={styles.selector__reset}
+        >
           <IoClose size={24} />
         </button>
       </div>

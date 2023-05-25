@@ -16,7 +16,7 @@ interface MultiSelectorProps {
   items: string[];
   filters: string[];
   filtersType: IFilterType;
-  dropdownPosition: "center" | "left" | "right";
+  dropdownPosition?: "center" | "left" | "right";
 }
 
 const MultiSelector: FC<MultiSelectorProps> = ({
@@ -47,17 +47,21 @@ const MultiSelector: FC<MultiSelectorProps> = ({
   useCloseEvents([titleRef, dropdownRef], () => setIsDropdownActive(false));
 
   return (
-    <div className={styles.filter + " unselectable"}>
+    <div
+      data-testid="multi-selector"
+      className={styles.filter + " unselectable"}
+    >
       <div ref={titleRef}>
         <FilterTitle
           text={t(`filters:${title}`)}
-          isDropdownActive={isDropdownActive}
-          setIsDropdownActive={setIsDropdownActive}
+          isActive={isDropdownActive}
+          clickCallback={() => setIsDropdownActive((curr) => !curr)}
           filters={filters}
           filtersType={filtersType}
         />
       </div>
       <div
+        data-testid="multi-selector-dropdown"
         ref={dropdownRef}
         className={
           styles.filter__dropdown +

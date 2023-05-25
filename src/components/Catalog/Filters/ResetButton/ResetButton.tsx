@@ -11,7 +11,11 @@ const ResetButton: FC<ResetButtonProps> = ({ clickCallback }) => {
   const { t } = useTranslation("filters");
 
   return (
-    <button onClick={clickCallback} className={styles.reset + " unselectable"}>
+    <button
+      data-testid="reset-all-button"
+      onClick={clickCallback}
+      className={styles.reset + " unselectable"}
+    >
       <span className={styles.reset__icon}>
         <TfiClose size={16} />
       </span>
