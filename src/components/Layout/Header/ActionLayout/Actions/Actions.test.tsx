@@ -86,7 +86,13 @@ describe("Actions", () => {
   });
 
   it("should render subscription link when router.pathname is not '/'", () => {
-    renderComponent();
+    const {store}= renderWithProviders(
+      <Actions
+        setDropDownType={setDropDownType}
+        setIsDropdownActive={setIsDropdownActive}
+      />
+    );
+    act(()=>store.dispatch(setWindowSize({width:1600, height: 1700})));
     const linkSubscription = screen.getByTestId("subscription-link");
     expect(linkSubscription).toBeInTheDocument();
     expect(linkSubscription).toHaveAttribute(
@@ -105,8 +111,13 @@ describe("Actions", () => {
 
   it("should render subscription button when router.pathname is '/'", () => {
     mockRouter.push("/");
-    renderComponent();
-
+    const {store}= renderWithProviders(
+      <Actions
+        setDropDownType={setDropDownType}
+        setIsDropdownActive={setIsDropdownActive}
+      />
+    );
+    act(()=>store.dispatch(setWindowSize({width:1600, height: 1700})));
     const buttonElement = screen.getByTestId("subscription-button");
 
     expect(buttonElement).toBeInTheDocument();
