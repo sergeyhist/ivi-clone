@@ -1,5 +1,4 @@
 import { FC, useState } from "react";
-import styles from "./AdminMovies.module.sass";
 import Container from "/src/UI/Container/Container";
 import AdminMovie from "./AdminMovie/AdminMovie";
 import AdminMoviesSearch from "./AdminMoviesSearch/AdminMoviesSearch";
@@ -11,7 +10,7 @@ const AdminMovies: FC = () => {
   const movies = useGetMovies(query);
 
   return (
-    <section data-testid="admin-movies" className={styles.section}>
+    <section data-testid="admin-movies">
       <Container>
         <AdminMoviesSearch searchName={searchName} setSearchName={setSearchName} />
         {movies.data?.map((movie, index) => (
