@@ -49,8 +49,6 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
   useEffect(() => {
     isUserAuthorized().then((res) => {
       if (res === true) {
-        console.log(res);
-
         refreshAccessToken().then((res) => {
           setAuthData(res?.email, res?.accessToken);
           getUserByEmail(res?.email || "").then((res) =>

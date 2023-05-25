@@ -85,9 +85,10 @@ const ChatDialogue: FC<ChatDialogueProps> = ({
   ): Promise<void> => {
     const loginResponse = await login(email, password);
     const userData = await getUserByEmail(email);
-    if (userData) {
+
+    if (userData?.roles) {
       dispatch(
-        setRole(userData.roles.length > 0 ? userData.roles[0].value : "")
+        setRole(userData.roles[0]?.value ? userData.roles[0].value : "")
       );
     }
 
@@ -115,6 +116,7 @@ const ChatDialogue: FC<ChatDialogueProps> = ({
         noValidate={true}
         onSubmit={handleFormSubmit}
         className={styles.chat__form}
+        data-testid="form"
       >
         <ChatMessage
           titleText={t("hintMessage.title")}

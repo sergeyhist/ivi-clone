@@ -1,30 +1,121 @@
-import {renderWithProviders} from "/src/utils/test-utils";
+import { renderWithProviders } from "/src/utils/test-utils";
 import Layout from "/src/components/Layout/Layout";
-import {screen} from "@testing-library/react";
-import axios from "axios";
+import { act, waitFor } from "@testing-library/react";
+import * as userApi from "/src/api/user";
+
+import { IProviderRender } from "/src/types/IRender";
 
 jest.mock("next/router", () => require("next-router-mock"));
 jest.mock("axios");
-const mockedAxios = axios as jest.Mocked<typeof axios>;
 jest.mock("src/api/user");
+jest.useFakeTimers();
 
-describe("Layout",()=>{
-  it("should renders without errors",()=>{
-    renderWithProviders(<Layout title={'test'}><h1>text</h1></Layout>);
-    expect(screen.getByTestId("layout")).toBeInTheDocument();
+describe("Layout", () => {
+  let store: IProviderRender;
+  it("should set a proper value to store", async () => {
+    const authSpy = jest.spyOn(userApi, "isUserAuthorized");
+    const refreshSpy = jest.spyOn(userApi, "refreshAccessToken");
+    const getUserByEmail = jest.spyOn(userApi, "getUserByEmail");
+    authSpy.mockResolvedValue(true);
+    refreshSpy.mockResolvedValue({ email: "test", accessToken: "token" });
+    getUserByEmail.mockResolvedValue({
+      user_id: "1",
+      email: "test",
+      password: "1234",
+      createdAt: "12",
+      updatedAt: "",
+      roles: [{ role_id: "2", value: "admin", description: "test" }],
+      profile: {
+        profile_id: "3",
+        first_name: "jon",
+        last_name: "bil",
+        phone: "1234",
+        city: "moscow",
+        user_id: "1",
+      },
+    });
+    await act(
+      () =>
+        (store = renderWithProviders(
+          <Layout title={"test"}>
+            <h1>text</h1>
+          </Layout>
+        ))
+    );
+    await waitFor(() => {
+      expect(authSpy).toHaveBeenCalled();
+      expect(refreshSpy).toHaveBeenCalled();
+      expect(getUserByEmail).toHaveBeenCalled();
+      expect(store.store.getState().auth).toEqual({
+        userEmail: "test",
+        isLogged: true,
+        role: "admin",
+      });
+      expect(store.store.getState().auth.role).toBe("admin");
+    });
   });
-  // it("a",()=>{
-  //   const authSpy =jest.spyOn(userApi,"isUserAuthorized");
-  //   const refreshSpy = jest.spyOn(userApi,"refreshAccessToken");
-  //   (isUserAuthorized as jest.Mock).mockResolvedValue(true);
-  //   (refreshAccessToken as jest.Mock).mockResolvedValue({email:"test",accessToken:"token"});
-  //   (getUserByEmail as jest.Mock).mockResolvedValue({ id: 1, name: "John Doe", email:"test",roles:{value:"str"} })
-  //   act(()=>
-  //     renderWithProviders(<Layout title={'test'}><h1>text</h1></Layout>)
-  //
-  //   )
-  //   expect(authSpy).toHaveBeenCalled();
-  //   expect(refreshSpy).toHaveBeenCalled();
-  //
-  // })
-})
+  it("should call debouncedResize after resize window", async () => {
+    const authSpy = jest.spyOn(userApi, "isUserAuthorized");
+    authSpy.mockResolvedValue(false);
+    await act(
+      () =>
+        (store = renderWithProviders(
+          <Layout title={"test"}>
+            <h1>text</h1>
+          </Layout>
+        ))
+    );
+
+    await act(() => window.dispatchEvent(new Event("resize")));
+    act(()=>jest.runAllTimers());
+
+    await waitFor(() =>
+      expect(store.store.getState().windowSize).toEqual({
+        height: 768,
+        width: 1024,
+      })
+    );
+  });
+  it("should set a proper value to store", async () => {
+    const authSpy = jest.spyOn(userApi, "isUserAuthorized");
+    const refreshSpy = jest.spyOn(userApi, "refreshAccessToken");
+    const getUserByEmail = jest.spyOn(userApi, "getUserByEmail");
+    authSpy.mockResolvedValue(true);
+    refreshSpy.mockResolvedValue({ email: "", accessToken: "token" });
+    getUserByEmail.mockResolvedValue({
+      user_id: "1",
+      email: "",
+      password: "1234",
+      createdAt: "12",
+      updatedAt: "",
+      roles: [{ role_id: "2", value: "admin", description: "test" }],
+      profile: {
+        profile_id: "3",
+        first_name: "jon",
+        last_name: "bil",
+        phone: "1234",
+        city: "moscow",
+        user_id: "1",
+      },
+    });
+    await act(
+      () =>
+        (store = renderWithProviders(
+          <Layout title={"test"}>
+            <h1>text</h1>
+          </Layout>
+        ))
+    );
+    await waitFor(() => {
+      expect(authSpy).toHaveBeenCalled();
+      expect(refreshSpy).toHaveBeenCalled();
+      expect(getUserByEmail).toHaveBeenCalled();
+      expect(store.store.getState().auth).toEqual({
+        userEmail: "",
+        isLogged: true,
+        role: "admin",
+      });
+      expect(store.store.getState().auth.role).toBe("admin");
+    });
+  });
+});
