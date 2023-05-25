@@ -5,7 +5,7 @@ import { renderWithProviders } from "/src/utils/test-utils";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
-describe("BannerSlider", () => {
+describe("RelatedMovies", () => {
   it("should render without errors", () => {
     renderWithProviders(<RelatedMovies movieTitle="title" movies={[mockMovie]} />);
   });

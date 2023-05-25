@@ -27,17 +27,20 @@ const AdminMovie: FC<AdminMovieProps> = ({ movie }) => {
       movie.film_id,
       inputTextEn || movie.name_en,
       inputTextRu || movie.name_ru
-    ).then((response) => {
-      console.log(response);
+    ).then(() => {
       setInputTextRu("");
       setInputTextEn("");
     });
   };
 
   return (
-    <article className={styles.movie}>
+    <article data-testid="admin-movie" className={styles.movie}>
       <CustomTitle title={getMovieName(movie, locale)} />
-      <form className={styles.form} onSubmit={submitHandler}>
+      <form
+        data-testid="admin-movie-form"
+        className={styles.form}
+        onSubmit={submitHandler}
+      >
         <CustomTitle className={styles.form__title} type="small" title={t("name")} />
         <ModalInput
           className={styles.input}

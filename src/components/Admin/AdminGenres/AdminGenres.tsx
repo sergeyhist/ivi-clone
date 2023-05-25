@@ -2,16 +2,15 @@ import { FC } from "react";
 import styles from "./AdminGenres.module.sass";
 import Container from "/src/UI/Container/Container";
 import AdminGenre from "./AdminGenre/AdminGenre";
-import { getGenres } from "/src/api/genres";
-import useSWR from "swr";
+import { useGetGenres } from "/src/api/genres";
 
 const AdminGenres: FC = () => {
-  const { data } = useSWR("/genres?limit=100", getGenres);
+  const genres = useGetGenres("/genres?limit=100");
 
   return (
-    <section className={styles.section}>
+    <section data-testid="admin-genres" className={styles.section}>
       <Container>
-        {data?.map((genre, index) => (
+        {genres.data?.map((genre, index) => (
           <AdminGenre key={index} genre={genre} />
         ))}
       </Container>

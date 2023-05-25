@@ -3,11 +3,11 @@ import React from "react";
 import MovieMedallions from "./MovieMedallions";
 import { mockMovie } from "/src/utils/movie";
 import { renderWithProviders } from "/src/utils/test-utils";
-import { mockPerson } from "/src/utils/person";
+import { mockPerson } from "/src/utils/mocks/person";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
-describe("MovieCard", () => {
+describe("MovieMedallions", () => {
   it("should renders without errors", () => {
     renderWithProviders(
       <MovieMedallions movie={mockMovie} persons={[mockPerson]} />

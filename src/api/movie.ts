@@ -3,6 +3,7 @@ import { IMovie } from "../types/IMovie";
 import { IComment } from "../types/IComment";
 import { IPerson } from "../types/IPerson";
 import { IFilters } from "../types/IFilter";
+import useSWR, { SWRResponse } from "swr";
 
 export const getMoviesById = async (
   filmsId: string[]
@@ -87,6 +88,10 @@ export const getMovies = async (key = "/films?limit=100"): Promise<IMovie[]> => 
     console.error(error);
     return [];
   }
+};
+
+export const useGetMovies = (key: string): SWRResponse<IMovie[]> => {
+  return useSWR(key, getMovies);
 };
 
 export const getFilteredMovies = async (

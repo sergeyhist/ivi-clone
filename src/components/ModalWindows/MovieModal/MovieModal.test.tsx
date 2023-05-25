@@ -11,7 +11,7 @@ import { mockPerson } from "/src/utils/mocks/person";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
-describe("BannerSlider", () => {
+describe("MovieModal", () => {
   const mockSetComments = (): null => null;
   it("should open and close without errors", () => {
     render(
@@ -49,9 +49,7 @@ describe("BannerSlider", () => {
       </Provider>
     );
     act(() =>
-      store.dispatch(
-        setShowMovieModal({ isShow: true, defaultTab: "comments" })
-      )
+      store.dispatch(setShowMovieModal({ isShow: true, defaultTab: "comments" }))
     );
     const creatorTabButton = screen.getByTestId("button-creators-tab");
     const commentsTabButton = screen.getByTestId("button-comments-tab");

@@ -6,7 +6,7 @@ jest.mock("next/router", () => require("next-router-mock"));
 
 const mockCallBack = (): void => undefined;
 
-describe("MovieCard", () => {
+describe("SliderButtons", () => {
   it("should renders without errors", () => {
     renderWithProviders(
       <SliderButtons

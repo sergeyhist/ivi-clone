@@ -5,7 +5,7 @@ import { screen } from "@testing-library/react";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
-describe("BannerSlider", () => {
+describe("NotFound", () => {
   it("should render without errors", () => {
     renderWithProviders(
       <NotFound linkRoute="/" linkText="link" contentText="title" />

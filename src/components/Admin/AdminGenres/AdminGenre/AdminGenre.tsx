@@ -24,17 +24,20 @@ const AdminGenre: FC<AdminGenreProps> = ({ genre }) => {
       genre.genre_id,
       inputTextEn || genre.genre_en,
       inputTextRu || genre.genre_ru
-    ).then((response) => {
-      console.log(response);
+    ).then(() => {
       setInputTextRu("");
       setInputTextEn("");
     });
   };
 
   return (
-    <article className={styles.movie}>
+    <article data-testid="admin-genre" className={styles.movie}>
       <CustomTitle className={styles.movie__title} title={genre.genre_ru} />
-      <form className={styles.form} onSubmit={submitHandler}>
+      <form
+        data-testid="admin-genre-form"
+        className={styles.form}
+        onSubmit={submitHandler}
+      >
         <CustomTitle className={styles.form__title} type="small" title={t("name")} />
         <ModalInput
           className={styles.input}

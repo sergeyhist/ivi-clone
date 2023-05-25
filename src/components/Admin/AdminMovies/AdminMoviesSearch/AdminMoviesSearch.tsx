@@ -15,7 +15,7 @@ const AdminMoviesSearch: FC<AdminMoviesSearchProps> = ({
   const { t } = useTranslation("admin");
 
   return (
-    <div className={styles.search}>
+    <div data-testid="admin-search-movie" className={styles.search}>
       <ModalInput
         inputType="text"
         buttonText={t("find")}

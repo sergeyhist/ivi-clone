@@ -1,5 +1,12 @@
 import { IGenre } from "/src/types/IGenre";
 
+export const mockGenre = {
+  genre_id: "47b3d35c-dc1c-40d7-bc35-65d888d7f7bd",
+  genre_ru: "мелодрама",
+  genre_en: "melodrama",
+  slug: "melodrama",
+};
+
 export const genresList = [
   {
     genre_id: "47b3d35c-dc1c-40d7-bc35-65d888d7f7bd",

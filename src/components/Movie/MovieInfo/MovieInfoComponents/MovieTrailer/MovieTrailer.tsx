@@ -14,8 +14,6 @@ const MovieTrailer: FC<MovieTrailerProps> = ({ movie }) => {
   const video = useRef<HTMLVideoElement>(null);
   const [isPlay, setPlay] = useState<boolean>(false);
 
-  console.log(video);
-
   const clickFullScreen = (): void => {
     video.current?.requestFullscreen();
   };

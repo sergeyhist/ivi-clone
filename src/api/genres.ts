@@ -26,6 +26,10 @@ export const getGenres = async (key = "/genres?limit=100"): Promise<IGenre[]> =>
   }
 };
 
+export const useGetGenres = (key: string): SWRResponse<IGenre[]> => {
+  return useSWR(key, getGenres);
+};
+
 export const updateGenre = async (
   token: string,
   genre_id: string,
