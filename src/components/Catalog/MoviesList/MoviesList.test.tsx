@@ -9,7 +9,7 @@ import { IProviderRender } from "/src/types/IRender";
 import * as filterMovies from "/src/utils/filters/filterMovies";
 import { mockMovies } from "/src/utils/mocks/movies";
 import { renderWithProviders } from "/src/utils/test-utils";
-import { act, fireEvent, screen } from "@testing-library/react";
+import { act, fireEvent, screen, waitFor } from "@testing-library/react";
 import mockRouter from "next-router-mock";
 
 jest.mock("next/router", () => require("next-router-mock"));
@@ -100,16 +100,20 @@ describe("Movies list length with various width values", () => {
   });
 });
 
-// describe("filterMovies function", () => {
-//   test("function has been called", () => {
-//     jest.useFakeTimers();
-//     const spy = jest.spyOn(filterMovies, "default");
-//     (filterMovies.default as jest.Mock).mockResolvedValue(mockMovies);
-//     render = renderWithProviders(<MoviesList />);
-//     act(() => render.store.dispatch(setIsMoviesLoading(false)));
-//     act(() => render.store.dispatch(setFilteredMovies(mockMovies)));
-//     act(() => jest.advanceTimersByTime(1000));
-//     expect(spy).toHaveBeenCalled();
-//     expect(screen.getAllByTestId("movies-item").length).toEqual(2);
-//   });
-// });
+describe("filterMovies function", () => {
+  test("function has been called correctly", async () => {
+    jest.useFakeTimers();
+    const spy = jest.spyOn(filterMovies, "default");
+    (filterMovies.default as jest.Mock).mockResolvedValue(mockMovies);
+
+    act(() => {
+      renderWithProviders(<MoviesList />);
+    });
+
+    jest.runAllTimers();
+    await waitFor(() => expect(spy).toHaveBeenCalled());
+    await waitFor(() =>
+      expect(screen.getAllByTestId("movies-item").length).toEqual(2)
+    );
+  });
+});
