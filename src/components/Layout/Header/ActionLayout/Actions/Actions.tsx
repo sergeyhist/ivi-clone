@@ -53,7 +53,7 @@ const Actions: FC<ActionsProps> = ({
 
   return (
     <div className={styles.container} data-testid="actions-container">
-      {router.pathname !== "/" ? (
+      {router.pathname !== "/" ? windowSizeWidth >600 && (
         <Link
           href="https://www.ivi.ru/subscribe"
           target="_blank"
@@ -71,7 +71,7 @@ const Actions: FC<ActionsProps> = ({
             </CustomButton>
           </div>
         </Link>
-      ) : (
+      ) : windowSizeWidth >600 && (
         <div
           className={styles.purple__button}
           onMouseEnter={() => setIsDropdownActive(false)}
