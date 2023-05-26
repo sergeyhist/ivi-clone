@@ -97,7 +97,11 @@
     ],
     "commentsInput": {
       "placeholder": "Write a review",
-      "submit": "Send"
+      "submit": "Send",
+      "errors": [
+        "Must be more than 5 characters",
+        "Unable to post comment"
+      ]
     },
     "showButton": "Show more"
   }
