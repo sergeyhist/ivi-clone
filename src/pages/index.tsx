@@ -71,6 +71,7 @@ export const getStaticProps = async ({
         "genres",
         "countries",
         "movie",
+        "admin"
       ])),
     },
   };

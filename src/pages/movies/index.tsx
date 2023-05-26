@@ -54,6 +54,7 @@ export const getStaticProps = async ({
         "year",
         "registration",
         "movie",
+        "admin"
       ])),
     },
   };

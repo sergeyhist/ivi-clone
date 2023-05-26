@@ -114,6 +114,7 @@ export const getServerSideProps = async ({
         "countries",
         "genres",
         "registration",
+        "admin"
       ])),
     },
   };

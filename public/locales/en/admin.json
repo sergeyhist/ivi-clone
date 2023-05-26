@@ -16,5 +16,6 @@
     "link": "Return to home?",
     "route": "/"
   },
-  "delete": "Delete"
+  "delete": "Delete",
+  "button": "Admin panel"
 }

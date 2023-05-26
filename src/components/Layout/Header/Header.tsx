@@ -14,7 +14,9 @@ const Header: FC = () => {
   const [dropDownType, setDropDownType] = useState<DropDownType>("");
   const windowSizeWidth = useAppSelector((state) => state.windowSize.width);
   const headerContentClassName =
-    isDropdownActive && windowSizeWidth > 1160 ? styles.header__content_active : "";
+    isDropdownActive && windowSizeWidth > 1160
+      ? styles.header__content_active
+      : "";
 
   const refDropDown = useRef<HTMLDivElement>(null);
   const navigationRef = useRef<HTMLDivElement>(null);

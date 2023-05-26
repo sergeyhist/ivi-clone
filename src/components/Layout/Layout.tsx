@@ -22,6 +22,7 @@ import {
 import { useAppInterceptors } from "/src/hooks/useAppInterceptors";
 import { removeAuthData, setAuthData } from "/src/utils/localStorage";
 import { deleteCookiesByNames } from "/src/utils/cookies";
+import AdminButton from "/src/UI/AdminButton/AdminButton";
 
 interface LayoutProps {
   title: string;
@@ -97,6 +98,7 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
         <link rel="icon" href="/favicon.png" />
       </Head>
       <Header />
+      <AdminButton />
       <main>{children}</main>
       {windowSizeWidth < 1160 && <MobileMenu />}
       <Footer />
