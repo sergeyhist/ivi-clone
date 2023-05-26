@@ -32,9 +32,9 @@ describe("EmailInput", () => {
       setEmail,
     };
     const {
-      component: { container },
+      component: { getByTestId },
     } = renderWithProviders(<EmailInput {...props} />);
-    expect(container).toBeDefined();
+    expect(getByTestId("email-input-container")).toBeInTheDocument();
     expect(screen.getAllByText("Mock Text")[0]).toBeInTheDocument();
   });
   it("handles email sending with valid email", async () => {

@@ -12,6 +12,7 @@ const BackButton: FC = () => {
       onClick={() => {
         router.back();
       }}
+      data-testid="back-button"
     >
       <div className={styles.button}>{t("backLink")}</div>
     </button>

@@ -9,6 +9,6 @@ describe("Footer list", () => {
   });
 
   test("should renders without errors", () => {
-    expect(screen.getByTestId("footer-list")).toBeDefined();
+    expect(screen.getByTestId("footer-list")).toBeInTheDocument();
   });
 });

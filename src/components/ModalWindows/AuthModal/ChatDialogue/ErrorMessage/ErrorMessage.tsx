@@ -22,7 +22,7 @@ const ErrorMessage: FC<ErrorMessageProps> = ({ showErrorMessage }) => {
       timeout={300}
       unmountOnExit
     >
-      <div className={styles.container} ref={errorRef}>
+      <div className={styles.container} ref={errorRef} data-testid="error-message">
         <div className={styles.chat__error}>
           <div className={styles.error__icon}>
             <RiErrorWarningLine />

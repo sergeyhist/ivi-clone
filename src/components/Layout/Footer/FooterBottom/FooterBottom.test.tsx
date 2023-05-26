@@ -10,8 +10,8 @@ window.open = jest.fn();
 
 describe("FooterBottom", () => {
   it("should renders without errors", () => {
-    const { container } = render(<FooterBottom />);
-    expect(container).toBeDefined();
+    const { getByTestId } = render(<FooterBottom />);
+    expect(getByTestId("footer-bottom")).toBeInTheDocument();
   });
   it("navigates to the link URL", () => {
     const { getByText } = render(<FooterBottom />);

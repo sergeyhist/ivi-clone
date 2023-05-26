@@ -66,7 +66,7 @@ const EmailInput: FC<EmailInput> = ({
       timeout={1}
       unmountOnExit
     >
-      <div className={styles.container} ref={emailInputRef}>
+      <div className={styles.container} ref={emailInputRef} data-testid="email-input-container">
         <ModalInput
           showErrorMessage={showErrorMessage}
           clickCallback={handleEmailSubmit}

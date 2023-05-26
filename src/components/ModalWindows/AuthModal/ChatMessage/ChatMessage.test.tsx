@@ -3,8 +3,8 @@ import ChatMessage from "/src/components/ModalWindows/AuthModal/ChatMessage/Chat
 
 describe("ChatMessage",()=>{
   it("should renders without errors",()=>{
-    const {container} = render(<ChatMessage titleText="test"/>);
-    expect(container).toBeDefined();
+    render(<ChatMessage titleText="test"/>);
+    expect(screen.getByTestId("chat-message")).toBeInTheDocument();
   });
   it("should render subtitle text",()=>{
     const subtitle = "subtitle"

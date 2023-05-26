@@ -28,7 +28,7 @@ const ChatHeader: FC<ChatHeaderProps> = ({
   };
 
   return (
-    <div className={styles.header__container}>
+    <div className={styles.header__container} data-testid="chat-header">
       <div className={styles.header__content}>
         <div className={styles.header__text}>
           <h2 className={styles.header__title}>{getHeaderTitle()}</h2>

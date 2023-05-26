@@ -7,7 +7,7 @@ const FooterAsk: FC = () => {
   const { t } = useTranslation("footer");
 
   return (
-    <div className={styles.ask}>
+    <div className={styles.ask} data-testid="footer-ask">
       <Link
         target="_blank"
         className={styles.ask__link}

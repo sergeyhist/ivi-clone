@@ -11,7 +11,7 @@ describe("ToggleSwitch", () => {
   const dataTestId = "toggle-switch";
 
   it("should renders without errors", () => {
-    const { container, getByTestId } = render(
+    const { getByTestId } = render(
       <ToggleSwitch
         leftContent={leftContent}
         rightContent={rightContent}
@@ -23,7 +23,7 @@ describe("ToggleSwitch", () => {
     );
     const switchToggle = getByTestId("toggle-switch");
 
-    expect(container).toBeDefined();
+    expect(switchToggle).toBeInTheDocument();
     expect(switchToggle).toHaveClass("test");
   });
   it("should render with default values and toggle to the right when clicked", () => {

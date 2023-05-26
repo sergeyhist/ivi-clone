@@ -9,8 +9,8 @@ jest.mock("next/router", () => require("next-router-mock"));
 describe("Filmography", () => {
 
   it("should renders without errors", () => {
-    const { container } = render(<Filmography movies={mockMovies} />);
-    expect(container).toBeDefined();
+    const { getByTestId } = render(<Filmography movies={mockMovies} />);
+    expect(getByTestId("filmography-container")).toBeInTheDocument();
   });
 
   it("should call router push after click on movie", () => {

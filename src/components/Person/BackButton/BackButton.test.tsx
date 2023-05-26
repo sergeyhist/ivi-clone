@@ -6,8 +6,8 @@ jest.mock("next/router", () => require("next-router-mock"));
 
 describe("BackButton", () => {
   it("should renders without errors", () => {
-    const { container } = render(<BackButton />);
-    expect(container).toBeDefined();
+    const { getByTestId } = render(<BackButton />);
+    expect(getByTestId("back-button")).toBeInTheDocument();
   });
 
   it("should call router push after click", () => {

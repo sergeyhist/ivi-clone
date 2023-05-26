@@ -3,7 +3,7 @@ import FooterAsk from "/src/components/Layout/Footer/FooterAsk/FooterAsk";
 
 describe("FooterAsk", () => {
   it("should renders without errors", () => {
-    const { container } = render(<FooterAsk />);
-    expect(container).toBeDefined();
+    const { getByTestId } = render(<FooterAsk />);
+    expect(getByTestId("footer-ask")).toBeInTheDocument();
   });
 });

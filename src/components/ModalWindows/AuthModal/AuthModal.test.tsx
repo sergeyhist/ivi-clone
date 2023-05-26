@@ -9,7 +9,7 @@ describe("AuthModal", () => {
     const { component: {getByTestId} } = renderWithProviders(
       <AuthModal closeCallback={jest.fn()} />
     );
-    expect(getByTestId("modal-container")).toBeDefined();
+    expect(getByTestId("modal-container")).toBeInTheDocument();
   });
 
   it('should close the modal when "Escape" key is pressed', () => {

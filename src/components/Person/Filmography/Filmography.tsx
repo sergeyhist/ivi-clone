@@ -30,7 +30,7 @@ const Filmography: FC<FilmographyProps> = ({ movies }) => {
   };
 
   return (
-    <div className={styles.content}>
+    <div className={styles.content} data-testid="filmography-container">
       <h2 className={styles.title}>
         {t("filmography")}
         <span>{movies && `${getMovieDeclination(movies.length, locale)}`}</span>

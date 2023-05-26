@@ -1,16 +1,16 @@
-import {render,screen} from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import ErrorMessage from "/src/components/ModalWindows/AuthModal/ChatDialogue/ErrorMessage/ErrorMessage";
 
-describe("ErrorMessage",()=>{
-  it("should renders without errors",()=>{
-   const {container} = render(<ErrorMessage showErrorMessage={true}/>);
-   expect(container).toBeDefined();
+describe("ErrorMessage", () => {
+  it("should renders without errors", () => {
+    const { getByTestId } = render(<ErrorMessage showErrorMessage={true} />);
+    expect(getByTestId("error-message")).toBeInTheDocument();
     const errorMessage = screen.getByText("errorMessage.title");
     expect(errorMessage).toBeInTheDocument();
   });
 
-  it("should hide error message",()=>{
-     const {container} = render(<ErrorMessage showErrorMessage={false}/>);
+  it("should hide error message", () => {
+    const { container } = render(<ErrorMessage showErrorMessage={false} />);
     expect(container).toBeEmptyDOMElement();
   });
 
@@ -23,4 +23,4 @@ describe("ErrorMessage",()=>{
     expect(errorTitle).toBeInTheDocument();
     expect(errorSubtitle).toBeInTheDocument();
   });
-})
+});

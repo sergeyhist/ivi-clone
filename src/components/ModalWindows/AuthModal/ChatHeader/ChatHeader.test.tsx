@@ -22,12 +22,12 @@ describe("ChatHeader", () => {
       progressBarWidth,
       isEmailExist: undefined,
     };
-    const { container } = render(
+    const { getByTestId } = render(
       <Provider store={store}>
         <ChatHeader {...props} />
       </Provider>
     );
-    expect(container).toBeDefined();
+    expect(getByTestId("chat-header")).toBeInTheDocument();
     expect(screen.getByText("Mock Title")).toBeInTheDocument();
     expect(screen.getByRole("button")).toBeInTheDocument();
   });

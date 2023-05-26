@@ -5,7 +5,7 @@ import React from "react";
 
 describe("ModalInput", () => {
   it("should renders without errors", () => {
-    const { container } = render(
+    const { getByTestId } = render(
       <ModalInput
         inputType="text"
         placeholderText="test"
@@ -13,7 +13,7 @@ describe("ModalInput", () => {
         showIcon={true}
       />
     );
-    expect(container).toBeDefined();
+    expect(getByTestId("input-container")).toBeInTheDocument();
   });
   it("handles input change", () => {
     const setAuthData = jest.fn();

@@ -9,7 +9,7 @@ interface PersonLayoutProps {
 const PersonLayout: FC<PersonLayoutProps> = ({ children }) => {
   return (
     <Container>
-      <div className={styles.layout}>{children}</div>
+      <div className={styles.layout} data-testid="person-layout">{children}</div>
     </Container>
   );
 };

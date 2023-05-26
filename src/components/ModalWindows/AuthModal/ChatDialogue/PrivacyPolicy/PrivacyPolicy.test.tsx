@@ -3,7 +3,7 @@ import PrivacyPolicy from "/src/components/ModalWindows/AuthModal/ChatDialogue/P
 
 describe("PrivacyPolicy", () => {
   it("should renders without errors", () => {
-    const { container } = render(<PrivacyPolicy />);
-    expect(container).toBeDefined();
+    const { getByTestId } = render(<PrivacyPolicy />);
+    expect(getByTestId("privacy-policy")).toBeInTheDocument();
   });
 });

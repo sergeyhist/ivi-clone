@@ -6,7 +6,7 @@ const PrivacyPolicy: FC = () => {
   const { t } = useTranslation("registration");
 
   return (
-    <div className={styles.privacy_policy}>
+    <div className={styles.privacy_policy} data-testid="privacy-policy">
       <p>
         {t("privacy.firstTitle")}
         <br />

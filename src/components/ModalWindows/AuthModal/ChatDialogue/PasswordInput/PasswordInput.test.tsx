@@ -8,9 +8,9 @@ describe("PasswordInput", () => {
   const setShowErrorMessage = jest.fn();
   const setPassword = jest.fn();
   it("should renders without errors", () => {
-    const { container } = render(
+    const { getByTestId } = render(
       <PasswordInput
-        isEmailInputSuccess={false}
+        isEmailInputSuccess={true}
         isEmailExist={false}
         showErrorMessage={false}
         setShowErrorMessage={setShowErrorMessage}
@@ -18,7 +18,7 @@ describe("PasswordInput", () => {
         setPassword={setPassword}
       />
     );
-    expect(container).toBeDefined();
+    expect(getByTestId("password-input-container")).toBeInTheDocument();
   });
   it("should handle notify after invalid password",()=>{
     const mockToast = jest.spyOn(toastify,'toast');

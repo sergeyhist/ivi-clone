@@ -10,7 +10,7 @@ const FooterBottom: FC = () => {
   };
 
   return (
-    <div className={styles.bottom}>
+    <div className={styles.bottom} data-testid="footer-bottom">
       <div className={styles.bottom__left}>
         {bottomLeftLinks.map((link, i) => (
           <CustomButton

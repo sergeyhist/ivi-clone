@@ -42,7 +42,7 @@ const PasswordInput: FC<PasswordInputProps> = ({
       timeout={300}
       unmountOnExit
     >
-      <div className={styles.container} ref={passwordInputRef}>
+      <div className={styles.container} ref={passwordInputRef} data-testid="password-input-container">
         <ChatMessage
           titleText={
             isEmailExist ? t("passwordMessage") : t("passwordHint.title")

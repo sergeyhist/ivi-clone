@@ -8,7 +8,7 @@ interface ChatMessageProps{
 
 const ChatMessage:FC<ChatMessageProps> = ({titleText,subtitleText})=>{
   return(
-    <div className={styles.container}>
+    <div className={styles.container} data-testid="chat-message">
       <h3 className={styles.title}>
         {titleText}
       </h3>

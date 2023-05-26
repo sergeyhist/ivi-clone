@@ -9,7 +9,7 @@ describe("Footer copyright", () => {
     renderWithProviders(<FooterCopyright />);
   });
   test("should renders without errors", () => {
-    expect(screen.getByTestId("copyright")).toBeDefined();
+    expect(screen.getByTestId("copyright")).toBeInTheDocument();
   });
 
   test("render with width more than 1159px", () => {

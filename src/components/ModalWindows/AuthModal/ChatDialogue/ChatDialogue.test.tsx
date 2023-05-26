@@ -41,7 +41,7 @@ describe("ChatDialogue", () => {
 
   it("should renders without errors", () => {
     const {
-      component: { container },
+      component: { getByTestId },
     } = renderWithProviders(
       <ChatDialogue
         setProgressBarWidth={setProgressBarWidth}
@@ -49,7 +49,7 @@ describe("ChatDialogue", () => {
         isEmailExist={false}
       />
     );
-    expect(container).toBeDefined();
+    expect(getByTestId("form")).toBeInTheDocument();
     expect(setProgressBarWidth).not.toHaveBeenCalled();
   });
 
