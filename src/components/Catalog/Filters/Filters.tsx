@@ -12,9 +12,11 @@ import { useRouter } from "next/router";
 import { useGetActors, useGetDirectors } from "/src/api/persons";
 import { getFiltersFromRoute } from "/src/utils/filters/getFiltersFromRoute";
 import { compareFilters } from "/src/utils/filters/compareFilters";
-import { setFilters } from "/src/store/slices/filtersSlice";
+import { setFilters, setMoviesPage } from "/src/store/slices/filtersSlice";
+import { useTranslation } from "next-i18next";
 
 const Filters: FC = () => {
+  const { t } = useTranslation();
   const router = useRouter();
   const dispatch = useAppDispatch();
 
@@ -87,7 +89,18 @@ const Filters: FC = () => {
           filter={filters.director as string}
         />
       </div>
-      <ResetButton clickCallback={resetHandler} />
+      <div className={styles.filters__buttons}>
+        <ResetButton
+          text={t("filters:reset.filters")}
+          textPosition="right"
+          clickCallback={resetHandler}
+        />
+        <ResetButton
+          text={t("filters:reset.page")}
+          textPosition="left"
+          clickCallback={() => setQueryParams(router, { page: "1" })}
+        />
+      </div>
     </div>
   );
 };

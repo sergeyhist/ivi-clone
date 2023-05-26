@@ -11,7 +11,10 @@
     "actor": "Actors",
     "director": "Directors"
   },
-  "reset": "Reset filters",
+  "reset": {
+    "filters": "Reset filters",
+    "page": "Reset page"
+  },
   "all": {
     "genres": "All genres",
     "countries": "All countries",

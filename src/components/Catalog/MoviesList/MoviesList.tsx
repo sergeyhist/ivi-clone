@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
 import {
   setFilteredMovies,
   setIsMoviesLoading,
+  setMoviesPage,
 } from "/src/store/slices/filtersSlice";
 import { IMovie } from "/src/types/IMovie";
 import MovieCard from "/src/UI/MovieCard/MovieCard";
@@ -19,12 +20,16 @@ const MoviesList: FC = () => {
   const router = useRouter();
   const { query } = router;
   const { t } = useTranslation();
-  const { filteredMovies, filters, sortingMethod, isMoviesLoading } =
-    useAppSelector((state) => state.filters);
+  const {
+    filteredMovies,
+    filters,
+    sortingMethod,
+    isMoviesLoading,
+    moviesPage,
+  } = useAppSelector((state) => state.filters);
   const { width } = useAppSelector((state) => state.windowSize);
   const dispatch = useAppDispatch();
 
-  const [page, setPage] = useState(1);
   const [isPageLoading, setIsPageLoading] = useState(false);
   const [listLimit, setListLimit] = useState(0);
 
@@ -36,17 +41,18 @@ const MoviesList: FC = () => {
   }, 1000);
 
   useEffect(() => {
-    setPage(0);
+    dispatch(setMoviesPage(0));
     dispatch(setIsMoviesLoading(true));
     debouncedFilter();
   }, [dispatch, filters, sortingMethod, debouncedFilter]);
 
   useEffect(() => {
     query.page
-      ? query.page !== page.toString() && setPage(Number(query.page))
-      : setPage(1);
+      ? query.page !== moviesPage.toString() &&
+        dispatch(setMoviesPage(Number(query.page)))
+      : dispatch(setMoviesPage(1));
     setIsPageLoading(false);
-  }, [query, page]);
+  }, [query, moviesPage, dispatch]);
 
   useEffect(() => {
     width > 1160 && setListLimit(7 * 3);
@@ -69,26 +75,28 @@ const MoviesList: FC = () => {
     return (
       <div data-testid="movies-list">
         <div className={`${styles.list}`}>
-          {filteredMovies.slice(0, listLimit * page).map((movie: IMovie, i) => (
-            <div
-              data-testid="movies-item"
-              key={i}
-              className={styles.list__movie}
-            >
-              <MovieCard content={movie} />
-            </div>
-          ))}
+          {filteredMovies
+            .slice(0, listLimit * moviesPage)
+            .map((movie: IMovie, i) => (
+              <div
+                data-testid="movies-item"
+                key={i}
+                className={styles.list__movie}
+              >
+                <MovieCard content={movie} />
+              </div>
+            ))}
         </div>
         {isPageLoading && (
           <div className={styles.list__page}>
             <PropagateLoader color="#312b45" />
           </div>
         )}
-        {listLimit * page < filteredMovies.length && (
+        {listLimit * moviesPage < filteredMovies.length && (
           <MoreButton
             clickCallback={() => {
               setIsPageLoading(true);
-              setQueryParams(router, { page: String(page + 1) });
+              setQueryParams(router, { page: String(moviesPage + 1) });
             }}
           />
         )}

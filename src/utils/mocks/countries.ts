@@ -1,6 +1,6 @@
 import { ICountry } from "/src/types/IMovie";
 
-export const countriesList = [
+const countriesList = [
   {
     country_id: "dd919fe3-bd80-402e-a3ea-beb294e0b605",
     country: "Иран",

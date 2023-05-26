@@ -59,13 +59,22 @@ describe("Filters component", () => {
     expect(render.store.getState().filters.filters.genres).toEqual("anime");
   });
 
-  test("click on reset button", async () => {
-    const { getByTestId } = render.component;
+  test("click on filters reset button", async () => {
+    const { getAllByTestId } = render.component;
     await act(() => mockRouter.replace({ query: { genres: "anime" } }));
     expect(render.store.getState().filters.filters.genres).toEqual("anime");
 
-    act(() => userEvent.click(getByTestId("reset-all-button")));
+    act(() => userEvent.click(getAllByTestId("reset-all-button")[0]));
     expect(render.store.getState().filters.filters.genres).toEqual([]);
+  });
+
+  test("click on page reset button", async () => {
+    const { getAllByTestId } = render.component;
+    await act(() => mockRouter.replace({ query: { genres: "anime" } }));
+    expect(render.store.getState().filters.filters.genres).toEqual("anime");
+
+    act(() => userEvent.click(getAllByTestId("reset-all-button")[1]));
+    expect(render.store.getState().filters.moviesPage).toEqual(1);
   });
 
   test("sort handler has been called", () => {
@@ -76,9 +85,9 @@ describe("Filters component", () => {
     jest.unmock("./Filters.utils");
 
     const utils = await import("./Filters.utils");
-    
+
     const result = utils.sortHandler(countriesListSlugs);
 
     expect(result).not.toEqual(countriesListSlugs);
-  })
+  });
 });

@@ -34,6 +34,7 @@ describe("filtersSlice", () => {
       filteredMovies: [],
       sortingMethod: "assessments",
       isMoviesLoading: false,
+      moviesPage: 1,
     };
   });
   it("should handle setFilters", () => {
@@ -81,6 +82,15 @@ describe("filtersSlice", () => {
     const newState = filtersSlice.reducer(initialState, action);
 
     expect(newState.isMoviesLoading).toEqual(isLoading);
+  });
+
+  it("should handle setMoviesPage", () => {
+    const moviesPage = 2;
+
+    const action = filtersSlice.actions.setMoviesPage(moviesPage);
+    const newState = filtersSlice.reducer(initialState, action);
+
+    expect(newState.moviesPage).toEqual(moviesPage);
   });
 });
 

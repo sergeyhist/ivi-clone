@@ -8,11 +8,15 @@ describe("Reset button component", () => {
   const fakeClick = jest.fn();
 
   beforeEach(() => {
-    render = renderWithProviders(<ResetButton clickCallback={fakeClick} />);
+    render = renderWithProviders(
+      <ResetButton text="test" textPosition="left" clickCallback={fakeClick} />
+    );
   });
 
   test("component has been rendered correctlty", () => {
-    expect(render.component.getByTestId("reset-all-button")).toBeInTheDocument();
+    expect(
+      render.component.getByTestId("reset-all-button")
+    ).toBeInTheDocument();
   });
 
   test("click callabck has been called", () => {
