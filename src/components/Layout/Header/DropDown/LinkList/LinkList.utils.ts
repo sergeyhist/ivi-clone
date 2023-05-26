@@ -1,27 +1,13 @@
 import { DropDownType } from "/src/components/Layout/Header/Header.utils";
-import { TFunction } from "i18next";
 
 export const sortSlugs = (
   list: string[],
   order: DropDownType[],
   selectedGenre: DropDownType
 ): string[] => {
-    return [...list].sort((a, b) =>
-      a[order.indexOf(selectedGenre)] > b[order.indexOf(selectedGenre)] ? 1 : -1
-    );
-};
-
-export const localizeAndLimitList = (
-  list: string[],
-  prefix: string,
-  limit: number,
-  t: TFunction
-): string[] => {
-  return list
-    .map((slug) => {
-      return t(`${prefix}:${slug}`);
-    })
-    .slice(0, limit);
+  return [...list].sort((a, b) =>
+    a[order.indexOf(selectedGenre)] > b[order.indexOf(selectedGenre)] ? 1 : -1
+  );
 };
 
 export const makeLinksFromSlugs = (
@@ -35,7 +21,7 @@ export const makeLinksFromSlugs = (
 
 export const getCountriesLinksByCategory = (
   category: DropDownType
-): string[] => {
+): { [key: string]: string } => {
   switch (category) {
     case "movies":
       return moviesCountriesHrefs;
@@ -45,77 +31,28 @@ export const getCountriesLinksByCategory = (
   return cartoonsCountriesHrefs;
 };
 
-export const mockGenresSlugs=[
-  "drama",
-  "fantasy",
-  "history",
-  "adventure",
-  "comedy",
-  "melodrama",
-  "militant",
-  "fiction",
-  "thriller",
-  "military",
-  "western",
-  "family",
-  "filmnoir",
-  "music",
-  "horror",
-  "detective",
-  "documentary",
-  "sport",
-  "shortfilm",
-  "adults"
-]
+export const yearsList = ["2023", "2022", "2021", "2020"];
 
-export const mockGenres = [
-  "Drama",
-  "Fantasy",
-  "History",
-  "Adventure",
-  "Comedy",
-  "Melodrama",
-  "Militant",
-  "Fiction",
-  "Thriller",
-  "Military",
-  "Western",
-  "Family",
-  "Film noir",
-  "Music",
-  "Horror",
-  "Detective",
-  "Documentary",
-  "Sport",
-  "Short Film",
-  "For Adults",
-];
+const foreign =
+  "countries=france&countries=usa&countries=canada&countries=britain";
 
-export const mockCountries = ["Russian", "American", "Soviet movie"];
-export const mockYears = [
-  "Movies of 2023",
-  "Movies of 2022",
-  "Movies of 2021",
-  "Movies of 2020",
-];
+export const moviesCountriesHrefs = {
+  russia: "countries=russia",
+  usa: "countries=usa",
+  ussr: "countries=ussr",
+};
 
-export const moviesCountriesHrefs = [
-  "countries=russia",
-  "countries=usa",
-  "countries=ussr",
-];
+export const seriesCountriesHrefs = {
+  russia: "countries=russia",
+  foreign: foreign,
+  usa: "countries=usa",
+  korea: "countries=southkorea",
+  turkey: "countries=turkey",
+};
 
-export const seriesCountriesHrefs = [
-  "countries=russia",
-  "countries=france&countries=usa&countries=canada&countries=britain",
-  "countries=usa",
-  "countries=southkorea",
-  "countries=turkey",
-];
-
-export const cartoonsCountriesHrefs = [
-  "countries=ussr",
-  "countries=russia",
-  "countries=usa",
-  "countries=france&countries=usa&countries=canada&countries=britain",
-];
+export const cartoonsCountriesHrefs = {
+  ussr: "countries=ussr",
+  russia: "countries=russia",
+  usa: "countries=usa",
+  foreign: foreign,
+};

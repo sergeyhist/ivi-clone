@@ -1,105 +1,15 @@
 {
-  "movies": {
-    "genres": [
-      "Drama",
-      "Fantasy",
-      "History",
-      "Adventure",
-      "Comedy",
-      "Melodrama",
-      "Militant",
-      "Fiction",
-      "Thriller",
-      "Military",
-      "Western",
-      "Family",
-      "Film noir",
-      "Music",
-      "Horror",
-      "Detective",
-      "Documentary",
-      "Sport",
-      "Short Film",
-      "For Adults"
-    ],
-    "countries": [
-      "Russian",
-      "American",
-      "Soviet movie"
-    ],
-    "years": [
-      "Movies of 2023",
-      "Movies of 2022",
-      "Movies of 2021",
-      "Movies of 2020"
-    ]
+  "years": {
+    "movies": "Movies of {{year}}",
+    "series": "Series of {{year}}",
+    "cartoons": "Cartoons of {{year}}"
   },
-  "series": {
-    "genres": [
-      "Family",
-      "Music",
-      "Horror",
-      "Detective",
-      "Musical",
-      "Drama",
-      "Fantasy",
-      "Criminal",
-      "Cartoons",
-      "Action",
-      "Fiction",
-      "Short Film",
-      "For Adults",
-      "Children's",
-      "Thriller",
-      "Military",
-      "Western",
-      "Historical",
-      "Adventure",
-      "Comedy",
-      "Anime"
-    ],
-    "countries": [
-      "Russian",
-      "Foreign",
-      "American",
-      "Korean",
-      "Turkish"
-    ],
-    "years": [
-      "Series of 2023",
-      "Series of 2022",
-      "Series of 2021",
-      "Series of 2020"
-    ]
-  },
-  "cartoons": {
-    "genres": [
-      "Anime",
-      "Drama",
-      "Fantasy",
-      "Criminal",
-      "Historical",
-      "Adventure",
-      "Comedy",
-      "Cartoons",
-      "Fantastic",
-      "Family",
-      "Music",
-      "Horrors",
-      "Musical",
-      "Children's"
-    ],
-    "countries": [
-      "Soviet",
-      "Russian",
-      "American",
-      "Foreign"
-    ],
-    "years": [
-      "Cartoons of 2023",
-      "Cartoons of 2022",
-      "Cartoons of 2021",
-      "Cartoons of 2020"
-    ]
+  "countries": {
+    "usa": "American",
+    "russia": "Russian",
+    "ussr": "Soviet movie",
+    "foreign": "Foreign",
+    "turkey": "Turkish",
+    "korea": "Korean"
   }
 }

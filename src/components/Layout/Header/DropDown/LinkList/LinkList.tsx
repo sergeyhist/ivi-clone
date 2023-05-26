@@ -1,4 +1,4 @@
-import { FC, useEffect, useRef, useState } from "react";
+import { FC } from "react";
 import Links from "../Links/Links";
 import styles from "./LinkList.module.sass";
 import { DropDownType } from "../../Header.utils";
@@ -6,14 +6,11 @@ import { useTranslation } from "next-i18next";
 import { useAppSelector } from "/src/hooks/redux";
 import {
   getCountriesLinksByCategory,
-  localizeAndLimitList,
   makeLinksFromSlugs,
-  mockCountries,
-  mockGenres,
-  mockGenresSlugs,
-  mockYears,
   sortSlugs,
+  yearsList,
 } from "/src/components/Layout/Header/DropDown/LinkList/LinkList.utils";
+import { genresListSlugs } from "/src/utils/mocks/genres";
 
 interface LinkListProps {
   selectedGenre: DropDownType;
@@ -21,71 +18,53 @@ interface LinkListProps {
 
 const LinkList: FC<LinkListProps> = ({ selectedGenre }) => {
   const { t } = useTranslation("dropDownCategory");
-  const [genresList, setGenresList] = useState<string[]>();
-  const previousSelectedGenre = useRef<DropDownType>("");
-  const storedSlugs = useAppSelector((state) => state.slugs);
+  const { genresSlugs } = useAppSelector((state) => state.slugs);
 
   const order: DropDownType[] = ["movies", "series", "cartoons"];
 
-  const translatedGenres: string[] = t(`${selectedGenre}.genres`, {
-    returnObjects: true,
-  });
-  const genres = !Array.isArray(translatedGenres)
-    ? mockGenres
-    : translatedGenres;
-
-  const translatedCountries: string[] = t(`${selectedGenre}.countries`, {
-    returnObjects: true,
-  });
-  const countries = !Array.isArray(translatedCountries)
-    ? mockCountries
-    : translatedCountries;
-
-  const translatedYears: string[] = t(`${selectedGenre}.years`, {
-    returnObjects: true,
-  });
-  const years = !Array.isArray(translatedYears) ? mockYears : translatedYears;
-
-  const genresSlugs = sortSlugs(
-    [...storedSlugs.genresSlugs],
+  const sortedGenresSlugs = sortSlugs(
+    [...(genresSlugs.length > 0 ? genresSlugs : genresListSlugs).slice(0, 20)],
     order,
     selectedGenre
   );
-
-  const genresHrefs = makeLinksFromSlugs(
-    genresSlugs.length === 0 ? mockGenresSlugs : genresSlugs,
-    "genres"
+  const translatedGenres: string[] = sortedGenresSlugs.map((genre) =>
+    t(`genres:${genre}`)
   );
+  const genresHrefs = makeLinksFromSlugs(sortedGenresSlugs, "genres");
 
-  const yearsHrefs = years.map((year, i) => {
-    return `year=202${years.length - 1 - i}-202${years.length - 1 - i}`;
+  const translatedYears: string[] = yearsList.map((year) =>
+    t(`years.${selectedGenre}`, { year: year })
+  );
+  const yearsHrefs = yearsList.map((year) => {
+    return `year=${year}-${year}`;
   });
 
-  useEffect(() => {
-    if (selectedGenre !== previousSelectedGenre.current) {
-      setGenresList(localizeAndLimitList(genresSlugs, "genres", 20, t));
-      previousSelectedGenre.current = selectedGenre;
-    }
-  }, [genresSlugs, selectedGenre, t]);
+  const countriesList = getCountriesLinksByCategory(selectedGenre);
+  const countriesHrefs = Object.keys(countriesList).map(
+    (country) => countriesList[country]
+  );
+  const translatedCountries: string[] = Object.keys(countriesList).map(
+    (country) => t(`countries.${country}`)
+  );
 
   return (
     <div className={styles.list}>
       <div>
         <Links
           title={t("header:genreTitles.0")}
-          links={genresList?.length ? genresList : genres}
+          links={translatedGenres}
           hrefs={genresHrefs}
         />
       </div>
       <div className={styles.list__container}>
         <Links
           title={t("header:genreTitles.1")}
-          links={countries}
-          hrefs={getCountriesLinksByCategory(selectedGenre)}
+          links={translatedCountries}
+          hrefs={countriesHrefs}
         />
         <Links
           title={t("header:genreTitles.2")}
-          links={years}
+          links={translatedYears}
           hrefs={yearsHrefs}
         />
       </div>
