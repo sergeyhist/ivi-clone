@@ -6,7 +6,7 @@ import { mockPerson } from "/src/utils/mocks/person";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
-describe("BannerSlider", () => {
+describe("CreatorsList", () => {
   it("should renders without errors", () => {
     renderWithProviders(<CreatorsList persons={[mockPerson]} />);
     expect(screen.getByTestId("creators-list")).toBeInTheDocument();

@@ -35,7 +35,7 @@ const CreatorsTab: FC<CreatorsTabProps> = ({ persons }) => {
   );
 
   return (
-    <div className={styles.container}>
+    <div data-testid="creators-tab" className={styles.container}>
       {directors.length !== 0 && (
         <Creators title={t("creators.directors")} persons={directors} />
       )}

@@ -7,14 +7,14 @@ interface MovieOptionProps {
   className?: string;
 }
 
-const MovieOption: FC<MovieOptionProps> = ({
-  children,
-  title,
-  className = "",
-}) => {
+const MovieOption: FC<MovieOptionProps> = ({ children, title, className = "" }) => {
   return (
-    <div className={`${styles.option} ${className}`}>
-      {title && <p className={styles.option__title}>{title}</p>}
+    <div data-testid="movie-option" className={`${styles.option} ${className}`}>
+      {title && (
+        <p data-testid="movie-option-title" className={styles.option__title}>
+          {title}
+        </p>
+      )}
       <div className={styles.option__values}>{children}</div>
     </div>
   );

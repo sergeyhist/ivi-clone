@@ -10,7 +10,7 @@ import { mockPerson } from "/src/utils/mocks/person";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
-describe("BannerSlider", () => {
+describe("MovieInfo", () => {
   it("should render desktop version", () => {
     act(() => store.dispatch(setWindowSize({ width: 1161, height: 1080 })));
     render(

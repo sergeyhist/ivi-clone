@@ -37,16 +37,19 @@ const CommentItem: FC<CommentItemProps> = ({
   }, [windowSize.width]);
 
   return (
-    <div className={styles.container}>
-      <div style={{ paddingLeft: `${indentation - 16}px` }} className={styles.top}>
-        <h4 onClick={clickHandler} className={styles.title}>
-          {comment.user.email}
-        </h4>
+    <div data-testid="comment" className={styles.container}>
+      <div
+        data-testid="comment-indentation"
+        style={{ paddingLeft: `${indentation - 16}px` }}
+        className={styles.top}
+      >
+        <h4 className={styles.title}>{comment.user.email}</h4>
         <p className={styles.date}>
           {getFormateDate(new Date(comment.createdAt), t)}
         </p>
         <div className={styles.top__actions}>
           <button
+            data-testid="reply-button"
             type="button"
             onClick={clickHandler}
             className={styles.comment__add}

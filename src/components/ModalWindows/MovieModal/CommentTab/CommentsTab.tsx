@@ -16,9 +16,13 @@ interface CommentsTabProps {
 }
 
 const CommentsTab: FC<CommentsTabProps> = ({ comments, setCommentsState }) => {
+  const { t } = useTranslation("movie");
   const [inputText, setInputText] = useState("");
   const [replyFor, setReplyFor] = useState<IComment | undefined>(undefined);
-  const { t } = useTranslation("movie");
+  const [placeholderText, setPlaceholderText] = useState<string | null>(
+    t("modal.commentsInput.placeholder")
+  );
+  const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
   const { userEmail, isLogged } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const { query } = useRouter();
@@ -31,11 +35,25 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments, setCommentsState }) => {
       return;
     }
 
+    if (inputText.length < 5) {
+      setShowErrorMessage(true);
+      setPlaceholderText(t("modal.commentsInput.errors.0"));
+      return;
+    }
+
     getUserByEmail(userEmail).then((user) => {
-      if (!user) return;
+      if (!user) {
+        setShowErrorMessage(true);
+        setPlaceholderText(t("modal.commentsInput.errors.1"));
+        return;
+      }
+
+      if (showErrorMessage) {
+        setShowErrorMessage(false);
+      }
 
       if (replyFor && !inputText.indexOf("@" + String(replyFor.user.email))) {
-        createComment(
+        return createComment(
           String(query.id),
           user.user_id,
           inputText,
@@ -47,24 +65,24 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments, setCommentsState }) => {
           setCommentsState(comments);
           setInputText("");
         });
-      } else {
-        createComment(
-          String(query.id),
-          user.user_id,
-          inputText,
-          null,
-          String(localStorage.getItem("token"))
-        ).then((res) => {
-          if (!res) return;
-          setCommentsState([res, ...comments]);
-          setInputText("");
-        });
       }
+
+      createComment(
+        String(query.id),
+        user.user_id,
+        inputText,
+        null,
+        String(localStorage.getItem("token"))
+      ).then((res) => {
+        if (!res) return;
+        setCommentsState([res, ...comments]);
+        setInputText("");
+      });
     });
   };
 
   return (
-    <>
+    <div data-testid="comments-tab">
       <form data-testid="comments-form" onSubmit={handleSubmitForm}>
         <ModalInput
           className={styles.input}
@@ -73,7 +91,8 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments, setCommentsState }) => {
           inputType="text"
           showIcon={false}
           buttonText={t("modal.commentsInput.submit")}
-          placeholderText={t("modal.commentsInput.placeholder")}
+          placeholderText={String(placeholderText)}
+          showErrorMessage={showErrorMessage}
         />
       </form>
       <CommentsList
@@ -81,7 +100,7 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments, setCommentsState }) => {
         setReplyFor={setReplyFor}
         comments={comments}
       />
-    </>
+    </div>
   );
 };
 

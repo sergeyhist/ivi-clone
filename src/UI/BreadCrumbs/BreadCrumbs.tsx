@@ -37,7 +37,11 @@ const BreadCrumbs: FC<BreadCrumbsProps> = ({
           >
             {customRoutes &&
               customRoutes.map((route, index) => (
-                <li key={index} className={styles.list__item}>
+                <li
+                  data-testid="custom-route"
+                  key={index}
+                  className={styles.list__item}
+                >
                   <Link className={styles.list__link} href={route}>
                     {t(`breadcrumbs.${route}`)}
                   </Link>
@@ -45,7 +49,11 @@ const BreadCrumbs: FC<BreadCrumbsProps> = ({
               ))}
             {!customRoutes &&
               routes.map((route, index) => (
-                <li key={index} className={styles.list__item}>
+                <li
+                  data-testid="default-route"
+                  key={index}
+                  className={styles.list__item}
+                >
                   <Link className={styles.list__link} href={route}>
                     {t(`breadcrumbs.${route}`)}
                   </Link>
