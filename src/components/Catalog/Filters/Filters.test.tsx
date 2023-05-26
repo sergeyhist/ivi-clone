@@ -8,6 +8,7 @@ import mockRouter from "next-router-mock";
 import userEvent from "@testing-library/user-event";
 import * as utils from "./Filters.utils";
 import { countriesListSlugs } from "/src/utils/mocks/countries";
+import { setWindowSize } from "/src/store/slices/windowSizeSlice";
 
 jest.mock("next/router", () => require("next-router-mock"));
 jest.mock("axios");
@@ -75,6 +76,24 @@ describe("Filters component", () => {
 
     act(() => userEvent.click(getAllByTestId("reset-all-button")[1]));
     expect(render.store.getState().filters.moviesPage).toEqual(1);
+  });
+
+  test("page reset button with window width > 550", () => {
+    const { getAllByTestId } = render.component;
+    act(() =>
+      render.store.dispatch(setWindowSize({ width: 560, height: 1080 }))
+    );
+
+    expect(getAllByTestId("reset-all-button")[1]).toMatchSnapshot();
+  });
+
+  test("page reset button with window width < 550", () => {
+    const { getAllByTestId } = render.component;
+    act(() =>
+      render.store.dispatch(setWindowSize({ width: 540, height: 1080 }))
+    );
+
+    expect(getAllByTestId("reset-all-button")[1]).toMatchSnapshot();
   });
 
   test("sort handler has been called", () => {

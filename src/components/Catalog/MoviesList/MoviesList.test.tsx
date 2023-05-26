@@ -36,9 +36,9 @@ describe("Movies list", () => {
   });
 
   test("render loading while getting movies", () => {
-    expect(screen.getByTestId("movies-loading")).toBeInTheDocument();
+    expect(screen.getByTestId("page-loader")).toBeInTheDocument();
     act(() => render.store.dispatch(setIsMoviesLoading(false)));
-    expect(screen.queryByTestId("movies-loading")).not.toBeInTheDocument();
+    expect(screen.queryByTestId("page-loader")).not.toBeInTheDocument();
   });
 
   test("render 'not found' if movies not found", () => {

@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import Layout from "../components/Layout/Layout";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -8,31 +8,47 @@ import AdminMovies from "../components/Admin/AdminMovies/AdminMovies";
 import AdminGenres from "../components/Admin/AdminGenres/AdminGenres";
 import { useAppSelector } from "../hooks/redux";
 import NotFound from "../components/NotFound/NotFound";
+import PageLoader from "../UI/PageLoader/PageLoader";
 
 const Admin: FC = () => {
   const { t } = useTranslation(["titles", "admin"]);
   const [selectedTab, setSelectedTab] = useState<"movies" | "genres">("movies");
   const { role } = useAppSelector((state) => state.auth);
+  const [isLoading, setIsLoading] = useState(true);
 
-  if (role === "admin") {
-    return (
-      <Layout title={t("titles:admin")}>
-        <AdminTabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
-        {selectedTab === "movies" && <AdminMovies />}
-        {selectedTab === "genres" && <AdminGenres />}
-      </Layout>
-    );
-  } else {
-    return (
-      <Layout title={t("admin:access_denied.title")}>
+  const isAdmin = !isLoading && role === "admin";
+
+  useEffect(() => {
+    if (isLoading === true && role) {
+      setIsLoading(false);
+    }
+  }, [isLoading, role]);
+
+  return (
+    <Layout
+      title={t(
+        role
+          ? role === "admin"
+            ? "titles:admin"
+            : "admin:access_denied.title"
+          : "titles:home"
+      )}
+    >
+      {isLoading && <PageLoader />}
+      {role && !isAdmin && (
         <NotFound
           contentText={t("admin:access_denied.content")}
           linkText={t("admin:access_denied.link")}
           linkRoute="/"
         />
-      </Layout>
-    );
-  }
+      )}
+      {isAdmin && (
+        <AdminTabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
+      )}
+      {isAdmin && selectedTab === "movies" && <AdminMovies />}
+      {isAdmin && selectedTab === "genres" && <AdminGenres />}
+    </Layout>
+  );
 };
 
 export const getStaticProps = async ({

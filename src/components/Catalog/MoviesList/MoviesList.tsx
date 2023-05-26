@@ -15,6 +15,7 @@ import filterMovies from "/src/utils/filters/filterMovies";
 import { setQueryParams } from "/src/utils/query";
 import { useTranslation } from "next-i18next";
 import { PropagateLoader } from "react-spinners";
+import PageLoader from "/src/UI/PageLoader/PageLoader";
 
 const MoviesList: FC = () => {
   const router = useRouter();
@@ -64,11 +65,7 @@ const MoviesList: FC = () => {
   }, [width]);
 
   if (isMoviesLoading) {
-    return (
-      <div data-testid="movies-loading" className={styles.list__loader}>
-        <PropagateLoader color="#312b45" />
-      </div>
-    );
+    return <PageLoader />;
   }
 
   if (filteredMovies.length > 0) {
@@ -87,11 +84,7 @@ const MoviesList: FC = () => {
               </div>
             ))}
         </div>
-        {isPageLoading && (
-          <div className={styles.list__page}>
-            <PropagateLoader color="#312b45" />
-          </div>
-        )}
+        {isPageLoading && <PageLoader />}
         {listLimit * moviesPage < filteredMovies.length && (
           <MoreButton
             clickCallback={() => {
