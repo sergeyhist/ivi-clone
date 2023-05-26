@@ -20,7 +20,8 @@ import { getBackendImage } from "/src/utils/getBackendImg";
 import { setAuthData } from "/src/utils/localStorage";
 import { getCookieByName } from "/src/utils/cookies";
 import createAppPortal from "/src/utils/createAppPortal";
-import {mockPerson} from "/src/utils/mocks/person";
+import { mockPerson } from "/src/utils/mocks/person";
+import { isBrowser } from "../utils/isBrowser";
 
 describe("getMovieDeclination", () => {
   it("should return the correct declination for 'ru' locale", () => {
@@ -112,8 +113,7 @@ describe("person utils", () => {
 
 describe("movie utils", () => {
   it("should return en name", () => {
-    const locale = "en";
-    expect(getMovieName(mockMovie, locale)).toEqual(mockMovie.name_en);
+    expect(getMovieName(mockMovie)).toEqual(mockMovie.name_en);
   });
   it("should return ru name", () => {
     const locale = "ru";
@@ -233,5 +233,14 @@ describe("createAppPortal", () => {
     const result = createAppPortal(node);
 
     expect(result).toBeNull();
+  });
+});
+
+describe("isBrowser", () => {
+  it("createAppPortal returns a ReactPortal when documentRoot is found", () => {
+    expect(isBrowser(undefined)).toBe(false);
+  });
+  it("createAppPortal returns a ReactPortal when documentRoot is found", () => {
+    expect(isBrowser(window)).toBe(true);
   });
 });

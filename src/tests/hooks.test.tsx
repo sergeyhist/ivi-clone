@@ -4,6 +4,10 @@ import { useAppInterceptors } from "/src/hooks/useAppInterceptors";
 import { Provider } from "react-redux";
 import { store } from "/src/store";
 import { ReactNode } from "react";
+import useOverflowHidden from "../hooks/useOverflowHidden";
+import { isBrowser } from "../utils/isBrowser";
+
+jest.mock("src/utils/isBrowser");
 
 /* eslint-disable */
 describe("useAppInterceptors", () => {
@@ -18,9 +22,7 @@ describe("useAppInterceptors", () => {
       <Provider store={store}>{children}</Provider>
     );
 
-    await act(() =>
-      renderHook(() => useAppInterceptors(), { wrapper: Wrapper })
-    );
+    await act(() => renderHook(() => useAppInterceptors(), { wrapper: Wrapper }));
     try {
       await axiosSpy.mock.calls[0][1]?.(axiosErr);
     } catch (err) {
@@ -33,10 +35,35 @@ describe("useAppInterceptors", () => {
     const Wrapper = ({ children }: { children: ReactNode }) => (
       <Provider store={store}>{children}</Provider>
     );
-    await act(() =>
-      renderHook(() => useAppInterceptors(), { wrapper: Wrapper })
-    );
+    await act(() => renderHook(() => useAppInterceptors(), { wrapper: Wrapper }));
 
     expect(await axiosSpy.mock.calls[0][0]?.({} as any)).toStrictEqual({});
+  });
+});
+
+describe("useAppInterceptors", () => {
+  it("should throw an error and call dispatch", async () => {
+    (isBrowser as jest.Mock).mockImplementationOnce(() => true);
+    const Wrapper = ({ children }: { children: ReactNode }) => (
+      <Provider store={store}>{children}</Provider>
+    );
+    await act(() =>
+      renderHook(() => useOverflowHidden(false), { wrapper: Wrapper })
+    );
+  });
+  it("should throw an error and call dispatch", async () => {
+    (isBrowser as jest.Mock).mockImplementationOnce(() => true);
+    const Wrapper = ({ children }: { children: ReactNode }) => (
+      <Provider store={store}>{children}</Provider>
+    );
+    await act(() => renderHook(() => useOverflowHidden(true), { wrapper: Wrapper }));
+  });
+  it("should throw an error and call dispatch", async () => {
+    (isBrowser as jest.Mock).mockImplementationOnce(() => false);
+    const Wrapper = ({ children }: { children: ReactNode }) => (
+      <Provider store={store}>{children}</Provider>
+    );
+    (isBrowser as jest.Mock).mockImplementationOnce(() => true);
+    await act(() => renderHook(() => useOverflowHidden(true), { wrapper: Wrapper }));
   });
 });
