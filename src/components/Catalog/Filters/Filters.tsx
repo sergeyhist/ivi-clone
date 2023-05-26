@@ -22,6 +22,7 @@ const Filters: FC = () => {
 
   const { filters } = useAppSelector((state) => state.filters);
   const slugs = useAppSelector((state) => state.slugs);
+  const { width } = useAppSelector((state) => state.windowSize);
 
   const actors = useGetActors();
   const directors = useGetDirectors();
@@ -97,7 +98,7 @@ const Filters: FC = () => {
         />
         <ResetButton
           text={t("filters:reset.page")}
-          textPosition="left"
+          textPosition={width > 550 ? "left" : "right"}
           clickCallback={() => setQueryParams(router, { page: "1" })}
         />
       </div>
