@@ -1,3 +1,2 @@
-export const isBrowser = (
-  window: (Window & typeof globalThis) | undefined
-): boolean => typeof window !== "undefined";
+export const isBrowser = (window: boolean | undefined): boolean =>
+  window ? true : false;

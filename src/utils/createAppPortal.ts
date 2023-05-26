@@ -3,7 +3,7 @@ import { createPortal } from "react-dom";
 import { isBrowser } from "./isBrowser";
 
 const createAppPortal = (node: ReactNode): ReactPortal | null => {
-  const documentRoot = isBrowser(window)
+  const documentRoot = isBrowser(typeof window !== "undefined")
     ? document.getElementById("__next")
     : undefined;
 
