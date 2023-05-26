@@ -19,10 +19,8 @@ import { declOfNum } from "/src/utils/declOfNum";
 import { getBackendImage } from "/src/utils/getBackendImg";
 import { setAuthData } from "/src/utils/localStorage";
 import { getCookieByName } from "/src/utils/cookies";
-import createAppPortal from "/src/utils/createAppPortal";
 import { mockPerson } from "/src/utils/mocks/person";
 import { isBrowser } from "../utils/isBrowser";
-import { mockMovies } from "../utils/mocks/movies";
 
 describe("getMovieDeclination", () => {
   it("should return the correct declination for 'ru' locale", () => {

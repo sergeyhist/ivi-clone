@@ -5,8 +5,6 @@ import { isBrowser } from "../utils/isBrowser";
 const useOverflowHidden = (isShow: boolean): void => {
   const showModal = useAppSelector((state) => state.showModal);
 
-  console.log(isBrowser(window));
-
   const useIsomorphicLayoutEffect = isBrowser(window) ? useLayoutEffect : useEffect;
 
   useIsomorphicLayoutEffect(() => {
