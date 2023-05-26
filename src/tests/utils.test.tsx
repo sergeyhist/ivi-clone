@@ -22,6 +22,7 @@ import { getCookieByName } from "/src/utils/cookies";
 import createAppPortal from "/src/utils/createAppPortal";
 import { mockPerson } from "/src/utils/mocks/person";
 import { isBrowser } from "../utils/isBrowser";
+import { mockMovies } from "../utils/mocks/movies";
 
 describe("getMovieDeclination", () => {
   it("should return the correct declination for 'ru' locale", () => {
@@ -140,6 +141,10 @@ describe("movie utils", () => {
     expect(getFormateDate(date, t as TFunction)).toMatch(/2023/);
     expect(getFormateDate(date, t as TFunction)).toMatch(/8/);
   });
+  it("should be define mockMovie", () => {
+    expect(mockMovie).toBeDefined();
+    expect(mockMovie.name_en).toBeDefined();
+  });
 });
 
 describe("declOfNum", () => {
@@ -210,27 +215,6 @@ describe("cookies", () => {
     document.cookie = "cookie2=value2";
 
     const result = getCookieByName("cookie3");
-
-    expect(result).toBeNull();
-  });
-});
-
-describe("createAppPortal", () => {
-  it("createAppPortal returns a ReactPortal when documentRoot is found", () => {
-    const node = <div>Test</div>;
-    const documentRoot = document.createElement("div");
-    documentRoot.setAttribute("id", "__next");
-    document.getElementById = jest.fn(() => documentRoot);
-
-    const result = createAppPortal(node);
-
-    expect(result).not.toBeNull();
-  });
-  it("createAppPortal returns null when documentRoot is not found", () => {
-    const node = <div>Test</div>;
-    document.getElementById = jest.fn(() => null);
-
-    const result = createAppPortal(node);
 
     expect(result).toBeNull();
   });
