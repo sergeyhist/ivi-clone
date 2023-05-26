@@ -12,11 +12,12 @@ const AdminTabs: FC<AdminTabsProps> = ({ setSelectedTab, selectedTab }) => {
   const { t } = useTranslation(["titles", "admin"]);
 
   return (
-    <section className={styles.section}>
+    <section data-testid="admin-tabs" className={styles.section}>
       <Container>
         <ul className={styles.tabs}>
           <li className={styles.tabs__item}>
             <button
+              data-testid="button-movies-tab"
               onClick={() => {
                 setSelectedTab("movies");
               }}
@@ -31,6 +32,7 @@ const AdminTabs: FC<AdminTabsProps> = ({ setSelectedTab, selectedTab }) => {
           </li>
           <li className={styles.tabs__item}>
             <button
+              data-testid="button-genres-tab"
               onClick={() => {
                 setSelectedTab("genres");
               }}

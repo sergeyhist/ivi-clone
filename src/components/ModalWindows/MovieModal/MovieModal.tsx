@@ -89,6 +89,7 @@ const MovieModal: FC<MovieModalProps> = ({
         <div
           ref={modalRef}
           className={`${styles.modal} ${iviSans.className} ${iviIcons.variable} ${iconFont.variable}`}
+          data-testid="movie-modal"
         >
           <div
             data-testid="close-movie-modal"
@@ -105,14 +106,14 @@ const MovieModal: FC<MovieModalProps> = ({
                   <li
                     className={`${styles.tabs__item} ${actorsTabClass}`}
                     onClick={() => setDefaultTab("actors")}
-                    data-testid="actors-tab"
+                    data-testid="button-creators-tab"
                   >
                     {t("modal.tabs.0")}
                   </li>
                   <li
                     className={`${styles.tabs__item} ${commentsTabClass}`}
                     onClick={() => setDefaultTab("comments")}
-                    data-testid="comments-tab"
+                    data-testid="button-comments-tab"
                   >
                     {t("modal.tabs.1")}
                   </li>

@@ -21,10 +21,13 @@ const MovieMedallions: FC<MovieMedallionsProps> = ({ movie, persons }) => {
   const rating = String(movie.rating);
 
   return (
-    <ul className={styles.medallions}>
+    <ul data-testid="medallions" className={styles.medallions}>
       <li className={styles.medallion}>
         <div className={styles.medallion__wrapper}>
-          <p className={`${styles.medallion__grade} ${gradeClassName}`}>
+          <p
+            data-testid="medallions-rating"
+            className={`${styles.medallion__grade} ${gradeClassName}`}
+          >
             {rating[0]},{rating[2] || "0"}
           </p>
         </div>

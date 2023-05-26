@@ -5,7 +5,7 @@ import { screen } from "@testing-library/react";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
-describe("BannerSlider", () => {
+describe("PromoButtons", () => {
   it("should renders without errors", () => {
     renderWithProviders(<PromoButtons />);
     expect(screen.getByTestId("promo-buttons")).toBeInTheDocument();

@@ -7,13 +7,9 @@ import mockRouter from "next-router-mock";
 import { getFiltersFromRoute } from "../utils/filters/getFiltersFromRoute";
 import getSortedList from "../utils/filters/getSortedList";
 import { getFiltersText } from "../utils/filters/getFiltersText";
-import { i18n } from "next-i18next";
 
 jest.mock("axios");
 jest.mock("../api/movie");
-// jest.mock("next-i18next", () => ({
-//   i18n: jest.fn(),
-// }));
 
 describe("filterMovies function", () => {
   test("function returns correct value", async () => {
@@ -108,10 +104,6 @@ describe("getSortedList function", () => {
 });
 
 describe("getFiltersText function", () => {
-  // beforeEach(() => {
-  //   (i18n.t as jest.Mock).mockReturnValue("test");
-  // });
-
   test("function has been called correctly", () => {
     const result = getFiltersText(defaultFilters, "Test Test", "Test Test");
 
@@ -142,7 +134,7 @@ describe("getFiltersText function", () => {
       genres: ["test", "test"],
     });
 
-    expect(result).toEqual(", , all, all, all, all, all, all");
+    expect(result).toEqual("test, test, all, all, all, all, all, all");
   });
 
   test("function has been called with year filter", () => {
@@ -151,6 +143,6 @@ describe("getFiltersText function", () => {
       year: "test",
     });
 
-    expect(result).toEqual("all, all, key, all, all, all, all");
+    expect(result).toEqual("all, all, test, all, all, all, all");
   });
 });

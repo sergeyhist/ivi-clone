@@ -6,7 +6,7 @@ import { mockMovie } from "/src/utils/movie";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
-describe("Votes", () => {
+describe("MovieSlider", () => {
   it("should renders without errors", () => {
     renderWithProviders(<MovieSlider slides={[mockMovie]} />);
     expect(screen.getByTestId("movie-slider")).toBeInTheDocument();

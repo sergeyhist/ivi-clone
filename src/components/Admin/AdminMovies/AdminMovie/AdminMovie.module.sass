@@ -1,11 +1,42 @@
+@use "/src/styles/vars"
+
 .movie
   padding: 24px 0
   &:not(:last-child)
     border-bottom: 1px solid rgba(255, 255, 255, 0.16)
+
+  &__row
+    display: flex
+
+  &__delete
+    color: vars.$whiteTextColor
+    margin-left: auto
+    opacity: .72
+    padding-bottom: 16px
+    display: flex
+    align-items: center
+    cursor: pointer
+    transition: .3s
+    &:hover
+      opacity: 1
+
+.poster
+  aspect-ratio: 2/3
+  width: 100px
+  height: auto
+  position: relative
+  margin-left: 24px
+  overflow: hidden
+  border-radius: 8px
+  &__img
+    object-fit: cover
+    object-position: center
+
 .form
   display: flex
   flex-direction: column
   margin-top: 16px
+  width: 100%
   &__title
     font-weight: 500
 
@@ -17,8 +48,13 @@
   gap: 10px
 
   & > :nth-child(1)
-    width: 70%
+    width: 80%
 
   & > :nth-child(2)
-    width: 30%
+    min-width: 20%
+    width: auto
     margin: 0
+
+@media ( max-width: 600px )
+  .poster
+    display: none

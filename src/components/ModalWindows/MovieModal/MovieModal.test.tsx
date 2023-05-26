@@ -11,7 +11,7 @@ import { mockPerson } from "/src/utils/mocks/person";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
-describe("BannerSlider", () => {
+describe("MovieModal", () => {
   const mockSetComments = (): null => null;
   it("should open and close without errors", () => {
     render(
@@ -29,8 +29,11 @@ describe("BannerSlider", () => {
     act(() =>
       store.dispatch(setShowMovieModal({ isShow: true, defaultTab: "actors" }))
     );
+    const movieModal = screen.getByTestId("movie-modal");
     const closeButton = screen.getByTestId("close-movie-modal");
+    expect(movieModal).toBeInTheDocument();
     fireEvent.click(closeButton);
+    expect(movieModal).not.toBeInTheDocument();
   });
   it("should render chooses tab", () => {
     render(
@@ -46,13 +49,16 @@ describe("BannerSlider", () => {
       </Provider>
     );
     act(() =>
-      store.dispatch(
-        setShowMovieModal({ isShow: true, defaultTab: "comments" })
-      )
+      store.dispatch(setShowMovieModal({ isShow: true, defaultTab: "comments" }))
     );
-    const actorsTabButton = screen.getByTestId("actors-tab");
-    const commentsTabButton = screen.getByTestId("comments-tab");
-    fireEvent.click(actorsTabButton);
+    const creatorTabButton = screen.getByTestId("button-creators-tab");
+    const commentsTabButton = screen.getByTestId("button-comments-tab");
+    fireEvent.click(creatorTabButton);
+    const creatorTab = screen.getByTestId("creators-tab");
+    expect(creatorTab).toBeInTheDocument();
     fireEvent.click(commentsTabButton);
+    const commentsTab = screen.getByTestId("comments-tab");
+    expect(commentsTab).toBeInTheDocument();
+    expect(creatorTab).not.toBeInTheDocument();
   });
 });

@@ -6,7 +6,7 @@ import { mockComment } from "/src/utils/comments";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
-describe("BannerSlider", () => {
+describe("CommentsSlider", () => {
   it("should renders without errors", () => {
     renderWithProviders(<CommentsSlider comments={[mockComment]} />);
     expect(screen.getByTestId("comments-slider")).toBeInTheDocument();

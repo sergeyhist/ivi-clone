@@ -8,5 +8,13 @@
   "name_en": "Name (English)",
   "update": "Update",
   "search": "Search by name...",
-  "find": "Find"
+  "find": "Find",
+  "more": "Show more",
+  "access_denied": {
+    "title": "Ivi - Access Denied",
+    "content": "You do not have access to this page",
+    "link": "Return to home?",
+    "route": "/"
+  },
+  "delete": "Delete"
 }

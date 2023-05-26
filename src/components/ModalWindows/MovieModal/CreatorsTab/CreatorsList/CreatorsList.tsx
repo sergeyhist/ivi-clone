@@ -25,7 +25,7 @@ const CreatorsList: FC<CreatorsListProps> = ({ persons, title }) => {
   }, [showAllCreators, setCreatorsToShow, persons]);
 
   return (
-    <div className={styles.creators}>
+    <div data-testid="modal-creators-list" className={styles.creators}>
       <h2 className={styles.creators__title}>{title}</h2>
       <div className={styles.creators__list}>
         {creatorsToShow.map((person, i) => (
@@ -36,6 +36,7 @@ const CreatorsList: FC<CreatorsListProps> = ({ persons, title }) => {
             className={styles.button}
             clickCallback={() => setShowAllCreators(true)}
             type="frame"
+            dataTestId="more-creators-button"
           >
             {t("modal.showButton")}
           </CustomButton>

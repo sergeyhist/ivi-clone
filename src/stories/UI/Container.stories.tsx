@@ -7,7 +7,8 @@ const meta: Meta<typeof Container> = {
   tags: ["autodocs"],
   argTypes: {
     children: {
-      description: "",
+      description:
+        "Children React.Node which will be displayed inside the Container",
     },
   },
   component: Container,

@@ -5,7 +5,7 @@ import { screen } from "@testing-library/react";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
-describe("Creator", () => {
+describe("Container", () => {
   it("should renders without errors", () => {
     renderWithProviders(
       <Container>

@@ -13,7 +13,7 @@ const MovieOptions: FC<MovieOptionsProps> = ({ movie }) => {
   const { t } = useTranslation("movie");
 
   return (
-    <div className={styles.options}>
+    <div data-testid="movie-options" className={styles.options}>
       <MovieOption className={styles.option} title={t("details.langs")}>
         {movie.languagesAudio.map((lang) => (
           <span className={styles.option__span} key={lang.language_id}>
