@@ -7,7 +7,10 @@ const meta: Meta<typeof Votes> = {
   tags: ["autodocs"],
   argTypes: {
     like: {
-      description: "",
+      description: "displayed number of ratings in the component",
+    },
+    className: {
+      description: "Custom className of component's container for custom CSS",
     },
   },
   component: Votes,

@@ -7,10 +7,20 @@ const meta: Meta<typeof TextDropDown> = {
   title: "UI/TextDropDown",
   tags: ["autodocs"],
   argTypes: {
-    children: {},
-    toggleClassName: {},
-    toggleTitles: {},
-    textHeight: {},
+    children: {
+      description:
+        "Children React.Node which will be displayed inside the TextDropDown",
+    },
+    toggleClassName: {
+      description: "Toggle className for custom CSS in toggle button",
+    },
+    toggleTitles: {
+      description: "titles that will be displayed in expanded and collapsed state",
+    },
+    textHeight: {
+      description:
+        "children React.Node element text height, when height is less than 100 toggle button will not displayed",
+    },
   },
   decorators: [
     (Story) => (

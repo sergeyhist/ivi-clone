@@ -3,32 +3,24 @@ import { mockMovie } from "../../utils/movie";
 import MovieSlider from "/src/UI/MovieSlider/MovieSlider";
 import "/src/styles/global.sass";
 
-const slides = [
-  mockMovie,
-  mockMovie,
-  mockMovie,
-  mockMovie,
-  mockMovie,
-  mockMovie,
-  mockMovie,
-];
+const mockMovies = new Array(10).fill(mockMovie);
 
 const meta: Meta<typeof MovieSlider> = {
   title: "UI/MovieSlider",
   tags: ["autodocs"],
   argTypes: {
     slides: {
-      description: "",
+      description: "Array of movie objects coming from the server",
     },
     slideType: {
-      description: "",
+      description: "Type of displayed cards",
       defaultValue: "default",
     },
     title: {
-      description: "",
+      description: "Movie slider section title",
     },
     categoryRoute: {
-      description: "",
+      description: "Url to desired page",
       defaultValue: "/",
     },
   },
@@ -38,10 +30,19 @@ const meta: Meta<typeof MovieSlider> = {
 export default meta;
 type Story = StoryObj<typeof MovieSlider>;
 
-export const DefaultMovieSlides: Story = {
+export const DefaultMovieSlider: Story = {
   args: {
-    slides: slides,
+    slides: mockMovies,
     slideType: "default",
+    title: "title",
+    categoryRoute: "/",
+  },
+};
+
+export const RelatedMovieSlider: Story = {
+  args: {
+    slides: mockMovies,
+    slideType: "related",
     title: "title",
     categoryRoute: "/",
   },
