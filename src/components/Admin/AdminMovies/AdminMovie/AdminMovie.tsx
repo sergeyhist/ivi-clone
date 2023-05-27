@@ -17,8 +17,8 @@ interface AdminMovieProps {
 const AdminMovie: FC<AdminMovieProps> = ({ movie }) => {
   const { t } = useTranslation("admin");
   const { locale } = useRouter();
-  const [inputTextRu, setInputTextRu] = useState<string>(movie.name_ru || "");
-  const [inputTextEn, setInputTextEn] = useState<string>(movie.name_en || "");
+  const [inputTextRu, setInputTextRu] = useState<string>(movie.name_ru);
+  const [inputTextEn, setInputTextEn] = useState<string>(movie.name_en);
   const [isDelete, setDelete] = useState<boolean>(false);
 
   const handleFormSubmit = (event: FormEvent): void => {
@@ -76,6 +76,8 @@ const AdminMovie: FC<AdminMovieProps> = ({ movie }) => {
                 inputType="text"
                 buttonText={t("update")}
                 placeholderText={t("name_ru")}
+                isFocused={false}
+                preventDefault={true}
               />
               <ModalInput
                 className={styles.input}
@@ -84,6 +86,8 @@ const AdminMovie: FC<AdminMovieProps> = ({ movie }) => {
                 inputType="text"
                 buttonText={t("update")}
                 placeholderText={t("name_en")}
+                isFocused={false}
+                preventDefault={true}
               />
             </form>
             <div className={styles.poster}>
