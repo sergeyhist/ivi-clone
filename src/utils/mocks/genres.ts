@@ -7,7 +7,7 @@ export const mockGenre = {
   slug: "melodrama",
 };
 
-const genresList = [
+export const genresList = [
   {
     genre_id: "47b3d35c-dc1c-40d7-bc35-65d888d7f7bd",
     genre_ru: "мелодрама",

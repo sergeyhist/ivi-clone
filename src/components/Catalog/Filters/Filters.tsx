@@ -18,6 +18,7 @@ import { useTranslation } from "next-i18next";
 const Filters: FC = () => {
   const { t } = useTranslation();
   const router = useRouter();
+  const { query } = router;
   const dispatch = useAppDispatch();
 
   const { filters } = useAppSelector((state) => state.filters);
@@ -99,7 +100,7 @@ const Filters: FC = () => {
         <ResetButton
           text={t("filters:reset.page")}
           textPosition={width > 550 ? "left" : "right"}
-          clickCallback={() => setQueryParams(router, { page: "1" })}
+          clickCallback={() => query.page && setQueryParams(router, { page: [] })}
         />
       </div>
     </div>

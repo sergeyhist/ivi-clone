@@ -9,9 +9,6 @@ export const createComment = async (
   token: string
 ): Promise<IComment | undefined> => {
   try {
-    if (!process.env.SERVER_HOST)
-      throw new Error("process.env.SERVER_HOST undefined");
-
     const data = JSON.stringify({
       title: "About film",
       text: text,
@@ -23,7 +20,7 @@ export const createComment = async (
     const config = {
       method: "post",
       maxBodyLength: Infinity,
-      url: `${process.env.SERVER_HOST}/comments`,
+      url: `${String(process.env.SERVER_HOST)}/comments`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -35,6 +32,6 @@ export const createComment = async (
     const response = await axios.request<IComment>(config);
     return response.data;
   } catch (error) {
-    console.error(error);
+    return undefined
   }
 };

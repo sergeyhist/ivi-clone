@@ -11,11 +11,11 @@ export const getPersonById = async (
     );
     return response.data as IPerson;
   } catch (err) {
-    console.log(err);
+    return undefined
   }
 };
 
-const getPersons = async (url: string): Promise<IPerson[]> => {
+export const getPersons = async (url: string): Promise<IPerson[]> => {
   const response = await axios.get(url);
 
   return response.data as IPerson[];

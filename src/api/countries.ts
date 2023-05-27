@@ -2,7 +2,7 @@ import axios from "axios";
 import useSWR, { SWRResponse } from "swr";
 import { ICountry } from "../types/IMovie";
 
-const getCountriesSlugs = async (url: string): Promise<string[]> => {
+export const getCountriesSlugs = async (url: string): Promise<string[]> => {
   const response = await axios.get(url);
   const data = response.data as ICountry[];
   const slugs = data
