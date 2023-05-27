@@ -9,6 +9,7 @@ import {
 } from "react";
 import styles from "./ModalInput.module.sass";
 import CustomButton from "/src/UI/CustomButton/CustomButton";
+import useCloseEvents from "/src/hooks/useCloseEvents";
 
 interface ModalInputProps {
   authData?: string;
@@ -60,9 +61,9 @@ const ModalInput: FC<ModalInputProps> = ({
     if (inputRef.current?.value !== "") {
       setIsButtonDisabled(false);
       setIsInputActive(true);
-      inputRef.current?.focus();
       if (inputType === "password") setIsPasswordInputSelected(true);
     }
+
     return () => {
       setShowPassword(false);
     };
@@ -77,28 +78,15 @@ const ModalInput: FC<ModalInputProps> = ({
     }
   }, [showPassword, isPasswordInputSelected, inputType]);
 
-  useEffect(() => {
-    const handleInputBlur = (): void => {
-      if (inputRef.current?.value === "") setIsInputActive(false);
-      if (setIsPasswordInputSelected && inputRef.current?.value === "")
-        setIsPasswordInputSelected(false);
-    };
+  const handleInputBlur = (): void => {
+    console.log("blur")
+    inputRef.current?.blur();
+    if (authData === "") setIsInputActive(false);
+    if (setIsPasswordInputSelected && inputRef.current?.value === "")
+      setIsPasswordInputSelected(false);
+  };
 
-    const handleClickOutside = (e: MouseEvent): void => {
-      if (
-        contentRef.current &&
-        !contentRef.current.contains(e.target as Node)
-      ) {
-        handleInputBlur();
-      }
-    };
-
-    window.addEventListener("mousedown", handleClickOutside);
-
-    return () => {
-      window.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [setIsPasswordInputSelected]);
+  useCloseEvents([contentRef], () => handleInputBlur());
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     const { value } = e.target;
@@ -111,7 +99,7 @@ const ModalInput: FC<ModalInputProps> = ({
   };
 
   const handleInputClick = (): void => {
-    if (inputRef.current) {
+    if (isInputActive === false) {
       inputRef.current?.focus();
       setIsInputActive(true);
     }

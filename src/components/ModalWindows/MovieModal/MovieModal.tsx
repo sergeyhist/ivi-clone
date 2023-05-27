@@ -79,7 +79,7 @@ const MovieModal: FC<MovieModalProps> = ({
     }
   };
 
-  useCloseEvents([modalRef], closeHandler);
+  // useCloseEvents([modalRef], closeHandler);
 
   useOverflowHidden(showMovieModal.isShow);
 
