@@ -12,6 +12,14 @@ jest.mock("src/api/genres", () => ({
 }));
 
 describe("AdminMovie", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+    jest
+    .spyOn(React, "useState")
+    .mockImplementationOnce(() => ["", jest.fn()])
+    .mockImplementationOnce(() => ["", jest.fn()]);
+  });
+
   it("should render without errors", () => {
     (updateGenre as jest.Mock).mockImplementation(() => Promise.resolve(mockGenre));
     renderWithProviders(<AdminGenre genre={mockGenre} />);

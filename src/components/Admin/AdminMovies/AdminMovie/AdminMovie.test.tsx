@@ -13,6 +13,15 @@ jest.mock("src/api/movie", () => ({
 }));
 
 describe("AdminMovie", () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+    jest
+    .spyOn(React, "useState")
+    .mockImplementationOnce(() => ["", jest.fn()])
+    .mockImplementationOnce(() => ["", jest.fn()])
+    .mockImplementationOnce(() => [false, jest.fn()]);
+  });
+
   it("should render without errors", () => {
     (updateMovie as jest.Mock).mockImplementation(() => Promise.resolve(mockMovie));
     renderWithProviders(<AdminMovie movie={mockMovie} />);

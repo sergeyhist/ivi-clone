@@ -12,8 +12,8 @@ interface AdminGenreProps {
 
 const AdminGenre: FC<AdminGenreProps> = ({ genre }) => {
   const { t } = useTranslation("admin");
-  const [inputTextRu, setInputTextRu] = useState<string>(genre.genre_ru || "");
-  const [inputTextEn, setInputTextEn] = useState<string>(genre.genre_en || "");
+  const [inputTextRu, setInputTextRu] = useState<string>(genre.genre_ru);
+  const [inputTextEn, setInputTextEn] = useState<string>(genre.genre_en);
 
   const handleFormSubmit = (event: FormEvent): void => {
     event.preventDefault();
@@ -45,6 +45,8 @@ const AdminGenre: FC<AdminGenreProps> = ({ genre }) => {
           inputType="text"
           buttonText={t("update")}
           placeholderText={t("name_ru")}
+          isFocused={false}
+          preventDefault={true}
         />
         <ModalInput
           className={styles.input}
@@ -53,6 +55,8 @@ const AdminGenre: FC<AdminGenreProps> = ({ genre }) => {
           inputType="text"
           buttonText={t("update")}
           placeholderText={t("name_en")}
+          isFocused={false}
+          preventDefault={true}
         />
       </form>
     </article>

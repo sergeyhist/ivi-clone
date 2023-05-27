@@ -23,6 +23,8 @@ const AdminMoviesSearch: FC<AdminMoviesSearchProps> = ({
         className={styles.input}
         authData={searchName}
         setAuthData={setSearchName}
+        isFocused={true}
+        preventDefault={true}
       />
     </div>
   );
