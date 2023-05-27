@@ -6,7 +6,7 @@ interface CustomButtonProps {
   className?: string;
   children: ReactNode;
   clickCallback?: () => void;
-  type?: "purple" | "red" | "promo" | "icon" | "dark" | "frame";
+  type?: "purple" | "red" | "promo" | "icon" | "dark" | "frame" | "admin";
   style?: CSSProperties;
   preventDefault?: boolean;
   dataTestId?: string;

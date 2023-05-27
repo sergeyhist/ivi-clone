@@ -140,7 +140,6 @@ describe("createUser", () => {
     const errorMessage = "User creation failed";
 
     mockedAxios.request.mockRejectedValueOnce(new Error(errorMessage));
-    const consoleSpy = jest.spyOn(console, "log");
 
     await createUser(email, password);
 
@@ -157,7 +156,6 @@ describe("createUser", () => {
         password,
       }),
     });
-    expect(consoleSpy).toHaveBeenCalledWith(new Error(errorMessage));
   });
 });
 
@@ -182,11 +180,15 @@ describe("logout", () => {
     const error = new Error("Some error");
     mockedAxios.delete.mockRejectedValueOnce(error);
 
-    console.log = jest.fn();
-
     await logout();
 
-    expect(console.log).toHaveBeenCalledWith(error);
+    expect(mockedAxios.delete).toHaveBeenCalledWith("undefined/logout", {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+        "Content-Type": "application/json",
+      },
+      withCredentials: true,
+    });
   });
 });
 
@@ -213,12 +215,9 @@ describe("refreshAccessToken", () => {
     const error = new Error("Some error");
     mockedAxios.request.mockRejectedValueOnce(error);
 
-    console.log = jest.fn();
-
     const result = await refreshAccessToken();
 
     expect(mockedAxios.request).toHaveBeenCalled();
-    expect(console.log).toHaveBeenCalledWith(error);
     expect(result).toBeUndefined();
   });
 });
@@ -240,12 +239,9 @@ describe("isUserAuthorized", () => {
     const error = new Error("Some error");
     mockedAxios.get.mockRejectedValueOnce(error);
 
-    console.log = jest.fn();
-
     const result = await isUserAuthorized();
 
     expect(mockedAxios.get).toHaveBeenCalled();
-    expect(console.log).toHaveBeenCalledWith(error);
     expect(result).toBeUndefined();
   });
 });

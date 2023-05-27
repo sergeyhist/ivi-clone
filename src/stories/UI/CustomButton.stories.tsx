@@ -76,3 +76,10 @@ export const FrameButton: Story = {
     type: "frame",
   },
 };
+
+export const AdminButton: Story = {
+  args: {
+    children: "Button",
+    type: "admin",
+  },
+};

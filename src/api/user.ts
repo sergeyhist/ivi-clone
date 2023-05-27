@@ -1,7 +1,10 @@
 import axios from "axios";
 import { IUser } from "/src/types/IUser";
 
-export const createUser = async (email: string, password: string): Promise<void> => {
+export const createUser = async (
+  email: string,
+  password: string
+): Promise<void> => {
   try {
     const data = JSON.stringify({
       email: email,
@@ -19,18 +22,20 @@ export const createUser = async (email: string, password: string): Promise<void>
     };
     await axios.request(config);
   } catch (err) {
-    console.log(err);
+    return;
   }
 };
 
-export const getUserByEmail = async (email: string): Promise<IUser | undefined> => {
+export const getUserByEmail = async (
+  email: string
+): Promise<IUser | undefined> => {
   try {
     const response = await axios.get<IUser>(
       `${String(process.env.SERVER_HOST)}/users/${email}`
     );
     return response.data;
   } catch (err) {
-    console.log(err);
+    return undefined;
   }
 };
 
@@ -64,13 +69,12 @@ export const login = async (
 
     return response.data;
   } catch (err) {
-    console.log(err);
+    return undefined;
   }
 };
 
 export const logout = async (): Promise<void> => {
   try {
-    axios.defaults.withCredentials = true;
     await axios.delete(`${String(process.env.SERVER_HOST)}/logout`, {
       withCredentials: true,
       headers: {
@@ -79,7 +83,7 @@ export const logout = async (): Promise<void> => {
       },
     });
   } catch (err) {
-    console.log(err);
+    return;
   }
 };
 
@@ -87,7 +91,9 @@ export interface RefreshResponse extends ResponseWithToken {
   email: string;
 }
 
-export const refreshAccessToken = async (): Promise<RefreshResponse | undefined> => {
+export const refreshAccessToken = async (): Promise<
+  RefreshResponse | undefined
+> => {
   try {
     const config = {
       method: "post",
@@ -103,18 +109,21 @@ export const refreshAccessToken = async (): Promise<RefreshResponse | undefined>
 
     return response.data;
   } catch (err) {
-    console.log(err);
+    return undefined;
   }
 };
 
 export const isUserAuthorized = async (): Promise<boolean | undefined> => {
   try {
-    const response = await axios.get(`${String(process.env.SERVER_HOST)}/isauth`, {
-      withCredentials: true,
-    });
+    const response = await axios.get(
+      `${String(process.env.SERVER_HOST)}/isauth`,
+      {
+        withCredentials: true,
+      }
+    );
 
     return response.data;
   } catch (err) {
-    console.log(err);
+    return undefined;
   }
 };
