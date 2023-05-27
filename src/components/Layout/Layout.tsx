@@ -48,6 +48,10 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
   }, 100);
 
   useEffect(() => {
+    dispatch(setRole(""));
+  }, [dispatch]);
+
+  useEffect(() => {
     isUserAuthorized().then((res) => {
       if (res === true) {
         refreshAccessToken().then((res) => {
