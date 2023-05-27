@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { mockMovie } from "../../utils/movie";
+import { mockMovie } from "/src/utils/mocks/movies";
 import MovieCard from "/src/UI/MovieCard/MovieCard";
 import "/src/styles/global.sass";
 

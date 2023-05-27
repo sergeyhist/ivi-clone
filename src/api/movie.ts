@@ -9,83 +9,68 @@ export const getMoviesById = async (
   filmsId: string[]
 ): Promise<IMovie[] | undefined> => {
   try {
-    if (!process.env.SERVER_HOST)
-      throw new Error("process.env.SERVER_HOST undefined");
-    const response = await axios.get(`${process.env.SERVER_HOST}/id/films`, {
+    const response = await axios.get(`${String(process.env.SERVER_HOST)}/id/films`, {
       params: {
         films: filmsId,
       },
     });
     return response.data as IMovie[];
   } catch (err) {
-    console.log(err);
+    return undefined;
   }
 };
 
 export const getMovieById = async (film_id: string): Promise<IMovie | null> => {
   try {
-    if (!process.env.SERVER_HOST)
-      throw new Error("process.env.SERVER_HOST undefined");
     const response = await axios.get<IMovie>(
-      `${process.env.SERVER_HOST}/films/${film_id}`
+      `${String(process.env.SERVER_HOST)}/films/${film_id}`
     );
     return response.data;
   } catch (error) {
-    console.error(error);
     return null;
   }
 };
 
 export const getMoviePersons = async (film_id: string): Promise<IPerson[]> => {
   try {
-    if (!process.env.SERVER_HOST)
-      throw new Error("process.env.SERVER_HOST undefined");
     const response = await axios.get<IPerson[]>(
-      `${process.env.SERVER_HOST}/persons/films/${film_id}`
+      `${String(process.env.SERVER_HOST)}/persons/films/${film_id}`
     );
     return response.data;
   } catch (error) {
-    console.error(error);
     return [];
   }
 };
 
 export const getMovieComments = async (film_id: string): Promise<IComment[]> => {
   try {
-    if (!process.env.SERVER_HOST)
-      throw new Error("process.env.SERVER_HOST undefined");
     const response = await axios.get<IComment[]>(
-      `${process.env.SERVER_HOST}/comments/films/${film_id}`
+      `${String(process.env.SERVER_HOST)}/comments/films/${film_id}`
     );
     return response.data;
   } catch (error) {
-    console.error(error);
     return [];
   }
 };
 
 export const getMoviesByGenre = async (genre_slug: string): Promise<IMovie[]> => {
   try {
-    if (!process.env.SERVER_HOST)
-      throw new Error("process.env.SERVER_HOST undefined");
     const response = await axios.get<IMovie[]>(
-      `${process.env.SERVER_HOST}/filter/films?genres=${genre_slug}&limit=10`
+      `${String(process.env.SERVER_HOST)}/filter/films?genres=${genre_slug}&limit=10`
     );
     return response.data;
   } catch (error) {
-    console.error(error);
     return [];
   }
 };
 
-export const getMovies = async (key = "/films?limit=100"): Promise<IMovie[]> => {
+export const getMovies = async (key: string): Promise<IMovie[]> => {
   try {
-    if (!process.env.SERVER_HOST)
-      throw new Error("process.env.SERVER_HOST undefined");
-    const response = await axios.get<IMovie[]>(process.env.SERVER_HOST + key);
+    const response = await axios.get<IMovie[]>(
+      String(process.env.SERVER_HOST) + key
+    );
     return response.data;
   } catch (error) {
-    console.error(error);
     return [];
   }
 };
@@ -99,12 +84,10 @@ export const deleteMovieById = async (
   token: string
 ): Promise<AxiosResponse | null> => {
   try {
-    if (!process.env.SERVER_HOST)
-      throw new Error("process.env.SERVER_HOST undefined");
     const config = {
       method: "delete",
       maxBodyLength: Infinity,
-      url: `${process.env.SERVER_HOST}/films/${film_id}`,
+      url: `${String(process.env.SERVER_HOST)}/films/${film_id}`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -113,7 +96,6 @@ export const deleteMovieById = async (
     const response = await axios.request(config);
     return response;
   } catch (error) {
-    console.error(error);
     return null;
   }
 };
@@ -154,7 +136,7 @@ export const getFilteredMovies = async (
 
     return response.data as IMovie[];
   } catch (error) {
-    console.log(error);
+    return undefined;
   }
 };
 
@@ -165,9 +147,6 @@ export const updateMovie = async (
   name_ru: string
 ): Promise<IMovie | undefined> => {
   try {
-    if (!process.env.SERVER_HOST)
-      throw new Error("process.env.SERVER_HOST undefined");
-
     const data = JSON.stringify({
       name_ru: name_ru,
       name_en: name_en,
@@ -176,7 +155,7 @@ export const updateMovie = async (
     const config = {
       method: "patch",
       maxBodyLength: Infinity,
-      url: `${process.env.SERVER_HOST}/films/${film_id}`,
+      url: `${String(process.env.SERVER_HOST)}/films/${film_id}`,
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -187,6 +166,6 @@ export const updateMovie = async (
     const response = await axios.request<IMovie>(config);
     return response.data as unknown as IMovie;
   } catch (error) {
-    console.error(error);
+    return undefined;
   }
 };

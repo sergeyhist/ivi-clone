@@ -2,7 +2,7 @@ import { fireEvent, screen } from "@testing-library/react";
 import React from "react";
 import MovieTrailer from "./MovieTrailer";
 import { renderWithProviders } from "/src/utils/test-utils";
-import { mockMovie } from "/src/utils/movie";
+import { mockMovie } from "/src/utils/mocks/movies";
 
 jest.mock("next/router", () => require("next-router-mock"));
 

@@ -7,7 +7,6 @@ import {
   getPersonRole,
 } from "/src/utils/person";
 import {
-  mockMovie,
   getMovieName,
   getMovieCounty,
   getFormateNumber,
@@ -21,6 +20,7 @@ import { setAuthData } from "/src/utils/localStorage";
 import { getCookieByName } from "/src/utils/cookies";
 import { mockPerson } from "/src/utils/mocks/person";
 import { isBrowser } from "../utils/isBrowser";
+import { mockMovie } from "../utils/mocks/movies";
 
 describe("getMovieDeclination", () => {
   it("should return the correct declination for 'ru' locale", () => {
@@ -223,6 +223,6 @@ describe("isBrowser", () => {
     expect(isBrowser(undefined)).toBe(false);
   });
   it("createAppPortal returns a ReactPortal when documentRoot is found", () => {
-    expect(isBrowser(window)).toBe(true);
+    expect(isBrowser(true)).toBe(true);
   });
 });

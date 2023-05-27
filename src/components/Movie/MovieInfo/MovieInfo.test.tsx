@@ -1,6 +1,6 @@
 import React from "react";
 import MovieInfo from "./MovieInfo";
-import { mockMovie } from "/src/utils/movie";
+import { mockMovie } from "/src/utils/mocks/movies";
 import { act, screen } from "@testing-library/react";
 import { store } from "/src/store";
 import { setWindowSize } from "/src/store/slices/windowSizeSlice";

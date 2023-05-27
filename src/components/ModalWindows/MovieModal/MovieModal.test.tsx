@@ -2,7 +2,7 @@ import React from "react";
 import MovieModal from "./MovieModal";
 import { act, fireEvent } from "@testing-library/react";
 import { store } from "/src/store";
-import { mockMovie } from "/src/utils/movie";
+import { mockMovie } from "/src/utils/mocks/movies";
 import { mockComment } from "/src/utils/comments";
 import { render, screen } from "@testing-library/react";
 import { Provider } from "react-redux";

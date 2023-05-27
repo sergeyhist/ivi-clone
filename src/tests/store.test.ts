@@ -1,7 +1,7 @@
 import authSlice, { setAuth, UserAuth } from "/src/store/slices/authSlice";
 import { defaultFilters } from "/src/utils/filters/filtersVariables";
 import { filtersSlice, FiltersState } from "/src/store/slices/filtersSlice";
-import { mockMovie } from "/src/utils/movie";
+import { mockMovie } from "/src/utils/mocks/movies";
 import { IFilters } from "/src/types/IFilter";
 import { IMovie } from "/src/types/IMovie";
 import getSortedList from "/src/utils/filters/getSortedList";
@@ -14,6 +14,7 @@ import { slugsSlice, SlugsState } from "/src/store/slices/slugsSlice";
 import IWindowSize from "/src/types/IWindowSize";
 import { windowSizeSlice } from "/src/store/slices/windowSizeSlice";
 
+/* eslint-disable */
 describe("authSlice", () => {
   it("should return the correct state", () => {
     const previousState: UserAuth = { isLogged: false, userEmail: "" };
@@ -55,10 +56,7 @@ describe("filtersSlice", () => {
   it("should handle setFilteredMovies", () => {
     const movies: IMovie[] = [mockMovie];
 
-    const expectedFilteredMovies = getSortedList(
-      initialState.sortingMethod,
-      movies
-    );
+    const expectedFilteredMovies = getSortedList(initialState.sortingMethod, movies);
 
     const action = filtersSlice.actions.setFilteredMovies(movies);
     const newState = filtersSlice.reducer(initialState, action);

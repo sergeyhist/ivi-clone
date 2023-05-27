@@ -1,7 +1,7 @@
 import { screen } from "@testing-library/react";
 import React from "react";
 import MovieMedallions from "./MovieMedallions";
-import { mockMovie } from "/src/utils/movie";
+import { mockMovie } from "/src/utils/mocks/movies";
 import { renderWithProviders } from "/src/utils/test-utils";
 import { mockPerson } from "/src/utils/mocks/person";
 

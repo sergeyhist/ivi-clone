@@ -17,8 +17,8 @@ interface AdminMovieProps {
 const AdminMovie: FC<AdminMovieProps> = ({ movie }) => {
   const { t } = useTranslation("admin");
   const { locale } = useRouter();
-  const [inputTextRu, setInputTextRu] = useState<string>("");
-  const [inputTextEn, setInputTextEn] = useState<string>("");
+  const [inputTextRu, setInputTextRu] = useState<string>(movie.name_ru || "");
+  const [inputTextEn, setInputTextEn] = useState<string>(movie.name_en || "");
   const [isDelete, setDelete] = useState<boolean>(false);
 
   const handleFormSubmit = (event: FormEvent): void => {

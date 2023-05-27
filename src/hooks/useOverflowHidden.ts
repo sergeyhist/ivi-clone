@@ -1,10 +1,7 @@
 import { useLayoutEffect, useEffect } from "react";
-import { useAppSelector } from "/src/hooks/redux";
 import { isBrowser } from "../utils/isBrowser";
 
 const useOverflowHidden = (isShow: boolean): void => {
-  const showModal = useAppSelector((state) => state.showModal);
-
   const useIsomorphicLayoutEffect = isBrowser(typeof window !== "undefined")
     ? useLayoutEffect
     : useEffect;
@@ -17,7 +14,7 @@ const useOverflowHidden = (isShow: boolean): void => {
     return () => {
       document.body.style.overflowY = "auto";
     };
-  }, [showModal.showMovieModal.isShow]);
+  }, [isShow]);
 };
 
 export default useOverflowHidden;

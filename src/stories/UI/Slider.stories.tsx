@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { mockMovie } from "../../utils/movie";
+import { mockMovie } from "/src/utils/mocks/movies";
 import Slider from "/src/UI/Slider/Slider";
 import "/src/styles/global.sass";
 import { SwiperSlide } from "swiper/react";

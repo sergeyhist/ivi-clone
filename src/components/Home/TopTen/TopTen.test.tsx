@@ -2,7 +2,7 @@ import React from "react";
 import TopTen from "./TopTen";
 import { renderWithProviders } from "/src/utils/test-utils";
 import { screen } from "@testing-library/react";
-import { mockMovie } from "/src/utils/movie";
+import { mockMovie } from "/src/utils/mocks/movies";
 
 jest.mock("next/router", () => require("next-router-mock"));
 

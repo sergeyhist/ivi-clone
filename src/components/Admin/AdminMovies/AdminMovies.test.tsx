@@ -3,7 +3,7 @@ import AdminMovies from "./AdminMovies";
 import { renderWithProviders } from "/src/utils/test-utils";
 import { fireEvent, screen } from "@testing-library/react";
 import { useGetMovies } from "/src/api/movie";
-import { mockMovie } from "/src/utils/movie";
+import { mockMovie } from "/src/utils/mocks/movies";
 
 jest.mock("next/router", () => require("next-router-mock"));
 

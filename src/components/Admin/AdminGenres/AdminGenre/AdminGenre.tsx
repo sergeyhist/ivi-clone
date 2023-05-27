@@ -12,8 +12,8 @@ interface AdminGenreProps {
 
 const AdminGenre: FC<AdminGenreProps> = ({ genre }) => {
   const { t } = useTranslation("admin");
-  const [inputTextRu, setInputTextRu] = useState<string>("");
-  const [inputTextEn, setInputTextEn] = useState<string>("");
+  const [inputTextRu, setInputTextRu] = useState<string>(genre.genre_ru || "");
+  const [inputTextEn, setInputTextEn] = useState<string>(genre.genre_en || "");
 
   const handleFormSubmit = (event: FormEvent): void => {
     event.preventDefault();
