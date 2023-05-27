@@ -1,4 +1,4 @@
-import { act } from "@testing-library/react";
+import { act, waitFor } from "@testing-library/react";
 import Filters from "./Filters";
 import { useGetActors, useGetDirectors } from "/src/api/persons";
 import { IProviderRender } from "/src/types/IRender";
@@ -71,11 +71,11 @@ describe("Filters component", () => {
 
   test("click on page reset button", async () => {
     const { getAllByTestId } = render.component;
-    await act(() => mockRouter.replace({ query: { genres: "anime" } }));
-    expect(render.store.getState().filters.filters.genres).toEqual("anime");
+    await act(() => mockRouter.replace({ query: { page: "2" } }));
+    expect(mockRouter.query.page).toEqual("2");
 
     act(() => userEvent.click(getAllByTestId("reset-all-button")[1]));
-    expect(render.store.getState().filters.moviesPage).toEqual(1);
+    expect(mockRouter.query.page).toEqual([]);
   });
 
   test("page reset button with window width > 550", () => {
