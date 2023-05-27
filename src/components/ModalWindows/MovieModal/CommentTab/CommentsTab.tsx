@@ -5,7 +5,7 @@ import styles from "./CommentsTab.module.sass";
 import CommentsList from "./CommentsList/CommentsList";
 import { useTranslation } from "next-i18next";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
-import { setShowAuthModal } from "/src/store/slices/modalsSlice";
+import { setShowAuthModal, setShowMovieModal } from "/src/store/slices/modalsSlice";
 import { getUserByEmail } from "/src/api/user";
 import { createComment } from "/src/api/comments";
 import { useRouter } from "next/router";
@@ -32,6 +32,7 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments, setCommentsState }) => {
 
     if (!isLogged) {
       dispatch(setShowAuthModal(true));
+      dispatch(setShowMovieModal({ isShow: false, defaultTab: "actors" }));
       return;
     }
 
