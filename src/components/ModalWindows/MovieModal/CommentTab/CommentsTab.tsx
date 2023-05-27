@@ -50,6 +50,7 @@ const CommentsTab: FC<CommentsTabProps> = ({ comments, setCommentsState }) => {
 
       if (showErrorMessage) {
         setShowErrorMessage(false);
+        setPlaceholderText(t("modal.commentsInput.placeholder"));
       }
 
       if (replyFor && !inputText.indexOf("@" + String(replyFor.user.email))) {
