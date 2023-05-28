@@ -24,6 +24,8 @@ const MoviePoster: FC<MoviePosterProps> = ({ content }) => {
             className={styles.content__img}
             src={getBackendImage(content.img)}
             alt={content.name_en}
+            placeholder="blur"
+            blurDataURL="/images/placeholder.svg"
           />
         </div>
       </Link>

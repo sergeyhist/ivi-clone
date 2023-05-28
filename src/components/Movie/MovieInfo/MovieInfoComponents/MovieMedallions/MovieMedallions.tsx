@@ -46,6 +46,8 @@ const MovieMedallions: FC<MovieMedallionsProps> = ({ movie, persons }) => {
               width={44}
               src={getBackendImage(person.img)}
               alt={person.first_name_en}
+              placeholder="blur"
+              blurDataURL="/images/placeholder.svg"
             />
           </Link>
           <h4 className={styles.medallion__title}>

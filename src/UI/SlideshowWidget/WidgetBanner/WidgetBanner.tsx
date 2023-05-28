@@ -8,10 +8,10 @@ interface WidgetBannerProps {
   link: ILink;
 }
 
-const WidgetBanner: FC<WidgetBannerProps> = ({link}) => {
+const WidgetBanner: FC<WidgetBannerProps> = ({ link }) => {
   return (
     <Link
-      className={styles.banner + ' unselectable'}
+      className={styles.banner + " unselectable"}
       target={link.target}
       href={link.url}
     >
@@ -21,7 +21,9 @@ const WidgetBanner: FC<WidgetBannerProps> = ({link}) => {
         className={styles.banner__image}
         src={link.content as string}
         alt="Small banner"
-      ></Image>
+        placeholder="blur"
+        blurDataURL="/images/placeholder.svg"
+      />
     </Link>
   );
 };

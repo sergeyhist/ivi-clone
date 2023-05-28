@@ -29,6 +29,8 @@ const TvSlider: FC<TvSliderProps> = ({ slides }) => {
               alt="slider item"
               width={88}
               height={58}
+              placeholder="blur"
+              blurDataURL="/images/placeholder.svg"
             />
           </Link>
         </SwiperSlide>
