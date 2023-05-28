@@ -4,7 +4,7 @@ import "/src/styles/global.sass";
 import { mockMovie } from "/src/utils/mocks/movies";
 
 const meta: Meta<typeof TopTen> = {
-  title: "Home/TopTenSlide",
+  title: "Home/TopTen",
   component: TopTen,
 };
 

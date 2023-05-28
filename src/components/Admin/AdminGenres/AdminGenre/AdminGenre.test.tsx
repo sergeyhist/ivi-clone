@@ -4,6 +4,7 @@ import { renderWithProviders } from "/src/utils/test-utils";
 import { fireEvent, screen } from "@testing-library/react";
 import { updateGenre } from "/src/api/genres";
 import { mockGenre } from "/src/utils/mocks/genres";
+import mockRouter from "next-router-mock";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
@@ -14,10 +15,6 @@ jest.mock("src/api/genres", () => ({
 describe("AdminMovie", () => {
   afterEach(() => {
     jest.clearAllMocks();
-    jest
-    .spyOn(React, "useState")
-    .mockImplementationOnce(() => ["", jest.fn()])
-    .mockImplementationOnce(() => ["", jest.fn()]);
   });
 
   it("should render without errors", () => {
@@ -26,11 +23,24 @@ describe("AdminMovie", () => {
     expect(screen.getByTestId("admin-genre")).toBeInTheDocument();
     expect(updateGenre).not.toBeCalled();
   });
-  it("should render without errors", () => {
+  it("should submit form", () => {
+    mockRouter.locale = "ru";
     (updateGenre as jest.Mock).mockImplementation(() => Promise.resolve(mockGenre));
     renderWithProviders(<AdminGenre genre={mockGenre} />);
-    fireEvent.submit(screen.getByTestId("admin-genre-form"));
-    expect(screen.getByTestId("admin-genre")).toBeInTheDocument();
+    fireEvent.click(screen.getByTestId("genre-input-ru-button"));
+    expect(updateGenre).toBeCalled();
+  });
+  it("should submit form", () => {
+    mockRouter.locale = "en";
+    (updateGenre as jest.Mock).mockImplementation(() => Promise.resolve(mockGenre));
+    renderWithProviders(<AdminGenre genre={mockGenre} />);
+    fireEvent.click(screen.getByTestId("genre-input-ru-button"));
+    expect(updateGenre).toBeCalled();
+  });
+  it("should submit form", () => {
+    (updateGenre as jest.Mock).mockImplementation(() => Promise.resolve(undefined));
+    renderWithProviders(<AdminGenre genre={mockGenre} />);
+    fireEvent.click(screen.getByTestId("genre-input-ru-button"));
     expect(updateGenre).toBeCalled();
   });
 });

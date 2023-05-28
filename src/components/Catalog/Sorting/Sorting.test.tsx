@@ -36,9 +36,7 @@ describe("Sorting component", () => {
     fireEvent.click(sorting.getElementsByClassName("title")[0]);
     expect(sortingDropdown).toHaveClass("sorting__dropdown_active");
     fireEvent.click(screen.getAllByTestId("sorting-option")[1]);
-    expect(render.store.getState().filters.sortingMethod).not.toEqual(
-      sortingMethod
-    );
+    expect(render.store.getState().filters.sortingMethod).not.toEqual(sortingMethod);
   });
 
   test("close dropdown on escape keydown", () => {
@@ -54,8 +52,6 @@ describe("Sorting component", () => {
     });
     expect(screen.getByTestId("sorting-title")).toBeEmptyDOMElement();
   });
-
-  
 });
 
 describe("Sorting component (different locales)", () => {
@@ -64,16 +60,15 @@ describe("Sorting component (different locales)", () => {
   let sortingDropdown: HTMLElement;
   let i = 0;
   const locales = ["en", "ru", ""];
-  
 
   beforeEach(() => {
-    mockRouter.locale = locales[i]
+    mockRouter.locale = locales[i];
     render = renderWithProviders(<Sorting />);
     sorting = screen.getByTestId("sorting");
     sortingDropdown = screen.getByTestId("sorting-dropdown");
     i++;
   });
-  
+
   test("name sorting with en locale", () => {
     fireEvent.click(sorting.getElementsByClassName("title")[0]);
     expect(sortingDropdown).toHaveClass("sorting__dropdown_active");
@@ -94,4 +89,4 @@ describe("Sorting component (different locales)", () => {
     fireEvent.click(screen.getAllByTestId("sorting-option")[3]);
     expect(render.store.getState().filters.sortingMethod).toEqual("name_ru");
   });
-})
+});

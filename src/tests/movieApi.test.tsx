@@ -18,7 +18,7 @@ jest.mock("swr");
 
 /* eslint-disable */
 describe("useGetMovies", () => {
-  it("useCountriesslugs", () => {
+  it("should call useGetMovies", () => {
     (axios.get as jest.Mock).mockResolvedValue({
       data: "data",
     });
@@ -30,12 +30,12 @@ describe("useGetMovies", () => {
 });
 
 describe("deleteMovieById", () => {
-  it("should call deleteMovieById", async () => {
+  it("should return data", async () => {
     (axios.request as jest.Mock).mockImplementation(() => Promise.resolve("data"));
     const result = await deleteMovieById("some id", "token");
     expect(result).toBe("data");
   });
-  it("should call deleteMovieById", async () => {
+  it("should return error response", async () => {
     (axios.request as jest.Mock).mockImplementation(() =>
       Promise.reject(new Error("Request failed"))
     );
@@ -45,14 +45,14 @@ describe("deleteMovieById", () => {
 });
 
 describe("getMovieById", () => {
-  it("should call getMovieById", async () => {
+  it("should return data", async () => {
     (axios.get as jest.Mock).mockImplementation(() =>
       Promise.resolve({ data: "data" })
     );
     const result = await getMovieById("some id");
     expect(result).toBe("data");
   });
-  it("should call getMovieById", async () => {
+  it("should return error response", async () => {
     (axios.get as jest.Mock).mockImplementation(() =>
       Promise.reject(new Error("Request failed"))
     );
@@ -62,7 +62,7 @@ describe("getMovieById", () => {
 });
 
 describe("getMovieComments", () => {
-  it("should call updateMovie", async () => {
+  it("should return data", async () => {
     (axios.get as jest.Mock).mockImplementation(() =>
       Promise.resolve({ data: "data" })
     );
@@ -70,7 +70,7 @@ describe("getMovieComments", () => {
     expect(result).toBe("data");
   });
 
-  it("should call updateMovie", async () => {
+  it("should return error response", async () => {
     (axios.get as jest.Mock).mockImplementation(() =>
       Promise.reject(new Error("Request failed"))
     );
@@ -80,7 +80,7 @@ describe("getMovieComments", () => {
 });
 
 describe("getMoviePersons", () => {
-  it("should call updateMovie", async () => {
+  it("should return data", async () => {
     (axios.get as jest.Mock).mockImplementation(() =>
       Promise.resolve({ data: "data" })
     );
@@ -88,7 +88,7 @@ describe("getMoviePersons", () => {
     expect(result).toBe("data");
   });
 
-  it("should call updateMovie", async () => {
+  it("should return error response", async () => {
     (axios.get as jest.Mock).mockImplementation(() =>
       Promise.reject(new Error("Request failed"))
     );
@@ -98,7 +98,7 @@ describe("getMoviePersons", () => {
 });
 
 describe("getMovies", () => {
-  it("should call updateMovie", async () => {
+  it("should return data", async () => {
     (axios.get as jest.Mock).mockImplementation(() =>
       Promise.resolve({ data: "data" })
     );
@@ -106,7 +106,7 @@ describe("getMovies", () => {
     expect(result).toBe("data");
   });
 
-  it("should call updateMovie", async () => {
+  it("should return error response", async () => {
     (axios.get as jest.Mock).mockImplementation(() =>
       Promise.reject(new Error("Request failed"))
     );
@@ -116,7 +116,7 @@ describe("getMovies", () => {
 });
 
 describe("getMoviesByGenre", () => {
-  it("should call updateMovie", async () => {
+  it("should return data", async () => {
     (axios.get as jest.Mock).mockImplementation(() =>
       Promise.resolve({ data: "data" })
     );
@@ -124,7 +124,7 @@ describe("getMoviesByGenre", () => {
     expect(result).toBe("data");
   });
 
-  it("should call updateMovie", async () => {
+  it("should return error response", async () => {
     (axios.get as jest.Mock).mockImplementation(() =>
       Promise.reject(new Error("Request failed"))
     );
@@ -134,7 +134,7 @@ describe("getMoviesByGenre", () => {
 });
 
 describe("getMoviesById", () => {
-  it("should call updateMovie", async () => {
+  it("should return data", async () => {
     (axios.get as jest.Mock).mockImplementation(() =>
       Promise.resolve({ data: "data" })
     );
@@ -143,7 +143,7 @@ describe("getMoviesById", () => {
     expect(result).toBe("data");
   });
 
-  it("should call updateMovie", async () => {
+  it("should return error response", async () => {
     (axios.get as jest.Mock).mockImplementation(() =>
       Promise.reject(new Error("Request failed"))
     );
@@ -163,7 +163,7 @@ describe("updateMovie", () => {
     director: "",
   };
 
-  it("should call getFilteredMovies", async () => {
+  it("should return data", async () => {
     (axios.get as jest.Mock).mockImplementation(() =>
       Promise.resolve({ data: "data" })
     );
@@ -173,7 +173,7 @@ describe("updateMovie", () => {
     expect(result).toBe("data");
   });
 
-  it("should call getFilteredMovies", async () => {
+  it("should return error response", async () => {
     (axios.get as jest.Mock).mockImplementation(() =>
       Promise.reject(new Error("Request failed"))
     );
@@ -182,7 +182,7 @@ describe("updateMovie", () => {
     expect(result).toBe(undefined);
   });
 
-  it("should call getFilteredMovies", async () => {
+  it("should return filtersTest", async () => {
     const filtersTest = {
       genres: "genres",
       countries: "countries",
@@ -202,7 +202,7 @@ describe("updateMovie", () => {
 });
 
 describe("updateMovie", () => {
-  it("should call updateMovie", async () => {
+  it("should return data", async () => {
     (axios.request as jest.Mock).mockImplementation(() =>
       Promise.resolve({ data: "data" })
     );
@@ -211,7 +211,7 @@ describe("updateMovie", () => {
     expect(result).toBe("data");
   });
 
-  it("should call updateMovie", async () => {
+  it("should return error response", async () => {
     (axios.request as jest.Mock).mockImplementation(() =>
       Promise.reject(new Error("Request failed"))
     );

@@ -4,6 +4,7 @@ import { renderWithProviders } from "/src/utils/test-utils";
 import { fireEvent, screen } from "@testing-library/react";
 import { mockMovie } from "/src/utils/mocks/movies";
 import { deleteMovieById, updateMovie } from "/src/api/movie";
+import mockRouter from "next-router-mock";
 
 jest.mock("next/router", () => require("next-router-mock"));
 
@@ -15,11 +16,6 @@ jest.mock("src/api/movie", () => ({
 describe("AdminMovie", () => {
   afterEach(() => {
     jest.clearAllMocks();
-    jest
-    .spyOn(React, "useState")
-    .mockImplementationOnce(() => ["", jest.fn()])
-    .mockImplementationOnce(() => ["", jest.fn()])
-    .mockImplementationOnce(() => [false, jest.fn()]);
   });
 
   it("should render without errors", () => {
@@ -32,10 +28,29 @@ describe("AdminMovie", () => {
   it("should submit movie", () => {
     (updateMovie as jest.Mock).mockImplementation(() => Promise.resolve(mockMovie));
     renderWithProviders(<AdminMovie movie={mockMovie} />);
-    fireEvent.submit(screen.getByTestId("admin-movie-form"));
+    fireEvent.click(screen.getByTestId("movie-input-en-button"));
     expect(screen.getByTestId("admin-movie")).toBeInTheDocument();
     expect(updateMovie).toBeCalled();
   });
+
+  it("should submit movie", () => {
+    mockRouter.locale = "ru";
+    (updateMovie as jest.Mock).mockImplementation(() => Promise.resolve(mockMovie));
+    renderWithProviders(<AdminMovie movie={mockMovie} />);
+    fireEvent.click(screen.getByTestId("movie-input-ru-button"));
+    expect(screen.getByTestId("admin-movie")).toBeInTheDocument();
+    expect(updateMovie).toBeCalled();
+  });
+
+  it("should submit movie", () => {
+    mockRouter.locale = "en";
+    (updateMovie as jest.Mock).mockImplementation(() => Promise.resolve(undefined));
+    renderWithProviders(<AdminMovie movie={mockMovie} />);
+    fireEvent.click(screen.getByTestId("movie-input-ru-button"));
+    expect(screen.getByTestId("admin-movie")).toBeInTheDocument();
+    expect(updateMovie).toBeCalled();
+  });
+
   it("should delete movie", () => {
     jest.spyOn(React, "useState").mockImplementation(() => ["", jest.fn()]);
     (deleteMovieById as jest.Mock).mockImplementation(() =>
@@ -43,5 +58,6 @@ describe("AdminMovie", () => {
     );
     renderWithProviders(<AdminMovie movie={mockMovie} />);
     fireEvent.click(screen.getByTestId("delete-button"));
+    expect(deleteMovieById).toBeCalled();
   });
 });

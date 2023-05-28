@@ -1,4 +1,4 @@
-import { FC, useState, FormEvent } from "react";
+import { FC, useState, useEffect } from "react";
 import { useTranslation } from "next-i18next";
 import styles from "./AdminMovie.module.sass";
 import CustomTitle from "/src/UI/CustomTitle/CustomTitle";
@@ -20,18 +20,19 @@ const AdminMovie: FC<AdminMovieProps> = ({ movie }) => {
   const [inputTextRu, setInputTextRu] = useState<string>(movie.name_ru);
   const [inputTextEn, setInputTextEn] = useState<string>(movie.name_en);
   const [isDelete, setDelete] = useState<boolean>(false);
+  const [actualName, setActualName] = useState<string>(getMovieName(movie, locale));
 
-  const handleFormSubmit = (event: FormEvent): void => {
-    event.preventDefault();
-
+  const clickSubmit = (): void => {
     updateMovie(
       String(localStorage.getItem("token")),
       movie.film_id,
-      inputTextEn || movie.name_en,
-      inputTextRu || movie.name_ru
-    ).then(() => {
-      setInputTextRu("");
-      setInputTextEn("");
+      inputTextEn,
+      inputTextRu
+    ).then((response) => {
+      if (!response) return;
+      locale === "ru"
+        ? setActualName(response.name_ru)
+        : setActualName(response.name_en);
     });
   };
 
@@ -43,12 +44,18 @@ const AdminMovie: FC<AdminMovieProps> = ({ movie }) => {
     );
   };
 
+  useEffect(() => {
+    setActualName(getMovieName(movie, locale));
+    setInputTextRu(movie.name_ru);
+    setInputTextEn(movie.name_en);
+  }, [locale, movie]);
+
   return (
     <>
       {!isDelete && (
         <article data-testid="admin-movie" className={styles.movie}>
           <div className={styles.movie__row}>
-            <CustomTitle title={getMovieName(movie, locale)} />
+            <CustomTitle title={actualName} />
             <button
               onClick={deleteClick}
               className={styles.movie__delete}
@@ -59,11 +66,7 @@ const AdminMovie: FC<AdminMovieProps> = ({ movie }) => {
             </button>
           </div>
           <div className={styles.movie__row}>
-            <form
-              data-testid="admin-movie-form"
-              className={styles.form}
-              onSubmit={handleFormSubmit}
-            >
+            <form data-testid="admin-movie-form" className={styles.form}>
               <CustomTitle
                 className={styles.form__title}
                 type="small"
@@ -78,6 +81,8 @@ const AdminMovie: FC<AdminMovieProps> = ({ movie }) => {
                 placeholderText={t("name_ru")}
                 isFocused={false}
                 preventDefault={true}
+                clickCallback={clickSubmit}
+                dataTestId="movie-input-ru"
               />
               <ModalInput
                 className={styles.input}
@@ -88,6 +93,8 @@ const AdminMovie: FC<AdminMovieProps> = ({ movie }) => {
                 placeholderText={t("name_en")}
                 isFocused={false}
                 preventDefault={true}
+                clickCallback={clickSubmit}
+                dataTestId="movie-input-en"
               />
             </form>
             <div className={styles.poster}>
