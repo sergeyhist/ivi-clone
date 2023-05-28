@@ -12,7 +12,7 @@ import { useRouter } from "next/router";
 import { useGetActors, useGetDirectors } from "/src/api/persons";
 import { getFiltersFromRoute } from "/src/utils/filters/getFiltersFromRoute";
 import { compareFilters } from "/src/utils/filters/compareFilters";
-import { setFilters, setMoviesPage } from "/src/store/slices/filtersSlice";
+import { setFilters } from "/src/store/slices/filtersSlice";
 import { useTranslation } from "next-i18next";
 
 const Filters: FC = () => {
@@ -31,8 +31,7 @@ const Filters: FC = () => {
   const resetHandler = (): void => {
     const resetFilters = getResetfilters(filters);
 
-    Object.keys(resetFilters).length > 0 &&
-      setQueryParams(router, resetFilters);
+    Object.keys(resetFilters).length > 0 && setQueryParams(router, resetFilters);
   };
 
   useEffect(() => {

@@ -19,7 +19,6 @@ import { IPerson } from "/src/types/IPerson";
 import createAppPortal from "/src/utils/createAppPortal";
 import { modalsSlice } from "/src/store/slices/modalsSlice";
 import { IMovie } from "/src/types/IMovie";
-import useCloseEvents from "/src/hooks/useCloseEvents";
 import MoviePoster from "./MoviePoster/MoviePoster";
 import { iviSans, iviIcons, iconFont } from "/src/utils/fonts";
 import Container from "/src/UI/Container/Container";

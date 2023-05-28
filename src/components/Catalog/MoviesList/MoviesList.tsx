@@ -14,20 +14,14 @@ import MovieCard from "/src/UI/MovieCard/MovieCard";
 import filterMovies from "/src/utils/filters/filterMovies";
 import { setQueryParams } from "/src/utils/query";
 import { useTranslation } from "next-i18next";
-import { PropagateLoader } from "react-spinners";
 import PageLoader from "/src/UI/PageLoader/PageLoader";
 
 const MoviesList: FC = () => {
   const router = useRouter();
   const { query } = router;
   const { t } = useTranslation();
-  const {
-    filteredMovies,
-    filters,
-    sortingMethod,
-    isMoviesLoading,
-    moviesPage,
-  } = useAppSelector((state) => state.filters);
+  const { filteredMovies, filters, sortingMethod, isMoviesLoading, moviesPage } =
+    useAppSelector((state) => state.filters);
   const { width } = useAppSelector((state) => state.windowSize);
   const dispatch = useAppDispatch();
 
@@ -73,16 +67,12 @@ const MoviesList: FC = () => {
       <div data-testid="movies-list">
         <div className={`${styles.list}`}>
           {filteredMovies
-            .slice(0, listLimit * moviesPage)
-            .map((movie: IMovie, i) => (
-              <div
-                data-testid="movies-item"
-                key={i}
-                className={styles.list__movie}
-              >
-                <MovieCard content={movie} />
-              </div>
-            ))}
+          .slice(0, listLimit * moviesPage)
+          .map((movie: IMovie, i) => (
+            <div data-testid="movies-item" key={i} className={styles.list__movie}>
+              <MovieCard content={movie} />
+            </div>
+          ))}
         </div>
         {isPageLoading && <PageLoader />}
         {listLimit * moviesPage < filteredMovies.length && (

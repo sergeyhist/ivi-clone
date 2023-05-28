@@ -1,4 +1,4 @@
-import { act, waitFor } from "@testing-library/react";
+import { act } from "@testing-library/react";
 import Filters from "./Filters";
 import { useGetActors, useGetDirectors } from "/src/api/persons";
 import { IProviderRender } from "/src/types/IRender";
@@ -80,18 +80,14 @@ describe("Filters component", () => {
 
   test("page reset button with window width > 550", () => {
     const { getAllByTestId } = render.component;
-    act(() =>
-      render.store.dispatch(setWindowSize({ width: 560, height: 1080 }))
-    );
+    act(() => render.store.dispatch(setWindowSize({ width: 560, height: 1080 })));
 
     expect(getAllByTestId("reset-all-button")[1]).toMatchSnapshot();
   });
 
   test("page reset button with window width < 550", () => {
     const { getAllByTestId } = render.component;
-    act(() =>
-      render.store.dispatch(setWindowSize({ width: 540, height: 1080 }))
-    );
+    act(() => render.store.dispatch(setWindowSize({ width: 540, height: 1080 })));
 
     expect(getAllByTestId("reset-all-button")[1]).toMatchSnapshot();
   });

@@ -1,8 +1,7 @@
-import { fireEvent, render, waitFor, screen } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import ModalInput from "/src/UI/ModalInput/ModalInput";
 import styles from "./ModalInput.module.sass";
 import React from "react";
-import userEvent from "@testing-library/user-event";
 
 describe("ModalInput", () => {
   it("should renders without errors", () => {
@@ -74,7 +73,7 @@ describe("ModalInput", () => {
 
     expect(content).toHaveClass("placeholder_active");
     fireEvent.change(input, { target: { value: "" } });
-    fireEvent.keyDown(document, {key: "Escape"});
+    fireEvent.keyDown(document, { key: "Escape" });
 
     expect(content).not.toHaveClass("placeholder_active");
 
