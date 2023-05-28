@@ -1,29 +1,50 @@
-import authSlice, { setAuth, UserAuth } from "/src/store/slices/authSlice";
-import { defaultFilters } from "/src/utils/filters/filtersVariables";
+import { authSlice, UserAuth } from "/src/store/slices/authSlice";
 import { filtersSlice, FiltersState } from "/src/store/slices/filtersSlice";
-import { mockMovie } from "/src/utils/mocks/movies";
-import { IFilters } from "/src/types/IFilter";
-import { IMovie } from "/src/types/IMovie";
-import getSortedList from "/src/utils/filters/getSortedList";
 import {
   IMovieModal,
   modalsSlice,
   ModalStates,
 } from "/src/store/slices/modalsSlice";
 import { slugsSlice, SlugsState } from "/src/store/slices/slugsSlice";
-import IWindowSize from "/src/types/IWindowSize";
 import { windowSizeSlice } from "/src/store/slices/windowSizeSlice";
+import { IFilters } from "/src/types/IFilter";
+import { IMovie } from "/src/types/IMovie";
+import IWindowSize from "/src/types/IWindowSize";
+import { defaultFilters } from "/src/utils/filters/filtersVariables";
+import getSortedList from "/src/utils/filters/getSortedList";
+import { mockMovie } from "/src/utils/mocks/movies";
 
 /* eslint-disable */
 describe("authSlice", () => {
-  it("should return the correct state", () => {
-    const previousState: UserAuth = { isLogged: false, userEmail: "" };
-    expect(
-      authSlice(previousState, setAuth({ userEmail: "test", isLogged: true }))
-    ).toEqual({
-      userEmail: "test",
+  let initialState: UserAuth;
+
+  beforeEach(() => {
+    initialState = {
+      isLogged: false,
+      userEmail: "",
+    };
+  });
+
+  test("setAuth should work correctly", () => {
+    const authInfo: UserAuth = {
       isLogged: true,
-    });
+      userEmail: "test",
+    };
+
+    const action = authSlice.actions.setAuth(authInfo);
+    const newState = authSlice.reducer(initialState, action);
+
+    expect(newState.isLogged).toEqual(true);
+    expect(newState.userEmail).toEqual("test");
+  });
+
+  test("setRole should work correctly", () => {
+    const role = "admin";
+
+    const action = authSlice.actions.setRole(role);
+    const newState = authSlice.reducer(initialState, action);
+
+    expect(newState.role).toEqual("admin");
   });
 });
 
@@ -56,7 +77,10 @@ describe("filtersSlice", () => {
   it("should handle setFilteredMovies", () => {
     const movies: IMovie[] = [mockMovie];
 
-    const expectedFilteredMovies = getSortedList(initialState.sortingMethod, movies);
+    const expectedFilteredMovies = getSortedList(
+      initialState.sortingMethod,
+      movies
+    );
 
     const action = filtersSlice.actions.setFilteredMovies(movies);
     const newState = filtersSlice.reducer(initialState, action);

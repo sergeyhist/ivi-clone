@@ -70,7 +70,7 @@ const MultiSelector: FC<MultiSelectorProps> = ({
         }
       >
         <FilterSlider
-          items={items.slice(0, 10)}
+          items={items.slice(0, 8)}
           filters={filters}
           filtersType={filtersType}
           clickCallback={(result) => {

@@ -45,7 +45,7 @@ const Filters: FC = () => {
       <div className={styles.filters__top}>
         <MultiSelector
           title={"genre"}
-          items={slugs.genresSlugs}
+          items={sortHandler([...slugs.genresSlugs])}
           filters={filters.genres as string[]}
           filtersType="genres"
           dropdownPosition="left"

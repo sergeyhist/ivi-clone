@@ -18,6 +18,8 @@ import { SwiperOptions } from "swiper";
 import { TbRating18Plus } from "react-icons/tb";
 import { MdSportsBasketball } from "react-icons/md";
 import { IFilters } from "/src/types/IFilter";
+import { SiWikidotjs } from "react-icons/si";
+import { FaChild } from "react-icons/fa";
 
 export const sliderBreakpoints: { [width: number]: SwiperOptions } = {
   0: { slidesPerView: 1, slidesPerGroup: 1 },
@@ -44,6 +46,8 @@ export const genreIcons: { [key: string]: ReactNode } = {
   filmnoir: <FaRedhat size={32} />,
   criminal: <GiHatchets size={32} />,
   horror: <BiGhost size={32} />,
+  animatedfilm: <SiWikidotjs size={32} />,
+  children: <FaChild size={32} />,
 };
 
 export const yearFilterItems: string[] = [
