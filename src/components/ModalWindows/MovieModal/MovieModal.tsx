@@ -79,8 +79,6 @@ const MovieModal: FC<MovieModalProps> = ({
     }
   };
 
-  // useCloseEvents([modalRef], closeHandler);
-
   useOverflowHidden(showMovieModal.isShow);
 
   return createAppPortal(

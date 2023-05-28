@@ -17,7 +17,7 @@ interface LinkListProps {
 }
 
 const LinkList: FC<LinkListProps> = ({ selectedGenre }) => {
-  const { t } = useTranslation("dropDownCategory");
+  const { t } = useTranslation(["genres", "dropDownCategory", "header"]);
   const { genresSlugs } = useAppSelector((state) => state.slugs);
 
   const order: DropDownType[] = ["movies", "series", "cartoons"];
@@ -33,7 +33,7 @@ const LinkList: FC<LinkListProps> = ({ selectedGenre }) => {
   const genresHrefs = makeLinksFromSlugs(sortedGenresSlugs, "genres");
 
   const translatedYears: string[] = yearsList.map((year) =>
-    t(`years.${selectedGenre}`, { year: year })
+    t(`dropDownCategory:years.${selectedGenre}`, { year: year })
   );
   const yearsHrefs = yearsList.map((year) => {
     return `year=${year}-${year}`;
@@ -44,7 +44,7 @@ const LinkList: FC<LinkListProps> = ({ selectedGenre }) => {
     (country) => countriesList[country]
   );
   const translatedCountries: string[] = Object.keys(countriesList).map(
-    (country) => t(`countries.${country}`)
+    (country) => t(`dropDownCategory:countries.${country}`)
   );
 
   return (

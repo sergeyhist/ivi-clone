@@ -79,9 +79,8 @@ const ModalInput: FC<ModalInputProps> = ({
   }, [showPassword, isPasswordInputSelected, inputType]);
 
   const handleInputBlur = (): void => {
-    console.log("blur")
     inputRef.current?.blur();
-    if (authData === "") setIsInputActive(false);
+    if (inputRef.current?.value === "") setIsInputActive(false);
     if (setIsPasswordInputSelected && inputRef.current?.value === "")
       setIsPasswordInputSelected(false);
   };
@@ -100,8 +99,8 @@ const ModalInput: FC<ModalInputProps> = ({
 
   const handleInputClick = (): void => {
     if (isInputActive === false) {
-      inputRef.current?.focus();
       setIsInputActive(true);
+      inputRef.current?.focus();
     }
   };
 

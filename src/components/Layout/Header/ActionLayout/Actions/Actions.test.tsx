@@ -86,13 +86,13 @@ describe("Actions", () => {
   });
 
   it("should render subscription link when router.pathname is not '/'", () => {
-    const {store}= renderWithProviders(
+    const { store } = renderWithProviders(
       <Actions
         setDropDownType={setDropDownType}
         setIsDropdownActive={setIsDropdownActive}
       />
     );
-    act(()=>store.dispatch(setWindowSize({width:1600, height: 1700})));
+    act(() => store.dispatch(setWindowSize({ width: 1600, height: 1700 })));
     const linkSubscription = screen.getByTestId("subscription-link");
     expect(linkSubscription).toBeInTheDocument();
     expect(linkSubscription).toHaveAttribute(
@@ -111,13 +111,13 @@ describe("Actions", () => {
 
   it("should render subscription button when router.pathname is '/'", () => {
     mockRouter.push("/");
-    const {store}= renderWithProviders(
+    const { store } = renderWithProviders(
       <Actions
         setDropDownType={setDropDownType}
         setIsDropdownActive={setIsDropdownActive}
       />
     );
-    act(()=>store.dispatch(setWindowSize({width:1600, height: 1700})));
+    act(() => store.dispatch(setWindowSize({ width: 1600, height: 1700 })));
     const buttonElement = screen.getByTestId("subscription-button");
 
     expect(buttonElement).toBeInTheDocument();
@@ -135,5 +135,28 @@ describe("Actions", () => {
     expect(setDropDownType).toHaveBeenCalledWith("notification");
     expect(setIsDropdownActive).toHaveBeenCalledWith(true);
   });
-});
 
+  it("calls router.push with the correct arguments", () => {
+    jest.useFakeTimers();
+    const push = jest.spyOn(mockRouter, "push");
+
+    mockRouter.locale = "ru";
+    mockRouter.locales = ["en", "ru"];
+    mockRouter.asPath = "/";
+
+    renderWithProviders(
+      <Actions
+        setDropDownType={setDropDownType}
+        setIsDropdownActive={setIsDropdownActive}
+      />
+    );
+    const toggleSwitch = screen.getByTestId("toggle-switch");
+
+    act(() => fireEvent.click(toggleSwitch));
+    setTimeout(() => {
+      expect(push).toHaveBeenCalled();
+      expect(mockRouter.locale).toEqual("en");
+    }, 500);
+    act(() => jest.runAllTimers());
+  });
+});

@@ -1,8 +1,6 @@
 import { Dispatch, FC, LegacyRef, SetStateAction } from "react";
 import styles from "./ActionLayout.module.sass";
-import ToggleSwitch from "/src/UI/ToggleSwitch/ToggleSwitch";
 import Actions from "/src/components/Layout/Header/ActionLayout/Actions/Actions";
-import { useRouter } from "next/router";
 import { DropDownType } from "/src/components/Layout/Header/Header.utils";
 
 interface ActionLayout {
@@ -16,29 +14,12 @@ const ActionLayout: FC<ActionLayout> = ({
   setIsDropdownActive,
   setDropDownType,
 }) => {
-  const { locale, push, pathname, asPath, query } = useRouter();
-
-  const handleLocaleClick = (result: string): void => {
-    push({ pathname, query }, asPath, { locale: result, scroll: false });
-  };
-
   return (
     <div
       ref={actionRef}
       className={styles.container}
       data-testid="actionLayout-container"
     >
-      <ToggleSwitch
-        className={styles.switch}
-        leftContent="EN"
-        rightContent="RU"
-        defaultValue={locale === "ru" ? "right" : "left"}
-        scale={"0.7"}
-        clickCallback={(result) => {
-          handleLocaleClick(result.toLowerCase());
-        }}
-        dataTestId="toggle-switch"
-      />
       <Actions
         setIsDropdownActive={setIsDropdownActive}
         setDropDownType={setDropDownType}

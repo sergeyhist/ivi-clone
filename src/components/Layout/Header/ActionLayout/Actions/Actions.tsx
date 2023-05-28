@@ -19,6 +19,7 @@ import { notify } from "/src/utils/defaultToast";
 import { logout } from "/src/api/user";
 import { removeAuthData } from "/src/utils/localStorage";
 import { deleteCookiesByNames } from "/src/utils/cookies";
+import ToggleSwitch from "/src/UI/ToggleSwitch/ToggleSwitch";
 
 interface ActionsProps {
   setDropDownType: Dispatch<SetStateAction<DropDownType>>;
@@ -34,6 +35,7 @@ const Actions: FC<ActionsProps> = ({
   const authState = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const { locale, push, pathname, asPath, query } = useRouter();
 
   const handleSearchClick = (): void => {
     dispatch(setShowSearchModal(true));
@@ -51,8 +53,23 @@ const Actions: FC<ActionsProps> = ({
     if (!authState.isLogged) dispatch(setShowAuthModal(true));
   };
 
+  const handleLocaleClick = (result: string): void => {
+    push({ pathname, query }, asPath, { locale: result, scroll: false });
+  };
+
   return (
     <div className={styles.container} data-testid="actions-container">
+      <ToggleSwitch
+        className={styles.switch}
+        leftContent="EN"
+        rightContent="RU"
+        defaultValue={locale === "ru" ? "right" : "left"}
+        scale={"0.7"}
+        clickCallback={(result) => {
+          handleLocaleClick(result.toLowerCase());
+        }}
+        dataTestId="toggle-switch"
+      />
       {router.pathname !== "/" ? windowSizeWidth >600 && (
         <Link
           href="https://www.ivi.ru/subscribe"
