@@ -23,7 +23,7 @@ Sections:
   - Persons of the selected movie.
   - Comments.
 + Search modal   
-Redirect with with entered query to [Ivi search](https://www.ivi.ru/search/?ivi_search)
+Redirect with entered query to [Ivi search](https://www.ivi.ru/search/?ivi_search)
 ### Links
 + Genres, countries and years links in header is functional.
 + Movies and catalogue links redirect to `/movies` page.
