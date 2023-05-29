@@ -24,10 +24,12 @@ const Home: FC<HomeProps> = ({ bestMilitants, bestComedies, topTenMovies }) => {
     {
       movies: bestMilitants,
       title: t("home:compilations.militants.title"),
+      route: "/movies?genres=militant",
     },
     {
       movies: bestComedies,
       title: t("home:compilations.comedies.title"),
+      route: "/movies?genres=drama",
     },
   ];
 
@@ -71,7 +73,7 @@ export const getStaticProps = async ({
         "genres",
         "countries",
         "movie",
-        "admin"
+        "admin",
       ])),
     },
   };

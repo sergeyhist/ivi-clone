@@ -7,6 +7,7 @@ import Container from "/src/UI/Container/Container";
 interface ICompilations {
   movies: IMovie[];
   title: string;
+  route: string;
 }
 
 interface HomeSlidersProps {
@@ -25,6 +26,7 @@ const HomeSliders: FC<HomeSlidersProps> = ({ compilations }) => {
             key={index}
             title={compilation.title}
             slides={compilation.movies}
+            categoryRoute={compilation.route}
           />
         ))}
       </Container>
