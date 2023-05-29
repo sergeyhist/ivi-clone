@@ -17,7 +17,9 @@ To install the project, follow these steps:
 
 ## Usage
 If wanna test app with local doker server you need to go to the following file at the root of the project
+```
 ├── next.config.js
+```
 and change the variable SERVER_HOST to whatewer you want.
 
 To run the project, use the following command:
