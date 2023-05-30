@@ -1,5 +1,36 @@
-## Ivi clone
-Brief description of the project.
+# Ivi clone
+## About
+This project represents multiple web pages for interactions with catalogue of movies.  
+### Functional pages:
++ `/`  
+Main page with multiple sliders.  
++ `/movies`  
+Movies list with filters and sorting.  
++ `/movies/[id]`  
+Movie info, comments and trailer. 
++ `/person/[id]`  
+Person info with filmography.  
++ `/admin`  
+Admin panel. Possibilities:  
+  - Searching.  
+  - Update movies and genres names.  
+  - Delete movies.
+### Modal windows
++ Auth modal  
+Registration and authorization. Google and VK auth.
++ Movie modal  
+Sections:
+  - Persons of the selected movie.
+  - Comments.
++ Search modal   
+Redirect with entered query to [Ivi search](https://www.ivi.ru/search/?ivi_search)
+### Links
++ Genres, countries and years links in header is functional.
++ Movies and catalogue links redirect to `/movies` page.
++ All other links redirect to [Ivi website](https://www.ivi.ru/movies/all).
+### Translations
++ Russian
++ English
 
 ## Technologies
 [![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB&style=plastic)](https://react.dev/)
@@ -11,32 +42,46 @@ Brief description of the project.
 [![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black&style=plastic)](https://webpack.js.org/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
+## Links
+[Production on versel](https://ivi-clone.vercel.app/)   
+[Alternative production](https://gachibass.online)   
+[Backend](https://github.com/GoldenManBel/API_BackEnd)
+
 ## Installation
 To install the project, follow these steps:
 - Clone the repository to your local machine.
-- Run `npm install` to install all the dependencies.
+- Install dependencies:
+  ```bash
+  npm install
+  # or
+  yarn install
+  ```
 
-## Usage
-If wanna test app with local doker server you need to go to the following file at the root of the project
+## Testing
+For testing app with local doker server you need to go to the following file at the root of the project
 ```
 ├── next.config.js
 ```
-and change the variable SERVER_HOST to whatewer you want.
+and change the variable SERVER_HOST to
 
-To run the project, use the following command:
+  > http://localhost:4000  
+
+After that install backend server with [instructions](https://github.com/GoldenManBel/API_BackEnd#running-application-in-docker) from their [repository](https://github.com/GoldenManBel/API_BackEnd).
+
+To run the project in development mode, use the following command:
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
 ```
-This will start the development server and the application will be available at [http://localhost:3000](http://localhost:3000).
 
-## Contributing
-Contributions to this project are welcome. To contribute, follow these steps:
-- Fork this repository.
-- Create a branch: `git checkout -b <branch_name>`
-- Make your changes and commit them: `git commit -m '<commit_message>'`
-- Push to the original branch: `git push origin <project_name>/<location>`
-- Create the pull request.
+Also you may build application and run it in production mode with the following commands:
+```bash
+npm run build
+npm run start
+# or
+yarn build
+yarn start
+```
+
+Application will be available at [http://localhost:3000](http://localhost:3000).
