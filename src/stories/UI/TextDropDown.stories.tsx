@@ -37,7 +37,7 @@ const meta: Meta<typeof TextDropDown> = {
 export default meta;
 type Story = StoryObj<typeof TextDropDown>;
 
-export const DefaultMovieSlides: Story = {
+export const DefaultTextDropDown: Story = {
   args: {
     children: (
       <p>

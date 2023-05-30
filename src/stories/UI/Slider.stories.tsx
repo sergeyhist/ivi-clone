@@ -59,7 +59,7 @@ const meta: Meta<typeof Slider> = {
 export default meta;
 type Story = StoryObj<typeof Slider>;
 
-export const DefaultMovieSlides: Story = {
+export const DefaultSlider: Story = {
   args: {
     children: (
       <SwiperSlide>

@@ -19,7 +19,7 @@ const meta: Meta<typeof Votes> = {
 export default meta;
 type Story = StoryObj<typeof Votes>;
 
-export const DefaultMovieSlides: Story = {
+export const DefaultVotes: Story = {
   args: {
     like: 12,
   },
