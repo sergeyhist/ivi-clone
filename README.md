@@ -44,7 +44,6 @@ Redirect with entered query to [Ivi search](https://www.ivi.ru/search/?ivi_searc
 
 ## Links
 [Production on versel](https://ivi-clone.vercel.app/)   
-[Alternative production](https://gachibass.online)   
 [Backend](https://github.com/GoldenManBel/API_BackEnd)
 
 ## Installation
