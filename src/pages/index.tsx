@@ -8,17 +8,10 @@ import HomeSliders from "../components/Home/HomeSliders/HomeSliders";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticPropsResult } from "next";
-import { getMoviesByGenre, getMovies } from "../api/movie";
-import { IMovie } from "../types/IMovie";
 import {mockMovies} from "/src/utils/mocks/movies";
 
-interface HomeProps {
-  bestMilitants: IMovie[];
-  bestComedies: IMovie[];
-  topTenMovies: IMovie[];
-}
 
-const Home: FC<HomeProps> = ({ bestMilitants, bestComedies, topTenMovies }) => {
+const Home: FC= () => {
   const { t } = useTranslation(["titles", "home"]);
 
   const compilations = [
@@ -50,17 +43,8 @@ export const getStaticProps = async ({
 }: {
   locale: string;
 }): Promise<GetStaticPropsResult<Record<string, unknown>>> => {
-  const bestMilitants = await getMoviesByGenre("militant");
-  const bestComedies = await getMoviesByGenre("comedy");
-  const topTenMovies = await getMovies(
-    "/filter/films?year_min=1998&year_max=2023&rating=8&assessments=3000&limit=10"
-  );
-
   return {
     props: {
-      bestMilitants,
-      bestComedies,
-      topTenMovies,
       ...(await serverSideTranslations(locale, [
         "common",
         "titles",
