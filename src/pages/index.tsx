@@ -10,6 +10,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { GetStaticPropsResult } from "next";
 import { getMoviesByGenre, getMovies } from "../api/movie";
 import { IMovie } from "../types/IMovie";
+import {mockMovies} from "/src/utils/mocks/movies";
 
 interface HomeProps {
   bestMilitants: IMovie[];
@@ -22,12 +23,12 @@ const Home: FC<HomeProps> = ({ bestMilitants, bestComedies, topTenMovies }) => {
 
   const compilations = [
     {
-      movies: bestMilitants,
+      movies: mockMovies.slice(0,9),
       title: t("home:compilations.militants.title"),
       route: "/movies?genres=militant",
     },
     {
-      movies: bestComedies,
+      movies: mockMovies.slice(9,19),
       title: t("home:compilations.comedies.title"),
       route: "/movies?genres=drama",
     },
@@ -37,7 +38,7 @@ const Home: FC<HomeProps> = ({ bestMilitants, bestComedies, topTenMovies }) => {
     <Layout title={t("titles:home")}>
       <BannerSlider />
       <PromoButtons />
-      <TopTen topTenMovies={topTenMovies} />
+      <TopTen topTenMovies={mockMovies.slice(20,30)} />
       <CinemaDetails />
       <HomeSliders compilations={compilations} />
     </Layout>
