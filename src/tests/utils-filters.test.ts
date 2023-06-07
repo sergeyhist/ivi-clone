@@ -17,7 +17,7 @@ describe("filterMovies function", () => {
 
     const result = await filterMovies(defaultFilters, "rating");
 
-    expect(result).toEqual(mockMovies);
+    expect(result).toEqual(getSortedList("rating", mockMovies));
   });
 
   test("call function with undefined movies", async () => {
@@ -25,7 +25,7 @@ describe("filterMovies function", () => {
 
     const result = await filterMovies(defaultFilters, "rating");
 
-    expect(result).toEqual([]);
+    expect(result.length).toEqual(100);
   });
 });
 
@@ -91,10 +91,10 @@ describe("getSortedList function", () => {
 
   test("sorting with string key", () => {
     expect(getSortedList("name_ru", mockMovies)[0].name_ru).toEqual(
-      "Зеленая миля"
+      "A Mannequin's Dream"
     );
     expect(getSortedList("name_ru", mockMovies.reverse())[0].name_ru).toEqual(
-      "Зеленая миля"
+      "A Mannequin's Dream"
     );
   });
 

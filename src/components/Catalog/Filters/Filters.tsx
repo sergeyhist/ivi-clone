@@ -14,6 +14,7 @@ import { getFiltersFromRoute } from "/src/utils/filters/getFiltersFromRoute";
 import { compareFilters } from "/src/utils/filters/compareFilters";
 import { setFilters } from "/src/store/slices/filtersSlice";
 import { useTranslation } from "next-i18next";
+import { actorsList } from "/src/utils/mocks/actors";
 
 const Filters: FC = () => {
   const { t } = useTranslation();
@@ -81,12 +82,12 @@ const Filters: FC = () => {
         />
         <PersonSelector
           type="actor"
-          list={actors.data || []}
+          list={actors.data || actorsList}
           filter={filters.actor as string}
         />
         <PersonSelector
           type="director"
-          list={directors.data || []}
+          list={directors.data || actorsList}
           filter={filters.director as string}
         />
       </div>

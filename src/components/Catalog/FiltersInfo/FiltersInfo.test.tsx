@@ -88,7 +88,7 @@ describe("personFinder function", () => {
     const utils = await import("./FiltersInfo.utils");
     const result = utils.personFinder(
       "actor",
-      { ...defaultFilters, actor: "nicholas_foote" },
+      { ...defaultFilters, actor: "elaine_mclaurin" },
       actorsList
     );
 
@@ -116,7 +116,7 @@ describe("getPersonName function", () => {
     const utils = await import("./FiltersInfo.utils");
     const result = utils.getPersonName(actorsList[1], "ru");
 
-    expect(result).toEqual("Николас Фут");
+    expect(result).toEqual("Илэйн МакЛорин");
   });
 
   test("call function with ru locale", async () => {
@@ -125,7 +125,7 @@ describe("getPersonName function", () => {
     const utils = await import("./FiltersInfo.utils");
     const result = utils.getPersonName(actorsList[1], "en");
 
-    expect(result).toEqual("Nicholas Foote");
+    expect(result).toEqual("Elaine McLaurin");
   });
 
   test("call function with undefined locale", async () => {
@@ -134,6 +134,6 @@ describe("getPersonName function", () => {
     const utils = await import("./FiltersInfo.utils");
     const result = utils.getPersonName(actorsList[1]);
 
-    expect(result).toEqual("Николас Фут");
+    expect(result).toEqual("Илэйн МакЛорин");
   });
 });

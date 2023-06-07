@@ -99,7 +99,7 @@ describe("Person selector component", () => {
   });
 
   test("click callback in dropdown list has been called", () => {
-    const { getByTestId, queryByTestId } = render.component;
+    const { getByTestId, queryByTestId, getAllByTestId } = render.component;
 
     act(() => userEvent.click(getByTestId("selector-input")));
     act(() => userEvent.keyboard("mi"));
@@ -107,7 +107,7 @@ describe("Person selector component", () => {
 
     expect(getByTestId("person-list")).toBeInTheDocument();
 
-    fireEvent.click(getByTestId("list-item"));
+    fireEvent.click(getAllByTestId("list-item")[0]);
     expect(queryByTestId("person-list")).not.toBeInTheDocument();
   });
 

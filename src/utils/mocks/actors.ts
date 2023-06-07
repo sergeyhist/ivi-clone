@@ -1,10 +1,10 @@
 export const actorsList = [
   {
     "person_id": "5415905d-60e6-47a9-a233-b4524a2490ac",
-    "first_name_ru": "Марчеллина",
-    "last_name_ru": "Маршалл",
-    "first_name_en": "Marcellina",
-    "last_name_en": "Marshall",
+    "first_name_ru": "Келли",
+    "last_name_ru": "Хилл",
+    "first_name_en": "Kelly",
+    "last_name_en": "Hill",
     "img": "https://yastatic.net/s3/kinopoisk-frontend/common-static/img/projector-logo/placeholder.svg",
     "filmRoles": [
       {

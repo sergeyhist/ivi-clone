@@ -32,7 +32,7 @@ describe("Movies list", () => {
     act(() => render.store.dispatch(setIsMoviesLoading(false)));
     act(() => render.store.dispatch(setFilteredMovies(mockMovies)));
     expect(screen.getByTestId("movies-list")).toBeInTheDocument();
-    expect(screen.getAllByTestId("movies-item").length).toEqual(2);
+    expect(screen.getAllByTestId("movies-item").length).toEqual(14);
   });
 
   test("render loading while getting movies", () => {
@@ -109,7 +109,7 @@ describe("filterMovies function", () => {
     jest.runAllTimers();
     await waitFor(() => expect(spy).toHaveBeenCalled());
     await waitFor(() =>
-      expect(screen.getAllByTestId("movies-item").length).toEqual(2)
+      expect(screen.getAllByTestId("movies-item").length).toEqual(14)
     );
   });
 });
