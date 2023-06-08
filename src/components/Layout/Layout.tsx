@@ -23,6 +23,8 @@ import { useAppInterceptors } from "/src/hooks/useAppInterceptors";
 import { removeAuthData, setAuthData } from "/src/utils/localStorage";
 import { deleteCookiesByNames } from "/src/utils/cookies";
 import AdminButton from "/src/UI/AdminButton/AdminButton";
+import { genresListSlugs } from "/src/utils/mocks/genres";
+import { countriesListSlugs } from "/src/utils/mocks/countries";
 
 interface LayoutProps {
   title: string;
@@ -76,8 +78,8 @@ const Layout: FC<LayoutProps> = ({ title, children }) => {
   useEffect(() => {
     dispatch(
       setSlugs({
-        genresSlugs: genresSlugs.data || [],
-        countriesSlugs: countriesSlugs.data || [],
+        genresSlugs: genresSlugs.data || genresListSlugs,
+        countriesSlugs: countriesSlugs.data || countriesListSlugs,
       })
     );
   }, [countriesSlugs.data, dispatch, genresSlugs.data]);

@@ -12,6 +12,8 @@ import {
   useGetMovies,
 } from "../api/movie";
 import * as SWR from "swr";
+import { mockMovie, mockMovies } from "../utils/mocks/movies";
+import { actorsList } from "../utils/mocks/actors";
 
 jest.mock("axios");
 jest.mock("swr");
@@ -57,7 +59,7 @@ describe("getMovieById", () => {
       Promise.reject(new Error("Request failed"))
     );
     const result = await getMovieById("some id");
-    expect(result).toEqual(null);
+    expect(result).toEqual(mockMovies[0]);
   });
 });
 
@@ -93,7 +95,7 @@ describe("getMoviePersons", () => {
       Promise.reject(new Error("Request failed"))
     );
     const result = await getMoviePersons("some id");
-    expect(result).toEqual([]);
+    expect(result).toEqual(actorsList);
   });
 });
 
@@ -129,7 +131,7 @@ describe("getMoviesByGenre", () => {
       Promise.reject(new Error("Request failed"))
     );
     const result = await getMoviesByGenre("some genre");
-    expect(result).toEqual([]);
+    expect(result).toEqual(mockMovies.slice(0, 5));
   });
 });
 

@@ -16,12 +16,12 @@ import useOverflowHidden from "/src/hooks/useOverflowHidden";
 import { useTranslation } from "next-i18next";
 import { IComment } from "/src/types/IComment";
 import { IPerson } from "/src/types/IPerson";
-import createAppPortal from "/src/utils/createAppPortal";
 import { modalsSlice } from "/src/store/slices/modalsSlice";
 import { IMovie } from "/src/types/IMovie";
 import MoviePoster from "./MoviePoster/MoviePoster";
 import { iviSans, iviIcons, iconFont } from "/src/utils/fonts";
 import Container from "/src/UI/Container/Container";
+import { createPortal } from "react-dom";
 
 interface MovieModalProps {
   movie: IMovie;
@@ -45,7 +45,8 @@ const MovieModal: FC<MovieModalProps> = ({
   const screenWidth = useAppSelector((state) => state.windowSize.width);
   const commentsTabClass =
     showMovieModal.defaultTab === "comments" ? styles.active : "";
-  const actorsTabClass = showMovieModal.defaultTab === "actors" ? styles.active : "";
+  const actorsTabClass =
+    showMovieModal.defaultTab === "actors" ? styles.active : "";
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -73,63 +74,67 @@ const MovieModal: FC<MovieModalProps> = ({
         return <CreatorsTab persons={persons} />;
       case "comments":
         return (
-          <CommentsTab setCommentsState={setCommentsState} comments={comments} />
+          <CommentsTab
+            setCommentsState={setCommentsState}
+            comments={comments}
+          />
         );
     }
   };
 
   useOverflowHidden(showMovieModal.isShow);
 
-  return createAppPortal(
-    <>
-      {showMovieModal.isShow && (
+  if (showMovieModal.isShow) {
+    return createPortal(
+      <div
+        ref={modalRef}
+        className={`${styles.modal} ${iviSans.className} ${iviIcons.variable} ${iconFont.variable}`}
+        data-testid="movie-modal"
+      >
         <div
-          ref={modalRef}
-          className={`${styles.modal} ${iviSans.className} ${iviIcons.variable} ${iconFont.variable}`}
-          data-testid="movie-modal"
+          data-testid="close-movie-modal"
+          className={styles.back}
+          onClick={closeHandler}
         >
-          <div
-            data-testid="close-movie-modal"
-            className={styles.back}
-            onClick={closeHandler}
-          >
-            {t("modal.backLink")}
-          </div>
-          <Container>
-            <div className={styles.row}>
-              <div className={styles.content}>
-                <h2 className={styles.title}>{movieTitle}</h2>
-                <ul className={styles.tabs__list}>
-                  <li
-                    className={`${styles.tabs__item} ${actorsTabClass}`}
-                    onClick={() => setDefaultTab("actors")}
-                    data-testid="button-creators-tab"
-                  >
-                    {t("modal.tabs.0")}
-                  </li>
-                  <li
-                    className={`${styles.tabs__item} ${commentsTabClass}`}
-                    onClick={() => setDefaultTab("comments")}
-                    data-testid="button-comments-tab"
-                  >
-                    {t("modal.tabs.1")}
-                  </li>
-                </ul>
-                <div className={styles.tabs__content}>
-                  {getSelectedTab(showMovieModal.defaultTab)}
-                </div>
-              </div>
-              {screenWidth > 880 && (
-                <div className={styles.card}>
-                  <MoviePoster content={movie} />
-                </div>
-              )}
-            </div>
-          </Container>
+          {t("modal.backLink")}
         </div>
-      )}
-    </>
-  );
+        <Container>
+          <div className={styles.row}>
+            <div className={styles.content}>
+              <h2 className={styles.title}>{movieTitle}</h2>
+              <ul className={styles.tabs__list}>
+                <li
+                  className={`${styles.tabs__item} ${actorsTabClass}`}
+                  onClick={() => setDefaultTab("actors")}
+                  data-testid="button-creators-tab"
+                >
+                  {t("modal.tabs.0")}
+                </li>
+                <li
+                  className={`${styles.tabs__item} ${commentsTabClass}`}
+                  onClick={() => setDefaultTab("comments")}
+                  data-testid="button-comments-tab"
+                >
+                  {t("modal.tabs.1")}
+                </li>
+              </ul>
+              <div className={styles.tabs__content}>
+                {getSelectedTab(showMovieModal.defaultTab)}
+              </div>
+            </div>
+            {screenWidth > 880 && (
+              <div className={styles.card}>
+                <MoviePoster content={movie} />
+              </div>
+            )}
+          </div>
+        </Container>
+      </div>,
+      document.body
+    );
+  } else {
+    return <></>;
+  }
 };
 
 export default memo(MovieModal);

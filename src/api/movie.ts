@@ -4,6 +4,8 @@ import { IComment } from "../types/IComment";
 import { IPerson } from "../types/IPerson";
 import { IFilters } from "../types/IFilter";
 import useSWR, { SWRResponse } from "swr";
+import { mockMovies } from "../utils/mocks/movies";
+import { actorsList } from "../utils/mocks/actors";
 
 export const getMoviesById = async (
   filmsId: string[]
@@ -27,7 +29,7 @@ export const getMovieById = async (film_id: string): Promise<IMovie | null> => {
     );
     return response.data;
   } catch (error) {
-    return null;
+    return mockMovies[0];
   }
 };
 
@@ -38,7 +40,7 @@ export const getMoviePersons = async (film_id: string): Promise<IPerson[]> => {
     );
     return response.data;
   } catch (error) {
-    return [];
+    return actorsList;
   }
 };
 
@@ -60,7 +62,7 @@ export const getMoviesByGenre = async (genre_slug: string): Promise<IMovie[]> =>
     );
     return response.data;
   } catch (error) {
-    return [];
+    return mockMovies.slice(0, 5);
   }
 };
 

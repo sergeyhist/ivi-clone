@@ -1,5 +1,4 @@
 import { FC } from "react";
-import createAppPortal from "/src/utils/createAppPortal";
 import AuthModal from "/src/components/ModalWindows/AuthModal/AuthModal";
 import {
   setShowAuthModal,
@@ -7,6 +6,7 @@ import {
 } from "/src/store/slices/modalsSlice";
 import SearchModal from "/src/components/ModalWindows/SearchModal/SearchModal";
 import { useAppDispatch, useAppSelector } from "/src/hooks/redux";
+import { createPortal } from "react-dom";
 
 const ModalContainer: FC = () => {
   const showModal = useAppSelector((state) => state.showModal);
@@ -15,14 +15,14 @@ const ModalContainer: FC = () => {
   return (
     <>
       {showModal.showAuthModal &&
-        createAppPortal(
-          <AuthModal closeCallback={() => dispatch(setShowAuthModal(false))} />
+        createPortal(
+          <AuthModal closeCallback={() => dispatch(setShowAuthModal(false))} />, document.body
         )}
       {showModal.showSearchModal &&
-        createAppPortal(
+        createPortal(
           <SearchModal
             closeCallback={() => dispatch(setShowSearchModal(false))}
-          />
+          />, document.body
         )}
     </>
   );
