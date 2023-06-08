@@ -12,7 +12,7 @@ import {
   useGetMovies,
 } from "../api/movie";
 import * as SWR from "swr";
-import { mockMovie, mockMovies } from "../utils/mocks/movies";
+import { mockMovies } from "../utils/mocks/movies";
 import { actorsList } from "../utils/mocks/actors";
 
 jest.mock("axios");
