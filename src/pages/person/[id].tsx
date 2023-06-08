@@ -12,6 +12,7 @@ import PersonLayout from "/src/components/Person/PersonLayout/PersonLayout";
 import { getMoviesById } from "/src/api/movie";
 import { IMovie } from "/src/types/IMovie";
 import { getPersonById } from "/src/api/persons";
+import { actorsList } from "/src/utils/mocks/actors";
 
 interface PersonProps {
   person: IPerson;
@@ -32,10 +33,7 @@ const Person: FC<PersonProps> = ({ person, movies }) => {
         <PersonCard firstName={firstName} lastName={lastName} person={person} />
         <Filmography movies={movies} />
       </PersonLayout>
-      <BreadCrumbs
-        type="slash"
-        currentTitle={`${firstName} ${lastName}`}
-      />
+      <BreadCrumbs type="slash" currentTitle={`${firstName} ${lastName}`} />
     </Layout>
   );
 };
@@ -48,7 +46,8 @@ export const getServerSideProps = async ({
 }): Promise<GetServerSidePropsResult<Record<string, unknown>>> => {
   const person = await getPersonById(params.id);
   const movies = await getMoviesById(
-    person?.films.map((film) => film.film_id) || []
+    person?.films.map((film) => film.film_id) ||
+      actorsList[0].films.map((film) => film.film_id)
   );
 
   return {
@@ -64,7 +63,7 @@ export const getServerSideProps = async ({
         "common",
         "genres",
         "countries",
-        "admin"
+        "admin",
       ])),
     },
   };

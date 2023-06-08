@@ -18,7 +18,7 @@ export const getMoviesById = async (
     });
     return response.data as IMovie[];
   } catch (err) {
-    return undefined;
+    return mockMovies.slice(0, 30);
   }
 };
 

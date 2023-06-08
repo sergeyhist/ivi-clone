@@ -1,6 +1,7 @@
 import axios from "axios";
 import { IPerson } from "/src/types/IPerson";
 import useSWR, { SWRResponse } from "swr";
+import { actorsList } from "../utils/mocks/actors";
 
 export const getPersonById = async (
   personId: string | string[] | undefined
@@ -11,7 +12,7 @@ export const getPersonById = async (
     );
     return response.data as IPerson;
   } catch (err) {
-    return undefined
+    return actorsList[0];
   }
 };
 
