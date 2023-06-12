@@ -57,15 +57,7 @@ To install the project, follow these steps:
   ```
 
 ## Testing
-For testing app with local doker server you need to go to the following file at the root of the project
-```
-├── next.config.js
-```
-and change the variable SERVER_HOST to
-
-  > http://localhost:4000  
-
-After that install backend server with [instructions](https://github.com/GoldenManBel/API_BackEnd#running-application-in-docker) from their [repository](https://github.com/GoldenManBel/API_BackEnd).
+For testing app with backend you need to install server with [instructions](https://github.com/GoldenManBel/API_BackEnd#running-application-in-docker) from this [repository](https://github.com/GoldenManBel/API_BackEnd).
 
 To run the project in development mode, use the following command:
 ```bash
